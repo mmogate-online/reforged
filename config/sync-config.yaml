@@ -70,6 +70,17 @@ entities:
     id_attribute: "targetTemplateId"
     xsd_file: "EquipmentEvolutionData/EquipmentEvolutionData.xsd"
 
+  # Material enchant data (enchant materials, costs, probabilities)
+  # Note: Client XSD filters out most attributes - only structure is synced
+  MaterialEnchantData:
+    strategy: monolithic
+    server_file: "MaterialEnchantData.xml"
+    client_folder: "MaterialEnchantData"
+    client_file: "MaterialEnchantData-00000.xml"
+    root_element: "MaterialEnchantData"
+    id_attribute: "materialEnchantId"
+    xsd_file: "MaterialEnchantData/MaterialEnchantData.xsd"
+
   # ===========================================================================
   # ITEM DATA
   # ===========================================================================
