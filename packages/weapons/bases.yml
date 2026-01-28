@@ -1,0 +1,144 @@
+spec:
+  version: "1.0"
+
+definitions:
+  # =============================================================================
+  # GLOBAL WEAPON BASE
+  # Properties >= 96% common across ALL 9,117 weapons in ItemTemplate.xml
+  # =============================================================================
+  weaponBase:
+    combatItemType: EQUIP_WEAPON
+    coolTime: 0
+    coolTimeGroup: 0
+    dropSound: "InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue"
+    maxStack: 1
+    requiredEquipmentType: NO_COMBAT
+    slotLimit: 0
+    sortingNumber: 0
+    relocatable: true
+    destroyable: true
+    obtainable: true
+    searchable: true
+
+  # =============================================================================
+  # WEAPON SUBTYPE BASES
+  # Each extends weaponBase and adds class-specific properties
+  # =============================================================================
+
+  # Axe - Berserker weapon (742 weapons)
+  axeBase:
+    $extends: weaponBase
+    combatItemSubType: axe
+    category: axe
+    requiredClass:
+      - BERSERKER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_AxeCue"
+
+  # Blaster - Engineer/Gunner weapon (719 weapons)
+  blasterBase:
+    $extends: weaponBase
+    combatItemSubType: blaster
+    category: blaster
+    requiredClass:
+      - ENGINEER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_BlasterCue"
+
+  # Bow - Archer weapon (742 weapons)
+  bowBase:
+    $extends: weaponBase
+    combatItemSubType: bow
+    category: bow
+    requiredClass:
+      - ARCHER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_BowCue"
+
+  # Chain - Soulless/Reaper weapon (240 weapons)
+  chainBase:
+    $extends: weaponBase
+    combatItemSubType: chain
+    category: chain
+    dropType: 0
+    requiredClass:
+      - SOULLESS
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_ChainCue"
+
+  # Circle - Sorcerer weapon (741 weapons)
+  circleBase:
+    $extends: weaponBase
+    combatItemSubType: circle
+    category: circle
+    requiredClass:
+      - SORCERER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_CircleCue"
+
+  # Dual - Warrior weapon (742 weapons)
+  dualBase:
+    $extends: weaponBase
+    combatItemSubType: dual
+    category: dual
+    requiredClass:
+      - WARRIOR
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_DualCue"
+
+  # Gauntlet - Fighter/Brawler weapon (708 weapons)
+  gauntletBase:
+    $extends: weaponBase
+    combatItemSubType: gauntlet
+    category: gauntlet
+    requiredClass:
+      - FIGHTER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_GauntletCue"
+
+  # Glaive - Glaiver/Valkyrie weapon (742 weapons)
+  glaiveBase:
+    $extends: weaponBase
+    combatItemSubType: glaive
+    category: glaive
+    requiredClass:
+      - GLAIVER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_GlaiverCue"
+
+  # Lance - Lancer weapon (741 weapons)
+  lanceBase:
+    $extends: weaponBase
+    combatItemSubType: lance
+    category: lance
+    requiredClass:
+      - LANCER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_LanceCue"
+
+  # Rod - Elementalist/Mystic weapon (742 weapons)
+  rodBase:
+    $extends: weaponBase
+    combatItemSubType: rod
+    category: rod
+    requiredClass:
+      - ELEMENTALIST
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_RodCue"
+
+  # Shuriken - Assassin/Ninja weapon (748 weapons)
+  shurikenBase:
+    $extends: weaponBase
+    combatItemSubType: shuriken
+    category: shuriken
+    requiredClass:
+      - ASSASSIN
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_ShurikenCue"
+
+  # Staff - Priest weapon (742 weapons)
+  staffBase:
+    $extends: weaponBase
+    combatItemSubType: staff
+    category: staff
+    requiredClass:
+      - PRIEST
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_StaffCue"
+
+  # Twohand - Slayer weapon (741 weapons)
+  twohandBase:
+    $extends: weaponBase
+    combatItemSubType: twohand
+    category: twohand
+    requiredClass:
+      - SLAYER
+    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_TwoHandCue"

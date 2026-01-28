@@ -1,0 +1,299 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: weapons
+
+definitions:
+  # Common properties for our specific reaper weapons (IDs 51056-51068)
+  # Extends weapons.chainBase which provides: weaponBase + chain/Soulless specifics
+  ourReaperWeaponBase:
+    $extends: weapons.chainBase
+    name: "chain"
+    level: 60
+    rank: 4
+    conversion: false
+    divide: 0
+    buyPrice: 445360
+    sellPrice: 44536
+    itemUseCount: 1
+    maxDropUnit: 1
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    boundType: Loot
+    dismantlable: true
+    storeSellable: true
+    tradable: false
+    artisanable: false
+    extractRatio: 24
+    enchantEnable: true
+    unidentifiedItemGrade: 1
+    dropIdentify: false
+    masterpieceRate: 0
+    linkLookInfoId: 9101002
+    linkPassivityCategoryId:
+      - "120300"
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredLevel: 60
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    icon: "Icon_Equipments.Chain26_B_Tex"
+    dropSilhouette: "Item_DropBox.SM.Drop_Chain_SM"
+    defaultValue: 8907188
+    changeEnchantFxId: 1007
+
+  # Rare grade reaper weapon (rareGrade 3)
+  reaperWeaponRare:
+    $extends: ourReaperWeaponBase
+    rareGrade: Rare
+    linkEnchantId: 12301
+    linkMaterialEnchantId: 11209
+    combineOptionValue: 2
+
+  # Superior grade reaper weapon (rareGrade 4)
+  reaperWeaponSuperior:
+    $extends: ourReaperWeaponBase
+    rareGrade: Superior
+    linkEnchantId: 12302
+    linkMaterialEnchantId: 11212
+    combineOptionValue: 3
+
+items:
+  upsert:
+    # Thalnim
+    - $extends: reaperWeaponRare
+      id: 51056
+      linkEquipmentId: 105095
+      itemLevelId: 10144
+      linkPassivityId:
+        - "210906"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Whisperfangs"
+        toolTip: "Thalnim weapon."
+      equipment:
+        computed: true
+
+    # Sardonal
+    - $extends: reaperWeaponRare
+      id: 51057
+      linkEquipmentId: 105095
+      itemLevelId: 10139
+      linkPassivityId:
+        - "210906"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Echoing Scythes"
+        toolTip: "Sardonal weapon."
+      equipment:
+        computed: true
+
+    # Adroitsum
+    - $extends: reaperWeaponRare
+      id: 51058
+      linkEquipmentId: 105096
+      itemLevelId: 10139
+      linkPassivityId:
+        - "210906"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Abyssweavers"
+        toolTip: "Adroitsum weapon."
+      equipment:
+        computed: true
+
+    # Frostfire
+    - $extends: reaperWeaponSuperior
+      id: 51059
+      linkEquipmentId: 105097
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317144"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Flawless Blazearcs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Frostfire
+    - $extends: reaperWeaponSuperior
+      id: 51060
+      linkEquipmentId: 105098
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317134"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Flawless Icefangs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Dreamkeeper
+    - $extends: reaperWeaponSuperior
+      id: 51061
+      linkEquipmentId: 105098
+      itemLevelId: 10148
+      linkPassivityId:
+        - "210906"
+        - "310300"
+        - "310800"
+        - "311000"
+        - "310600"
+        - "310200"
+      strings:
+        name: "Nightpiercers"
+        toolTip: "Dreamkeeper weapon."
+      equipment:
+        computed: true
+
+    # Agnitor
+    - $extends: reaperWeaponRare
+      id: 51062
+      linkEquipmentId: 105099
+      itemLevelId: 10158
+      linkPassivityId:
+        - "210907"
+        - "310300"
+        - "310800"
+        - "311300"
+        - "310600"
+        - "313900"
+      strings:
+        name: "Ephemeral Truth"
+        toolTip: "Agnitor weapon."
+      equipment:
+        computed: true
+
+    # Discord
+    - $extends: reaperWeaponRare
+      id: 51063
+      linkEquipmentId: 105099
+      itemLevelId: 10150
+      linkPassivityId:
+        - "210906"
+        - "310300"
+        - "310800"
+        - "311100"
+        - "310500"
+        - "310200"
+      strings:
+        name: "Fractured Arcs"
+        toolTip: "Discord weapon."
+      equipment:
+        computed: true
+
+    # Abyss
+    - $extends: reaperWeaponRare
+      id: 51064
+      linkEquipmentId: 105100
+      itemLevelId: 10158
+      linkPassivityId:
+        - "210907"
+        - "310300"
+        - "310800"
+        - "311300"
+        - "310600"
+        - "311000"
+      strings:
+        name: "Abyssfangs"
+        toolTip: "Abyss weapon."
+      equipment:
+        computed: true
+
+    # Regent
+    - $extends: reaperWeaponRare
+      id: 51065
+      linkEquipmentId: 105101
+      itemLevelId: 10165
+      linkPassivityId:
+        - "210907"
+        - "317274"
+        - "310300"
+        - "310800"
+        - "310200"
+        - "310600"
+        - "311100"
+      strings:
+        name: "Regal Scythes"
+        toolTip: "Regent weapon."
+      equipment:
+        computed: true
+
+    # Visionmaker
+    - $extends: reaperWeaponSuperior
+      id: 51066
+      linkEquipmentId: 105102
+      itemLevelId: 10165
+      linkPassivityId:
+        - "210907"
+        - "317264"
+        - "310300"
+        - "310800"
+        - "310200"
+        - "311300"
+        - "311000"
+        - "3000020"
+      strings:
+        name: "Dreamscythes"
+        toolTip: "Visionmaker weapon."
+      equipment:
+        computed: true
+
+    # Steadfast
+    - $extends: reaperWeaponRare
+      id: 51067
+      linkEquipmentId: 104911
+      itemLevelId: 10179
+      linkPassivityId:
+        - "210907"
+        - "510010"
+        - "510000"
+        - "510040"
+      strings:
+        name: "Bloodlash"
+        toolTip: "Steadfast weapon."
+      equipment:
+        computed: true
+
+    # Nightforge PVE
+    - $extends: reaperWeaponSuperior
+      id: 51068
+      linkEquipmentId: 104895
+      itemLevelId: 10183
+      linkPassivityId:
+        - "210907"
+        - "317264"
+        - "510010"
+        - "510000"
+        - "510050"
+      strings:
+        name: "Shardfangs"
+        toolTip: "Nightforge PvE weapon."
+      equipment:
+        computed: true

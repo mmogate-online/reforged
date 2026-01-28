@@ -1,0 +1,33 @@
+spec:
+  version: "1.0"
+
+definitions:
+  # =============================================================================
+  # RARITY GRADE BASES
+  # Grade-specific properties discovered via percentile analysis
+  # =============================================================================
+
+  # Grade 0 - Common (White) - 1,398 weapons
+  commonGrade:
+    rareGrade: Common
+    boundType: None
+
+  # Grade 1 - Uncommon (Green) - 1,907 weapons
+  uncommonGrade:
+    rareGrade: Uncommon
+
+  # Grade 2 - Rare (Blue) - 1,498 weapons
+  rareGrade:
+    rareGrade: Rare
+
+  # Grade 3 - Superior (Gold) - 3,962 weapons
+  superiorGrade:
+    rareGrade: Superior
+
+  # Grade 4 - Legendary (Purple) - 352 weapons
+  legendaryGrade:
+    rareGrade: Legendary
+    enchantEnable: true
+    combineOptionValue: 3
+    guildWarehouseStorable: false
+    changeEnchantFxId: 1007

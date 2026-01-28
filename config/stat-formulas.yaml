@@ -1,0 +1,108 @@
+# Formula configuration for equipment stat computation
+# Based on reverse-engineering from production data
+
+version: "1.0"
+
+sigmoid:
+  maximumValue: 90
+  growthRate: 0.04
+  growthSteepness: 60
+
+modifiers:
+  statBoostByGrade: 1.03
+  statBoostByRank: 0.5
+  statBoostByPowerTier: 1.1
+
+equipment:
+  weapons:
+    baseMultiplier: 15.0
+    classMultipliers:
+      AXE: 2.361
+      LANCE: 1.707
+      TWOHAND: 2.246
+      DUAL: 1.855
+      BOW: 2.1735
+      STAFF: 1.1985
+      CIRCLE: 2.1235
+      ROD: 1.1985
+      CHAIN: 1.9935
+      BLASTER: 2.148
+      GAUNTLET: 2.3155
+      SHURIKEN: 1.939
+      GLAIVE: 2.293
+
+  armor:
+    baseMultiplier: 7.0
+    classMultipliers:
+      MAIL:
+        BODY: 4.38889285714286
+        HAND: 3.32106319444444
+        FEET: 3.30987301038062
+      LEATHER:
+        BODY: 3.8478193220339
+        HAND: 2.91161245674741
+        FEET: 2.90185034482759
+      ROBE:
+        BODY: 3.28001958762887
+        HAND: 2.48211824561404
+        FEET: 2.47368111888112
+
+  accessories:
+    RING:
+      baseMultiplier: 1.25
+      classMultiplier: 7.5502475805
+    NECKLACE:
+      baseMultiplier: 2.5
+      classMultiplier: 3.0200990322
+    BROOCH:
+      baseMultiplier: 1.36
+      classMultiplier: 6.5502475805
+    EARRING:
+      baseMultiplier: 1.25
+      classMultiplier: 7.5502475805
+    UNDERWEAR:
+      baseMultiplier: 1.11
+      classMultiplier: 0.0642
+    BELT:
+      baseMultiplier: 1.05
+      classMultiplier: 6.58452551
+    ACCESSORYHAIR:
+      baseMultiplier: 0.76
+      classMultiplier: 0.057531013
+    ACCESSORYFACE:
+      baseMultiplier: 0.2
+      classMultiplier: 0.057531013
+    RELIC:
+      baseMultiplier: 1.89
+      classMultiplier: 0
+    HOLYTHING:
+      baseMultiplier: 1.89
+      classMultiplier: 0
+
+statFlags:
+  weapons:
+    - Atk
+    - Impact
+  armor:
+    - Def
+  accessories:
+    RING:
+      - Atk
+    NECKLACE:
+      - Atk
+    BROOCH:
+      - Atk
+    EARRING:
+      - Def
+    UNDERWEAR:
+      - Def
+    BELT:
+      - Def
+    ACCESSORYHAIR:
+      - Atk
+    ACCESSORYFACE:
+      - Def
+    RELIC:
+      - Atk
+    HOLYTHING:
+      - Atk

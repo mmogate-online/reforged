@@ -1,0 +1,120 @@
+# DataSheetLang Client Sync Configuration Template
+# =================================================
+# Update paths to match your environment before use.
+#
+# This template contains common entity configurations for server-to-client
+# synchronization. Remove or comment out entities you don't need.
+#
+# Documentation: https://datasheetlang.dev/tools/client-sync
+version: 1
+
+paths:
+  server: "D:/dev/mmogate/tera92/server/DataSheet"                           # Server DataSheet XML files
+  client: "D:/dev/mmogate/tera92/client-dc/DataCenter_Final_EUR"   # Client DataCenter folder
+  schemas: "D:/dev/mmogate/tera92/client-dc/DataCenter_Final_EUR"  # XSD schemas (usually same as client)
+
+defaults:
+  id_attribute: "id"
+  encoding: "utf-8"
+  indent: "    "
+
+# =============================================================================
+# ENTITY CONFIGURATIONS
+# =============================================================================
+# Each entity defines how server XML files are transformed and routed to client
+# DataCenter files. See documentation for strategy details.
+#
+# Strategies:
+#   - monolithic:    Single server file → Single client file
+#   - SourceMapped:  Multiple server files → Multiple client files (1:1 mapping)
+#   - ZoneBased:     Zone-partitioned data (huntingZoneId routing)
+#   - Bucket:        ID-range bucketing
+#   - Merged:        Multiple source types merged into one entity
+#   - IdSorted:      Position-based file assignment (sorted by ID)
+# =============================================================================
+
+entities:
+
+  # ===========================================================================
+  # EQUIPMENT DATA
+  # ===========================================================================
+  # EquipmentTemplate.xml contains equipment stats, requirements, and attributes.
+  # Single server file maps to single client file.
+
+  EquipmentData:
+    strategy: monolithic
+    server_file: "EquipmentTemplate.xml"
+    client_folder: "EquipmentData"
+    client_file: "EquipmentData-00000.xml"
+    root_element: "EquipmentData"
+    id_attribute: "id"
+    xsd_file: "EquipmentData/EquipmentData.xsd"
+
+  # Equipment enchantment data (success rates, costs, stat bonuses)
+  EquipmentEnchantData:
+    strategy: monolithic
+    server_file: "EquipmentEnchantData.xml"
+    client_folder: "EquipmentEnchantData"
+    client_file: "EquipmentEnchantData-00000.xml"
+    root_element: "EquipmentEnchantData"
+    id_attribute: "id"
+    xsd_file: "EquipmentEnchantData/EquipmentEnchantData.xsd"
+
+  # Equipment evolution recipes and requirements
+  EquipmentEvolutionData:
+    strategy: monolithic
+    server_file: "EquipmentEvolutionData.xml"
+    client_folder: "EquipmentEvolutionData"
+    client_file: "EquipmentEvolutionData-00000.xml"
+    root_element: "EquipmentEvolutionData"
+    id_attribute: "targetTemplateId"
+    xsd_file: "EquipmentEvolutionData/EquipmentEvolutionData.xsd"
+
+  # ===========================================================================
+  # ITEM DATA
+  # ===========================================================================
+  # ItemTemplate files are split by region/purpose. Each server file maps to a
+  # corresponding client file. Adjust source_mapping based on your server files.
+
+  ItemData:
+    strategy: SourceMapped
+    client_folder: "ItemData"
+    root_element: "ItemData"
+    id_attribute: "id"
+    xsd_file: "ItemData/ItemData.xsd"
+    source_mapping:
+      # Base item definitions
+      "ItemTemplate.xml": "ItemData-00000.xml"
+      # Regional variants
+      "ItemTemplate_cn.xml": "ItemData-00001.xml"
+      "ItemTemplate_JP.xml": "ItemData-00007.xml"
+      "ItemTemplate_KR.xml": "ItemData-00009.xml"
+      "ItemTemplate_NAEU.xml": "ItemData-00011.xml"
+      "ItemTemplate_RUS.xml": "ItemData-00013.xml"
+      "ItemTemplate_THA.xml": "ItemData-00015.xml"
+      "ItemTemplate_TW.xml": "ItemData-00018.xml"
+
+  # ===========================================================================
+  # STRING SHEETS (LOCALIZATION)
+  # ===========================================================================
+  # String sheets contain localized text for items, NPCs, etc.
+  # Use SourceMapped strategy for regional variants.
+
+  StrSheet_Item:
+    strategy: SourceMapped
+    client_folder: "StrSheet_Item"
+    root_element: "StrSheet_Item"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Item/StrSheet_Item.xsd"
+    source_mapping:
+      # Base string sheet
+      "StrSheet_Item.xml": "StrSheet_Item-00000.xml"
+      # Regional variants
+      "StrSheet_Item_cn.xml": "StrSheet_Item-00001.xml"
+      "StrSheet_Item_ctf.xml": "StrSheet_Item-00004.xml"
+      "StrSheet_Item_JP.xml": "StrSheet_Item-00007.xml"
+      "StrSheet_Item_KR.xml": "StrSheet_Item-00009.xml"
+      "StrSheet_Item_NAEU.xml": "StrSheet_Item-00011.xml"
+      "StrSheet_Item_RUS.xml": "StrSheet_Item-00013.xml"
+      "StrSheet_Item_THA.xml": "StrSheet_Item-00015.xml"
+      "StrSheet_Item_TW.xml": "StrSheet_Item-00018.xml"
