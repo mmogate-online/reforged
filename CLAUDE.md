@@ -2,6 +2,11 @@
 
 YAML specs for TERA game content using DataSheetLang DSL.
 
+## Prerequisites
+
+- **Python 3.13+** — install via `winget install Python.Python.3.13` (restart terminal after install)
+- **openpyxl** — install via `pip install openpyxl`
+
 ## Setup
 
 Each developer must create a `.references` file in this folder with local paths. Copy `.references.example` and fill in your paths.
