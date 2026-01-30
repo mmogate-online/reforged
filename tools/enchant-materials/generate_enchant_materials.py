@@ -10,8 +10,9 @@ Uses DSL expansion system ($repeat, $extends, $with) for compact output.
 
 ID Scheme for materialEnchantId:
   Base: 20000
-  Pattern: 20000 + (levelRangeIndex * 1000) + (slotGroupIndex * 100) + rank
+  Pattern: 20000 + (tierIndex * 10000) + (levelRangeIndex * 1000) + (slotGroupIndex * 100) + rank
 
+  tierIndex: 0=default (+12), 1=mythic (+15)
   levelRangeIndex: 0=1-37, 1=38-49, 2=50-57, 3=58+
   slotGroupIndex: 0=WeC (Weapons & Chest), 1=GeB (Gloves & Boots)
 """
@@ -51,7 +52,12 @@ RANKS_BY_LEVEL_RANGE = {
     3: list(range(3, 23)),  # Level 58+: ranks 3-22
 }
 
-MAX_ENCHANT_COUNT = 15  # +0 to +14
+# Enchant tiers: (tier_idx, max_enchant_count, grade_filter)
+# rareGrade is a string attribute — use list syntax instead of range
+ENCHANT_TIERS = [
+    (0, 12, "[0, 1, 2, 3]"),   # default: grades 0-3, +0 to +11
+    (1, 15, "4"),               # mythic: grade 4, +0 to +14
+]
 
 
 @dataclass
@@ -65,6 +71,9 @@ class EnchantStep:
 @dataclass
 class MaterialEnchantConfig:
     material_enchant_id: int
+    tier_idx: int
+    max_enchant_count: int
+    grade_filter: str
     level_range_idx: int
     level_range_str: str
     slot_group_idx: int
@@ -74,9 +83,9 @@ class MaterialEnchantConfig:
     steps: list  # List of EnchantStep
 
 
-def calculate_material_enchant_id(level_range_idx: int, slot_group_idx: int, rank: int) -> int:
+def calculate_material_enchant_id(tier_idx: int, level_range_idx: int, slot_group_idx: int, rank: int) -> int:
     """Calculate materialEnchantId using the defined scheme."""
-    return 20000 + (level_range_idx * 1000) + (slot_group_idx * 100) + rank
+    return 20000 + (tier_idx * 10000) + (level_range_idx * 1000) + (slot_group_idx * 100) + rank
 
 
 def read_excel_sheet(wb, sheet_name: str) -> dict:
@@ -141,43 +150,47 @@ def build_material_enchant_configs(
     """Build all MaterialEnchantConfig objects."""
     configs = []
 
-    for level_range_idx, level_range_str, level_min, level_max in LEVEL_RANGES:
-        col_name = map_level_range_to_col(level_range_idx)
-        ranks = RANKS_BY_LEVEL_RANGE[level_range_idx]
+    for tier_idx, max_enchant_count, grade_filter in ENCHANT_TIERS:
+        for level_range_idx, level_range_str, level_min, level_max in LEVEL_RANGES:
+            col_name = map_level_range_to_col(level_range_idx)
+            ranks = RANKS_BY_LEVEL_RANGE[level_range_idx]
 
-        for slot_group_idx, slot_group_name, combat_types in SLOT_GROUPS:
-            # Select alkahest/feedstock data based on slot group
-            alkahest_data = alkahest_wec if slot_group_idx == 0 else alkahest_geb
-            feedstock_data = feedstock_wec if slot_group_idx == 0 else feedstock_geb
+            for slot_group_idx, slot_group_name, combat_types in SLOT_GROUPS:
+                # Select alkahest/feedstock data based on slot group
+                alkahest_data = alkahest_wec if slot_group_idx == 0 else alkahest_geb
+                feedstock_data = feedstock_wec if slot_group_idx == 0 else feedstock_geb
 
-            for rank in ranks:
-                material_enchant_id = calculate_material_enchant_id(
-                    level_range_idx, slot_group_idx, rank
-                )
+                for rank in ranks:
+                    material_enchant_id = calculate_material_enchant_id(
+                        tier_idx, level_range_idx, slot_group_idx, rank
+                    )
 
-                steps = []
-                for step in range(MAX_ENCHANT_COUNT):
-                    prob = chance_data.get(step, {}).get(col_name, 1.0)
-                    alkahest_amount = int(alkahest_data.get(step, {}).get(col_name, 0))
-                    feedstock_amount = int(feedstock_data.get(step, {}).get(col_name, 0))
+                    steps = []
+                    for step in range(max_enchant_count):
+                        prob = chance_data.get(step, {}).get(col_name, 1.0)
+                        alkahest_amount = int(alkahest_data.get(step, {}).get(col_name, 0))
+                        feedstock_amount = int(feedstock_data.get(step, {}).get(col_name, 0))
 
-                    steps.append(EnchantStep(
-                        step=step,
-                        prob=prob,
-                        alkahest_amount=alkahest_amount,
-                        feedstock_amount=feedstock_amount,
+                        steps.append(EnchantStep(
+                            step=step,
+                            prob=prob,
+                            alkahest_amount=alkahest_amount,
+                            feedstock_amount=feedstock_amount,
+                        ))
+
+                    configs.append(MaterialEnchantConfig(
+                        material_enchant_id=material_enchant_id,
+                        tier_idx=tier_idx,
+                        max_enchant_count=max_enchant_count,
+                        grade_filter=grade_filter,
+                        level_range_idx=level_range_idx,
+                        level_range_str=level_range_str,
+                        slot_group_idx=slot_group_idx,
+                        slot_group_name=slot_group_name,
+                        combat_item_types=combat_types,
+                        rank=rank,
+                        steps=steps,
                     ))
-
-                configs.append(MaterialEnchantConfig(
-                    material_enchant_id=material_enchant_id,
-                    level_range_idx=level_range_idx,
-                    level_range_str=level_range_str,
-                    slot_group_idx=slot_group_idx,
-                    slot_group_name=slot_group_name,
-                    combat_item_types=combat_types,
-                    rank=rank,
-                    steps=steps,
-                ))
 
     return configs
 
@@ -198,22 +211,14 @@ def format_prob(p: float) -> str:
         return f"{p:.2f}".rstrip('0').rstrip('.')
 
 
-def generate_material_enchants_yaml(configs: list) -> str:
-    """Generate the materialEnchants YAML spec using DSL expansion system."""
-    lines = [
-        "# Enchant Materials System - MaterialEnchantData",
-        "# Auto-generated by generate_enchant_materials.py",
-        "# Uses DSL expansion system ($repeat, $extends, $with)",
-        "",
-        "spec:",
-        '  version: "1.0"',
-        "  schema: v92",
-        "",
-        "definitions:",
-        "  # Reusable template for 15 enchant steps (0..14)",
-        "  enchantProgression:",
+def _enchant_progression_definition(name: str, max_steps: int) -> list:
+    """Generate a reusable enchant progression definition block."""
+    last_step = max_steps - 1
+    return [
+        f"  # Reusable template for {max_steps} enchant steps (0..{last_step})",
+        f"  {name}:",
         "    $repeat:",
-        "      range: 0..14",
+        f"      range: 0..{last_step}",
         "      as: step",
         "    template:",
         "      enchantStep: $step",
@@ -226,24 +231,57 @@ def generate_material_enchants_yaml(configs: list) -> str:
         "        - id: $feedstockId",
         "          type: Item",
         "          amount: $feedstock[$step]",
-        "",
-        "materialEnchants:",
-        "  upsert:",
     ]
+
+
+# Map tier max_enchant_count to definition name
+_TIER_DEFINITION_NAMES = {
+    12: "enchantProgression12",
+    15: "enchantProgression15",
+}
+
+
+def generate_material_enchants_yaml(configs: list) -> str:
+    """Generate the materialEnchants YAML spec using DSL expansion system."""
+    lines = [
+        "# Enchant Materials System - MaterialEnchantData",
+        "# Auto-generated by generate_enchant_materials.py",
+        "# Uses DSL expansion system ($repeat, $extends, $with)",
+        "",
+        "spec:",
+        '  version: "1.0"',
+        "  schema: v92",
+        "",
+        "definitions:",
+    ]
+
+    # Emit one definition per unique tier step count
+    seen = set()
+    for tier_idx, max_enchant_count, _ in ENCHANT_TIERS:
+        if max_enchant_count not in seen:
+            seen.add(max_enchant_count)
+            def_name = _TIER_DEFINITION_NAMES[max_enchant_count]
+            lines.extend(_enchant_progression_definition(def_name, max_enchant_count))
+            lines.append("")
+
+    lines.append("materialEnchants:")
+    lines.append("  upsert:")
 
     for config in configs:
         feedstock_id = FEEDSTOCK_BASE_ID + config.rank
+        def_name = _TIER_DEFINITION_NAMES[config.max_enchant_count]
 
         # Extract arrays from steps
         probs = [format_prob(s.prob) for s in config.steps]
         alkahest = [s.alkahest_amount for s in config.steps]
         feedstock = [s.feedstock_amount for s in config.steps]
 
-        lines.append(f"    # {config.slot_group_name}, Level {config.level_range_str}, Rank {config.rank}")
+        tier_label = "mythic" if config.tier_idx == 1 else "default"
+        lines.append(f"    # {config.slot_group_name}, Level {config.level_range_str}, Rank {config.rank} ({tier_label})")
         lines.append(f"    - materialEnchantId: {config.material_enchant_id}")
-        lines.append(f"      maxEnchantCount: {MAX_ENCHANT_COUNT}")
+        lines.append(f"      maxEnchantCount: {config.max_enchant_count}")
         lines.append("      materialItems:")
-        lines.append("        $extends: enchantProgression")
+        lines.append(f"        $extends: {def_name}")
         lines.append("        $with:")
         lines.append(f"          probs: {format_array(probs)}")
         lines.append(f"          alkahest: {format_array(alkahest)}")
@@ -271,12 +309,14 @@ def generate_item_links_yaml(configs: list) -> str:
     for config in configs:
         combat_types_yaml = "[" + ", ".join(config.combat_item_types) + "]"
 
-        lines.append(f"    # {config.slot_group_name}, Level {config.level_range_str}, Rank {config.rank}")
+        tier_label = "mythic" if config.tier_idx == 1 else "default"
+        lines.append(f"    # {config.slot_group_name}, Level {config.level_range_str}, Rank {config.rank} ({tier_label})")
         lines.append("    - filter:")
         lines.append("        enchantEnable: true")
         lines.append(f"        combatItemType: {combat_types_yaml}")
         lines.append(f"        level: {config.level_range_str}")
         lines.append(f"        rank: {config.rank}")
+        lines.append(f"        rareGrade: {config.grade_filter}")
         lines.append("      changes:")
         lines.append(f"        linkMaterialEnchantId: {config.material_enchant_id}")
         lines.append("")
