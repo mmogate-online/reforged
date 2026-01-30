@@ -55,8 +55,8 @@ RANKS_BY_LEVEL_RANGE = {
 # Enchant tiers: (tier_idx, max_enchant_count, grade_filter)
 # rareGrade is a string attribute — use list syntax instead of range
 ENCHANT_TIERS = [
-    (0, 12, "[0, 1, 2, 3]"),   # default: grades 0-3, +0 to +11
-    (1, 15, "4"),               # mythic: grade 4, +0 to +14
+    (0, 12, "[Common, Uncommon, Rare, Superior]"),  # default: grades 0-3
+    (1, 15, "Mythic"),                               # mythic: grade 4
 ]
 
 
