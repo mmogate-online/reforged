@@ -287,8 +287,8 @@ def generate_item_links_yaml(configs: list) -> str:
 def main():
     # Determine paths
     script_dir = Path(__file__).parent
+    xlsx_path = script_dir.parent.parent / "data" / "enchant.xlsx"
     project_root = script_dir.parent.parent.parent  # reforged-server-content
-    xlsx_path = project_root / "enchant.xlsx"
     specs_dir = project_root / "reforged" / "specs"
 
     if not xlsx_path.exists():
