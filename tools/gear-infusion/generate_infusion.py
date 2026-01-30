@@ -16,6 +16,7 @@ Output:
     reforged/specs/gear-infusion-items.yaml
 """
 
+import argparse
 import csv
 from pathlib import Path
 from dataclasses import dataclass
@@ -493,6 +494,19 @@ def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: li
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate gear infusion YAML specs")
+    parser.add_argument("--patch", help="Patch folder name (e.g. 001). Output goes to reforged/specs/patches/{patch}/")
+    args = parser.parse_args()
+
+    if args.patch:
+        specs_dir = REFORGED_DIR / "specs" / "patches" / args.patch
+        specs_dir.mkdir(parents=True, exist_ok=True)
+        output_passivities = specs_dir / "gear-infusion-passivities.yaml"
+        output_items = specs_dir / "gear-infusion-items.yaml"
+    else:
+        output_passivities = OUTPUT_PASSIVITIES
+        output_items = OUTPUT_ITEMS
+
     print(f"Reading definitions from {INPUT_FILE}")
     definitions = parse_csv()
     print(f"Parsed {len(definitions)} passive definitions")
@@ -503,12 +517,12 @@ def main():
     print("Generating items YAML...")
     items_yaml = generate_items_yaml(definitions, passivity_data)
 
-    print(f"Writing {OUTPUT_PASSIVITIES}")
-    with open(OUTPUT_PASSIVITIES, "w", encoding="utf-8") as f:
+    print(f"Writing {output_passivities}")
+    with open(output_passivities, "w", encoding="utf-8") as f:
         f.write(passivities_yaml)
 
-    print(f"Writing {OUTPUT_ITEMS}")
-    with open(OUTPUT_ITEMS, "w", encoding="utf-8") as f:
+    print(f"Writing {output_items}")
+    with open(output_items, "w", encoding="utf-8") as f:
         f.write(items_yaml)
 
     total_passivities = len(definitions) * len(GRADES)

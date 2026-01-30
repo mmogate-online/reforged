@@ -12,7 +12,7 @@ Data File  →  Generate  →  Apply  →  Sync  →  Pack  →  Deploy
 | Step | What it does | Command |
 |------|-------------|---------|
 | **Data** | Edit source data (xlsx, csv) | Manual edit |
-| **Generate** | Convert data into YAML specs | `python <generator>.py` |
+| **Generate** | Convert data into YAML specs | `python <generator>.py --patch {NNN}` |
 | **Apply** | Write specs into server datasheets | `dsl apply <spec> --path <datasheet>` |
 | **Sync** | Copy server changes to client DataCenter | `dsl sync --config reforged\config\sync-config.yaml -e <Entity>` |
 | **Pack** | Pack client DataCenter for distribution | `pack-client.bat` (project root) |
@@ -49,6 +49,23 @@ dsl sync --config reforged\config\sync-config.yaml -e MaterialEnchantData -e Ite
 ```
 
 Using `--all` or omitting `-e` syncs every entity in the config, which touches datasheet files unrelated to your change — producing large diffs and unnecessary processing. Each `deploy.bat` already targets the correct entities.
+
+## Patch Structure
+
+Generated specs are organized into patch folders:
+
+```
+reforged/specs/patches/{NNN}/
+```
+
+Where `{NNN}` is the patch number (e.g., `001`, `002`). Each generator accepts `--patch {NNN}` to output specs into the corresponding patch folder. The `deploy.bat` and `generate.bat` scripts prompt for the patch number automatically.
+
+Example:
+
+```bash
+python generate_enchant_materials.py --patch 001
+# Output: reforged/specs/patches/001/enchant-materials.yaml
+```
 
 ## Troubleshooting
 

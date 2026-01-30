@@ -30,11 +30,11 @@ Total: **50 unique passives × 3 tiers = 150 passivities and items**
 # Open: reforged/data/gear_infusion_passivity.csv
 
 # 2. Generate YAML specs
-python reforged/tools/gear-infusion/generate_infusion.py
+python reforged/tools/gear-infusion/generate_infusion.py --patch {NNN}
 
 # 3. Apply to server datasheet
-dsl apply "reforged\specs\gear-infusion-passivities.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
-dsl apply "reforged\specs\gear-infusion-items.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-passivities.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-items.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
 ```
 
 ## File Structure
@@ -44,8 +44,9 @@ reforged/
 ├── data/
 │   └── gear_infusion_passivity.csv    # Source data (edit this)
 ├── specs/
-│   ├── gear-infusion-passivities.yaml # Generated passivities + strings
-│   └── gear-infusion-items.yaml       # Generated fodder items + strings
+│   └── patches/{NNN}/
+│       ├── gear-infusion-passivities.yaml # Generated passivities + strings
+│       └── gear-infusion-items.yaml       # Generated fodder items + strings
 └── tools/
     └── gear-infusion/
         ├── generate_infusion.py       # Generator script
@@ -226,14 +227,14 @@ If the attribute is new, also add its configuration to `PASSIVITY_CONFIG` in the
 ### 3. Regenerate Specs
 
 ```bash
-python reforged/tools/gear-infusion/generate_infusion.py
+python reforged/tools/gear-infusion/generate_infusion.py --patch {NNN}
 ```
 
 ### 4. Apply to Server
 
 ```bash
-dsl apply "reforged\specs\gear-infusion-passivities.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
-dsl apply "reforged\specs\gear-infusion-items.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-passivities.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-items.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
 ```
 
 ### 5. Sync to Client (if needed)

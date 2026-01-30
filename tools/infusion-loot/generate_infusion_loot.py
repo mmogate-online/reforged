@@ -17,6 +17,7 @@ Output:
     reforged/specs/infusion-loot.yaml
 """
 
+import argparse
 import csv
 from pathlib import Path
 from dataclasses import dataclass
@@ -289,6 +290,17 @@ def generate_yaml(
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate infusion loot YAML specs")
+    parser.add_argument("--patch", help="Patch folder name (e.g. 001). Output goes to reforged/specs/patches/{patch}/")
+    args = parser.parse_args()
+
+    if args.patch:
+        specs_dir = REFORGED_DIR / "specs" / "patches" / args.patch
+        specs_dir.mkdir(parents=True, exist_ok=True)
+        output_file = specs_dir / "infusion-loot.yaml"
+    else:
+        output_file = OUTPUT_FILE
+
     print(f"Reading tier rates from {RATES_FILE}")
     tier_rates = parse_tier_rates()
     print(f"  Found {len(tier_rates)} tiers: {', '.join(tier_rates.keys())}")
@@ -311,8 +323,8 @@ def main():
     print("Generating YAML...")
     yaml_content = generate_yaml(tier_rates, zone_configs, items_by_slot_grade)
 
-    print(f"Writing {OUTPUT_FILE}")
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    print(f"Writing {output_file}")
+    with open(output_file, "w", encoding="utf-8") as f:
         f.write(yaml_content)
 
     # Summary

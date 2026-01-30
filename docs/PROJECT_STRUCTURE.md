@@ -31,11 +31,14 @@ reforged-server-content/
     │       └── ENCHANT_MATERIALS.md
     │
     ├── specs/                   # YAML specification files
-    │   ├── enchant-materials.yaml          # Generated
-    │   ├── enchant-item-links.yaml         # Generated
-    │   ├── gear-infusion-passivities.yaml  # Generated
-    │   ├── gear-infusion-items.yaml        # Generated
-    │   └── infusion-loot.yaml              # Generated
+    │   └── patches/             # Patch-organized specs
+    │       └── {NNN}/           # Patch number (e.g. 001, 002)
+    │           ├── enchant-materials.yaml          # Generated
+    │           ├── enchant-item-links.yaml         # Generated
+    │           ├── gear-infusion-passivities.yaml  # Generated
+    │           ├── gear-infusion-items.yaml        # Generated
+    │           ├── evolutions.yaml                 # Generated
+    │           └── infusion-loot.yaml              # Generated
     │
     └── tools/                   # Generation scripts
         ├── enchant-materials/
@@ -89,8 +92,8 @@ Python Generator Script
 
 | Component | Files |
 |-----------|-------|
-| Material Enchant Data | `specs/enchant-materials.yaml` |
-| Item Links | `specs/enchant-item-links.yaml` |
+| Material Enchant Data | `specs/patches/{NNN}/enchant-materials.yaml` |
+| Item Links | `specs/patches/{NNN}/enchant-item-links.yaml` |
 
 **Workflow**: [ENCHANT_MATERIALS.md](workflows/ENCHANT_MATERIALS.md)
 
@@ -100,9 +103,9 @@ Python Generator Script
 
 | Component | Files |
 |-----------|-------|
-| Passivities | `specs/gear-infusion-passivities.yaml` |
-| Items | `specs/gear-infusion-items.yaml` |
-| Loot Tables | `specs/infusion-loot.yaml` |
+| Passivities | `specs/patches/{NNN}/gear-infusion-passivities.yaml` |
+| Items | `specs/patches/{NNN}/gear-infusion-items.yaml` |
+| Loot Tables | `specs/patches/{NNN}/infusion-loot.yaml` |
 
 **Documentation**:
 - Items & Passivities: [gear-infusion README](../tools/gear-infusion/README.md)
@@ -128,5 +131,5 @@ External paths are dev-specific. See `.references` (template: `.references.examp
 1. Create data file in `reforged/data/`
 2. Create generator script in `reforged/tools/<system-name>/`
 3. Add README.md to tool folder
-4. Output specs to `reforged/specs/`
+4. Output specs to `reforged/specs/patches/{NNN}/` (accept `--patch` argument)
 5. Update this document

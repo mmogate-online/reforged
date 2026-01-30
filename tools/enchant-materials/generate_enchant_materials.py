@@ -17,6 +17,7 @@ ID Scheme for materialEnchantId:
   slotGroupIndex: 0=WeC (Weapons & Chest), 1=GeB (Gloves & Boots)
 """
 
+import argparse
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -325,11 +326,20 @@ def generate_item_links_yaml(configs: list) -> str:
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate enchant materials YAML specs")
+    parser.add_argument("--patch", help="Patch folder name (e.g. 001). Output goes to reforged/specs/patches/{patch}/")
+    args = parser.parse_args()
+
     # Determine paths
     script_dir = Path(__file__).parent
     xlsx_path = script_dir.parent.parent / "data" / "enchant.xlsx"
     project_root = script_dir.parent.parent.parent  # reforged-server-content
-    specs_dir = project_root / "reforged" / "specs"
+
+    if args.patch:
+        specs_dir = project_root / "reforged" / "specs" / "patches" / args.patch
+        specs_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        specs_dir = project_root / "reforged" / "specs"
 
     if not xlsx_path.exists():
         print(f"Error: {xlsx_path} not found")

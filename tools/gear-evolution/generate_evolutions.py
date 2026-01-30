@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Convert gear_progression.csv to equipment evolution YAML script."""
 
+import argparse
 import csv
 from pathlib import Path
 
@@ -8,7 +9,6 @@ SCRIPT_DIR = Path(__file__).parent
 REFORGED_DIR = SCRIPT_DIR.parent.parent
 
 INPUT_FILE = REFORGED_DIR / "data" / "gear_progression.csv"
-OUTPUT_FILE = REFORGED_DIR / "specs" / "evolutions.yaml"
 
 # Enchant step pattern: targetEnchantStep -> resultEnchantStep
 ENCHANT_PATTERN = [
@@ -60,6 +60,17 @@ def write_condition(f, target_step: int, result_step: int, result_id: int, mater
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate gear evolution YAML specs")
+    parser.add_argument("--patch", help="Patch folder name (e.g. 001). Output goes to reforged/specs/patches/{patch}/")
+    args = parser.parse_args()
+
+    if args.patch:
+        specs_dir = REFORGED_DIR / "specs" / "patches" / args.patch
+    else:
+        specs_dir = REFORGED_DIR / "specs"
+
+    output_file = specs_dir / "evolutions.yaml"
+
     evolutions = []
 
     with open(INPUT_FILE, "r", encoding="utf-8-sig") as f:
@@ -89,9 +100,9 @@ def main():
                 "materials": materials
             })
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         f.write("spec:\n")
         f.write("  version: \"1.0\"\n")
         f.write("  schema: v92\n")
@@ -122,7 +133,7 @@ def main():
                 )
 
     total_conditions = len(evolutions) * len(ENCHANT_PATTERN)
-    print(f"Generated {OUTPUT_FILE}")
+    print(f"Generated {output_file}")
     print(f"  {len(evolutions)} evolution entries")
     print(f"  {total_conditions} total conditions")
 

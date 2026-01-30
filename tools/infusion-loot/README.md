@@ -16,10 +16,10 @@ This tool creates loot tables that distribute infusion fodder based on content t
 # Edit: reforged/data/infusion_loot/zone_loot_config.csv
 
 # 3. Generate YAML spec
-python reforged/tools/infusion-loot/generate_infusion_loot.py
+python reforged/tools/infusion-loot/generate_infusion_loot.py --patch {NNN}
 
 # 4. Apply to server
-dsl apply "reforged\specs\infusion-loot.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\infusion-loot.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
 ```
 
 ## Input Files
@@ -64,7 +64,7 @@ EarlyEndgame;9001;3001,3002,3003
 
 ## Output Structure
 
-The generator creates `infusion-loot.yaml` with:
+The generator creates `patches/{NNN}/infusion-loot.yaml` with:
 
 ### Definitions (per tier)
 

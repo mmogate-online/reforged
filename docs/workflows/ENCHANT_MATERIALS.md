@@ -54,11 +54,11 @@ After deploy, run `pack-client.bat` from the project root to pack the client.
 ```bash
 # 1. Generate specs
 cd reforged/tools/enchant-materials
-python generate_enchant_materials.py
+python generate_enchant_materials.py --patch {NNN}
 
 # 2. Apply to server (from project root)
-dsl apply "reforged\specs\enchant-materials.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
-dsl apply "reforged\specs\enchant-item-links.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\enchant-materials.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\enchant-item-links.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
 
 # 3. Sync affected entities to client
 dsl sync --config reforged\config\sync-config.yaml -e MaterialEnchantData -e ItemData
@@ -77,5 +77,5 @@ pack-client.bat
 
 | File | Content |
 |------|---------|
-| `reforged/specs/enchant-materials.yaml` | MaterialEnchantData upserts with probabilities and material costs |
-| `reforged/specs/enchant-item-links.yaml` | ItemData updateWhere rules linking items to materialEnchantIds |
+| `reforged/specs/patches/{NNN}/enchant-materials.yaml` | MaterialEnchantData upserts with probabilities and material costs |
+| `reforged/specs/patches/{NNN}/enchant-item-links.yaml` | ItemData updateWhere rules linking items to materialEnchantIds |
