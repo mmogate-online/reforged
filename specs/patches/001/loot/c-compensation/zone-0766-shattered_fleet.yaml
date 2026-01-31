@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Shattered Fleet (huntingZoneId: 766)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 26 NPCs, Lv1-65
+  shattered_fleet_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 15 NPCs, Lv65
+  shattered_fleet_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (26 NPCs): 1501=Exit Teleportal Lv65, 7777= Lv26, 7778= Lv26, 76601=Sailor (Fleet Crew) Lv65, 76615=Demolition Charge Lv65, 76617= Lv65, 76621= Lv65, 76622= Lv65, 76623= Lv65, 76624= Lv65, 76625= Lv1, 76627= Lv65, 76628= Lv65, 76629= Lv65, 76630= Lv65, 76631= Lv65, 76632= Lv65, 76634= Lv65, 76636= Lv65, 76637=Taylor Lv65, 76638=Innocent Device Lv65, 76639=Innocent Device Lv65, 76640=Innocent Device Lv65, 76641=Innocent Device Lv65, 76642=Innocent Device Lv65, 76643=Innocent Device Lv65
+    - huntingZoneId: 766
+      npcTemplateId: [1501, 7777, 7778, 76601, 76615, 76617, 76621, 76622, 76623, 76624, 76625, 76627, 76628, 76629, 76630, 76631, 76632, 76634, 76636, 76637, 76638, 76639, 76640, 76641, 76642, 76643]
+      npcName: ""
+      $extends: shattered_fleet_normal
+
+    # Elite (15 NPCs): 76602=Sailor (Fleet Crew) Lv65, 76603=Sailor (Fleet Crew) Lv65, 76604=Sailor (Fleet Crew) Lv65, 76605= Lv65, 76607= Lv65, 76608= Lv65, 76610=Unstable Archer Lv65, 76611=Unstable Sorcerer Lv65, 76612= Lv65, 76613= Lv65, 76614= Lv65, 76616= Lv65, 76618=Powder Monkey (Fleet Crew) Lv65, 76633= Lv65, 76635=Mini Jack Lv65
+    - huntingZoneId: 766
+      npcTemplateId: [76602, 76603, 76604, 76605, 76607, 76608, 76610, 76611, 76612, 76613, 76614, 76616, 76618, 76633, 76635]
+      npcName: ""
+      $extends: shattered_fleet_elite

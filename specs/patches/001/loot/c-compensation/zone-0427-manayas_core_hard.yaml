@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Manaya's Core (Hard) (huntingZoneId: 427)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 9 NPCs, Lv1-48
+  manayas_core_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 45 NPCs, Lv26-60
+  manayas_core_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (9 NPCs): 555= Lv1, 1501=Exit Teleportal Lv40, 1502=Plexus Teleportal Lv40, 2006= Lv30, 9999= Lv40, 42724= Lv26, 42725= Lv10, 42730= Lv26, 42760=Empowered Kalash Defender Elite Lv48
+    - huntingZoneId: 427
+      npcTemplateId: [555, 1501, 1502, 2006, 9999, 42724, 42725, 42730, 42760]
+      npcName: ""
+      $extends: manayas_core_hard_normal
+
+    # Elite (45 NPCs): 777= Lv26, 42703=Elite Daalmok Watcher Lv60, 42704=Elite Baritzal Servitor Lv60, 42707= Lv60, 42709= Lv60, 42710= Lv60, 42711=Elite Mogtol Chomper Lv60, 42714=Elite Daalmok Watcher Lv60, 42715= Lv26, 42716= Lv26, 42717= Lv26, 42718= Lv60, 42719= Lv60, 42720=Empowered Manaathol Envoy Elite Lv60, 42721=Manaathol Envoy Elite Lv60, 42722= Lv26, 42723= Lv26, 42726= Lv26, 42727=Elite Zariik Incantatrix (Cyanoguard) Lv60, 42728=Elite Daalmok Watcher Lv60, 42729=Elite Baritzal Servitor Lv60, 42731= Lv60, 42733=Empowered Kalash Destroyer Elite Lv60, 42734=Empowered Hulrap Brute Elite (Cyanoguard) Lv60, 42735= Lv60, 42736= Lv60, 42737=Argonomorph Wendigo Savage Elite Lv60, 42738= Lv60, 42739= Lv60, 42742= Lv60, 42744= Lv60, 42745= Lv60, 42746= Lv60, 42747=Elite Fanged Gullet Lv60, 42748=Elite Fanged Gullet Lv60, 42752= Lv26, 42753= Lv26, 42754= Lv26, 42755= Lv26, 42756=Argonomorph Lokian Sniper Elite (Cyanoguard) Lv60, 42757=Empowered Yusul Ravager Elite (Cyanoguard) Lv60, 42758=Kalash Defender Elite (Cyanoguard) Lv60, 42761= Lv26, 42762= Lv26, 42763= Lv26
+    - huntingZoneId: 427
+      npcTemplateId: [777, 42703, 42704, 42707, 42709, 42710, 42711, 42714, 42715, 42716, 42717, 42718, 42719, 42720, 42721, 42722, 42723, 42726, 42727, 42728, 42729, 42731, 42733, 42734, 42735, 42736, 42737, 42738, 42739, 42742, 42744, 42745, 42746, 42747, 42748, 42752, 42753, 42754, 42755, 42756, 42757, 42758, 42761, 42762, 42763]
+      npcName: ""
+      $extends: manayas_core_hard_elite

@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Temple of Dagon (huntingZoneId: 42)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 31 NPCs, Lv47-48
+  temple_of_dagon_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 1 NPCs, Lv48
+  temple_of_dagon_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (31 NPCs): 100=Besharan Slave Lv47, 200=Dagonite Slayer Lv47, 210=Dagonite Crusader Lv47, 220=Naga Zealot Lv47, 230=Dagonite Templar Lv47, 300=Naga Fighter Lv47, 310=Naga Tridentar Lv47, 320=Naga Soldier Lv47, 330=Naga Guardian Lv47, 400=Besharan Runner Lv47, 500=Vigilant Chikas Lv47, 510=Hound of Dagon Lv47, 600=Skeletal Watcher Lv47, 610=Skeletal Guardian Lv47, 700=Vicious Bone Imp Lv47, 710=Cruel Bone Imp Lv47, 800=Besharan Trafficker Lv47, 900=Mekonari Shaman Lv47, 910=Mekonari Witch Lv47, 1000=Mekonari Sentinel Lv47, 1010=Mekonari Zealot Lv47, 1020=Mekonari Bloodletter Lv47, 1300=Besharan Sellsword Lv47, 5000=Murassk (Dagonite Prelate) Lv48, 5001=Militant Dagonite (Val Palrada Garrison) Lv48, 5002=Tragoleth (Voice of Sikander) Lv48, 5003=Enirevass (Speak of Dagon) Lv48, 5004=Resaltuuk (Priest of Renewal) Lv48, 5005=Mekonari Escort Lv48, 9000= Lv47, 9001= Lv47
+    - huntingZoneId: 42
+      npcTemplateId: [100, 200, 210, 220, 230, 300, 310, 320, 330, 400, 500, 510, 600, 610, 700, 710, 800, 900, 910, 1000, 1010, 1020, 1300, 5000, 5001, 5002, 5003, 5004, 5005, 9000, 9001]
+      npcName: ""
+      $extends: temple_of_dagon_normal
+
+    # Elite (1 NPCs): 7000=Amber Hulk Arachnen (Fang of Arachne) Lv48
+    - huntingZoneId: 42
+      npcTemplateId: [7000]
+      npcName: ""
+      $extends: temple_of_dagon_elite

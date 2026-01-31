@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Quarantine Zone (huntingZoneId: 40)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 39 NPCs, Lv40-46
+  quarantine_zone_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (39 NPCs): 1=Berserk Scarecrow Lv45, 2=Berserk Puppet Lv45, 3=Enraged Armored Pigling Lv46, 4=Armored Pigling Lv46, 5=Berserk Harvest Golem Lv45, 8=Chaotic Scarecrow Lv45, 9= Lv46, 10=Lunatic Worker Lv45, 11=Selvaras Scout Lv46, 12=Selvaras Assassin Lv46, 13=Prion Eviscerator Lv45, 14=Prion Devastator Lv45, 15=Mutant Worker Lv45, 16=Mutant Miner Lv45, 17=Mutagenic Wolf Lv46, 18=Violent Mycanar Lv46, 19=Mutant Polykind Lv45, 20=Mad Polykind Lv45, 23=Guardian Aberration Lv45, 24=Crazed Polykind Lv45, 25=Crestarath Archer Lv45, 26=Crestarath Reaper Lv45, 27=Crestarath Slayer Lv45, 28=Turakius (Selvaras Infiltrator) Lv45, 29=Brutal Sabertooth Lv46, 30=Mutant Triblader Lv45, 31=Mutated Triblader Lv45, 32=Zombie Miner Lv45, 33=Zompori Miner Lv45, 34= Lv45, 35= Lv45, 36=Morbolith Fragment Lv45, 37=Gorilla Lv45, 38= Lv46, 39=Snarling Redwolf Lv46, 40=Ectoros (Prefect) Lv45, 41=Legate Baratius (Legion of Thulsa) Lv46, 42=Legate Mureksark (Legion of Thulsa) Lv46, 1271=Vaneva (Val Palrada Mystery Merchant) Lv40
+    - huntingZoneId: 40
+      npcTemplateId: [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 1271]
+      npcName: ""
+      $extends: quarantine_zone_normal

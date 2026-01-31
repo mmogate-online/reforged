@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Fane of Kaprima (Hard) (huntingZoneId: 724)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 9 NPCs, Lv60
+  fane_of_kaprima_hard_boss:
+    itemBags:
+      - id: 1
+        bagName: "Fane of Kaprima (Hard) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (9 NPCs): 1000=Elite {@Creature:424#1000} Lv60, 1006=Nightmare {@Creature:424#1006} (Syndicate Battlemaster) Lv60, 1007=Elite {@Creature:424#1007} Lv60, 1008=Elite {@Creature:424#1008} Lv60, 1009=Nightmare Jarnuri (Covetous Hydrath) Lv60, 1016=Nightmare {@Creature:424#1016} (Champion of Kaprima) Lv60, 1022=Elite {@Creature:424#1022} Lv60, 1024= Lv60, 2000=Nightmare {@Creature:424#2000} (Demon Reaver) Lv60
+    - huntingZoneId: 724
+      npcTemplateId: [1000, 1006, 1007, 1008, 1009, 1016, 1022, 1024, 2000]
+      npcName: ""
+      $extends: fane_of_kaprima_hard_boss

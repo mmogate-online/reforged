@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Rift's Edge (huntingZoneId: 750)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 37 NPCs, Lv65
+  rifts_edge_boss:
+    itemBags:
+      - id: 1
+        bagName: "Rift's Edge Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (37 NPCs): 1001=Yativio (Insectivore) Lv65, 1002=Vesporax (Giant Hornet) Lv65, 1003=Koleogg (Giant Beetle) Lv65, 1004=Rift Arachnea (Cliff Path Gatekeeper) Lv65, 1005=Berserk Arachnaea (Junction Gatekeeper) Lv65, 2001=Enraged Kumas (Low) Lv65, 2002=Naga Pirate (Low) Lv65, 2003=Giant Orisk (Low) Lv65, 2004=Naga Shaman (Medium) Lv65, 2005=Naga Berserker (Medium) Lv65, 2006=Basilisk (Medium) Lv65, 2007=Fimbrilisk (Medium) Lv65, 2008=Fangspawn (High) Lv65, 2009=Giant Storm Lizard (High) Lv65, 2010=Bloodtalon (High) Lv65, 2011=Giant Mandrill (High) Lv65, 45002=Guwangi Champion (Leader) Lv65, 45012=Knight-Champion (Cave Gatekeeper) Lv65, 45013=Rift-Priest Lv65, 45014=Rift-Warrior (Cave Gatekeeper) Lv65, 45015=Rift-Savage (Cave Gatekeeper) Lv65, 45016= Lv65, 45024= Lv65, 45044=Knight-Champion (Cliff Path Gatekeeper) Lv65, 45045=Elite Rift-Warrior (Cliff Path Gatekeeper) Lv65, 45046=Elite Rift-Savage (Cliff Path Gatekeeper) Lv65, 45047= Lv65, 45060= Lv65, 45061= Lv65, 45062= Lv65, 45063= Lv65, 45064= Lv65, 45065= Lv65, 45066= Lv65, 45067= Lv65, 45068= Lv65, 45078= Lv65
+    - huntingZoneId: 750
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 45002, 45012, 45013, 45014, 45015, 45016, 45024, 45044, 45045, 45046, 45047, 45060, 45061, 45062, 45063, 45064, 45065, 45066, 45067, 45068, 45078]
+      npcName: ""
+      $extends: rifts_edge_boss

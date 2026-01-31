@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Chebika (huntingZoneId: 65)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 70 NPCs, Lv1-65
+  chebika_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (70 NPCs): 1001=Guyresh (Aide) Lv40, 1002=Heltran (Merchant) Lv40, 1003=Juticia (Crystal Merchant) Lv40, 1004=Teomath (Merchant) Lv40, 1005=Verom (Banker) Lv40, 1006=Ynnis (Banker) Lv40, 1007=Taron (Porter) Lv40, 1008=Tergur (Oasis Manager) Lv40, 1009=Jakarian (Primus) Lv40, 1010=Oriel (Merchant) Lv40, 1011=Kamacia (Trader) Lv40, 1012=Farron (Merchant Union Representative) Lv40, 1013=Taegan (Traveler) Lv40, 1014=Teleportal Lv40, 1015=Nadai (Merchant) Lv40, 1016=Seiling (Flight Manager) Lv40, 1017=Gebel (Mysterium Arcanist) Lv40, 1018=Kearney (Val Aureum Warden) Lv40, 1019=Maeva (Val Aureum Warden) Lv40, 1020=Nevan (Val Aureum Warden) Lv40, 1021=Ruel (Val Aureum Warden) Lv40, 1022=Paget (Val Aureum Warden) Lv40, 1023=Theda (Coordinator) Lv40, 1024=Abandoned Boxes Lv40, 1025=Mission Board Lv40, 1026=Mission Board Lv40, 1027=Mission Board Lv40, 1028=Yohon (Trade Broker) Lv40, 1029=Kusbert (Justicar) Lv40, 1030=Merchant Lv40, 1031=Street Vendor Lv40, 1032=Street Vendor Lv40, 1033=Trader Lv40, 1034=Trader Lv40, 1035=Trader Lv40, 1036=Porter Lv40, 1037=Porter Lv40, 1038=Guest Lv40, 1039=Guest Lv40, 1040=Guest Lv40, 1041=Guest Lv40, 1042=Shepherd Lv40, 1043=Goat Herder Lv40, 1100=Bruke (Justicar) Lv40, 1300=Berduun (Cleric of Restoration) Lv40, 1600=Kerel (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Kayina (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 8100=Nellie (Mountain Climber) Lv32, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 65
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1100, 1300, 1600, 1602, 1603, 1700, 1900, 1901, 1902, 1903, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 8100, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: chebika_normal

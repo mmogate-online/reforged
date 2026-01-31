@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Ebonmaw (huntingZoneId: 44)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 19 NPCs, Lv60-62
+  ebonmaw_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (19 NPCs): 1001= Lv60, 1002= Lv60, 1003= Lv60, 1004= Lv60, 2001= Lv60, 2002= Lv61, 2003= Lv60, 2004= Lv61, 2005= Lv60, 3001= Lv60, 3002= Lv61, 3003= Lv60, 3004= Lv61, 3005= Lv60, 3006= Lv60, 3007= Lv61, 5001= Lv62, 5002= Lv61, 5003= Lv62
+    - huntingZoneId: 44
+      npcTemplateId: [1001, 1002, 1003, 1004, 2001, 2002, 2003, 2004, 2005, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 5001, 5002, 5003]
+      npcName: ""
+      $extends: ebonmaw_normal

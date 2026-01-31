@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Channelworks (huntingZoneId: 777)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 14 NPCs, Lv1-68
+  channelworks_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 18 NPCs, Lv26-65
+  channelworks_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (14 NPCs): 7001=Exit Teleportal Lv40, 7777= Lv65, 77703=Ghost Lv13, 77705= Lv26, 77732=Smuggla (Kerkion's Servant) Lv65, 77744= Lv26, 77764= Lv26, 77766=Smuggla (Kerkion's Servant) Lv65, 77770=Channelworks Sentinel Lv32, 77794= Lv1, 77796=Vyrun (Dungeon Merchant) Lv40, 77797=Danryl (Lead Sentry) Lv32, 77798= Lv68, 77799= Lv26
+    - huntingZoneId: 777
+      npcTemplateId: [7001, 7777, 77703, 77705, 77732, 77744, 77764, 77766, 77770, 77794, 77796, 77797, 77798, 77799]
+      npcName: ""
+      $extends: channelworks_normal
+
+    # Elite (18 NPCs): 77701= Lv26, 77702=Magic Stone of Testing Lv26, 77706= Lv60, 77708=Plecostoma Spawn Lv65, 77709=Orisk Egg Lv60, 77710=Orisk Hatchling Lv65, 77721=Petrified Sentinel Lv60, 77724=Petrified Overseer Lv60, 77727=Petrified Engineer Lv60, 77731= Lv60, 77751= Lv65, 77752= Lv65, 77761= Lv26, 77762= Lv26, 77763= Lv26, 77765= Lv26, 77767=Parasite Lv65, 77795= Lv26
+    - huntingZoneId: 777
+      npcTemplateId: [77701, 77702, 77706, 77708, 77709, 77710, 77721, 77724, 77727, 77731, 77751, 77752, 77761, 77762, 77763, 77765, 77767, 77795]
+      npcName: ""
+      $extends: channelworks_elite

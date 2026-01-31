@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Amena Quatla (huntingZoneId: 57)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 23 NPCs, Lv40-54
+  amena_quatla_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (23 NPCs): 1=Sikandari Stalwart Lv52, 2=Stonebeak Scrounger Lv52, 5=Geilrik Hellhound Lv52, 7=Sikandari Defender Lv53, 8=Sikandari Lifebringer Lv53, 9=Stonebeak Scrapper Lv53, 10=Sikandari Champion Lv53, 11=Stonebeak Stabber Lv53, 13=Lokian Bloodcharger (Atel Akaad) Lv52, 16=Lokian Bloodmagus (Atel Akaad) Lv52, 21=Lokian Bloodshaper (Atel Akaad) Lv52, 23=Eldritch Vanquisher Lv52, 26=Lokian Bloodspiller (Atel Akaad) Lv52, 27=Ctholak (Consecrated Sentinel) Lv53, 28=Pothika (Consecrated Sentinel) Lv53, 34= Lv52, 35= Lv52, 36= Lv52, 38=Kezelran (Iknephar Prelate) Lv54, 40= Lv53, 41= Lv52, 1271=Silvette (Sylvanoth Mystery Merchant) Lv40, 5007=Puzzling Monument Lv40
+    - huntingZoneId: 57
+      npcTemplateId: [1, 2, 5, 7, 8, 9, 10, 11, 13, 16, 21, 23, 26, 27, 28, 34, 35, 36, 38, 40, 41, 1271, 5007]
+      npcName: ""
+      $extends: amena_quatla_normal

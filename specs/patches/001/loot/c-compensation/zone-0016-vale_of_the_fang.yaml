@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Vale of the Fang (huntingZoneId: 16)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 30 NPCs, Lv25-40
+  vale_of_the_fang_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 3 NPCs, Lv29
+  vale_of_the_fang_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (30 NPCs): 1=Dementalith Lv26, 2=Vikar (Blood Mage) Lv27, 1001=Vampir Footman Lv28, 1002=Dricus (Count) Lv28, 1003=Bathory (Countess) Lv28, 1004=Elder Blood Witch Lv29, 1005=Blood Witch Lv29, 1006=Sadnica (Alethea's Husband) Lv29, 1007=Kirithia (Stalker Company) Lv26, 1271=Foretta (Poporia Mystery Merchant) Lv40, 2201=Vampir Henchman Lv26, 2202=Vampir Retiarius Lv26, 2203=Violent Dwarf Lv25, 2204=Armored Zuulhound Lv26, 2205=Stalker Company Scout Lv25, 2206=Stalker Company Warrior Lv25, 2207=Stalker Company Blademaster Lv25, 2208=Stalker Company Assassin Lv25, 2209=Gloomtusk Lv25, 2301=Blood Maid Lv26, 2302=Blood Lord Lv26, 2303=Vampir Jester Lv26, 2304=Sanguine Moppet Lv26, 2305=Blood Mage Lv26, 2403=Vampir Runner Lv27, 2404=Vampir Soldier Lv27, 2405=Zuulhound Lv27, 2406=Surdek (Dark Weaver) Lv28, 2502=Ebonweaver Lv28, 7000= Lv26
+    - huntingZoneId: 16
+      npcTemplateId: [1, 2, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1271, 2201, 2202, 2203, 2204, 2205, 2206, 2207, 2208, 2209, 2301, 2302, 2303, 2304, 2305, 2403, 2404, 2405, 2406, 2502, 7000]
+      npcName: ""
+      $extends: vale_of_the_fang_normal
+
+    # Elite (3 NPCs): 5001=Serajar (Dark Blood Witch) Lv29, 5002=Serajar's Servant Lv29, 5003=Juvenile Ovolith Lv29
+    - huntingZoneId: 16
+      npcTemplateId: [5001, 5002, 5003]
+      npcName: ""
+      $extends: vale_of_the_fang_elite

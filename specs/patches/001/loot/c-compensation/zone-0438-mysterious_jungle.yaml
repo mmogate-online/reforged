@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Mysterious Jungle (huntingZoneId: 438)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 14 NPCs, Lv31-40
+  mysterious_jungle_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (14 NPCs): 1=Gula Brute Lv31, 2=Caiman Hireling Lv31, 3=Lokian Eviscerator Lv31, 4=Lokian Devastator Lv31, 5=Lokian Dreadshaper Lv31, 6=Jelena (Elleon's Ally) Lv31, 7=Runha (Elleon's Ally) Lv31, 8=Lokian Thrasher Lv31, 9=Lokian Sniper Lv31, 10=Lokian Prelate Lv31, 11=Bruke (Traitorous Justicar) Lv32, 1001=Runha (Elleon's Ally) Lv40, 1002=Jelena (Elleon's Ally) Lv40, 1003=Exit Teleportal Lv40
+    - huntingZoneId: 438
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1001, 1002, 1003]
+      npcName: ""
+      $extends: mysterious_jungle_normal

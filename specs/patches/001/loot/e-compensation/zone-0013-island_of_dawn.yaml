@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Island of Dawn (huntingZoneId: 13)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 12 NPCs, Lv64
+  island_of_dawn_boss:
+    itemBags:
+      - id: 1
+        bagName: "Island of Dawn Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (12 NPCs): 7001=Brutal Basilisk Lv64, 7002=Brutal Orisk Lv64, 7003=Brutal Ovolith Lv64, 7004=Brutal Bloodbound Teralith Lv64, 7005=Brutal Fimbrilisk Lv64, 7006=Brutal Searing Fangspawn Lv64, 7007=Brutal Naga Battlemaster Lv64, 7008=Brutal Iron Giant Lv64, 7009=Brutal Onyx Hydrath Lv64, 700101=Sickly Basilisk Lv64, 700201=Sickly Orisk Lv64, 700301=Sickly Ovolith Lv64
+    - huntingZoneId: 13
+      npcTemplateId: [7001, 7002, 7003, 7004, 7005, 7006, 7007, 7008, 7009, 700101, 700201, 700301]
+      npcName: ""
+      $extends: island_of_dawn_boss

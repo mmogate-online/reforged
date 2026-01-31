@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Acarum (huntingZoneId: 73)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 76 NPCs, Lv1-65
+  acarum_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (76 NPCs): 1001=Karihne (Aide) Lv40, 1002=Layess (Merchant) Lv40, 1003=Leshua (Crystal Merchant) Lv40, 1004=Faniz (Banker) Lv40, 1005=Qantuz (Banker) Lv40, 1006=Narun (Flight Manager) Lv40, 1007=Teleportal Lv40, 1008=Alyssa (Coordinator) Lv40, 1009=Georrif (Prefect) Lv40, 1010=Bassil (Westonia Defender) Lv40, 1011=Arvo (Villager) Lv40, 1012=Hurban (Westonia Defender) Lv40, 1013=Pajrun (Westonia Defender) Lv40, 1014=Kazat (Westonia Defender) Lv40, 1015=Shekkram (Villager) Lv40, 1016=Peivan (Villager) Lv40, 1017=Rekaam (Cemetery Visitor) Lv40, 1018=Fetna (Cemetery Visitor) Lv40, 1019=Lafani (Cemetery Visitor) Lv40, 1020=Parda (Blacksmith) Lv40, 1021=Saluk (Quartermaster) Lv40, 1022=Quartermaster Soldier Lv40, 1023=Nireba (Wholesale Merchant) Lv40, 1024=Tular (Grain Merchant) Lv40, 1025=Porter Lv40, 1026=Westonia Defender Lv40, 1027=Westonia Defender Lv40, 1028=Seva (Dementalith Specialist) Lv40, 1055=Frati (Practical Joker) Lv40, 1100=Heskal (Kaidun Soldier) Lv40, 1101=Omelia (Villager) Lv40, 1102=Essell (Villager) Lv40, 1103=Kin (Villager) Lv40, 1104=Gulhaar (Westonia Defender) Lv40, 1105=Krisha (Westonia Defender) Lv40, 1106=Nahadim (Westonia Defender) Lv40, 1107=Eidaf (Westonia Defender) Lv40, 1108=Khum (Westonia Defender) Lv40, 1109=Khaban (Westonia Defender) Lv40, 1110=Harule (Mysterium Inquisitor) Lv40, 1111= Lv40, 1112= Lv40, 1113= Lv40, 1114=Grave of an unknown soldier Lv40, 1115= Lv40, 1116=Ghufran (Vagabond Fighter) Lv40, 1117=Nakab Lv40, 1300=Kieleb (Cleric of Restoration) Lv40, 1400=Mission Board Lv40, 1401=Mission Board Lv40, 1501=Suryati's Peak Teleportal Lv40, 1600=Terek (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Celion (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 8100=Rinne (Mountain Climber) Lv32, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 73
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1055, 1100, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1112, 1113, 1114, 1115, 1116, 1117, 1300, 1400, 1401, 1501, 1600, 1602, 1603, 1700, 1900, 1901, 1902, 1903, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 8100, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: acarum_normal

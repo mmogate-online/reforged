@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Nexus Traverse (huntingZoneId: 801)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 6 NPCs, Lv60
+  nexus_traverse_boss:
+    itemBags:
+      - id: 1
+        bagName: "Nexus Traverse Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (6 NPCs): 101=Traverse Sovereign Lv60, 201=Traverse Mutilator Lv60, 202=Traverse Mutilator Lv60, 203=Traverse Mutilator Lv60, 205=Traverse Mutilator Lv60, 701=Traverse Mutilator Lv60
+    - huntingZoneId: 801
+      npcTemplateId: [101, 201, 202, 203, 205, 701]
+      npcName: ""
+      $extends: nexus_traverse_boss

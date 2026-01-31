@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Basilisk Crag (huntingZoneId: 21)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 6 NPCs, Lv29-32
+  basilisk_crag_boss:
+    itemBags:
+      - id: 1
+        bagName: "Basilisk Crag Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (6 NPCs): 1=Vicious Dusky Basilisk Lv31, 2=Dusky Basilisk Lv30, 3=Vicious Orisk Lv30, 4=Brutal Orisk Lv29, 5003=Bloodjaw (Scourge of the Sands) Lv32, 5004=Deathglare (Desert Reaper) Lv32
+    - huntingZoneId: 21
+      npcTemplateId: [1, 2, 3, 4, 5003, 5004]
+      npcName: ""
+      $extends: basilisk_crag_boss

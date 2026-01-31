@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Tenebrous Mines (huntingZoneId: 20)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 31 NPCs, Lv3-31
+  tenebrous_mines_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv31
+  tenebrous_mines_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (31 NPCs): 6005001= Lv3, 6008500=Weapon Crates Lv28, 30011000=Slave Foreman Lv28, 30011001=Slave Overseer Lv28, 30011002=Cruel Taskmaster Lv28, 30011100=Morale Booster Lv28, 30012000=Zombie Slave Lv28, 30012001=Armored Zombie Lv28, 30031000=Skeletal Spearman Lv29, 30031001=Skeletal Sentry Lv29, 30031002=Skeletal Vassal Lv29, 30039000=Zompori Laborer Lv28, 30039100=Zompori Chopper Lv28, 30048000=Hammerhand Slave Lv29, 30048001=Stonecrusher Slave Lv29, 30064200=High Priestess Akia Lv31, 30077201= Lv30, 30077202= Lv30, 30077203= Lv30, 30114000=Ossugon Warlord Lv29, 30114001=Ossugon Centurion Lv29, 30114002=Ossugon Prefect Lv29, 30114003=Ossugon Primus (Death Knight) Lv29, 30120100=Devan Outrider (Stalker Company) Lv29, 30120101=Devan Ripper (Stalker Company) Lv30, 30140000=Lokian Blood Mage (Stalker Company) Lv30, 30140001= Lv30, 30141000=Lokian Reaper (Stalker Company) Lv30, 30141001= Lv30, 30143000=Lokian Ebonweaver (Stalker Company) Lv30, 30143001= Lv30
+    - huntingZoneId: 20
+      npcTemplateId: [6005001, 6008500, 30011000, 30011001, 30011002, 30011100, 30012000, 30012001, 30031000, 30031001, 30031002, 30039000, 30039100, 30048000, 30048001, 30064200, 30077201, 30077202, 30077203, 30114000, 30114001, 30114002, 30114003, 30120100, 30120101, 30140000, 30140001, 30141000, 30141001, 30143000, 30143001]
+      npcName: ""
+      $extends: tenebrous_mines_normal
+
+    # Elite (2 NPCs): 98=Skeletal Servant (Death Knight Henchman) Lv31, 99=Jurzeniir (Oathbreaker) Lv31
+    - huntingZoneId: 20
+      npcTemplateId: [98, 99]
+      npcName: ""
+      $extends: tenebrous_mines_elite

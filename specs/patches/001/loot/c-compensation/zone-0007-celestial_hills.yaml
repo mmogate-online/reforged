@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Celestial Hills (huntingZoneId: 7)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 28 NPCs, Lv22-68
+  celestial_hills_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (28 NPCs): 5=Red Fang Orcan Lv22, 6=Red Fang Fighter Lv22, 7=Red Fang Rager Lv23, 8=Red Fang Kobold Lv22, 9=Red Fang Kobold Minion Lv22, 10=Lean Hyena Lv22, 11=Bloodguard (Scions of Lok) Lv23, 12=Lokian Lancer (Scions of Lok) Lv24, 13=Lokian Berserker (Scions of Lok) Lv24, 14=Lokian Sorcerer (Scions of Lok) Lv24, 15= Lv24, 16= Lv24, 17= Lv24, 20=Crowu (Viceroy) Lv25, 21=Goat Lv22, 22= Lv22, 100=Dark Imp Lv22, 102=Tezluar (Magister of Lok) Lv25, 1271=Arcun (Arcadia Mystery Merchant) Lv40, 6000=Iron Thorn Orcan Lv68, 6001=Badge Merchant (Injured) Lv40, 6002=Ozarun Lv40, 6003=Titus (Explosives Expert) Lv40, 6005=Wrecked Wagon Lv59, 6006=Orcan's Loot Pile Lv68, 6007= Lv28, 6008=Ozarun (Possible Casualty) Lv58, 6009=Tuberelle Lv68
+    - huntingZoneId: 7
+      npcTemplateId: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 21, 22, 100, 102, 1271, 6000, 6001, 6002, 6003, 6005, 6006, 6007, 6008, 6009]
+      npcName: ""
+      $extends: celestial_hills_normal

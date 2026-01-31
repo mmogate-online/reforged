@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Balder's Refuge (huntingZoneId: 30)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv60
+  balders_refuge_boss:
+    itemBags:
+      - id: 1
+        bagName: "Balder's Refuge Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 500=Phlox Ovolith Lv60, 510=Direpaw Mandrill Lv60, 520=Dreadpaw Mandrill Lv60
+    - huntingZoneId: 30
+      npcTemplateId: [500, 510, 520]
+      npcName: ""
+      $extends: balders_refuge_boss

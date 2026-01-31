@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Kelsaik's Nest (huntingZoneId: 475)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 6 NPCs, Lv58-59
+  kelsaiks_nest_boss:
+    itemBags:
+      - id: 1
+        bagName: "Kelsaik's Nest Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (6 NPCs): 1000=Kelsaik (Harbinger of Annihilation) Lv59, 2000=Annihilation Charger Lv58, 2001=Annihilation Reaper Lv58, 2002=Annihilation Sniper Lv58, 2003=Annihilation Destroyer Lv58, 2004=Annihilation Vanquisher Lv58
+    - huntingZoneId: 475
+      npcTemplateId: [1000, 2000, 2001, 2002, 2003, 2004]
+      npcName: ""
+      $extends: kelsaiks_nest_boss

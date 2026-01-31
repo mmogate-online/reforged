@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Citadel of Torment (huntingZoneId: 33)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 41 NPCs, Lv26-68
+  citadel_of_torment_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 4 NPCs, Lv46
+  citadel_of_torment_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (41 NPCs): 1=Ghost Moppet Lv44, 2=Cursed Moppet Lv44, 3=Vampir Noblewoman Lv44, 4=Vampir Gentleman Lv44, 5=Cursed Jester Lv44, 6=Malevolent Wraith Lv44, 7=Eldritch Defender Lv44, 8=Merciless Disc Reaper Lv45, 9=Armored Disc Reaper Lv45, 10=Blood Guard Mage Lv45, 11=Blood Guard Berserker Lv45, 12=Blood Guard Lancer Lv45, 15=Mekonari Magister Lv45, 16=Anguished Minion Lv44, 17=Ebon Inquisitor Lv45, 18=Decaying Minion Lv44, 51=Moppet Butcher Lv44, 52=Bloodletter Moppet Lv44, 53=Cursed Vampir Noblewoman Lv44, 54=Cursed Vampir Gentleman Lv44, 55=Infernal Jester Lv44, 58=Tormenting Disc Reaper Lv45, 59=Pitiless Disc Reaper Lv45, 60=Blood Guard Sorcerer Lv45, 61=Blood Guard Reaper Lv45, 62=Blood Guard Champion Lv45, 66=Rotting Prisoner Lv44, 67=Coalheart Inquisitor Lv45, 68=Rotting Slave Lv45, 70=Blood Guard Arcanist Lv44, 90= Lv42, 905=Verminath (Toxic Jester) Lv45, 910=Blood Guard High Necromancer Lv45, 5007= Lv26, 9899= Lv65, 9978=Hidden Wooden Crate Lv68, 9979= Lv65, 9988=Hidden Silver Crate Lv68, 9989= Lv65, 9998=Hidden Gold Crate Lv68, 9999= Lv65
+    - huntingZoneId: 33
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 51, 52, 53, 54, 55, 58, 59, 60, 61, 62, 66, 67, 68, 70, 90, 905, 910, 5007, 9899, 9978, 9979, 9988, 9989, 9998, 9999]
+      npcName: ""
+      $extends: citadel_of_torment_normal
+
+    # Elite (4 NPCs): 1005=Taruruk (Jester of the Damned) Lv46, 1006=Zulmarek (Wrath of Thulsa) Lv46, 1007=Eldritch Reaver (Servant of Thulsa) Lv46, 1017=Purzak (High Inquisitor) Lv46
+    - huntingZoneId: 33
+      npcTemplateId: [1005, 1006, 1007, 1017]
+      npcName: ""
+      $extends: citadel_of_torment_elite

@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Labyrinth of Terror (Solo) (huntingZoneId: 3008)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 25 NPCs, Lv40-56
+  labyrinth_of_terror_solo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 53 NPCs, Lv56
+  labyrinth_of_terror_solo_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (25 NPCs): 1001=Teleportal Lv40, 1002=Teleportal Lv40, 1003=Obelisk of Binding Lv40, 1004=Obelisk of Binding Lv40, 1005=Obelisk of Binding Lv40, 1006=Obelisk of Binding Lv40, 1007=Obelisk of Binding Lv40, 1008=Obelisk of Binding Lv40, 1009=Obelisk of Binding Lv40, 1010=Obelisk of Binding Lv40, 1011=Obelisk of Binding Lv40, 1012=Anguished Phantasm Lv40, 1013=Anguished Phantasm Lv40, 1014=Anguished Phantasm Lv40, 1015=Anguished Phantasm Lv40, 1016=Anguished Phantasm Lv40, 1017=Jelena Lv40, 1018=Elleon Lv40, 1019=Jelena Lv40, 1020=Elleon Lv40, 1021=Staff of Killian Lv40, 1022=Teleportal Lv40, 1500=Kriegar Hall Teleportal Lv40, 8014= Lv56, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 3008
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1500, 8014, 11111]
+      npcName: ""
+      $extends: labyrinth_of_terror_solo_normal
+
+    # Elite (53 NPCs): 1101=Zuulhound Sentry Lv56, 1102=Howling Zuulhound Lv56, 1103=Chaos Mistress Lv56, 1104=Sihranar Mercenary Lv56, 1105=Arachnen Painweaver Lv56, 1106=Blood Stalker Lv56, 1901=Xalory (The Lasher) Lv56, 1902=Kroak (Maestro) Lv56, 1903=Infizhaer (Mercenary Leader) Lv56, 2001=Killian's Musician Lv56, 2002=Rotting Zombie Lv56, 2003=Killian's Bandmaster Lv56, 2004=Gutrend Hyena Lv56, 2005=Killian's Fool Lv56, 2006=Bisque Lady Lv56, 2007=Kalash Battlemaster Lv56, 2008=Kelba Charger Lv56, 2009=Darlekthol Cleaver Lv56, 2010=Iknephar Priest Lv56, 2011=Arachnen Painmistress Lv56, 2012=Abominable Fiend Lv56, 3001=Killian's Jester Lv56, 3002=Bisque Doll Lv56, 3003=Killian's Joker Lv56, 3004=Bisque Marionette Lv56, 3005=Kalash Dreadnaught Lv56, 3006=Kelba Fighter Lv56, 3007=Darlekthol Dreamreaver Lv56, 3008=Iknephar High Priest Lv56, 3009=Chaotic Tyrak Lv56, 3901=Marineu (Iknephar Chief Priest) Lv56, 3902=Aleister (Killian's Jester) Lv56, 3903=Lancer (Enthralled Minion) Lv56, 3904=Archer (Enthralled Minion) Lv56, 3905=Priest (Enthralled Minion) Lv56, 3906=Berserker (Enthralled Minion) Lv56, 3907=Sorcerer (Enthralled Minion) Lv56, 3908=Warrior (Enthralled Minion) Lv56, 4001=Vyjalek (Imprisoned Giant) Lv56, 4002=Sacrificial Victim Lv56, 5000= Lv56, 5001= Lv56, 5002= Lv56, 5003= Lv56, 8002=Chamas Scout Lv56, 8008=Arcanist Sentinel Lv56, 8009=Kalash Devastator Lv56, 8010=Chaogg Ripper Lv56, 8011= Lv56, 8012= Lv56, 8013= Lv56, 8015=Caiman Pyro Lv56, 8016= Lv56
+    - huntingZoneId: 3008
+      npcTemplateId: [1101, 1102, 1103, 1104, 1105, 1106, 1901, 1902, 1903, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3901, 3902, 3903, 3904, 3905, 3906, 3907, 3908, 4001, 4002, 5000, 5001, 5002, 5003, 8002, 8008, 8009, 8010, 8011, 8012, 8013, 8015, 8016]
+      npcName: ""
+      $extends: labyrinth_of_terror_solo_elite

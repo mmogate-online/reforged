@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Temple of Temerity (huntingZoneId: 482)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 20 NPCs, Lv1-59
+  temple_of_temerity_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 38 NPCs, Lv59
+  temple_of_temerity_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (20 NPCs): 1501=Exit Teleportal Lv40, 1502=Feilia (Cataclysm Machine Technician) Lv40, 1503=Teldun (Proctor) Lv40, 6011=Combustible Barrel Lv59, 6012= Lv1, 6014=Cataclysm Machine Switch Lv26, 6015= Lv26, 6016=Trap Switch Lv26, 6017= Lv27, 6018= Lv26, 7004=Treasure Chest (First Stage) Lv59, 7005=Treasure Chest (Second Stage) Lv59, 7006=Treasure Chest (Third Stage) Lv59, 7007=Treasure Chest (Fourth Stage) Lv59, 8001=Cataclysm Switch Lv26, 8002=Cataclysm Switch Lv26, 8003= Lv26, 8004= Lv26, 8005=Trap Switch Lv26, 8006= Lv27
+    - huntingZoneId: 482
+      npcTemplateId: [1501, 1502, 1503, 6011, 6012, 6014, 6015, 6016, 6017, 6018, 7004, 7005, 7006, 7007, 8001, 8002, 8003, 8004, 8005, 8006]
+      npcName: ""
+      $extends: temple_of_temerity_normal
+
+    # Elite (38 NPCs): 1000=Consecrated Relic Lv59, 1001=Bone Imp Slasher (Thegluri Contingent) Lv59, 1002=Skeletal Basher (Thegluri Contingent) Lv59, 1003=Bone Cleaver (Thegluri Contingent) Lv59, 1004=Doomrider (Thegluri Contingent) Lv59, 1005=Ossugon Deathwalker (Thegluri Contingent) Lv59, 2001=Undead Sailor Lv59, 2002=Damned Deckhand Lv59, 2003=Undead Mate Lv59, 2004=Cursed Bosun Lv59, 2005=Damned First Mate Lv59, 2006=Tormented Captain Lv59, 2007=Cursed Captain Lv59, 2008=Wretched Captain Lv59, 3001=Toxic Juvenile Ovolith Lv59, 3002=Violent Juvenile Ovolith Lv59, 3003=Tenacious Juvenile Ovolith Lv59, 3004=Frostfang Juvenile Ovolith Lv59, 3005=Ovolith Overseer Lv59, 4001=Cruel Gula Lv59, 4002=Ravenous Gula Butcher Lv59, 4003=Savage Gula Slaver Lv59, 4004=Savage Gula Brute Lv59, 5001=Crazed Zompori Lv59, 5002=Mutant Vampir Lv59, 5003=Snapping Gullet Lv59, 5004=Shardalik Turret Lv59, 6002=Somber King (Game of Death) Lv59, 6003=Shrewd Queen (Game of Death) Lv59, 6004=Fierce Rook (Game of Death) Lv59, 6005=Dauntless Rook (Game of Death) Lv59, 6006=Stalwart Knight (Game of Death) Lv59, 6007=Cunning Bishop (Game of Death) Lv59, 6008=Fearless Pawn (Game of Death) Lv59, 6009=Loyal Pawn (Game of Death) Lv59, 7001=Ksharan Sorcerer (The Sunderers) Lv59, 7002=Ksharan Archer (The Sunderers) Lv59, 7003=Ksharan Mystic (The Sunderers) Lv59
+    - huntingZoneId: 482
+      npcTemplateId: [1000, 1001, 1002, 1003, 1004, 1005, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 3001, 3002, 3003, 3004, 3005, 4001, 4002, 4003, 4004, 5001, 5002, 5003, 5004, 6002, 6003, 6004, 6005, 6006, 6007, 6008, 6009, 7001, 7002, 7003]
+      npcName: ""
+      $extends: temple_of_temerity_elite

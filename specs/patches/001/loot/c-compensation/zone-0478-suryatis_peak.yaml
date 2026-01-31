@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Suryati's Peak (huntingZoneId: 478)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 21 NPCs, Lv1-59
+  suryatis_peak_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 27 NPCs, Lv59
+  suryatis_peak_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (21 NPCs): 1501=Exit Teleportal Lv40, 1502=Suryati's Peak Teleportal Lv40, 9902= Lv59, 9903= Lv59, 9904= Lv59, 9905= Lv59, 9907= Lv1, 9909= Lv59, 9916= Lv59, 9917= Lv59, 9918= Lv59, 9922= Lv59, 11001=Shauliq Lv40, 11002=Ralzira Lv40, 11003=Nakara Lv40, 11004=Ghufran (Vagabond Fighter) Lv58, 11005=Charging Dementalith Lv58, 11006=Garan (Champion of Kaidun) Lv58, 11007=Suryati (High Prelate) Lv58, 11008=Ghufran (Vagabond Fighter) Lv40, 11009=Garan (Champion of Kaidun) Lv40
+    - huntingZoneId: 478
+      npcTemplateId: [1501, 1502, 9902, 9903, 9904, 9905, 9907, 9909, 9916, 9917, 9918, 9922, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008, 11009]
+      npcName: ""
+      $extends: suryatis_peak_normal
+
+    # Elite (27 NPCs): 1001=Sihran Loyalist Lv59, 1002=Sihran Dreadguard Lv59, 3001=Sihran Dedicant Lv59, 3002=Sihran Frostrager Lv59, 3003=Dark Arcanist Lv59, 3004=Frostclaw Arachnen Lv59, 4001=Argonomorph Kneebashe Lv59, 4002=Argonomorph Orcan Lv59, 6001=Chaogg Charger Lv59, 6002=Chaogg Ripper Lv59, 6003=Chaogg Runner Lv59, 7902=Suryati (High Prelate) Lv59, 7903=Suryati's Shaper Lv59, 7904=Suryati's Shaper Lv59, 7905= Lv59, 8003=Ghufran Lv59, 9901=Dementalith Lv59, 9906= Lv59, 9908=Dementalith Lv59, 9910=Dementalith Lv59, 9911=Suryati's Shield Lv59, 9912=Charged Dementalith Lv59, 9913=Overcharged Dementalith Lv59, 9914= Lv59, 9915= Lv59, 9920= Lv59, 9921= Lv59
+    - huntingZoneId: 478
+      npcTemplateId: [1001, 1002, 3001, 3002, 3003, 3004, 4001, 4002, 6001, 6002, 6003, 7902, 7903, 7904, 7905, 8003, 9901, 9906, 9908, 9910, 9911, 9912, 9913, 9914, 9915, 9920, 9921]
+      npcName: ""
+      $extends: suryatis_peak_elite

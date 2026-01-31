@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Frontera (huntingZoneId: 75)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 68 NPCs, Lv1-65
+  frontera_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (68 NPCs): 1001=Ibar (Aide) Lv40, 1002=Dyanne (Merchant) Lv40, 1003=Elrafe (Crystal Merchant) Lv40, 1004=Freena (Banker) Lv40, 1005=Ollen (Banker) Lv40, 1006=Lainy (Flight Manager) Lv40, 1007=Lauma (Prefect) Lv40, 1008=Veyron (Arcanist's Apprentice) Lv40, 1009=Linn (Villager) Lv40, 1010=Trezi (Treasure Hunter) Lv40, 1011=Cottrey (Physician) Lv40, 1012=Junith (Val Palrada Primus) Lv40, 1013=Larqa (Val Palrada Defender) Lv40, 1014=Kallaina (Val Palrada Defender) Lv40, 1015=Teleportal Lv40, 1016=Glasrinne (Coordinator) Lv40, 1017=Lanain (Son of Past Lord) Lv40, 1018=Emeileo (Former Farmer) Lv40, 1019=Waulter (Former Farmer) Lv40, 1020=Laina's Tombstone Lv40, 1021=Laiesh (Core Manager) Lv40, 1022=Lehlene (Mysterium Scholar) Lv40, 1023=Fraya (Allemantheia Commander) Lv40, 1024=Buruk (Prefect) Lv40, 1026=Rudius (Mysterium Investigator) Lv40, 1027=Haneya (Mysterium Investigator) Lv40, 1028=Niabren (Mysterium Investigator) Lv40, 1029=Darion (Mysterium Investigator) Lv40, 1030=Runhew (Mysterium Investigator) Lv40, 1031=Val Palrada Defender Lv40, 1032=Val Palrada Defender Lv40, 1033=Renana (Quarantine Expert) Lv40, 1034=Olham (Worker) Lv40, 1035=Ihonas (Worker) Lv40, 1036=Zedrick (Refugee) Lv40, 1037=Odesere (Refugee) Lv40, 1300=Putobash (Cleric of Restoration) Lv40, 1400=Mission Board Lv40, 1401=Mission Board Lv40, 1402=Mission Board Lv40, 1501=Kezzel's Gorge Teleportal Lv40, 1600=Dienne (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Esrill (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1905= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 4501=Penrik (Caravan Leader) Lv32, 4502=Relaman (Caravan Guard) Lv32, 4503=Ronafinz (Caravan Guard) Lv32, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 75
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1300, 1400, 1401, 1402, 1501, 1600, 1602, 1603, 1700, 1900, 1901, 1902, 1905, 1955, 1956, 1957, 1958, 1959, 4501, 4502, 4503, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: frontera_normal

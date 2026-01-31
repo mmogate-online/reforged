@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Basilisk Crag (huntingZoneId: 21)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 33 NPCs, Lv28-40
+  basilisk_crag_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (33 NPCs): 5=Crag Stalker Prophet Lv29, 6=Crag Stalker Champion Lv29, 7=Yurklag Hyena Lv28, 8=Yurklag Hyena Pup Lv28, 9=Crag Stalker Rager Lv29, 10=Crag Stalker Crusher Lv29, 11=Crag Stalker Reaver Lv29, 12=Desert Cullar Lv28, 13=Sandhopper Tentacullar Lv28, 14=Desert Arachnen Worker Lv28, 15=Crag Stalker Kobold Lv29, 16=Crag Stalker Frillback Lv29, 17=Dunecrawler Hyena Alpha Lv28, 18=Dunecrawler Hyena Lv28, 19=Crag Cullar Lv29, 20=Crag Hopper Tentacullar Lv29, 21=Crag Hopper Tentacullar Lv28, 22=Crag Stalker Reaper Lv29, 23=Crag Stalker Skullcrusher Lv29, 24=Crag Stalker Seer Lv29, 25=Crag Stalker Minion Lv29, 26=Crag Stalker Fighter Lv29, 27=Crag Stalker Watcher Lv29, 28=Crag Stalker Oracle Lv29, 29=Crag Stalker Raider Lv29, 30=Crag Stalker Shaman Lv29, 31=Ravenous Sand Cullar Lv28, 32=Rapacious Tentacullar Lv28, 33=Voracious Tentacullar Lv29, 1271=Viadu (Val Aureum Mystery Merchant) Lv40, 5001=Beldresk (Crag Stalker Warlord) Lv30, 5002=Loyal Retainer (Crag Stalker Bodyguards) Lv30, 7000= Lv28
+    - huntingZoneId: 21
+      npcTemplateId: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 1271, 5001, 5002, 7000]
+      npcName: ""
+      $extends: basilisk_crag_normal

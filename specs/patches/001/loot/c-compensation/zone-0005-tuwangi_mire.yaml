@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Tuwangi Mire (huntingZoneId: 5)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 33 NPCs, Lv15-40
+  tuwangi_mire_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (33 NPCs): 1=Tuwangi Overseer Lv20, 2=Tuwangi Helper Lv20, 3=Tuwangi Worker Lv20, 4=Tuwangi Frogrider Lv22, 5=Tuwangi Blockhead Lv22, 6=Tuwangi Chopper Lv22, 7=Tuwangi Warfrogger Lv21, 8=Keen Hat Tuwangi Lv21, 9=Stonehammer Tuwangi Lv21, 10=Miretoad Lv19, 11=Bubu Dragon Lv19, 12=Frog Drum Lv21, 13=Inky Sabertooth Lv20, 14=Muddy Sporewalker Lv19, 15=Hungry Cullar Lv19, 16=Tentacullar Lv19, 17=Garangka (Frog King) Lv23, 18=Bauba (Warchief) Lv21, 19=Moong (Magic Doer) Lv22, 20=Raguga (Battlehopper) Lv23, 21=Tuwangi Protector Lv22, 22=Tuwangi Hatcheter Lv23, 1271=Arcun (Arcadia Mystery Merchant) Lv40, 7000=Frogbane Drum Lv40, 7001=Frogbane Drum Lv40, 7002=Frogbane Drum Lv40, 7003=Frogbane Drum Lv40, 7010= Lv15, 7011= Lv15, 7012= Lv15, 7013= Lv15, 7020= Lv26, 7777= Lv40
+    - huntingZoneId: 5
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 1271, 7000, 7001, 7002, 7003, 7010, 7011, 7012, 7013, 7020, 7777]
+      npcName: ""
+      $extends: tuwangi_mire_normal

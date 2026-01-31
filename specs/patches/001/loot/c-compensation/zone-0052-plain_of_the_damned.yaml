@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Plain of the Damned (huntingZoneId: 52)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 72 NPCs, Lv1-68
+  plain_of_the_damned_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 1 NPCs, Lv26
+  plain_of_the_damned_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (72 NPCs): 1001= Lv57, 1002=Undead Polykind Lv58, 1003= Lv57, 1004= Lv57, 1005= Lv57, 1006= Lv57, 1007= Lv57, 1008= Lv57, 1271=Loahcun (Lorcada Mystery Merchant) Lv40, 2001=Ksharan Centurion (Cursed Legion) Lv56, 2002=Ksharan Soldier (Cursed Legion) Lv56, 2003= Lv57, 2004= Lv57, 2005=Ksharan Halberdier (Cursed Legion) Lv56, 2006=Ksharan Dragoon (Cursed Legion) Lv58, 2007=Ksharan Praetor (Cursed Legion) Lv56, 2008=Thulsan Charger Lv58, 2009=Tempest Siren Lv57, 2010=Frost Siren Lv57, 2011=Furious Mugato Lv56, 3001=Vengeful Wraith Lv57, 3002=Bonded Bone Imp Lv57, 3003= Lv58, 3004= Lv58, 3005= Lv58, 3006=Mekonari Necromancer Lv57, 4000=Darekuur (Cursed Legion Legate) Lv58, 4001= Lv60, 4002=Tersa (Pavor Priest) Lv58, 5001=Ksharan Swordmaster (Cursed Legion) Lv58, 5002=Ksharan Archer (Cursed Legion) Lv58, 5003=Ksharan Archpriest (Cursed Legion) Lv58, 5004=Ksharan Shadowweaver (Cursed Legion) Lv58, 5007=Puzzling Monument Lv40, 6001= Lv57, 6002=Thulsan Destroyer Lv58, 6003= Lv57, 6004= Lv58, 7001= Lv58, 7002=Selvereth (Cursed Legion Knight) Lv59, 7003=Bosskar (Cursed Legion Praetor) Lv58, 7004=Warkul (Executor of Destruction) Lv58, 8001=Thrakatul (Thulsan Deathmaster) Lv60, 9001=Lorcada Defender Lv57, 9002=Lorcada Defender Lv57, 9003=Thulsan Juggernaut (Cursed Legion) Lv57, 9004=Thulsan Grunt (Cursed Legion) Lv57, 9006=Ksharan Reaver (Cursed Legion) Lv58, 9007=Ksharan Rager (Cursed Legion) Lv58, 9008=Ksharan Dreadweaver (Cursed Legion) Lv58, 9009=General Virkan (Cursed Legion) Lv59, 9010=Vicious Runekeeper Lv57, 9011=Maligos Conquerer Lv57, 9012=Darlekthol Vanquisher Lv57, 9013=Kalash Breacher Lv58, 9014=Kelba Worker Lv58, 9015=Tarnos (Iknephar Shaper) Lv59, 9016= Lv7, 9017= Lv3, 9018=Fickle Ebon Imp Lv57, 9019=Ksharan Vanguard (Cursed Legion) Lv58, 9020=Prisoner Transport Lv58, 9021=Popori Technician Lv58, 9090= Lv57, 9999= Lv1, 98999= Lv65, 99978=Tiny Christmas Gift Lv68, 99979= Lv65, 99988=Colorful Christmas Gift Lv68, 99989= Lv65, 99998=Generous Christmas Gift Lv68, 99999= Lv65
+    - huntingZoneId: 52
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1271, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 3001, 3002, 3003, 3004, 3005, 3006, 4000, 4001, 4002, 5001, 5002, 5003, 5004, 5007, 6001, 6002, 6003, 6004, 7001, 7002, 7003, 7004, 8001, 9001, 9002, 9003, 9004, 9006, 9007, 9008, 9009, 9010, 9011, 9012, 9013, 9014, 9015, 9016, 9017, 9018, 9019, 9020, 9021, 9090, 9999, 98999, 99978, 99979, 99988, 99989, 99998, 99999]
+      npcName: ""
+      $extends: plain_of_the_damned_normal
+
+    # Elite (1 NPCs): 9005= Lv26
+    - huntingZoneId: 52
+      npcTemplateId: [9005]
+      npcName: ""
+      $extends: plain_of_the_damned_elite

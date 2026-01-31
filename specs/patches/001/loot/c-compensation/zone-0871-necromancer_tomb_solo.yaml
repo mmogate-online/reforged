@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Necromancer Tomb (Solo) (huntingZoneId: 871)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 48 NPCs, Lv21-45
+  necromancer_tomb_solo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (48 NPCs): 1=Relentless Disc Reaper Lv43, 2=Anguish Wraith Lv43, 3=Ebonheart Inquisitor Lv43, 4=Ksharan Sorcerer Lv43, 5=Ksharan Destroyer Lv43, 6=Ksharan Defender Lv43, 7=Eldritch Blood Knight Lv43, 8=Mekonari Blood Mage Lv43, 9=Twisted Fool Lv43, 10=Cursed Mutant Dwarf Lv43, 11=Ensorceled Moppet Lv43, 12=Trayzadius (Reaver of Souls) Lv43, 16=Wretched Blood Fiend Lv43, 54=Ksharan Magister Lv43, 55=Ksharan Berserker Lv43, 56=Ksharan Myrmidon Lv43, 60=Cursed Mutant Dwarf Lv43, 61=Ensorceled Moppet Lv43, 90= Lv44, 91= Lv44, 93=Necromancy Device Lv44, 102=Scourge Wraith Lv43, 105=Ksharan Battlerager Lv43, 110=Cursed Mutant Dwarf Lv43, 160=Cursed Mutant Dwarf Lv43, 900=Vengeful Shade Lv43, 901=Sawtooth Reaper Lv43, 902=Mutant Dwarf Guard Lv43, 903= Lv43, 999= Lv45, 1001=Lastair (Mysterium Venator) Lv40, 1002=Akkhan (Kaidun's Adjutant) Lv40, 1003=Peskhur (Kaidun's Soldier) Lv40, 1004=Kaidun (Freed Spirit) Lv40, 1005=Captured Kaidun Champion (Red Mage's Captive) Lv40, 1006=Captured Kaidun Champion (Red Mage's Captive) Lv40, 1007=Freed Kaidun Champion Lv40, 1008=Freed Kaidun Champion Lv40, 1009=Exit Teleportal (Teleportation Device) Lv40, 1010=Behrohz (Kaidun's Soldier) Lv40, 1011=Valona (Tribune) Lv40, 1012=Body of Hemington Lv40, 1013=Body of Hector Lv40, 1999= Lv21, 8000= Lv43, 8001=Archelith Lv43, 8002=Archelith Lv43, 8003=Archelith Lv43
+    - huntingZoneId: 871
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 54, 55, 56, 60, 61, 90, 91, 93, 102, 105, 110, 160, 900, 901, 902, 903, 999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1999, 8000, 8001, 8002, 8003]
+      npcName: ""
+      $extends: necromancer_tomb_solo_normal

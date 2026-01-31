@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Cathuulrach (huntingZoneId: 43)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv60
+  cathuulrach_boss:
+    itemBags:
+      - id: 1
+        bagName: "Cathuulrach Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 1=Maceras Orisk Lv60, 7=Azure Fimbrilisk Lv60, 13=Argonomorph Giant Lv60
+    - huntingZoneId: 43
+      npcTemplateId: [1, 7, 13]
+      npcName: ""
+      $extends: cathuulrach_boss

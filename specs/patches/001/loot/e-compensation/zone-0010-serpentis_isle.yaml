@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Serpentis Isle (huntingZoneId: 10)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 9 NPCs, Lv48-68
+  serpentis_isle_boss:
+    itemBags:
+      - id: 1
+        bagName: "Serpentis Isle Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (9 NPCs): 8=Naga Battlemaster Lv49, 15=Naga Seeress Lv51, 16=Naga Clawrider Lv48, 17=Naga Clawmaster Lv50, 18=Naga Leviathan Lv51, 19=Siraxatol (Priestess of Dagon) Lv52, 22=Malagash (Naga Warlord) Lv50, 23=Midirix (Master Clawrider) Lv52, 99=Divine Reaver (Guardian of Venom) Lv68
+    - huntingZoneId: 10
+      npcTemplateId: [8, 15, 16, 17, 18, 19, 22, 23, 99]
+      npcName: ""
+      $extends: serpentis_isle_boss

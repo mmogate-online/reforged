@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Bastion of Lok (huntingZoneId: 487)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 17 NPCs, Lv21-40
+  bastion_of_lok_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 23 NPCs, Lv1-22
+  bastion_of_lok_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (17 NPCs): 1101=Exit Teleportal Lv40, 1102=Isla (Secret Agent) Lv40, 1103=Shorey (Conscript) Lv40, 1104=Traveler's Body Lv40, 1105=Soren (Conscript) Lv40, 1106=Shiviyan's File Storage Lv40, 1107=Yllyn (Mercenary) Lv40, 1108=Jiaro (Mercenary) Lv40, 1109=Exit Teleportal Lv40, 1110=Exit Teleportal Lv40, 1111=Grapine (Secret Agent) Lv40, 1112=Old Bookcase Lv40, 1113=Encrypted Book Lv40, 1114=Strange Rock Lv40, 1115=Weapon Crate Lv40, 5002= Lv21, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 487
+      npcTemplateId: [1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1112, 1113, 1114, 1115, 5002, 11111]
+      npcName: ""
+      $extends: bastion_of_lok_normal
+
+    # Elite (23 NPCs): 101=Murdranak (Demonbinder) Lv21, 102=Weapon Crate Lv22, 1001=Devan Assassin Lv20, 1002=Devan Shaman Lv20, 1003=Devan Butcher Lv20, 1004=Devan Bodyguard Lv20, 1005=Tetra Aniask (Scion Mistress) Lv21, 2001=Loyal Dark Imp Lv20, 2002=Bastion Mystic Lv20, 2003=Bastion Sorcerer Lv20, 2004=Bastion Reaper Lv20, 3001=Bastion Lancer Lv20, 3002=Bastion Slayer Lv20, 3003=Bastion Priest Lv20, 3004=Tarnos Lv20, 3005=Nephir Lv20, 3007=Zealous Auric Imp Lv20, 4001=Hyena Sentry Lv20, 4002=Broken Zuulhound Lv20, 4003=Mercurial Ebon Imp Lv20, 4004=Volatile Ebon Imp Lv20, 5001= Lv1, 9001= Lv21
+    - huntingZoneId: 487
+      npcTemplateId: [101, 102, 1001, 1002, 1003, 1004, 1005, 2001, 2002, 2003, 2004, 3001, 3002, 3003, 3004, 3005, 3007, 4001, 4002, 4003, 4004, 5001, 9001]
+      npcName: ""
+      $extends: bastion_of_lok_elite

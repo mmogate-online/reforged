@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Khanovar Front (huntingZoneId: 48)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 54 NPCs, Lv40-64
+  khanovar_front_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (54 NPCs): 5=Hulrap Basher Lv64, 6=Vulnaq Thresher Lv64, 7=Zariik Dazzler Lv64, 9=Iknephar Prelate Lv64, 10=Athakela Hunter Lv64, 11=Kalash Sentinel Lv64, 12=Zariik Cyclops Lv64, 13=Syndrene Dragoon Lv64, 14=Darmayan (Dark Executor) Lv64, 15=Kelba Clawguard Lv64, 17=Chamas Stabber Lv64, 18=Kabar (Argon Shaper) Lv64, 19=Dupamol (Argon Shaper) Lv64, 20=Vilnod (Argon Shaper) Lv64, 21=Sindrama (Argon Shaper) Lv64, 22=Vatan (Dread Factor) Lv64, 23=Jolhar (Dread Factor) Lv64, 24=Sadath (Dread Factor) Lv64, 25=Baruldur (Hulrap Enforcer) Lv64, 27=Nauti (Consecrated Zariik) Lv64, 28=Mogmolor (Fireheart Battlelord) Lv64, 29=Argonomorph Corpsefiend Lv64, 30=Kelba Watchdog Lv64, 100=Young Pigling Lv64, 200=Rabbit Lv64, 201=Goat Lv64, 202=Speckled Frog Lv64, 203=Miniaturized Hulrap Basher Lv64, 204=Kallan Armor Soldier Lv64, 205= Lv64, 206= Lv64, 207= Lv64, 300=Shadow Reaver Lv64, 400=Zolnaj Transporter Lv64, 401=Yuntaal Converter Lv64, 1001= (Valkyon Soldier) Lv64, 1002=Kalgrek (Centurion) Lv64, 1003= (Valkyon Soldier) Lv64, 1004= (Valkyon Soldier) Lv64, 1005= (Valkyon Soldier) Lv64, 1006= (Valkyon Soldier) Lv64, 1007=Pastaj (Blacksmith) Lv64, 1008= (Valkyon Soldier) Lv64, 1009= (Valkyon Soldier) Lv64, 1010= (Valkyon Soldier) Lv64, 1011= (Valkyon Soldier) Lv64, 1012=Greldam (Centurion) Lv64, 1013=Namsa (Blacksmith) Lv64, 1015= Lv64, 1016= Lv64, 1017=Lornu (Arcanist) Lv64, 1018={@Creature:48#1013} (Blacksmith) Lv64, 1271=Hecurn (Helkan District Mystery Merchant) Lv40, 3001=Strengthened Razorcrest Sharza Lv64
+    - huntingZoneId: 48
+      npcTemplateId: [5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 100, 200, 201, 202, 203, 204, 205, 206, 207, 300, 400, 401, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1015, 1016, 1017, 1018, 1271, 3001]
+      npcName: ""
+      $extends: khanovar_front_normal

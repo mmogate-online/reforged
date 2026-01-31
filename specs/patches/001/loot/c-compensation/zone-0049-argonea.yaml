@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Argonea (huntingZoneId: 49)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 36 NPCs, Lv40-64
+  argonea_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (36 NPCs): 10=Kallan Reaver Lv64, 11=Kallan Armor Soldier Lv64, 12=Kalash Protector Lv64, 13=Kalash Brute Lv64, 14=Kalash Defender Lv64, 15=Yusul Slasher Lv64, 16=Zariik Cyanowitch Lv64, 17=Kelba Watcher Lv64, 18=Zomgul Gatherer Lv64, 19=Zariik Spoda Lv64, 20=Zariik Cyclops Lv64, 21=Hasati (Arbor Corruptor) Lv64, 22=Solorog (Master of the Spire) Lv64, 23= Lv64, 100=Argon Kelba Stabber Lv64, 101=Kelba Refiner Lv64, 400=Zolnaj Transporter Lv64, 500=Transparent NPC for Displaying Kallan Armor Soldier Lv64, 501=Transparent NPC for Medium-Scale Display Lv64, 502=Transparent NPC for Summoning Armadillo Lv64, 503=Cyasmana Pod Lv64, 600= Lv64, 1001=Baraka Male Metal Armor 5 Berserker Lv64, 1002=Centurion (Baraka Male Berserker) Lv64, 1003=Popori Male Leather Armor 5 Warrior Lv64, 1004=Popori Female Robe 5 (Popori Female Sorcerer) Lv64, 1005=Castanic Male Metal Armor 5 Lancer Lv64, 1006=Berrul Lv64, 1271=Locarnum (Val Kaeli Mystery Merchant) Lv40, 3001=Argon Kalash Leader (Guard Commander) Lv64, 3002=Kallan Armor Soldier (Armor Soldier Commander) Lv64, 3003=Kallan Strong Attack Soldier (Strong Attack Soldier Commander) Lv64, 3004=Argon Female Sorcerer (Female Sorcerer Commander) Lv64, 3005=Argon Kalash Charger (Assault Leader Commander) Lv64, 9998=Kallan Armor Soldier Lv64, 9999= Lv64
+    - huntingZoneId: 49
+      npcTemplateId: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 100, 101, 400, 500, 501, 502, 503, 600, 1001, 1002, 1003, 1004, 1005, 1006, 1271, 3001, 3002, 3003, 3004, 3005, 9998, 9999]
+      npcName: ""
+      $extends: argonea_normal

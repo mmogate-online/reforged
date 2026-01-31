@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Saleron's Sky Garden (huntingZoneId: 494)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 12 NPCs, Lv54-55
+  salerons_sky_garden_boss:
+    itemBags:
+      - id: 1
+        bagName: "Saleron's Sky Garden Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (12 NPCs): 5006=Duke Volperon (Saleron's Mirage) Lv54, 5008=Terkasia (Saleron's Mirage) Lv54, 5010=Karascha (Saleron's Mirage) Lv54, 5021=Barat-kyul (The Dominant) Lv54, 5031=Aileak (Raving Beast) Lv54, 5032=Zelvictus (Berylheart Ravager) Lv54, 5033=General Crosendi (Legion of the Damned) Lv54, 5049=Adryssir (Talon of Saleron) Lv54, 5050=Mektryssir (Talon of Saleron) Lv54, 5051=Valtryssir (Talon of Saleron) Lv54, 5053=Laknerus (Scourgeheart Dracoloth) Lv55, 6017=Duchess Tirania (Saleron's Mirage) Lv54
+    - huntingZoneId: 494
+      npcTemplateId: [5006, 5008, 5010, 5021, 5031, 5032, 5033, 5049, 5050, 5051, 5053, 6017]
+      npcName: ""
+      $extends: salerons_sky_garden_boss

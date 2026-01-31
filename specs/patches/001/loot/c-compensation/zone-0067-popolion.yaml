@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Popolion (huntingZoneId: 67)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 61 NPCs, Lv1-65
+  popolion_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (61 NPCs): 1001=Kiri (Administrator) Lv40, 1002=Donlee (Merchant) Lv40, 1003=Ketan (Merchant) Lv40, 1004=Keya (Banker) Lv40, 1005=Puni (Banker) Lv40, 1006=Gyoma (Flight Manager) Lv40, 1007=Paka (Prefect) Lv40, 1008=Okon (Centurion) Lv40, 1009=Kun (Centurion) Lv40, 1010=Brosnin (Deliveryman) Lv40, 1011=Sena (Villager) Lv40, 1012=Mothias (PvP Guide) Lv40, 1013=Euan (Investigator) Lv40, 1014=Morpi (Arcanist) Lv40, 1015=Bisi (Magistrate) Lv40, 1016=Adea (Royal Expeditionary Officer) Lv40, 1017=Kopu (Kingdom Guard) Lv40, 1018=Modin (Kingdom Guard) Lv40, 1019=Kripa (Kingdom Guard) Lv40, 1020=Adru (Kingdom Guard) Lv40, 1021=Marthana (Coordinator) Lv40, 1022=Teleportal Lv40, 1023=Mission Board Lv40, 1024=Mission Board Lv40, 1025=Mission Board Lv40, 1026=Galom (Trade Broker) Lv40, 1027=Gamra (Kingdom Guard Herald) Lv40, 1028=Kingdom Guard Lv40, 1029=Kingdom Guard Lv40, 1030=Kingdom Guard Lv40, 1031=Kingdom Guard Lv40, 1032=Justicar Lv40, 1033=Villager Lv40, 1034=Villager Lv40, 1035=Villager Lv40, 1036=Villager Lv40, 1037=Popori Orphan Lv40, 1300=Arkun (Cleric of Restoration) Lv40, 1600=Enir (Alchemy Materials) Lv40, 1601=Marabel (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Sylara (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 67
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1300, 1600, 1601, 1602, 1603, 1700, 1900, 1901, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: popolion_normal

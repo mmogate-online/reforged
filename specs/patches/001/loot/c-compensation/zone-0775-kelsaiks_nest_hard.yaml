@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Kelsaik's Nest (Hard) (huntingZoneId: 775)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 10 NPCs, Lv40-58
+  kelsaiks_nest_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 17 NPCs, Lv58
+  kelsaiks_nest_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (10 NPCs): 5001=Exit Teleportal Lv40, 5002=Teleportal Lv40, 5005=Trietalith Lv40, 6002= Lv58, 6003= Lv58, 6004= Lv58, 9000= Lv58, 9001= Lv58, 9998= Lv58, 9999= Lv58
+    - huntingZoneId: 775
+      npcTemplateId: [5001, 5002, 5005, 6002, 6003, 6004, 9000, 9001, 9998, 9999]
+      npcName: ""
+      $extends: kelsaiks_nest_hard_normal
+
+    # Elite (17 NPCs): 1001= Lv58, 1002= Lv58, 1003=Nightmare Kelsaik Rampant Lv58, 1004=Elite Stonebeak Escort Lv58, 3000= Lv58, 3001= Lv58, 3002= Lv58, 3003= Lv58, 3004= Lv58, 6001=Azure Wardstone Lv58, 7000= Lv58, 7001= Lv58, 8000= Lv58, 8001= Lv58, 9002=Murverog Pylon Lv58, 9003=Murverog Pylon Lv58, 9004=Murverog Pylon Lv58
+    - huntingZoneId: 775
+      npcTemplateId: [1001, 1002, 1003, 1004, 3000, 3001, 3002, 3003, 3004, 6001, 7000, 7001, 8000, 8001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: kelsaiks_nest_hard_elite

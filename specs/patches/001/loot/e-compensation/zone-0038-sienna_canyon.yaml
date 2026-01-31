@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Sienna Canyon (huntingZoneId: 38)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 7 NPCs, Lv54-68
+  sienna_canyon_boss:
+    itemBags:
+      - id: 1
+        bagName: "Sienna Canyon Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (7 NPCs): 12=Gluttonous Fangspawn Lv54, 32=Trihorn Dracoloth Lv55, 35=Nyxarras (Dracoloth Ravager) Lv68, 45=Striktryssir (Talon of Saleron) Lv54, 121=Desert Basilisk Lv67, 131=Darkflame Dracoloth Lv56, 1005= Lv54
+    - huntingZoneId: 38
+      npcTemplateId: [12, 32, 35, 45, 121, 131, 1005]
+      npcName: ""
+      $extends: sienna_canyon_boss

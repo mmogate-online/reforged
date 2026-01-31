@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Lake of Tears (huntingZoneId: 23)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 4 NPCs, Lv34-37
+  lake_of_tears_boss:
+    itemBags:
+      - id: 1
+        bagName: "Lake of Tears Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (4 NPCs): 9=Molten Fangspawn Lv35, 13=Searing Fangspawn Lv34, 14=Lurking Teralith Lv34, 105=Trunus (Savage Lurker) Lv37
+    - huntingZoneId: 23
+      npcTemplateId: [9, 13, 14, 105]
+      npcName: ""
+      $extends: lake_of_tears_boss

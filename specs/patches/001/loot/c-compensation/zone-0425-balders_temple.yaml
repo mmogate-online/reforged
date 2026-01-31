@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Balder's Temple (huntingZoneId: 425)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 23 NPCs, Lv1-60
+  balders_temple_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 73 NPCs, Lv40-60
+  balders_temple_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (23 NPCs): 9051= Lv60, 9052= Lv60, 9053= Lv60, 9054= Lv60, 9055= Lv1, 9071= Lv26, 9072= Lv26, 9073= Lv60, 9080= Lv40, 9081= Lv40, 9082= Lv40, 9091= Lv27, 9092= Lv1, 10000=Dimensional Mirror Lv40, 10001=Dimensional Mirror Lv40, 10002=Dimensional Mirror Lv40, 10003=Dimensional Mirror Lv40, 10004=Dimensional Mirror Lv40, 10005=Rida (Princess) Lv40, 10006= Lv40, 10007=Rida (Princess) Lv40, 10008=Mystel (Goddess of Fate) Lv40, 10012=Dimensional Mirror Lv40
+    - huntingZoneId: 425
+      npcTemplateId: [9051, 9052, 9053, 9054, 9055, 9071, 9072, 9073, 9080, 9081, 9082, 9091, 9092, 10000, 10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008, 10012]
+      npcName: ""
+      $extends: balders_temple_normal
+
+    # Elite (73 NPCs): 1011=Lazy Sloth Lv60, 2011=Argent Soulkeeper Lv60, 2031=Lurking Blade Golem Lv60, 2041=Eldritch Eye Lv60, 2051=Temple Brass Gardener Lv60, 3011=Shard-studded Ghilliedhu Lv60, 3012=Crystal-encrusted Ghilliedhu Lv60, 3013=Crystal-encrusted Ghilliedhu Lv60, 3014=Guardian Ghilliedhu Lv60, 3015=Guardian Ghilliedhu Lv60, 3016=Guardian Ghilliedhu Lv60, 3021=Repository of Wisdom Lv40, 3022=Repository of Wisdom Lv40, 3023=Repository of Wisdom Lv40, 3024=Repository of Wisdom Lv40, 3025=Repository of Wisdom Lv40, 3026=Mossy Arbosk Lv60, 3031=Temple Stonebeak Lv60, 3041= Lv60, 3051=Temple Rockcrawler Lv60, 3061=Temple Gardener Lv60, 3101=Furious Ghilliedhu Lv60, 3102=Furious Ghilliedhu Lv60, 3103=Furious Ghilliedhu Lv60, 3104=Furious Ghilliedhu Lv60, 3105=Furious Ghilliedhu Lv60, 3106=Furious Ghilliedhu Lv60, 3107=Furious Ghilliedhu Lv60, 3108=Furious Ghilliedhu Lv60, 3109=Furious Ghilliedhu Lv60, 3110=Furious Ghilliedhu Lv60, 3111=Furious Ghilliedhu Lv60, 3112=Furious Ghilliedhu Lv60, 3113=Furious Ghilliedhu Lv60, 3114=Furious Ghilliedhu Lv60, 3115=Furious Ghilliedhu Lv60, 3116=Furious Ghilliedhu Lv60, 3117=Furious Ghilliedhu Lv60, 3118=Furious Ghilliedhu Lv60, 3119=Furious Ghilliedhu Lv60, 3120=Furious Ghilliedhu Lv60, 3121=Furious Ghilliedhu Lv60, 4001=Neg (Aspect of Grig) Lv60, 4011=Temple Iskaragard Lv60, 4021=Temple Boregolem Lv60, 4031=Garden Stonebeak Lv60, 4041=Temple Wraith Lv60, 4051=Pond Brass Gardener Lv60, 4061=Enraged Fangspawn Lv60, 5011=Waterway Tender Golem Lv60, 5021=Waterway Preserver Golem Lv60, 6011=Focused Emitter Lv60, 7011= Lv60, 7021= Lv60, 7031= Lv60, 8011=Mirror of Light Lv60, 8021= Lv60, 8031= Lv60, 8041=Cannon Lv60, 9011= Lv60, 9012= Lv60, 9021= Lv60, 9031= Lv60, 9041= Lv60, 9042= Lv60, 9043= Lv60, 9061=Treasure Chest (Flashy) Lv60, 9062=Treasure Chest (Ordinary) Lv60, 9063=Treasure Chest (Coarse) Lv60, 9064=Treasure Chest (Coarse) Lv60, 10009=Balder's Mirror Lv40, 10010= Lv40, 10011=Dimensional Mirror Lv40
+    - huntingZoneId: 425
+      npcTemplateId: [1011, 2011, 2031, 2041, 2051, 3011, 3012, 3013, 3014, 3015, 3016, 3021, 3022, 3023, 3024, 3025, 3026, 3031, 3041, 3051, 3061, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 4001, 4011, 4021, 4031, 4041, 4051, 4061, 5011, 5021, 6011, 7011, 7021, 7031, 8011, 8021, 8031, 8041, 9011, 9012, 9021, 9031, 9041, 9042, 9043, 9061, 9062, 9063, 9064, 10009, 10010, 10011]
+      npcName: ""
+      $extends: balders_temple_elite

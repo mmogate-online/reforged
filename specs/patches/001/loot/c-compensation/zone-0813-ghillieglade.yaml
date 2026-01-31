@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Ghillieglade (huntingZoneId: 813)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 48 NPCs, Lv1-99
+  ghillieglade_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 4 NPCs, Lv26-65
+  ghillieglade_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (48 NPCs): 1000=Exit Teleportal Lv40, 1001=Exit Teleportal Lv40, 81302= Lv65, 81303=Dark Gatekeeper (Subverted Glade Warden) Lv65, 81304= Lv65, 81305=Banyakas's Spawn (Subverted Ghilliedhu) Lv65, 81306=Dark Guardian (Subverted Glade Warden) Lv65, 81307=Banyakas's Spawn (Subverted Ghilliedhu) Lv65, 81308=Guardian (Injured Petralisk) Lv65, 81309=Dark Warden (Enthralled Petralisk) Lv65, 81310=Dark Warden (Enthralled Petralisk) Lv65, 81311=Dark Warden (Enthralled Petralisk) Lv65, 81312=Gatekeeper (Injured Oasis Giant) Lv65, 81341=Banyakas's Treasure Chest Lv65, 81342=Banyakas's Treasure Chest Lv65, 81343=Greythorne (Ghilliedhu Elder) Lv30, 81351= Lv26, 81352= Lv26, 81353= Lv26, 81361= Lv65, 81362= Lv65, 81363= Lv65, 81364= Lv65, 81365= Lv99, 81367=Burba (Fatigued Soldier) Lv30, 81368=Corrupted Tree Spirit Lv65, 81371= Lv65, 81372=Arboreal Energy Crystal (Destruction) Lv26, 81373=Arboreal Energy Crystal (Healing) Lv26, 81374= Lv65, 81375= Lv65, 81377= Lv65, 81381= Lv65, 81382= Lv65, 81383= Lv65, 81384= Lv65, 81385= Lv26, 81386=Mad Sporewalker (Corrupted Earth Spirit) Lv65, 81387=Hypnotic Stone Lv65, 81388= Lv1, 81389=Gnarly-Root (Subverted Tree Spirit) Lv65, 81390=Gnarly-Root (Subverted Tree Spirit) Lv65, 81391=Coercive Shard Lv65, 81392=Coercive Shard Lv65, 81393=Coercive Shard Lv65, 81394=Coercive Shard Lv65, 81395= Lv26, 81397= Lv26
+    - huntingZoneId: 813
+      npcTemplateId: [1000, 1001, 81302, 81303, 81304, 81305, 81306, 81307, 81308, 81309, 81310, 81311, 81312, 81341, 81342, 81343, 81351, 81352, 81353, 81361, 81362, 81363, 81364, 81365, 81367, 81368, 81371, 81372, 81373, 81374, 81375, 81377, 81381, 81382, 81383, 81384, 81385, 81386, 81387, 81388, 81389, 81390, 81391, 81392, 81393, 81394, 81395, 81397]
+      npcName: ""
+      $extends: ghillieglade_normal
+
+    # Elite (4 NPCs): 81301=Banyakas (Ghilliedhu Patriarch) Lv65, 81354= Lv26, 81398=Dominolith (Hypnotic Stone) Lv65, 81399=Dominolith (Hypnotic Stone) Lv65
+    - huntingZoneId: 813
+      npcTemplateId: [81301, 81354, 81398, 81399]
+      npcName: ""
+      $extends: ghillieglade_elite

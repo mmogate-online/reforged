@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Lake of Tears (huntingZoneId: 23)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 29 NPCs, Lv26-40
+  lake_of_tears_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (29 NPCs): 1=Bristleback Bear Lv35, 2=Ironwood Ghilliedhu Lv35, 3=Popori Exile Lv35, 4=Forest Pigling Lv35, 5=Moonlight Stalker Lv35, 7=Kobold Skullthumper Lv35, 8=Mekonari Conjuror Lv35, 10=Moonlight Sabertooth Lv35, 11=Malicious Jester Lv35, 12=Kobold Mercenary Lv35, 15=Mooncrest Noruk Lv34, 16=Lokian Blackguard Lv35, 17=Lokian Bloodweaver Lv35, 18=Vampir Insurgent Lv34, 19=Popori Rebel Lv34, 20=Elin Witch Lv35, 21=Trickster Jester Lv34, 22=Kobold Bloodletter Lv34, 23=Battle Pigling (Pet of the Brells) Lv35, 24=Popori Insurgent (Calculated Conspirator) Lv34, 25=Guerrilla Officer (Conspirator's Henchman) Lv34, 101=Rhokasi the Mad (Demon Anarchist) Lv36, 102=Kobold Berserker Lv36, 103=Saera (Would-Be-Queen) Lv36, 104=Popori Stalwart (Royal Defenders) Lv36, 201= Lv34, 202= Lv34, 1271=Foretta (Poporia Mystery Merchant) Lv40, 5007= Lv26
+    - huntingZoneId: 23
+      npcTemplateId: [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 101, 102, 103, 104, 201, 202, 1271, 5007]
+      npcName: ""
+      $extends: lake_of_tears_normal

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Freeholds (huntingZoneId: 19)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 8 NPCs, Lv60
+  freeholds_boss:
+    itemBags:
+      - id: 1
+        bagName: "Freeholds Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (8 NPCs): 7000=Karascha (Risen Dark Wing) Lv60, 7001=Lugribar (Gilgash Devastator) Lv60, 7002=Terkasia (Mistress of Deceit) Lv60, 7003=Malgarios (Hell Spider) Lv60, 7004=Vedilith (Favored of Thulsa) Lv60, 7005=Baracos (Lord of the Labyrinth) Lv60, 7006=Zelvictus (Berylheart Ravager) Lv60, 7007=Laknerus (Scourgeheart Dracoloth) Lv60
+    - huntingZoneId: 19
+      npcTemplateId: [7000, 7001, 7002, 7003, 7004, 7005, 7006, 7007]
+      npcName: ""
+      $extends: freeholds_boss

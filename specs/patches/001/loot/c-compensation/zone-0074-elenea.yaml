@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Elenea (huntingZoneId: 74)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 69 NPCs, Lv1-65
+  elenea_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (69 NPCs): 1001=Ellar (Aide) Lv40, 1002=Nelond (Merchant) Lv40, 1003=Kias (Crystal Merchant) Lv40, 1004=Baleyne (Banker) Lv40, 1005=Parfero (Merchant) Lv40, 1006=Poban (Flight Manager) Lv40, 1007=Cerenon (Commander) Lv40, 1008=Teram (Guard) Lv40, 1009=Niena (Guard) Lv40, 1010=Galla (Guard) Lv40, 1019=Lethaniel (Prefect) Lv40, 1020=Euroneia (Coordinator) Lv40, 1021=Teleportal Lv40, 1022=Derzio (Magistrate) Lv40, 1023=Almo (Miner) Lv40, 1024=Ruhena (Miner's Family Member) Lv40, 1025=Baurena (Miner's Family Member) Lv40, 1026=Lossina (Villager) Lv40, 1027=Areyne (Villager) Lv40, 1028=Mystel (Goddess of Fate) Lv40, 1030=Hunigan (Unemployed Miner) Lv40, 1031=Nakan (Unemployed Miner) Lv40, 1032=Villager Lv40, 1033=Villager Lv40, 1034=Val Elenium Defender Lv40, 1035=Val Elenium Defender Lv40, 1036=Raynor (Mysterium Excavation Team Leader) Lv40, 1037=Terenk (Excavation Administrator) Lv40, 1038=Wounded Soldier Lv40, 1039=Wounded Soldier Lv40, 1040=Wounded Soldier Lv40, 1041=Trilom (Badge Merchant) Lv40, 1042=Hiroa Lv40, 1043=Villy Lv40, 1100=Elvar (Chief Mysterium Investigator) Lv40, 1300=Parin (Cleric of Restoration) Lv40, 1400=Mission Board Lv40, 1401=Mission Board Lv40, 1402=Mission Board Lv40, 1403=Mission Board Lv40, 1600=Jastan (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Slevene (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1800=Villager Lv40, 1801=Villager Lv40, 1802=Villager Lv40, 1803=Villager Lv40, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1904= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 74
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1100, 1300, 1400, 1401, 1402, 1403, 1600, 1602, 1603, 1700, 1800, 1801, 1802, 1803, 1900, 1901, 1902, 1903, 1904, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: elenea_normal

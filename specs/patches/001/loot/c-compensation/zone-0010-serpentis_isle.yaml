@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Serpentis Isle (huntingZoneId: 10)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 33 NPCs, Lv1-68
+  serpentis_isle_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 5 NPCs, Lv68
+  serpentis_isle_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (33 NPCs): 1=Arachnen Warrior Lv49, 2=Grove Kamara Lv49, 3=Virek Kamara Lv49, 4=Lumbering Kamara Lv48, 5=Thickbark Ghilliedhu Lv50, 6=Agitated Mycanar Lv50, 7=Vicious Mycanar Lv48, 9=Longtusk Slasher Lv48, 10=Baykun Warthog Lv49, 11=Naga Slayer Lv49, 12=Caiman Serf Lv50, 13=Naga Bloodscale Lv51, 14=Naga Wyrmling Lv51, 20=Frillfang Sabertooth Lv48, 21=Ebon Sabertooth Lv50, 24= Lv48, 25= Lv48, 31=Fitty Poinz Lv50, 32=Twennyfife Poinz Lv50, 33=Thri Poinz Lv50, 34=Watermelon Lv32, 35=Barrel (Not a Watermelon) Lv1, 36=Fitty Poinz Lv50, 37=Twennyfife Poinz Lv50, 38=Thri Poinz Lv50, 39= Lv26, 104=Gruber (Traitorous Bandit) Lv64, 105=Bandit (Hands of Gruber) Lv64, 1271=Eteral (Ostgarath Mystery Merchant) Lv40, 9802=Suspicious Wagon Lv68, 9819= Lv26, 9821= Lv13, 9822= Lv68
+    - huntingZoneId: 10
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 20, 21, 24, 25, 31, 32, 33, 34, 35, 36, 37, 38, 39, 104, 105, 1271, 9802, 9819, 9821, 9822]
+      npcName: ""
+      $extends: serpentis_isle_normal
+
+    # Elite (5 NPCs): 9814=Scout Centurion (Azart Scout) Lv68, 9815=Naga Wagon Guard Lv68, 9816=Naga Scout Lv68, 9817=Naga Elder Lv68, 9818=Naga Scout Lv68
+    - huntingZoneId: 10
+      npcTemplateId: [9814, 9815, 9816, 9817, 9818]
+      npcName: ""
+      $extends: serpentis_isle_elite

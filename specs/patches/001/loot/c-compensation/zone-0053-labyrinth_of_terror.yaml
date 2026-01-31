@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Labyrinth of Terror (huntingZoneId: 53)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 1 NPCs, Lv26
+  labyrinth_of_terror_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 26 NPCs, Lv57-60
+  labyrinth_of_terror_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (1 NPCs): 5007= Lv26
+    - huntingZoneId: 53
+      npcTemplateId: [5007]
+      npcName: ""
+      $extends: labyrinth_of_terror_normal
+
+    # Elite (26 NPCs): 100=Murderous Zuulhound Lv57, 200=Mad Blood Fiend Lv57, 210=Cursed Bone Fiend Lv58, 220=Lunatic Blood Fiend Lv57, 300=Sihran Chaos Warden Lv57, 310=Insane Sihran Lv57, 400=Chaos Prosecutrix Lv57, 500=Mad Jester Lv58, 510=Lunatic Fool Lv58, 520=Crazed Harlequin (Servant of Chaos) Lv59, 600=Unstable Moppet Lv58, 610=Bloodthirsty Doll Lv58, 700=Chaosweaver Arachnen Lv58, 710=Chaosweaver Arachnen Lv59, 900=Mindless Disc Reaper Lv59, 1100=Mad Inquisitor Lv59, 1200=Tortured Soul Lv59, 1400=Eldritch Cleaver Lv57, 1500=Kariagon Lunatic Lv57, 1700=Chaotic Tyrak Lv59, 5000=Daevora (Lady of Pain) Lv58, 5100=Shardaliss (Lady of Despair) Lv60, 5200=Crazed Disc Reaper Lv60, 5300=Ruprecht (Nightmare Jester) Lv59, 5400=Grokgrep (Daemon Inquisitor) Lv60, 6000=Jhokar (Duke of Chaos) Lv60
+    - huntingZoneId: 53
+      npcTemplateId: [100, 200, 210, 220, 300, 310, 400, 500, 510, 520, 600, 610, 700, 710, 900, 1100, 1200, 1400, 1500, 1700, 5000, 5100, 5200, 5300, 5400, 6000]
+      npcName: ""
+      $extends: labyrinth_of_terror_elite

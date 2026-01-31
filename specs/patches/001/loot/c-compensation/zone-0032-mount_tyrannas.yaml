@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Mount Tyrannas (huntingZoneId: 32)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 32 NPCs, Lv40-68
+  mount_tyrannas_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (32 NPCs): 1=Sihran Fighter Lv42, 2=Tuwangi Hornhead Lv42, 3=Sihran Berserker Lv42, 4=Sihran Rager Lv43, 5=Tuwangi Thumper Lv43, 6=Sihran Defender Lv43, 7=Stalker Company Reaper Lv43, 8=Stalker Company Destroyer Lv43, 9=Stalker Company Sniper Lv43, 10=Sihran Witch Lv43, 11=Sihran Polykind Lv43, 12=Sihran Templar Lv43, 13=Sihran Arcanist Lv43, 14=Tuwangi Froglar Lv43, 15=Sihran Loyalist Lv43, 16=Ghufran (Champion of Kaidun) Lv45, 17=Kaidun (Cursed Tyrant) Lv43, 18=Jursak (Magistrate of Agony) Lv46, 19=Chimakur (High Executioner) Lv46, 20=Baalark (Stalker Company Champion) Lv45, 21=Lotishara (Sihranar of Kaidun) Lv45, 22=Tuwangi Fodder (Servant of Lotishara) Lv45, 1049=Wall of Wordcraft Lv40, 1271=Storan (Westonia Mystery Merchant) Lv40, 5007=Puzzling Monument Lv40, 98999= Lv65, 99978=Tiny Christmas Gift Lv68, 99979= Lv65, 99988=Colorful Christmas Gift Lv68, 99989= Lv65, 99998=Generous Christmas Gift Lv68, 99999= Lv65
+    - huntingZoneId: 32
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 1049, 1271, 5007, 98999, 99978, 99979, 99988, 99989, 99998, 99999]
+      npcName: ""
+      $extends: mount_tyrannas_normal

@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""Convert gear_progression.csv to equipment evolution YAML script."""
+"""Convert gear_progression.csv to equipment evolution YAML script.
+
+Groups entries by material configuration and emits nested $loop directives
+with object arrays for compact, readable specs.
+"""
 
 import argparse
 import csv
+from collections import OrderedDict
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).parent
@@ -33,11 +38,26 @@ def parse_materials(row: dict) -> list[dict]:
             materials.append({
                 "id": int(material_id),
                 "amount": int(amount),
+                "name": row.get(f"MaterialName_{i}", "").strip(),
             })
         except ValueError:
             continue
 
     return materials
+
+
+def material_key(materials: list[dict]) -> tuple:
+    """Create a hashable key from a materials list for grouping."""
+    return tuple((m["id"], m["amount"]) for m in materials)
+
+
+def format_material_label(materials: list[dict]) -> str:
+    """Format a human-readable label for a materials configuration."""
+    parts = []
+    for mat in materials:
+        name = mat.get("name") or str(mat["id"])
+        parts.append(f"{name} ({mat['id']}) x{mat['amount']}")
+    return " + ".join(parts)
 
 
 def write_materials(f, materials: list[dict], indent: str):
@@ -49,14 +69,38 @@ def write_materials(f, materials: list[dict], indent: str):
         f.write(f"{indent}    type: item\n")
 
 
-def write_condition(f, target_step: int, result_step: int, result_id: int, materials: list[dict]):
-    """Write a single condition block using $extends."""
-    f.write("        - $extends: baseCondition\n")
-    f.write(f"          targetEnchantStep: {target_step}\n")
-    f.write("          result:\n")
-    f.write(f"            resultTemplateId: {result_id}\n")
-    f.write(f"            resultEnchantStep: {result_step}\n")
-    write_materials(f, materials, "          ")
+def write_group(f, group_label: str, materials: list[dict], entries: list[dict]):
+    """Write a single material group as a sequence-element $loop block."""
+    last_entry_idx = len(entries) - 1
+    last_step_idx = len(ENCHANT_PATTERN) - 1
+
+    f.write(f"    # ── {group_label} ──\n")
+    f.write("    - $loop:\n")
+    f.write(f"        range: 0..{last_entry_idx}\n")
+    f.write("        as: i\n")
+    f.write("      template:\n")
+    f.write("        targetTemplateId: $entries[$i].target\n")
+    f.write("        conditions:\n")
+    f.write("          $loop:\n")
+    f.write(f"            range: 0..{last_step_idx}\n")
+    f.write("            as: j\n")
+    f.write("          template:\n")
+    f.write("            $extends: baseCondition\n")
+    f.write("            targetEnchantStep: $steps[$j].target\n")
+    f.write("            result:\n")
+    f.write("              resultTemplateId: $entries[$i].result\n")
+    f.write("              resultEnchantStep: $steps[$j].result\n")
+    write_materials(f, materials, "            ")
+    f.write("          $with:\n")
+    f.write("            steps:\n")
+    for target_step, result_step in ENCHANT_PATTERN:
+        f.write(f"              - {{ target: {target_step}, result: {result_step} }}\n")
+    f.write("      $with:\n")
+    f.write("        entries:\n")
+    for entry in entries:
+        comment = f"  # {entry['itemString']}" if entry["itemString"] else ""
+        f.write(f"          - {{ target: {entry['targetTemplateId']}, "
+                f"result: {entry['resultTemplateId']} }}{comment}\n")
 
 
 def main():
@@ -69,8 +113,9 @@ def main():
     else:
         specs_dir = REFORGED_DIR / "specs"
 
-    output_file = specs_dir / "evolutions.yaml"
+    output_file = specs_dir / "02-evolutions.yaml"
 
+    # Parse CSV and collect evolution entries
     evolutions = []
 
     with open(INPUT_FILE, "r", encoding="utf-8-sig") as f:
@@ -79,6 +124,7 @@ def main():
             template_id = row.get("TemplateId", "").strip()
             upgrade_to = row.get("UpgradeTo", "").strip()
             item_string = row.get("ItemString", "").strip()
+            dungeon = row.get("Dungeon", "").strip()
 
             if not template_id or not upgrade_to:
                 continue
@@ -97,11 +143,26 @@ def main():
                 "targetTemplateId": target_id,
                 "resultTemplateId": result_id,
                 "itemString": item_string,
-                "materials": materials
+                "dungeon": dungeon,
+                "materials": materials,
             })
 
+    # Group by dungeon, then by material configuration
+    dungeons: OrderedDict[str, OrderedDict[tuple, list[dict]]] = OrderedDict()
+    for evo in evolutions:
+        dungeon = evo["dungeon"]
+        mat_key = material_key(evo["materials"])
+        if dungeon not in dungeons:
+            dungeons[dungeon] = OrderedDict()
+        if mat_key not in dungeons[dungeon]:
+            dungeons[dungeon][mat_key] = []
+        dungeons[dungeon][mat_key].append(evo)
+
+    # Write output
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
+    total_entries = 0
+    total_groups = 0
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("spec:\n")
         f.write("  version: \"1.0\"\n")
@@ -118,23 +179,20 @@ def main():
         f.write("evolutions:\n")
         f.write("  upsert:\n")
 
-        for evo in evolutions:
-            f.write(f"    # {evo['targetTemplateId']} - {evo['itemString']}\n")
-            f.write(f"    - targetTemplateId: {evo['targetTemplateId']}\n")
-            f.write("      conditions:\n")
+        for dungeon, mat_groups in dungeons.items():
+            f.write(f"    # ━━ {dungeon} ━━\n")
+            for mat_key, entries in mat_groups.items():
+                materials = entries[0]["materials"]
+                mat_label = format_material_label(materials)
+                write_group(f, mat_label, materials, entries)
+                f.write("\n")
+                total_entries += len(entries)
+                total_groups += 1
 
-            for target_step, result_step in ENCHANT_PATTERN:
-                write_condition(
-                    f,
-                    target_step,
-                    result_step,
-                    evo["resultTemplateId"],
-                    evo["materials"]
-                )
-
-    total_conditions = len(evolutions) * len(ENCHANT_PATTERN)
+    total_conditions = total_entries * len(ENCHANT_PATTERN)
     print(f"Generated {output_file}")
-    print(f"  {len(evolutions)} evolution entries")
+    print(f"  {len(dungeons)} dungeons, {total_groups} material groups")
+    print(f"  {total_entries} evolution entries")
     print(f"  {total_conditions} total conditions")
 
 

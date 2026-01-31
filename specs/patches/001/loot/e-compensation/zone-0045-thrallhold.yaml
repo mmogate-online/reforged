@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Thrallhold (huntingZoneId: 45)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 2 NPCs, Lv48-64
+  thrallhold_boss:
+    itemBags:
+      - id: 1
+        bagName: "Thrallhold Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (2 NPCs): 4001=Argonomorph Naga Marauder Lv48, 4005=Draelteryx (Argon Raptor) Lv64
+    - huntingZoneId: 45
+      npcTemplateId: [4001, 4005]
+      npcName: ""
+      $extends: thrallhold_boss

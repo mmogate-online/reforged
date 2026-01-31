@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Nexus Traverse (huntingZoneId: 801)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 5 NPCs, Lv26-60
+  nexus_traverse_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 16 NPCs, Lv60
+  nexus_traverse_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (5 NPCs): 501= Lv26, 601= Lv26, 602=Nexulitic By-Product Lv60, 1501=Exit Teleportal Lv40, 1502=Inquisitor (Boundary Explorer) Lv40
+    - huntingZoneId: 801
+      npcTemplateId: [501, 601, 602, 1501, 1502]
+      npcName: ""
+      $extends: nexus_traverse_normal
+
+    # Elite (16 NPCs): 301=Traverse Raider Lv60, 302=Traverse Raider Lv60, 303=Traverse Raider Lv60, 304=Traverse Raider Lv60, 305=Traverse Raider Lv60, 306=Traverse Raider Lv60, 401=Traverse Intruder Lv60, 402=Traverse Intruder Lv60, 404=Traverse Intruder Lv60, 702=Traverse Raider Lv60, 703=Traverse Raider Lv60, 704=Traverse Raider Lv60, 705=Traverse Raider Lv60, 706=Traverse Raider Lv60, 707=Traverse Intruder Lv60, 708=Traverse Intruder Lv60
+    - huntingZoneId: 801
+      npcTemplateId: [301, 302, 303, 304, 305, 306, 401, 402, 404, 702, 703, 704, 705, 706, 707, 708]
+      npcName: ""
+      $extends: nexus_traverse_elite

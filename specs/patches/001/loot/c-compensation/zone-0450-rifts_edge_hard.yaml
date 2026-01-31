@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Rift's Edge (Hard) (huntingZoneId: 450)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 52 NPCs, Lv1-60
+  rifts_edge_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 26 NPCs, Lv60
+  rifts_edge_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (52 NPCs): 1501=Garden of Yativio Teleportal Lv40, 1502=Koleogg Nest Teleportal Lv40, 1503=Exit Teleportal Lv40, 1504=Cliffside Airship Gate Teleportal Lv40, 3001=Debira (Guide) Lv40, 3002= Lv40, 3003=Azzem (Guide) Lv40, 3004=Brin (Guide) Lv40, 3005=Duani (Guide) Lv32, 3006=Vandraul (Guide) Lv40, 3007=Vandraul (Guide) Lv40, 3008=Duani (Guide) Lv32, 3009=Brin (Guide) Lv40, 3010=Vandraul (Guide) Lv40, 45017= Lv26, 45019= Lv60, 45020= Lv60, 45021= Lv60, 45022= Lv60, 45023= Lv60, 45025=Twin Counselor Monument (Key) Lv26, 45026= Lv40, 45027= Lv26, 45028= Lv26, 45029= Lv1, 45030= Lv13, 45031= Lv13, 45032= Lv13, 45033= Lv13, 45035= Lv1, 45036= Lv1, 45037= Lv40, 45039= Lv8, 45040= Lv1, 45042= Lv40, 45043=Cave Beetle Elite (Bee Hunter) Lv60, 45048= Lv26, 45120= Lv60, 45121= Lv60, 45122= Lv60, 45220= Lv60, 45221= Lv60, 45222= Lv60, 45320= Lv60, 45321= Lv60, 45322= Lv60, 45420= Lv60, 45421= Lv60, 45422= Lv60, 45520= Lv60, 45521= Lv60, 45522= Lv60
+    - huntingZoneId: 450
+      npcTemplateId: [1501, 1502, 1503, 1504, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 45017, 45019, 45020, 45021, 45022, 45023, 45025, 45026, 45027, 45028, 45029, 45030, 45031, 45032, 45033, 45035, 45036, 45037, 45039, 45040, 45042, 45043, 45048, 45120, 45121, 45122, 45220, 45221, 45222, 45320, 45321, 45322, 45420, 45421, 45422, 45520, 45521, 45522]
+      npcName: ""
+      $extends: rifts_edge_hard_normal
+
+    # Elite (26 NPCs): 5000=Airship Lv60, 45001=Guwangi Warrior Elite Lv60, 45003=Guwangi Shaman Elite Lv60, 45004=Guwangi Scout Elite Lv60, 45005=Tuberelle Elite Lv60, 45006=Berserk Tuberelle Elite Lv60, 45007=Nightmare Oddritu (Carnivorous Plant) Lv60, 45008=Nightmare Oddritu (Carnivorous Plant) Lv60, 45009=Archdeva Assassin Elite Lv60, 45010=Archdeva Scout Elite Lv60, 45011=Archdeva Priest Elite Lv60, 45018= Lv60, 45034=Archer Elite Lv60, 45038=Tuberelle Elite Lv60, 45041=Tuberelle Elite Lv60, 45049=Elite Rift-Priest (Cave Gatekeeper) Lv60, 45050=Greedy Caiman Lv60, 45051= Lv60, 45052= Lv60, 45053= Lv60, 45054= Lv60, 45055= Lv60, 45056= Lv60, 45057= Lv60, 45058= Lv60, 45059= Lv60
+    - huntingZoneId: 450
+      npcTemplateId: [5000, 45001, 45003, 45004, 45005, 45006, 45007, 45008, 45009, 45010, 45011, 45018, 45034, 45038, 45041, 45049, 45050, 45051, 45052, 45053, 45054, 45055, 45056, 45057, 45058, 45059]
+      npcName: ""
+      $extends: rifts_edge_hard_elite

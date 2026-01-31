@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Molten Chamber (huntingZoneId: 464)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 14 NPCs, Lv40-56
+  molten_chamber_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv26-58
+  molten_chamber_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (14 NPCs): 1001=Muhrak (Legendary Blacksmith) Lv40, 1501=Exit Teleportal Lv40, 1502=Modified Furnace Controller Lv40, 5001=Skeletal Spearman (Legion of Thulsa) Lv56, 5002=Skeletal General (Legion of Thulsa) Lv56, 5003=Berserker Commander (Legion of Thulsa) Lv56, 5004=Priest Commander (Legion of Thulsa) Lv56, 5005=Warrior Commander (Legion of Thulsa) Lv56, 5006=Sorcerer Commander (Legion of Thulsa) Lv56, 5007=Slayer Commander (Legion of Thulsa) Lv56, 5008=Mystic Commander (Legion of Thulsa) Lv56, 5010=Terror Priest (Legion of Thulsa) Lv56, 5013=Muhrak (Legendary Blacksmith) Lv56, 5014=Modified Furnace Controller Lv56
+    - huntingZoneId: 464
+      npcTemplateId: [1001, 1501, 1502, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5010, 5013, 5014]
+      npcName: ""
+      $extends: molten_chamber_normal
+
+    # Elite (2 NPCs): 5011= Lv58, 5012= Lv26
+    - huntingZoneId: 464
+      npcTemplateId: [5011, 5012]
+      npcName: ""
+      $extends: molten_chamber_elite

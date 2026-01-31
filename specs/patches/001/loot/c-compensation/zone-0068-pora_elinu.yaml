@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Pora Elinu (huntingZoneId: 68)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 49 NPCs, Lv1-65
+  pora_elinu_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (49 NPCs): 1001=Rossol (Aide) Lv40, 1002=Aerere (Merchant) Lv40, 1003=Andersen (Crystal Merchant) Lv40, 1004=Komba (Banker) Lv40, 1005=Kuru (Banker) Lv40, 1006=Buran (Flight Manager) Lv40, 1007=Lienyn (Palace Knights Leader) Lv40, 1008=Dadun (General) Lv40, 1009=Lenka (Centurion) Lv40, 1010=Ronelyn (Palace Knight) Lv40, 1011=Ketyna (Palace Knight) Lv40, 1012=Huchu (Herb Gatherer) Lv40, 1013=Tarni (In Love) Lv40, 1014=Beryn (Witch's Apprentice) Lv40, 1015=Teleportal Lv40, 1016=Ellsei (Coordinator) Lv40, 1017=Ururu (Poporia Warden) Lv40, 1018=Dinda (Poporia Warden) Lv40, 1019=Dullulu (Poporia Warden) Lv40, 1020=Merun (Poporia Warden) Lv40, 1021=Shalane (Allemantheia Delegation) Lv40, 1022=Siruna (Arcanist) Lv40, 1023=Nipuni (Arcanist) Lv40, 1024=Mission Board Lv40, 1025=Mission Board Lv40, 1026=Vepan (Trade Broker) Lv40, 1027=Merolyn (Arin's Maid) Lv40, 1600=Ferine (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Nidella (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1, 9005=Hidden Egg (Fifth Egg) Lv36
+    - huntingZoneId: 68
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1600, 1602, 1603, 1700, 1900, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004, 9005]
+      npcName: ""
+      $extends: pora_elinu_normal

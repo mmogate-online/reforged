@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Sirjuka Gallery (huntingZoneId: 496)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 19 NPCs, Lv60
+  sirjuka_gallery_boss:
+    itemBags:
+      - id: 1
+        bagName: "Sirjuka Gallery Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (19 NPCs): 107=Sihranar Brute Lv60, 108=Sihranar Rager Lv60, 109=Sihranar Savage Lv60, 110= Lv60, 111=Sihranar Ravager Lv60, 112= Lv60, 500=Barkud (Fist of Thulsa) Lv60, 501=Darkheart Juggernaut Lv60, 502=Emberhorn Fangspawn Lv60, 2000=Teralith Guardian Lv60, 2001=Bloodfang Hydrath Lv60, 2002= Lv60, 2003= Lv60, 2004= Lv60, 2005= Lv60, 2006=Kadin (Sirjuka Guardian) Lv60, 3001=Bladeback Ghilliedhu Lv60, 3002=Ossugon Tyrant Lv60, 3003=Gulon Hunter Lv60
+    - huntingZoneId: 496
+      npcTemplateId: [107, 108, 109, 110, 111, 112, 500, 501, 502, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 3001, 3002, 3003]
+      npcName: ""
+      $extends: sirjuka_gallery_boss

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Akasha's Hideout (Solo) (huntingZoneId: 3006)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 12 NPCs, Lv50-51
+  akashas_hideout_solo_boss:
+    itemBags:
+      - id: 1
+        bagName: "Akasha's Hideout (Solo) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (12 NPCs): 5001=Adanok (Bloodrock Champion) Lv51, 5002=Karascha (Risen Dark Wing) Lv51, 5003=Lugribar (Gilgash Devastator) Lv51, 5004=Shargrim (Akalath Mutilator) Lv51, 5005=Akasha (Goddess of Epidemics) Lv51, 9002= Lv50, 9003= Lv50, 9004= Lv50, 9005= Lv50, 9006= Lv50, 9007= Lv50, 9008= Lv50
+    - huntingZoneId: 3006
+      npcTemplateId: [5001, 5002, 5003, 5004, 5005, 9002, 9003, 9004, 9005, 9006, 9007, 9008]
+      npcName: ""
+      $extends: akashas_hideout_solo_boss

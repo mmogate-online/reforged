@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Timeless Woods (huntingZoneId: 29)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 7 NPCs, Lv40-70
+  timeless_woods_boss:
+    itemBags:
+      - id: 1
+        bagName: "Timeless Woods Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (7 NPCs): 1025=Contaminated Fangspawn Lv65, 1041=Woodland Fangspawn Lv41, 1051=Hellmouth Fangspawn Lv40, 2001=Anansha (Arachnen Exile) Lv70, 4041=Vulcan Dreadnaught Lv40, 7031=Anansha (Arachnen Exile) Lv52, 8002=Vulcan Devastator (Summoned Demon) Lv40
+    - huntingZoneId: 29
+      npcTemplateId: [1025, 1041, 1051, 2001, 4041, 7031, 8002]
+      npcName: ""
+      $extends: timeless_woods_boss

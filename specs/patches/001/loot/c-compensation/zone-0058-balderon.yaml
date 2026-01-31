@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Balderon (huntingZoneId: 58)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 15 NPCs, Lv40-65
+  balderon_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (15 NPCs): 1001=Beklenun (Magistrate) Lv40, 1002=Olvir (Merchant) Lv40, 1003=Delka (Banker) Lv40, 1004=Lumia (Flight Manager) Lv40, 1005=Teleportal Lv40, 1006=Kroanna (Commander) Lv40, 1007=Melantha (Guard) Lv40, 1008=Toma (Guard) Lv40, 1009=Keceron (Prefect) Lv40, 1010=Bellamina (Coordinator) Lv40, 1012=Blanco (Crystal Merchant) Lv40, 1601=Joselle (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Ardine (Guild Quest Rewards) Lv40, 1700=Guard Lv65
+    - huntingZoneId: 58
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1012, 1601, 1602, 1603, 1700]
+      npcName: ""
+      $extends: balderon_normal

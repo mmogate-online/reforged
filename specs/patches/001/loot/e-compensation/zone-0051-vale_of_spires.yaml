@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Vale of Spires (huntingZoneId: 51)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 6 NPCs, Lv58-68
+  vale_of_spires_boss:
+    itemBags:
+      - id: 1
+        bagName: "Vale of Spires Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (6 NPCs): 2011=Frostdeath Barsicore Lv58, 3021=Vengeful Glacial Giant Lv59, 4001=Cerrus (Frost Zuulhound) Lv68, 7011=Linyphi (Ice Huntress) Lv68, 8021=Mizar (Cruel Overseer) Lv58, 8031=Alcor (Heir to the Empire) Lv58
+    - huntingZoneId: 51
+      npcTemplateId: [2011, 3021, 4001, 7011, 8021, 8031]
+      npcName: ""
+      $extends: vale_of_spires_boss

@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Frost Reach (huntingZoneId: 34)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 37 NPCs, Lv13-68
+  frost_reach_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 7 NPCs, Lv46-68
+  frost_reach_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (37 NPCs): 100=Maligos Icestalker Lv44, 200=Caiman Slave Lv44, 300=Junaidar Thief Lv44, 310=Junaidar Bandit Lv44, 400=Junaidar Scourge Lv44, 410=Junaidar Raider Lv44, 500=Wendigo Frostweaver Lv44, 510=Wendigo Frostmage Lv44, 600=Wendigo Crusher Lv44, 610=Wendigo Rager Lv44, 700=Wendigo Battlemaster Lv44, 710=Wendigo Warlord Lv44, 800=Icewalker Arachnen Lv44, 900=Frostguard Mugato Lv44, 910=Frostguard Mugato Cub Lv44, 920=Frostguard Patriarch Lv45, 1271=Storan (Westonia Mystery Merchant) Lv40, 2005=Launa (Guardian Legion) Lv65, 5000=Talcas (Frost Guardian) Lv45, 5001=Kaijas (Wendigo Insurgent) Lv45, 5007=Kakkathak (The Icerender) Lv35, 5008=Skaldiss (Maligos of Malice) Lv35, 5009=Klakaboreas (The Scuttler) Lv35, 7000=Westonia Defender Lv44, 7001=Westonia Defender Lv44, 8000=Goat Lv42, 9802=Suspicious Wagon Lv68, 9819= Lv26, 9821= Lv13, 9822= Lv68, 98999= Lv65, 99978=Tiny Christmas Gift Lv68, 99979= Lv65, 99988=Colorful Christmas Gift Lv68, 99989= Lv65, 99998=Generous Christmas Gift Lv68, 99999= Lv65
+    - huntingZoneId: 34
+      npcTemplateId: [100, 200, 300, 310, 400, 410, 500, 510, 600, 610, 700, 710, 800, 900, 910, 920, 1271, 2005, 5000, 5001, 5007, 5008, 5009, 7000, 7001, 8000, 9802, 9819, 9821, 9822, 98999, 99978, 99979, 99988, 99989, 99998, 99999]
+      npcName: ""
+      $extends: frost_reach_normal
+
+    # Elite (7 NPCs): 9000=Frezraff (Wendigo Shaman) Lv46, 9001=Belkedreff (Lord of the Ice) Lv46, 9814=Scout Centurion (Azart Scout) Lv68, 9815=Naga Wagon Guard Lv68, 9816=Naga Scout Lv68, 9817=Naga Elder Lv68, 9818=Naga Scout Lv68
+    - huntingZoneId: 34
+      npcTemplateId: [9000, 9001, 9814, 9815, 9816, 9817, 9818]
+      npcName: ""
+      $extends: frost_reach_elite

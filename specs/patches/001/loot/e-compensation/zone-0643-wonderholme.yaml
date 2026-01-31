@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Wonderholme (huntingZoneId: 643)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 25 NPCs, Lv65-68
+  wonderholme_boss:
+    itemBags:
+      - id: 1
+        bagName: "Wonderholme Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (25 NPCs): 1001=Morgak (Enraged Giant) Lv68, 1002=Kagrom (Venomous Predator) Lv68, 1003=One-Eyed Jack (Fearful Jester) Lv68, 1004=Felbane (Champion Inspector) Lv68, 1005=Bandersnatch (Evil Sorcerer) Lv68, 44304=Gaon (Treasure Guardian) Lv68, 44316=Groop (Castle Butcher) Lv68, 44328=Gibbetwraith (Bridge Guardian) Lv68, 44329=Skinstitcher (Bridge Guardian) Lv68, 44330=Wispwidow (Bridge Guardian) Lv68, 44333=Wisp Lv65, 44350=Mock Lobster (Patrol Leader) Lv68, 44353=Lutwidge (Royal Executioner) Lv68, 44369=One-Eyed Jack (Fearful Jester) Lv68, 44370=Bandergrub (Infrequent) Lv65, 44379=Grubling Lv65, 44387= Lv65, 44396=Belmun (Infrequent) Lv68, 44405= Lv65, 44421= Lv65, 44422= Lv65, 44423= Lv65, 44424= Lv65, 44425= Lv65, 44434=Bandersnatch (Evil Sorcerer) Lv65
+    - huntingZoneId: 643
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 44304, 44316, 44328, 44329, 44330, 44333, 44350, 44353, 44369, 44370, 44379, 44387, 44396, 44405, 44421, 44422, 44423, 44424, 44425, 44434]
+      npcName: ""
+      $extends: wonderholme_boss

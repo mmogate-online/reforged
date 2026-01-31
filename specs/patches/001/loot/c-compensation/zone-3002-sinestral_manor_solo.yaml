@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Sinestral Manor (Solo) (huntingZoneId: 3002)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 15 NPCs, Lv27-70
+  sinestral_manor_solo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 23 NPCs, Lv27-28
+  sinestral_manor_solo_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (15 NPCs): 100=Voracious Dread Wraith Lv27, 101=Dire Disc Reaper Lv27, 1001=Jelena (Ranger) Lv40, 1002= Lv40, 1003=Obelisk Lv40, 1004=Jelena (Valkyon Ranger) Lv40, 1005=Jelena (Valkyon Ranger) Lv40, 1006=Dobrinya (Grand Chamberlain) Lv40, 1008=Priest of Darkness Akia (Atel Akaad) Lv40, 1009=Huriana (Captive) Lv40, 1010=Exit Teleportal Lv40, 2000= Lv70, 2001= Lv70, 2002= Lv70, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 3002
+      npcTemplateId: [100, 101, 1001, 1002, 1003, 1004, 1005, 1006, 1008, 1009, 1010, 2000, 2001, 2002, 11111]
+      npcName: ""
+      $extends: sinestral_manor_solo_normal
+
+    # Elite (23 NPCs): 2=Dread Wraith Lv27, 3=Furious Wraith Lv27, 4=Lokian Defender Lv27, 7=Lokian Devastator Lv27, 8=Zealous Disc Reaper Lv27, 9=Ensorceled Blood Moppet Lv27, 10=Duchess Tirania (Vampir Royalists) Lv28, 11=Enchanted Blood Moppet Lv27, 12=Lokian Darkweaver Lv27, 13=Duke Volperon (Vampir Royalists) Lv28, 14=Lokian Bloodshaper Lv27, 15=Noble Vampir Rebel Lv27, 16=Noble Vampir Insurgent Lv27, 17=Chaos Witch Lv27, 19=Ducal Loyalist Lv27, 20=Ducal Bodyguard Lv27, 21=Dementalith Generator Lv27, 22=Jelena (Valkyon Ranger) Lv27, 23=Kagaron (Traitor to the Kingdom) Lv28, 24=Kagaron (Traitor to the Kingdom) Lv27, 102=Ducal Conscript Lv27, 103= Lv27, 1007=Huriana (Captive) Lv27
+    - huntingZoneId: 3002
+      npcTemplateId: [2, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 102, 103, 1007]
+      npcName: ""
+      $extends: sinestral_manor_solo_elite

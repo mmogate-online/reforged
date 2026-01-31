@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Fyrmount (huntingZoneId: 4)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 85 NPCs, Lv13-70
+  fyrmount_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv21-68
+  fyrmount_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (85 NPCs): 1031=Sooty Sporewalker Lv48, 1032=Smoldering Ghilliedhu Lv48, 1041=Ashstalker Wolf Lv48, 1051=Devan War Golem Lv48, 1052=Fallen Devan Protector Lv48, 1061=Devan Dark Knight Lv48, 1062=Risen Devan Infantry Lv48, 1271=Eteral (Ostgarath Mystery Merchant) Lv40, 2021=Shurian Foe-Hammer Lv50, 2031=Eldritch Cardinal Lv50, 2041=Eldritch Reaver Lv49, 2051=Raging Arbosk Lv50, 3000=Verdas (Dragon Expert) Lv40, 3001=Verdas (Dragon Expert) Lv40, 3002= Lv40, 3003=Verdas (Dragon Expert) Lv40, 3004= Lv40, 3005=Verdas (Dragon Expert) Lv40, 3006=Verdas (Dragon Expert) Lv40, 3007= Lv40, 3008=Verdas (Dragon Expert) Lv40, 3009=Fallen Villager (Tribute Manager) Lv30, 3010=Teleportal Lv40, 3012=Verdas (Dragon Expert) Lv40, 3013=Shurian Summoner Lv65, 3016=Dragon Follower Lv69, 3018=Dragon Follower Lv69, 3020=Teleportal Lv40, 3022=Unknown Device Lv13, 3023=Verdas (Dragon Expert) Lv40, 3024=Detonator Lv40, 3025=Dragon World Teleportal Lv40, 3026=Poisoned Shurian Summoner Lv40, 3027=Dragon Follower Lv68, 3028=Ewdim (Vergos Cultist) Lv68, 3029=Ewdim (Vergos Cultist) Lv68, 3030= Lv65, 3031=Tyrak Lv51, 3032=Dead Soldier Lv40, 3033=Fallen Soldier Lv32, 3034=Assistant Lv40, 3035=Strange Plant Lv65, 3036=Verdas (Dragon Expert) Lv40, 3037=Strange Plant Lv65, 3038=Burning Ghilliedhu Lv65, 3039=Verdas (Dragon Expert) Lv40, 3040=Poisoned Shurian Summoner Lv68, 3041=Shurian Mindbender Lv51, 3042=Hellion Thrall Lv51, 3043=Poisoned Shurian Summons Lv68, 3045=Massive Mother Plant Lv65, 3046=Massive Mother Plant Lv65, 3051=Dark Marauder Lv65, 3052= Lv65, 3053= Lv68, 3054= Lv65, 3056=Uriela (Valkyon Federation Adjutant) Lv40, 3057= Lv65, 3058= Lv65, 3059= Lv40, 3060= Lv65, 3061= Lv65, 3062= Lv65, 3063=Verdas (Dragon Expert) Lv40, 5007=Oga-Garagg (Tree Mugger) Lv35, 5008=Lupak (Alpha Ashstalker) Lv35, 5009=Sissirus (Shambling Mound) Lv35, 6011=Goat Lv49, 6021= Lv50, 9000= Lv40, 9001=Unknown Device Lv40, 9044=Teleportal (Bahaar's Sanctum) Lv70, 904401=Sophilia (Tribune) Lv40, 904402=Loomey (Wandering Scholar) Lv15, 904403=Loomey (Wandering Scholar) Lv15, 904404=Loomey (Wandering Scholar) Lv15, 904405=Halrath (Wandering God) Lv70, 904406=Halrath (Wandering God) Lv70, 904407=Madorra (Kaia's Sword) Lv40, 904408=Garrath (Kaia's Sword) Lv40, 904409=Wounded Soldier (Kaia's Sword Soldier) Lv40, 904410=Wounded Soldier (Kaia's Sword Soldier) Lv40, 904411=Injured Villager (Wounded) Lv40, 904412=Injured Villager (Wounded) Lv40, 904413=Enlarged Smoldering Bloodshard Lv70
+    - huntingZoneId: 4
+      npcTemplateId: [1031, 1032, 1041, 1051, 1052, 1061, 1062, 1271, 2021, 2031, 2041, 2051, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3012, 3013, 3016, 3018, 3020, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3045, 3046, 3051, 3052, 3053, 3054, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 5007, 5008, 5009, 6011, 6021, 9000, 9001, 9044, 904401, 904402, 904403, 904404, 904405, 904406, 904407, 904408, 904409, 904410, 904411, 904412, 904413]
+      npcName: ""
+      $extends: fyrmount_normal
+
+    # Elite (2 NPCs): 3044=Enraged Dracoloth Lv68, 3055=Velika Regular Troops (Valkyon Federation) Lv21
+    - huntingZoneId: 4
+      npcTemplateId: [3044, 3055]
+      npcName: ""
+      $extends: fyrmount_elite

@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Cultists' Refuge (Solo) (huntingZoneId: 3003)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 22 NPCs, Lv30-40
+  cultists_refuge_solo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 33 NPCs, Lv26-38
+  cultists_refuge_solo_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (22 NPCs): 1001=Runha (Elleon's Ally) Lv40, 1002=Jelena (Valkyon Ranger) Lv40, 1003=Pirate Chest Lv40, 1004=Elleon (Valkyon Hero) Lv40, 1006=Teleportal Lv40, 1007=Terrified Woman Lv40, 1008=Eastern Wardstone Lv40, 1011=Western Wardstone Lv40, 1012=Exit Teleportal Lv40, 1013=Raubelak (Centurion) Lv40, 1014=Davina (Ranger) Lv40, 1015=Yialla (Investigator) Lv40, 1016=Belenon (Investigator) Lv40, 1017=Odiolith Lv40, 1018=Treacherous Script Lv40, 1019=Treacherous Script Lv40, 1020=Nullu (Ranger) Lv40, 1021=Suspicious Arcanist Lv40, 3650= Lv30, 3651= Lv38, 3901=Elleon (Valkyon Hero) Lv38, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 3003
+      npcTemplateId: [1001, 1002, 1003, 1004, 1006, 1007, 1008, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 3650, 3651, 3901, 11111]
+      npcName: ""
+      $extends: cultists_refuge_solo_normal
+
+    # Elite (33 NPCs): 100=Samael's Soulstone Lv26, 101=Eldritch Seal Lv38, 1005=Elleon (Valkyon Hero) Lv38, 1009=Sirenne (Mercenary) Lv38, 1010=Bjurnden (Mercenary) Lv38, 1022=Samael's Soulstone Lv38, 1023=Davina (Jelena's Sister) Lv38, 3601=Souleater Wraith Lv38, 3602=Eager Auric Imp Lv38, 3603=Mercenary Berserker Lv38, 3604=Mercenary Mystic Lv38, 3605=Mercenary Reaver Lv38, 3606=Mercenary Archer Lv38, 3607=Mercenary Battlerager Lv38, 3608=Mercenary Reaper Lv38, 3609=Galanos (Shurian Enforcer) Lv38, 3610=Mercenary Sniper Lv38, 3611=Mercenary Darkweaver Lv38, 3612=Soulleech Wraith Lv38, 3613=Ferocious Auric Imp Lv38, 3701=Mercenary Lancer Lv38, 3702=Mercenary Sorcerer Lv38, 3703=Mercenary Slayer Lv38, 3704=Mercenary Priest Lv38, 3705=Mercenary Defender Lv38, 3706=Mercenary Ravager Lv38, 3707=High Priestess Akia (Mistress of Shade) Lv38, 3708=Mercenary Prelate Lv38, 3709=Mercenary Arcanist Lv38, 5000=Stonecrusher Golem Lv38, 5001= Lv38, 5002= Lv38, 5003= Lv38
+    - huntingZoneId: 3003
+      npcTemplateId: [100, 101, 1005, 1009, 1010, 1022, 1023, 3601, 3602, 3603, 3604, 3605, 3606, 3607, 3608, 3609, 3610, 3611, 3612, 3613, 3701, 3702, 3703, 3704, 3705, 3706, 3707, 3708, 3709, 5000, 5001, 5002, 5003]
+      npcName: ""
+      $extends: cultists_refuge_solo_elite

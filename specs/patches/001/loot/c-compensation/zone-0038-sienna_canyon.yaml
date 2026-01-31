@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Sienna Canyon (huntingZoneId: 38)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 89 NPCs, Lv1-70
+  sienna_canyon_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 3 NPCs, Lv10-26
+  sienna_canyon_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (89 NPCs): 1=Sentinel Officer Lv67, 2=Lurking Rockcrawler Lv67, 9=Ancient Boregolem Lv54, 10=Ancient Driller Lv54, 11=Ancient Miner Lv54, 13=Arbosk Mindbender Lv55, 14=Mabarith Thrall Lv55, 15=Arbosk Enchanter Lv67, 16=Deskera Imp Lv67, 21=Prion Seeker Lv56, 22=Sihranar Templar Lv56, 23=Ardent Iskaragard Lv56, 24=Devoted Iskaragard Lv56, 25=Narak (Prion Slasher) Lv55, 26=Veriksha (Sihranar Slasher) Lv55, 27=Dredkreak (Thrashgolem Sentinel) Lv56, 28=Bronze Cannoneer Lv56, 30=Ruins Hyena Lv54, 31=Hungry Ruins Hyena Lv55, 33=Lavender Struthio Lv54, 34= Lv54, 36=Prion Explorer Lv54, 37=Prion Bonecrusher Lv55, 38=Prion Destroyer Lv55, 39=Ancient Mycanar (Living History) Lv56, 40=Sand Reaper Lv56, 41=Sandblade Golem Lv56, 42= Lv56, 43= Lv56, 44=Carnage Fiend Lv67, 100= Lv1, 101= Lv1, 102= Lv1, 103=Sammina (Mysterium Researcher) Lv40, 104=Gilledon (Mysterium Researcher) Lv40, 105= Lv1, 106= Lv40, 107= Lv40, 108=Ryshan (Master Sorcerer) Lv40, 109=Dayson (Ameldas's Father) Lv40, 110=Frin (Ameldas's Mother) Lv40, 111= Lv16, 112=Niniel (Danaik's Wife) Lv40, 113= Lv40, 114= Lv40, 115= Lv1, 117=Ameldas (Crystallization Victim) Lv40, 118= Lv40, 119= Lv1, 120=Ryshan (Master Sorcerer) Lv40, 122= Lv1, 123= Lv1, 125=Kellik (Mysterium Researcher) Lv65, 126=Teyer (Mysterium Researcher) Lv40, 127=Mysterium Wagon Lv26, 129=Ruins Hyena Lv67, 130= Lv1, 132=Titus (Explosives Expert) Lv40, 133=Titus (Explosives Expert) Lv40, 134= Lv40, 140=Pile of Stones Lv1, 141=Stinky (Ameldas's Puppy) Lv40, 142=Torn Bear (Ameldas's Toy) Lv24, 143=Stinky (Ameldas's Puppy) Lv40, 144=Bangko (Resentful Ghost) Lv40, 145=Hidden Journal Lv40, 146=Elysee (Patient's Sister) Lv40, 147=Hanhi (Crystallization Victim) Lv16, 148=Danaik (Crystallization Victim) Lv40, 149=Goblin Thief Lv67, 152= Lv1, 153=Kaiahn (Titus's Messenger) Lv1, 154=Berus (Injured Messenger) Lv32, 155= Lv26, 156= Lv40, 157=Berus (Recovering Messenger) Lv32, 158=Amarre (Ecosystem Expert) Lv40, 1001= Lv56, 1002= Lv56, 1003= Lv56, 1004= Lv56, 1006= Lv27, 1271=Viace (Val Elenium Mystery Merchant) Lv40, 1502=Forbidden Arena Teleportal Lv40, 2000=Halrath (Wandering God) Lv70, 2001=Halrath (Wandering God) Lv70, 2002=Moving Area Lv26, 2003=Used Area Lv26, 6001=Caiman Wanderer (Packed Up) Lv69
+    - huntingZoneId: 38
+      npcTemplateId: [1, 2, 9, 10, 11, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 117, 118, 119, 120, 122, 123, 125, 126, 127, 129, 130, 132, 133, 134, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 152, 153, 154, 155, 156, 157, 158, 1001, 1002, 1003, 1004, 1006, 1271, 1502, 2000, 2001, 2002, 2003, 6001]
+      npcName: ""
+      $extends: sienna_canyon_normal
+
+    # Elite (3 NPCs): 128=Tent Pole Lv26, 150=Banana Peel Lv10, 3000=Ruby Durignite Lv26
+    - huntingZoneId: 38
+      npcTemplateId: [128, 150, 3000]
+      npcName: ""
+      $extends: sienna_canyon_elite

@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Mistmoor Island (huntingZoneId: 12)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 27 NPCs, Lv31-40
+  mistmoor_island_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (27 NPCs): 1=Harbor Hermit Crab Lv31, 2=Bay Kamara Lv31, 3=Arachnen Stalker Lv31, 4=Mistmoor Faerie Lv31, 5=Mistmoor Orcan Fighter Lv31, 6=Island Noruk Lv31, 7=Gula Brawler (Kazuur Syndicate) Lv31, 8=Red Lash Killer Lv31, 9=Red Lash Butcher Lv31, 10=Mistmoor Orcan Scrapper Lv31, 11=Island Kamara Lv31, 12=Island Hermit Crab Lv32, 14=Gula Trafficker (Kazuur Syndicate) Lv32, 15=Red Lash Cleaver Lv32, 16=Slave Watcher (Kazuur Syndicate) Lv31, 18= Lv32, 20= Lv32, 21=Gula Slavemaster (Kazuur Syndicate) Lv32, 22=Red Lash Enforcer Lv31, 23=Slawgesh (Kazuur Syndicate) Lv33, 24=Bruke (Justicar) Lv31, 25=Lokian Executioner (Red Lash Pirate) Lv32, 26=Arachnen Hunter Lv31, 27=Bruke (Justicar) Lv31, 28=Bruke (Justicar) Lv31, 1271=Eteral (Ostgarath Mystery Merchant) Lv40, 1501=Vault of Kaprima Teleportal Lv40
+    - huntingZoneId: 12
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 1271, 1501]
+      npcName: ""
+      $extends: mistmoor_island_normal

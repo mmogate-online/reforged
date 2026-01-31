@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Arachnaea (huntingZoneId: 39)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 8 NPCs, Lv46-68
+  arachnaea_boss:
+    itemBags:
+      - id: 1
+        bagName: "Arachnaea Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (8 NPCs): 110=Guardian Ovolith Lv46, 160=Dreadfang Arachnen Lv46, 200=Clawrider Overseer Lv46, 270=Merciless Ovolith Lv46, 280=Arachnen Devastator Lv46, 290=Dulagoras (Moltenheart Orisk) Lv47, 300=Arachnitilla (Priestess of Arachne) Lv46, 501=Hazard (Quarantined Giant) Lv68
+    - huntingZoneId: 39
+      npcTemplateId: [110, 160, 200, 270, 280, 290, 300, 501]
+      npcName: ""
+      $extends: arachnaea_boss

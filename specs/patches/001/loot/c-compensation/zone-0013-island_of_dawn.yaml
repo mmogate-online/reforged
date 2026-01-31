@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Island of Dawn (huntingZoneId: 13)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 173 NPCs, Lv1-65
+  island_of_dawn_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 1 NPCs, Lv26
+  island_of_dawn_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (173 NPCs): 1=Pigling Lv3, 2=Sporewalker Lv6, 3=Ponderous Sporewalker Lv5, 4=Dwarf Orcan Lv7, 5=Orcan Raider Lv7, 6=Kariagon Lv8, 7=Disc Reaper Lv8, 8=Runekeeper Lv9, 9=Destroyer Lv9, 101= Lv1, 102=Docile Terron Lv1, 111=Gentle Pigling Lv3, 301=Rockcrawler Tumbler Lv3, 302=Terron Ringleader Lv3, 303=Terron Thief Lv3, 304=Sickly Noruk Lv3, 555=Scion Scout Lv10, 556=Scion Scout Lv10, 557=Scion Scout Lv10, 558=Scion Scout Lv10, 601=Dark Marauder Lv7, 888=Training Dummy Lv1, 901=Orcan Guardian Lv7, 902=Dwarf Guardian Lv7, 999= Lv3, 1001=Vekas (Wicked Tree) Lv4, 1002=Acharak (Dark Claw Warlord) Lv8, 1003=Acharak's Soldier Lv8, 1004=Kugai (The Mighty) Lv10, 1011=Terron Saboteur Lv9, 1271=Vardung (Island of Dawn Mystery Merchant) Lv40, 1501=Karascha's Lair Teleportal Lv64, 5001=Marpa (Merchant) Lv40, 5002=Fina (Banker) Lv40, 5003=Tairang (Trade Broker) Lv40, 5004=Thagall (Specialty Merchant) Lv40, 5005=Rendall (Vanguard Initiative Crystal Merchant) Lv40, 5006=Conifi (Vanguard Initiative Quartermaster) Lv40, 5007=Amapang (Noble Cleric of Restoration) Lv40, 5008=Gardeng (Crystal Merchant) Lv65, 5009=Pasoreno (Tactics Instructor) Lv40, 5010=Ravodan (Magic Instructor) Lv40, 5011=Tamarang (Teleport Master) Lv40, 5012=Teleportal Lv40, 5101=Tienna (Merchant) Lv40, 5102=Aldager (Banker) Lv40, 5103=Dorapang (Noble Cleric of Restoration) Lv40, 5104=Teleportal Lv40, 5201=Cynapelle (Merchant) Lv40, 5202=Mockie (Banker) Lv40, 5203=Cocopang (Noble Cleric of Restoration) Lv40, 5204=Teleportal Lv40, 5301=Kenritt (Merchant) Lv40, 5302=Domos (Banker) Lv40, 5303=Moapang (Noble Cleric of Restoration) Lv40, 5304=Teleportal Lv40, 6001=Guard Lv65, 6002=Recruiter Lv40, 6003=Recruit Lv40, 6004=Recruit Lv32, 6005=Recruit Lv32, 6006=Recruit Lv32, 6007=Recruit Lv60, 6008=Recruit Lv32, 6009=Drill Instructor Lv26, 6010=Rescue Marshall Lv26, 6011=Rescue Specialist Lv26, 6012=Rescue Specialist Lv65, 6014= Lv30, 6015= Lv30, 6016= Lv30, 6017=Free Traders Agent Lv65, 6018=Free Traders Agent Lv65, 6019=Enlightened Union Agent Lv65, 6020=Enlightened Union Agent Lv65, 6021=Iron Order Agent Lv65, 6022=Iron Order Agent Lv65, 6023=Free Traders Agent Lv65, 6024=Free Traders Agent Lv65, 6025=Enlightened Union Agent Lv65, 6026=Enlightened Union Agent Lv65, 6027=Iron Order Agent Lv65, 6028=Iron Order Agent Lv65, 6029=Valkyon Federation Investigator Lv32, 6030=Valkyon Federation Investigator Lv32, 6031=Valkyon Federation Investigator Lv32, 6032=Valkyon Federation Investigator Lv32, 6033=Valkyon Federation Investigator Lv32, 6034=Valkyon Federation Investigator Lv32, 6035=Valkyon Federation Investigator Lv40, 6036=Valkyon Federation Investigator Lv40, 6037=Valkyon Federation Investigator Lv40, 6038= Lv40, 6039= Lv26, 6040=Valkyon Federation Investigator Lv32, 6041=Valkyon Federation Investigator Lv32, 6042=Valkyon Federation Investigator Lv32, 6043=Valkyon Federation Investigator Lv57, 6044=Valkyon Federation Investigator Lv32, 6045=Valkyon Federation Investigator Lv32, 6046=Valkyon Federation Investigator Lv32, 6047=Valkyon Federation Investigator Lv32, 6048=Valkyon Federation Investigator Lv32, 6049=Valkyon Federation Investigator Lv32, 6050=Valkyon Federation Investigator Lv32, 6051=Valkyon Federation Investigator Lv32, 6052=Valkyon Federation Investigator Lv32, 8001=Adria (Federation Officer) Lv40, 8002=Adria (Federation Officer) Lv40, 8003=Lam (Legate) Lv40, 8004=Man in Black Lv32, 8005=Molva (Free Traders Magister) Lv32, 8006=Jorivah (Enlightened Union Magister) Lv40, 8007=Aknam (Iron Order Magister) Lv65, 8008=Adria (Federation Officer) Lv40, 8009=Jovin (Federation Magister) Lv40, 8010=Morian (Federation Peacekeeper) Lv32, 8011=Tankay (Federation Peacekeeper) Lv40, 8012=Lifeless Body (Valkyon Federation Soldier) Lv65, 8013=Nehobin (Valkyon Federation Soldier) Lv40, 8014= Lv40, 8015=Molva (Free Traders Magister) Lv32, 8016=Jorivah (Enlightened Union Magister) Lv40, 8017=Aknam (Iron Order Magister) Lv65, 8018=Adria (Federation Officer) Lv40, 8019=Jovin (Federation Magister) Lv40, 8020=Adria (Federation Officer) Lv40, 8021=Man in Black Lv32, 8022=Zik (Treasure Hunter) Lv32, 8023=Zik (Treasure Hunter) Lv32, 8024=Molva (Free Traders Magister) Lv32, 8025=Molva (Free Traders Magister) Lv32, 8026=Zik (Treasure Hunter) Lv32, 8027=Adria (Federation Officer) Lv40, 8028=Adria (Federation Officer) Lv40, 8029=Adria (Federation Officer) Lv40, 8030=Adria (Federation Officer) Lv40, 8031=Jovin (Federation Magister) Lv40, 9001=Caiman Thief Lv64, 9002=Hapless Caiman Thief Lv64, 9003=Unstable Life Essence Lv50, 9004=Nimotz (Banquet Supplier) Lv40, 9005=Olivung (Sous Chef) Lv40, 9009=Olivung's Cooking Pot Lv40, 9011=Time Distortion Lv40, 9020=Nimotz's Belongings (Nimotz's Traces) Lv40, 300540= Lv6, 300541=Rockcrawler Lv5, 300542=Rockcrawler Cleaver Lv5, 300910=Prowling Cromos Lv8, 300911=Cromos Lv7, 300920=Shaggy Noruk Lv7, 300921=Noruk Lv2, 300930=Elder Ghilliedhu Lv2, 300931=Ghilliedhu Lv1, 300932=Horned Ghilliedhu Lv6, 300933=Hardened Ghilliedhu Lv3, 300940= Lv6, 300941=Terron Lv1, 300942=Terron Thrall Lv8, 300943=Terron Saboteur Lv7, 300944=Terron Chief Lv1, 300945=Terron Lama Lv7, 300950= Lv7, 300951=Dark Raider Lv8, 300952= Lv7, 300953= Lv10, 300960=Devoted Ebon Imp Lv8, 301190= Lv6, 301191=Stonebeak Raider Lv4, 301192= Lv6, 301193=Stonebeak Brigand Lv3, 301194=Stonebeak Highcrest Lv4
+    - huntingZoneId: 13
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 101, 102, 111, 301, 302, 303, 304, 555, 556, 557, 558, 601, 888, 901, 902, 999, 1001, 1002, 1003, 1004, 1011, 1271, 1501, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5101, 5102, 5103, 5104, 5201, 5202, 5203, 5204, 5301, 5302, 5303, 5304, 6001, 6002, 6003, 6004, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 6012, 6014, 6015, 6016, 6017, 6018, 6019, 6020, 6021, 6022, 6023, 6024, 6025, 6026, 6027, 6028, 6029, 6030, 6031, 6032, 6033, 6034, 6035, 6036, 6037, 6038, 6039, 6040, 6041, 6042, 6043, 6044, 6045, 6046, 6047, 6048, 6049, 6050, 6051, 6052, 8001, 8002, 8003, 8004, 8005, 8006, 8007, 8008, 8009, 8010, 8011, 8012, 8013, 8014, 8015, 8016, 8017, 8018, 8019, 8020, 8021, 8022, 8023, 8024, 8025, 8026, 8027, 8028, 8029, 8030, 8031, 9001, 9002, 9003, 9004, 9005, 9009, 9011, 9020, 300540, 300541, 300542, 300910, 300911, 300920, 300921, 300930, 300931, 300932, 300933, 300940, 300941, 300942, 300943, 300944, 300945, 300950, 300951, 300952, 300953, 300960, 301190, 301191, 301192, 301193, 301194]
+      npcName: ""
+      $extends: island_of_dawn_normal
+
+    # Elite (1 NPCs): 6013= Lv26
+    - huntingZoneId: 13
+      npcTemplateId: [6013]
+      npcName: ""
+      $extends: island_of_dawn_elite

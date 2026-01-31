@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Cultists' Refuge (huntingZoneId: 489)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 4 NPCs, Lv38
+  cultists_refuge_boss:
+    itemBags:
+      - id: 1
+        bagName: "Cultists' Refuge Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (4 NPCs): 3609=Galanos (Shurian Enforcer) Lv38, 3707=High Priestess Akia (Mistress of Shade) Lv38, 3801=Bhaozurbas (Argon Emissary) Lv38, 3802=Terkasia (Mistress of Deceit) Lv38
+    - huntingZoneId: 489
+      npcTemplateId: [3609, 3707, 3801, 3802]
+      npcName: ""
+      $extends: cultists_refuge_boss

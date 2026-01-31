@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Tor Exsul (huntingZoneId: 36)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 4 NPCs, Lv55-60
+  tor_exsul_boss:
+    itemBags:
+      - id: 1
+        bagName: "Tor Exsul Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (4 NPCs): 5=Magmar Teralith Lv55, 11=Vale Hunter Arachnen Lv55, 19=Sandlurker Lizard Lv56, 999=Kelthuzad Vulcan (Killian's Army) Lv60
+    - huntingZoneId: 36
+      npcTemplateId: [5, 11, 19, 999]
+      npcName: ""
+      $extends: tor_exsul_boss

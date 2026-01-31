@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Labyrinth of Terror (huntingZoneId: 476)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 7 NPCs, Lv56-57
+  labyrinth_of_terror_boss:
+    itemBags:
+      - id: 1
+        bagName: "Labyrinth of Terror Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (7 NPCs): 2901=Arzakaar (Corpsesleigh) Lv57, 2902=Halvaroggh (Chaos Groundswell) Lv57, 2903=Drakiirath (Berylshot) Lv57, 3902=Aleister (Killian's Jester) Lv56, 4000=Killian (God of Chaos) Lv57, 8000=Guardian Lithikumas Lv56, 8001=Lithikumas Sentinel Lv56
+    - huntingZoneId: 476
+      npcTemplateId: [2901, 2902, 2903, 3902, 4000, 8000, 8001]
+      npcName: ""
+      $extends: labyrinth_of_terror_boss

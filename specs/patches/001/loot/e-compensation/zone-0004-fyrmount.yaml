@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Fyrmount (huntingZoneId: 4)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 16 NPCs, Lv48-68
+  fyrmount_boss:
+    itemBags:
+      - id: 1
+        bagName: "Fyrmount Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (16 NPCs): 1011=Fangspawn Lv49, 1021=Sulphurous Groknar Lv49, 2011=Voracious Fangspawn Lv50, 3011=Marasep Lv51, 3014=Dracoloth Lv65, 3015=Dracoloth On-guard Lv65, 3017=Dragon Lv65, 3019=Captured Dracoloth Lv68, 3021=Soulstalker Lv51, 3047=Elite Blue Dracoloth (Dragon Leader) Lv68, 3048=Enraged Dracoloth Lv65, 3049=Elite Black Dracoloth (Dragon Leader) Lv68, 3050=Enraged Dragon Lv65, 5011=Tempest Kanash (Plague Messenger) Lv68, 7011=Marakadi (Dark Servant) Lv51, 7012=Jirakar (Keeper of the Flames) Lv48
+    - huntingZoneId: 4
+      npcTemplateId: [1011, 1021, 2011, 3011, 3014, 3015, 3017, 3019, 3021, 3047, 3048, 3049, 3050, 5011, 7011, 7012]
+      npcName: ""
+      $extends: fyrmount_boss

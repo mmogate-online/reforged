@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Saleron's Sky Garden (huntingZoneId: 494)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 11 NPCs, Lv40
+  salerons_sky_garden_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 59 NPCs, Lv54
+  salerons_sky_garden_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (11 NPCs): 1001=Exit Teleportal Lv40, 1002= Lv40, 1003=Sky Garden Teleportal Lv40, 1004=Final Terrace Teleportal Lv40, 1005=Exit Teleportal Lv40, 1006=Sky Garden Teleportal Lv40, 1007=Sky Garden Teleportal Lv40, 1008=Sky Garden Teleportal Lv40, 1110=Torsten (Prion Prophet) Lv40, 1113=Ancient Slate Lv40, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 494
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1110, 1113, 11111]
+      npcName: ""
+      $extends: salerons_sky_garden_normal
+
+    # Elite (59 NPCs): 5001=Mandrake Chanter Lv54, 5002=Goldmane Longhorn Lv54, 5003=Mandrake Mantrar Lv54, 5004=Mandrake Bud Lv54, 5005=Talpid Thumper Lv54, 5007=Cursed Blood Moppet Lv54, 5009=Cursed Disc Reaper Lv54, 5011=Mekonari Necromancer Lv54, 5012=Prion Helgevar Lv54, 5013=Prion Njalvar Lv54, 5014=Sihranar Marauder Lv54, 5015=Sihranar Berserker Lv54, 5016=Sikandari Talonguard Lv54, 5017=Sikandari Priest Lv54, 5018=Sikandari Sentinel Lv54, 5019=Trysawk (Mekonari Shaman) Lv54, 5020=Bloodshard Lv54, 5022=Nurverith Lv54, 5023=Sargerith Lv54, 5024=Jiteleth Iskaragard Lv54, 5025=Vlatinar Iskaragard Lv54, 5026=Palmarek Iskaragard Lv54, 5027=Mystral Obelisk Lv54, 5028=Eldritch Priest Lv54, 5029=Karmiir Guardian Lv54, 5030=Infernal Cunae Lv54, 5034=Cursed Infantry (Legion of the Damned) Lv54, 5035=Cursed Dragoon (Legion of the Damned) Lv54, 5036=Feradrus (Eldritch Berserker) Lv54, 5037=Raging Imp Lv54, 5038=Caeladnus (Eldritch Berserker) Lv54, 5039=Cruel Imp Lv54, 5040=Dread Necarus Lv54, 5041=Vicious Necarus Lv54, 5042=Verdant Necarus Lv54, 5043=Necarus Golum Lv54, 5044=Zaetyrus Magus Lv54, 5045=Nurprimus Magus Lv54, 5046=Veltarus Magus Lv54, 5047=Maldricta Magus Lv54, 5048=Dispersus Pylon Lv54, 5052=Caiman Keybearer Lv54, 6000=Seeker Shard Lv54, 6001=Werlyss Crystal Lv54, 6002=Maelkul Crystal Lv54, 6003=Sdurgo Crystal Lv54, 6004=Zenobic Crystal Lv54, 6005=Seeker Shard Lv54, 6006=Seeker Shard Lv54, 6007=Seeker Shard Lv54, 6008=Seeker Shard Lv54, 6009=Seeker Shard Lv54, 6010=Seeker Shard Lv54, 6011=Seeker Shard Lv54, 6012=Seeker Shard Lv54, 6013=Seeker Shard Lv54, 6014=Seeker Shard Lv54, 6015=Verdant Necarus Lv54, 6016=Veltarus Magus Lv54
+    - huntingZoneId: 494
+      npcTemplateId: [5001, 5002, 5003, 5004, 5005, 5007, 5009, 5011, 5012, 5013, 5014, 5015, 5016, 5017, 5018, 5019, 5020, 5022, 5023, 5024, 5025, 5026, 5027, 5028, 5029, 5030, 5034, 5035, 5036, 5037, 5038, 5039, 5040, 5041, 5042, 5043, 5044, 5045, 5046, 5047, 5048, 5052, 6000, 6001, 6002, 6003, 6004, 6005, 6006, 6007, 6008, 6009, 6010, 6011, 6012, 6013, 6014, 6015, 6016]
+      npcName: ""
+      $extends: salerons_sky_garden_elite

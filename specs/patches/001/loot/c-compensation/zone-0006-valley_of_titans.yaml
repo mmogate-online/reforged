@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Valley of Titans (huntingZoneId: 6)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 43 NPCs, Lv16-40
+  valley_of_titans_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (43 NPCs): 1011=Grazing Noruk Lv16, 1021=Stomping Noruk Lv17, 1031=Ravenous Hyena Lv16, 1032=Starving Hyena Lv17, 1041=Gutrend Kulkari Lv16, 1042=Gutrend Hyena Lv17, 1051=Gutrend Clawtamer Lv16, 1052=Gutrend Hyena Lv17, 1061=Gutrend Brigand Lv16, 1062=Gutrend Pillager Lv17, 1071=Gutrend Raider Lv16, 1081=Gutrend Skullcrusher Lv16, 1091=Hyena Stalker Lv17, 1271=Arcun (Arcadia Mystery Merchant) Lv40, 2011=Hillwalker Warthog Lv17, 2021=Great Tusk Warthog Lv18, 2031=Scavenging Bear Lv17, 2041=Ravenous Bear Lv18, 2051=Gutrend Reaper Lv17, 2061=Gutrend Sentry Lv17, 2071=Gutrend Shaman Lv18, 2072=Gutrend Watcher Lv18, 2081=Gutrend Seer Lv18, 2082=Gutrend Juggernaut Lv19, 3011=Scion Justicar (Scions of Lok) Lv19, 3021=Lokian Battlerager (Scions of Lok) Lv19, 3031=Lokian Reaver (Scions of Lok) Lv19, 3032=Lokian Mystic (Scions of Lok) Lv19, 3041=Lokian Darkcaller (Scions of Lok) Lv19, 3042=Lokian Reapmaster (Scions of Lok) Lv19, 5001=Crisaka (Scions of Lok) Lv20, 5002=Abrata (Scions of Lok) Lv20, 7031=Krashar (Gutrend Chieftain) Lv20, 7032=Lakrax (Gutrend Defender) Lv19, 7033=Torax (Gutrend Defender) Lv19, 7041=Dakarius (Scions of Lok) Lv20, 7051=Smulch (Gutrend Butcher) Lv17, 8001=Arcadia Guard Lv16, 8002=Arcadia Guard Lv16, 8003=Arcadia Guard Lv16, 8004=Arcadia Guard Lv19, 8005=Arcadia Guard Lv19, 8006=Arcadia Guard Lv19
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1021, 1031, 1032, 1041, 1042, 1051, 1052, 1061, 1062, 1071, 1081, 1091, 1271, 2011, 2021, 2031, 2041, 2051, 2061, 2071, 2072, 2081, 2082, 3011, 3021, 3031, 3032, 3041, 3042, 5001, 5002, 7031, 7032, 7033, 7041, 7051, 8001, 8002, 8003, 8004, 8005, 8006]
+      npcName: ""
+      $extends: valley_of_titans_normal

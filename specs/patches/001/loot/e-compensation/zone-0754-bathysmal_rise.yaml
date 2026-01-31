@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Bathysmal Rise (huntingZoneId: 754)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv68
+  bathysmal_rise_boss:
+    itemBags:
+      - id: 1
+        bagName: "Bathysmal Rise Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 1000=Mephisis (Noxious Sentinel) Lv68, 1001=Tantibus (Harbinger of Terror) Lv68, 1002=Fulminar (Divine Nemesis) Lv68
+    - huntingZoneId: 754
+      npcTemplateId: [1000, 1001, 1002]
+      npcName: ""
+      $extends: bathysmal_rise_boss

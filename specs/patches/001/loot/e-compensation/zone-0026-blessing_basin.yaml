@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Blessing Basin (huntingZoneId: 26)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 9 NPCs, Lv40-68
+  blessing_basin_boss:
+    itemBags:
+      - id: 1
+        bagName: "Blessing Basin Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (9 NPCs): 501=Andras (Temple Pilot) Lv42, 2004=Mossy Teralith Lv40, 4000=Patient Lithikumas Lv41, 4001=Shadow Overseer Lv65, 4002=Oneirolith Lv65, 4003=Rheumikumas Lv65, 4004=Autumnal Giant Lv65, 4005=Oneirolith Lv65, 5001=Ortan (Sanctuary Interloper) Lv68
+    - huntingZoneId: 26
+      npcTemplateId: [501, 2004, 4000, 4001, 4002, 4003, 4004, 4005, 5001]
+      npcName: ""
+      $extends: blessing_basin_boss

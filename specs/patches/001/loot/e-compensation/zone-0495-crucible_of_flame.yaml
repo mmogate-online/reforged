@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Crucible of Flame (huntingZoneId: 495)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 18 NPCs, Lv60
+  crucible_of_flame_boss:
+    itemBags:
+      - id: 1
+        bagName: "Crucible of Flame Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (18 NPCs): 130=Crucible Commandant Lv60, 300=Brazier Commandant Lv60, 1000=Vemoroth Mark I Lv60, 1002=Coelfacien Mark I Lv60, 1003=Maxillatumen Mark I Lv60, 1004=Cyclops Mark I Lv60, 2000= Lv60, 2002= Lv60, 2003= Lv60, 2004= Lv60, 3000=Vemoroth Mark II Lv60, 3002=Coelfacien Mark II Lv60, 3003=Maxillatumen Mark II Lv60, 3004=Cyclops Mark II Lv60, 4000=Vemoroth Mark III Lv60, 4002=Coelfacien Mark III Lv60, 4003=Maxillatumen Mark III Lv60, 4004=Cyclops Mark III Lv60
+    - huntingZoneId: 495
+      npcTemplateId: [130, 300, 1000, 1002, 1003, 1004, 2000, 2002, 2003, 2004, 3000, 3002, 3003, 3004, 4000, 4002, 4003, 4004]
+      npcName: ""
+      $extends: crucible_of_flame_boss

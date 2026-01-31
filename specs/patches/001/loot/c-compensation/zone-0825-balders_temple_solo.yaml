@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Balder's Temple (Solo) (huntingZoneId: 825)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 96 NPCs, Lv1-60
+  balders_temple_solo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 6 NPCs, Lv40-60
+  balders_temple_solo_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (96 NPCs): 1011=Lazy Sloth Lv59, 1300=Coupe (Cleric of Restoration) Lv40, 2011=Argent Soulkeeper Lv59, 2031=Lurking Blade Golem Lv59, 2041=Eldritch Eye Lv59, 2051=Temple Brass Gardener Lv59, 3011=Shard-studded Ghilliedhu Lv59, 3012=Crystal-encrusted Ghilliedhu Lv59, 3013=Crystal-encrusted Ghilliedhu Lv59, 3014=Guardian Ghilliedhu Lv59, 3015=Guardian Ghilliedhu Lv59, 3016=Guardian Ghilliedhu Lv59, 3021=Repository of Wisdom Lv59, 3022=Repository of Wisdom Lv59, 3023=Repository of Wisdom Lv59, 3024=Repository of Wisdom Lv59, 3025=Repository of Wisdom Lv59, 3026=Mossy Arbosk Lv59, 3031=Temple Stonebeak Lv59, 3041= Lv59, 3051=Temple Rockcrawler Lv59, 3061=Temple Gardener Lv59, 3101=Furious Ghilliedhu Lv59, 3102=Furious Ghilliedhu Lv59, 3103=Furious Ghilliedhu Lv59, 3104=Furious Ghilliedhu Lv59, 3105=Furious Ghilliedhu Lv59, 3106=Furious Ghilliedhu Lv59, 3107=Furious Ghilliedhu Lv59, 3108=Furious Ghilliedhu Lv59, 3109=Furious Ghilliedhu Lv59, 3110=Furious Ghilliedhu Lv59, 3111=Furious Ghilliedhu Lv59, 3112=Furious Ghilliedhu Lv59, 3113=Furious Ghilliedhu Lv59, 3114=Furious Ghilliedhu Lv59, 3115=Furious Ghilliedhu Lv59, 3116=Furious Ghilliedhu Lv59, 3117=Furious Ghilliedhu Lv59, 3118=Furious Ghilliedhu Lv59, 3119=Furious Ghilliedhu Lv59, 3120=Furious Ghilliedhu Lv59, 3121=Furious Ghilliedhu Lv59, 4011=Temple Iskaragard Lv59, 4021=Temple Boregolem Lv59, 4031=Garden Stonebeak Lv59, 4041=Temple Wraith Lv59, 4051=Pond Brass Gardener Lv59, 4061=Enraged Fangspawn Lv59, 5000=Golem Generator Lv59, 5001=Golem Restoration Aura Lv59, 5002=Golem Curative Aura Lv59, 5011=Waterway Tender Golem Lv59, 5021=Waterway Preserver Golem Lv59, 6011=Focused Emitter Lv59, 7011= Lv59, 7021= Lv59, 7031= Lv59, 8000=Nightmare Auricadis (Guardian of the Relic) Lv59, 8001=Nightmare Auricadis (Guardian of the Relic) Lv59, 8002=Nightmare Auricadis (Guardian of the Relic) Lv59, 8003=Nightmare Auricadis (Guardian of the Relic) Lv59, 8004=Nightmare Auricadis (Guardian of the Relic) Lv59, 8005=Nightmare Auricadis (Guardian of the Relic) Lv59, 8011=Mirror of Light Lv59, 8041=Cannon Lv59, 9011= Lv59, 9021= Lv59, 9031= Lv59, 9051= Lv59, 9052= Lv59, 9053= Lv59, 9054= Lv59, 9055= Lv1, 9061=Superior Treasure Chest (Flashy) Lv59, 9062=Superior Treasure Chest (Ordinary) Lv59, 9063=Superior Treasure Chest (Coarse) Lv59, 9064=Treasure Chest (Coarse) Lv59, 9071= Lv26, 9072= Lv26, 9073= Lv60, 9080= Lv40, 9081= Lv40, 9082= Lv40, 9091= Lv27, 9092= Lv1, 10000=Dimensional Mirror Lv40, 10001=Dimensional Mirror Lv40, 10002=Dimensional Mirror Lv40, 10003=Dimensional Mirror Lv40, 10004=Dimensional Mirror Lv40, 10005= Lv40, 10006= Lv40, 10007= Lv40, 10008= Lv40, 10012=Dimensional Mirror Lv40
+    - huntingZoneId: 825
+      npcTemplateId: [1011, 1300, 2011, 2031, 2041, 2051, 3011, 3012, 3013, 3014, 3015, 3016, 3021, 3022, 3023, 3024, 3025, 3026, 3031, 3041, 3051, 3061, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 4011, 4021, 4031, 4041, 4051, 4061, 5000, 5001, 5002, 5011, 5021, 6011, 7011, 7021, 7031, 8000, 8001, 8002, 8003, 8004, 8005, 8011, 8041, 9011, 9021, 9031, 9051, 9052, 9053, 9054, 9055, 9061, 9062, 9063, 9064, 9071, 9072, 9073, 9080, 9081, 9082, 9091, 9092, 10000, 10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008, 10012]
+      npcName: ""
+      $extends: balders_temple_solo_normal
+
+    # Elite (6 NPCs): 8021= Lv60, 8031= Lv60, 9012= Lv60, 10009=Balder's Mirror Lv40, 10010= Lv40, 10011=Dimensional Mirror Lv40
+    - huntingZoneId: 825
+      npcTemplateId: [8021, 8031, 9012, 10009, 10010, 10011]
+      npcName: ""
+      $extends: balders_temple_solo_elite

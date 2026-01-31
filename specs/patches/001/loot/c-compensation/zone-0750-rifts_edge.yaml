@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Rift's Edge (huntingZoneId: 750)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 52 NPCs, Lv65
+  rifts_edge_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 35 NPCs, Lv65
+  rifts_edge_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (52 NPCs): 1501=Garden of Yativio Teleportal Lv65, 1502=Koleogg Nest Teleportal Lv65, 1503=Exit Teleportal Lv65, 3001=Debira (Guide) Lv65, 3002= Lv65, 3003=Azzem (Guide) Lv65, 3004=Brin (Guide) Lv65, 3005=Duani (Guide) Lv65, 3006=Vandraul (Guide) Lv65, 3007=Vandraul (Guide) Lv65, 3008=Duani (Guide) Lv65, 3009=Brin (Guide) Lv65, 3010=Vandraul (Guide) Lv65, 3011=Azzem (Guide) Lv65, 45017= Lv65, 45019= Lv65, 45020= Lv65, 45021= Lv65, 45022= Lv65, 45023= Lv65, 45025=Twin Counselor Monument (Key) Lv65, 45026= Lv65, 45027= Lv65, 45028= Lv65, 45029= Lv65, 45030= Lv65, 45031= Lv65, 45032= Lv65, 45033= Lv65, 45035= Lv65, 45036= Lv65, 45037= Lv65, 45039= Lv65, 45040= Lv65, 45042= Lv65, 45043=Cave Beetle (Bee Hunter) Lv65, 45048= Lv65, 45120= Lv65, 45121= Lv65, 45122= Lv65, 45220= Lv65, 45221= Lv65, 45222= Lv65, 45320= Lv65, 45321= Lv65, 45322= Lv65, 45420= Lv65, 45421= Lv65, 45422= Lv65, 45520= Lv65, 45521= Lv65, 45522= Lv65
+    - huntingZoneId: 750
+      npcTemplateId: [1501, 1502, 1503, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 45017, 45019, 45020, 45021, 45022, 45023, 45025, 45026, 45027, 45028, 45029, 45030, 45031, 45032, 45033, 45035, 45036, 45037, 45039, 45040, 45042, 45043, 45048, 45120, 45121, 45122, 45220, 45221, 45222, 45320, 45321, 45322, 45420, 45421, 45422, 45520, 45521, 45522]
+      npcName: ""
+      $extends: rifts_edge_normal
+
+    # Elite (35 NPCs): 5000=Airship Lv65, 5001=Airship Lv65, 5002=Airship Lv65, 5003=Airship Lv65, 5004=Airship Lv65, 5005=Airship Lv65, 5006=Airship Lv65, 5007=Airship Lv65, 5008=Airship Lv65, 5009=Airship Lv65, 45001=Guwangi Warrior Lv65, 45003=Guwangi Shaman Lv65, 45004=Guwangi Scout Lv65, 45005=Tuberelle Lv65, 45006=Berserk Tuberelle Lv65, 45007=Oddritu (Carnivorous Plant) Lv65, 45008=Oddritu Lv65, 45009=Archdeva Assassin Lv65, 45010=Archdeva Scout Lv65, 45011=Archdeva Priest Lv65, 45018= Lv65, 45034=Archer Lv65, 45038=Tuberelle Lv65, 45041=Tuberelle Lv65, 45049=Elite Rift-Priest (Cave Gatekeeper) Lv65, 45050=Greedy Caiman Lv65, 45051= Lv65, 45052= Lv65, 45053= Lv65, 45054= Lv65, 45055= Lv65, 45056= Lv65, 45057= Lv65, 45058= Lv65, 45059= Lv65
+    - huntingZoneId: 750
+      npcTemplateId: [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 45001, 45003, 45004, 45005, 45006, 45007, 45008, 45009, 45010, 45011, 45018, 45034, 45038, 45041, 45049, 45050, 45051, 45052, 45053, 45054, 45055, 45056, 45057, 45058, 45059]
+      npcName: ""
+      $extends: rifts_edge_elite

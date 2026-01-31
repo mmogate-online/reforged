@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Saravash's Ascent (huntingZoneId: 979)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 10 NPCs, Lv1-40
+  saravashs_ascent_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 33 NPCs, Lv26-59
+  saravashs_ascent_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (10 NPCs): 1501=Exit Teleportal Lv40, 1502=Teleportal Lv40, 1503=Zzawulong (Reclusive Explorer) Lv40, 11111=Cherfa (Clueless Crystal Merchant) Lv40, 47931= Lv1, 47932= Lv1, 47933= Lv1, 47944= Lv1, 47945= Lv1, 47946= Lv1
+    - huntingZoneId: 979
+      npcTemplateId: [1501, 1502, 1503, 11111, 47931, 47932, 47933, 47944, 47945, 47946]
+      npcName: ""
+      $extends: saravashs_ascent_normal
+
+    # Elite (33 NPCs): 555= Lv26, 47901=Devan Bloodguard Lv34, 47902=Devan Blademistress Lv34, 47903=Devan Darkweaver Lv34, 47904=Lokian Sniper Lv34, 47905=Silverchest Gorilla Lv34, 47906=Fanged Gullet Lv34, 47907=Lokian Bloodcaster Lv34, 47908=Caprin Imp Scrounger Lv34, 47909=Tholgur Templar Lv34, 47910=Caprin Imp Brute Lv34, 47911=Young Goldeneye Basilisk Lv34, 47912=Young Fireye Basilisk Lv34, 47913=Devan Bloodguard Lv34, 47914=Devan Blademistress Lv34, 47915=Devan Darkweaver Lv34, 47916=Lokian Sniper Lv34, 47917=Lokian Magister Lv34, 47918=Lokian Magister Lv34, 47919=Fanged Gullet Lv34, 47920=Lokian Deadeye Lv34, 47921=Caprin Brute Lv34, 47922= Lv34, 47934= Lv34, 47935= Lv26, 47936= Lv26, 47937= Lv26, 47938=Treasure Chest Lv34, 47939=Treasure Chest Lv34, 47940= Lv34, 47941= Lv34, 47942= Lv59, 47943= Lv59
+    - huntingZoneId: 979
+      npcTemplateId: [555, 47901, 47902, 47903, 47904, 47905, 47906, 47907, 47908, 47909, 47910, 47911, 47912, 47913, 47914, 47915, 47916, 47917, 47918, 47919, 47920, 47921, 47922, 47934, 47935, 47936, 47937, 47938, 47939, 47940, 47941, 47942, 47943]
+      npcName: ""
+      $extends: saravashs_ascent_elite

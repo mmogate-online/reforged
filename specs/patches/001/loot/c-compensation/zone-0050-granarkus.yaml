@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Granarkus (huntingZoneId: 50)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 25 NPCs, Lv13-64
+  granarkus_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 1 NPCs, Lv64
+  granarkus_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (25 NPCs): 4=Kalash Devastator Lv64, 5=Athakela Prowler Lv64, 6=Argon Magister Priest Lv64, 7=Manaathol Executor Lv64, 8=Kalash Battlemaster Lv64, 9=Prismar Watcher Lv64, 10=Zomgul Gatherer Lv64, 11=Zariik Spoda Lv64, 14=Dulixan (Iknephar Gatekeeper) Lv64, 100=Shambling Creeper Lv64, 101=Tayabah Flower Lv64, 102=Chamas Sentinel Lv64, 103= Lv64, 104= Lv64, 200=Quernok Borer Lv64, 600= Lv64, 601= Lv13, 1002={@Creature:49#1006} (Botanist) Lv64, 1271=Locarnum (Val Kaeli Mystery Merchant) Lv40, 2000=Incubator Lv64, 2001=Jendro Capacitor Lv64, 3001=Twerhol (Parasite Plant Commander) Lv64, 3002=Sualar (Kalash Devastator) Lv64, 3003=Orgwalf (Iknephar Magister) Lv64, 3004=Broll (Hulrap Intimigard) Lv64
+    - huntingZoneId: 50
+      npcTemplateId: [4, 5, 6, 7, 8, 9, 10, 11, 14, 100, 101, 102, 103, 104, 200, 600, 601, 1002, 1271, 2000, 2001, 3001, 3002, 3003, 3004]
+      npcName: ""
+      $extends: granarkus_normal
+
+    # Elite (1 NPCs): 300= Lv64
+    - huntingZoneId: 50
+      npcTemplateId: [300]
+      npcName: ""
+      $extends: granarkus_elite

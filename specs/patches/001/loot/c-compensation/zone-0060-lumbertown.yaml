@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Lumbertown (huntingZoneId: 60)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 106 NPCs, Lv1-65
+  lumbertown_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (106 NPCs): 1001=Valdrin (Merchant) Lv40, 1002=Catrine (Crystal Merchant) Lv40, 1003=Romgan (Banker) Lv40, 1004=Chase (Banker) Lv40, 1005=Sandor (Aide) Lv40, 1006=Erek (Arcadia Guard) Lv40, 1007=Latton (Arcadia Guard) Lv40, 1008=Brose (Arcadia Guard) Lv40, 1009=Kenan (Villager) Lv40, 1010=Jaram (Blacksmith) Lv40, 1011=Ackerly (Woodcutter Union President) Lv40, 1012=Nylees (Ecoactivist) Lv40, 1013=Arn (Magistrate) Lv40, 1014=Daven (Prefect) Lv40, 1015=Almanon (Flight Manager) Lv40, 1016=Himir (Messenger) Lv40, 1017=Suren (Coordinator on Leave) Lv40, 1018=Einna (Refugee Deputy) Lv40, 1019=Lennert (Civil Engineer) Lv40, 1020=Gattoll (Refugee Woodcutter) Lv40, 1021=Drallas (Refugee) Lv40, 1022=Surell (Refugee) Lv40, 1023=Heikon (Refugee) Lv40, 1024=Machol (Refugee) Lv40, 1025=Allos (Refugee) Lv40, 1026=Nytren (Refugee) Lv40, 1027=Nytell (Refugee) Lv40, 1028=Duegal (Refugee) Lv40, 1029=Zandra (Guild Quest Rewards) Lv40, 1030=Teleportal Lv40, 1031=Sanaz (Tactics Instructor) Lv40, 1032=Nenuel (Magic Instructor) Lv40, 1033=Mission Board Lv40, 1034=Mission Board Lv40, 1035=Mission Board Lv40, 1036=Mission Board Lv40, 1037=Mission Board Lv40, 1038=Nurni (Trade Broker) Lv40, 1039=Klaon (Arcanist) Lv40, 1040=Anmaba (Sick Refugee) Lv40, 1041=Sharlei (Sick Refugee) Lv40, 1042=Antone (Sick Refugee) Lv40, 1043=Eison (Sick Refugee) Lv40, 1044=Anmaba (Recuperated Refugee) Lv40, 1045=Sharlei (Recuperated Refugee) Lv40, 1046=Antone (Recuperated Refugee) Lv40, 1047=Eison (Recuperated Refugee) Lv40, 1048=Arcadia Guard Lv40, 1049=Arcadia Guard Lv40, 1050=Refugee Lv40, 1051=Refugee Lv40, 1052=Refugee Lv40, 1053=Refugee Lv40, 1054=Worker Lv40, 1055=Worker Lv40, 1056=Lucar (Mill Owner) Lv40, 1057=Royer (Villager) Lv40, 1058=Beleha (Villager) Lv40, 1059=Sadma (Villager) Lv40, 1060=Refugee Lv40, 1061=Refugee Lv40, 1062=Refugee Lv40, 1063=Refugee Lv40, 1064=Refugee Lv40, 1065=Refugee Lv40, 1066=Refugee Lv40, 1067=Refugee Lv40, 1068=Refugee Lv40, 1069=Refugee Lv40, 1070=Refugee Lv40, 1071=Refugee Lv40, 1072=Refugee Lv40, 1073=Shalperia (Volunteer) Lv40, 1099=Tomba (Tuwangi Runaway) Lv40, 1200=Arni (Cleric of Blessing) Lv40, 1300=Hadran (Cleric of Restoration) Lv40, 1600=Meresh (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1904= Lv40, 1905= Lv40, 1906=Brownie Lv40, 1907=Ash Lv40, 1908=Grey Lv40, 1909=Haines (Ranch Manager) Lv40, 1910=Pollac (Ranch Hand) Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 60
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056, 1057, 1058, 1059, 1060, 1061, 1062, 1063, 1064, 1065, 1066, 1067, 1068, 1069, 1070, 1071, 1072, 1073, 1099, 1200, 1300, 1600, 1602, 1700, 1900, 1901, 1902, 1903, 1904, 1905, 1906, 1907, 1908, 1909, 1910, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: lumbertown_normal

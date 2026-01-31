@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Bastion of Lok (Solo) (huntingZoneId: 3001)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 2 NPCs, Lv21
+  bastion_of_lok_solo_boss:
+    itemBags:
+      - id: 1
+        bagName: "Bastion of Lok (Solo) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (2 NPCs): 1006=Soulcrusher (Bloodlust Killer) Lv21, 3006=Bloodbound Vulcan (Wretched Blood Fiend) Lv21
+    - huntingZoneId: 3001
+      npcTemplateId: [1006, 3006]
+      npcName: ""
+      $extends: bastion_of_lok_solo_boss

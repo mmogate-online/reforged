@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Temple of Temerity (huntingZoneId: 482)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv59
+  temple_of_temerity_boss:
+    itemBags:
+      - id: 1
+        bagName: "Temple of Temerity Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 6001=Kumas Sentinel (Warden of the Wall) Lv59, 6010=Asirion (Master of the Wall) Lv59, 7008=Valsandre (Reaver of the Wall) Lv59
+    - huntingZoneId: 482
+      npcTemplateId: [6001, 6010, 7008]
+      npcName: ""
+      $extends: temple_of_temerity_boss

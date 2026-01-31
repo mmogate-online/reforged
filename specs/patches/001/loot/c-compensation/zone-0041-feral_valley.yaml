@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Feral Valley (huntingZoneId: 41)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 25 NPCs, Lv40-46
+  feral_valley_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv47
+  feral_valley_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (25 NPCs): 101=Nataik (Black Claw Champion) Lv46, 102=Utalak (Black Claw Champion) Lv46, 301=Gula Executor (Hand of Thulsa) Lv46, 302=Badoask (Black Claw Battlerager) Lv46, 303=Vadrask (Black Claw Battlerager) Lv46, 1001=Valley Hunter Arachnen Lv46, 1002=Noralk Kamara Lv46, 1003=Sable Sabertooth Lv46, 1271=Vaneva (Val Palrada Mystery Merchant) Lv40, 2002=Besharan Enforcer Lv46, 2003=Black Claw Orcan Lv46, 2004=Black Claw Fighter Lv46, 2005=Black Claw Raider Lv46, 2006=Besharan Smuggler Lv46, 2008=Swamp Tentacullar Lv46, 2009=Mire Tentacullar Lv46, 3002=Lurching Cullar Lv46, 3003=Rapacious Cullar Lv46, 3004=Black Claw Crusher Lv46, 3005=Black Claw Rager Lv46, 3006=Black Claw Blood Fighter Lv46, 4004=Black Claw Berserker Lv46, 4005=Black Claw Slaughterer Lv46, 4009=Besharan Caiman Guard Lv46, 4010=Besharan Caiman Porter Lv46
+    - huntingZoneId: 41
+      npcTemplateId: [101, 102, 301, 302, 303, 1001, 1002, 1003, 1271, 2002, 2003, 2004, 2005, 2006, 2008, 2009, 3002, 3003, 3004, 3005, 3006, 4004, 4005, 4009, 4010]
+      npcName: ""
+      $extends: feral_valley_normal
+
+    # Elite (2 NPCs): 9001=Korsharak (Black Claw Warlord) Lv47, 9002=Thistleback Gorilla (Servant of Korsharak) Lv47
+    - huntingZoneId: 41
+      npcTemplateId: [9001, 9002]
+      npcName: ""
+      $extends: feral_valley_elite

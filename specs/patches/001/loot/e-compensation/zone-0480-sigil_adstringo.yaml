@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Sigil Adstringo (huntingZoneId: 480)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 9 NPCs, Lv59
+  sigil_adstringo_boss:
+    itemBags:
+      - id: 1
+        bagName: "Sigil Adstringo Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (9 NPCs): 90= Lv59, 107=Evignar (Servant of Skulregnath) Lv59, 112=Lamyriss (Servant of Skulregnath) Lv59, 113=Harkyriss (Servant of Skulregnath) Lv59, 119=Great Chief Tungkan (Servant of Skulregnath) Lv59, 121=Skulregnath (The Wyrm Eternal) Lv59, 700=Skulregnath Reborn Lv59, 701=Inferis Dracoloth Lv59, 800=Evignar Resurgent Lv59
+    - huntingZoneId: 480
+      npcTemplateId: [90, 107, 112, 113, 119, 121, 700, 701, 800]
+      npcName: ""
+      $extends: sigil_adstringo_boss

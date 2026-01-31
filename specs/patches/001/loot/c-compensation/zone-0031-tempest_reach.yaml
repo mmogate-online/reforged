@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Tempest Reach (huntingZoneId: 31)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 41 NPCs, Lv1-99
+  tempest_reach_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv44-46
+  tempest_reach_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (41 NPCs): 1=Ossugon Frostwalker Lv42, 2=Ossugon Icelord Lv42, 3=Frigid Ossugon Lv42, 4=Icy Skeletal Minion Lv42, 5=Frosted Skeletal Thrall Lv42, 6=Deathfrost Charger Lv42, 7=Deathfrost Cavalier Lv42, 8=Sepulchral Wraith Lv42, 9=Souleater Wraith Lv42, 10=Frostreach Sentinel Lv43, 12=Drowned Gula Sailor Lv42, 13=Drowned Gula Swab Lv42, 14=Drowned Gula Bosun Lv42, 15=Drowned Gula Officer Lv42, 16=Storm Naga Ravager Lv42, 17=Storm Naga Predator Lv42, 18=Caiman Plunderer Lv42, 19=Caiman Looter Lv42, 22=Frosthowl Siren Lv42, 23=Frostclaw Siren Lv42, 24=Dark Arcanist Lv42, 28=Siarxis (Frost Queen) Lv43, 30=Endain (Icebone Dragoon) Lv43, 31=Endrenlas (Icebone Dragoon) Lv43, 32=Enkanas (Icebone Dragoon) Lv43, 33=Bloody Tombstone Lv44, 34=Bloody Tombstone Lv44, 35=Bloody Tombstone Lv44, 36=Bloody Tombstone Lv44, 101=Wounded Soldier (Dreadspire Survivor) Lv30, 102=Federation Soldier Lv26, 103=Federation Soldier Lv26, 104=Federation Soldier Lv26, 105=Federation Soldier Lv26, 106=Federation Soldier Lv1, 107=Federation Soldier Lv1, 108=Centurion Lv32, 1271=Storan (Westonia Mystery Merchant) Lv40, 1501=Shuma (Dreadspire Entrance Manager) Lv40, 9998= Lv99, 9999= Lv99
+    - huntingZoneId: 31
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 22, 23, 24, 28, 30, 31, 32, 33, 34, 35, 36, 101, 102, 103, 104, 105, 106, 107, 108, 1271, 1501, 9998, 9999]
+      npcName: ""
+      $extends: tempest_reach_normal
+
+    # Elite (2 NPCs): 11= Lv44, 97=Unglueth Ebonclaw Lv46
+    - huntingZoneId: 31
+      npcTemplateId: [11, 97]
+      npcName: ""
+      $extends: tempest_reach_elite

@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Kezzel's Gorge (huntingZoneId: 453)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 22 NPCs, Lv1-60
+  kezzels_gorge_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 5 NPCs, Lv1-60
+  kezzels_gorge_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (22 NPCs): 10= Lv60, 20= Lv60, 30= Lv60, 40= Lv60, 50= Lv60, 200= Lv26, 300= Lv1, 401= Lv1, 1501=Exit Teleportal Lv58, 3000= Lv60, 4501=Penrik (Caravan Guard Leader) Lv32, 4502=Relaman (Caravan Guard) Lv32, 4503=Ronafinz (Caravan Guard) Lv32, 4504=Jerzunt (Caravan Guard) Lv32, 4505=Venok (Caravan Guard) Lv32, 4511=Penrik (Caravan Guard Leader) Lv32, 4521=Penrik (Caravan Guard Leader) Lv32, 4601= Lv26, 4602= Lv26, 4700= Lv26, 4701= Lv60, 4702= Lv60
+    - huntingZoneId: 453
+      npcTemplateId: [10, 20, 30, 40, 50, 200, 300, 401, 1501, 3000, 4501, 4502, 4503, 4504, 4505, 4511, 4521, 4601, 4602, 4700, 4701, 4702]
+      npcName: ""
+      $extends: kezzels_gorge_normal
+
+    # Elite (5 NPCs): 100= Lv60, 400= Lv1, 500= Lv60, 501= Lv60, 9999= Lv26
+    - huntingZoneId: 453
+      npcTemplateId: [100, 400, 500, 501, 9999]
+      npcName: ""
+      $extends: kezzels_gorge_elite

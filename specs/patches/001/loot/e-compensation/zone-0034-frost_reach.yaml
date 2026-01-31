@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Frost Reach (huntingZoneId: 34)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 10 NPCs, Lv44-70
+  frost_reach_boss:
+    itemBags:
+      - id: 1
+        bagName: "Frost Reach Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (10 NPCs): 1000=Icecleaver Giant Lv45, 1010=Icereaver Giant Lv44, 1100=Icewalker Barsicore Lv45, 1110=Frosthunter Barsicore Lv44, 2002=Frygaras (Icewalker Dracoloth) Lv70, 2003=Sabranak (Froststalker) Lv70, 5002=Barabok (Frostreaver) Lv46, 9002=Teriak (The Unvanquished) Lv46, 9003=Frygaras (Icewalker Dracoloth) Lv52, 9004=Sabranak (Froststalker) Lv52
+    - huntingZoneId: 34
+      npcTemplateId: [1000, 1010, 1100, 1110, 2002, 2003, 5002, 9002, 9003, 9004]
+      npcName: ""
+      $extends: frost_reach_boss

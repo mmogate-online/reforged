@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Aurum Road (huntingZoneId: 24)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 32 NPCs, Lv36-68
+  aurum_road_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (32 NPCs): 1=Sand Wind Kobold Looter Lv36, 2=Sand Wind Kobold Lobber Lv36, 3=Sand Wind Kobold Headhunter Lv36, 6=Sand Wind Kulkari Lv37, 7=Sand Wind Champion Lv37, 8=Sand Wind Prophet Lv37, 10=Greedy Vulcan Lv38, 11=Horned Orcan Berserker Lv37, 13=Sly Runekeeper Lv37, 14=Bloodhorn Maligos Lv38, 15=Sandpaw Hyena Lv36, 16=Desertcrawler Wolf Lv36, 17=Eldritch Master (Scions of Lok) Lv38, 18=Skullcleaver (Scions of Lok) Lv38, 19=Eldritch Warper (Scions of Lok) Lv37, 20=Blackguard (Scions of Lok) Lv37, 51=Sand Wind Kobold Thief Lv36, 56=Sand Wind Scavenger Lv37, 57=Sand Wind Crusher Lv37, 58=Sand Wind Shaman Lv37, 106=Sand Wind Reaper Lv36, 156=Sand Wind Reaver Lv37, 1271=Viadu (Val Aureum Mystery Merchant) Lv40, 5003=Ezzareshar (The Deceiver) Lv38, 5004=Terenoff (The Reaver) Lv38, 9899= Lv65, 9978=Hidden Wooden Crate Lv68, 9979= Lv65, 9988=Hidden Silver Crate Lv68, 9989= Lv65, 9998=Hidden Gold Crate Lv68, 9999= Lv65
+    - huntingZoneId: 24
+      npcTemplateId: [1, 2, 3, 6, 7, 8, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 51, 56, 57, 58, 106, 156, 1271, 5003, 5004, 9899, 9978, 9979, 9988, 9989, 9998, 9999]
+      npcName: ""
+      $extends: aurum_road_normal

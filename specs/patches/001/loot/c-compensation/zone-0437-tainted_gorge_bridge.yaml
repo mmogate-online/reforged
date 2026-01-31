@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Tainted Gorge Bridge (huntingZoneId: 437)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 57 NPCs, Lv1-65
+  tainted_gorge_bridge_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv8
+  tainted_gorge_bridge_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (57 NPCs): 1=Pigling Lv3, 2=Sporewalker Lv7, 3=Ponderous Sporewalker Lv8, 4=Orcan Minion Lv7, 5=Orcan Raider Lv8, 6=Kariagon Lv8, 7=Disc Reaper Lv9, 8=Runekeeper Lv9, 9=Destroyer Lv11, 10=Relentless Ghilliedhu Lv5, 11=Orcan Brute Lv7, 12=Dwarf Orcan Lv7, 13=Bonecrusher Overseer Lv10, 1002=Exit Teleportal Lv40, 4000= Lv26, 4001= Lv10, 7000= Lv26, 8001=Zik (Treasure Hunter) Lv32, 8002=Aknam (Iron Order Magister) Lv65, 8003=Adria (Federation Officer) Lv65, 8004=Iron Order Agent Lv65, 8005=Iron Order Agent Lv65, 8006=Zik (Treasure Hunter) Lv65, 8007=Aknam (Iron Order Magister) Lv65, 8008=Zik (Treasure Hunter) Lv32, 8009=Iron Order Agent Lv65, 8010=Valkyon Federation Soldier Lv65, 8011=Valkyon Federation Soldier Lv65, 8012=Zik (Treasure Hunter) Lv32, 8013=Iron Order Agent Lv65, 300540= Lv6, 300541=Rockcrawler Lv3, 300542=Rockcrawler Cleaver Lv4, 300910=Cromos Lv6, 300911=Cromos Lv5, 300920=Noruk Lv6, 300921=Noruk Lv5, 300930=Ghilliedhu Lv2, 300931=Ghilliedhu Lv1, 300932=Lumbering Ghilliedhu Lv2, 300933=Lumbering Ghilliedhu Lv1, 300940= Lv6, 300941=Terron Lv3, 300942=Terron Thrall Lv8, 300943=Terron Saboteur Lv3, 300944=Terron Chieftain Lv4, 300945=Terron Lama Lv4, 300950= Lv7, 300951=Dark Raider Lv8, 300952= Lv7, 300953= Lv10, 300960=Devoted Ebon Imp Lv8, 301190= Lv6, 301191=Stonebeak Raider Lv3, 301192= Lv6, 301193=Stonebeak Brigand Lv3, 301194=Stonebeak Highcrest Lv4
+    - huntingZoneId: 437
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1002, 4000, 4001, 7000, 8001, 8002, 8003, 8004, 8005, 8006, 8007, 8008, 8009, 8010, 8011, 8012, 8013, 300540, 300541, 300542, 300910, 300911, 300920, 300921, 300930, 300931, 300932, 300933, 300940, 300941, 300942, 300943, 300944, 300945, 300950, 300951, 300952, 300953, 300960, 301190, 301191, 301192, 301193, 301194]
+      npcName: ""
+      $extends: tainted_gorge_bridge_normal
+
+    # Elite (2 NPCs): 1001=Sorcha (Researcher) Lv8, 1003=Sorcha's Guardian (Guard) Lv8
+    - huntingZoneId: 437
+      npcTemplateId: [1001, 1003]
+      npcName: ""
+      $extends: tainted_gorge_bridge_elite

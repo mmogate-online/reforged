@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Tower Base (huntingZoneId: 64)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 51 NPCs, Lv40-65
+  tower_base_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (51 NPCs): 1001=Adria (Tribune) Lv40, 1002=Poron (Banker) Lv40, 1003=Kerson (Banker) Lv40, 1004=Viator (Crystal Merchant) Lv40, 1005=Rutgar (Merchant) Lv40, 1006=Jorhon (Adjutant) Lv40, 1007=Gurney (Tactics Instructor) Lv40, 1008=Charise (Magic Instructor) Lv40, 1009=Teil (Councilor) Lv40, 1010=Donush (Cleric of Blessing) Lv40, 1011=Berlon (Researcher) Lv40, 1021=Telrayne (Guardian Legion) Lv40, 1022=Abadir (Guardian Legion) Lv40, 1023=Jirash (Guard) Lv40, 1024=Gyebrik (Guard) Lv40, 1025=Riordan (Guard) Lv40, 1026=Verele (Guard) Lv40, 1027=Bree (Guard) Lv40, 1028=Taras (Guard) Lv40, 1029=Kiriya (Guard) Lv40, 1030=Annukha (Guard) Lv40, 1031=Teague (Centurion) Lv40, 1032=Orin (Centurion) Lv40, 1033=Bipi (Guard) Lv40, 1034=Rehiya (Guard) Lv40, 1041=Nunar (Cleric of Restoration) Lv40, 1042=Jairus (Researcher) Lv40, 1043=Jesca (Dispatched Researcher) Lv40, 1044=Jalen (Party Guide) Lv40, 1045=Mardon (Trade Guide) Lv40, 1046=Peron (Bank Guide) Lv40, 1047=Rheta (Friends List Guide) Lv40, 1048=Lilni (Gathering Guide) Lv40, 1049=Milene (Rest Guide) Lv40, 1050=Tainted Gorge Teleportal Lv40, 1051=Mission Board Lv40, 1052=Ailesa (Weapon Merchant) Lv40, 1053=Mahadam (Armor Merchant) Lv40, 1054=Ellis (Election Registrar) Lv40, 1055=Morel (Guild Manager (Test)) Lv40, 1056=Lailah (Policy and Tax Rate Aide (Test)) Lv40, 1601=Vene (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Sripi (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 2501=Tainted Gorge Bridge Teleportal Lv40, 8000=Ellonia (Halloween Guide) Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40
+    - huntingZoneId: 64
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1041, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056, 1601, 1602, 1603, 1700, 2501, 8000, 9000, 9001, 9002, 9003]
+      npcName: ""
+      $extends: tower_base_normal

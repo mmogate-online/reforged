@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Oblivion Woods (huntingZoneId: 3)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv20-21
+  oblivion_woods_boss:
+    itemBags:
+      - id: 1
+        bagName: "Oblivion Woods Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 10= Lv21, 22=Lanok (Forgotten Destroyer) Lv21, 300811=Basilisk Lv20
+    - huntingZoneId: 3
+      npcTemplateId: [10, 22, 300811]
+      npcName: ""
+      $extends: oblivion_woods_boss

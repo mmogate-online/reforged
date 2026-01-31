@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Cliffs of Insanity (huntingZoneId: 15)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv25-27
+  cliffs_of_insanity_boss:
+    itemBags:
+      - id: 1
+        bagName: "Cliffs of Insanity Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 15=Fimbrilisk Lv25, 19=Ebonathis (Shadow Fimbrilisk) Lv27, 20=Atrocitas (Cruel Fimbrilisk) Lv27
+    - huntingZoneId: 15
+      npcTemplateId: [15, 19, 20]
+      npcName: ""
+      $extends: cliffs_of_insanity_boss

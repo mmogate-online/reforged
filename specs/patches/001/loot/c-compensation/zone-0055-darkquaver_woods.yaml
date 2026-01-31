@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Darkquaver Woods (huntingZoneId: 55)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 32 NPCs, Lv28-68
+  darkquaver_woods_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (32 NPCs): 1=Mad Sporewalker Lv51, 2=Unstable Mycanar Lv51, 3=Bloodgulper Orcan Lv51, 4=Feystalker Sabertooth Lv51, 5=Mekonari Arcanathief Lv51, 6=Mekonari Depredator Lv51, 7=Jalmarak Thrasher (Unseelie) Lv52, 8=Urisk Sentry Lv51, 9=Urisk Seer Lv51, 10=Urisk Shaper Lv51, 11=Silvermane Unicorn Lv51, 13=Ksharan Shadow Archer Lv51, 14=Ksharan Shadow Reaver Lv51, 15=Ksharan Shadow Berserker Lv51, 16=Ksharan Shadow Mystic Lv51, 17= Lv51, 18= Lv51, 19= Lv51, 100=Chaogg Defender (Argon Kelba) Lv52, 101=Kakaruk (Sikandari Priest) Lv52, 102=Kelbarash (Argon Kelba) Lv52, 103=Veheruk (Sikandari Priest) Lv52, 200=Tarlok (Bloodgulper Warlord) Lv52, 300=Sinarl (Unseelie Regent) Lv53, 500=Raugahark (Sikandari Priest) Lv52, 1271=Silvette (Sylvanoth Mystery Merchant) Lv40, 7821=Hennika (Red Raiders) Lv68, 7822=Jelena (Elleon's Ally) Lv28, 7823=Leander (Master of the Red Raiders) Lv65, 7824=Elleon (Valkyon Hero) Lv32, 7825=Launa (Guardian Legion) Lv65, 9782=Teleportal Lv40
+    - huntingZoneId: 55
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 100, 101, 102, 103, 200, 300, 500, 1271, 7821, 7822, 7823, 7824, 7825, 9782]
+      npcName: ""
+      $extends: darkquaver_woods_normal

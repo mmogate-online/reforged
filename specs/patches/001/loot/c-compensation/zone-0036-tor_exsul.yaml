@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Tor Exsul (huntingZoneId: 36)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 16 NPCs, Lv40-57
+  tor_exsul_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (16 NPCs): 2=Bonded Auric Imp Lv55, 4=Dark Thrallmaster (Tenebrara Legion) Lv55, 7=Tenebrara Kariagon (Tenebrara Legion) Lv56, 8=Tenebrara Enforcer (Tenebrara Legion) Lv56, 9=Tenebrara Assassin (Tenebrara Legion) Lv55, 10=Tenebrara Priest (Tenebrara Legion) Lv57, 13=Tenebrara Reaper (Tenebrara Legion) Lv56, 17=Tenebrara Sorcerer (Tenebrara Legion) Lv57, 18=Tenebrara Lancer (Tenebrara Legion) Lv57, 20=Rasptusk Sabertooth Lv55, 21=Desert Hart Lv56, 22=Beast Tamer Lv56, 54=Jester's Villa Guard Lv57, 801= Lv55, 802=Goldmane Yak Lv55, 1271=Viace (Val Elenium Mystery Merchant) Lv40
+    - huntingZoneId: 36
+      npcTemplateId: [2, 4, 7, 8, 9, 10, 13, 17, 18, 20, 21, 22, 54, 801, 802, 1271]
+      npcName: ""
+      $extends: tor_exsul_normal

@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Fey Forest (huntingZoneId: 2)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 36 NPCs, Lv11-40
+  fey_forest_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (36 NPCs): 1=Redcap Lv12, 2=Furious Faerie Lv14, 3=Centaur Lv12, 4=Slinking Sabertooth Lv12, 5=Hulking Sabertooth Lv13, 6=Sullen Unicorn Lv14, 7=Warthog Brute Lv11, 8=Hogling Lv12, 10=Merciless Jalmarak Lv14, 13=Centaur Insurgent Lv12, 21=Lumbering Ghilliedhu Lv14, 22=Lumbering Sporewalker Lv14, 23=Feisty Terron Lv14, 32=Bloated Sporewalker Lv14, 33=Terron Lunatic Lv14, 34=Sabertooth Lv11, 52=Faerie Vigilante Lv12, 56=Feral Unicorn Lv14, 57=Long Tusk Warthog Lv11, 58=Armored Hogling Lv12, 59=Runaway Pigling Lv12, 62=Faerie Rebel Lv14, 102=Faerie Renegade Lv14, 152=Faerie Insurgent Lv11, 202=Faerie Guardians (Pixie Death Band) Lv13, 203=Likhan (Fey Guardians) Lv13, 206=Seravy (Fey Guardians) Lv15, 209=Dark Sorcerer (Scions of Lok) Lv12, 210=Cruel Sorcerer (Scions of Lok) Lv12, 256=Seravy (Fey Guardians) Lv15, 259=Garkior (Scions of Lok) Lv14, 260=Cruel Sorcerer (Scions of Lok) Lv14, 507=Garash Bloodtusk (Boarlord) Lv15, 510=Tradon (Fey Guardians) Lv15, 600= Lv12, 1271=Arcun (Arcadia Mystery Merchant) Lv40
+    - huntingZoneId: 2
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 10, 13, 21, 22, 23, 32, 33, 34, 52, 56, 57, 58, 59, 62, 102, 152, 202, 203, 206, 209, 210, 256, 259, 260, 507, 510, 600, 1271]
+      npcName: ""
+      $extends: fey_forest_normal

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Balder's Temple (Hard) (huntingZoneId: 725)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 16 NPCs, Lv60
+  balders_temple_hard_boss:
+    itemBags:
+      - id: 1
+        bagName: "Balder's Temple (Hard) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (16 NPCs): 1000=Nightmare Kakun (Ruler of the Garden) Lv60, 3000=Nightmare Lagreah (Protector of the Garden) Lv60, 4000=Nightmare {@Creature:425#4000} (Red Flame Lightning) Lv60, 5000=Elite {@Creature:425#5000} Lv60, 5001=Elite {@Creature:425#5001} Lv60, 5002=Elite {@Creature:425#5002} Lv60, 6000=Nightmare Glaciernus (The Frostbinder) Lv60, 8000=Elite {@Creature:425#8000} Lv60, 8001=Elite {@Creature:425#8001} Lv60, 8002=Elite {@Creature:425#8002} Lv60, 8003=Elite {@Creature:425#8003} Lv60, 8004=Elite {@Creature:425#8004} Lv60, 8005=Nightmare Auricadus Lv60, 9041= Lv60, 9042= Lv60, 9043= Lv60
+    - huntingZoneId: 725
+      npcTemplateId: [1000, 3000, 4000, 5000, 5001, 5002, 6000, 8000, 8001, 8002, 8003, 8004, 8005, 9041, 9042, 9043]
+      npcName: ""
+      $extends: balders_temple_hard_boss

@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Kanstria (huntingZoneId: 76)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 69 NPCs, Lv1-40
+  kanstria_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (69 NPCs): 1001=Hetiana (Merchant) Lv40, 1002=Kanist (Crystal Merchant) Lv40, 1003=Kallax (Alchemy Materials) Lv40, 1004=Rangun (Banker) Lv40, 1005=Katt (Banker) Lv40, 1006=Kavyn (Flight Manager) Lv40, 1007=Teleportal Lv40, 1011=Linkia Lv40, 1012=Rhen Lv40, 1013=Pyrithia Lv40, 1014=Adre Lv40, 1015=Loquatia Lv40, 1016=Hekasha Lv40, 1017=Kanstria Teleport Platform Lv40, 1018=Tadria (Inventor) Lv40, 1019=Niimia (Intrepid Chef) Lv40, 1020=Alniesh (Mysterium Researcher) Lv40, 1021=Koziam (Mysterium Scholar) Lv40, 1022=Shirka (Mysterium Investigator) Lv40, 1023=Tukah (Centurion) Lv40, 1024=Ginea (Centurion) Lv40, 1025=Bundsen (Inventor) Lv40, 1026=Leono (Decanus) Lv40, 1027={@Creature:49#1006} Lv40, 1028=Linkia Lv40, 1029=Linkia Lv40, 1030=Linkia Lv40, 1031=Linkia Lv40, 1032=Linkia Lv40, 1033=Ermaan (Prefect) Lv40, 1034=Kesini Lv40, 1035=Dankan Lv40, 1036={@Creature:76#1035} Lv40, 1037={@Creature:76#1012} Lv40, 1038={@Creature:76#1013} Lv40, 1039={@Creature:76#1014} Lv40, 1040=Kaia Lv40, 1101=Zismun (Argon Shard Exchange) Lv40, 1102=Nimer (Badge Merchant) Lv40, 1601=Hanelle (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Ayva (Guild Quest Rewards) Lv40, 2000=Sunir (Argon Researcher) Lv40, 2001=Kirinis (Argonomorph Researcher) Lv40, 3001=Keinbara (Valsekyr Hunter) Lv40, 3002=Benuhka (Valsekyr Hunter) Lv40, 3003=Kanos (Valsekyr Hunter) Lv40, 3004=Noric (Valsekyr Hunt) Lv40, 3005=Krisan (Valsekyr Hunt) Lv40, 3006=Tarito (Valsekyr Hunt) Lv40, 3007=Kestina (Valsekyr Hunt) Lv40, 3008=Sikarta (Valsekyr Hunt) Lv40, 3009=Jessrina (Valsekyr Hunt) Lv40, 3010=Beiran (Kanstrian Outrider) Lv40, 3601=Karem (Valsekyr Hunt Merchant) Lv40, 3602=Feisca (Valsekyr Hunt Merchant) Lv40, 3603=Rozoll (Cyasma Tokens) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv40, 9005= Lv1
+    - huntingZoneId: 76
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1101, 1102, 1601, 1602, 1603, 2000, 2001, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3601, 3602, 3603, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004, 9005]
+      npcName: ""
+      $extends: kanstria_normal

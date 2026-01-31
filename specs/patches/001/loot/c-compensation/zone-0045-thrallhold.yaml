@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Thrallhold (huntingZoneId: 45)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 33 NPCs, Lv40-68
+  thrallhold_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (33 NPCs): 1001=Kelba Charger Lv48, 1002=Argonomorph Dwarf Orcan Lv48, 1003=Argonomorph Runekeeper Lv48, 1271=Lotica (Val Tirkai Mystery Merchant) Lv40, 2001=Argonomorph Blood Fiend Lv48, 2002=Argonomorph Horntoad Lv48, 2003=Argonomorph Frogmaster Lv48, 3001=Argonomorph Lokian Archer Lv48, 3002=Argonomorph Lokian Reaver Lv48, 3003=Kelba Ripper Lv48, 3004=Athakela Stalker Lv48, 4002=Argonomorph Tuwangi Lv48, 4003=Argonomorph Tuwangi Warfrogger Lv48, 4004=Argonomorph Wendigo Lv48, 5007=Omordon (Armored Argon-Orcan) Lv48, 5008=Chief Mollybog (Swamp Knight) Lv48, 5009=Bolluronox (The Unbroken) Lv48, 6001=Argonomorph Tuwangi Frogmaster (Warden Thrall) Lv48, 6002=Krixati (Crimson Shaper) Lv48, 7001=Zalgeg Coil Lv48, 7002=Trolnik Spire Lv48, 7003=Grellem Spire Lv48, 7004=Cyadal Pylon Lv48, 7005=Draeknar Pylon Lv48, 7006=Kolthub Pillar Lv48, 7100= Lv48, 9899= Lv65, 9978=Hidden Wooden Crate Lv68, 9979= Lv65, 9988=Hidden Silver Crate Lv68, 9989= Lv65, 9998=Hidden Gold Crate Lv68, 9999= Lv65
+    - huntingZoneId: 45
+      npcTemplateId: [1001, 1002, 1003, 1271, 2001, 2002, 2003, 3001, 3002, 3003, 3004, 4002, 4003, 4004, 5007, 5008, 5009, 6001, 6002, 7001, 7002, 7003, 7004, 7005, 7006, 7100, 9899, 9978, 9979, 9988, 9989, 9998, 9999]
+      npcName: ""
+      $extends: thrallhold_normal

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Khanovar Front (huntingZoneId: 48)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 8 NPCs, Lv64
+  khanovar_front_boss:
+    itemBags:
+      - id: 1
+        bagName: "Khanovar Front Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (8 NPCs): 1=Gilgash Guardian Lv64, 2=Akalath Devastator Lv64, 3=Smoldering Moloch Lv64, 8=Hursaras (Arzakaar Gatekeeper) Lv64, 16=Krokan (Will of the Executor) Lv64, 500=Enhanced Argonomorph Giant Lv64, 1014=Bloodbound Teralith Lv64, 2000=Siege Cannon Lv64
+    - huntingZoneId: 48
+      npcTemplateId: [1, 2, 3, 8, 16, 500, 1014, 2000]
+      npcName: ""
+      $extends: khanovar_front_boss

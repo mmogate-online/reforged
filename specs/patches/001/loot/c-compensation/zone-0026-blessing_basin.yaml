@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Blessing Basin (huntingZoneId: 26)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 26 NPCs, Lv40-65
+  blessing_basin_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (26 NPCs): 101=Kuru (Forestwalker Chieftain) Lv41, 102=Taroku (Forestwalker Champion) Lv41, 103=Axelzar (Shrine Warden) Lv41, 502=Atel Akaad Mystic Lv42, 503=Atel Akaad Lancer Lv42, 901=Basin Gorilla Lv40, 902= Lv40, 1001=Forestwalker Shaman Lv41, 1002=Forestwalker Thrasher Lv41, 1003=Ebon Weaver Lv41, 1004=Stonebeak Scrounger Lv40, 1271=Ezart (Essenia Mystery Merchant) Lv40, 2001=Revivified Cromos Lv41, 2002=Revivified Noruk Lv41, 2003=Resurgent Ghilliedhu Lv41, 2005=Stonebeak Gnasher Lv40, 2006=Tainted Mycanar Lv41, 3001=Soulkeeper Lv41, 3002=Hallowed Sentinel Lv41, 5002=Font Faerie (Fountain Fae) Lv65, 5003=Enraged Mycanars Lv65, 5004=Forestwalker Prophet Lv65, 5005=Forestwalker Shaman Lv65, 5006=Forestwalker Thrasher Lv65, 6001=Caiman Wanderer (Packed Up) Lv65, 9001=White Hart (Sacred Noruk) Lv41
+    - huntingZoneId: 26
+      npcTemplateId: [101, 102, 103, 502, 503, 901, 902, 1001, 1002, 1003, 1004, 1271, 2001, 2002, 2003, 2005, 2006, 3001, 3002, 5002, 5003, 5004, 5005, 5006, 6001, 9001]
+      npcName: ""
+      $extends: blessing_basin_normal

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Wonderholme (Hard) (huntingZoneId: 743)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 26 NPCs, Lv60
+  wonderholme_hard_boss:
+    itemBags:
+      - id: 1
+        bagName: "Wonderholme (Hard) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (26 NPCs): 1001=Morgak (Enraged Giant) Lv60, 1002=Kagrom (Venomous Predator) Lv60, 1003=One-Eyed Jack (Fearful Jester) Lv60, 1004=Felbane (Champion Inspector) Lv60, 1005=Bandersnatch (Future Monarch) Lv60, 44304=Gaon (Treasure Guardian) Lv60, 44316=Groop (Castle Butcher) Lv60, 44328=Gibbetwraith (Bridge Guardian) Lv60, 44329=Skinstitcher (Bridge Guardian) Lv60, 44330=Wispwidow (Bridge Guardian) Lv60, 44333=Wisp Lv60, 44350=Mock Lobster (Patrol Leader) Lv60, 44353=Lutwidge (Royal Executioner) Lv60, 44369=One-Eyed Jack (Fearful Jester) Lv60, 44370=Bandergrub (Infrequent) Lv60, 44379=Grubling Lv60, 44387= Lv60, 44396=Belmun (Skeletal General) Lv60, 44405= Lv60, 44415=Monument of Pain (Dispersus Chamber) Lv60, 44421= Lv60, 44422= Lv60, 44423= Lv60, 44424= Lv60, 44425= Lv60, 44434=Bandersnatch (Future Monarch) Lv60
+    - huntingZoneId: 743
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 44304, 44316, 44328, 44329, 44330, 44333, 44350, 44353, 44369, 44370, 44379, 44387, 44396, 44405, 44415, 44421, 44422, 44423, 44424, 44425, 44434]
+      npcName: ""
+      $extends: wonderholme_hard_boss

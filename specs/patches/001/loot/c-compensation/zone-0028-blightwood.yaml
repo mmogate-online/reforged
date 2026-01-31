@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Blightwood (huntingZoneId: 28)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 14 NPCs, Lv32-41
+  blightwood_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv42-43
+  blightwood_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (14 NPCs): 1011=Blackhoof Unicorn Lv40, 1021=Thorny Timberwolf Lv40, 1031=Tumbling Sporewalker Lv40, 1041=Corrupted Mycanar Lv40, 1271=Ezart (Essenia Mystery Merchant) Lv40, 2011=Smokepaw Timberwolf Lv40, 2021=Plagued Cullar Lv40, 2031=Plagued Tentacullar Lv40, 3031=Blighted Jalmarak Lv40, 3041=Fallen Wraith Lv40, 3051=Tainted Jalmarak Lv40, 6000=Gaist (Dread Wraith) Lv41, 9000=Ispin (Poison Researcher) Lv40, 9001=Welle (Ispin's Assistant) Lv32
+    - huntingZoneId: 28
+      npcTemplateId: [1011, 1021, 1031, 1041, 1271, 2011, 2021, 2031, 3031, 3041, 3051, 6000, 9000, 9001]
+      npcName: ""
+      $extends: blightwood_normal
+
+    # Elite (2 NPCs): 5001=Minoc (Forest Lord) Lv43, 5002=Fallen Unicorn (Minoc's Chamberlain) Lv42
+    - huntingZoneId: 28
+      npcTemplateId: [5001, 5002]
+      npcName: ""
+      $extends: blightwood_elite

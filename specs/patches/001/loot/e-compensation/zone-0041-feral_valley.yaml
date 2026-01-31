@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Feral Valley (huntingZoneId: 41)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 4 NPCs, Lv46-47
+  feral_valley_boss:
+    itemBags:
+      - id: 1
+        bagName: "Feral Valley Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (4 NPCs): 2001=Scurrying Orisk Lv46, 3001=Fleshripper Orisk Lv46, 4001=Ravenous Basilisk Lv46, 4002=Giant Warmaster Lv47
+    - huntingZoneId: 41
+      npcTemplateId: [2001, 3001, 4001, 4002]
+      npcName: ""
+      $extends: feral_valley_boss

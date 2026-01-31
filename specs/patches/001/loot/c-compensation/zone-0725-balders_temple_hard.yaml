@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Balder's Temple (Hard) (huntingZoneId: 725)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 20 NPCs, Lv1-60
+  balders_temple_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 67 NPCs, Lv60
+  balders_temple_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (20 NPCs): 9051= Lv60, 9052= Lv60, 9053= Lv60, 9054= Lv60, 9055= Lv1, 9071= Lv26, 9072= Lv26, 9073= Lv60, 9080= Lv26, 9081= Lv26, 9082= Lv26, 9083= Lv26, 9091= Lv27, 10000=Dimensional Mirror Lv40, 10001=Dimensional Mirror Lv40, 10002=Dimensional Mirror Lv40, 10003=Dimensional Mirror Lv40, 10004=Dimensional Mirror Lv40, 10011=Dimensional Mirror Lv40, 10012=Dimensional Mirror Lv40
+    - huntingZoneId: 725
+      npcTemplateId: [9051, 9052, 9053, 9054, 9055, 9071, 9072, 9073, 9080, 9081, 9082, 9083, 9091, 10000, 10001, 10002, 10003, 10004, 10011, 10012]
+      npcName: ""
+      $extends: balders_temple_hard_normal
+
+    # Elite (67 NPCs): 1011=Elite {@Creature:425#1011} Lv60, 2011=Elite {@Creature:425#2011} Lv60, 2031=Elite {@Creature:425#2031} Lv60, 2041=Elite {@Creature:425#2041} Lv60, 2051=Elite {@Creature:425#2051} Lv60, 3011=Elite {@Creature:425#3011} Lv60, 3012=Elite {@Creature:425#3012} Lv60, 3013=Elite {@Creature:425#3013} Lv60, 3014=Elite {@Creature:425#3014} Lv60, 3015=Elite {@Creature:425#3015} Lv60, 3016=Elite {@Creature:425#3016} Lv60, 3021=Elite {@Creature:425#3021} Lv60, 3022=Elite {@Creature:425#3022} Lv60, 3023=Elite {@Creature:425#3023} Lv60, 3024=Elite {@Creature:425#3024} Lv60, 3025=Elite {@Creature:425#3025} Lv60, 3026=Elite {@Creature:425#3026} Lv60, 3031=Elite {@Creature:425#3031} Lv60, 3041= Lv60, 3051=Elite {@Creature:425#3051} Lv60, 3061=Elite {@Creature:425#3061} Lv60, 3101=Elite {@Creature:425#3101} Lv60, 3102=Elite {@Creature:425#3102} Lv60, 3103=Elite {@Creature:425#3103} Lv60, 3104=Elite {@Creature:425#3104} Lv60, 3105=Elite {@Creature:425#3105} Lv60, 3106=Elite {@Creature:425#3106} Lv60, 3107=Elite {@Creature:425#3107} Lv60, 3108=Elite {@Creature:425#3108} Lv60, 3109=Elite {@Creature:425#3109} Lv60, 3110=Elite {@Creature:425#3110} Lv60, 3111=Elite {@Creature:425#3111} Lv60, 3112=Elite {@Creature:425#3112} Lv60, 3113=Elite {@Creature:425#3113} Lv60, 3114=Elite {@Creature:425#3114} Lv60, 3115=Elite {@Creature:425#3115} Lv60, 3116=Elite {@Creature:425#3116} Lv60, 3117=Elite {@Creature:425#3117} Lv60, 3118=Elite {@Creature:425#3118} Lv60, 3119=Elite {@Creature:425#3119} Lv60, 3120=Elite {@Creature:425#3120} Lv60, 3121=Elite {@Creature:425#3121} Lv60, 4001=Nightmare {@Creature:425#4001} (Flame Lightning) Lv60, 4011=Elite {@Creature:425#4011} Lv60, 4021=Elite {@Creature:425#4021} Lv60, 4031=Elite {@Creature:425#4031} Lv60, 4041=Elite {@Creature:425#4041} Lv60, 4051=Elite {@Creature:425#4051} Lv60, 4061=Elite {@Creature:425#4061} Lv60, 5011=Elite {@Creature:425#5011} Lv60, 5021=Elite {@Creature:425#5021} Lv60, 6011=Nightmare {@Creature:425#6011} Lv60, 7011= Lv60, 7021= Lv60, 7031= Lv60, 8011=Elite {@Creature:425#8011} Lv60, 8021= Lv60, 8031= Lv60, 8041=Cannon Lv60, 9011= Lv60, 9012= Lv60, 9021= Lv60, 9031= Lv60, 9061=Superior Treasure Chest (Flashy) Lv60, 9062=Superior Treasure Chest (Ordinary) Lv60, 9063=Superior Treasure Chest (Coarse) Lv60, 9064=Treasure Chest (Coarse) Lv60
+    - huntingZoneId: 725
+      npcTemplateId: [1011, 2011, 2031, 2041, 2051, 3011, 3012, 3013, 3014, 3015, 3016, 3021, 3022, 3023, 3024, 3025, 3026, 3031, 3041, 3051, 3061, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 4001, 4011, 4021, 4031, 4041, 4051, 4061, 5011, 5021, 6011, 7011, 7021, 7031, 8011, 8021, 8031, 8041, 9011, 9012, 9021, 9031, 9061, 9062, 9063, 9064]
+      npcName: ""
+      $extends: balders_temple_hard_elite

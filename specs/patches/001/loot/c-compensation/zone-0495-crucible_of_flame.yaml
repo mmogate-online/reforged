@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Crucible of Flame (huntingZoneId: 495)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 28 NPCs, Lv1-60
+  crucible_of_flame_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 24 NPCs, Lv26-60
+  crucible_of_flame_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (28 NPCs): 100=Crucible Sloth Lv60, 101=Crucible Spirit Lv60, 102= Lv60, 140=Crucible Rhombex Lv60, 150=Crucible Berserker Lv60, 151=Crucible Archer Lv60, 152=Crucible Slayer Lv60, 153=Crucible Priest Lv60, 154=Crucible Sorcerer Lv60, 155=Crucible Arcanist Lv60, 156=Crucible Lancer Lv60, 200=Brazier Sloth Lv60, 201=Brazier Spirit Lv60, 400=Brazier Rhombex Lv60, 500=Brazier Berserker Lv60, 501=Brazier Archer Lv60, 502=Brazier Slayer Lv60, 503=Brazier Priest Lv60, 504=Brazier Sorcerer Lv60, 505=Brazier Arcanist Lv60, 506=Brazier Lancer Lv60, 1001=Dako (Crucible Dragon Master) Lv40, 30001= Lv1, 30002= Lv26, 30003= Lv26, 40000= Lv26, 40001= Lv26, 55000=Exit Teleportal Lv40
+    - huntingZoneId: 495
+      npcTemplateId: [100, 101, 102, 140, 150, 151, 152, 153, 154, 155, 156, 200, 201, 400, 500, 501, 502, 503, 504, 505, 506, 1001, 30001, 30002, 30003, 40000, 40001, 55000]
+      npcName: ""
+      $extends: crucible_of_flame_normal
+
+    # Elite (24 NPCs): 10000= Lv26, 10001= Lv26, 20000=Mark I Baetylith (Round One) Lv26, 20001= Lv26, 20002=Mark II Baetylith (Round One) Lv26, 20003=Mark III Baetylith (Round One) Lv26, 20004=Mark I Baetylith (Round Two) Lv26, 20005= Lv26, 20006=Mark II Baetylith (Round Two) Lv26, 20007=Mark III Baetylith (Round Two) Lv26, 20008=Mark I Baetylith (Round Three) Lv26, 20009= Lv26, 20010=Mark II Baetylith (Round Three) Lv26, 20011=Mark III Baetylith (Round Three) Lv26, 20012=Mark I Baetylith (Final Round) Lv26, 20013= Lv26, 20014=Mark II Baetylith (Final Round) Lv26, 20015=Mark III Baetylith (Final Round) Lv26, 30000=Central Spire Lv60, 31000=Eastern Spire Lv60, 32000=Southern Spire Lv60, 33000=Western Spire Lv60, 34000=Northern Spire Lv60, 50000= Lv59
+    - huntingZoneId: 495
+      npcTemplateId: [10000, 10001, 20000, 20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008, 20009, 20010, 20011, 20012, 20013, 20014, 20015, 30000, 31000, 32000, 33000, 34000, 50000]
+      npcName: ""
+      $extends: crucible_of_flame_elite

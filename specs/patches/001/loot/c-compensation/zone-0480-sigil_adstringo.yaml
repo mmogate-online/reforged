@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Sigil Adstringo (huntingZoneId: 480)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 16 NPCs, Lv13-60
+  sigil_adstringo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 20 NPCs, Lv59
+  sigil_adstringo_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (16 NPCs): 20= Lv60, 30= Lv40, 50= Lv40, 60= Lv40, 70= Lv40, 80= Lv40, 104=Rabid Maple Tree Spirit Lv59, 200= Lv59, 300= Lv59, 600= Lv13, 1001=Tumba (Mandrake) Lv40, 1002=Tumba (Mandrake) Lv40, 1003=Tumba (Mandrake) Lv40, 1004=Tumba (Mandrake) Lv40, 1005=Tumba (Mandrake) Lv40, 1501=Exit Teleportal Lv40
+    - huntingZoneId: 480
+      npcTemplateId: [20, 30, 50, 60, 70, 80, 104, 200, 300, 600, 1001, 1002, 1003, 1004, 1005, 1501]
+      npcName: ""
+      $extends: sigil_adstringo_normal
+
+    # Elite (20 NPCs): 10=Eg'thol Nalus Lv59, 101=Popori Mercenary Lv59, 102=Feyvale Tuwangi Hopper Lv59, 103=Feyvale Tuwangi Lv59, 105=Felgaren Centaur Lv59, 106=Fiery Faerie Lv59, 108=Ruthless Tyrak Lv59, 109=Eviscerator Arachnen Lv59, 110=Laeral Unicorn Lv59, 111=Skulking Redcap Lv59, 114=Tholgur Ripper Lv59, 115=Shalozan Iknephar Lv59, 116=Mekonari Dark Servant Lv59, 117=Eldritch Cleaver Lv59, 118=Prognol Warden Lv59, 120=Immortal Tuwangi Trooper Lv59, 122=Nuroppy (Argonomorph Frogrider) Lv59, 400=Draelkar Pylon Lv59, 500=Guladnol Iknephar Lv59, 9999= Lv59
+    - huntingZoneId: 480
+      npcTemplateId: [10, 101, 102, 103, 105, 106, 108, 109, 110, 111, 114, 115, 116, 117, 118, 120, 122, 400, 500, 9999]
+      npcName: ""
+      $extends: sigil_adstringo_elite

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Manaya's Core (Hard) (huntingZoneId: 427)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 18 NPCs, Lv60
+  manayas_core_hard_boss:
+    itemBags:
+      - id: 1
+        bagName: "Manaya's Core (Hard) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (18 NPCs): 2001=Nightmare Shandra Manaya (Argon Queen) Lv60, 2002= Lv60, 2003= Lv60, 2004= Lv60, 2005= Lv60, 2007=Nightmare Shandra Manaya (Argon Queen) Lv60, 2011= Lv60, 42701=Nightmare Hrathgol (Sword of Manaya) Lv60, 42702=Nightmare Melkatran (Cyanoguard Prime) Lv60, 42705=Nightmare Vieldras (Dark Hand of Manaya) Lv60, 42706= Lv60, 42708= Lv60, 42712=Empowered Hulrap Warden Elite Lv60, 42713=Nightmare Kartunan (Veilshaper of Manaya) Lv60, 42732=Nightmare Gilgash Battlelord Lv60, 42741=Empowered Argnomorph Orisk Elite Lv60, 42743=Empowered Shurian Vanquisher Elite Lv60, 42759=Empowered Shurian Crusher Elite Lv60
+    - huntingZoneId: 427
+      npcTemplateId: [2001, 2002, 2003, 2004, 2005, 2007, 2011, 42701, 42702, 42705, 42706, 42708, 42712, 42713, 42732, 42741, 42743, 42759]
+      npcName: ""
+      $extends: manayas_core_hard_boss

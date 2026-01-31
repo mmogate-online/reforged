@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Ebon Tower (huntingZoneId: 473)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 22 NPCs, Lv40-58
+  ebon_tower_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 45 NPCs, Lv58
+  ebon_tower_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (22 NPCs): 1001=Purification Totem Lv40, 1002=Purification Totem Lv40, 1003=Thulsa's Foil Teleportal Lv40, 1004=Obelisk of Binding Lv40, 1005=Obelisk of Binding Lv40, 1006=Obelisk of Binding Lv40, 1007=Exit Teleportal Lv40, 1008=Exit Teleportal Lv40, 1009=Teleportal (Teleport to 5th Floor) Lv40, 1010=Tiernach (Mysterium Investigator) Lv40, 1011=Terinne (Mysterium Venator) Lv40, 1012=Eydann (Expeditionary Force Prefect) Lv40, 1013=Keilia (Expeditionary Force Centurion) Lv40, 1014=Elstarn (Expeditionary Force Soldier) Lv40, 1015=Fallen Champion Lv40, 1016=Fallen Champion Lv40, 1017=Fallen Champion Lv40, 1018=Thulsa (God of Death) Lv40, 1019=Altar of Death Teleportal Lv40, 2901=Thulsan Drillmaster Lv58, 9011=Thulsan Bloodborer Lv58, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 473
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 2901, 9011, 11111]
+      npcName: ""
+      $extends: ebon_tower_normal
+
+    # Elite (45 NPCs): 2001=Ksharan Dreadreaper (Blood Legion) Lv58, 2002=Slavering Zuulhound Lv58, 2003=Ebon Tower Shaman Lv58, 2004=Ebon Tower Guard Lv58, 2102=Zombie Prisoner Lv58, 2103=Zombie Lurcher Lv58, 2900=Undead Sentinel Lv58, 3001=Ksharan Cleaver (Blood Legion) Lv58, 3002=Ksharan Sniper (Blood Legion) Lv58, 3101=Durzured (Tyrant Fiend) Lv58, 3102=Vardas (Slaughter Fiend) Lv58, 4001=Tower General Lv58, 4002=General's Escort Lv58, 4003=Tower Decurion Lv58, 4004=Ebon Zombie Lv58, 4005=Ksharan Darkweaver (Blood Legion) Lv58, 4006=Tower Assassin Lv58, 4007=Arachnen Painspinner Lv58, 4008=Anguish Fiend Lv58, 4101=General Kanmur (Blood Legion) Lv58, 4102=Krivalga (Cardinal of Undeath) Lv58, 5001=Dark Magister (Blood Legion) Lv58, 5002=Eldritch Priest (Blood Legion) Lv58, 5003=Ksharan Fateweaver (Blood Legion) Lv58, 5004=Eldritch Cleaver Lv58, 5005=Darlekthol Reaver Lv58, 5006=Chaogg Warrior Lv58, 5007=Madrek Pummeler Lv58, 5008=Chamas Stabber Lv58, 5009= Lv58, 5010= Lv58, 5111= Lv58, 9000=Death Walker Lv58, 9001=Death Awakener Lv58, 9002=Death Swallower Lv58, 9003=Death Insulter Lv58, 9004=Death Denier Lv58, 9005= Lv58, 9006= Lv58, 9007=Thulsa's Eye Lv58, 9008=Verdant Iskaragard (Blood Legion) Lv58, 9009=Thulsan Guardian Lv58, 9010= Lv58, 9012= Lv58, 9999= Lv58
+    - huntingZoneId: 473
+      npcTemplateId: [2001, 2002, 2003, 2004, 2102, 2103, 2900, 3001, 3002, 3101, 3102, 4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4101, 4102, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5111, 9000, 9001, 9002, 9003, 9004, 9005, 9006, 9007, 9008, 9009, 9010, 9012, 9999]
+      npcName: ""
+      $extends: ebon_tower_elite

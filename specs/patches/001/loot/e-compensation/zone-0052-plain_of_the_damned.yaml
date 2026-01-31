@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Plain of the Damned (huntingZoneId: 52)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 1 NPCs, Lv68
+  plain_of_the_damned_boss:
+    itemBags:
+      - id: 1
+        bagName: "Plain of the Damned Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (1 NPCs): 9050=Yunaras Snaggletooth (Icemane Barsicore) Lv68
+    - huntingZoneId: 52
+      npcTemplateId: [9050]
+      npcName: ""
+      $extends: plain_of_the_damned_boss

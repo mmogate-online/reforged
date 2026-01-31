@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Wyrmgorge (huntingZoneId: 35)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 20 NPCs, Lv40-57
+  wyrmgorge_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv58
+  wyrmgorge_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (20 NPCs): 1=Desert Scourge Scout Lv54, 2=Desert Scourge Chopper Lv54, 3=Desert Scourge Berserker Lv54, 4=Desert Scourge Reaper Lv54, 5=Desert Scourge Crusher Lv54, 6=Desert Scourge Mangler Lv54, 8=Desert Runekeeper Lv55, 9=Black Sand Arachnen Lv55, 10=Mekonari Summoner Lv56, 12=Maligos Reaver Lv56, 13=Vulcan Desertstalker Lv56, 14=Vulcan Raider Lv56, 16=Feisty Ebon Imp Lv56, 17=Tenebrara Dreadweaver Lv57, 18=Tenebrara Destroyer Lv57, 19=Tenebrara Defender Lv56, 20=Tenebrara Overseer Lv56, 100= Lv54, 1271=Viace (Val Elenium Mystery Merchant) Lv40, 1501=Akeron's Inferno Teleportal Lv40
+    - huntingZoneId: 35
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 20, 100, 1271, 1501]
+      npcName: ""
+      $extends: wyrmgorge_normal
+
+    # Elite (2 NPCs): 22=Tenebrara Conquerer (Hammer of Thulsa) Lv58, 23=Tenebrara Doombringer (Hammer of Thulsa) Lv58
+    - huntingZoneId: 35
+      npcTemplateId: [22, 23]
+      npcName: ""
+      $extends: wyrmgorge_elite

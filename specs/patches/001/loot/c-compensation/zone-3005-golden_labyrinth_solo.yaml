@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Golden Labyrinth (Solo) (huntingZoneId: 3005)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 16 NPCs, Lv40
+  golden_labyrinth_solo_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 49 NPCs, Lv50-51
+  golden_labyrinth_solo_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (16 NPCs): 1001=Runshia (Mysterium Inquisitor) Lv40, 1002=Teleportal Lv40, 1003=Jelena (Ranger) Lv40, 1004=Kaleon (Mysterium Arcanist) Lv40, 1006=The Core Lv40, 1007=Elleon (Valkyon Hero) Lv40, 1008=Energy Converter Lv40, 1010=Gate of Test Equipment Lv40, 1011=Western Obelisk Lv40, 1012=Eastern Obelisk Lv40, 1013=Runed Obelisk Lv40, 1017=Treasure Chest of Baracos Lv40, 1018=Treasure Chest of Baracos Lv40, 1019=Elleon (Valkyon Hero) Lv40, 1020=Elleon (Valkyon Hero) Lv40, 11111=Cherfa (Clueless Crystal Merchant) Lv40
+    - huntingZoneId: 3005
+      npcTemplateId: [1001, 1002, 1003, 1004, 1006, 1007, 1008, 1010, 1011, 1012, 1013, 1017, 1018, 1019, 1020, 11111]
+      npcName: ""
+      $extends: golden_labyrinth_solo_normal
+
+    # Elite (49 NPCs): 1=Gula Bonecruncher Lv50, 2=Azure Caiman Thumper Lv50, 3=Azure Caiman Basher Lv50, 4=Gula Deathbringer Lv50, 5=Azure Caiman Skullcrusher Lv50, 6=Sihran Avaritian Lv50, 7=Slavemaster Lv50, 8=Zompori Slave Lv50, 9=Ebonheart Maligos Lv50, 10=Vicious Dark Imp Lv50, 11=Gula Savage Lv50, 12=Armored Azure Caiman Lv50, 13=Vicious Dark Imp Lv50, 14=Sihran Devastator Lv50, 15=Sihran Warlord Lv50, 16=Bloodtip Maligos Lv50, 17=Brutal Slaver Lv50, 18=Fierce Bone Imp Lv50, 19=Varcerbus (Gluttinous Fiend) Lv51, 20=Rapacious Kromos (Servant of Varcerbus) Lv50, 21=Muskmane Hyena Lv50, 24=Gula Reaver Lv50, 25=Fierce Bone Imp Lv50, 26=Gula Butcher Lv50, 27=Azure Caiman Thrasher Lv50, 28=Zompori Slave Lv50, 29=Sihran Avaritian Lv50, 30=Bloodtip Maligos Lv50, 31=Azure Caiman Minion Lv50, 32=Bonecrusher Lv50, 33=Azure Caiman Mauler Lv50, 34=Gula Marauder Lv50, 35=Azure Caiman Mauler Lv50, 102= Lv50, 103=Darkheart Imp Lv50, 104= Lv50, 200=Remorseless Golem Lv50, 201= Lv50, 202= Lv50, 203= Lv50, 204= Lv50, 205= Lv50, 206=Maligos Stalker Lv50, 207=Brutal Gula Lv50, 1005=Elleon (Valkyon Hero) Lv50, 5000=Valgmore (Master of Varcerbus) Lv51, 5001= Lv50, 5002=Drowned Gula Lv50, 5005=Gulsig (Voracious Fiend) Lv50
+    - huntingZoneId: 3005
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 102, 103, 104, 200, 201, 202, 203, 204, 205, 206, 207, 1005, 5000, 5001, 5002, 5005]
+      npcName: ""
+      $extends: golden_labyrinth_solo_elite

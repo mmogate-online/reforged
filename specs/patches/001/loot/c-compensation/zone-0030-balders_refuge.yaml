@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Balder's Refuge (huntingZoneId: 30)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 40 NPCs, Lv40-68
+  balders_refuge_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (40 NPCs): 10=Ashpelt Gorilla Lv60, 20=Scourcoat Gorilla Lv60, 30=Aurmane Yak Lv60, 40=Violet Struthio Lv60, 100=Jittery Sloth Lv60, 110=Sloth Slasher Lv60, 120=Languid Sloth Lv60, 130=Sloth Forager Lv60, 140=Venomous Tentacullar Lv60, 150=Fiery Tentacullar Lv60, 160=Azureroot Ghilliedhu Lv60, 170=Viny Arbosk Lv60, 180=Brass Conservator Lv60, 190=Brass Steward Lv60, 200=Plainstalker Bear Lv60, 210=Crimson Arkai Lv60, 220=Teal Arkai Lv60, 1000=Arkaina (Arkai Regent) Lv60, 1271=Versa (Veritas Mystery Merchant) Lv40, 2001= Lv60, 2002= Lv60, 2003= Lv60, 2004=Brass Warden (Ancient Guardian) Lv60, 2005= Lv60, 2006= Lv60, 3001=Krylar Iskaragard (Ancient Guardian) Lv60, 3002=Strylik Iskaragard (Ancient Guardian) Lv60, 3003=Veldraj Iskaragard (Ancient Guardian) Lv60, 3004=Remorseless Sentinel (Ancient Guardian) Lv60, 3005=Argent Soulkeeper (Ancient Guardian) Lv60, 5007=Puzzling Monument Lv40, 6001=Caiman Wanderer (Packed Up) Lv67, 6003=Auto-Gardener Lv67, 9899= Lv65, 9978=Hidden Wooden Crate Lv68, 9979= Lv65, 9988=Hidden Silver Crate Lv68, 9989= Lv65, 9998=Hidden Gold Crate Lv68, 9999= Lv65
+    - huntingZoneId: 30
+      npcTemplateId: [10, 20, 30, 40, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 1000, 1271, 2001, 2002, 2003, 2004, 2005, 2006, 3001, 3002, 3003, 3004, 3005, 5007, 6001, 6003, 9899, 9978, 9979, 9988, 9989, 9998, 9999]
+      npcName: ""
+      $extends: balders_refuge_normal

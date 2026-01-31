@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Golden Labyrinth (Solo) (huntingZoneId: 872)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 4 NPCs, Lv50
+  golden_labyrinth_solo_boss:
+    itemBags:
+      - id: 1
+        bagName: "Golden Labyrinth (Solo) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (4 NPCs): 22=Berylheart (Keeper of the Labyrinth) Lv50, 23=Gulsig (Covetous Fiend) Lv50, 100=Khuljarak (Voracious Fiend) Lv50, 101=Baracos (Lord of the Labyrinth) Lv50
+    - huntingZoneId: 872
+      npcTemplateId: [22, 23, 100, 101]
+      npcName: ""
+      $extends: golden_labyrinth_solo_boss

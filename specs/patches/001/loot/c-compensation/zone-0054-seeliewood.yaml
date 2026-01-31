@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Seeliewood (huntingZoneId: 54)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 27 NPCs, Lv40-60
+  seeliewood_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (27 NPCs): 120=Bloodhorn Mugato Lv58, 130=Stonebrow Cub Lv58, 140=Curltress Pigling Lv58, 150=Gutripper Sabertooth Lv58, 160=Rippertusk Sabertooth Lv58, 170=Seeliewood Cullar Lv59, 180=Seeliewood Tentacullar Lv59, 190=Forestcrown Unicorn Lv58, 200=Feisty Faerie Lv59, 210=Caprin Imp Fighter Lv58, 220=Caprin Imp Worker Lv58, 240=Spineback Noruk Lv58, 250=Baelith Arachnen Lv58, 270=Rampant Ghilliedhu Lv58, 271= Lv60, 360=Centaur Warden Lv59, 370=Pranksome Redcap Lv59, 380=Tuwangi Frogmaster (Kyarnak Contagion) Lv59, 390=Tuwangi Stonewhomper (Kyarnak Contagion) Lv59, 400=Argonomorph Frogmaster (Transmogrified Tuwangi) Lv59, 410=Argonomorph Stonewhomper (Transmogrified Tuwangi) Lv59, 430=Kyarnak (Argon Shaper) Lv59, 440=Feral Popori Lv58, 1271=Silvette (Sylvanoth Mystery Merchant) Lv40, 2010= Lv58, 2020= Lv58, 4001=Chaotic Tyrak Lv59
+    - huntingZoneId: 54
+      npcTemplateId: [120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 240, 250, 270, 271, 360, 370, 380, 390, 400, 410, 430, 440, 1271, 2010, 2020, 4001]
+      npcName: ""
+      $extends: seeliewood_normal

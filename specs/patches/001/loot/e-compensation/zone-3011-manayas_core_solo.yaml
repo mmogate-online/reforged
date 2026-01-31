@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Manaya's Core (Solo) (huntingZoneId: 3011)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 18 NPCs, Lv64
+  manayas_core_solo_boss:
+    itemBags:
+      - id: 1
+        bagName: "Manaya's Core (Solo) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (18 NPCs): 2001=Shandra Manaya (Argon Queen) Lv64, 2002= Lv64, 2003= Lv64, 2004= Lv64, 2005= Lv64, 2007=Shandra Manaya (Argon Queen) Lv64, 2011= Lv64, 42701=Hrathgol (Sword of Manaya) Lv64, 42702=Melkatran (Cyanoguard Prime) Lv64, 42705=Vieldras (Dark Hand of Manaya) Lv64, 42706= Lv64, 42708= Lv64, 42712=Empowered Hulrap Warden Lv64, 42713=Kartunan (Veilshaper of Manaya) Lv64, 42732=Melkatran (Cyanoguard Prime) Lv64, 42741=Empowered Argnomorph Orisk Lv64, 42743=Empowered Shurian Vanquisher Elite Lv64, 42759=Empowered Shurian Crusher Elite Lv64
+    - huntingZoneId: 3011
+      npcTemplateId: [2001, 2002, 2003, 2004, 2005, 2007, 2011, 42701, 42702, 42705, 42706, 42708, 42712, 42713, 42732, 42741, 42743, 42759]
+      npcName: ""
+      $extends: manayas_core_solo_boss

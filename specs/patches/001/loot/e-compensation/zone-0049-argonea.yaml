@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Argonea (huntingZoneId: 49)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 5 NPCs, Lv64
+  argonea_boss:
+    itemBags:
+      - id: 1
+        bagName: "Argonea Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (5 NPCs): 1=Akalath Overseer Lv64, 2=Suulvir Raptor Lv64, 3=Volsurus (Dread Preceptor) Lv64, 4=Akalath Fighter_R Lv64, 5=Arzakaar Thassalir Lv64
+    - huntingZoneId: 49
+      npcTemplateId: [1, 2, 3, 4, 5]
+      npcName: ""
+      $extends: argonea_boss

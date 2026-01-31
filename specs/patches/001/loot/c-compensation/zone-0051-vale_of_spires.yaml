@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Vale of Spires (huntingZoneId: 51)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 26 NPCs, Lv40-59
+  vale_of_spires_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (26 NPCs): 1011=Dominated Wendigo Rager Lv57, 1021=Dominated Wendigo Warlord Lv57, 1031=Dominated Wendigo Shaman Lv58, 1032=Cyasma-Riddled Orcan Lv58, 1033=Cyasma-Riddled Tuwangi Lv58, 1041=Dominated Wendigo Demolisher Lv58, 1051=Frostwalker Sabertooth Lv58, 1271=Loahcun (Lorcada Mystery Merchant) Lv40, 1501=Kelsaik's Raid Teleportal Lv40, 2021=Snowfield Arachnen Lv58, 2031=Iceheart Sabertooth Lv58, 3011=Sihranar Enforcer (Thulsan Bloodguard) Lv58, 5011=Lorcada Defender Lv58, 5021=Lorcada Defender Lv58, 6011=Ram Lv57, 6021=Ram Lv58, 6031=Ram Lv59, 8011=Kalmatcha (Wendigo Chieftain) Lv58, 8012=Wendigo Frostrager Lv58, 9011=Draelkar Pylon Lv57, 9012=Sihranar Brute (Thulsan Bloodguard) Lv57, 9021=Draelkar Pylon Lv58, 9022=Sihranar Reaper (Thulsan Bloodguard) Lv57, 9031=Draelkar Pylon Lv59, 9032=Sihranar Reaver (Thulsan Bloodguard) Lv59, 9041= Lv58
+    - huntingZoneId: 51
+      npcTemplateId: [1011, 1021, 1031, 1032, 1033, 1041, 1051, 1271, 1501, 2021, 2031, 3011, 5011, 5021, 6011, 6021, 6031, 8011, 8012, 9011, 9012, 9021, 9022, 9031, 9032, 9041]
+      npcName: ""
+      $extends: vale_of_spires_normal

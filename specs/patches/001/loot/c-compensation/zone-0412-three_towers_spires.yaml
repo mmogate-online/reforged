@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Three Towers Spires (huntingZoneId: 412)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 11 NPCs, Lv40-58
+  three_towers_spires_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 4 NPCs, Lv40
+  three_towers_spires_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (11 NPCs): 1001=Argon Kalash Guard Leader Lv57, 1002=Argon Kelba Lv57, 2006=Hasmina Lv40, 2007=Exit Teleportal Lv57, 2008=Argonized Yasring Lv57, 2009=Greyden (Scout Squad Commander) Lv40, 2010=Exit Teleportal Lv40, 3000=Argon Capsule Lv57, 3001= Lv57, 3002= Lv57, 3003= Lv58
+    - huntingZoneId: 412
+      npcTemplateId: [1001, 1002, 2006, 2007, 2008, 2009, 2010, 3000, 3001, 3002, 3003]
+      npcName: ""
+      $extends: three_towers_spires_normal
+
+    # Elite (4 NPCs): 2001=Greyden (Scout Squad Commander) Lv40, 2002=Dunkan (Scout Squad Member) Lv40, 2003=Browan (Scout Squad Member) Lv40, 2004=Celinu (Scout Squad Member) Lv40
+    - huntingZoneId: 412
+      npcTemplateId: [2001, 2002, 2003, 2004]
+      npcName: ""
+      $extends: three_towers_spires_elite

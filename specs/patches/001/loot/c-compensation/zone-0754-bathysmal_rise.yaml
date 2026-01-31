@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Bathysmal Rise (huntingZoneId: 754)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 63 NPCs, Lv26-65
+  bathysmal_rise_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 3 NPCs, Lv26
+  bathysmal_rise_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (63 NPCs): 10= Lv65, 93=Earthen Heart Lv65, 94=Aqueous Heart Lv65, 95=Triune Heart Lv65, 96= Lv26, 97=Fiery Heart Lv65, 98= Lv65, 99= Lv65, 100=Fulmisphere Lv65, 101= Lv65, 102= Lv65, 106= Lv65, 107= Lv65, 108= Lv65, 109= Lv65, 110= Lv65, 111= Lv65, 112= Lv65, 200= Lv65, 201= Lv65, 202= Lv65, 203= Lv65, 301= Lv65, 302= Lv65, 303= Lv65, 304= Lv65, 305= Lv65, 306= Lv65, 307= Lv65, 400= Lv65, 402= Lv26, 403= Lv65, 404=Rock Pile Lv65, 405=Rock Pile Lv65, 406= Lv65, 407= Lv65, 408=Bathysmal Kamara Lv65, 500=Bathysmal Cnidaria Lv65, 501=Bathysmal Starfish Lv65, 502=Cnidaria Sentinel Lv65, 503=Bathysmal Naga Overseer Lv65, 504=Bathysmal Naga Overseer Lv65, 600=Voltirex (Thunderbolt Mechanoid) Lv65, 601=Bathysmal Jinn Lv65, 602=Bathysmal Jinn Lv65, 603=Bathysmal Jinn Lv65, 604=Bathysmal Jinn Lv65, 605=Bathysmal Jinn Lv65, 606=Bathysmal Jinn Lv65, 607=Latent Jinn Lv65, 700=Briny Blade Golem Lv65, 701=Pelagic Stonebeak Lv65, 702=Narvuul Teralith Lv65, 903=Cyaneus (Guardian of the Heart) Lv65, 904=Treasure Chest Lv65, 905=Silver Treasure Chest Lv65, 906=Gold Treasure Chest Lv65, 907=Brass Treasure Chest Lv65, 999=Kashadan (Dungeon Merchant) Lv40, 4000=Exit Teleportal Lv40, 4001=Pool of Fear Teleportal Lv40, 4002=Faridei Vault Teleportal Lv40, 4010= Lv65
+    - huntingZoneId: 754
+      npcTemplateId: [10, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 106, 107, 108, 109, 110, 111, 112, 200, 201, 202, 203, 301, 302, 303, 304, 305, 306, 307, 400, 402, 403, 404, 405, 406, 407, 408, 500, 501, 502, 503, 504, 600, 601, 602, 603, 604, 605, 606, 607, 700, 701, 702, 903, 904, 905, 906, 907, 999, 4000, 4001, 4002, 4010]
+      npcName: ""
+      $extends: bathysmal_rise_normal
+
+    # Elite (3 NPCs): 401= Lv26, 901= Lv26, 902= Lv26
+    - huntingZoneId: 754
+      npcTemplateId: [401, 901, 902]
+      npcName: ""
+      $extends: bathysmal_rise_elite

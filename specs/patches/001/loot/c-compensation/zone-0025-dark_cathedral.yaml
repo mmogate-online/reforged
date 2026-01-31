@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Dark Cathedral (huntingZoneId: 25)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 36 NPCs, Lv37-39
+  dark_cathedral_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 11 NPCs, Lv37-38
+  dark_cathedral_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (36 NPCs): 1011=Devan Reaver Lv38, 1021=Devan Prelate Lv38, 1022=Skeletal Warden Lv38, 1031=Dread Knight Lv38, 1032=Skeletal Defender Lv38, 1041=Dread Squire Lv38, 1051=Skeletal Pikeman Lv38, 1062=Dark Priest Lv38, 1071=Lokian Raider Lv38, 1072=Lokian Brute Lv38, 1081=Remorseless Hyena Lv37, 2011=Ossugon Warchief Lv38, 2012=Fanatic Skeletal Soldier Lv38, 2021=Ossugon Legate Lv38, 2022=Fanatic Skeletal Crusher Lv38, 2031=Devan Deathmaster Lv38, 2041=Lokian Sniper Lv38, 2042=Lokian Blood Reaper Lv38, 2052=Dark Bishop Lv38, 2061=Devan Vanguard Lv38, 2071=Dark Deacon Lv38, 2081=Caiman Scavengers Lv38, 2091=Lokian Zealot Lv38, 2092=Lokian Fanatic Lv38, 3011=Consecrated Lokian Lv38, 3012=Shurian Champion Lv38, 3021=Primal Lokian Lv38, 3022=Shurian Magister Lv38, 3031=Primal Lokian Darkweaver Lv38, 3032=Hallowed Lokian Knight Lv38, 6011= Lv37, 6021= Lv37, 7011=Garbeldin (Atel Akaad) Lv39, 8012=Dark Restorer (Atel Akaad) Lv38, 8022=Dark Infuser (Atel Akaad) Lv38, 8032=Dark Redeemer (Atel Akaad) Lv38
+    - huntingZoneId: 25
+      npcTemplateId: [1011, 1021, 1022, 1031, 1032, 1041, 1051, 1062, 1071, 1072, 1081, 2011, 2012, 2021, 2022, 2031, 2041, 2042, 2052, 2061, 2071, 2081, 2091, 2092, 3011, 3012, 3021, 3022, 3031, 3032, 6011, 6021, 7011, 8012, 8022, 8032]
+      npcName: ""
+      $extends: dark_cathedral_normal
+
+    # Elite (11 NPCs): 5011=Leinas (Justicar) Lv38, 5012=Telphus (Justicar) Lv38, 5013=Kelanius (Justicar) Lv38, 5014=Diminia (Justicar) Lv38, 5015=Mandirik (Justicar) Lv38, 5021=Kelobe (Justicar) Lv38, 5022=Misynri (Justicar) Lv38, 5023=Lysinia (Justicar) Lv38, 9011= Lv37, 9012= Lv37, 9013= Lv37
+    - huntingZoneId: 25
+      npcTemplateId: [5011, 5012, 5013, 5014, 5015, 5021, 5022, 5023, 9011, 9012, 9013]
+      npcName: ""
+      $extends: dark_cathedral_elite

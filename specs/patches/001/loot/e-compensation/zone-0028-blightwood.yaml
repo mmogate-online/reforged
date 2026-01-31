@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Blightwood (huntingZoneId: 28)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 4 NPCs, Lv40-42
+  blightwood_boss:
+    itemBags:
+      - id: 1
+        bagName: "Blightwood Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (4 NPCs): 2041=Tainted Ovolith Lv40, 3011=Noxious Ovolith Lv40, 3021=Reeking Orisk Lv40, 5000=Terkasia (Mistress of Treachery) Lv42
+    - huntingZoneId: 28
+      npcTemplateId: [2041, 3011, 3021, 5000]
+      npcName: ""
+      $extends: blightwood_boss

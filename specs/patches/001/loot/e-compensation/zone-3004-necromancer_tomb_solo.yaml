@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Necromancer Tomb (Solo) (huntingZoneId: 3004)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 3 NPCs, Lv43
+  necromancer_tomb_solo_boss:
+    itemBags:
+      - id: 1
+        bagName: "Necromancer Tomb (Solo) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (3 NPCs): 13=Dalmanak (The Glutton) Lv43, 14=Vedilith (Favored of Thulsa) Lv43, 15=Mutated Kaidun (Imprisoned) Lv43
+    - huntingZoneId: 3004
+      npcTemplateId: [13, 14, 15]
+      npcName: ""
+      $extends: necromancer_tomb_solo_boss

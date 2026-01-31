@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Balder's Temple (huntingZoneId: 425)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 13 NPCs, Lv60
+  balders_temple_boss:
+    itemBags:
+      - id: 1
+        bagName: "Balder's Temple Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (13 NPCs): 1000=Kakun (Watcher of the Garden) Lv60, 3000=Lagreah (Protector of the Garden) Lv60, 4000=Grig (Keeper of Flame) Lv60, 5000=Golem Generator Lv60, 5001=Golem Restoration Aura Lv60, 5002=Golem Curative Aura Lv60, 6000=Glaciernus (The Frostbinder) Lv60, 8000=Guardian of the Relic Lv60, 8001=Guardian of the Relic Lv60, 8002=Guardian of the Relic Lv60, 8003=Guardian of the Relic Lv60, 8004=Guardian of the Relic Lv60, 8005=Auricadis (Guardian of the Relic) Lv60
+    - huntingZoneId: 425
+      npcTemplateId: [1000, 3000, 4000, 5000, 5001, 5002, 6000, 8000, 8001, 8002, 8003, 8004, 8005]
+      npcName: ""
+      $extends: balders_temple_boss

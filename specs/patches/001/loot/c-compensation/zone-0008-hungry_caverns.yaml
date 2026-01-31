@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Hungry Caverns (huntingZoneId: 8)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 37 NPCs, Lv48-51
+  hungry_caverns_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (37 NPCs): 1011=Hulking Sentry Lv48, 1021=Cromos Prowler Lv48, 1031=Caprin Imp Lv48, 2011=Armored Hyena Lv48, 2021=Caiman Mercenary Lv48, 2031=Gula Slaver (Kazuur Syndicate) Lv48, 2041=Gula Taskmaster (Kazuur Syndicate) Lv48, 2042=Caiman Guard Lv48, 2051=Devan Acolyte Lv48, 2061=Auric Imp Lv48, 3011=Gula Mutilator (Kazuur Syndicate) Lv49, 3021=Gula Skinner (Kazuur Syndicate) Lv49, 3022=Slavering Auric Imp Lv49, 3031=Gula Ravager (Kazuur Syndicate) Lv49, 3041=Gula Overseer (Kazuur Syndicate) Lv49, 3042=Kobold Thug Lv49, 3051=Kobold Hireling Lv49, 4011=Aberrant Gulon (Kazuur Syndicate) Lv50, 4021=Reanimated Popori Lv50, 4031=Skeletal Caiman Lv50, 4032=Caiman Bonethrall Lv50, 4041=Cruel Inquisitor (Kazuur Syndicate) Lv50, 4051=Vulgar Inquisitor (Kazuur Syndicate) Lv50, 4052=Vicious Auric Imp Lv50, 4061=Undying Miner Lv50, 5011=Candarik (Anguish Fiend) Lv51, 5012=Caiman Inflictor (Fangs of Candarik) Lv51, 6011= Lv48, 6021= Lv48, 6031= Lv49, 6041= Lv50, 6051=Goat Lv48, 8011=Glauka (Nightmare Epicure) Lv49, 8012=Nazkarith (Hungry Imp) Lv50, 8021=Dulinka (Kazuur Syndicate) Lv51, 8022=Mekkitar (Kazuur Syndicate) Lv51, 8031=Kuraab (Kazuur Syndicate) Lv51
+    - huntingZoneId: 8
+      npcTemplateId: [1011, 1021, 1031, 2011, 2021, 2031, 2041, 2042, 2051, 2061, 3011, 3021, 3022, 3031, 3041, 3042, 3051, 4011, 4021, 4031, 4032, 4041, 4051, 4052, 4061, 5011, 5012, 6011, 6021, 6031, 6041, 6051, 8011, 8012, 8021, 8022, 8031]
+      npcName: ""
+      $extends: hungry_caverns_normal

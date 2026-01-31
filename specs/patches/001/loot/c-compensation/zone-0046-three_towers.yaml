@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Three Towers (huntingZoneId: 46)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 19 NPCs, Lv57-58
+  three_towers_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (19 NPCs): 101=Argonomorph Blade Golem Lv57, 102=Argonomorph Terron Lv57, 201=Argonomorph Kulkari Crusher Lv57, 202=Argonomorph Kulkari Shaman Lv57, 203=Argonomorph Lokian Slayer Lv57, 301=Argonomorph Sikandari Lv57, 302=Argonomorph Fiend Lv57, 303=Argonomorph Blood Fiend Lv57, 304=Argonomorph Jalmarak Lv58, 401=Argonomorph Ossugon Warlord Lv58, 402=Argonomorph Nightmare Fiend Lv58, 403=Argonomorph Iskaragard Lv58, 2013= Lv58, 7001=Tholzak Emitter Lv57, 7002=Jermol Extractor Lv57, 7003=Haxuul Extractor Lv57, 7004=Aquaas Extractor Lv57, 7005=Grellok Spire Lv57, 7006=Jurnagg Portal Lv57
+    - huntingZoneId: 46
+      npcTemplateId: [101, 102, 201, 202, 203, 301, 302, 303, 304, 401, 402, 403, 2013, 7001, 7002, 7003, 7004, 7005, 7006]
+      npcName: ""
+      $extends: three_towers_normal

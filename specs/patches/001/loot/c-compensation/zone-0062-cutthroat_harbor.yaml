@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Cutthroat Harbor (huntingZoneId: 62)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 88 NPCs, Lv1-65
+  cutthroat_harbor_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (88 NPCs): 1001=Siam (Magistrate) Lv40, 1002=Acria (Merchant) Lv40, 1003=Orlane (Merchant) Lv40, 1004=Mazhir (Banker) Lv40, 1005=Vala (Banker) Lv40, 1006=Kelling (Flight Manager) Lv40, 1007=Kasib (Vigilante Leader) Lv40, 1008=Listah (Vigilante) Lv40, 1009=Burukro (Vigilante) Lv40, 1010=Kinias (Vigilante) Lv40, 1011=Lysanor Lv40, 1012=Nerth (Union Representative) Lv40, 1013=Marrock (Habob) Lv40, 1014=Finn (Pirate) Lv40, 1015=Gengen (Explorer) Lv40, 1016=Govan Lv40, 1017=Jemia Lv40, 1018=Arkaius (Kaia's Sword Commander) Lv40, 1019=Lenia (Coordinator) Lv40, 1020=Korvin (Kaia's Sword) Lv40, 1021=Caton (Kaia's Sword) Lv40, 1022=Kellish (Magic Researcher) Lv40, 1023=Wynne (Mother) Lv40, 1024=Dirken (Sailor) Lv40, 1025=Bayyan (Dirken's Right Hand) Lv40, 1026=Zaira (Dirken's Left Hand) Lv40, 1027=Teleportal Lv40, 1028=Mission Board Lv40, 1029=Mission Board Lv40, 1030=Mission Board Lv40, 1031=Fyrsil (Justicar) Lv40, 1032=Hafgan (Justicar) Lv40, 1033=Derolo (Trade Broker) Lv40, 1034=Runha (Elleon's Ally) Lv40, 1035=Perina Lv40, 1036=Barlyas (Disguised Elleon) Lv40, 1037=Dougal (Consul) Lv40, 1038=Baliconus (Kaia's Sword) Lv40, 1039=Villager Lv40, 1040=Sailor Lv40, 1041=Kaia's Sword Lv40, 1042=Kaia's Sword Lv40, 1043=Zaira (Dirken's Left Hand) Lv40, 1049=Ronyn (Goldenscale Shipmaster) Lv40, 1300=Traamiz (Cleric of Restoration) Lv40, 1501=Armon (Kalivan's Dreadnaught Sentry) Lv1, 1502=Ejan (Forsaken Island Sentry) Lv1, 1600=Nihile (Alchemy Materials) Lv40, 1601=Vanesa (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Lisel (Guild Quest Rewards) Lv40, 1604= Lv40, 1700=Guard Lv65, 1701=Jax (Jax Trust Leader) Lv40, 1702=Ebbra (Jax Trust CFO) Lv40, 1703=Imesti (Jax Trust Financial Officer) Lv40, 1704=Rhales (Jax Trust Merchant) Lv40, 1705=Loyek (Jax Trust) Lv40, 1706=Kentir (Jax Trust) Lv40, 1707=Maba (Hobo) Lv40, 1708=Unten (Hobo) Lv40, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 8100=Anla (Mountain Climber) Lv32, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1, 9805=Gillein (Federation Resource Manager) Lv40, 9901= Lv26, 9902=Fishing Message Board Lv40, 9903=Tashazel (Fishing Supplies) Lv40, 9904=Cordi (Angler Token Vendor) Lv40, 9905=Pacheco (Association Fishmonger) Lv40
+    - huntingZoneId: 62
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1049, 1300, 1501, 1502, 1600, 1601, 1602, 1603, 1604, 1700, 1701, 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1900, 1901, 1902, 1903, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 8100, 9000, 9001, 9002, 9003, 9004, 9805, 9901, 9902, 9903, 9904, 9905]
+      npcName: ""
+      $extends: cutthroat_harbor_normal

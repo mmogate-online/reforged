@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Bleakrock (huntingZoneId: 83)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 60 NPCs, Lv1-65
+  bleakrock_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (60 NPCs): 1001=Colekia (Merchant) Lv40, 1002=Cheroude (Banker) Lv40, 1003=Porarlin (Flight Manager) Lv40, 1004=Nunahd (Praetor) Lv40, 1005=Morar (Loading Area Worker) Lv40, 1006=Jakren (Villager) Lv40, 1007=Teleportal Lv40, 1008=Junash (Westonia Defender) Lv40, 1009=Nelixia (Westonia Defender) Lv40, 1010=Dena (Coordinator) Lv40, 1011=Forsil (Shard Merchant) Lv40, 1012=Mutah (Magistrate) Lv40, 1013=Dabash (Villager) Lv40, 1014=Kilda (Shard Hunter) Lv40, 1015=Leydine (Hunter) Lv40, 1016=Giovan (Hunter) Lv40, 1017=Ahviin (Hunter) Lv40, 1018=Ghubara (Hunter) Lv40, 1019=Khazan (Hunter) Lv40, 1020=Westonia Defender Lv40, 1021=Westonia Defender Lv40, 1022=Galey (Shard Merchant) Lv40, 1023=Porter Lv40, 1024=Villager Lv40, 1025=Villager Lv40, 1300=Jaman (Cleric of Restoration) Lv40, 1401=Mission Board Lv40, 1600=Tanisk (Alchemy Materials) Lv40, 1601=Delia (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Ariane (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1, 9805=Krois (Federation Resource Manager) Lv40, 9901= Lv26, 9902=Fishing Message Board Lv40, 9903=Skyroc (Fishing Supplies) Lv40, 9904=Pilano (Angler Token Vendor) Lv40, 9905=Ainve (Association Fishmonger) Lv40, 9906= Lv40, 9907= Lv40, 9911= Lv26
+    - huntingZoneId: 83
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1300, 1401, 1600, 1601, 1602, 1603, 1700, 1900, 1901, 1902, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004, 9805, 9901, 9902, 9903, 9904, 9905, 9906, 9907, 9911]
+      npcName: ""
+      $extends: bleakrock_normal

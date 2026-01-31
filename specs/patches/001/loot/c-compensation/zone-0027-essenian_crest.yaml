@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Essenian Crest (huntingZoneId: 27)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 117 NPCs, Lv1-68
+  essenian_crest_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 1 NPCs, Lv65
+  essenian_crest_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (117 NPCs): 1=Loamy Sporewalker Lv39, 2=Ancient Bladegolem Lv39, 3=Ancient Speargolem Lv39, 4=Eldritch Sentinel Lv39, 5=Fearless Speargolem Lv39, 6=Merciless Iskaragard Lv40, 7=Savage Iskaragard Lv40, 8=Thulsan Berserker (Brogar Legion) Lv39, 9=Thulsan Dreadweaver (Brogar Legion) Lv39, 10=Thulsan Slayer (Brogar Legion) Lv39, 11=Thulsan Arcanist (Brogar Legion) Lv39, 12=Thulsan Cleaver (Brogar Legion) Lv39, 13=Thulsan Guardian (Brogar Legion) Lv39, 14=Thulsan Conjurer (Brogar Legion) Lv39, 15=Thulsan Follower (Brogar Legion) Lv39, 16=Calapana (Keeper of the Scarlet Flame) Lv40, 17=Belcurion Lv42, 18=Beltyrian Lv42, 19=Zarhagen (The Faceless Slayer) Lv42, 20=Gernik (Brogar Legion) Lv40, 21=Thulsan Battlerager (Brogar Legion) Lv39, 22=Thulsan Mystic (Brogar Legion) Lv39, 23=Thulsan Thresher (Brogar Legion) Lv39, 24=Thulsan Sorcerer (Brogar Legion) Lv39, 25=Thulsan Reaper (Brogar Legion) Lv39, 100=Mysinius (Dark Praetor) Lv43, 501=Elleon (Valkyon Hero) Lv40, 502=Elleon (Valkyon Hero) Lv40, 511=Jelena (Ranger) Lv40, 512=Jelena (Ranger) Lv40, 521=Frightened Soldier Lv60, 522=Weakened Soldier Lv60, 523=Runaway Soldier Lv60, 524=Frightened Soldier Lv60, 525=Horrified Soldier Lv60, 531= Lv68, 532= Lv68, 533= Lv68, 534= Lv68, 535= Lv68, 536= Lv68, 537= Lv68, 551= Lv1, 552= Lv1, 561=Haron Lv32, 562=Chulka Lv40, 563=Zeuk Lv40, 564=Kierhan Lv40, 565=Zeihenne Lv32, 566=Zachel? Lv32, 567=Zeihenne Lv32, 568= Lv32, 1000=Jelena (Ranger) Lv40, 1001=Terrified Soldier Lv60, 1002=Play Cinematics (Cinematic Substance) Lv65, 1003=Elleon (Valkyon Hero) Lv40, 1004=Contaminated Warthog Lv66, 1005=Contaminated Vulcan Lv66, 1007= Lv40, 1008= Lv40, 1009= Lv40, 1010= Lv40, 1014=Jelena (Ranger) Lv40, 1015=Koray (Tria Villager) Lv40, 1016=Helpless Soldier (Essenia Defender) Lv40, 1017=Fallen Soldier (Essenia Guard) Lv40, 1018=Tria Villager (Rescued) Lv67, 1019=Siege Cannon (Essenia Guard) Lv40, 1049=Wall of Wordcraft Lv40, 1100=Amarre (Ecosystem Expert) Lv40, 1101=Amarre (Ecosystem Expert) Lv40, 1102=Amarre (Ecosystem Expert) Lv40, 1103=Amarre (Ecosystem Expert) Lv40, 1104=Amarre (Ecosystem Expert) Lv40, 1105=Amarre (Ecosystem Expert) Lv40, 1106=Amarre (Ecosystem Expert) Lv40, 1107=Amarre (Ecosystem Expert) Lv40, 1108=Amarre (Ecosystem Expert) Lv40, 1109=Amarre (Ecosystem Expert) Lv40, 1110=Kailey (Mysterium Chief Researcher) Lv64, 1120=Mikele (Mysterium Magister) Lv40, 1130=Huddleflare (Mysterium Magister) Lv40, 1140=Barurung (Messenger) Lv40, 1141=Barurung (Messenger) Lv40, 1142=Barurung (Messenger) Lv40, 1143=Barurung (Messenger) Lv40, 1144=Barurung (Messenger) Lv40, 1145=Barurung (Messenger) Lv40, 1146=Barurung (Messenger) Lv40, 1147=Barurung (Messenger) Lv40, 1148=Barurung (Messenger) Lv40, 1149= Lv40, 1150=Crystallization Research Journal Lv65, 1161=Elleon (Valkyon Hero) Lv40, 1162=Elleon (Valkyon Hero) Lv40, 1170=Amarre (Ecosystem Expert) Lv40, 1171=Amarre (Ecosystem Expert) Lv40, 1184=Captured Murderwing Lv26, 1271=Ezart (Essenia Mystery Merchant) Lv40, 3201=Teleportal (Gossamer Vault) Lv40, 5011= Lv32, 5012= Lv16, 5013= Lv40, 5014= Lv64, 5015= Lv40, 5016= Lv65, 5017= Lv40, 5018= Lv40, 5021=Ridigo (Survivor) Lv32, 5022=Marlesa (Survivor) Lv16, 5023=Corrl (Survivor) Lv40, 5024=Millino (Survivor) Lv64, 5025=Herenata (Survivor) Lv40, 5026=Celicia (Survivor) Lv65, 5027=Allebasi (Survivor) Lv40, 5028=Suna (Survivor) Lv40, 6001=Caiman Wanderer (Packed Up) Lv66
+    - huntingZoneId: 27
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 100, 501, 502, 511, 512, 521, 522, 523, 524, 525, 531, 532, 533, 534, 535, 536, 537, 551, 552, 561, 562, 563, 564, 565, 566, 567, 568, 1000, 1001, 1002, 1003, 1004, 1005, 1007, 1008, 1009, 1010, 1014, 1015, 1016, 1017, 1018, 1019, 1049, 1100, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1120, 1130, 1140, 1141, 1142, 1143, 1144, 1145, 1146, 1147, 1148, 1149, 1150, 1161, 1162, 1170, 1171, 1184, 1271, 3201, 5011, 5012, 5013, 5014, 5015, 5016, 5017, 5018, 5021, 5022, 5023, 5024, 5025, 5026, 5027, 5028, 6001]
+      npcName: ""
+      $extends: essenian_crest_normal
+
+    # Elite (1 NPCs): 553= Lv65
+    - huntingZoneId: 27
+      npcTemplateId: [553]
+      npcName: ""
+      $extends: essenian_crest_elite

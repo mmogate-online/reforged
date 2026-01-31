@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Three Towers (huntingZoneId: 46)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 1 NPCs, Lv58
+  three_towers_boss:
+    itemBags:
+      - id: 1
+        bagName: "Three Towers Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (1 NPCs): 501=Argonomorph Dread Maligos Lv58
+    - huntingZoneId: 46
+      npcTemplateId: [501]
+      npcName: ""
+      $extends: three_towers_boss

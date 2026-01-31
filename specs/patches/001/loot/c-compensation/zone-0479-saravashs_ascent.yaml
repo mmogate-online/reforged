@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Saravash's Ascent (huntingZoneId: 479)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 8 NPCs, Lv1-40
+  saravashs_ascent_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 33 NPCs, Lv26-59
+  saravashs_ascent_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (8 NPCs): 1501=Exit Teleportal Lv40, 1502=Saravash's Catchment Teleportal Lv40, 47931= Lv1, 47932= Lv1, 47933= Lv1, 47944= Lv1, 47945= Lv1, 47946= Lv1
+    - huntingZoneId: 479
+      npcTemplateId: [1501, 1502, 47931, 47932, 47933, 47944, 47945, 47946]
+      npcName: ""
+      $extends: saravashs_ascent_normal
+
+    # Elite (33 NPCs): 555= Lv26, 47901=Devan Bloodguard Lv59, 47902=Devan Blademistress Lv59, 47903=Devan Darkweaver Lv59, 47904=Lokian Sniper Lv59, 47905=Silverchest Gorilla Lv59, 47906=Toothy Gullet Lv59, 47907=Lokian Bloodcaster Lv59, 47908=Caprin Imp Scrounger Lv59, 47909=Tholgur Templar Lv59, 47910=Caprin Imp Brute Lv59, 47911=Young Goldeneye Basilisk Lv59, 47912=Young Fireye Basilisk Lv59, 47913=Devan Bloodwarden Lv59, 47914=Devan Edgerunner Lv59, 47915=Devan Darkshaper Lv59, 47916=Lokian Stalker Lv59, 47917=Lokian Magister Lv59, 47918=Lokian Inquisitor Lv59, 47919=Fanged Gullet Lv59, 47920=Lokian Deadeye Lv59, 47921=Caprin Brute Lv59, 47922= Lv59, 47934= Lv59, 47935= Lv26, 47936= Lv26, 47937= Lv26, 47938=Enchanted Chest Lv59, 47939=Enchanted Vault Lv59, 47940= Lv59, 47941= Lv59, 47942= Lv59, 47943= Lv59
+    - huntingZoneId: 479
+      npcTemplateId: [555, 47901, 47902, 47903, 47904, 47905, 47906, 47907, 47908, 47909, 47910, 47911, 47912, 47913, 47914, 47915, 47916, 47917, 47918, 47919, 47920, 47921, 47922, 47934, 47935, 47936, 47937, 47938, 47939, 47940, 47941, 47942, 47943]
+      npcName: ""
+      $extends: saravashs_ascent_elite

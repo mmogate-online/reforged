@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Rift's Edge (Hard) (huntingZoneId: 450)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 37 NPCs, Lv60
+  rifts_edge_hard_boss:
+    itemBags:
+      - id: 1
+        bagName: "Rift's Edge (Hard) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (37 NPCs): 1001=Nightmare Yativio (Insectivore) Lv60, 1002=Nightmare Vesporax (Giant Hornet) Lv60, 1003=Nightmare Koleogg (Giant Beetle) Lv60, 1004=Nightmare Rift Arachnaea (Cliff Path Gatekeeper) Lv60, 1005=Nightmare Berserk Arachnaea (Junction Gatekeeper) Lv60, 2001=Enraged Kumas (Low) Lv60, 2002=Naga Pirate (Low) Lv60, 2003=Giant Orisk (Low) Lv60, 2004=Naga Shaman (Medium) Lv60, 2005=Naga Berserker (Medium) Lv60, 2006=Basilisk (Medium) Lv60, 2007=Fimbrilisk (Medium) Lv60, 2008=Fangspawn (High) Lv60, 2009=Giant Storm Lizard (High) Lv60, 2010=Bloodtalon (High) Lv60, 2011=Giant Mandrill (High) Lv60, 45002=Guwangi Champion Elite (Leader) Lv60, 45012=Knight-Champion Elite (Cave Gatekeeper) Lv60, 45013=Elite Rift-Priest Lv60, 45014=Elite Rift-Warrior (Cave Gatekeeper) Lv60, 45015=Elite Rift-Savage (Cave Gatekeeper) Lv60, 45016= Lv60, 45024= Lv60, 45044=Knight-Champion Elite (Cliff Path Gatekeeper) Lv60, 45045=Elite Rift-Warrior (Cliff Path Gatekeeper) Lv60, 45046=Elite Rift-Savage (Cliff Path Gatekeeper) Lv60, 45047= Lv60, 45060= Lv60, 45061= Lv60, 45062= Lv60, 45063= Lv60, 45064= Lv60, 45065= Lv60, 45066= Lv60, 45067= Lv60, 45068= Lv60, 45078= Lv60
+    - huntingZoneId: 450
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 45002, 45012, 45013, 45014, 45015, 45016, 45024, 45044, 45045, 45046, 45047, 45060, 45061, 45062, 45063, 45064, 45065, 45066, 45067, 45068, 45078]
+      npcName: ""
+      $extends: rifts_edge_hard_boss

@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Amena Quatla (huntingZoneId: 57)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 5 NPCs, Lv51-68
+  amena_quatla_boss:
+    itemBags:
+      - id: 1
+        bagName: "Amena Quatla Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (5 NPCs): 6=Lurking Storm Lizard Lv51, 12=Inexorable Akalath Warlord Lv53, 22=Ebon Fimbrilisk Lv52, 33=Betsael (Infernal Fimbrilisk) Lv68, 39=Consecrated Teralith Lv52
+    - huntingZoneId: 57
+      npcTemplateId: [6, 12, 22, 33, 39]
+      npcName: ""
+      $extends: amena_quatla_boss

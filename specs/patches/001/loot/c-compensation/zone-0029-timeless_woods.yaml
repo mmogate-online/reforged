@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Timeless Woods (huntingZoneId: 29)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 81 NPCs, Lv20-70
+  timeless_woods_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 2 NPCs, Lv43
+  timeless_woods_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (81 NPCs): 1000=Isobel (Prefect) Lv40, 1001=Isobel (Prefect) Lv40, 1002=Vec (Essenia Defender) Lv60, 1003=Isobel (Prefect) Lv40, 1004=Berot (Scout) Lv60, 1005=Elleon (Valkyon Hero) Lv40, 1006=Jelena Lv40, 1007=Hennika (Red Raiders) Lv68, 1008=Jelena Lv40, 1009=Elleon (Valkyon Hero) Lv40, 1010=Raider (Red Raiders) Lv65, 1011=Thick Tusked Shoat Lv40, 1012=Raider (Red Raiders) Lv64, 1013=Guardian Legion Mission Boss Lv64, 1014=Parthian Bowman Lv64, 1015=Parthian Bowman Lv64, 1016=Parthian Bowman Lv64, 1017=Elleon (Valkyon Hero) Lv40, 1018=Raider (Red Raiders) Lv65, 1019=Marung (Herb Gatherer) Lv40, 1020=Cooperative Overseer (Raider Officer) Lv70, 1021=Inky Sabertooth Lv40, 1022=Overseer (Raider Officer) Lv65, 1023=Amber Powder Lv70, 1024=Sickly Warthog Lv65, 1026=Wagon Guard (Raider) Lv70, 1027=Wagon Guard (Raider) Lv70, 1028=Forest Vulcan Lv65, 1029=Raider Corpse (Raider) Lv26, 1030=Raider Corpse (Raider) Lv40, 1031=Inky Sabertooth Alpha Lv40, 1032=Raider Corpse (Raider) Lv40, 1033= Lv30, 1034=Sanjim (Essenia Defender) Lv20, 1035=Falif (Essenia Defender) Lv20, 1036=Warthog Carcass Lv40, 1037=Warthog Carcass Lv40, 1038=Ameldas (Abducted Child) Lv40, 1039=Camp Guard (Raider) Lv70, 1040=Camp Guard (Raider) Lv70, 1042=Jelena Lv40, 1043=Hennika (Red Raiders) Lv68, 1044=Phrathan (Essenia Guard) Lv60, 1045=Vartan (Essenia Guard) Lv60, 1046=Modunn (Essenia Guard) Lv40, 1047=Parwol (Essenia Guard) Lv60, 1048=Halliarm (Monster Researcher) Lv32, 1049=Wall of Wordcraft Lv40, 1050=Laihen (Halliarm's Assistant) Lv32, 1117=Raider's Empty Wagon (Raider) Lv60, 1118=Raider's Wagon (Raider) Lv60, 1119=Raider's Wagon (Raider) Lv70, 1271=Ezart (Essenia Mystery Merchant) Lv40, 1272=Ezart (Essenia Mystery Merchant) Lv40, 1501=Rift's Edge Teleportal Lv40, 2011=Vicious Shoat Lv40, 2021=Leafcutter Arachnen Lv40, 2031=Vinesplicer Arachnen Lv40, 3011=Thorntail Kamara Lv40, 3012=Elder Thorntail Lv41, 3021=Ghilliedhu Warden Lv40, 3022=Ghilliedhu Guardian Lv41, 4011=Lokian Battlerager Lv41, 4012=Lokian Warpriest Lv41, 4021=Lokian Deathreaper Lv41, 4022=Lokian Warmage Lv41, 4031=Forestwalker Vulcan Lv41, 5001=Uphyr (Raider Officer) Lv39, 5002=Canour (Raider Officer) Lv30, 5003=Chabber (Raider Officer) Lv30, 5004=Raider (Suffering) Lv70, 6000= Lv26, 6001= Lv26, 6002=Caiman Wanderer (Packed Up) Lv65, 6100=Ezart (Essenia Mystery Merchant) Lv65, 6101=Ezart (Essenia Mystery Merchant) Lv65, 7021=Limcadus Lv42, 7022=Artania (Shurian Exile) Lv42, 7023=Indigo Imp (Shurian Thrall) Lv41, 8000=Jagged Tusk Shoat Lv41, 8001=Gutrender Lv40
+    - huntingZoneId: 29
+      npcTemplateId: [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1117, 1118, 1119, 1271, 1272, 1501, 2011, 2021, 2031, 3011, 3012, 3021, 3022, 4011, 4012, 4021, 4022, 4031, 5001, 5002, 5003, 5004, 6000, 6001, 6002, 6100, 6101, 7021, 7022, 7023, 8000, 8001]
+      npcName: ""
+      $extends: timeless_woods_normal
+
+    # Elite (2 NPCs): 7011=Arachnen Razorclaw Lv43, 7012=Arachnen Bloodclaw Lv43
+    - huntingZoneId: 29
+      npcTemplateId: [7011, 7012]
+      npcName: ""
+      $extends: timeless_woods_elite

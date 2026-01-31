@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Argon Corpus (huntingZoneId: 426)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 7 NPCs, Lv60
+  argon_corpus_boss:
+    itemBags:
+      - id: 1
+        bagName: "Argon Corpus Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (7 NPCs): 100= Lv60, 200=Halveterak Overseer (Cyanoguard) Lv60, 300=Lokmar Sorgalur (Beholder) Lv60, 301=Magnus Sorgalur Lv60, 500=Suulvir Raptor (Cyanoguard) Lv60, 10000=Cygnus (Fist of Manaya) Lv60, 20000=Meldita (Eye of Manaya) Lv60
+    - huntingZoneId: 426
+      npcTemplateId: [100, 200, 300, 301, 500, 10000, 20000]
+      npcName: ""
+      $extends: argon_corpus_boss

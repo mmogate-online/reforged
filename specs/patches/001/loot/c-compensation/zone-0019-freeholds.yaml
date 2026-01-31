@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Freeholds (huntingZoneId: 19)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 35 NPCs, Lv29-40
+  freeholds_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 10 NPCs, Lv52-60
+  freeholds_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (35 NPCs): 1000=Rummaging Warthog Lv29, 1001=Rebel Farmer Lv29, 1002=Pigling Lv29, 1003=Lost Pigling Lv29, 1271=Viadu (Val Aureum Mystery Merchant) Lv40, 2000=Battle Hyena Lv29, 2001=Crazed Harvester Golem Lv29, 2002=Mad Scarecrow Lv29, 2003=Wild Harvester Golem Lv29, 2004=Capricious Scarecrow Lv29, 2005= Lv30, 2006= Lv29, 2007= Lv40, 3000=Horned War Hyena Lv29, 3001=Berserk Harvester Golem Lv29, 3002=Fringed Scarecrow Lv29, 3003=Reaping Harvester Golem Lv29, 3004=Demented Scarecrow Lv29, 3005=Reapmaster 2000 (Deluxe Harvest Golem) Lv30, 4000=Lokian Rager (Free Brotherhood) Lv29, 4001=Lokian Ripper (Free Brotherhood) Lv30, 4002=Lokian Cleaver (Free Brotherhood) Lv30, 4003=Lokian Gutreaver (Free Brotherhood) Lv29, 4004=Lokian Swordlord (Free Brotherhood) Lv30, 4005=Lokian Bloodletter (Free Brotherhood) Lv30, 4006=Lokian Bloodweaver (Free Brotherhood) Lv29, 4007=Lokian Eboncaller (Free Brotherhood) Lv30, 4008=Lokian Dark Mage (Free Brotherhood) Lv30, 4009=Sidurek (Scions of Lok) Lv31, 5000=Reapmaster 1000 (Vintage Harvest Golem) Lv32, 5001=Dralotar (Scions of Lok) Lv32, 5002=Azared (Scions of Lok) Lv32, 6000= Lv30, 8000= Lv32, 9000=Munser (Legitimate Businessman) Lv29
+    - huntingZoneId: 19
+      npcTemplateId: [1000, 1001, 1002, 1003, 1271, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 3000, 3001, 3002, 3003, 3004, 3005, 4000, 4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 5000, 5001, 5002, 6000, 8000, 9000]
+      npcName: ""
+      $extends: freeholds_normal
+
+    # Elite (10 NPCs): 700=Elite Bloodthirsty Imp Lv52, 701=Elite Lugribar's Minion Lv52, 7100=Disma (Prelude to Destruction) Lv60, 7101=Phanberk (Madman) Lv60, 7102=Uria (Wings of Hatred) Lv60, 7103=Karoff (Brutal Predator) Lv60, 7104=Ubo (Beast of Despair) Lv60, 7105=Kaianus (Red Flame Fiend) Lv60, 7106=Hakan (Wrought Iron Jaw) Lv60, 7107=Parku (Ruler of Kumasylum) Lv60
+    - huntingZoneId: 19
+      npcTemplateId: [700, 701, 7100, 7101, 7102, 7103, 7104, 7105, 7106, 7107]
+      npcName: ""
+      $extends: freeholds_elite

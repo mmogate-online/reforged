@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Ascension Valley (huntingZoneId: 9)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 34 NPCs, Lv32-40
+  ascension_valley_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (34 NPCs): 100=Tawny Sabertooth Lv32, 200=Mugato Lv32, 300=Armored Crocuta Lv32, 310=Alpha Crocuta Lv32, 400=Gula Brigand Lv32, 410=Gula Pillager Lv32, 420=Gula Bandit Lv32, 430=Gula Gutslasher Lv32, 440=Gula Eviscerator Lv32, 450=Gula Rager Lv32, 500=Kobold Conscript Lv32, 600=Undying Fighter Lv32, 700=Alizarin Imp Hunter Lv32, 710=Alizarin Imp Warder Lv32, 800=Gula Butcher Lv32, 810=Gula Gourmand Lv32, 900=Caiman Cook Lv32, 910=Caiman Zealot Lv32, 1000=Lokian Bloodreaper Lv32, 1100=Lokian Bowmaster Lv32, 1200=Lokian Champion Lv32, 1271=Eteral (Ostgarath Mystery Merchant) Lv40, 1300=Lokian Bloodrager Lv32, 2100=Storm Rush Kubai (Lokian) Lv32, 2200=Bloody Half Moon Ladek (Lokian) Lv32, 5000=Brutal Mugato (Greedy) Lv32, 5001=Alizarin Imp Vanguard Lv32, 5002=Nalathak (Lord of Despair) Lv32, 5003=Kutmaschuk (Fleshrender) Lv32, 5004=Barknik (Kobold Majordomo) Lv32, 5005=Lamakus (Lord of the Labyrinth) Lv32, 7000=Kaia's Sword Soldier Lv32, 7001=Kaia's Sword Soldier Lv32, 9000= Lv32
+    - huntingZoneId: 9
+      npcTemplateId: [100, 200, 300, 310, 400, 410, 420, 430, 440, 450, 500, 600, 700, 710, 800, 810, 900, 910, 1000, 1100, 1200, 1271, 1300, 2100, 2200, 5000, 5001, 5002, 5003, 5004, 5005, 7000, 7001, 9000]
+      npcName: ""
+      $extends: ascension_valley_normal

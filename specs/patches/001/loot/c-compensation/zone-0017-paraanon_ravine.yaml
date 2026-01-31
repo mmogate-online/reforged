@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Paraanon Ravine (huntingZoneId: 17)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 29 NPCs, Lv26-40
+  paraanon_ravine_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (29 NPCs): 101=Heavens Fall Partisan Lv28, 102=Heavens Fall Laborer Lv27, 103=Heavens Fall Overseer Lv27, 104=Forked Tusk Warthog Lv26, 201=Thresher Rotcarn (Heavens Fall) Lv28, 202=Barrelhead Dwarf Lv27, 203=Gutspiller Warthog Lv28, 204=Young Gutspiller Warthog Lv27, 205=Vilastasia (Heavens Fall) Lv29, 206=Sikandari Magister Lv28, 207=Sikandari Advisor Lv27, 208=Whiteclaw Hyena Lv27, 301=Virigar (Zuulhound Alpha) Lv28, 302=Inquisitor Mutilusk (Heavens Fall) Lv27, 303=Executor Noneresk (Heavens Fall) Lv28, 304=Ebonweaver Turbskan (Heavens Fall) Lv28, 305=Heavens Fall Dervish Lv27, 1000= Lv28, 1001=Bristleback Shoat Lv27, 1271=Foretta (Poporia Mystery Merchant) Lv40, 300050=Wary Gutspiller Warthog Lv26, 300442=Heavens Fall Guard Lv27, 300443= Lv27, 300470=Heavens Fall Farmhand Lv26, 300551=Barrelhead Harvester Lv28, 300552=Barrelhead Thresher Lv27, 300580=Enthralled Worker Lv26, 301201=Heavens Fall Leader Lv28, 301220=Mutated Elin Lv27
+    - huntingZoneId: 17
+      npcTemplateId: [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 301, 302, 303, 304, 305, 1000, 1001, 1271, 300050, 300442, 300443, 300470, 300551, 300552, 300580, 301201, 301220]
+      npcName: ""
+      $extends: paraanon_ravine_normal

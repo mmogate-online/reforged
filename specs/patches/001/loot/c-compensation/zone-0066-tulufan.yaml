@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Tulufan (huntingZoneId: 66)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 65 NPCs, Lv1-65
+  tulufan_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (65 NPCs): 1001=Baruch (Primus) Lv40, 1002=Azad (Merchant) Lv40, 1003=Budur (Merchant) Lv40, 1004=Cenric (Banker) Lv40, 1005=Iqbal (Banker) Lv40, 1006=Haytham (Villager) Lv40, 1007=Rajiya (Villager) Lv40, 1008=Delwen (Coordinator) Lv40, 1009=Turrek (Village Chief) Lv40, 1010=Cale (Assistant) Lv40, 1012=Ordan (Val Aureum Warden) Lv40, 1013=Kael (Val Aureum Warden) Lv40, 1014=Fayza (Val Aureum Warden) Lv40, 1015=Teleportal Lv40, 1016=Garni (Flight Manager) Lv40, 1017=Raciel (Aide) Lv40, 1018=Lemina (Arcanist) Lv40, 1019=Mission Board Lv40, 1020=Mission Board Lv40, 1021=Mission Board Lv40, 1022=Doron (Trade Broker) Lv40, 1023=Elsine (Archaeologist) Lv40, 1024=Brurun (Messenger) Lv40, 1025=Villager Lv40, 1026=Villager Lv40, 1027=Villager Lv40, 1028=Villager Lv40, 1029=Street Vendor Lv40, 1030=Street Vendor Lv40, 1031=Trader Lv40, 1032=Trader Lv40, 1033=Val Aureum Warden Lv40, 1034=Val Aureum Warden Lv40, 1035=Val Aureum Warden Lv40, 1036=Val Aureum Warden Lv40, 1055=Tereeza (Gelid Badges) Lv40, 1300=Iradu (Cleric of Restoration) Lv40, 1600=Felus (Alchemy Materials) Lv40, 1601=Marinel (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Reyal (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1904= Lv40, 1905= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 7831=Launa (Guardian Legion) Lv65, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 66
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1055, 1300, 1600, 1601, 1602, 1603, 1700, 1900, 1901, 1902, 1903, 1904, 1905, 1955, 1956, 1957, 1958, 1959, 7831, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: tulufan_normal

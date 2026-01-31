@@ -65,6 +65,7 @@ Non-AOT builds are forbidden as they pollute the folder with DLLs and localizati
 | Enchant Materials | `reforged/docs/workflows/ENCHANT_MATERIALS.md` | `reforged/tools/enchant-materials/` |
 | Gear Infusion | `reforged/tools/gear-infusion/README.md` | `reforged/tools/gear-infusion/` |
 | Infusion Loot | `reforged/tools/infusion-loot/README.md` | `reforged/tools/infusion-loot/` |
+| Patch Migration | `reforged/tools/migrate/README.md` | `reforged/tools/migrate/` |
 
 ## Error Reporting
 

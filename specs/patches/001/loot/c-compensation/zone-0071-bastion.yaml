@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Bastion (huntingZoneId: 71)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 66 NPCs, Lv1-65
+  bastion_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (66 NPCs): 1001=Gerta (Merchant) Lv40, 1002=Jikar (Crystal Merchant) Lv40, 1003=Halane (Alchemy Materials) Lv40, 1004=Zemual (Banker) Lv40, 1005=Graeca (Banker) Lv40, 1006=Duello (Flight Manager) Lv40, 1007=Teleportal Lv40, 1008=Terion (Merchant) Lv40, 1009=Kiril (Veritas Garrison Commander) Lv40, 1010=Larive (Circle Magician) Lv40, 1011=Yurile (Circle Magician) Lv40, 1012=Kalind (Circle Magician) Lv40, 1101=Alais (Research Director) Lv40, 1102=Deresk (Vice Director) Lv40, 1103=Elsine (Archaeologist) Lv40, 1104=Jidesh (Merchant) Lv40, 1105=Mienne (Circle Magician) Lv40, 1106=Jeresk (Circle Magician) Lv40, 1107=Trucon (Merchant) Lv40, 1108=Adean (Merchant) Lv40, 1109=Rida (Princess) Lv40, 1110=Analysis Device Lv40, 1111=Analysis Device Lv40, 1112= Lv40, 1113=Protected Ashpelt Gorilla Lv40, 1114=Rida (Princess) Lv40, 1115=Guard Lv40, 1116=Protected Ashpelt Gorilla Lv40, 1601=Kodina (Aide) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Adrene (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 3001=Arisel (Hyderad Legacy Sage) Lv40, 3002=Akma (Hyderad Legacy) Lv40, 3003=Ruma (Hyderad Legacy) Lv40, 3004=Faru (Hyderad Legacy) Lv40, 3005=Buran (Hyderad Legacy) Lv40, 3006=Rukdi (Hyderad Legacy) Lv40, 3007=Bakra (Hyderad Legacy) Lv40, 3008=Ermin (Hyderad Legacy Merchant) Lv40, 3009=Kantu (Consos Clan) Lv40, 3010=Uhruk (Consos Clan) Lv40, 3011=Turan (Consos Clan) Lv40, 3012=Merilis (Hyderad Legacy Emissary) Lv40, 3013= Lv40, 3014=Arura (Hyderad Legacy) Lv40, 3015=Umma (Hyderad Legacy) Lv40, 3016=Sheep Lv40, 3017=Sheep Lv40, 3018=Meiga (Hyderad Legacy Ecologist) Lv40, 3601=Ermin (Hyderad Legacy Merchant) Lv40, 3602=Bruga (Hyderad Legacy Merchant) Lv40, 6001=Aura Sentinel Lv40, 6004= Lv26, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv40, 9005= Lv1
+    - huntingZoneId: 71
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1112, 1113, 1114, 1115, 1116, 1601, 1602, 1603, 1700, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3601, 3602, 6001, 6004, 8000, 8003, 8004, 8005, 8006, 8007, 9000, 9001, 9002, 9003, 9004, 9005]
+      npcName: ""
+      $extends: bastion_normal

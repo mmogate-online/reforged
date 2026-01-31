@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Labyrinth of Terror (Hard) (huntingZoneId: 776)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 23 NPCs, Lv40
+  labyrinth_of_terror_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 54 NPCs, Lv59
+  labyrinth_of_terror_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (23 NPCs): 1001=Exit Teleportal Lv40, 1002=Exit Teleportal Lv40, 1003=Wardstone Lv40, 1004=Wardstone Lv40, 1005=Wardstone Lv40, 1006=Wardstone Lv40, 1007=Wardstone Lv40, 1008=Wardstone Lv40, 1009=Wardstone Lv40, 1010=Wardstone Lv40, 1011=Wardstone Lv40, 1012=Anguished Phantasm Lv40, 1013=Anguished Phantasm Lv40, 1014=Anguished Phantasm Lv40, 1015=Anguished Phantasm Lv40, 1016=Anguished Phantasm Lv40, 1017=Jelena Lv40, 1018=Elleon Lv40, 1019=Jelena Lv40, 1020=Elleon Lv40, 1021=Staff of Killian Lv40, 1022=Kriegar Hall Teleportal Lv40, 1500=Kriegar Hall Teleportal Lv40
+    - huntingZoneId: 776
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1500]
+      npcName: ""
+      $extends: labyrinth_of_terror_hard_normal
+
+    # Elite (54 NPCs): 1101=Elite Zuulhound Sentry Lv59, 1102=Elite Howling Zuulhound Lv59, 1103=Elite Chaos Mistress Lv59, 1104=Elite Sihranar Mercenary Lv59, 1105=Elite Arachnen Painweaver Lv59, 1106=Elite Blood Stalker Lv59, 1901=Nightmare Xalory (The Lasher) Lv59, 1902=Nightmare Kroak (Maestro) Lv59, 1903=Nightmare Infizhaer (Mercenary Leader) Lv59, 2001=Elite Killian's Musician Lv59, 2002=Elite Rotting Zombie Lv59, 2003=Elite Killian's Bandmaster Lv59, 2004=Elite Agonal Hyena Lv59, 2005=Killian's Elite Fool Lv59, 2006=Elite Bisque Lady Lv59, 2007=Elite Kalash Battlemaster Lv59, 2008=Elite Kelba Charger Lv59, 2009=Elite Darlekthol Cleaver Lv59, 2010=Elite Iknephar Priest Lv59, 2011=Elite Arachnen Painmistress Lv59, 2012=Elite Abominable Fiend Lv59, 3001=Killian's Elite Jester Lv59, 3002=Elite Bisque Doll Lv59, 3003=Killian's Elite Joker Lv59, 3004=Elite Bisque Marionette Lv59, 3005=Elite Kalash Dreadnaught Lv59, 3006=Elite Kelba Fighter Lv59, 3007=Elite Darlekthol Dreamreaver Lv59, 3008=Elite Iknephar High Priest Lv59, 3009=Elite Chaotic Tyrak Lv59, 3901=Nightmare Marineu (Iknephar Chief Priest) Lv59, 3902=Nightmare Aleister (Killian's Jester) Lv59, 3903=Elite Lancer (Enthralled Minion) Lv59, 3904=Elite Archer (Enthralled Minion) Lv59, 3905=Elite Priest (Enthralled Minion) Lv59, 3906=Elite Berserker (Enthralled Minion) Lv59, 3907=Elite Sorcerer (Enthralled Minion) Lv59, 3908=Elite Warrior (Enthralled Minion) Lv59, 4001=Nightmare Vyjalek (Imprisoned Giant) Lv59, 4002=Elite Sacrificial Victim Lv59, 5000= Lv59, 5001= Lv59, 5002= Lv59, 5003= Lv59, 8002=Elite Chamas Scout Lv59, 8008=Elite Arcanist Sentinel Lv59, 8009=Elite Kalash Devastator Lv59, 8010=Elite Chaogg Ripper Lv59, 8011= Lv59, 8012= Lv59, 8013= Lv59, 8014= Lv59, 8015=Elite Caiman Pyro Lv59, 8016= Lv59
+    - huntingZoneId: 776
+      npcTemplateId: [1101, 1102, 1103, 1104, 1105, 1106, 1901, 1902, 1903, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3901, 3902, 3903, 3904, 3905, 3906, 3907, 3908, 4001, 4002, 5000, 5001, 5002, 5003, 8002, 8008, 8009, 8010, 8011, 8012, 8013, 8014, 8015, 8016]
+      npcName: ""
+      $extends: labyrinth_of_terror_hard_elite

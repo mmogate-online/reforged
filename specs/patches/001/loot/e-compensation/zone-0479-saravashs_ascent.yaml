@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Saravash's Ascent (huntingZoneId: 479)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 6 NPCs, Lv59
+  saravashs_ascent_boss:
+    itemBags:
+      - id: 1
+        bagName: "Saravash's Ascent Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (6 NPCs): 47951=Abukaizel (Warden of the Way) Lv59, 47952=Belsamael (Saravash Defender) Lv59, 47953=Virrsek (Forest Ravager) Lv59, 47954=Saravash (Vassal of Shandra Manaya) Lv59, 47955=Namburus (The Waykeeper) Lv59, 47956=Rubinaria (Watcher of the Way) Lv59
+    - huntingZoneId: 479
+      npcTemplateId: [47951, 47952, 47953, 47954, 47955, 47956]
+      npcName: ""
+      $extends: saravashs_ascent_boss

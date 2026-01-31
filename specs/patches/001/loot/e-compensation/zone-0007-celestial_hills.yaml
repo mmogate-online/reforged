@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Celestial Hills (huntingZoneId: 7)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 10 NPCs, Lv22-25
+  celestial_hills_boss:
+    itemBags:
+      - id: 1
+        bagName: "Celestial Hills Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (10 NPCs): 1=Naga Mercenary Lv22, 2=Naga Juggernaut Lv23, 3=Indolent Kumas Lv22, 4=Torpid Kumas Lv23, 18=Nakarash (Naga Warlord) Lv24, 19= Lv24, 23=Juggernaut Mercenary Lv24, 101=Barraq (Thunderwalker) Lv25, 1000=Radat (Kumas Guardian) Lv22, 2000=Kadas (Kumas Guardian) Lv22
+    - huntingZoneId: 7
+      npcTemplateId: [1, 2, 3, 4, 18, 19, 23, 101, 1000, 2000]
+      npcName: ""
+      $extends: celestial_hills_boss

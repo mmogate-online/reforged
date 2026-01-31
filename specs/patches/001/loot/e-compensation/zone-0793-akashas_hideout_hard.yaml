@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Akasha's Hideout (Hard) (huntingZoneId: 793)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 12 NPCs, Lv51-52
+  akashas_hideout_hard_boss:
+    itemBags:
+      - id: 1
+        bagName: "Akasha's Hideout (Hard) Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (12 NPCs): 5001=Nightmare Adanok (Bloodrock Champion) Lv51, 5002=Nightmare Karascha (Risen Dark Wing) Lv51, 5003=Nightmare Lugribar (Gilgash Devastator) Lv52, 5004=Nightmare Shargrim (Akalath Mutilator) Lv52, 5005=Nightmare Akasha (Goddess of Epidemics) Lv52, 9002= Lv52, 9003= Lv52, 9004= Lv52, 9005= Lv52, 9006= Lv52, 9007= Lv52, 9008= Lv52
+    - huntingZoneId: 793
+      npcTemplateId: [5001, 5002, 5003, 5004, 5005, 9002, 9003, 9004, 9005, 9006, 9007, 9008]
+      npcName: ""
+      $extends: akashas_hideout_hard_boss

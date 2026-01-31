@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Wonderholme (Hard) (huntingZoneId: 743)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 56 NPCs, Lv1-60
+  wonderholme_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 75 NPCs, Lv26-60
+  wonderholme_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (56 NPCs): 1501=Exit Teleportal Lv40, 1502=Checkmate Chamber Teleportal Lv40, 1503=Mockinghall Teleportal Lv40, 44301= Lv19, 44315= Lv26, 44317= Lv11, 44322= Lv1, 44323= Lv1, 44324= Lv1, 44326= Lv33, 44334= Lv26, 44337=Herb Gathering Soldier Lv40, 44341= Lv26, 44342= Lv26, 44343= Lv26, 44349= Lv33, 44357= Lv1, 44360= Lv26, 44361=Herb Gathering Soldier Lv40, 44362=Herb Gathering Soldier Lv40, 44363=Herb Gathering Soldier Lv40, 44364=Herb Gathering Soldier Lv40, 44365=Herb Gathering Soldier Lv40, 44367=Tweedleglee (Mischievalent Jester) Lv40, 44371= Lv40, 44372= Lv26, 44375=Aliss (Scientific Advisor) Lv40, 44376= Lv40, 44377= Lv40, 44380= Lv26, 44381= Lv26, 44382=Tweedleglum (Rancoritious Jester) Lv40, 44383= Lv26, 44384= Lv26, 44385= Lv40, 44388= Lv40, 44389=Energy Core (Trap Chamber) Lv60, 44403= Lv32, 44406= Lv13, 44411= Lv26, 44412= Lv26, 44414= Lv46, 44416= Lv40, 44418=Injured Soldier (Guide) Lv30, 44419=Adonis' Messenger (Guide) Lv30, 44420= Lv26, 44426=Dodgson (Mysterium Researcher) Lv40, 44427=Bewitched Soldier (Guide) Lv13, 44428=Adonis (Mysterium Maester) Lv32, 44430=Adonis (Mysterium Maester) Lv32, 44431=Aliss (Scientific Advisor) Lv40, 44432=Adonis (Mysterium Maester) Lv32, 44433= Lv1, 44435=Ukururu (Guide) Lv13, 44436= Lv26, 50000= Lv26
+    - huntingZoneId: 743
+      npcTemplateId: [1501, 1502, 1503, 44301, 44315, 44317, 44322, 44323, 44324, 44326, 44334, 44337, 44341, 44342, 44343, 44349, 44357, 44360, 44361, 44362, 44363, 44364, 44365, 44367, 44371, 44372, 44375, 44376, 44377, 44380, 44381, 44382, 44383, 44384, 44385, 44388, 44389, 44403, 44406, 44411, 44412, 44414, 44416, 44418, 44419, 44420, 44426, 44427, 44428, 44430, 44431, 44432, 44433, 44435, 44436, 50000]
+      npcName: ""
+      $extends: wonderholme_hard_normal
+
+    # Elite (75 NPCs): 777= Lv26, 4000=Mobile Siege Weapon Lv60, 5000= Lv60, 5001= Lv60, 5002= Lv60, 5003= Lv60, 5004= Lv60, 5005= Lv60, 5006= Lv60, 5007= Lv60, 5008= Lv60, 5009= Lv60, 5010= Lv60, 5011= Lv60, 5012= Lv60, 5013= Lv60, 5014= Lv60, 5015= Lv60, 44302=Skeletal Spearman Lv60, 44303=Skeleton Archer Lv60, 44305=Caiman Sentry Lv60, 44306=Caiman Sentry Lv60, 44307=Slivey Tove Lv60, 44308=Voracious Watcher (Suicide Soldier) Lv60, 44309=Fanblade Naga Lv60, 44310=Naga Warrior Lv60, 44311=Kobold Pyrotech Lv60, 44312=Kobold Miner Lv60, 44313=Galkin (Evil Sorcerer) Lv60, 44314=Maligos Watchdog Lv60, 44319= Lv60, 44320=Wonderholme Inquisitor Lv60, 44321=Strict Inquisitor Lv60, 44325=Skeletal Spearman Lv60, 44327= Lv26, 44331=Dispersus Pylon Lv60, 44332= Lv60, 44335=Slivey Tove Lv60, 44336=Plague Expert Lv60, 44340= Lv26, 44344=Small Rock Monster Lv60, 44345= Lv60, 44346= Lv60, 44347= Lv60, 44348= Lv60, 44351= Lv26, 44352=Wonderholme Sorcerer Lv60, 44354=Wonderholme Mystic Lv60, 44356= Lv60, 44358=Marrowvengian (Gallery Warden) Lv60, 44359= Lv26, 44366=Violent Jester Lv60, 44368=Violent Bisque Doll Lv60, 44378= Lv60, 44386= Lv60, 44390= Lv60, 44391= Lv60, 44392= Lv60, 44393= Lv60, 44394=Skeletal Spearman Lv60, 44395=Skeleton Archer Lv60, 44397=Maligos Watchdog Lv60, 44398=Fanblade Naga Lv60, 44399= Lv60, 44400= Lv60, 44401= Lv60, 44402= Lv60, 44404=Voracious Watcher (Suicide Soldier) Lv60, 44407= Lv60, 44408= Lv60, 44409= Lv60, 44410= Lv60, 44413= Lv60, 44417=Master Keye (Jester Jailor) Lv60, 44429=Imprisoned Smuggler (Dinner Guest) Lv60
+    - huntingZoneId: 743
+      npcTemplateId: [777, 4000, 5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013, 5014, 5015, 44302, 44303, 44305, 44306, 44307, 44308, 44309, 44310, 44311, 44312, 44313, 44314, 44319, 44320, 44321, 44325, 44327, 44331, 44332, 44335, 44336, 44340, 44344, 44345, 44346, 44347, 44348, 44351, 44352, 44354, 44356, 44358, 44359, 44366, 44368, 44378, 44386, 44390, 44391, 44392, 44393, 44394, 44395, 44397, 44398, 44399, 44400, 44401, 44402, 44404, 44407, 44408, 44409, 44410, 44413, 44417, 44429]
+      npcName: ""
+      $extends: wonderholme_hard_elite

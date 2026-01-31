@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Doomcrypt (huntingZoneId: 37)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 34 NPCs, Lv54-58
+  doomcrypt_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (34 NPCs): 110= Lv54, 120=Wandering Hellhound Lv54, 130= Lv54, 140=Goldmaw Hellhound Lv54, 150=Cruel Goldmaw Hellhound Lv54, 160=Prion Njalvar Lv54, 170=Prion Helgevar Lv54, 180=Tuwangi Conscript Lv54, 190=Tuwangi Bomber Lv54, 200=Cryptkeeper Kulkari Lv54, 210=Cryptkeeper Destroyer Lv54, 220=Eldritch Reaper Lv55, 230=Ravenous Tyrak Lv55, 240=Naroder Arachnen Lv55, 250=Infernal Imp Lv56, 260=Twisted Dwarf Soldier Lv56, 270=Capricious Ebon Imp Lv55, 280=Athakela Lv56, 290=Manaathol Lv56, 300=Kalash Lv55, 310=Chaogg Warrior Lv57, 320=Chukodan Lv55, 330=Primal Chukodan Lv55, 340= Lv55, 350= Lv57, 360= Lv58, 370= Lv55, 400=Kalash Intruder Lv55, 420=Chukodan Creeper Lv55, 500=Uggoteph (Argon Emissary) Lv57, 1001=Nithatlos (Argon Magister) Lv55, 1002=Yamab (Argon Magister) Lv57, 1003=Zhaathi (Argon Magister) Lv56, 1004=Hakan (The Suffering) Lv57
+    - huntingZoneId: 37
+      npcTemplateId: [110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 400, 420, 500, 1001, 1002, 1003, 1004]
+      npcName: ""
+      $extends: doomcrypt_normal

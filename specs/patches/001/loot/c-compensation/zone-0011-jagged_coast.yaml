@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Jagged Coast (huntingZoneId: 11)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 35 NPCs, Lv32-40
+  jagged_coast_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 5 NPCs, Lv34
+  jagged_coast_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (35 NPCs): 1001=Red Lash Bosun Lv33, 1002=Red Lash Swashbuckler Lv33, 1003=Red Lash Veteran Lv33, 1004=Red Lash Digger Lv33, 1005=Red Lash Deckhand Lv33, 1006=Red Lash Miner Lv33, 1007=Red Lash Cutthroat Lv33, 1008=Red Lash Pirate Lv33, 1009=Red Lash Reaper Lv33, 1010=Red Lash Archer Lv33, 1011=Red Lash Petty Officer Lv33, 1271=Eteral (Ostgarath Mystery Merchant) Lv40, 2001=Red Lash Mate Lv33, 2002=Red Lash Boarder Lv33, 2003=Red Lash Sentinel Lv33, 2004=Red Lash Grunt Lv33, 2005=Red Lash Driller Lv33, 2006=Red Lash Raider Lv33, 2007=Red Lash Slayer Lv33, 2008=Red Lash Buccaneer Lv33, 3003=Red Lash Injenir Lv33, 3006=Red Lash Berserker Lv33, 4001=Red Lash Crusher Lv33, 4002=Red Lash Rover Lv33, 4003=Red Lash Freebooter Lv33, 4004=Spiketail Kamara Lv33, 4005=Red Lash Overseer Lv33, 4006=Red Lash Dredger Lv32, 5001=Belkarius (Brutal Bosun) Lv33, 5002=Arlvek (Silent Slayer) Lv33, 5003=Orless (Red Lash Pirate Captain) Lv33, 5004=Caiman Shocktroop (Chief's Escort) Lv33, 5006=Lektor (Red Lash Pirates Assault Leader) Lv33, 5007=Caiman Engineer (Steel Armor Trooper) Lv33, 7001=Red Lash Officer (Red Lash Pirate) Lv33
+    - huntingZoneId: 11
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1271, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 3003, 3006, 4001, 4002, 4003, 4004, 4005, 4006, 5001, 5002, 5003, 5004, 5006, 5007, 7001]
+      npcName: ""
+      $extends: jagged_coast_normal
+
+    # Elite (5 NPCs): 6001=Dread Pirate Gula Lv34, 6002=Bardragul (Undying Moneylender) Lv34, 6003=Zerashaad (Atel Akaad) Lv34, 6004=Nimrel (Atel Akaad) Lv34, 6005=Qasidran (Atel Akaad) Lv34
+    - huntingZoneId: 11
+      npcTemplateId: [6001, 6002, 6003, 6004, 6005]
+      npcName: ""
+      $extends: jagged_coast_elite

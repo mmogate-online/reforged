@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Dragonfall (huntingZoneId: 80)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 65 NPCs, Lv1-65
+  dragonfall_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (65 NPCs): 1001=Jonyne (Aide) Lv40, 1002=Mushar (Merchant) Lv40, 1003=Zekt (Crystal Merchant) Lv40, 1004=Kurniran (Banker) Lv40, 1005=Magerson (Banker) Lv40, 1006=Chekin (Flight Manager) Lv40, 1007=Latona (Coordinator) Lv40, 1008=Teleportal Lv40, 1011=Felar (Faerie) Lv40, 1012=Bhelal (Prefect) Lv40, 1013=Eton (Villager) Lv40, 1014=Nula (Treasure Hunter) Lv40, 1015=Meylor (Adventurer) Lv40, 1016=Ghazi (Prefect) Lv40, 1017=Leolin (Villager) Lv40, 1018=Sibumak (Loremaster) Lv40, 1019=Garinia (Explorer Guild Member) Lv40, 1020=Yedwin (Explorer Guild Master) Lv40, 1021=Netherclaw (Sikandari Fugitive) Lv40, 1022=Kaiudro (Sikandari Fugitive) Lv40, 1023=Cantana (Kaia's Avatar) Lv40, 1024=Guntsh (Merchant) Lv40, 1025=Soldier Lv40, 1026=Soldier Lv40, 1027=Soldier Lv40, 1028=Soldier Lv40, 1100=Qivar (Sikandari Fugitive) Lv40, 1101=Graawkeen (Sikandari Fugitive) Lv40, 1300=Hekard (Cleric of Restoration) Lv40, 1400=Mission Board Lv40, 1401=Mission Board Lv40, 1402=Mission Board Lv40, 1600=Belash (Alchemy Materials) Lv40, 1602=Mission Board (Valkyon Forum) Lv40, 1603=Emya (Guild Quest Rewards) Lv40, 1700=Guard Lv65, 1800=Javis (Explorer Guild Member) Lv40, 1801=Aurelian (Explorer Guild Member) Lv40, 1802=Tylan (Explorer Guild Member) Lv40, 1803=Tajal (Explorer Guild Member) Lv40, 1804=Pristan (Explorer Guild Member) Lv40, 1805=Tezukha Lv40, 1806=Leniya Lv40, 1900= Lv40, 1901= Lv40, 1902= Lv40, 1903= Lv40, 1904= Lv40, 1955=Major Milestone (Challenge Rewards) Lv40, 1956=Yoki (Moonlight Festival Manager) Lv40, 1957=Shan (Moonlight Festival Manager) Lv40, 1958=Nepir (Moonlight Festival Manager) Lv40, 1959=Phota (Moonlight Festival Manager) Lv40, 8000=Ellonia (Halloween Guide) Lv40, 8003= Lv40, 8004= Lv40, 8005= Lv40, 8006= Lv40, 8007= Lv40, 8100=Leaf (Mountain Climber) Lv32, 9000=Tikat Lv40, 9001= Lv40, 9002= Lv40, 9003= Lv40, 9004= Lv1
+    - huntingZoneId: 80
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1100, 1101, 1300, 1400, 1401, 1402, 1600, 1602, 1603, 1700, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1900, 1901, 1902, 1903, 1904, 1955, 1956, 1957, 1958, 1959, 8000, 8003, 8004, 8005, 8006, 8007, 8100, 9000, 9001, 9002, 9003, 9004]
+      npcName: ""
+      $extends: dragonfall_normal

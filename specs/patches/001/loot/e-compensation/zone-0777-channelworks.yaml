@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Channelworks (huntingZoneId: 777)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 13 NPCs, Lv60-65
+  channelworks_boss:
+    itemBags:
+      - id: 1
+        bagName: "Channelworks Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (13 NPCs): 77704=Sentry AA-23 (Water Purification Unit) Lv65, 77707=Plecostoma (Channelworks Orisk) Lv65, 77720= Lv60, 77722=Fallen Sentinel Lv60, 77723=Channelworks Sentinel Lv65, 77725=Fallen Overseer Lv60, 77726=Channelworks Overseer Lv65, 77728=Fallen Engineer Lv60, 77729=Channelworks Engineer Lv65, 77730=Kerkion (Channelworks Destroyer) Lv65, 77741= Lv60, 77742= Lv60, 77753= Lv65
+    - huntingZoneId: 777
+      npcTemplateId: [77704, 77707, 77720, 77722, 77723, 77725, 77726, 77728, 77729, 77730, 77741, 77742, 77753]
+      npcName: ""
+      $extends: channelworks_boss

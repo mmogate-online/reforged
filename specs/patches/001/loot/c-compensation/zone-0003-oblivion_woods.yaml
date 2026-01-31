@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Oblivion Woods (huntingZoneId: 3)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 47 NPCs, Lv12-40
+  oblivion_woods_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (47 NPCs): 1=Stonebeak Scavenger Lv14, 2=Agitated Sporewalker Lv15, 3=Mossy Ghilliedhu Lv19, 4=Grayal Lv15, 5=Skeletal Retainer Lv15, 6=Skeletal Soldier Lv17, 7=Dakanius (Devan Raidmaster) Lv17, 8= Lv17, 9=Devan Archpriest Lv18, 11= Lv18, 12=Devan Warlord (Assault Leader) Lv15, 13=Dark Maiden (Assault Leader) Lv15, 14=Reaver of Resurrection (Scions of Lok) Lv17, 15=Ebonheart Sorcerer (Scions of Lok) Lv17, 16=Fallen Defender Lv16, 17=Devan Robber Lv15, 18=Devan Scrapper (Ruffian) Lv15, 19=Devan Brigand (Raider) Lv16, 20=Kulsilva (Devan Tyrant) Lv18, 21=Dur Barak (Dragoon Doommaster) Lv18, 23=Aggravated Sporewalker (Raider) Lv16, 24=Keener Conscript Lv16, 25=Keener Conscript Lv16, 26=Keener Conscript Lv16, 30=Dakanius's Guard Lv16, 31=Dakanius's Guard Lv16, 32=Devan Watcher Lv14, 101=Stonebeak Soldier Lv13, 1000=Broken Prison Teleportal Lv40, 1001=Stonebeak Fighter (Commander) Lv13, 1049=Wall of Wordcraft Lv40, 1271=Arcun (Arcadia Mystery Merchant) Lv40, 1810=Lakan's Prison Teleportal Lv40, 2001=Slinking Sabertooth Lv12, 7000= Lv16, 8000= Lv32, 300140=Devan Bandit (Ruffian) Lv15, 300141=Devan Blademaster (Raider) Lv17, 300142=Devan Warrior (Scout) Lv14, 300143=Devan Bladesister (Scout) Lv14, 300150=Devan Thief Lv16, 300151=Devan Pillager (Scout) Lv14, 300160=Devan Arcanist (Raider) Lv16, 300161=Devan Chanter (Ruffian) Lv15, 300611=Furious Dragoon Lv15, 301080=Fallen Soldier Lv15, 301081= Lv13
+    - huntingZoneId: 3
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 30, 31, 32, 101, 1000, 1001, 1049, 1271, 1810, 2001, 7000, 8000, 300140, 300141, 300142, 300143, 300150, 300151, 300160, 300161, 300611, 301080, 301081]
+      npcName: ""
+      $extends: oblivion_woods_normal

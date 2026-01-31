@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Eldritch Academy Grounds (huntingZoneId: 22)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 39 NPCs, Lv34-40
+  eldritch_academy_grounds_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (39 NPCs): 1=Angry Mr. Purrfect Lv35, 2=Frisky Mr. Purrfect Lv35, 3=Redcap Wandmaker Lv34, 4=Vadoma Centaur Lv34, 5=Redcap Artisan Lv34, 6=Faerie Seeress Lv34, 7=Apprentice Witch Lv35, 8= Lv34, 9=Shadow Instructor Lv35, 10=Senior Apprentice Lv35, 11=Witch Prefect Lv35, 12=Ailuri Giantkiller Lv35, 13=Blood Marm Lv35, 14=Vadoma Acolyte Lv35, 15=Eldritch Moppet Lv35, 16=Mad Vampiric Jester Lv35, 17=Ailuri Giantbane Lv35, 18=Vampir Aristocrat Lv36, 19=Vadoma Witch Lv36, 20=Shadow Guide Lv36, 21=Chaos Guide Lv36, 22=Iskaragard Lv36, 23=Mekonari Sorcerer Lv36, 24=Ebon Imp Thrall Lv36, 25=Mekonari Darkweaver Lv36, 26=Toxic Vampiric Jester Lv36, 27=Ensorceled Disc Reaper Lv36, 28=Dark Prelate (Scions of Lok) Lv36, 29=Diminutive Ovolith Lv36, 30=Dark Cardinal (Scions of Lok) Lv36, 31=Serena (Vadoma Headmistress) Lv36, 32=Ailuri Thrall (Witch's Servant) Lv35, 33=Taera (Head Girl) Lv36, 34=Ailuri Crusher Lv36, 35=Nyrixia (Chaosbinder) Lv37, 36=Baalzerath (Scions of Lok) Lv37, 99=Chaotic Soulkeeper Lv37, 1501=Manglemire Teleportal Lv40, 5007=Puzzling Monument Lv40
+    - huntingZoneId: 22
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 99, 1501, 5007]
+      npcName: ""
+      $extends: eldritch_academy_grounds_normal

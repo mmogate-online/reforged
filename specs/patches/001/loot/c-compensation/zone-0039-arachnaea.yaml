@@ -1,0 +1,30 @@
+# Zone Loot (cCompensation) — Arachnaea (huntingZoneId: 39)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 31 NPCs, Lv1-68
+  arachnaea_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (31 NPCs): 120= Lv46, 121= Lv46, 130=Arachnen Matriarch Lv46, 131=Arachnen Matron Lv46, 140=Slave Warden Lv46, 150=Delirious Slave Lv46, 170=Loyal Jalmarak Lv46, 180=Mindmulched Slave Lv46, 190=Ferocious Maligos Lv46, 191=Brutal Maligos Lv46, 210=Vrentsuul Sorcerer (Atel Akaad) Lv46, 220=Vrentsuul Lancer (Atel Akaad) Lv46, 230=Vrentsuul Priest (Atel Akaad) Lv46, 240=Vrentsuul Berserker (Atel Akaad) Lv46, 250=Kaligos (Children of Arachne) Lv46, 260=Telremnas (Children of Arachne) Lv46, 400=Abandoned Cart Lv26, 401=Broken Box Lv65, 402=Gold Pouch Lv1, 403=Teleportal Lv40, 404=Aktam Lv40, 405= Lv30, 5000=Sanctified Mill Lv46, 6000=Dougal (Consul) Lv40, 9899= Lv65, 9978=Hidden Wooden Crate Lv68, 9979= Lv65, 9988=Hidden Silver Crate Lv68, 9989= Lv65, 9998=Hidden Gold Crate Lv68, 9999= Lv65
+    - huntingZoneId: 39
+      npcTemplateId: [120, 121, 130, 131, 140, 150, 170, 180, 190, 191, 210, 220, 230, 240, 250, 260, 400, 401, 402, 403, 404, 405, 5000, 6000, 9899, 9978, 9979, 9988, 9989, 9998, 9999]
+      npcName: ""
+      $extends: arachnaea_normal

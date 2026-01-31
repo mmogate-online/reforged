@@ -1,0 +1,50 @@
+# Zone Loot (cCompensation) — Ebon Tower (Hard) (huntingZoneId: 773)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Normal mobs — 20 NPCs, Lv40-59
+  ebon_tower_hard_normal:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+  # Elite mobs — 46 NPCs, Lv59
+  ebon_tower_hard_elite:
+    classBranches:
+      - className: [warrior, lancer, slayer, berserker, sorcerer, archer, priest, mystic, reaper, gunner, brawler, ninja, valkyrie]
+        itemBags:
+          - probability: 1.0
+            distribution: auto
+            items:
+              - templateId: 21351
+                name: "Alkahest"
+                min: 1
+                max: 1
+                # <-- Designer: add more items here
+
+cCompensations:
+  upsert:
+    # Normal (20 NPCs): 1001=Purification Totem Lv40, 1002=Purification Totem Lv40, 1003=Teleportal Lv40, 1004=Obelisk of Binding Lv40, 1005=Obelisk of Binding Lv40, 1006=Obelisk of Binding Lv40, 1007=Exit Teleportal Lv40, 1008=Exit Teleportal Lv40, 1009=Ebon Tower (Hard) Teleportal Lv40, 1010=Tiernach (Mysterium Investigator) Lv40, 1011=Terinne (Mysterium Venator) Lv40, 1012=Eydann (Expeditionary Force Prefect) Lv40, 1013=Keilia (Expeditionary Force Centurion) Lv40, 1014=Elstarn (Expeditionary Force Soldier) Lv40, 1015=Fallen Champion Lv40, 1016=Fallen Champion Lv40, 1017=Fallen Champion Lv40, 1018=Nightmare Thulsa (God of Death) Lv40, 1019=Altar of Death Teleportal Lv40, 2901=Elite Thulsan Drillmaster Lv59
+    - huntingZoneId: 773
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 2901]
+      npcName: ""
+      $extends: ebon_tower_hard_normal
+
+    # Elite (46 NPCs): 2001=Elite Ksharan Dreadreaper (Blood Legion) Lv59, 2002=Elite Slavering Zuulhound Lv59, 2003=Elite Ebon Tower Shaman Lv59, 2004=Elite Ebon Tower Guard Lv59, 2102=Elite Zombie Prisoner Lv59, 2103=Elite Zombie Lurcher Lv59, 2900=Elite Undead Sentinel Lv59, 3001=Elite Ksharan Cleaver (Blood Legion) Lv59, 3002=Elite Ksharan Sniper (Blood Legion) Lv59, 3101=Nightmare Durzured (Tyrant Fiend) Lv59, 3102=Nightmare Vardas (Slaughter Fiend) Lv59, 4001=Elite Tower General Lv59, 4002=Elite General's Escort Lv59, 4003=Elite Tower Decurion Lv59, 4004=Elite Ebon Zombie Lv59, 4005=Elite Ksharan Darkweaver (Blood Legion) Lv59, 4006=Elite Tower Assassin Lv59, 4007=Elite Arachnen Painspinner Lv59, 4008=Elite Anguish Fiend Lv59, 4101=Nightmare General Helkan (Blood Legion) Lv59, 4102=Nightmare Krivalga (Cardinal of Undeath) Lv59, 5001=Elite Dark Magister (Blood Legion) Lv59, 5002=Elite Eldritch Priest (Blood Legion) Lv59, 5003=Elite Ksharan Fateweaver (Blood Legion) Lv59, 5004=Elite Eldritch Cleaver Lv59, 5005=Elite Darlekthol Reaver Lv59, 5006=Elite Chaogg Warrior Lv59, 5007=Elite Madrek Pummeler Lv59, 5008=Elite Chamas Stabber Lv59, 5009= Lv59, 5010= Lv59, 5111= Lv59, 9000=Elite Death Walker Lv59, 9001=Elite Death Awakener Lv59, 9002=Elite Death Swallower Lv59, 9003=Elite Death Insulter Lv59, 9004=Elite Death Denier Lv59, 9005= Lv59, 9006= Lv59, 9007=Elite Thulsa's Eye Lv59, 9008=Elite Verdant Iskaragard (Blood Legion) Lv59, 9009=Elite Thulsan Guardian Lv59, 9010= Lv59, 9011=Elite Thulsan Bloodborer Lv59, 9012= Lv59, 9999=Purification Totem Lv59
+    - huntingZoneId: 773
+      npcTemplateId: [2001, 2002, 2003, 2004, 2102, 2103, 2900, 3001, 3002, 3101, 3102, 4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4101, 4102, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5111, 9000, 9001, 9002, 9003, 9004, 9005, 9006, 9007, 9008, 9009, 9010, 9011, 9012, 9999]
+      npcName: ""
+      $extends: ebon_tower_hard_elite

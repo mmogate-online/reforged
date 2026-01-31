@@ -1,0 +1,30 @@
+# Zone Loot (eCompensation) — Essenian Crest (huntingZoneId: 27)
+# Auto-generated scaffold by generate_zone_loot.py
+# Content designers: fill in itemBags items for each group definition.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Boss mobs — 9 NPCs, Lv66
+  essenian_crest_boss:
+    itemBags:
+      - id: 1
+        bagName: "Essenian Crest Boss Loot"
+        probability: 1.0
+        distribution: auto
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            min: 1
+            max: 1
+            # <-- Designer: add more items here
+
+eCompensations:
+  upsert:
+    # Boss (9 NPCs): 1006=Contaminated Fangspawn Lv66, 1011=Murderwing Lv66, 1012=Murderwing Lv66, 1013=Mournwing Lv66, 1181=Lured Murderwing Lv66, 1182=Lured Murderwing Lv66, 1183=Lured Murderwing Lv66, 1200=Newborn Murderwing Lv66, 1201=Newborn Mournwing Lv66
+    - huntingZoneId: 27
+      npcTemplateId: [1006, 1011, 1012, 1013, 1181, 1182, 1183, 1200, 1201]
+      npcName: ""
+      $extends: essenian_crest_boss
