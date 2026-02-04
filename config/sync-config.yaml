@@ -111,6 +111,50 @@ entities:
   # String sheets contain localized text for items, NPCs, etc.
   # Use SourceMapped strategy for regional variants.
 
+  # ===========================================================================
+  # PASSIVITY DATA
+  # ===========================================================================
+  # Passivity files are split by category on the server. Only map the files
+  # modified by our specs. Passivity_Equipment.xml → Passivity-00005.xml.
+
+  Passivity:
+    strategy: SourceMapped
+    client_folder: "Passivity"
+    root_element: "Passivity"
+    id_attribute: "id"
+    xsd_file: "Passivity/Passivity.xsd"
+    source_mapping:
+      "Passivity_Equipment.xml": "Passivity-00005.xml"
+
+  # Passivity strings — single server file bucketed into 5 client files by ID range.
+  # default_bucket_seq: 4 catches PcSkill, EpPerk, SkillPolishing, Card IDs.
+  StrSheet_Passivity:
+    strategy: Bucket
+    server_files:
+      - "StrSheet_Passivity.xml"
+    client_folder: "StrSheet_Passivity"
+    client_pattern: "StrSheet_Passivity-{seq:D5}.xml"
+    root_element: "StrSheet_Passivity"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Passivity/StrSheet_Passivity.xsd"
+    default_bucket_seq: 4
+    id_buckets:
+      - seq: 0
+        min: 6000001
+        max: 6000166
+      - seq: 1
+        min: 80010
+        max: 81013
+      - seq: 2
+        min: 120100
+        max: 5006952
+      - seq: 2
+        min: 9000001
+        max: 9999999
+      - seq: 3
+        min: 8885001
+        max: 8886107
+
   StrSheet_Item:
     strategy: SourceMapped
     client_folder: "StrSheet_Item"

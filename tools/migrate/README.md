@@ -67,8 +67,10 @@ The tool detects top-level YAML keys and maps them to sync-config entities:
 | `evolutions` | EquipmentEvolutionData | Yes |
 | `materialEnchants` | MaterialEnchantData | Yes |
 | `enchants` | EquipmentEnchantData | Yes |
+| `enchantPassivityCategories` | EquipmentEnchantData | Yes |
 | `itemStrings` | StrSheet_Item | Yes |
-| `passivities` | — | No (server-only) |
+| `passivities` | Passivity | Yes |
+| `passivityStrings` | StrSheet_Passivity | Yes |
 | `cCompensations` | — | No (server-only) |
 | `eCompensations` | — | No (server-only) |
 | `fCompensations` | — | No (server-only) |
@@ -115,3 +117,4 @@ When new entity types are added to specs and/or `sync-config.yaml`:
 
 1. Add the YAML key and sync entity name to `ENTITY_SYNC_MAP` in `migrate.py`
 2. Use `None` for server-only schemas that should not be synced
+3. If an entity has inline nested entities (like `enchantPassivityCategories` with inline `passivities`), add it to `INLINE_STRING_SYNC` with a list of implied sync entities

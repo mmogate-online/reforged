@@ -22,12 +22,21 @@ ENTITY_SYNC_MAP = {
     "evolutions": "EquipmentEvolutionData",
     "materialEnchants": "MaterialEnchantData",
     "enchants": "EquipmentEnchantData",
+    "enchantPassivityCategories": "EquipmentEnchantData",
     "itemStrings": "StrSheet_Item",
-    "passivities": None,
+    "passivities": "Passivity",
+    "passivityStrings": "StrSheet_Passivity",
     "cCompensations": None,
     "eCompensations": None,
     "fCompensations": None,
     "iCompensations": None,
+}
+
+# Entity keys whose inline blocks imply additional sync entities
+# Values can be a string (single entity) or list (multiple entities)
+INLINE_STRING_SYNC = {
+    "items": "StrSheet_Item",
+    "enchantPassivityCategories": ["Passivity", "StrSheet_Passivity"],
 }
 
 ENTITY_KEY_PATTERN = re.compile(r"^(" + "|".join(ENTITY_SYNC_MAP.keys()) + r"):")
@@ -219,10 +228,19 @@ def main() -> int:
         for fs in failed_specs:
             print(f"  \u2717 {fs}")
 
-    syncable_entities = sorted({
+    sync_set = {
         ENTITY_SYNC_MAP[k] for k in all_entity_keys
         if k in ENTITY_SYNC_MAP and ENTITY_SYNC_MAP[k] is not None
-    })
+    }
+    for k in all_entity_keys:
+        if k in INLINE_STRING_SYNC:
+            inline_entities = INLINE_STRING_SYNC[k]
+            # Support both single string and list of strings
+            if isinstance(inline_entities, list):
+                sync_set.update(inline_entities)
+            else:
+                sync_set.add(inline_entities)
+    syncable_entities = sorted(sync_set)
     server_only_keys = sorted({
         k for k in all_entity_keys
         if k in ENTITY_SYNC_MAP and ENTITY_SYNC_MAP[k] is None

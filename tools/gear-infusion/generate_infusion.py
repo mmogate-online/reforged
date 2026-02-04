@@ -2,17 +2,14 @@
 """
 Generate YAML specs for the Gear Infusion System.
 
-Reads gear_infusion_passivity.csv and generates:
-- Passivities for all 3 tiers (Uncommon/Rare/Superior)
-- Passivity strings for localization
+Reads gear_infusion_passivity.csv and generates a single combined file with:
+- enchantPassivityCategories (with inline passivities + passivityStrings)
 - Infusion fodder items per equipment slot
-- Item strings
 
 Usage:
     python generate_infusion.py
 
 Output:
-    reforged/specs/gear-infusion-passivities.yaml
     reforged/specs/gear-infusion-items.yaml
 """
 
@@ -20,13 +17,11 @@ import argparse
 import csv
 from pathlib import Path
 from dataclasses import dataclass
-from typing import Iterator
 
 SCRIPT_DIR = Path(__file__).parent
 REFORGED_DIR = SCRIPT_DIR.parent.parent
 
 INPUT_FILE = REFORGED_DIR / "data" / "gear_infusion_passivity.csv"
-OUTPUT_PASSIVITIES = REFORGED_DIR / "specs" / "gear-infusion-passivities.yaml"
 OUTPUT_ITEMS = REFORGED_DIR / "specs" / "gear-infusion-items.yaml"
 
 # ID ranges as per GEAR_INFUSION_SYSTEM.md
@@ -46,22 +41,48 @@ SLOTS = {
     "EQUIP_WEAPON": {
         "prefix": "WPN",
         "display": "Weapon",
-        "item_category": "enchant_material",
+        "subtypes": [
+            {"id": "dual", "display": "Twin Swords"},
+            {"id": "lance", "display": "Lance"},
+            {"id": "twohand", "display": "Greatsword"},
+            {"id": "axe", "display": "Axe"},
+            {"id": "circle", "display": "Disc"},
+            {"id": "bow", "display": "Bow"},
+            {"id": "staff", "display": "Staff"},
+            {"id": "rod", "display": "Scepter"},
+            {"id": "chain", "display": "Scythes"},
+            {"id": "blaster", "display": "Arcannon"},
+            {"id": "gauntlet", "display": "Powerfists"},
+            {"id": "shuriken", "display": "Shuriken"},
+            {"id": "glaive", "display": "Glaive"},
+        ],
     },
     "EQUIP_ARMOR_BODY": {
         "prefix": "BDY",
         "display": "Chest",
-        "item_category": "enchant_material",
+        "subtypes": [
+            {"id": "bodyMail", "display": "Mail Chest"},
+            {"id": "bodyLeather", "display": "Leather Chest"},
+            {"id": "bodyRobe", "display": "Robe Chest"},
+        ],
     },
     "EQUIP_ARMOR_ARM": {
         "prefix": "ARM",
         "display": "Gloves",
-        "item_category": "enchant_material",
+        "subtypes": [
+            {"id": "handMail", "display": "Mail Gloves"},
+            {"id": "handLeather", "display": "Leather Gloves"},
+            {"id": "handRobe", "display": "Robe Gloves"},
+        ],
     },
     "EQUIP_ARMOR_LEG": {
         "prefix": "LEG",
         "display": "Boots",
-        "item_category": "enchant_material",
+        "subtypes": [
+            {"id": "feetMail", "display": "Mail Boots"},
+            {"id": "feetLeather", "display": "Leather Boots"},
+            {"id": "feetRobe", "display": "Robe Boots"},
+        ],
     },
 }
 
@@ -82,7 +103,7 @@ PASSIVITY_CONFIG = {
         "is_percent": True, "value_offset": 1.0, "mobSize": "all",
     },
     "DamageFromRear": {
-        "kind": 0, "type": 152, "method": 3, "condition": 17, "conditionValue": 1,
+        "kind": 0, "type": 152, "method": 3, "condition": 24, "conditionValue": 2,
         "is_percent": True, "value_offset": 1.0, "mobSize": "all",
     },
     "DamageVsMonsters": {
@@ -111,46 +132,53 @@ PASSIVITY_CONFIG = {
         "is_percent": False,
     },
     "MpOnSkillUse": {
-        "kind": 0, "type": 232, "method": 3, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 232, "method": 2, "condition": 0, "conditionValue": 0,
         "is_percent": True, "value_offset": 0.0,
     },
     # Tank/Healer exclusives
     "AggroGeneration": {
-        "kind": 0, "type": 164, "method": 3, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 164, "method": 3, "condition": 25, "conditionValue": 0,
         "is_percent": True, "value_offset": 1.0,
     },
     "HealingSkillFlat": {
-        "kind": 0, "type": 168, "method": 1, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 168, "method": 2, "condition": 25, "conditionValue": 0,
         "is_percent": False,
+        "mobSize": "all",
     },
     "HealingSkillPercent": {
-        "kind": 0, "type": 169, "method": 3, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 169, "method": 3, "condition": 25, "conditionValue": 0,
         "is_percent": True, "value_offset": 1.0,
+        "mobSize": "all",
     },
     "PvpAttack": {
-        "kind": 0, "type": 176, "method": 1, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 176, "method": 2, "condition": 25, "conditionValue": 3,
         "is_percent": False,
+        "mobSize": "player",
     },
     # Defensive (type 102) - damage reduction
     "DamageFromEnraged": {
-        "kind": 0, "type": 102, "method": 2, "condition": 28, "conditionValue": 1,
+        "kind": 0, "type": 102, "method": 3, "condition": 9, "conditionValue": 4,
         "is_percent": True, "value_offset": 1.0, "value_invert": True,
+        "mobSize": "all",
     },
     "DamageWhileProne": {
-        "kind": 0, "type": 102, "method": 2, "condition": 26, "conditionValue": 1,
+        "kind": 0, "type": 102, "method": 3, "condition": 11, "conditionValue": 2,
         "is_percent": True, "value_offset": 1.0, "value_invert": True,
+        "mobSize": "all",
     },
     "FrontalDamageTaken": {
         "kind": 0, "type": 102, "method": 2, "condition": 18, "conditionValue": 1,
         "is_percent": True, "value_offset": 1.0, "value_invert": True,
     },
     "DamageTaken": {
-        "kind": 0, "type": 102, "method": 2, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 102, "method": 3, "condition": 15, "conditionValue": 3,
         "is_percent": True, "value_offset": 1.0, "value_invert": True,
+        "mobSize": "all",
     },
     "DamageFromMonsters": {
-        "kind": 0, "type": 102, "method": 2, "condition": 25, "conditionValue": 3,
+        "kind": 0, "type": 102, "method": 3, "condition": 15, "conditionValue": 3,
         "is_percent": True, "value_offset": 1.0, "value_invert": True,
+        "mobSize": "all",
     },
     # Defensive stats
     "CritResistFactor": {
@@ -158,8 +186,9 @@ PASSIVITY_CONFIG = {
         "is_percent": False,
     },
     "CritResistChance": {
-        "kind": 0, "type": 105, "method": 2, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 105, "method": 2, "condition": 15, "conditionValue": 0,
         "is_percent": False, "value_invert": True,
+        "mobSize": "all",
     },
     "Power": {
         "kind": 0, "type": 3, "method": 1, "condition": 1, "conditionValue": 0,
@@ -182,12 +211,15 @@ PASSIVITY_CONFIG = {
         "is_percent": False,
     },
     "MpPer5Sec": {
-        "kind": 0, "type": 52, "method": 1, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 52, "method": 2, "condition": 0, "conditionValue": 0,
         "is_percent": False,
+        "mobSize": "all",
+        "tickInterval": 5,
     },
     "HealingReceived": {
-        "kind": 0, "type": 110, "method": 3, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 110, "method": 3, "condition": 15, "conditionValue": 0,
         "is_percent": True, "value_offset": 1.0,
+        "mobSize": "all",
     },
     "HpLeech": {
         "kind": 0, "type": 226, "method": 3, "condition": 1, "conditionValue": 0,
@@ -198,13 +230,15 @@ PASSIVITY_CONFIG = {
         "is_percent": True, "value_offset": 0.0,
     },
     "PvpDefense": {
-        "kind": 0, "type": 113, "method": 1, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 113, "method": 2, "condition": 15, "conditionValue": 3,
         "is_percent": False,
+        "mobSize": "player",
     },
     # Gloves specific
     "CritDamageReduction": {
-        "kind": 0, "type": 111, "method": 2, "condition": 1, "conditionValue": 0,
+        "kind": 0, "type": 111, "method": 2, "condition": 15, "conditionValue": 3,
         "is_percent": True, "value_offset": 1.0, "value_invert": True,
+        "mobSize": "all",
     },
     # Boots specific
     "MovementSpeed": {
@@ -304,23 +338,16 @@ def generate_passivity_name(definition: PassiveDefinition, grade: dict) -> str:
     return f"TIER{grade['id']}_{prefix}_{definition.passive_attribute}"
 
 
-def generate_passivities_yaml(definitions: list[PassiveDefinition]) -> str:
-    """Generate YAML for passivities and passivity strings."""
+def generate_categories_yaml(definitions: list[PassiveDefinition]) -> tuple[list[str], list[dict]]:
+    """Generate enchantPassivityCategories YAML with inline passivities and passivityStrings."""
     lines = [
-        "# Gear Infusion System - Passivities",
-        "# Auto-generated by generate_infusion.py",
-        "# DO NOT EDIT MANUALLY",
-        "",
-        "spec:",
-        '  version: "1.0"',
-        "  schema: v92",
-        "",
-        "passivities:",
+        "enchantPassivityCategories:",
         "  upsert:",
     ]
 
     passivity_id = PASSIVITY_ID_SEED
-    passivity_data = []  # Store for strings generation
+    category_id = PASSIVITY_CATEGORY_ID_SEED
+    passivity_data = []
 
     for definition in definitions:
         config = PASSIVITY_CONFIG.get(definition.passive_attribute)
@@ -334,31 +361,41 @@ def generate_passivities_yaml(definitions: list[PassiveDefinition]) -> str:
             name = generate_passivity_name(definition, grade)
             tooltip_value = format_tooltip_value(tier_value, config)
             tooltip = definition.tooltip.replace("$value", tooltip_value)
+            tooltip_escaped = tooltip.replace('"', '\\"')
 
             lines.append(f"    # {grade['name']} {SLOTS[definition.combat_item_type]['display']} - {definition.passive_attribute}")
-            lines.append(f"    - category: Equipment")
-            lines.append(f"      id: {passivity_id}")
-            lines.append(f'      name: "{name}"')
-            lines.append(f"      kind: {config['kind']}")
-            lines.append(f"      type: {config['type']}")
-            lines.append(f"      method: {config['method']}")
-            lines.append(f"      condition: {config['condition']}")
-            lines.append(f"      conditionValue: {config['conditionValue']}")
-            lines.append(f"      value: {value}")
-            lines.append(f"      prob: 1.0")
-            lines.append(f"      tickInterval: 0")
-            lines.append(f"      balancedByTargetCount: false")
-            lines.append(f"      judgmentOnce: false")
+            lines.append(f"    - enchantPassivityCategoryId: {category_id}")
+            lines.append(f"      unchangeable: true")
+            lines.append(f"      passivities:")
+            lines.append(f"        upsert:")
+            lines.append(f"          - $extends: passivityBase")
+            lines.append(f"            id: {passivity_id}")
+            lines.append(f'            name: "{name}"')
+            lines.append(f"            type: {config['type']}")
+            lines.append(f"            method: {config['method']}")
+            lines.append(f"            condition: {config['condition']}")
+            lines.append(f"            conditionValue: {config['conditionValue']}")
+            lines.append(f"            value: {value}")
 
             # Add mobSize if specified
             mob_size = config.get("mobSize") or definition.mob_size
             if mob_size:
-                lines.append(f'      mobSize: "{mob_size}"')
+                lines.append(f'            mobSize: "{mob_size}"')
 
+            # Add tickInterval if specified
+            tick_interval = config.get("tickInterval")
+            if tick_interval is not None and tick_interval != 0:
+                lines.append(f"            tickInterval: {tick_interval}")
+
+            # Inline passivityStrings
+            lines.append(f"            passivityStrings:")
+            lines.append(f'              name: "{name}"')
+            lines.append(f'              tooltip: "{tooltip_escaped}"')
             lines.append("")
 
             passivity_data.append({
-                "id": passivity_id,
+                "category_id": category_id,
+                "passivity_id": passivity_id,
                 "name": name,
                 "tooltip": tooltip,
                 "definition": definition,
@@ -366,26 +403,154 @@ def generate_passivities_yaml(definitions: list[PassiveDefinition]) -> str:
             })
 
             passivity_id += 1
+            category_id += 1
 
-    # Generate passivity strings
-    lines.append("passivityStrings:")
-    lines.append("  upsert:")
-
-    for data in passivity_data:
-        lines.append(f"    - id: {data['id']}")
-        lines.append(f'      name: "{data["name"]}"')
-        # Escape quotes in tooltip
-        tooltip_escaped = data["tooltip"].replace('"', '\\"')
-        lines.append(f'      tooltip: "{tooltip_escaped}"')
-        lines.append("")
-
-    return "\n".join(lines), passivity_data
+    return lines, passivity_data
 
 
-def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: list) -> str:
-    """Generate YAML for infusion fodder items."""
+def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: list[dict]) -> list[str]:
+    """Generate YAML for infusion fodder items, expanded across subtypes."""
     lines = [
-        "# Gear Infusion System - Items",
+        "items:",
+        "  upsert:",
+    ]
+
+    item_id = ITEM_ID_SEED
+
+    # Index passivity data by (definition.order, grade_id)
+    data_by_key = {}
+    for data in passivity_data:
+        key = (data["definition"].order, data["grade"]["id"])
+        data_by_key[key] = data
+
+    for definition in definitions:
+        slot_config = SLOTS.get(definition.combat_item_type, {})
+        subtypes = slot_config.get("subtypes", [])
+
+        for grade in GRADES:
+            key = (definition.order, grade["id"])
+            data = data_by_key.get(key)
+            if not data:
+                continue
+
+            category_id = data["category_id"]
+            grade_template = f"infusionItem{grade['name']}"
+
+            for subtype in subtypes:
+                item_name = f"Infusion {subtype['display']} {definition.suffix}"
+                internal_name = f"infusion_{subtype['id']}_{definition.passive_attribute.lower()}_t{grade['id']}"
+
+                # Calculate linkEquipmentId (900000000 + item_id)
+                link_equipment_id = 900000000 + item_id
+
+                lines.append(f"    # {item_name} ({grade['name']})")
+                lines.append(f"    - $extends: {grade_template}")
+                lines.append(f"      id: {item_id}")
+                lines.append(f'      name: "{internal_name}"')
+                lines.append(f"      combatItemType: {definition.combat_item_type}")
+                lines.append(f"      combatItemSubType: {subtype['id']}")
+                lines.append(f'      category: "{subtype["id"]}"')
+                lines.append(f"      linkEquipmentId: {link_equipment_id}")
+                # DSL automatically applies requiredClass based on combatItemSubType via soft defaults
+                lines.append(f"      linkPassivityCategoryId:")
+                lines.append(f"        - {category_id}")
+
+                if definition.role != "ANY":
+                    lines.append(f"      # Role restriction: {definition.role}")
+
+                lines.append(f"      strings:")
+                lines.append(f'        name: "{item_name}"')
+                lines.append("")
+
+                item_id += 1
+
+    return lines
+
+
+def generate_equipment_yaml(definitions: list[PassiveDefinition], passivity_data: list[dict]) -> list[str]:
+    """Generate YAML for equipment entries."""
+    lines = [
+        "equipment:",
+        "  upsert:",
+    ]
+
+    item_id = ITEM_ID_SEED
+
+    # Index passivity data by (definition.order, grade_id)
+    data_by_key = {}
+    for data in passivity_data:
+        key = (data["definition"].order, data["grade"]["id"])
+        data_by_key[key] = data
+
+    for definition in definitions:
+        slot_config = SLOTS.get(definition.combat_item_type, {})
+        subtypes = slot_config.get("subtypes", [])
+
+        for grade in GRADES:
+            key = (definition.order, grade["id"])
+            data = data_by_key.get(key)
+            if not data:
+                continue
+
+            for subtype in subtypes:
+                # Calculate equipment ID (900000000 + item_id)
+                equipment_id = 900000000 + item_id
+
+                # Determine equipment part and type
+                if definition.combat_item_type == "EQUIP_WEAPON":
+                    part = "Weapon"
+                    equipment_type = subtype['id'].upper()
+                elif definition.combat_item_type == "EQUIP_ARMOR_BODY":
+                    part = "BODY"
+                    if subtype['id'] == "bodyMail":
+                        equipment_type = "MAIL"
+                    elif subtype['id'] == "bodyLeather":
+                        equipment_type = "LEATHER"
+                    else:  # bodyRobe
+                        equipment_type = "ROBE"
+                elif definition.combat_item_type == "EQUIP_ARMOR_ARM":
+                    part = "HAND"
+                    if subtype['id'] == "handMail":
+                        equipment_type = "MAIL"
+                    elif subtype['id'] == "handLeather":
+                        equipment_type = "LEATHER"
+                    else:  # handRobe
+                        equipment_type = "ROBE"
+                else:  # EQUIP_ARMOR_LEG
+                    part = "FEET"
+                    if subtype['id'] == "feetMail":
+                        equipment_type = "MAIL"
+                    elif subtype['id'] == "feetLeather":
+                        equipment_type = "LEATHER"
+                    else:  # feetRobe
+                        equipment_type = "ROBE"
+
+                lines.append(f"    - equipmentId: {equipment_id}")
+                lines.append(f"      level: 1")
+                lines.append(f"      grade: {grade['name']}")
+                lines.append(f"      part: {part}")
+                lines.append(f"      type: {equipment_type}")
+                lines.append(f"      countOfSlot: 0")
+                lines.append(f"      minAtk: 1")
+                lines.append(f"      maxAtk: 1")
+                lines.append(f"      impact: 1")
+                lines.append(f"      balance: 0")
+                lines.append(f"      def: 1")
+                lines.append(f"      atkRate: 1")
+                lines.append(f"      impactRate: 1")
+                lines.append(f"      balanceRate: 1")
+                lines.append(f"      defRate: 1")
+                lines.append("")
+
+                item_id += 1
+
+    return lines
+
+
+def generate_combined_yaml(definitions: list[PassiveDefinition]) -> str:
+    """Generate the combined YAML file with categories and items."""
+    lines = [
+        "# Gear Infusion System - Categories & Items",
         "# Auto-generated by generate_infusion.py",
         "# DO NOT EDIT MANUALLY",
         "",
@@ -397,14 +562,29 @@ def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: li
         "  # Base infusion item template",
         "  infusionItemBase:",
         "    maxStack: 1",
+        "    rank: 16",
         "    tradable: false",
+        "    tradeBrokerTradable: false",
         "    boundType: Loot",
+        "    enchantEnable: true",
+        "    linkMaterialEnchantId: 23016",
         "    dismantlable: true",
-        "    storeSellable: false",
+        "    storeSellable: true",
         "    warehouseStorable: true",
         "    guildWarehouseStorable: false",
         "    destroyable: true",
         "    requiredLevel: 1",
+        "    level: 1",
+        "    dropIdentify: true",
+        "    unidentifiedItemGrade: 1",
+        "    masterpieceRate: 0",
+        "    isMaterialEquip: true",
+        "    searchable: true",
+        "    obtainable: true",
+        "    relocatable: true",
+        "    artisanable: false",
+        "    strings:",
+        '      toolTip: "Infusable Fodder. Can be used to infuse effect on compatible gear, can be upgraded with Enigmatic Scrolls or can be dismantled for feedstock."',
         "",
         "  # Grade-specific templates",
         "  infusionItemUncommon:",
@@ -412,83 +592,38 @@ def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: li
         "    rareGrade: Uncommon",
         "    buyPrice: 1000",
         "    sellPrice: 100",
-        "    icon: 'Icon_Items.Item_InfusionCore_Green_Tex'",
         "",
         "  infusionItemRare:",
         "    $extends: infusionItemBase",
         "    rareGrade: Rare",
         "    buyPrice: 5000",
         "    sellPrice: 500",
-        "    icon: 'Icon_Items.Item_InfusionCore_Blue_Tex'",
         "",
         "  infusionItemSuperior:",
         "    $extends: infusionItemBase",
         "    rareGrade: Superior",
         "    buyPrice: 25000",
         "    sellPrice: 2500",
-        "    icon: 'Icon_Items.Item_InfusionCore_Yellow_Tex'",
         "",
-        "items:",
-        "  upsert:",
+        "  # Base passivity template (common fields)",
+        "  passivityBase:",
+        "    category: Equipment",
+        "    kind: 0",
+        "    prob: 1.0",
+        "    tickInterval: 0",
+        "    balancedByTargetCount: false",
+        "    judgmentOnce: false",
+        "",
     ]
 
-    item_id = ITEM_ID_SEED
-    category_id = PASSIVITY_CATEGORY_ID_SEED
+    categories_lines, passivity_data = generate_categories_yaml(definitions)
+    lines.extend(categories_lines)
 
-    # Group passivity data by definition order for easier processing
-    passivity_by_order_grade = {}
-    for data in passivity_data:
-        key = (data["definition"].order, data["grade"]["id"])
-        passivity_by_order_grade[key] = data
+    items_lines = generate_items_yaml(definitions, passivity_data)
+    lines.extend(items_lines)
 
-    for definition in definitions:
-        slot_config = SLOTS.get(definition.combat_item_type, {})
-        slot_display = slot_config.get("display", "Unknown")
-
-        for grade in GRADES:
-            key = (definition.order, grade["id"])
-            data = passivity_by_order_grade.get(key)
-            if not data:
-                continue
-
-            passivity_id = data["id"]
-
-            # Generate item name using suffix format: "Infusion [Slot] [Suffix]"
-            # Example: "Infusion Weapon of Wrath"
-            item_name = f"Infusion {slot_display} {definition.suffix}"
-            internal_name = f"infusion_{slot_config['prefix'].lower()}_{definition.passive_attribute.lower()}_t{grade['id']}"
-
-            # Determine template based on grade
-            grade_template = f"infusionItem{grade['name']}"
-
-            lines.append(f"    # {item_name} ({grade['name']})")
-            lines.append(f"    - $extends: {grade_template}")
-            lines.append(f"      id: {item_id}")
-            lines.append(f'      name: "{internal_name}"')
-            lines.append(f"      combatItemType: ENCHANT_MATERIAL")
-            lines.append(f"      combatItemSubType: enchant_material")
-            lines.append(f'      category: "{slot_config["item_category"]}"')
-            lines.append(f"      # Target slot: {definition.combat_item_type}")
-            lines.append(f"      linkPassivityId:")
-            lines.append(f'        - "{passivity_id}"')
-
-            # Add role restriction comment if not ANY
-            if definition.role != "ANY":
-                lines.append(f"      # Role restriction: {definition.role}")
-
-            # Inline strings block
-            config = PASSIVITY_CONFIG.get(definition.passive_attribute, {})
-            tier_value = getattr(definition, grade["tier_field"].lower())
-            tooltip_value = format_tooltip_value(tier_value, config)
-            tooltip = definition.tooltip.replace("$value", tooltip_value)
-
-            lines.append(f"      strings:")
-            lines.append(f'        name: "{item_name}"')
-            tooltip_escaped = tooltip.replace('"', '\\"')
-            lines.append(f'        toolTip: "Infusion Core. {tooltip_escaped} Use on {slot_display.lower()} to apply this effect."')
-            lines.append("")
-
-            item_id += 1
+    equipment_lines = generate_equipment_yaml(definitions, passivity_data)
+    lines.extend(equipment_lines)
 
     return "\n".join(lines)
 
@@ -501,39 +636,34 @@ def main():
     if args.patch:
         specs_dir = REFORGED_DIR / "specs" / "patches" / args.patch
         specs_dir.mkdir(parents=True, exist_ok=True)
-        output_passivities = specs_dir / "gear-infusion-passivities.yaml"
-        output_items = specs_dir / "gear-infusion-items.yaml"
+        output_items = specs_dir / "06-gear-infusion-items.yaml"
     else:
-        output_passivities = OUTPUT_PASSIVITIES
         output_items = OUTPUT_ITEMS
 
     print(f"Reading definitions from {INPUT_FILE}")
     definitions = parse_csv()
     print(f"Parsed {len(definitions)} passive definitions")
 
-    print("Generating passivities YAML...")
-    passivities_yaml, passivity_data = generate_passivities_yaml(definitions)
-
-    print("Generating items YAML...")
-    items_yaml = generate_items_yaml(definitions, passivity_data)
-
-    print(f"Writing {output_passivities}")
-    with open(output_passivities, "w", encoding="utf-8") as f:
-        f.write(passivities_yaml)
+    print("Generating combined YAML...")
+    combined_yaml = generate_combined_yaml(definitions)
 
     print(f"Writing {output_items}")
     with open(output_items, "w", encoding="utf-8") as f:
-        f.write(items_yaml)
+        f.write(combined_yaml)
 
     total_passivities = len(definitions) * len(GRADES)
-    total_items = len(definitions) * len(GRADES)
+    total_items = sum(
+        len(SLOTS[d.combat_item_type]["subtypes"])
+        for d in definitions
+        for _ in GRADES
+    )
 
     print(f"\nGenerated:")
+    print(f"  - {total_passivities} passivity categories (IDs {PASSIVITY_CATEGORY_ID_SEED} - {PASSIVITY_CATEGORY_ID_SEED + total_passivities - 1})")
     print(f"  - {total_passivities} passivities (IDs {PASSIVITY_ID_SEED} - {PASSIVITY_ID_SEED + total_passivities - 1})")
     print(f"  - {total_items} items (IDs {ITEM_ID_SEED} - {ITEM_ID_SEED + total_items - 1})")
     print(f"\nTo apply:")
-    print(f'  dsl apply "{OUTPUT_PASSIVITIES}" --path "D:\\dev\\mmogate\\tera92\\server\\Datasheet"')
-    print(f'  dsl apply "{OUTPUT_ITEMS}" --path "D:\\dev\\mmogate\\tera92\\server\\Datasheet"')
+    print(f'  dsl apply "{output_items}" --path "D:\\dev\\mmogate\\tera92\\server\\Datasheet"')
 
 
 if __name__ == "__main__":

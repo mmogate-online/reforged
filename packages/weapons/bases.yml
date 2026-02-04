@@ -5,24 +5,15 @@ definitions:
   # =============================================================================
   # GLOBAL WEAPON BASE
   # Properties >= 96% common across ALL 9,117 weapons in ItemTemplate.xml
+  # Remaining fields are provided by DSL equipment item soft defaults.
   # =============================================================================
   weaponBase:
     combatItemType: EQUIP_WEAPON
-    coolTime: 0
-    coolTimeGroup: 0
-    dropSound: "InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue"
-    maxStack: 1
-    requiredEquipmentType: NO_COMBAT
-    slotLimit: 0
-    sortingNumber: 0
-    relocatable: true
-    destroyable: true
-    obtainable: true
-    searchable: true
 
   # =============================================================================
   # WEAPON SUBTYPE BASES
-  # Each extends weaponBase and adds class-specific properties
+  # Each extends weaponBase and adds class-specific properties.
+  # equipSound and dropSilhouette are auto-resolved from combatItemSubType.
   # =============================================================================
 
   # Axe - Berserker weapon (742 weapons)
@@ -32,7 +23,6 @@ definitions:
     category: axe
     requiredClass:
       - BERSERKER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_AxeCue"
 
   # Blaster - Engineer/Gunner weapon (719 weapons)
   blasterBase:
@@ -41,7 +31,6 @@ definitions:
     category: blaster
     requiredClass:
       - ENGINEER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_BlasterCue"
 
   # Bow - Archer weapon (742 weapons)
   bowBase:
@@ -50,7 +39,6 @@ definitions:
     category: bow
     requiredClass:
       - ARCHER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_BowCue"
 
   # Chain - Soulless/Reaper weapon (240 weapons)
   chainBase:
@@ -60,7 +48,6 @@ definitions:
     dropType: 0
     requiredClass:
       - SOULLESS
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_ChainCue"
 
   # Circle - Sorcerer weapon (741 weapons)
   circleBase:
@@ -69,7 +56,6 @@ definitions:
     category: circle
     requiredClass:
       - SORCERER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_CircleCue"
 
   # Dual - Warrior weapon (742 weapons)
   dualBase:
@@ -78,7 +64,6 @@ definitions:
     category: dual
     requiredClass:
       - WARRIOR
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_DualCue"
 
   # Gauntlet - Fighter/Brawler weapon (708 weapons)
   gauntletBase:
@@ -87,7 +72,6 @@ definitions:
     category: gauntlet
     requiredClass:
       - FIGHTER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_GauntletCue"
 
   # Glaive - Glaiver/Valkyrie weapon (742 weapons)
   glaiveBase:
@@ -96,7 +80,6 @@ definitions:
     category: glaive
     requiredClass:
       - GLAIVER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_GlaiverCue"
 
   # Lance - Lancer weapon (741 weapons)
   lanceBase:
@@ -105,7 +88,6 @@ definitions:
     category: lance
     requiredClass:
       - LANCER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_LanceCue"
 
   # Rod - Elementalist/Mystic weapon (742 weapons)
   rodBase:
@@ -114,7 +96,6 @@ definitions:
     category: rod
     requiredClass:
       - ELEMENTALIST
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_RodCue"
 
   # Shuriken - Assassin/Ninja weapon (748 weapons)
   shurikenBase:
@@ -123,7 +104,6 @@ definitions:
     category: shuriken
     requiredClass:
       - ASSASSIN
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_ShurikenCue"
 
   # Staff - Priest weapon (742 weapons)
   staffBase:
@@ -132,7 +112,6 @@ definitions:
     category: staff
     requiredClass:
       - PRIEST
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_StaffCue"
 
   # Twohand - Slayer weapon (741 weapons)
   twohandBase:
@@ -141,4 +120,3 @@ definitions:
     category: twohand
     requiredClass:
       - SLAYER
-    equipSound: "InterfaceSound.Equip_ArmorWeaponCUE.Equip_TwoHandCue"
