@@ -1,55 +1,55 @@
-Order;CombatItemType;Role;PassiveAttribute;Type;Uncommon;Rare;Superior;Suffix;Tooltip;MobSize;Condition
-# Weapon Infusions (17)
-1;EQUIP_WEAPON;ANY;DamageVsEnraged;152;0.008;0.015;0.03;of Fury;Increases damage against enraged enemies by $value%.;all;Enraged
-2;EQUIP_WEAPON;ANY;DamageWithMaxAggro;152;0.007;0.014;0.029;of Dominance;Increases damage while holding aggro by $value%.;all;MaxAggro
-3;EQUIP_WEAPON;ANY;DamageVsProne;152;0.006;0.012;0.023;of Crushing;Increases damage against knocked down targets by $value%.;all;Knockdown
-4;EQUIP_WEAPON;ANY;DamageFromRear;152;0.006;0.011;0.023;of Ambush;Increases damage from behind by $value%.;all;Positional
-5;EQUIP_WEAPON;ANY;DamageVsMonsters;152;0.003;0.005;0.01;of Slaying;Increases damage against monsters by $value%.;any;OnAttack
-6;EQUIP_WEAPON;ANY;AttackSpeed;25;0.005;0.01;0.02;of Haste;Increases attack speed by $value%.;;Always
-7;EQUIP_WEAPON;ANY;CooldownReduction;71;0.005;0.015;0.03;of Alacrity;Decreases skill cooldowns by $value%.;;Always
-8;EQUIP_WEAPON;ANY;CritFactor;6;4;8;16;of Precision;Increases crit factor by $value.;;Always
-9;EQUIP_WEAPON;ANY;CritPower;19;0.01;0.02;0.03;of Brutality;Increases crit power by $value.;;Always
-10;EQUIP_WEAPON;ANY;MpReplenishment;21;10;18;26;of Focus;Replenishes $value MP on each attack.;;Always
-11;EQUIP_WEAPON;ANY;MpOnSkillUse;232;0.0025;0.005;0.01;of Efficiency;Replenishes $value% of total MP on skill use.;;Always
-12;EQUIP_WEAPON;TANK;AggroGeneration;164;0.09;0.18;0.24;of Provocation;Increases aggro generation by $value%.;;OnAttack
-13;EQUIP_WEAPON;HEALER;HealingSkillFlat;168;75;150;300;of Mending;Increases healing skill power by $value.;;OnAttack
-14;EQUIP_WEAPON;HEALER;HealingSkillPercent;169;0.015;0.03;0.06;of Restoration;Increases healing skills by $value%.;;OnAttack
-15;EQUIP_WEAPON;ANY;PvpAttack;176;2;4;8;of Conquest;Increases PvP attack by $value.;;OnAttack
+Order;CombatItemType;Role;PassiveAttribute;Type;Min;Max;Suffix;Tooltip;MobSize;Condition
+# Weapon Infusions (15)
+1;EQUIP_WEAPON;ANY;DamageVsEnraged;152;0,008;0,03;of Fury;Increases damage against enraged enemies by $value%.;all;Enraged
+2;EQUIP_WEAPON;ANY;DamageWithMaxAggro;152;0,007;0,029;of Dominance;Increases damage while holding aggro by $value%.;all;MaxAggro
+3;EQUIP_WEAPON;ANY;DamageVsProne;152;0,006;0,023;of Crushing;Increases damage against knocked down targets by $value%.;all;Knockdown
+4;EQUIP_WEAPON;ANY;DamageFromRear;152;0,006;0,023;of Ambush;Increases damage from behind by $value%.;all;Positional
+5;EQUIP_WEAPON;ANY;DamageVsMonsters;152;0,003;0,01;of Slaying;Increases damage against monsters by $value%.;any;OnAttack
+6;EQUIP_WEAPON;ANY;AttackSpeed;25;0,005;0,02;of Haste;Increases attack speed by $value%.;;Always
+7;EQUIP_WEAPON;ANY;CooldownReduction;71;0,005;0,03;of Alacrity;Decreases skill cooldowns by $value%.;;Always
+8;EQUIP_WEAPON;ANY;CritFactor;6;4;16;of Precision;Increases crit factor by $value.;;Always
+9;EQUIP_WEAPON;ANY;CritPower;19;0,01;0,03;of Brutality;Increases crit power by $value.;;Always
+10;EQUIP_WEAPON;ANY;MpReplenishment;21;10;26;of Focus;Replenishes $value MP on each attack.;;Always
+11;EQUIP_WEAPON;ANY;MpOnSkillUse;232;0,0025;0,01;of Efficiency;Replenishes $value% of total MP on skill use.;;Always
+12;EQUIP_WEAPON;TANK;AggroGeneration;164;0,09;0,24;of Provocation;Increases aggro generation by $value%.;;OnAttack
+13;EQUIP_WEAPON;HEALER;HealingSkillFlat;168;75;300;of Mending;Increases healing skill power by $value.;;OnAttack
+14;EQUIP_WEAPON;HEALER;HealingSkillPercent;169;0,015;0,06;of Restoration;Increases healing skills by $value%.;;OnAttack
+15;EQUIP_WEAPON;ANY;PvpAttack;176;2;8;of Conquest;Increases PvP attack by $value.;;OnAttack
 # Chest Armor Infusions (18)
-16;EQUIP_ARMOR_BODY;ANY;DamageFromEnraged;102;0.008;0.017;0.033;of Resolve;Decreases damage from enraged enemies by $value%.;;Enraged
-17;EQUIP_ARMOR_BODY;ANY;DamageWithMaxAggro;102;0.007;0.015;0.029;of Fortitude;Decreases damage while holding aggro by $value%.;;MaxAggro
-18;EQUIP_ARMOR_BODY;ANY;DamageWhileProne;102;0.006;0.012;0.023;of Recovery;Decreases damage while knocked down by $value%.;;Knockdown
-19;EQUIP_ARMOR_BODY;ANY;FrontalDamageTaken;102;0.006;0.011;0.023;of the Vanguard;Decreases frontal damage taken by $value%.;;Frontal
-20;EQUIP_ARMOR_BODY;ANY;DamageTaken;102;0.005;0.01;0.02;of Protection;Decreases damage taken by $value%.;;WhenAttacked
-21;EQUIP_ARMOR_BODY;ANY;DamageFromMonsters;102;0.005;0.01;0.02;of Warding;Decreases damage from monsters by $value%.;;WhenAttacked
-22;EQUIP_ARMOR_BODY;ANY;CritResistFactor;7;10;15;20;of Iron Skin;Increases crit resist factor by $value.;;WhenAttacked
-23;EQUIP_ARMOR_BODY;ANY;CritResistChance;105;0.2;0.4;0.8;of Deflection;Decreases chance to receive critical hits by $value.;;WhenAttacked
-24;EQUIP_ARMOR_BODY;ANY;Power;3;2;4;8;of Might;Increases Power by $value.;;Always
-25;EQUIP_ARMOR_BODY;ANY;Endurance;4;2;4;8;of Tenacity;Increases Endurance by $value.;;Always
-26;EQUIP_ARMOR_BODY;ANY;MaxHpPercent;1;0.005;0.01;0.02;of Vitality;Increases Max HP by $value%.;;Always
-27;EQUIP_ARMOR_BODY;ANY;MaxHpFlat;1;500;1000;2000;of Constitution;Increases Max HP by $value.;;Always
-28;EQUIP_ARMOR_BODY;ANY;MaxMp;2;94;125;167;of Spirit;Increases Max MP by $value.;;Always
-29;EQUIP_ARMOR_BODY;ANY;MpPer5Sec;52;89;118;158;of Meditation;Regenerates $value MP every 5 seconds.;;Always
-30;EQUIP_ARMOR_BODY;ANY;HealingReceived;110;0.005;0.01;0.02;of Rejuvenation;Increases healing received by $value%.;;WhenAttacked
-31;EQUIP_ARMOR_BODY;ANY;HpLeech;226;0.0025;0.005;0.01;of Vampirism;Restores $value% of damage dealt as HP.;;OnHit
-32;EQUIP_ARMOR_BODY;ANY;DamageReflect;203;0.03;0.06;0.12;of Thorns;Reflects $value% of damage back to attacker.;;Always
-33;EQUIP_ARMOR_BODY;ANY;PvpDefense;113;3;5;10;of Resilience;Increases PvP defense by $value.;;WhenAttacked
+16;EQUIP_ARMOR_BODY;ANY;DamageFromEnraged;102;0,008;0,033;of Resolve;Decreases damage from enraged enemies by $value%.;;Enraged
+17;EQUIP_ARMOR_BODY;ANY;DamageWithMaxAggro;102;0,007;0,029;of Fortitude;Decreases damage while holding aggro by $value%.;;MaxAggro
+18;EQUIP_ARMOR_BODY;ANY;DamageWhileProne;102;0,006;0,023;of Recovery;Decreases damage while knocked down by $value%.;;Knockdown
+19;EQUIP_ARMOR_BODY;ANY;FrontalDamageTaken;102;0,006;0,023;of the Vanguard;Decreases frontal damage taken by $value%.;;Frontal
+20;EQUIP_ARMOR_BODY;ANY;DamageTaken;102;0,005;0,02;of Protection;Decreases damage taken by $value%.;;WhenAttacked
+21;EQUIP_ARMOR_BODY;ANY;DamageFromMonsters;102;0,005;0,02;of Warding;Decreases damage from monsters by $value%.;;WhenAttacked
+22;EQUIP_ARMOR_BODY;ANY;CritResistFactor;7;10;20;of Iron Skin;Increases crit resist factor by $value.;;WhenAttacked
+23;EQUIP_ARMOR_BODY;ANY;CritResistChance;105;0,2;0,8;of Deflection;Decreases chance to receive critical hits by $value.;;WhenAttacked
+24;EQUIP_ARMOR_BODY;ANY;Power;3;2;8;of Might;Increases Power by $value.;;Always
+25;EQUIP_ARMOR_BODY;ANY;Endurance;4;2;8;of Tenacity;Increases Endurance by $value.;;Always
+26;EQUIP_ARMOR_BODY;ANY;MaxHpPercent;1;0,005;0,02;of Vitality;Increases Max HP by $value%.;;Always
+27;EQUIP_ARMOR_BODY;ANY;MaxHpFlat;1;500;2000;of Constitution;Increases Max HP by $value.;;Always
+28;EQUIP_ARMOR_BODY;ANY;MaxMp;2;94;167;of Spirit;Increases Max MP by $value.;;Always
+29;EQUIP_ARMOR_BODY;ANY;MpPer5Sec;52;89;158;of Meditation;Regenerates $value MP every 5 seconds.;;Always
+30;EQUIP_ARMOR_BODY;ANY;HealingReceived;110;0,005;0,02;of Rejuvenation;Increases healing received by $value%.;;WhenAttacked
+31;EQUIP_ARMOR_BODY;ANY;HpLeech;226;0,0025;0,01;of Vampirism;Restores $value% of damage dealt as HP.;;OnHit
+32;EQUIP_ARMOR_BODY;ANY;DamageReflect;203;0,03;0,12;of Thorns;Reflects $value% of damage back to attacker.;;Always
+33;EQUIP_ARMOR_BODY;ANY;PvpDefense;113;3;10;of Resilience;Increases PvP defense by $value.;;WhenAttacked
 # Gloves Infusions (10)
-34;EQUIP_ARMOR_ARM;ANY;DamageVsMonsters;152;0.005;0.01;0.02;of Slaying;Increases damage against monsters by $value%.;any;OnAttack
-35;EQUIP_ARMOR_ARM;ANY;CritFactor;6;2;4;8;of Precision;Increases crit factor by $value.;;Always
-36;EQUIP_ARMOR_ARM;ANY;Power;3;1;2;4;of Might;Increases Power by $value.;;Always
-37;EQUIP_ARMOR_ARM;ANY;MaxHpFlat;1;350;750;1500;of Constitution;Increases Max HP by $value.;;Always
-38;EQUIP_ARMOR_ARM;ANY;AttackSpeed;25;0.005;0.01;0.02;of Haste;Increases attack speed by $value%.;;Always
-39;EQUIP_ARMOR_ARM;ANY;CritDamageReduction;111;0.03;0.07;0.15;of Bracing;Decreases crit damage taken by $value%.;;WhenAttacked
-40;EQUIP_ARMOR_ARM;TANK;AggroGeneration;164;0.0675;0.09;0.12;of Provocation;Increases aggro generation by $value%.;;OnAttack
-41;EQUIP_ARMOR_ARM;HEALER;HealingSkillFlat;168;36;75;150;of Mending;Increases healing skill power by $value.;;OnAttack
-42;EQUIP_ARMOR_ARM;HEALER;HealingSkillPercent;169;0.0075;0.015;0.03;of Restoration;Increases healing skills by $value%.;;OnAttack
-43;EQUIP_ARMOR_ARM;ANY;PvpAttack;176;2;3;6;of Conquest;Increases PvP attack by $value.;;OnAttack
+34;EQUIP_ARMOR_ARM;ANY;DamageVsMonsters;152;0,005;0,02;of Slaying;Increases damage against monsters by $value%.;any;OnAttack
+35;EQUIP_ARMOR_ARM;ANY;CritFactor;6;2;8;of Precision;Increases crit factor by $value.;;Always
+36;EQUIP_ARMOR_ARM;ANY;Power;3;1;4;of Might;Increases Power by $value.;;Always
+37;EQUIP_ARMOR_ARM;ANY;MaxHpFlat;1;350;1500;of Constitution;Increases Max HP by $value.;;Always
+38;EQUIP_ARMOR_ARM;ANY;AttackSpeed;25;0,005;0,02;of Haste;Increases attack speed by $value%.;;Always
+39;EQUIP_ARMOR_ARM;ANY;CritDamageReduction;111;0,03;0,15;of Bracing;Decreases crit damage taken by $value%.;;WhenAttacked
+40;EQUIP_ARMOR_ARM;TANK;AggroGeneration;164;0,0675;0,12;of Provocation;Increases aggro generation by $value%.;;OnAttack
+41;EQUIP_ARMOR_ARM;HEALER;HealingSkillFlat;168;36;150;of Mending;Increases healing skill power by $value.;;OnAttack
+42;EQUIP_ARMOR_ARM;HEALER;HealingSkillPercent;169;0,0075;0,03;of Restoration;Increases healing skills by $value%.;;OnAttack
+43;EQUIP_ARMOR_ARM;ANY;PvpAttack;176;2;6;of Conquest;Increases PvP attack by $value.;;OnAttack
 # Boots Infusions (7)
-44;EQUIP_ARMOR_LEG;ANY;MovementSpeed;5;0.01;0.015;0.03;of Swiftness;Increases movement speed by $value%.;;Always
-45;EQUIP_ARMOR_LEG;ANY;CritResistFactor;7;4;8;16;of Iron Skin;Increases crit resist factor by $value.;;WhenAttacked
-46;EQUIP_ARMOR_LEG;ANY;Endurance;4;3;4;6;of Tenacity;Increases Endurance by $value.;;Always
-47;EQUIP_ARMOR_LEG;ANY;MaxHpFlat;1;250;500;1000;of Constitution;Increases Max HP by $value.;;Always
-48;EQUIP_ARMOR_LEG;ANY;MaxMp;2;45;62;83;of Spirit;Increases Max MP by $value.;;Always
-49;EQUIP_ARMOR_LEG;ANY;MpPer5Sec;52;42;58;79;of Meditation;Regenerates $value MP every 5 seconds.;;Always
-50;EQUIP_ARMOR_LEG;ANY;PvpDefense;113;2;5;8;of Resilience;Increases PvP defense by $value.;;WhenAttacked
+44;EQUIP_ARMOR_LEG;ANY;MovementSpeed;5;0,01;0,03;of Swiftness;Increases movement speed by $value%.;;Always
+45;EQUIP_ARMOR_LEG;ANY;CritResistFactor;7;4;16;of Iron Skin;Increases crit resist factor by $value.;;WhenAttacked
+46;EQUIP_ARMOR_LEG;ANY;Endurance;4;3;6;of Tenacity;Increases Endurance by $value.;;Always
+47;EQUIP_ARMOR_LEG;ANY;MaxHpFlat;1;250;1000;of Constitution;Increases Max HP by $value.;;Always
+48;EQUIP_ARMOR_LEG;ANY;MaxMp;2;45;83;of Spirit;Increases Max MP by $value.;;Always
+49;EQUIP_ARMOR_LEG;ANY;MpPer5Sec;52;42;79;of Meditation;Regenerates $value MP every 5 seconds.;;Always
+50;EQUIP_ARMOR_LEG;ANY;PvpDefense;113;2;8;of Resilience;Increases PvP defense by $value.;;WhenAttacked
