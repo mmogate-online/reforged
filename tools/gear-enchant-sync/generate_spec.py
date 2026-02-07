@@ -40,6 +40,14 @@ SLOT_MAPPINGS = [
     ("MID_TIER_HAND_LEATHER_IDS", "ENCHANT_MID_TIER_HAND_LEATHER", "Superior Hand Leather"),
     ("MID_TIER_HAND_ROBE_IDS", "ENCHANT_MID_TIER_HAND_ROBE", "Superior Hand Robe"),
     ("MID_TIER_FEET_IDS", "ENCHANT_MID_TIER_BOOTS", "Superior Feet Armor"),
+    # Low Tier (Uncommon/Rare)
+    ("LOW_TIER_HEALER_WEAPON_IDS", "ENCHANT_LOW_TIER_WEAPON_HEALER", "Uncommon/Rare Healer Weapons"),
+    ("LOW_TIER_DPS_WEAPON_IDS", "ENCHANT_LOW_TIER_WEAPON_DPS_TANK", "Uncommon/Rare DPS/Tank Weapons"),
+    ("LOW_TIER_BODY_IDS", "ENCHANT_LOW_TIER_CHEST", "Uncommon/Rare Body Armor"),
+    ("LOW_TIER_HAND_MAIL_IDS", "ENCHANT_LOW_TIER_HAND_MAIL", "Uncommon/Rare Hand Mail"),
+    ("LOW_TIER_HAND_LEATHER_IDS", "ENCHANT_LOW_TIER_HAND_LEATHER", "Uncommon/Rare Hand Leather"),
+    ("LOW_TIER_HAND_ROBE_IDS", "ENCHANT_LOW_TIER_HAND_ROBE", "Uncommon/Rare Hand Robe"),
+    ("LOW_TIER_FEET_IDS", "ENCHANT_LOW_TIER_BOOTS", "Uncommon/Rare Feet Armor"),
 ]
 
 
@@ -78,6 +86,14 @@ def generate_spec() -> str:
         "        - ENCHANT_MID_TIER_HAND_LEATHER",
         "        - ENCHANT_MID_TIER_HAND_ROBE",
         "        - ENCHANT_MID_TIER_BOOTS",
+        "        # Low Tier (Uncommon/Rare)",
+        "        - ENCHANT_LOW_TIER_WEAPON_DPS_TANK",
+        "        - ENCHANT_LOW_TIER_WEAPON_HEALER",
+        "        - ENCHANT_LOW_TIER_CHEST",
+        "        - ENCHANT_LOW_TIER_HAND_MAIL",
+        "        - ENCHANT_LOW_TIER_HAND_LEATHER",
+        "        - ENCHANT_LOW_TIER_HAND_ROBE",
+        "        - ENCHANT_LOW_TIER_BOOTS",
         "",
         "  - from: equipment-item-ids",
         "    use:",
@@ -98,6 +114,14 @@ def generate_spec() -> str:
         "        - MID_TIER_HAND_LEATHER_IDS",
         "        - MID_TIER_HAND_ROBE_IDS",
         "        - MID_TIER_FEET_IDS",
+        "        # Low Tier (Uncommon/Rare) Item IDs",
+        "        - LOW_TIER_HEALER_WEAPON_IDS",
+        "        - LOW_TIER_DPS_WEAPON_IDS",
+        "        - LOW_TIER_BODY_IDS",
+        "        - LOW_TIER_HAND_MAIL_IDS",
+        "        - LOW_TIER_HAND_LEATHER_IDS",
+        "        - LOW_TIER_HAND_ROBE_IDS",
+        "        - LOW_TIER_FEET_IDS",
         "",
         "items:",
         "  updateWhere:",
@@ -105,7 +129,12 @@ def generate_spec() -> str:
 
     current_tier = None
     for id_var, enchant_var, description in SLOT_MAPPINGS:
-        tier = "HIGH TIER (Mythic)" if id_var.startswith("HIGH_") else "MID TIER (Superior)"
+        if id_var.startswith("HIGH_"):
+            tier = "HIGH TIER (Mythic)"
+        elif id_var.startswith("MID_"):
+            tier = "MID TIER (Superior)"
+        else:
+            tier = "LOW TIER (Uncommon/Rare)"
 
         if tier != current_tier:
             current_tier = tier
@@ -134,7 +163,7 @@ def main():
     if args.patch:
         specs_dir = REFORGED_DIR / "specs" / "patches" / args.patch
         specs_dir.mkdir(parents=True, exist_ok=True)
-        output_path = specs_dir / "04-gear-enchant-sync.yaml"
+        output_path = specs_dir / "07-gear-enchant-sync.yaml"
     else:
         output_path = DEFAULT_OUTPUT
 

@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Generate ID Lists for Equipment Item Standard Package
+Generate ID Lists for Equipment Item IDs Package
 
 Reads gear_progression.csv and generates YAML variable definitions for
 item ID lists, organized by tier/slot with set grouping and annotations.
 
+Only includes items at level 60 or below (filters out level 65/69 endgame gear).
+
 Usage:
     python generate_id_lists.py          # Print to stdout
-    python generate_id_lists.py --write  # Write to equipment-item-standard package
+    python generate_id_lists.py --write  # Write to equipment-item-ids package
 
 Output:
-    YAML content for equipment-item-standard/index.yml variables section
+    YAML content for equipment-item-ids/index.yml variables section
 """
 
 import argparse
@@ -40,21 +42,35 @@ def load_csv() -> list[dict]:
         return list(reader)
 
 
-def build_id_lists(rows: list[dict]) -> dict:
+def build_id_lists(rows: list[dict], max_level: int = 60) -> dict:
     """
     Build ID lists organized by:
     - Grade (Mythic/Superior)
     - Slot category
     - Gear set (sorted by PowerTier desc)
+
+    Args:
+        rows: CSV rows from gear_progression.csv
+        max_level: Maximum item level to include (default: 60)
     """
     organized = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
 
     for row in rows:
-        grade = row.get("RareGrade", "")
-        if grade not in ["3", "4"]:
+        # Filter by level
+        level = int(row.get("Level", "0") or "0")
+        if level > max_level:
             continue
 
-        grade_name = "HIGH" if grade == "4" else "MID"
+        grade = row.get("RareGrade", "")
+        if grade not in ["1", "2", "3", "4"]:
+            continue
+
+        if grade == "4":
+            grade_name = "HIGH"
+        elif grade == "3":
+            grade_name = "MID"
+        else:  # grade 1 or 2
+            grade_name = "LOW"
 
         category = row.get("ItemName", "")  # Category column
         item_name = row.get("ItemString", "")  # Actual item name
@@ -109,10 +125,15 @@ def generate_yaml(organized: dict) -> str:
     lines.append("variables:")
 
     slot_order = ["HEALER_WEAPON", "DPS_WEAPON", "BODY", "HAND_MAIL", "HAND_LEATHER", "HAND_ROBE", "FEET"]
-    grade_order = ["HIGH", "MID"]
+    grade_order = ["HIGH", "MID", "LOW"]
 
     for grade in grade_order:
-        grade_label = "High Tier (Mythic)" if grade == "HIGH" else "Mid Tier (Superior)"
+        if grade == "HIGH":
+            grade_label = "High Tier (Mythic)"
+        elif grade == "MID":
+            grade_label = "Mid Tier (Superior)"
+        else:
+            grade_label = "Low Tier (Uncommon/Rare)"
 
         for slot in slot_order:
             if slot not in organized.get(grade, {}):

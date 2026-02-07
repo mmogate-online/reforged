@@ -1,5 +1,5 @@
 # Gear Enchant Sync Spec
-# Generated: 2026-02-07 13:20:30
+# Generated: 2026-02-07 20:38:35
 #
 # Updates gear items from gear_progression.csv to use the correct linkEnchantId
 # values from the enchant-standard package.
@@ -30,6 +30,14 @@ imports:
         - ENCHANT_MID_TIER_HAND_LEATHER
         - ENCHANT_MID_TIER_HAND_ROBE
         - ENCHANT_MID_TIER_BOOTS
+        # Low Tier (Uncommon/Rare)
+        - ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+        - ENCHANT_LOW_TIER_WEAPON_HEALER
+        - ENCHANT_LOW_TIER_CHEST
+        - ENCHANT_LOW_TIER_HAND_MAIL
+        - ENCHANT_LOW_TIER_HAND_LEATHER
+        - ENCHANT_LOW_TIER_HAND_ROBE
+        - ENCHANT_LOW_TIER_BOOTS
 
   - from: equipment-item-ids
     use:
@@ -50,6 +58,14 @@ imports:
         - MID_TIER_HAND_LEATHER_IDS
         - MID_TIER_HAND_ROBE_IDS
         - MID_TIER_FEET_IDS
+        # Low Tier (Uncommon/Rare) Item IDs
+        - LOW_TIER_HEALER_WEAPON_IDS
+        - LOW_TIER_DPS_WEAPON_IDS
+        - LOW_TIER_BODY_IDS
+        - LOW_TIER_HAND_MAIL_IDS
+        - LOW_TIER_HAND_LEATHER_IDS
+        - LOW_TIER_HAND_ROBE_IDS
+        - LOW_TIER_FEET_IDS
 
 items:
   updateWhere:
@@ -145,3 +161,49 @@ items:
         id: $MID_TIER_FEET_IDS
       changes:
         linkEnchantId: $ENCHANT_MID_TIER_BOOTS
+
+    # =========================================================================
+    # LOW TIER (Uncommon/Rare)
+    # =========================================================================
+
+    # Uncommon/Rare Healer Weapons
+    - filter:
+        id: $LOW_TIER_HEALER_WEAPON_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_WEAPON_HEALER
+
+    # Uncommon/Rare DPS/Tank Weapons
+    - filter:
+        id: $LOW_TIER_DPS_WEAPON_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+
+    # Uncommon/Rare Body Armor
+    - filter:
+        id: $LOW_TIER_BODY_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_CHEST
+
+    # Uncommon/Rare Hand Mail
+    - filter:
+        id: $LOW_TIER_HAND_MAIL_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_HAND_MAIL
+
+    # Uncommon/Rare Hand Leather
+    - filter:
+        id: $LOW_TIER_HAND_LEATHER_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_HAND_LEATHER
+
+    # Uncommon/Rare Hand Robe
+    - filter:
+        id: $LOW_TIER_HAND_ROBE_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_HAND_ROBE
+
+    # Uncommon/Rare Feet Armor
+    - filter:
+        id: $LOW_TIER_FEET_IDS
+      changes:
+        linkEnchantId: $ENCHANT_LOW_TIER_BOOTS
