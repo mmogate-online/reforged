@@ -1,0 +1,340 @@
+# Enchant Passivity Categories Package
+# Defines standard passivity categories for enchanting system
+#
+# Categories:
+#   120314-120319: Random pools (always active - step 0)
+#   120326-120334: Fixed bonuses (unlock at enchant steps)
+
+variables:
+  # Random Pool Category IDs
+  # Note: DPS and Tank share the same weapon pool (120314)
+  CATEGORY_WEAPON_DPS_TANK_RANDOM: 120314
+  CATEGORY_WEAPON_HEALER_RANDOM: 120315
+  CATEGORY_CHEST_RANDOM: 120316
+  CATEGORY_HAND_MAIL_RANDOM: 120500
+  CATEGORY_HAND_LEATHER_RANDOM: 120501
+  CATEGORY_HAND_ROBE_RANDOM: 120502
+  CATEGORY_BOOTS_RANDOM: 120319
+  # Fixed Weapon DPS/Tank Category IDs (shared pool)
+  CATEGORY_WEAPON_DPS_TANK_FIXED_10: 120334
+  CATEGORY_WEAPON_DPS_TANK_FIXED_11: 120326
+  CATEGORY_WEAPON_DPS_TANK_FIXED_12: 120327
+  # Fixed Weapon Healer Category IDs
+  CATEGORY_WEAPON_HEALER_FIXED_10: 120328
+  CATEGORY_WEAPON_HEALER_FIXED_11: 120329
+  CATEGORY_WEAPON_HEALER_FIXED_12: 120330
+  # Fixed Armor Category IDs
+  CATEGORY_ARMOR_FIXED_7: 120331
+  CATEGORY_ARMOR_FIXED_8: 120332
+  CATEGORY_ARMOR_FIXED_9: 120333
+
+imports:
+  - from: enchant-passives
+
+definitions:
+  # =============================================================================
+  # RANDOM POOLS (Step 0 - Always Active)
+  # =============================================================================
+
+  # Category 120314: Weapon DPS/Tank Random Pool (Shared)
+  # Classes: All DPS (Warrior, Slayer, Berserker, Archer, Sorcerer, etc.) and Tanks (Lancer, Brawler)
+  # Pure offensive pool - 7 passivities focused on damage output
+  CategoryWeaponDPSTankRandom:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+    passivities:
+      upsert:
+        - $extends: WeaponEnragedDamage
+          id: 1410000
+          value: 1.093
+        - $extends: WeaponBackAttackDamage
+          id: 1410090
+          value: 1.069
+        - $extends: WeaponAllDamage
+          id: 1410010
+          value: 1.06
+        - $extends: WeaponCooldownReduction
+          id: 1410020
+          value: 0.928
+        - $extends: WeaponMostAggroDamage
+          id: 1410030
+          value: 1.086
+        - $extends: WeaponAttackSpeed
+          id: 1410050
+          value: 1.045
+        - $extends: WeaponCritPower
+          id: 1410070
+          value: 0.3
+
+  # Category 120315: Weapon Healer Random Pool (Hybrid)
+  # Classes: Priest, Mystic
+  # Hybrid pool - 8 passivities: 5 shared offensive stats + 3 healer-specific
+  # Healers can roll offensive stats for solo/DPS builds, plus healing-focused options
+  CategoryWeaponHealerRandom:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+    passivities:
+      upsert:
+        # Shared offensive stats (same as DPS/Tank pool, minus Back Attack and Crit Power)
+        - $extends: WeaponEnragedDamage
+          id: 1410000
+          value: 1.093
+        - $extends: WeaponAllDamage
+          id: 1410010
+          value: 1.06
+        - $extends: WeaponCooldownReduction
+          id: 1410020
+          value: 0.928
+        - $extends: WeaponMostAggroDamage
+          id: 1410030
+          value: 1.086
+        - $extends: WeaponAttackSpeed
+          id: 1410050
+          value: 1.045
+        # Healer-specific stats
+        - $extends: WeaponMPRecoveryOnSkill
+          id: 1410040
+          value: 0.006
+        - $extends: WeaponCritFactor
+          id: 1410060
+          value: 14
+        - $extends: WeaponHealingPerformance
+          id: 1410100
+          value: 1.06
+
+  # Category 120316: Chest Random Pool
+  CategoryChestRandom:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_RANDOM
+    passivities:
+      upsert:
+        - $extends: ChestDamageReduction
+          id: 1420000
+          value: 0.94
+        - $extends: ChestFrontalDamageReduction
+          id: 1420030
+          value: 0.931
+        - $extends: ChestEnragedDamageReduction
+          id: 1420040
+          value: 0.9
+        - $extends: ChestMaxHP
+          id: 1420080
+          value: 1.08
+        - $extends: ChestMostAggroDamageReduction
+          id: 1420050
+          value: 0.913
+
+  # Category 120500: HandMail Random Pool (Plate Gloves)
+  # Classes: Lancer, Berserker, Brawler, Gunner
+  # Hybrid pool: offensive stats + endurance for tank survivability
+  CategoryHandMailRandom:
+    enchantPassivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+    passivities:
+      upsert:
+        - $extends: GlovesAttackSpeed
+          id: 1425000
+          value: 1.0225
+        - $extends: GlovesCritFactor
+          id: 1425010
+          value: 9
+        - $extends: GlovesPower
+          id: 1425020
+          value: 5
+        - $extends: GlovesEndurance
+          id: 1425030
+          value: 12
+
+  # Category 120501: HandLeather Random Pool (Leather Gloves)
+  # Classes: Warrior, Slayer, Archer, Glaiver, Reaper
+  # Hybrid pool: offensive stats + endurance for Warrior tank builds
+  CategoryHandLeatherRandom:
+    enchantPassivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+    passivities:
+      upsert:
+        - $extends: GlovesAttackSpeed
+          id: 1425100
+          value: 1.0225
+        - $extends: GlovesCritFactor
+          id: 1425110
+          value: 9
+        - $extends: GlovesPower
+          id: 1425120
+          value: 5
+        - $extends: GlovesEndurance
+          id: 1425130
+          value: 12
+
+  # Category 120502: HandRobe Random Pool (Cloth Gloves)
+  # Classes: Sorcerer, Priest, Mystic, Ninja
+  # Hybrid pool: offensive stats + endurance + healing for caster/healer versatility
+  CategoryHandRobeRandom:
+    enchantPassivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+    passivities:
+      upsert:
+        - $extends: GlovesAttackSpeed
+          id: 1425200
+          value: 1.0225
+        - $extends: GlovesCritFactor
+          id: 1425210
+          value: 9
+        - $extends: GlovesPower
+          id: 1425220
+          value: 5
+        - $extends: GlovesEndurance
+          id: 1425230
+          value: 12
+        - $extends: GlovesHealingPerformance
+          id: 1425240
+          value: 1.06
+
+  # Category 120319: Boots Random Pool
+  CategoryBootsRandom:
+    enchantPassivityCategoryId: $CATEGORY_BOOTS_RANDOM
+    passivities:
+      upsert:
+        - $extends: BootsMovementSpeed
+          id: 1424020
+          value: 1.06
+        - $extends: BootsEndurance
+          id: 1424000
+          value: 4
+        - $extends: BootsMPRegen
+          id: 1424051
+          value: 0.02
+        - $extends: BootsSlowDurationReduction
+          id: 1424061
+          value: 0.76
+
+  # =============================================================================
+  # FIXED BONUSES - Weapon DPS/Tank (Steps +10, +11, +12-15) - Shared
+  # =============================================================================
+
+  # Category 120334: Weapon +10 Fixed (Power)
+  CategoryWeaponDPSTankFixed10:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_10
+    passivities:
+      upsert:
+        - $extends: FixedWeaponPower
+          id: 1410172
+          value: 3
+
+  # Category 120326: Weapon +11 Fixed (Monster Damage)
+  CategoryWeaponDPSTankFixed11:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_11
+    passivities:
+      upsert:
+        - $extends: FixedWeaponMonsterDamage
+          id: 1410173
+          value: 1.01
+
+  # Category 120327: Weapon +12-15 Fixed (All Damage)
+  CategoryWeaponDPSTankFixed12:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_12
+    passivities:
+      upsert:
+        - $extends: FixedWeaponAllDamage
+          id: 1410174
+          value: 1.01
+
+  # =============================================================================
+  # FIXED BONUSES - Weapon Healer (Steps +10, +11, +12-15)
+  # =============================================================================
+
+  # Category 120328: Weapon Healer +10 Fixed (MP Recovery)
+  CategoryWeaponHealerFixed10:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_10
+    passivities:
+      upsert:
+        - $extends: FixedWeaponMPRecovery
+          id: 1410175
+          value: 0.006
+
+  # Category 120329: Weapon Healer +11 Fixed (Healing Performance)
+  CategoryWeaponHealerFixed11:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_11
+    passivities:
+      upsert:
+        - $extends: FixedWeaponHealingFlat
+          id: 1410176
+          value: 450
+
+  # Category 120330: Weapon Healer +12-15 Fixed (Cooldown)
+  CategoryWeaponHealerFixed12:
+    enchantPassivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_12
+    passivities:
+      upsert:
+        - $extends: FixedWeaponCooldown
+          id: 1410177
+          value: 0.99
+
+  # =============================================================================
+  # FIXED BONUSES - Armor (Steps +7, +8, +9)
+  # =============================================================================
+
+  # Category 120331: Armor +7 Fixed (Endurance)
+  CategoryArmorFixed7:
+    enchantPassivityCategoryId: $CATEGORY_ARMOR_FIXED_7
+    passivities:
+      upsert:
+        - $extends: FixedArmorEndurance
+          id: 1410178
+          value: 3
+
+  # Category 120332: Armor +8 Fixed (All Damage)
+  CategoryArmorFixed8:
+    enchantPassivityCategoryId: $CATEGORY_ARMOR_FIXED_8
+    passivities:
+      upsert:
+        - $extends: FixedArmorAllDamage
+          id: 1410179
+          value: 1.01
+
+  # Category 120333: Armor +9 Fixed (Max HP)
+  CategoryArmorFixed9:
+    enchantPassivityCategoryId: $CATEGORY_ARMOR_FIXED_9
+    passivities:
+      upsert:
+        - $extends: FixedArmorMaxHP
+          id: 1410180
+          value: 1.04
+
+exports:
+  variables:
+    # Random Pool Category IDs
+    - CATEGORY_WEAPON_DPS_TANK_RANDOM
+    - CATEGORY_WEAPON_HEALER_RANDOM
+    - CATEGORY_CHEST_RANDOM
+    - CATEGORY_HAND_MAIL_RANDOM
+    - CATEGORY_HAND_LEATHER_RANDOM
+    - CATEGORY_HAND_ROBE_RANDOM
+    - CATEGORY_BOOTS_RANDOM
+    # Fixed Weapon DPS/Tank Category IDs (shared)
+    - CATEGORY_WEAPON_DPS_TANK_FIXED_10
+    - CATEGORY_WEAPON_DPS_TANK_FIXED_11
+    - CATEGORY_WEAPON_DPS_TANK_FIXED_12
+    # Fixed Weapon Healer Category IDs
+    - CATEGORY_WEAPON_HEALER_FIXED_10
+    - CATEGORY_WEAPON_HEALER_FIXED_11
+    - CATEGORY_WEAPON_HEALER_FIXED_12
+    # Fixed Armor Category IDs
+    - CATEGORY_ARMOR_FIXED_7
+    - CATEGORY_ARMOR_FIXED_8
+    - CATEGORY_ARMOR_FIXED_9
+  definitions:
+    # Random Pools
+    - CategoryWeaponDPSTankRandom
+    - CategoryWeaponHealerRandom
+    - CategoryChestRandom
+    - CategoryHandMailRandom
+    - CategoryHandLeatherRandom
+    - CategoryHandRobeRandom
+    - CategoryBootsRandom
+    # Fixed Weapon DPS/Tank (shared)
+    - CategoryWeaponDPSTankFixed10
+    - CategoryWeaponDPSTankFixed11
+    - CategoryWeaponDPSTankFixed12
+    # Fixed Weapon Healer
+    - CategoryWeaponHealerFixed10
+    - CategoryWeaponHealerFixed11
+    - CategoryWeaponHealerFixed12
+    # Fixed Armor
+    - CategoryArmorFixed7
+    - CategoryArmorFixed8
+    - CategoryArmorFixed9

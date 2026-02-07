@@ -1,0 +1,477 @@
+# Enchant Passivity Definitions Package
+# Provides reusable templates for standard enchant passivities
+#
+# Usage in specs:
+#   imports:
+#     - from: packages/enchant-passives
+#       use: [WeaponEnragedDamage, WeaponBackAttackDamage, ...]
+#
+#   passivities:
+#     create:
+#       - $extends: WeaponEnragedDamage
+#         id: 1410000
+#         value: 1.093
+#         passivityStrings:
+#           name: "..."
+#           tooltip: "..."
+
+definitions:
+  # Base template with common attributes for all enchant passivities
+  _PassivityBase:
+    category: Equipment
+    kind: 0
+    prob: 1
+    judgmentOnce: false
+    conditionCategory: "0"
+    mobSize: "all"
+    tickInterval: 0
+    abnormalityCategory: 0
+    abnormalityKind: 0
+
+  # =============================================================================
+  # WEAPON - DPS/TANK RANDOM POOL DEFINITIONS
+  # =============================================================================
+
+  WeaponEnragedDamage:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Enraged Monster Damage"
+    type: 152
+    method: 3
+    condition: 26
+    conditionValue: 4
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_more damage to enraged monster"
+      tooltip: "Increases damage by $value when attacking enraged monsters."
+
+  WeaponBackAttackDamage:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Back Attack Damage"
+    type: 152
+    method: 3
+    condition: 24
+    conditionValue: 2
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_more damage on attacking from rear"
+      tooltip: "Increases damage by $value when attacking from behind."
+
+  WeaponAllDamage:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_All Target Damage"
+    type: 152
+    method: 3
+    condition: 25
+    conditionValue: 3
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_more damage to all"
+      tooltip: "Increases damage by $value."
+
+  WeaponCooldownReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Cooldown Reduction"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_skill cooldown decrease"
+      tooltip: "Decreases skill cooldowns by $value."
+
+  WeaponMostAggroDamage:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Most Aggro Damage"
+    type: 152
+    method: 3
+    condition: 29
+    conditionValue: 6
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_more damage to most aggro"
+      tooltip: "Increases damage by $value to the target with the most aggro toward you."
+
+  WeaponAttackSpeed:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Attack Speed"
+    type: 25
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_attack speed increase"
+      tooltip: "Increases Attack Speed by $value."
+
+  WeaponCritPower:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Crit Power"
+    type: 19
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_crit Power increase"
+      tooltip: "Increase Crit Power by $value."
+
+  # =============================================================================
+  # WEAPON - HEALER RANDOM POOL DEFINITIONS
+  # =============================================================================
+
+  WeaponMPRecoveryOnSkill:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_MP Recovery on Skill Use"
+    type: 232
+    method: 2
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "9999"
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_MP replenishment on skill use"
+      tooltip: "Replenishes $value of total MP instantly when you use a skill."
+
+  WeaponCritFactor:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Crit Factor"
+    type: 6
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_Crit Factor increase"
+      tooltip: "Increases Crit Factor by $value."
+
+  WeaponHealingPerformance:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Healing Performance"
+    type: 169
+    method: 3
+    condition: 25
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_More HP recovery"
+      tooltip: "Increases your healing skills by $value."
+
+  # =============================================================================
+  # CHEST - ALL ROLES RANDOM POOL DEFINITIONS
+  # =============================================================================
+
+  ChestDamageReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Chest_Damage Reduction"
+    type: 102
+    method: 3
+    condition: 15
+    conditionValue: 3
+    passivityStrings:
+      name: "[Masterwork] [Random] Chest_less damage on attack"
+      tooltip: "Decreases damage taken by $value."
+
+  ChestFrontalDamageReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Chest_Frontal Damage Reduction"
+    type: 102
+    method: 3
+    condition: 14
+    conditionValue: 1
+    passivityStrings:
+      name: "[Masterwork] [Random] Chest_less damage when attacked from front"
+      tooltip: "Decreases damage taken from frontal attacks by $value."
+
+  ChestEnragedDamageReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Chest_Enraged Monster Damage Reduction"
+    type: 102
+    method: 3
+    condition: 9
+    conditionValue: 4
+    passivityStrings:
+      name: "[Masterwork] [Random] Chest_less damage from enraged monster"
+      tooltip: "Decreases damage from enraged monsters by $value."
+
+  ChestMaxHP:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Chest_Max HP Increase"
+    type: 1
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Chest_increase max HP"
+      tooltip: "Raises max HP by $value."
+
+  ChestMostAggroDamageReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Chest_Most Aggro Damage Reduction"
+    type: 102
+    method: 3
+    condition: 10
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Chest_less damage from most aggro"
+      tooltip: "Decreases damage by $value from the monster with the most aggro toward you."
+
+  # =============================================================================
+  # GLOVES - DPS/TANK RANDOM POOL DEFINITIONS
+  # =============================================================================
+
+  GlovesAttackSpeed:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Gloves_Attack Speed"
+    type: 25
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Glove_increase Attack Speed"
+      tooltip: "Increases Attack Speed by $value."
+
+  GlovesCritFactor:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Gloves_Crit Factor"
+    type: 6
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Glove_increase Crit Factor"
+      tooltip: "Increases Crit Factor by $value."
+
+  GlovesPower:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Gloves_Power"
+    type: 3
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Glove_increase Power"
+      tooltip: "Increases Power by $value."
+
+  # =============================================================================
+  # GLOVES - HEALER RANDOM POOL DEFINITIONS
+  # =============================================================================
+
+  GlovesEndurance:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Gloves_Endurance"
+    type: 4
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork][Random] Handwear_Increases Endurance (after '15 first half Handwear)"
+      tooltip: "Increases Endurance by $value."
+
+  GlovesHealingPerformance:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Gloves_Healing Performance"
+    type: 169
+    method: 3
+    condition: 25
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork][Random] Handwear_Increases healing(after '15 first half Handwear)"
+      tooltip: "Increases your healing skills by $value."
+
+  # =============================================================================
+  # BOOTS - ALL ROLES RANDOM POOL DEFINITIONS
+  # =============================================================================
+
+  BootsMovementSpeed:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Boots_Movement Speed"
+    type: 5
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Shoes_increase Movement Speed"
+      tooltip: "Increases Movement Speed by $value."
+
+  BootsEndurance:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Boots_Endurance"
+    type: 4
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Masterwork] [Random] Shoes_increase Endurance"
+      tooltip: "Increases Endurance by $value."
+
+  BootsMPRegen:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Boots_MP Regen"
+    type: 52
+    method: 3
+    condition: 0
+    conditionValue: 0
+    tickInterval: 5
+    passivityStrings:
+      name: "[Masterwork][Random] Footwear_Replenishes MP every 5 seconds"
+      tooltip: "Replenishes 2% of total MP every 5 seconds."
+
+  BootsSlowDurationReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Boots_Slow Duration Reduction"
+    type: 228
+    method: 2
+    condition: 0
+    conditionValue: 0
+    abnormalityCategory: 14
+    passivityStrings:
+      name: "[Masterwork][Random] Shoes_Decreases duration of slowing effects('to launch after first half of 2015)"
+      tooltip: "Decreases duration of slowing effects by $value."
+
+  # =============================================================================
+  # FIXED BONUSES - WEAPON DPS/TANK
+  # =============================================================================
+
+  FixedWeaponPower:
+    $extends: _PassivityBase
+    name: "[Highest +7][Fixed] Weapon_Power Increase"
+    type: 3
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Highest +7] [Fixed] Weapon_increase Power (July 2017, grinding improvement - highest)"
+      tooltip: "Increases Power by $value."
+
+  FixedWeaponMonsterDamage:
+    $extends: _PassivityBase
+    name: "[Highest +8][Fixed] Weapon_Monster Damage"
+    type: 152
+    method: 3
+    condition: 25
+    conditionValue: 3
+    mobSize: "any"
+    passivityStrings:
+      name: "[Highest +8][Fixed] Weapon_Additional damage when attacking monsters (July 2017, grinding improvement - highest)"
+      tooltip: "Increases damage by $value when attacking monsters."
+
+  FixedWeaponAllDamage:
+    $extends: _PassivityBase
+    name: "[Highest +9][Fixed] Weapon_All Target Damage"
+    type: 152
+    method: 3
+    condition: 25
+    conditionValue: 3
+    passivityStrings:
+      name: "[Highest +9][Fixed] Weapon_Additional damage (July 2017, grinding improvement - highest)"
+      tooltip: "Increases damage by $value."
+
+  # =============================================================================
+  # FIXED BONUSES - WEAPON HEALER
+  # =============================================================================
+
+  FixedWeaponMPRecovery:
+    $extends: _PassivityBase
+    name: "[Highest +7][Fixed] Weapon_MP Recovery on Skill Use"
+    type: 232
+    method: 2
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "9999"
+    passivityStrings:
+      name: "[Highest +7] [Fixed] Weapon_MP instantly replenishes on using a skill (July 2017, grinding improvement - highest)"
+      tooltip: "Replenishes $value of your total MP instantly when you use a skill."
+
+  FixedWeaponHealingFlat:
+    $extends: _PassivityBase
+    name: "[Highest +8][Fixed] Weapon_Healing Performance"
+    type: 168
+    method: 2
+    condition: 25
+    conditionValue: 0
+    passivityStrings:
+      name: "[Highest +8][Fixed] Weapon_HP Increase healing (July 2017, grinding improvement - highest)"
+      tooltip: "Increases your healing skills by $value."
+
+  FixedWeaponCooldown:
+    $extends: _PassivityBase
+    name: "[Highest +9][Fixed] Weapon_Cooldown Reduction"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Highest +9] [Fixed] Weapon_Decreases cooldown (July 2017, grinding improvement - highest)"
+      tooltip: "Decreases skill cooldowns by $value."
+
+  # =============================================================================
+  # FIXED BONUSES - ARMOR (All Slots)
+  # =============================================================================
+
+  FixedArmorEndurance:
+    $extends: _PassivityBase
+    name: "[Highest +7][Fixed] Armor_Endurance Increase"
+    type: 4
+    method: 2
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Highest +7] [Fixed] Armor_Increase Endurance"
+      tooltip: "Increases Endurance by $value."
+
+  FixedArmorAllDamage:
+    $extends: _PassivityBase
+    name: "[Highest +8][Fixed] Armor_All Target Damage"
+    type: 152
+    method: 3
+    condition: 25
+    conditionValue: 3
+    passivityStrings:
+      name: "[Highest +8][Fixed] Armor_Additional damage"
+      tooltip: "Increases damage by $value."
+
+  FixedArmorMaxHP:
+    $extends: _PassivityBase
+    name: "[Highest +9][Fixed] Armor_Max HP Increase"
+    type: 1
+    method: 3
+    condition: 0
+    conditionValue: 0
+    passivityStrings:
+      name: "[Highest +9] [Fixed] Armor_Increases total HP"
+      tooltip: "Raises max HP by $value."
+
+exports:
+  definitions:
+    # Weapon DPS/Tank Random
+    - WeaponEnragedDamage
+    - WeaponBackAttackDamage
+    - WeaponAllDamage
+    - WeaponCooldownReduction
+    - WeaponMostAggroDamage
+    - WeaponAttackSpeed
+    - WeaponCritPower
+    # Weapon Healer Random
+    - WeaponMPRecoveryOnSkill
+    - WeaponCritFactor
+    - WeaponHealingPerformance
+    # Chest Random
+    - ChestDamageReduction
+    - ChestFrontalDamageReduction
+    - ChestEnragedDamageReduction
+    - ChestMaxHP
+    - ChestMostAggroDamageReduction
+    # Gloves Random (hybrid pools - shared across DPS/Tank and Healer)
+    - GlovesAttackSpeed
+    - GlovesCritFactor
+    - GlovesPower
+    - GlovesEndurance
+    - GlovesHealingPerformance
+    # Boots Random
+    - BootsMovementSpeed
+    - BootsEndurance
+    - BootsMPRegen
+    - BootsSlowDurationReduction
+    # Fixed Weapon DPS/Tank
+    - FixedWeaponPower
+    - FixedWeaponMonsterDamage
+    - FixedWeaponAllDamage
+    # Fixed Weapon Healer
+    - FixedWeaponMPRecovery
+    - FixedWeaponHealingFlat
+    - FixedWeaponCooldown
+    # Fixed Armor
+    - FixedArmorEndurance
+    - FixedArmorAllDamage
+    - FixedArmorMaxHP

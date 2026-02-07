@@ -18,6 +18,20 @@ The `.references` file uses `key=value` format. Read it to resolve any path refe
 - `reforged/` - Shared/public git repository (specs, packages, tools, configs)
 - Root files - Local dev machine specific files
 
+## Packages
+
+Packages are reusable modules located in `packages/`. Each package folder must contain an `index.yml` file.
+
+**Important:** New packages must be registered in `datasheetlang.yml` under `workspace.packages`:
+
+```yaml
+workspace:
+  packages:
+    my-new-package: "./packages/my-new-package"
+```
+
+Without registration, DSL will fail with `Unknown package reference` error when specs try to import from the package.
+
 ## CLI Usage
 
 ```bash
@@ -61,7 +75,7 @@ Non-AOT builds are forbidden as they pollute the folder with DLLs and localizati
 
 | System | Workflow Guide | Tool Path |
 |--------|---------------|-----------|
-| General Pipeline | `reforged/docs/workflows/GENERAL_WORKFLOW.md` | — |
+| General Pipeline & Tool Development | `reforged/docs/workflows/GENERAL_WORKFLOW.md` | — |
 | Enchant Materials | `reforged/docs/workflows/ENCHANT_MATERIALS.md` | `reforged/tools/enchant-materials/` |
 | Gear Infusion | `reforged/tools/gear-infusion/README.md` | `reforged/tools/gear-infusion/` |
 | Infusion Loot | `reforged/tools/infusion-loot/README.md` | `reforged/tools/infusion-loot/` |

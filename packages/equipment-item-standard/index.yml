@@ -1,0 +1,177 @@
+# Equipment Item Standard Package
+# Defines item templates that link equipment to the standard enchant system
+#
+# This package provides reusable item templates for each tier/slot/role:
+#   - HighTier (Grade 4, Mythic): Best-in-slot gear with +15 weapons, +12 armor
+#   - MidTier (Grade 3, Superior): Progression gear with +12 weapons, +9 armor
+#
+# Usage: Patch specs extend these templates and provide item-specific properties
+#   (id, name, icon, category, combatItemSubType, requiredClass, etc.)
+
+imports:
+  - from: enchant-standard
+    use:
+      variables:
+        # Enchant IDs for linkEnchantId
+        - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+        - ENCHANT_HIGH_TIER_WEAPON_HEALER
+        - ENCHANT_HIGH_TIER_CHEST
+        - ENCHANT_HIGH_TIER_HAND_MAIL
+        - ENCHANT_HIGH_TIER_HAND_LEATHER
+        - ENCHANT_HIGH_TIER_HAND_ROBE
+        - ENCHANT_HIGH_TIER_BOOTS
+        - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+        - ENCHANT_MID_TIER_WEAPON_HEALER
+        - ENCHANT_MID_TIER_CHEST
+        - ENCHANT_MID_TIER_HAND_MAIL
+        - ENCHANT_MID_TIER_HAND_LEATHER
+        - ENCHANT_MID_TIER_HAND_ROBE
+        - ENCHANT_MID_TIER_BOOTS
+
+definitions:
+  # ===========================================================================
+  # BASE TEMPLATES (internal)
+  # Common properties shared across all equipment items
+  # ===========================================================================
+
+  _EquipmentBase:
+    enchantEnable: true
+
+  _WeaponBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_WEAPON
+
+  _ChestBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_ARMOR_BODY
+
+  _GlovesBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_ARMOR_ARM
+
+  _BootsBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_ARMOR_LEG
+
+  # ===========================================================================
+  # TOP TIER (Grade 4 / Mythic) - WEAPONS
+  # ===========================================================================
+
+  # DPS and Tank classes share the same weapon enchant pool
+  HighTierWeaponDPSTankItem:
+    $extends: _WeaponBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+
+  HighTierWeaponHealerItem:
+    $extends: _WeaponBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_HEALER
+
+  # ===========================================================================
+  # TOP TIER (Grade 4 / Mythic) - ARMOR
+  # ===========================================================================
+
+  HighTierChestItem:
+    $extends: _ChestBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_CHEST
+
+  HighTierHandMailItem:
+    $extends: _GlovesBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_HAND_MAIL
+
+  HighTierHandLeatherItem:
+    $extends: _GlovesBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_HAND_LEATHER
+
+  HighTierHandRobeItem:
+    $extends: _GlovesBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_HAND_ROBE
+
+  HighTierBootsItem:
+    $extends: _BootsBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_BOOTS
+
+  # ===========================================================================
+  # MID TIER (Grade 3 / Superior) - WEAPONS
+  # ===========================================================================
+
+  # DPS and Tank classes share the same weapon enchant pool
+  MidTierWeaponDPSTankItem:
+    $extends: _WeaponBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_WEAPON_DPS_TANK
+
+  MidTierWeaponHealerItem:
+    $extends: _WeaponBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_WEAPON_HEALER
+
+  # ===========================================================================
+  # MID TIER (Grade 3 / Superior) - ARMOR
+  # ===========================================================================
+
+  MidTierChestItem:
+    $extends: _ChestBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_CHEST
+
+  MidTierHandMailItem:
+    $extends: _GlovesBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_HAND_MAIL
+
+  MidTierHandLeatherItem:
+    $extends: _GlovesBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_HAND_LEATHER
+
+  MidTierHandRobeItem:
+    $extends: _GlovesBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_HAND_ROBE
+
+  MidTierBootsItem:
+    $extends: _BootsBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_BOOTS
+
+exports:
+  variables:
+    # Re-export enchant IDs for consumers that need them directly
+    - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+    - ENCHANT_HIGH_TIER_WEAPON_HEALER
+    - ENCHANT_HIGH_TIER_CHEST
+    - ENCHANT_HIGH_TIER_HAND_MAIL
+    - ENCHANT_HIGH_TIER_HAND_LEATHER
+    - ENCHANT_HIGH_TIER_HAND_ROBE
+    - ENCHANT_HIGH_TIER_BOOTS
+    - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+    - ENCHANT_MID_TIER_WEAPON_HEALER
+    - ENCHANT_MID_TIER_CHEST
+    - ENCHANT_MID_TIER_HAND_MAIL
+    - ENCHANT_MID_TIER_HAND_LEATHER
+    - ENCHANT_MID_TIER_HAND_ROBE
+    - ENCHANT_MID_TIER_BOOTS
+  definitions:
+    # Top Tier Items
+    - HighTierWeaponDPSTankItem
+    - HighTierWeaponHealerItem
+    - HighTierChestItem
+    - HighTierHandMailItem
+    - HighTierHandLeatherItem
+    - HighTierHandRobeItem
+    - HighTierBootsItem
+    # Mid Tier Items
+    - MidTierWeaponDPSTankItem
+    - MidTierWeaponHealerItem
+    - MidTierChestItem
+    - MidTierHandMailItem
+    - MidTierHandLeatherItem
+    - MidTierHandRobeItem
+    - MidTierBootsItem

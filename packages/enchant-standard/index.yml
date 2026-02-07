@@ -1,0 +1,511 @@
+# Enchant Standard Package
+# Defines and creates the baseline enchant system for all equipment
+#
+# This package establishes the enchant standards that all gear follows:
+#   - Tier-based enchant progression (HighTier, MidTier)
+#   - Slot-specific passivity pools (Weapon, Chest, Hand armor, Boots)
+#   - Role-specific effects (DPS/Tank shared, Healer)
+#
+# Enchant ID Allocation:
+#   Top Tier Weapons: 12302 (DPS/Tank), 12304 (Healer)
+#   Mid Tier Weapons: 12301 (DPS/Tank), 12303 (Healer)
+#   Top Tier Armor: 20336 (Chest), 20337 (Gloves DPS), 20338 (Gloves Healer), 20339 (Boots)
+#   Mid Tier Armor: 20328 (Chest), 20329 (Gloves DPS), 20330 (Gloves Healer), 20331 (Boots)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: enchant-categories
+    use:
+      variables:
+        # Random Pool Category IDs
+        - CATEGORY_WEAPON_DPS_TANK_RANDOM
+        - CATEGORY_WEAPON_HEALER_RANDOM
+        - CATEGORY_CHEST_RANDOM
+        - CATEGORY_HAND_MAIL_RANDOM
+        - CATEGORY_HAND_LEATHER_RANDOM
+        - CATEGORY_HAND_ROBE_RANDOM
+        - CATEGORY_BOOTS_RANDOM
+        # Fixed Weapon DPS/Tank Category IDs (shared)
+        - CATEGORY_WEAPON_DPS_TANK_FIXED_10
+        - CATEGORY_WEAPON_DPS_TANK_FIXED_11
+        - CATEGORY_WEAPON_DPS_TANK_FIXED_12
+        # Fixed Weapon Healer Category IDs
+        - CATEGORY_WEAPON_HEALER_FIXED_10
+        - CATEGORY_WEAPON_HEALER_FIXED_11
+        - CATEGORY_WEAPON_HEALER_FIXED_12
+        # Fixed Armor Category IDs
+        - CATEGORY_ARMOR_FIXED_7
+        - CATEGORY_ARMOR_FIXED_8
+        - CATEGORY_ARMOR_FIXED_9
+
+variables:
+  # ===========================================================================
+  # ENCHANT IDS - Standard enchant identifiers by tier/slot/role
+  # These are the linkEnchantId values that items will reference
+  # ===========================================================================
+
+  # Top Tier (Grade 4) - Weapons (DPS and Tank share the same pool)
+  ENCHANT_HIGH_TIER_WEAPON_DPS_TANK: 12302
+  ENCHANT_HIGH_TIER_WEAPON_HEALER: 12304
+
+  # Top Tier (Grade 4) - Armor
+  ENCHANT_HIGH_TIER_CHEST: 20336
+  ENCHANT_HIGH_TIER_HAND_MAIL: 20500
+  ENCHANT_HIGH_TIER_HAND_LEATHER: 20501
+  ENCHANT_HIGH_TIER_HAND_ROBE: 20502
+  ENCHANT_HIGH_TIER_BOOTS: 20339
+
+  # Mid Tier (Grade 3) - Weapons (DPS and Tank share the same pool)
+  ENCHANT_MID_TIER_WEAPON_DPS_TANK: 12301
+  ENCHANT_MID_TIER_WEAPON_HEALER: 12303
+
+  # Mid Tier (Grade 3) - Armor
+  ENCHANT_MID_TIER_CHEST: 20328
+  ENCHANT_MID_TIER_HAND_MAIL: 20510
+  ENCHANT_MID_TIER_HAND_LEATHER: 20511
+  ENCHANT_MID_TIER_HAND_ROBE: 20512
+  ENCHANT_MID_TIER_BOOTS: 20331
+
+  # ===========================================================================
+  # STAT RATES - Base stat multipliers per enchant step
+  # ===========================================================================
+
+  # Weapon Base Stat Rates
+  WEAPON_ATTACK_RATE: 1.03
+  WEAPON_IMPACT_RATE: 1.07
+
+  # Armor Base Stat Rates
+  ARMOR_DEFENCE_RATE: 1.045
+  ARMOR_BALANCE_RATE: 1.07
+
+  # Top Tier High Enchant Rates (+13/+14/+15)
+  WEAPON_ATTACK_RATE_13: 1.03
+  WEAPON_ATTACK_RATE_14: 1.04
+  WEAPON_ATTACK_RATE_15: 1.05
+  ARMOR_DEFENCE_RATE_13: 1.06
+  ARMOR_DEFENCE_RATE_14: 1.09
+  ARMOR_DEFENCE_RATE_15: 1.12
+
+definitions:
+  # ===========================================================================
+  # BASE STAT PATTERNS (internal)
+  # ===========================================================================
+
+  _WeaponBasicStats:
+    basicStats:
+      - kind: attack
+        rate: $WEAPON_ATTACK_RATE
+      - kind: impact
+        rate: $WEAPON_IMPACT_RATE
+
+  _WeaponBasicStatsHighTier:
+    $extends: _WeaponBasicStats
+    basicStats:
+      - enchantStep: 13
+        kind: attack
+        rate: $WEAPON_ATTACK_RATE_13
+      - enchantStep: 14
+        kind: attack
+        rate: $WEAPON_ATTACK_RATE_14
+      - enchantStep: 15
+        kind: attack
+        rate: $WEAPON_ATTACK_RATE_15
+
+  _ArmorBasicStats:
+    basicStats:
+      - kind: defence
+        rate: $ARMOR_DEFENCE_RATE
+      - kind: balance
+        rate: $ARMOR_BALANCE_RATE
+
+  _ArmorBasicStatsHighTier:
+    $extends: _ArmorBasicStats
+    basicStats:
+      - enchantStep: 13
+        kind: defence
+        rate: $ARMOR_DEFENCE_RATE_13
+      - enchantStep: 14
+        kind: defence
+        rate: $ARMOR_DEFENCE_RATE_14
+      - enchantStep: 15
+        kind: defence
+        rate: $ARMOR_DEFENCE_RATE_15
+
+  # ===========================================================================
+  # TOP TIER (Grade 4) - WEAPONS
+  # 4 random rolls, fixed bonuses at +10/+11/+12/+13/+14/+15
+  # ===========================================================================
+
+  # DPS and Tank classes share the same weapon enchant pool
+  HighTierWeaponDPSTank:
+    $extends: _WeaponBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 10
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_10
+      - step: 11
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_11
+      - step: 12
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_12
+      - step: 13
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_12
+      - step: 14
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_12
+      - step: 15
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_12
+
+  HighTierWeaponHealer:
+    $extends: _WeaponBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 10
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_10
+      - step: 11
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_11
+      - step: 12
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_12
+      - step: 13
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_12
+      - step: 14
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_12
+      - step: 15
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_12
+
+  # ===========================================================================
+  # TOP TIER (Grade 4) - ARMOR
+  # 3-4 random rolls, fixed bonuses at +7/+8/+9
+  # ===========================================================================
+
+  HighTierChest:
+    $extends: _ArmorBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+      - step: 7
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_7
+      - step: 8
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_8
+      - step: 9
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_9
+
+  HighTierHandMail:
+    $extends: _ArmorBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+      - step: 7
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_7
+      - step: 8
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_8
+      - step: 9
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_9
+
+  HighTierHandLeather:
+    $extends: _ArmorBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+      - step: 7
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_7
+      - step: 8
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_8
+      - step: 9
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_9
+
+  HighTierHandRobe:
+    $extends: _ArmorBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+      - step: 7
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_7
+      - step: 8
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_8
+      - step: 9
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_9
+
+  HighTierBoots:
+    $extends: _ArmorBasicStatsHighTier
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_BOOTS_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_BOOTS_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_BOOTS_RANDOM
+      - step: 7
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_7
+      - step: 8
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_8
+      - step: 9
+        passivityCategoryId: $CATEGORY_ARMOR_FIXED_9
+
+  # ===========================================================================
+  # MID TIER (Grade 3) - WEAPONS
+  # 3 random rolls, fixed bonuses at +10/+11/+12 only
+  # ===========================================================================
+
+  # DPS and Tank classes share the same weapon enchant pool
+  MidTierWeaponDPSTank:
+    $extends: _WeaponBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_RANDOM
+      - step: 10
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_10
+      - step: 11
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_11
+      - step: 12
+        passivityCategoryId: $CATEGORY_WEAPON_DPS_TANK_FIXED_12
+
+  MidTierWeaponHealer:
+    $extends: _WeaponBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_RANDOM
+      - step: 10
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_10
+      - step: 11
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_11
+      - step: 12
+        passivityCategoryId: $CATEGORY_WEAPON_HEALER_FIXED_12
+
+  # ===========================================================================
+  # MID TIER (Grade 3) - ARMOR
+  # 3 random rolls, NO fixed bonuses
+  # ===========================================================================
+
+  MidTierChest:
+    $extends: _ArmorBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_CHEST_RANDOM
+
+  MidTierHandMail:
+    $extends: _ArmorBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_MAIL_RANDOM
+
+  MidTierHandLeather:
+    $extends: _ArmorBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_LEATHER_RANDOM
+
+  MidTierHandRobe:
+    $extends: _ArmorBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_HAND_ROBE_RANDOM
+
+  MidTierBoots:
+    $extends: _ArmorBasicStats
+    effects:
+      - step: 0
+        passivityCategoryId: $CATEGORY_BOOTS_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_BOOTS_RANDOM
+      - step: 0
+        passivityCategoryId: $CATEGORY_BOOTS_RANDOM
+
+exports:
+  variables:
+    # Enchant IDs - for equipment-item-standard linkEnchantId
+    - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+    - ENCHANT_HIGH_TIER_WEAPON_HEALER
+    - ENCHANT_HIGH_TIER_CHEST
+    - ENCHANT_HIGH_TIER_HAND_MAIL
+    - ENCHANT_HIGH_TIER_HAND_LEATHER
+    - ENCHANT_HIGH_TIER_HAND_ROBE
+    - ENCHANT_HIGH_TIER_BOOTS
+    - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+    - ENCHANT_MID_TIER_WEAPON_HEALER
+    - ENCHANT_MID_TIER_CHEST
+    - ENCHANT_MID_TIER_HAND_MAIL
+    - ENCHANT_MID_TIER_HAND_LEATHER
+    - ENCHANT_MID_TIER_HAND_ROBE
+    - ENCHANT_MID_TIER_BOOTS
+    # Re-exported category variables
+    - CATEGORY_WEAPON_DPS_TANK_RANDOM
+    - CATEGORY_WEAPON_HEALER_RANDOM
+    - CATEGORY_CHEST_RANDOM
+    - CATEGORY_HAND_MAIL_RANDOM
+    - CATEGORY_HAND_LEATHER_RANDOM
+    - CATEGORY_HAND_ROBE_RANDOM
+    - CATEGORY_BOOTS_RANDOM
+    - CATEGORY_WEAPON_DPS_TANK_FIXED_10
+    - CATEGORY_WEAPON_DPS_TANK_FIXED_11
+    - CATEGORY_WEAPON_DPS_TANK_FIXED_12
+    - CATEGORY_WEAPON_HEALER_FIXED_10
+    - CATEGORY_WEAPON_HEALER_FIXED_11
+    - CATEGORY_WEAPON_HEALER_FIXED_12
+    - CATEGORY_ARMOR_FIXED_7
+    - CATEGORY_ARMOR_FIXED_8
+    - CATEGORY_ARMOR_FIXED_9
+    # Stat rate variables
+    - WEAPON_ATTACK_RATE
+    - WEAPON_IMPACT_RATE
+    - ARMOR_DEFENCE_RATE
+    - ARMOR_BALANCE_RATE
+    - WEAPON_ATTACK_RATE_13
+    - WEAPON_ATTACK_RATE_14
+    - WEAPON_ATTACK_RATE_15
+    - ARMOR_DEFENCE_RATE_13
+    - ARMOR_DEFENCE_RATE_14
+    - ARMOR_DEFENCE_RATE_15
+  definitions:
+    # Top Tier
+    - HighTierWeaponDPSTank
+    - HighTierWeaponHealer
+    - HighTierChest
+    - HighTierHandMail
+    - HighTierHandLeather
+    - HighTierHandRobe
+    - HighTierBoots
+    # Mid Tier
+    - MidTierWeaponDPSTank
+    - MidTierWeaponHealer
+    - MidTierChest
+    - MidTierHandMail
+    - MidTierHandLeather
+    - MidTierHandRobe
+    - MidTierBoots
+
+# =============================================================================
+# PASSIVITY CATEGORIES
+# Upserts the passivity category entries that enchants reference
+# =============================================================================
+enchantPassivityCategories:
+  upsert:
+    # Random Pools
+    - $extends: CategoryWeaponDPSTankRandom
+    - $extends: CategoryWeaponHealerRandom
+    - $extends: CategoryChestRandom
+    - $extends: CategoryHandMailRandom
+    - $extends: CategoryHandLeatherRandom
+    - $extends: CategoryHandRobeRandom
+    - $extends: CategoryBootsRandom
+    # Fixed Weapon DPS/Tank (shared)
+    - $extends: CategoryWeaponDPSTankFixed10
+    - $extends: CategoryWeaponDPSTankFixed11
+    - $extends: CategoryWeaponDPSTankFixed12
+    # Fixed Weapon Healer
+    - $extends: CategoryWeaponHealerFixed10
+    - $extends: CategoryWeaponHealerFixed11
+    - $extends: CategoryWeaponHealerFixed12
+    # Fixed Armor
+    - $extends: CategoryArmorFixed7
+    - $extends: CategoryArmorFixed8
+    - $extends: CategoryArmorFixed9
+
+# =============================================================================
+# ENCHANT DATA
+# Upserts the standard enchant entries for each tier/slot/role combination
+# =============================================================================
+enchants:
+  upsert:
+    # Top Tier (Grade 4) - Weapons
+    - $extends: HighTierWeaponDPSTank
+      enchantId: $ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+
+    - $extends: HighTierWeaponHealer
+      enchantId: $ENCHANT_HIGH_TIER_WEAPON_HEALER
+
+    # Top Tier (Grade 4) - Armor
+    - $extends: HighTierChest
+      enchantId: $ENCHANT_HIGH_TIER_CHEST
+
+    - $extends: HighTierHandMail
+      enchantId: $ENCHANT_HIGH_TIER_HAND_MAIL
+
+    - $extends: HighTierHandLeather
+      enchantId: $ENCHANT_HIGH_TIER_HAND_LEATHER
+
+    - $extends: HighTierHandRobe
+      enchantId: $ENCHANT_HIGH_TIER_HAND_ROBE
+
+    - $extends: HighTierBoots
+      enchantId: $ENCHANT_HIGH_TIER_BOOTS
+
+    # Mid Tier (Grade 3) - Weapons
+    - $extends: MidTierWeaponDPSTank
+      enchantId: $ENCHANT_MID_TIER_WEAPON_DPS_TANK
+
+    - $extends: MidTierWeaponHealer
+      enchantId: $ENCHANT_MID_TIER_WEAPON_HEALER
+
+    # Mid Tier (Grade 3) - Armor
+    - $extends: MidTierChest
+      enchantId: $ENCHANT_MID_TIER_CHEST
+
+    - $extends: MidTierHandMail
+      enchantId: $ENCHANT_MID_TIER_HAND_MAIL
+
+    - $extends: MidTierHandLeather
+      enchantId: $ENCHANT_MID_TIER_HAND_LEATHER
+
+    - $extends: MidTierHandRobe
+      enchantId: $ENCHANT_MID_TIER_HAND_ROBE
+
+    - $extends: MidTierBoots
+      enchantId: $ENCHANT_MID_TIER_BOOTS

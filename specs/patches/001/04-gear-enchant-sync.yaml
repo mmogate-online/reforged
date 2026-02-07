@@ -1,0 +1,147 @@
+# Gear Enchant Sync Spec
+# Generated: 2026-02-07 13:20:30
+#
+# Updates gear items from gear_progression.csv to use the correct linkEnchantId
+# values from the enchant-standard package.
+#
+# Uses ID-based filters for precise targeting of items listed in the CSV.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: enchant-standard
+    use:
+      variables:
+        # High Tier (Mythic)
+        - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+        - ENCHANT_HIGH_TIER_WEAPON_HEALER
+        - ENCHANT_HIGH_TIER_CHEST
+        - ENCHANT_HIGH_TIER_HAND_MAIL
+        - ENCHANT_HIGH_TIER_HAND_LEATHER
+        - ENCHANT_HIGH_TIER_HAND_ROBE
+        - ENCHANT_HIGH_TIER_BOOTS
+        # Mid Tier (Superior)
+        - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+        - ENCHANT_MID_TIER_WEAPON_HEALER
+        - ENCHANT_MID_TIER_CHEST
+        - ENCHANT_MID_TIER_HAND_MAIL
+        - ENCHANT_MID_TIER_HAND_LEATHER
+        - ENCHANT_MID_TIER_HAND_ROBE
+        - ENCHANT_MID_TIER_BOOTS
+
+  - from: equipment-item-ids
+    use:
+      variables:
+        # High Tier (Mythic) Item IDs
+        - HIGH_TIER_HEALER_WEAPON_IDS
+        - HIGH_TIER_DPS_WEAPON_IDS
+        - HIGH_TIER_BODY_IDS
+        - HIGH_TIER_HAND_MAIL_IDS
+        - HIGH_TIER_HAND_LEATHER_IDS
+        - HIGH_TIER_HAND_ROBE_IDS
+        - HIGH_TIER_FEET_IDS
+        # Mid Tier (Superior) Item IDs
+        - MID_TIER_HEALER_WEAPON_IDS
+        - MID_TIER_DPS_WEAPON_IDS
+        - MID_TIER_BODY_IDS
+        - MID_TIER_HAND_MAIL_IDS
+        - MID_TIER_HAND_LEATHER_IDS
+        - MID_TIER_HAND_ROBE_IDS
+        - MID_TIER_FEET_IDS
+
+items:
+  updateWhere:
+
+    # =========================================================================
+    # HIGH TIER (Mythic)
+    # =========================================================================
+
+    # Mythic Healer Weapons
+    - filter:
+        id: $HIGH_TIER_HEALER_WEAPON_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_HEALER
+
+    # Mythic DPS/Tank Weapons
+    - filter:
+        id: $HIGH_TIER_DPS_WEAPON_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+
+    # Mythic Body Armor
+    - filter:
+        id: $HIGH_TIER_BODY_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_CHEST
+
+    # Mythic Hand Mail
+    - filter:
+        id: $HIGH_TIER_HAND_MAIL_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_HAND_MAIL
+
+    # Mythic Hand Leather
+    - filter:
+        id: $HIGH_TIER_HAND_LEATHER_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_HAND_LEATHER
+
+    # Mythic Hand Robe
+    - filter:
+        id: $HIGH_TIER_HAND_ROBE_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_HAND_ROBE
+
+    # Mythic Feet Armor
+    - filter:
+        id: $HIGH_TIER_FEET_IDS
+      changes:
+        linkEnchantId: $ENCHANT_HIGH_TIER_BOOTS
+
+    # =========================================================================
+    # MID TIER (Superior)
+    # =========================================================================
+
+    # Superior Healer Weapons
+    - filter:
+        id: $MID_TIER_HEALER_WEAPON_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_WEAPON_HEALER
+
+    # Superior DPS/Tank Weapons
+    - filter:
+        id: $MID_TIER_DPS_WEAPON_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_WEAPON_DPS_TANK
+
+    # Superior Body Armor
+    - filter:
+        id: $MID_TIER_BODY_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_CHEST
+
+    # Superior Hand Mail
+    - filter:
+        id: $MID_TIER_HAND_MAIL_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_HAND_MAIL
+
+    # Superior Hand Leather
+    - filter:
+        id: $MID_TIER_HAND_LEATHER_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_HAND_LEATHER
+
+    # Superior Hand Robe
+    - filter:
+        id: $MID_TIER_HAND_ROBE_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_HAND_ROBE
+
+    # Superior Feet Armor
+    - filter:
+        id: $MID_TIER_FEET_IDS
+      changes:
+        linkEnchantId: $ENCHANT_MID_TIER_BOOTS

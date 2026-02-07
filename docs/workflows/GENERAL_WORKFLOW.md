@@ -67,6 +67,57 @@ python generate_enchant_materials.py --patch 001
 # Output: reforged/specs/patches/001/enchant-materials.yaml
 ```
 
+## Tool Development Standards
+
+When creating new Python generator tools in `reforged/tools/`:
+
+### Required Pattern
+
+All tools MUST use `argparse` with a `--patch` argument:
+
+```python
+import argparse
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
+REFORGED_DIR = SCRIPT_DIR.parent.parent
+DEFAULT_OUTPUT = REFORGED_DIR / "specs" / "my-spec.yaml"
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate my spec")
+    parser.add_argument("--patch", help="Patch folder name (e.g. 001). Output goes to reforged/specs/patches/{patch}/")
+    args = parser.parse_args()
+
+    if args.patch:
+        specs_dir = REFORGED_DIR / "specs" / "patches" / args.patch
+        specs_dir.mkdir(parents=True, exist_ok=True)
+        output_path = specs_dir / "XX-my-spec.yaml"  # XX = ordering prefix
+    else:
+        output_path = DEFAULT_OUTPUT
+
+    # ... generate and write spec ...
+```
+
+### Naming Conventions
+
+- Tool directory: `reforged/tools/<system-name>/`
+- Generator script: `generate_<name>.py` or `generate_spec.py`
+- Default output: `reforged/specs/<spec-name>.yaml`
+- Patch output: `reforged/specs/patches/{NNN}/XX-<spec-name>.yaml`
+  - `XX` = two-digit ordering prefix (01, 02, 03...)
+
+### Required Files
+
+Each tool directory should contain:
+- `generate_*.py` - The generator script
+- `README.md` - Usage documentation
+
+### Do NOT
+
+- Hardcode output paths without `--patch` support
+- Use global constants for patch-specific paths
+- Skip the argparse pattern for "simple" tools
+
 ## Troubleshooting
 
 | Problem | Cause | Fix |
