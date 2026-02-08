@@ -1,0 +1,259 @@
+# Chest Top Roll Item Updates
+# Updates chest pieces to use new class-specific passivity category IDs
+# and fixes requiredClass where items were incorrectly multi-class.
+#
+# Sets updated:
+#   - Archetype (13 items)
+#   - Devastator (13 items)
+#   - Nightforge PVE (9 items)
+#   - Regent (9 items)
+#   - Visionmaker (9 items)
+#
+# Must run AFTER 02-chest-toproll-system.yaml (creates the categories)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: chest-toproll-categories
+    use:
+      variables:
+        - CATEGORY_CHEST_ARCHER
+        - CATEGORY_CHEST_NINJA
+        - CATEGORY_CHEST_BERSERKER
+        - CATEGORY_CHEST_MYSTIC
+        - CATEGORY_CHEST_GUNNER
+        - CATEGORY_CHEST_BRAWLER
+        - CATEGORY_CHEST_VALKYRIE
+        - CATEGORY_CHEST_LANCER
+        - CATEGORY_CHEST_PRIEST
+        - CATEGORY_CHEST_SLAYER
+        - CATEGORY_CHEST_SORCERER
+        - CATEGORY_CHEST_REAPER
+        - CATEGORY_CHEST_WARRIOR
+
+items:
+  update:
+
+    # Archetype
+    - id: 91661  # Centesivest (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 58632  # Mordagown (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 91655  # Temperplate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 91667  # Malevagown (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 55561  # Top Tempoplate (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 82571  # Hardscrabble Hauberk (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 59615  # Flintervest (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 91654  # Tempered Chestplate (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 91668  # Vespegown (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 91660  # Hemorrvest (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 91666  # Pyrogown (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 91662  # Sombervest (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 91659  # Constervest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Nightforge PVE
+    - id: 71319  # Nettlevest (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 58621  # Snaresewn Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 71313  # Bloodflay Plate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 71324  # Venomsewn Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 71312  # Mainstay Plate (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 71325  # Gracesewn Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 71318  # Noblevest (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 71323  # Deathsewn Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 71317  # Nimblevest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Visionmaker
+    - id: 19115  # Dreamshot Vest (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 58606  # Dusksight Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 19112  # Steelgaze Rageplate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 19114  # Hexsight Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 18978  # Steelgaze Defender (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 19116  # Divinesight Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 19113  # Dreamswept Vest (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 18984  # Firesight Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 18981  # Dreamroll Vest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Regent (9 items - predates Gunner/Brawler/Valkyrie/Reaper)
+    - id: 19110  # Courtly Jacket (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 19107  # Courtplate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 19063  # Queensplate (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 19109  # Royalzan Gown (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 58607  # Royalpain Gown (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 19111  # Royalrite Gown (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 19108  # Grandcoat (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 19069  # Royalfire Gown (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 19066  # Regentsvest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Devastator (13 items)
+    - id: 91707  # Springstock Coat (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 91701  # Duelplate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 82568  # Legacy Hauberk (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 55558  # Cruelplate (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 91700  # Ruleplate (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 91713  # Tannershocks Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 58633  # Tellerocks Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 91714  # Tendervox Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 91708  # Deadstock Coat (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 91706  # Bloodstock Coat (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 91712  # Tinderbox Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 59619  # Gladstock Coat (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 91705  # Cutterstock Coat (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]

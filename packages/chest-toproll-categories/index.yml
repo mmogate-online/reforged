@@ -1,0 +1,2102 @@
+# Chest Top Roll Categories Package
+# Class-specific skill bonus rolls for chest armor pieces
+#
+# This package defines the passivity categories that control
+# the top line random rolls on chest armor (linkPassivityCategoryId).
+#
+# Structure follows enchant-passives/enchant-categories pattern:
+#   - Base template with common attributes
+#   - Individual passivity definitions per skill
+#   - Categories extend definitions with just the ID
+#
+# Category ID Allocation: 122001-122013
+# Passivity ID Allocation: 1520001-1520199
+
+spec:
+  version: "1.0"
+  schema: v92
+
+variables:
+  # ==========================================================================
+  # CATEGORY IDS - One per class
+  # ==========================================================================
+  CATEGORY_CHEST_WARRIOR: 122001
+  CATEGORY_CHEST_LANCER: 122002
+  CATEGORY_CHEST_BERSERKER: 122003
+  CATEGORY_CHEST_SLAYER: 122004
+  CATEGORY_CHEST_SORCERER: 122005
+  CATEGORY_CHEST_ARCHER: 122006
+  CATEGORY_CHEST_MYSTIC: 122007
+  CATEGORY_CHEST_PRIEST: 122008
+  CATEGORY_CHEST_REAPER: 122009
+  CATEGORY_CHEST_GUNNER: 122010
+  CATEGORY_CHEST_BRAWLER: 122011
+  CATEGORY_CHEST_NINJA: 122012
+  CATEGORY_CHEST_VALKYRIE: 122013
+
+definitions:
+  # ==========================================================================
+  # BASE TEMPLATE
+  # ==========================================================================
+
+  _ChestPassivityBase:
+    category: Equipment
+    kind: 0
+    judgmentOnce: false
+    prob: 1
+    tickInterval: 0
+    mobSize: "all"
+    abnormalityKind: 0
+    abnormalityCategory: 0
+
+
+  # ==========================================================================
+  # WARRIOR PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  WarriorBladeDrawByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "1029"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Blade Draw by $value."
+
+  WarriorBladeDrawByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "1029"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Blade Draw by $value."
+
+  WarriorRainOfBlowsByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "1004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Rain of Blows by $value."
+
+  WarriorBladeWaltzSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "1040"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Blade Waltz skill hits target."
+
+  WarriorDeathFromAboveByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "1010"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Death From Above by $value."
+
+  WarriorVortexSlashByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "1017"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Vortex Slash by $value."
+
+  WarriorRisingFuryByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "1019"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Rising Fury by $value."
+
+  WarriorLeapingStrikeSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "1012"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Leaping Strike skill hits target."
+
+  WarriorUnknownCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "1017"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Vortex Slash cooldown decreased by $value."
+
+  # ==========================================================================
+  # LANCER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  LancerOnslaughtByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "2003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Onslaught by $value."
+
+  LancerOnslaughtSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "2003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Onslaught skill hits target."
+
+  LancerUnknownMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_사용 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "2019"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_사용 시 MP 회복"
+      tooltip: "Replenishes $value MP upon using Pledge of Protection."
+
+  LancerShieldBashByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "2005"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Shield Bash by $value."
+
+  LancerChallengingShoutByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "2004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Challenging Shout by $value."
+
+  LancerShieldCounterByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "2008"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Shield Counter by $value."
+
+  LancerShieldCounterByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "2008"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Shield Counter by $value."
+
+  LancerSpringAttackByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "2013"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Spring Attack by $value."
+
+  LancerLeashSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "2009"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Leash skill hits target."
+
+  LancerSecondWindByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "2016"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Second Wind by $value."
+
+  # ==========================================================================
+  # BERSERKER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  BerserkerThunderStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Thunder Strike by $value."
+
+  BerserkerCycloneByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4010"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Cyclone by $value."
+
+  BerserkerFlattenByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Flatten by $value."
+
+  BerserkerSweepingStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4006"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Sweeping Strike by $value."
+
+  BerserkerUnknownCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "4019"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Triumphant Shout cooldown decreased by $value."
+
+  BerserkerUnknownMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_사용 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4008"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_사용 시 MP 회복"
+      tooltip: "Replenishes $value MP upon using Fiery Rage."
+
+  BerserkerLethalStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4018"
+    abnormalityKind: 21
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Lethal Strike by $value."
+
+  BerserkerInescapableDoomByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "4020"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Inescapable Doom by $value."
+
+  BerserkerInescapableDoomSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "4020"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Inescapable Doom skill hits target."
+
+  # ==========================================================================
+  # SLAYER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  SlayerOverhandStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "3099"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Overhand Strike by $value."
+
+  SlayerKnockdownStrikeSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "3002"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Knockdown Strike skill hits target."
+
+  SlayerWhirlwindByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "3003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Whirlwind by $value."
+
+  SlayerEvasiveRollByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "3004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Evasive Roll by $value."
+
+  SlayerBackstabByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "3006"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Backstab by $value."
+
+  SlayerUnknownMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_사용 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "3018"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_사용 시 MP 회복"
+      tooltip: "Replenishes $value MP upon using Overpower."
+
+  SlayerStartlingKickByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "3015"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Startling Kick by $value."
+
+  SlayerOverpowerByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "3018"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Overpower by $value."
+
+  SlayerTenacityByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "3019"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Tenacity by $value."
+
+  SlayerInColdBloodByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "3020"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of In Cold Blood by $value."
+
+  # ==========================================================================
+  # SORCERER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  SorcererMeteorStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "5006"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Meteor Strike by $value."
+
+  SorcererVoidPulseByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "5012"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Void Pulse by $value."
+
+  SorcererHailStormByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "5027"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Hail Storm by $value."
+
+  SorcererUnknownMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 효과 증가"
+    type: 213
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "5019"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 효과 증가"
+      tooltip: "Increases MP replenished by Mana Siphon by 17%."
+
+  SorcererFlamingBarrageByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "5020"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Flaming Barrage by $value."
+
+  SorcererGlacialRetreatByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "5018"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Glacial Retreat by $value."
+
+  SorcererTeleportJauntByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "5026"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Teleport Jaunt by $value."
+
+  SorcererManaBarrierByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "5010"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Mana Barrier by $value."
+
+  SorcererBackstepByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "5007"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Backstep by $value."
+
+  # ==========================================================================
+  # ARCHER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  ArcherRadiantArrowByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "6003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Radiant Arrow by $value."
+
+  ArcherPenetratingArrowByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "6004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Penetrating Arrow by $value."
+
+  ArcherArrowVolleyByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "6002"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Arrow Volley by $value."
+
+  ArcherRainOfArrowsByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "6005"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Rain of Arrows by $value."
+
+  ArcherRainOfArrowsByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "6005"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Rain of Arrows by $value."
+
+  ArcherStunningTrapByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "6010"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Stunning Trap by $value."
+
+  ArcherCloseQuartersEffectByDuration:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+    type: 163
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "6018"
+    abnormalityKind: 22412
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+      tooltip: "Increases duration of Close Quarters effect by 5%."
+
+  ArcherPoisonArrowEffectByDuration:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+    type: 163
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "6019"
+    abnormalityKind: 22428
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+      tooltip: "Increases duration of Poison Arrow effect by 17%."
+
+  ArcherBreakawayBoltByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "6016"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Breakaway Bolt by $value."
+
+  # ==========================================================================
+  # MYSTIC PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  MysticTeleportJauntByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "8017"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Teleport Jaunt by $value."
+
+  MysticMireSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8032"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Mire skill hits target."
+
+  MysticSharasLashByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "8006"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Shara's Lash by $value."
+
+  MysticVowOfRebirthSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8012"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Vow of Rebirth skill hits target."
+
+  MysticMetamorphicSmiteByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8023"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Metamorphic Smite by $value."
+
+  MysticVolleyOfCursesEffectByDuration:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+    type: 163
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8024"
+    abnormalityKind: 22429
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+      tooltip: "Increases duration of Volley of Curses effect by 15%."
+
+  MysticSonorousDreamsSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8028"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Sonorous Dreams skill hits target."
+
+  MysticThrallOfProtectionMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8025"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when casting Thrall of Protection."
+
+  MysticThrallOfLifeMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "8027"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when casting Thrall of Life."
+
+  # ==========================================================================
+  # PRIEST PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  PriestFocusHealByHealing:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_힐량 증가"
+    type: 165
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "7019"
+    mobSize: "player"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_힐량 증가"
+      tooltip: "Increases healing of Focus Heal by 15%."
+
+  PriestRegenerationCircleDuration:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+    type: 163
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "7002"
+    abnormalityKind: 37
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+      tooltip: "Increases duration effect of Regeneration Circle by 10%."
+
+  PriestHealingCircleByHealing:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_힐량 증가"
+    type: 165
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "7003"
+    mobSize: "player"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_힐량 증가"
+      tooltip: "Increases healing of Healing Circle by 10%."
+
+  PriestShockingImplosionByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "7016"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases damage of Shocking Implosion by $value."
+
+  PriestShockingImplosionByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "7016"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Shocking Implosion by $value."
+
+  PriestHealingImmersionByHealing:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_힐량 증가"
+    type: 165
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "7037"
+    mobSize: "player"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_힐량 증가"
+      tooltip: "Increases healing of Healing Immersion by 10%."
+
+  PriestKaiasShieldByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "7022"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Kaia's Shield by $value."
+
+  PriestEnergyStarsByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "7035"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Energy Stars by $value."
+
+  PriestManaChargeAndDivineChargeByChargeSpeed:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_차지 속도 증가"
+    type: 220
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "7028"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_차지 속도 증가"
+      tooltip: "Increases charging speed of Mana Charge and Divine Charge by $value."
+
+  PriestFieryEscapeByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "7026"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Fiery Escape by $value."
+
+  # ==========================================================================
+  # REAPER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  ReaperDoubleShearByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "90003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Double Shear by $value."
+
+  ReaperDoubleShearByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "90003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Double Shear by $value."
+
+  ReaperGrimStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "90005"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Grim Strike by $value."
+
+  ReaperDeathSpiralSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "90006"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Death Spiral skill hits target."
+
+  ReaperShadowStepByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "90040"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Shadow Step by $value."
+
+  ReaperSmiteByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "90009"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Smite by $value."
+
+  ReaperSpiralBarrageByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "90001"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Spiral Barrage by $value."
+
+  ReaperShadowBurstByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "90012"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Shadow Burst by $value."
+
+  ReaperShadowLashSkillHitsTargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "90011"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Shadow Lash skill hits target."
+
+  ReaperSoulReversalByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "90013"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Soul Reversal by $value."
+
+  # ==========================================================================
+  # GUNNER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  GunnerBlastByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "91001"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Blast by $value."
+
+  GunnerBombardmentByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "91002"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Bombardment by $value."
+
+  GunnerScattershotByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "91003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Scattershot by $value."
+
+  GunnerScattershotHitsATargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "91003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Scattershot hits a target."
+
+  GunnerPointBlankByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "91004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Point Blank by $value."
+
+  GunnerBurstFireByCostReduce:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_소모 ST 감소"
+    type: 82
+    method: 2
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "91005"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_소모 ST 감소"
+      tooltip: "Reduces Willpower cost of Burst Fire by 5."
+
+  GunnerArcaneBarrageByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "91007"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Arcane Barrage by $value."
+
+  GunnerRocketJumpByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "91011"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Rocket Jump by $value."
+
+  GunnerArcBombByDuration:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+    type: 163
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "91010"
+    abnormalityKind: 25100
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 유지시간 증가"
+      tooltip: "Increases duration of Arc Bomb by 20%."
+
+  GunnerReplenishmentByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "91015"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Replenishment by $value."
+
+  # ==========================================================================
+  # BRAWLER PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  BrawlerPunchByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "92001"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Punch by $value."
+
+  BrawlerDivineWrathByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "92003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Divine Wrath by $value."
+
+  BrawlerJackhammerByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "92009"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Jackhammer by $value."
+
+  BrawlerJackhammerHitsATargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "92009"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Jackhammer hits a target."
+
+  BrawlerRoundhouseKickByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "92007"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Roundhouse Kick by $value."
+
+  BrawlerPiledriverByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "92008"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Piledriver by $value."
+
+  BrawlerGroundPounderByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "92004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Ground Pounder by $value."
+
+  BrawlerRampageMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 ST 회복"
+    type: 157
+    method: 4
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "92017"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 ST 회복"
+      tooltip: "Generates 2% Rage when Rampage hits a target."
+
+  BrawlerMeatGrinderCritChance:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 치명타 확률 증가"
+    type: 155
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "92020"
+    abnormalityKind: 25100
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 치명타 확률 증가"
+      tooltip: "Doubles the chance to crit when using Meat Grinder."
+
+  BrawlerInvigoratingRageByResourceGen:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_소모 ST 감소"
+    type: 82
+    method: 2
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "92019"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_소모 ST 감소"
+      tooltip: "Reduces Rage cost of Invigorating Rage by 600."
+
+  # ==========================================================================
+  # NINJA PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  NinjaDoubleCutByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "93014"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Double Cut by $value."
+
+  NinjaDecoyJutsuByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "93007"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Decoy Jutsu by $value."
+
+  NinjaSkyfallByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "93012"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Skyfall by $value."
+
+  NinjaLeavesOnTheWindHitsATargetMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+    type: 159
+    method: 2
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "93003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 MP 회복"
+      tooltip: "Replenishes $value MP when Leaves on the Wind hits a target."
+
+  NinjaDeathBlossomByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "93016"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Death Blossom by $value."
+
+  NinjaCircleOfSteelByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "93013"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Circle of Steel by $value."
+
+  NinjaOneThousandCutsByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "93006"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of One Thousand Cuts by $value."
+
+  NinjaJaggedPathResourceGen:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 ST 회복"
+    type: 157
+    method: 4
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "93004"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 ST 회복"
+      tooltip: "Generates 2% Chi when Jagged Path hits a target."
+
+  NinjaUnknownMPRestore:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 치명타 확률 증가"
+    type: 155
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "93005"
+    abnormalityKind: 25100
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 치명타 확률 증가"
+      tooltip: "Doubles the chance to crit of Impact Bomb."
+
+  NinjaFireAvalancheByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "93008"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Fire Avalanche by $value."
+
+  # ==========================================================================
+  # VALKYRIE PASSIVITY DEFINITIONS
+  # ==========================================================================
+
+  ValkyrieOverheadSlashByDuration:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_이상상태 지속시간 증가"
+    type: 163
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "13002"
+    abnormalityKind: 25301
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_이상상태 지속시간 증가"
+      tooltip: "Increases duration of Overhead Slash by $value."
+
+  ValkyrieGlaiveStrikeByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "13003"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Glaive Strike by $value."
+
+  ValkyrieMaelstromByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "13005"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Maelstrom by $value."
+
+  ValkyrieUnknownDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_치명타 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "0"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_치명타 위력 증가"
+      tooltip: "Increases all skill damage by $value."
+
+  ValkyrieTitansbaneByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "13008"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Titansbane by $value."
+
+  ValkyrieGroundBashByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "13009"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Ground Bash by $value."
+
+  ValkyrieDreamSlashByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "13010"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Dream Slash by $value."
+
+  ValkyrieUnknownResourceGen:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_명중 시 ST 회복"
+    type: 183
+    method: 2
+    condition: 25
+    conditionValue: 3
+    conditionCategory: "13013"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_명중 시 ST 회복"
+      tooltip: "Generate an additional 15 Ragnarok points after a succesful hit with Bloodflower."
+
+  ValkyrieRuneburstByDamage:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+    type: 161
+    method: 3
+    condition: 25
+    conditionValue: 0
+    conditionCategory: "13016"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_스킬 위력 증가"
+      tooltip: "Increases skill damage of Runeburst by $value."
+
+  ValkyrieBackstabByCooldown:
+    $extends: _ChestPassivityBase
+    name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+    type: 71
+    method: 3
+    condition: 0
+    conditionValue: 0
+    conditionCategory: "13020"
+    passivityStrings:
+      name: "장비_방어구_랜덤부여_T3_재사용 시간 감소"
+      tooltip: "Decreases cooldown of Backstab by $value."
+
+  # ==========================================================================
+  # CATEGORY DEFINITIONS
+  # ==========================================================================
+
+  # Warrior - Chest Top Rolls
+  CategoryChestWarrior:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_WARRIOR
+    passivities:
+      upsert:
+        - $extends: WarriorBladeDrawByDamage
+          id: 1520001
+          value: 1.1
+        - $extends: WarriorBladeDrawByCooldown
+          id: 1520002
+          value: 0.9
+        - $extends: WarriorRainOfBlowsByDamage
+          id: 1520003
+          value: 1.12
+        - $extends: WarriorBladeWaltzSkillHitsTargetMPRestore
+          id: 1520004
+          value: 50
+        - $extends: WarriorDeathFromAboveByCooldown
+          id: 1520005
+          value: 0.9
+        - $extends: WarriorVortexSlashByDamage
+          id: 1520006
+          value: 1.12
+        - $extends: WarriorRisingFuryByDamage
+          id: 1520007
+          value: 1.12
+        - $extends: WarriorLeapingStrikeSkillHitsTargetMPRestore
+          id: 1520008
+          value: 50
+        - $extends: WarriorUnknownCooldown
+          id: 1520009
+          value: 0.94
+
+  # Lancer - Chest Top Rolls
+  CategoryChestLancer:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_LANCER
+    passivities:
+      upsert:
+        - $extends: LancerOnslaughtByDamage
+          id: 1520010
+          value: 1.15
+        - $extends: LancerOnslaughtSkillHitsTargetMPRestore
+          id: 1520011
+          value: 50
+        - $extends: LancerUnknownMPRestore
+          id: 1520012
+          value: 75
+        - $extends: LancerShieldBashByCooldown
+          id: 1520013
+          value: 0.9
+        - $extends: LancerChallengingShoutByCooldown
+          id: 1520014
+          value: 0.9
+        - $extends: LancerShieldCounterByDamage
+          id: 1520015
+          value: 1.17
+        - $extends: LancerShieldCounterByCooldown
+          id: 1520016
+          value: 0.9
+        - $extends: LancerSpringAttackByDamage
+          id: 1520017
+          value: 1.15
+        - $extends: LancerLeashSkillHitsTargetMPRestore
+          id: 1520018
+          value: 50
+        - $extends: LancerSecondWindByCooldown
+          id: 1520019
+          value: 0.9
+
+  # Berserker - Chest Top Rolls
+  CategoryChestBerserker:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_BERSERKER
+    passivities:
+      upsert:
+        - $extends: BerserkerThunderStrikeByDamage
+          id: 1520020
+          value: 1.08
+        - $extends: BerserkerCycloneByDamage
+          id: 1520021
+          value: 1.08
+        - $extends: BerserkerFlattenByDamage
+          id: 1520022
+          value: 1.1
+        - $extends: BerserkerSweepingStrikeByDamage
+          id: 1520023
+          value: 1.25
+        - $extends: BerserkerUnknownCooldown
+          id: 1520024
+          value: 0.9
+        - $extends: BerserkerUnknownMPRestore
+          id: 1520025
+          value: 24
+        - $extends: BerserkerLethalStrikeByDamage
+          id: 1520026
+          value: 1.15
+        - $extends: BerserkerInescapableDoomByCooldown
+          id: 1520027
+          value: 0.95
+        - $extends: BerserkerInescapableDoomSkillHitsTargetMPRestore
+          id: 1520028
+          value: 60
+
+  # Slayer - Chest Top Rolls
+  CategoryChestSlayer:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_SLAYER
+    passivities:
+      upsert:
+        - $extends: SlayerOverhandStrikeByDamage
+          id: 1520029
+          value: 1.1
+        - $extends: SlayerKnockdownStrikeSkillHitsTargetMPRestore
+          id: 1520030
+          value: 40
+        - $extends: SlayerWhirlwindByDamage
+          id: 1520031
+          value: 1.1
+        - $extends: SlayerEvasiveRollByCooldown
+          id: 1520032
+          value: 0.9
+        - $extends: SlayerBackstabByCooldown
+          id: 1520033
+          value: 0.95
+        - $extends: SlayerUnknownMPRestore
+          id: 1520034
+          value: 32
+        - $extends: SlayerStartlingKickByCooldown
+          id: 1520035
+          value: 0.9
+        - $extends: SlayerOverpowerByCooldown
+          id: 1520036
+          value: 0.88
+        - $extends: SlayerTenacityByCooldown
+          id: 1520037
+          value: 0.9
+        - $extends: SlayerInColdBloodByCooldown
+          id: 1520038
+          value: 0.85
+
+  # Sorcerer - Chest Top Rolls
+  CategoryChestSorcerer:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_SORCERER
+    passivities:
+      upsert:
+        - $extends: SorcererMeteorStrikeByDamage
+          id: 1520039
+          value: 1.1
+        - $extends: SorcererVoidPulseByDamage
+          id: 1520040
+          value: 1.1
+        - $extends: SorcererHailStormByDamage
+          id: 1520041
+          value: 1.1
+        - $extends: SorcererUnknownMPRestore
+          id: 1520042
+          value: 1.17
+        - $extends: SorcererFlamingBarrageByDamage
+          id: 1520043
+          value: 1.15
+        - $extends: SorcererGlacialRetreatByCooldown
+          id: 1520044
+          value: 0.9
+        - $extends: SorcererTeleportJauntByCooldown
+          id: 1520045
+          value: 0.9
+        - $extends: SorcererManaBarrierByCooldown
+          id: 1520046
+          value: 0.85
+        - $extends: SorcererBackstepByCooldown
+          id: 1520047
+          value: 0.9
+
+  # Archer - Chest Top Rolls
+  CategoryChestArcher:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_ARCHER
+    passivities:
+      upsert:
+        - $extends: ArcherRadiantArrowByDamage
+          id: 1520048
+          value: 1.1
+        - $extends: ArcherPenetratingArrowByDamage
+          id: 1520049
+          value: 1.1
+        - $extends: ArcherArrowVolleyByDamage
+          id: 1520050
+          value: 1.15
+        - $extends: ArcherRainOfArrowsByDamage
+          id: 1520051
+          value: 1.1
+        - $extends: ArcherRainOfArrowsByCooldown
+          id: 1520052
+          value: 0.9
+        - $extends: ArcherStunningTrapByCooldown
+          id: 1520053
+          value: 0.85
+        - $extends: ArcherCloseQuartersEffectByDuration
+          id: 1520054
+          value: 1.05
+        - $extends: ArcherPoisonArrowEffectByDuration
+          id: 1520055
+          value: 1.17
+        - $extends: ArcherBreakawayBoltByCooldown
+          id: 1520056
+          value: 0.88
+
+  # Mystic - Chest Top Rolls
+  CategoryChestMystic:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_MYSTIC
+    passivities:
+      upsert:
+        - $extends: MysticTeleportJauntByCooldown
+          id: 1520057
+          value: 0.93
+        - $extends: MysticMireSkillHitsTargetMPRestore
+          id: 1520058
+          value: 100
+        - $extends: MysticSharasLashByCooldown
+          id: 1520059
+          value: 0.9
+        - $extends: MysticVowOfRebirthSkillHitsTargetMPRestore
+          id: 1520060
+          value: 175
+        - $extends: MysticMetamorphicSmiteByDamage
+          id: 1520061
+          value: 1.17
+        - $extends: MysticVolleyOfCursesEffectByDuration
+          id: 1520062
+          value: 1.15
+        - $extends: MysticSonorousDreamsSkillHitsTargetMPRestore
+          id: 1520063
+          value: 110
+        - $extends: MysticThrallOfProtectionMPRestore
+          id: 1520064
+          value: 175
+        - $extends: MysticThrallOfLifeMPRestore
+          id: 1520065
+          value: 175
+
+  # Priest - Chest Top Rolls
+  CategoryChestPriest:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_PRIEST
+    passivities:
+      upsert:
+        - $extends: PriestFocusHealByHealing
+          id: 1520066
+          value: 1.15
+        - $extends: PriestRegenerationCircleDuration
+          id: 1520067
+          value: 1.1
+        - $extends: PriestHealingCircleByHealing
+          id: 1520068
+          value: 1.1
+        - $extends: PriestShockingImplosionByDamage
+          id: 1520069
+          value: 1.15
+        - $extends: PriestShockingImplosionByCooldown
+          id: 1520070
+          value: 0.9
+        - $extends: PriestHealingImmersionByHealing
+          id: 1520071
+          value: 1.1
+        - $extends: PriestKaiasShieldByCooldown
+          id: 1520072
+          value: 0.9
+        - $extends: PriestEnergyStarsByCooldown
+          id: 1520073
+          value: 0.9
+        - $extends: PriestManaChargeAndDivineChargeByChargeSpeed
+          id: 1520074
+          value: 1.15
+        - $extends: PriestFieryEscapeByCooldown
+          id: 1520075
+          value: 0.85
+
+  # Reaper - Chest Top Rolls
+  CategoryChestReaper:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_REAPER
+    passivities:
+      upsert:
+        - $extends: ReaperDoubleShearByDamage
+          id: 1520076
+          value: 1.1
+        - $extends: ReaperDoubleShearByCooldown
+          id: 1520077
+          value: 0.9
+        - $extends: ReaperGrimStrikeByDamage
+          id: 1520078
+          value: 1.12
+        - $extends: ReaperDeathSpiralSkillHitsTargetMPRestore
+          id: 1520079
+          value: 20
+        - $extends: ReaperShadowStepByCooldown
+          id: 1520080
+          value: 0.9
+        - $extends: ReaperSmiteByCooldown
+          id: 1520081
+          value: 0.9
+        - $extends: ReaperSpiralBarrageByDamage
+          id: 1520082
+          value: 1.15
+        - $extends: ReaperShadowBurstByDamage
+          id: 1520083
+          value: 1.1
+        - $extends: ReaperShadowLashSkillHitsTargetMPRestore
+          id: 1520084
+          value: 20
+        - $extends: ReaperSoulReversalByCooldown
+          id: 1520085
+          value: 0.85
+
+  # Gunner - Chest Top Rolls
+  CategoryChestGunner:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_GUNNER
+    passivities:
+      upsert:
+        - $extends: GunnerBlastByDamage
+          id: 1520086
+          value: 1.15
+        - $extends: GunnerBombardmentByCooldown
+          id: 1520087
+          value: 0.92
+        - $extends: GunnerScattershotByDamage
+          id: 1520088
+          value: 1.1
+        - $extends: GunnerScattershotHitsATargetMPRestore
+          id: 1520089
+          value: 150
+        - $extends: GunnerPointBlankByCooldown
+          id: 1520090
+          value: 0.85
+        - $extends: GunnerBurstFireByCostReduce
+          id: 1520091
+          value: -5
+        - $extends: GunnerArcaneBarrageByDamage
+          id: 1520092
+          value: 1.07
+        - $extends: GunnerRocketJumpByCooldown
+          id: 1520093
+          value: 0.9
+        - $extends: GunnerArcBombByDuration
+          id: 1520094
+          value: 1.2
+        - $extends: GunnerReplenishmentByCooldown
+          id: 1520095
+          value: 0.85
+
+  # Brawler - Chest Top Rolls
+  CategoryChestBrawler:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_BRAWLER
+    passivities:
+      upsert:
+        - $extends: BrawlerPunchByDamage
+          id: 1520096
+          value: 1.15
+        - $extends: BrawlerDivineWrathByCooldown
+          id: 1520097
+          value: 0.9
+        - $extends: BrawlerJackhammerByDamage
+          id: 1520098
+          value: 1.12
+        - $extends: BrawlerJackhammerHitsATargetMPRestore
+          id: 1520099
+          value: 30
+        - $extends: BrawlerRoundhouseKickByCooldown
+          id: 1520100
+          value: 0.85
+        - $extends: BrawlerPiledriverByDamage
+          id: 1520101
+          value: 1.12
+        - $extends: BrawlerGroundPounderByDamage
+          id: 1520102
+          value: 1.1
+        - $extends: BrawlerRampageMPRestore
+          id: 1520103
+          value: 15500
+        - $extends: BrawlerMeatGrinderCritChance
+          id: 1520104
+          value: 2
+        - $extends: BrawlerInvigoratingRageByResourceGen
+          id: 1520105
+          value: -600
+
+  # Ninja - Chest Top Rolls
+  CategoryChestNinja:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_NINJA
+    passivities:
+      upsert:
+        - $extends: NinjaDoubleCutByDamage
+          id: 1520106
+          value: 1.12
+        - $extends: NinjaDecoyJutsuByCooldown
+          id: 1520107
+          value: 0.9
+        - $extends: NinjaSkyfallByDamage
+          id: 1520108
+          value: 1.1
+        - $extends: NinjaLeavesOnTheWindHitsATargetMPRestore
+          id: 1520109
+          value: 30
+        - $extends: NinjaDeathBlossomByCooldown
+          id: 1520110
+          value: 0.85
+        - $extends: NinjaCircleOfSteelByDamage
+          id: 1520111
+          value: 1.1
+        - $extends: NinjaOneThousandCutsByDamage
+          id: 1520112
+          value: 1.12
+        - $extends: NinjaJaggedPathResourceGen
+          id: 1520113
+          value: 15600
+        - $extends: NinjaUnknownMPRestore
+          id: 1520114
+          value: 2
+        - $extends: NinjaFireAvalancheByCooldown
+          id: 1520115
+          value: 0.85
+
+  # Valkyrie - Chest Top Rolls
+  CategoryChestValkyrie:
+    enchantPassivityCategoryId: $CATEGORY_CHEST_VALKYRIE
+    passivities:
+      upsert:
+        - $extends: ValkyrieOverheadSlashByDuration
+          id: 1520116
+          value: 1.4
+        - $extends: ValkyrieGlaiveStrikeByDamage
+          id: 1520117
+          value: 1.1
+        - $extends: ValkyrieMaelstromByDamage
+          id: 1520118
+          value: 1.1
+        - $extends: ValkyrieUnknownDamage
+          id: 1520119
+          value: 1.032
+        - $extends: ValkyrieTitansbaneByCooldown
+          id: 1520120
+          value: 0.9
+        - $extends: ValkyrieGroundBashByDamage
+          id: 1520121
+          value: 1.15
+        - $extends: ValkyrieDreamSlashByDamage
+          id: 1520122
+          value: 1.15
+        - $extends: ValkyrieUnknownResourceGen
+          id: 1520123
+          value: 15
+        - $extends: ValkyrieRuneburstByDamage
+          id: 1520124
+          value: 1.1
+        - $extends: ValkyrieBackstabByCooldown
+          id: 1520125
+          value: 0.85
+
+exports:
+  variables:
+    - CATEGORY_CHEST_WARRIOR
+    - CATEGORY_CHEST_LANCER
+    - CATEGORY_CHEST_BERSERKER
+    - CATEGORY_CHEST_SLAYER
+    - CATEGORY_CHEST_SORCERER
+    - CATEGORY_CHEST_ARCHER
+    - CATEGORY_CHEST_MYSTIC
+    - CATEGORY_CHEST_PRIEST
+    - CATEGORY_CHEST_REAPER
+    - CATEGORY_CHEST_GUNNER
+    - CATEGORY_CHEST_BRAWLER
+    - CATEGORY_CHEST_NINJA
+    - CATEGORY_CHEST_VALKYRIE
+  definitions:
+    - CategoryChestWarrior
+    - CategoryChestLancer
+    - CategoryChestBerserker
+    - CategoryChestSlayer
+    - CategoryChestSorcerer
+    - CategoryChestArcher
+    - CategoryChestMystic
+    - CategoryChestPriest
+    - CategoryChestReaper
+    - CategoryChestGunner
+    - CategoryChestBrawler
+    - CategoryChestNinja
+    - CategoryChestValkyrie
