@@ -1,0 +1,454 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# =============================================================================
+# CRAFTING RECIPES FOR MISSING ITEMS
+# =============================================================================
+# Creates crafting recipes for 19 items across 3 crafted sets:
+# - Visionmaker (8 items): 4 weapons + 4 chest armor
+# - Nightforge PVE (8 items): 4 weapons + 4 chest armor (upgrades from Visionmaker)
+# - Dreamkeeper (3 items): 3 weapons
+#
+# Each recipe creates both the Recipe entry and the Design item automatically
+# using the DSL's inline item block feature. Strings are created separately.
+#
+# Reference patterns:
+# - Visionmaker weapons: needSkillId=27, materials=(1629 x1800 + 1128-1133)
+# - Visionmaker armor:   needSkillId=28, materials=(1630 x900 + 1128-1133)
+# - Nightforge weapons:  needSkillId=27, materials=(71380 x15 + 71377 x5 + 71379 x5 + VM item)
+# - Nightforge armor:    needSkillId=28, materials=(71380 x9 + 71377 x3 + 71379 x3 + VM item)
+# - Dreamkeeper weapons: needSkillId=27, materials=(1629 x1200 + 1038 x1200 + 1125 x50 + 1126 x300 + 530 x100)
+# =============================================================================
+
+definitions:
+  # -----------------------------------------------------------------------------
+  # Visionmaker base recipe properties
+  # -----------------------------------------------------------------------------
+  vmWeaponRecipeBase:
+    obtainable: true
+    needSkillId: 27
+    needGrade: 0
+    needSkillProf: 400
+    maxSkillProf: 500
+    exp: "736744"
+    subFatiguePoint: 100
+    addOnSuccessProf: 0
+    materials:
+      - { id: 1629, count: 1800 }
+      - { id: 1128, count: 3 }
+      - { id: 1129, count: 3 }
+      - { id: 1130, count: 2 }
+      - { id: 1131, count: 3 }
+      - { id: 1132, count: 2 }
+      - { id: 1133, count: 2 }
+
+  vmArmorRecipeBase:
+    obtainable: true
+    needSkillId: 28
+    needGrade: 0
+    needSkillProf: 400
+    maxSkillProf: 500
+    exp: "736744"
+    subFatiguePoint: 100
+    addOnSuccessProf: 0
+    materials:
+      - { id: 1630, count: 900 }
+      - { id: 1128, count: 2 }
+      - { id: 1129, count: 2 }
+      - { id: 1130, count: 1 }
+      - { id: 1131, count: 2 }
+      - { id: 1132, count: 1 }
+      - { id: 1133, count: 1 }
+
+  # Design item base for Visionmaker (level 60, rareGrade 3)
+  vmDesignBase:
+    level: 60
+    rareGrade: 3
+    buyPrice: 187051
+    sellPrice: 18705
+
+  # -----------------------------------------------------------------------------
+  # Nightforge PVE base recipe properties
+  # -----------------------------------------------------------------------------
+  nfWeaponRecipeBase:
+    obtainable: true
+    needSkillId: 27
+    needGrade: 0
+    needSkillProf: 400
+    maxSkillProf: 500
+    exp: "736744"
+    subFatiguePoint: 100
+    addOnSuccessProf: 0
+
+  nfArmorRecipeBase:
+    obtainable: true
+    needSkillId: 28
+    needGrade: 0
+    needSkillProf: 400
+    maxSkillProf: 500
+    exp: "552558"
+    subFatiguePoint: 75
+    addOnSuccessProf: 0
+
+  # Design item base for Nightforge (level 60, rareGrade 3)
+  nfDesignBase:
+    level: 60
+    rareGrade: 3
+    buyPrice: 187051
+    sellPrice: 18705
+
+  # -----------------------------------------------------------------------------
+  # Dreamkeeper base recipe properties
+  # -----------------------------------------------------------------------------
+  dkWeaponRecipeBase:
+    obtainable: true
+    needSkillId: 27
+    needGrade: 0
+    needSkillProf: 400
+    maxSkillProf: 500
+    exp: "736744"
+    subFatiguePoint: 100
+    addOnSuccessProf: 0
+    materials:
+      - { id: 1629, count: 1200 }
+      - { id: 1038, count: 1200 }
+      - { id: 1125, count: 50 }
+      - { id: 1126, count: 300 }
+      - { id: 530, count: 100 }
+
+  # Design item base for Dreamkeeper (level 60, rareGrade 3)
+  dkDesignBase:
+    level: 60
+    rareGrade: 3
+    buyPrice: 187051
+    sellPrice: 18705
+
+itemProduceRecipes:
+  create:
+    # =========================================================================
+    # VISIONMAKER WEAPONS (4 items)
+    # =========================================================================
+
+    # Blaster: Narrowscope
+    - id: 27373
+      $extends: vmWeaponRecipeBase
+      categoryId: 1211
+      result: { id: 55443, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "narrowscope_design"
+        icon: "Icon_Items.recipeweapon_blaster_Tex"
+
+    # Glaive: Imagia
+    - id: 27374
+      $extends: vmWeaponRecipeBase
+      categoryId: 1214
+      result: { id: 59491, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "imagia_design"
+        icon: "Icon_Items.recipeweapon_glaiver_Tex"
+
+    # Chain: Dreamscythes
+    - id: 27375
+      $extends: vmWeaponRecipeBase
+      categoryId: 1210
+      result: { id: 51066, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "dreamscythes_design"
+        icon: "Icon_Items.recipeweapon_chain_Tex"
+
+    # Gauntlet: Steelgaze Powerfists
+    - id: 27376
+      $extends: vmWeaponRecipeBase
+      categoryId: 1212
+      result: { id: 82597, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "steelgaze_powerfists_design"
+        icon: "Icon_Items.recipeweapon_gauntlet_Tex"
+
+    # =========================================================================
+    # VISIONMAKER ARMOR (4 items)
+    # =========================================================================
+
+    # bodyMail: Steelgaze Barrageplate (ENGINEER)
+    - id: 27377
+      $extends: vmArmorRecipeBase
+      categoryId: 2202
+      result: { id: 19270, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "steelgaze_barrageplate_design"
+        icon: "Icon_Items.recipearmor_bodymail_Tex"
+
+    # bodyMail: Steelgaze Ironfist (FIGHTER)
+    - id: 27378
+      $extends: vmArmorRecipeBase
+      categoryId: 2202
+      result: { id: 19271, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "steelgaze_ironfist_design"
+        icon: "Icon_Items.recipearmor_bodymail_Tex"
+
+    # bodyLeather: Dreamglaive Vest (GLAIVER)
+    - id: 27379
+      $extends: vmArmorRecipeBase
+      categoryId: 2205
+      result: { id: 19272, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "dreamglaive_vest_design"
+        icon: "Icon_Items.recipearmor_bodyleather_Tex"
+
+    # bodyLeather: Dreamrend Vest (SOULLESS)
+    - id: 27380
+      $extends: vmArmorRecipeBase
+      categoryId: 2205
+      result: { id: 19273, count: 1 }
+      item:
+        $extends: vmDesignBase
+        name: "dreamrend_vest_design"
+        icon: "Icon_Items.recipearmor_bodyleather_Tex"
+
+    # =========================================================================
+    # NIGHTFORGE PVE WEAPONS (4 items)
+    # Upgrade path: Nightforge = upgrade materials + Visionmaker item
+    # =========================================================================
+
+    # Chain: Shardfangs (upgrades from Dreamscythes 51066)
+    - id: 27381
+      $extends: nfWeaponRecipeBase
+      categoryId: 1210
+      result: { id: 51068, count: 1 }
+      materials:
+        - { id: 71380, count: 15 }
+        - { id: 71377, count: 5 }
+        - { id: 71379, count: 5 }
+        - { id: 51066, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "shardfangs_design"
+        icon: "Icon_Items.recipeweapon_chain_Tex"
+
+    # Blaster: Beybreaker (upgrades from Narrowscope 55443)
+    - id: 27382
+      $extends: nfWeaponRecipeBase
+      categoryId: 1211
+      result: { id: 55492, count: 1 }
+      materials:
+        - { id: 71380, count: 15 }
+        - { id: 71377, count: 5 }
+        - { id: 71379, count: 5 }
+        - { id: 55443, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "beybreaker_design"
+        icon: "Icon_Items.recipeweapon_blaster_Tex"
+
+    # Glaive: Sanctionife (upgrades from Imagia 59491)
+    - id: 27383
+      $extends: nfWeaponRecipeBase
+      categoryId: 1214
+      result: { id: 59555, count: 1 }
+      materials:
+        - { id: 71380, count: 15 }
+        - { id: 71377, count: 5 }
+        - { id: 71379, count: 5 }
+        - { id: 59491, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "sanctionife_design"
+        icon: "Icon_Items.recipeweapon_glaiver_Tex"
+
+    # Gauntlet: Flawless Generation Powerfists (upgrades from Steelgaze Powerfists 82597)
+    - id: 27384
+      $extends: nfWeaponRecipeBase
+      categoryId: 1212
+      result: { id: 82492, count: 1 }
+      materials:
+        - { id: 71380, count: 15 }
+        - { id: 71377, count: 5 }
+        - { id: 71379, count: 5 }
+        - { id: 82597, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "flawless_generation_powerfists_design"
+        icon: "Icon_Items.recipeweapon_gauntlet_Tex"
+
+    # =========================================================================
+    # NIGHTFORGE PVE ARMOR (4 items)
+    # Upgrade path: Nightforge = upgrade materials + Visionmaker item
+    # =========================================================================
+
+    # bodyMail: Riftburst Plate (ENGINEER, upgrades from Steelgaze Barrageplate 19270)
+    - id: 27385
+      $extends: nfArmorRecipeBase
+      categoryId: 2202
+      result: { id: 71479, count: 1 }
+      materials:
+        - { id: 71380, count: 9 }
+        - { id: 71377, count: 3 }
+        - { id: 71379, count: 3 }
+        - { id: 19270, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "riftburst_plate_design"
+        icon: "Icon_Items.recipearmor_bodymail_Tex"
+
+    # bodyMail: Stonegrip Plate (FIGHTER, upgrades from Steelgaze Ironfist 19271)
+    - id: 27386
+      $extends: nfArmorRecipeBase
+      categoryId: 2202
+      result: { id: 71480, count: 1 }
+      materials:
+        - { id: 71380, count: 9 }
+        - { id: 71377, count: 3 }
+        - { id: 71379, count: 3 }
+        - { id: 19271, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "stonegrip_plate_design"
+        icon: "Icon_Items.recipearmor_bodymail_Tex"
+
+    # bodyLeather: Vigilvest (GLAIVER, upgrades from Dreamglaive Vest 19272)
+    - id: 27387
+      $extends: nfArmorRecipeBase
+      categoryId: 2205
+      result: { id: 71481, count: 1 }
+      materials:
+        - { id: 71380, count: 9 }
+        - { id: 71377, count: 3 }
+        - { id: 71379, count: 3 }
+        - { id: 19272, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "vigilvest_design"
+        icon: "Icon_Items.recipearmor_bodyleather_Tex"
+
+    # bodyLeather: Shadevest (SOULLESS, upgrades from Dreamrend Vest 19273)
+    - id: 27388
+      $extends: nfArmorRecipeBase
+      categoryId: 2205
+      result: { id: 71482, count: 1 }
+      materials:
+        - { id: 71380, count: 9 }
+        - { id: 71377, count: 3 }
+        - { id: 71379, count: 3 }
+        - { id: 19273, count: 1 }
+      item:
+        $extends: nfDesignBase
+        name: "shadevest_design"
+        icon: "Icon_Items.recipearmor_bodyleather_Tex"
+
+    # =========================================================================
+    # DREAMKEEPER WEAPONS (3 items)
+    # =========================================================================
+
+    # Chain: Nightpiercers
+    - id: 27389
+      $extends: dkWeaponRecipeBase
+      categoryId: 1210
+      result: { id: 51061, count: 1 }
+      item:
+        $extends: dkDesignBase
+        name: "nightpiercers_design"
+        icon: "Icon_Items.recipeweapon_chain_Tex"
+
+    # Blaster: Daredevil Gun
+    - id: 27390
+      $extends: dkWeaponRecipeBase
+      categoryId: 1211
+      result: { id: 55393, count: 1 }
+      item:
+        $extends: dkDesignBase
+        name: "daredevil_gun_design"
+        icon: "Icon_Items.recipeweapon_blaster_Tex"
+
+    # Gauntlet: Sacred Powerfists
+    - id: 27391
+      $extends: dkWeaponRecipeBase
+      categoryId: 1212
+      result: { id: 82393, count: 1 }
+      item:
+        $extends: dkDesignBase
+        name: "sacred_powerfists_design"
+        icon: "Icon_Items.recipeweapon_gauntlet_Tex"
+
+# =============================================================================
+# DESIGN ITEM STRINGS
+# =============================================================================
+# Display names and tooltips for the design items (same IDs as recipes)
+# =============================================================================
+
+itemStrings:
+  create:
+    # Visionmaker Weapons
+    - id: 27373
+      name: "Design: Narrowscope"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27374
+      name: "Design: Imagia"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27375
+      name: "Design: Dreamscythes"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27376
+      name: "Design: Steelgaze Powerfists"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+
+    # Visionmaker Armor
+    - id: 27377
+      name: "Design: Steelgaze Barrageplate"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27378
+      name: "Design: Steelgaze Ironfist"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27379
+      name: "Design: Dreamglaive Vest"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27380
+      name: "Design: Dreamrend Vest"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+
+    # Nightforge PVE Weapons
+    - id: 27381
+      name: "Design: Shardfangs"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27382
+      name: "Design: Beybreaker"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27383
+      name: "Design: Sanctionife"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27384
+      name: "Design: Flawless Generation Powerfists"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+
+    # Nightforge PVE Armor
+    - id: 27385
+      name: "Design: Riftburst Plate"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27386
+      name: "Design: Stonegrip Plate"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27387
+      name: "Design: Vigilvest"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27388
+      name: "Design: Shadevest"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+
+    # Dreamkeeper Weapons
+    - id: 27389
+      name: "Design: Nightpiercers"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27390
+      name: "Design: Daredevil Gun"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27391
+      name: "Design: Sacred Powerfists"
+      toolTip: "Use this design to learn the corresponding crafting skill."

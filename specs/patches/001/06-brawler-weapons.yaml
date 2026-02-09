@@ -1,0 +1,110 @@
+# Missing Brawler Weapons for Level 60 Sets
+# Creates gauntlet weapons for Brawler (FIGHTER) class
+# for sets that predate this class.
+#
+# Sets completed:
+#   - Visionmaker (1 item: 82597)
+#   - Steadfast (1 item: 82598)
+#
+# Reference items used:
+#   - Regent Gauntlet (82447) - grade 3 template
+#   - Nightforge Gauntlet (82492) - grade 4 template
+#   - Visionmaker Lance (18971) - set-specific attributes
+#   - Steadfast Lance (71265) - set-specific attributes
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: weapons
+
+definitions:
+  # Common attributes for all our gauntlet weapons
+  gauntletWeaponBase:
+    $extends: weapons.gauntletBase
+    name: gauntlet
+    level: 60
+    requiredLevel: 60
+    rank: 4
+    divide: 0
+    buyPrice: 445360
+    sellPrice: 44536
+    dismantlable: true
+    storeSellable: true
+    extractRatio: 24
+    enchantEnable: true
+    unidentifiedItemGrade: 1
+    dropIdentify: false
+    masterpieceRate: 0
+    dropType: 0
+    changeColorEnable: false
+    changeEnchantFxId: 1007
+    icon: Icon_Equipments.Gauntlet3_B_Tex
+    linkLookInfoId: 111012
+    defaultValue: 8907188
+    linkPassivityCategoryId:
+      - "120300"
+
+  # Visionmaker tier (rareGrade 4)
+  visionmakerGauntlet:
+    $extends: gauntletWeaponBase
+    rareGrade: 4
+    itemLevelId: 10165
+    linkEnchantId: 950001
+    linkMaterialEnchantId: 33004
+    combineOptionValue: 3
+    artisanable: true
+    tradable: false
+    guildWarehouseStorable: false
+    boundType: Equip
+
+  # Steadfast tier (rareGrade 3)
+  steadfastGauntlet:
+    $extends: gauntletWeaponBase
+    rareGrade: 3
+    itemLevelId: 10179
+    linkEnchantId: 950011
+    linkMaterialEnchantId: 23004
+    combineOptionValue: 2
+    artisanable: false
+    tradable: false
+    guildWarehouseStorable: false
+    boundType: Loot
+
+items:
+  upsert:
+    # Visionmaker Gauntlet
+    - $extends: visionmakerGauntlet
+      id: 82597
+      linkEquipmentId: 105169
+      linkPassivityId:
+        - "130470"
+        - "317261"
+        - "1310900"
+        - "1311300"
+        - "1311100"
+        - "1310300"
+        - "1310200"
+        - "3000020"
+      strings:
+        name: "Steelgaze Powerfists"
+        toolTip: "Visionmaker gauntlets forged for brawlers."
+      equipment:
+        computed: true
+
+    # Steadfast Gauntlet
+    - $extends: steadfastGauntlet
+      id: 82598
+      linkEquipmentId: 105170
+      linkPassivityId:
+        - "210907"
+        - "130469"
+        - "510010"
+        - "510080"
+        - "510040"
+      strings:
+        name: "Irongrip Gauntlets"
+        toolTip: "Steadfast gauntlets forged for brawlers."
+      equipment:
+        computed: true

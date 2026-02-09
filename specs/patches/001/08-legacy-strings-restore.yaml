@@ -1,0 +1,4346 @@
+# ==============================================================================
+# Spec: 08 - Legacy String Restoration
+# ==============================================================================
+# Restores original tooltips for crafting materials and design items that were
+# marked as deprecated in later versions of the game.
+#
+# Scope: All crafted equipment designs and materials up to level 60
+# - Visionmaker, Nightforge, Dreamkeeper, Archetype sets
+# - All crafting materials used by these recipes
+#
+# Total items restored:
+#   - 207 materials
+#   - 873 designs
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# ==============================================================================
+# MATERIAL TOOLTIPS RESTORATION
+# ==============================================================================
+itemStrings:
+  update:
+    - id: 501
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 502
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 503
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 504
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 505
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 507
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 508
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 509
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 510
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting weapons."
+
+    - id: 511
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 512
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 513
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 514
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 515
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 517
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 518
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 519
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 520
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor."
+
+    - id: 521
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 522
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 523
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 524
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 525
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 526
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 527
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 528
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 529
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 530
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> For crafting armor and weapons. Can be obtained by hunting boss monsters."
+
+    - id: 1001
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1002
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Mining nodes forged into steel."
+
+    - id: 1003
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1004
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Animal hide used in leatherwork."
+
+    - id: 1005
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1006
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Mining nodes forged into steel."
+
+    - id: 1007
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1008
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Animal hide used in leatherwork."
+
+    - id: 1009
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1010
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Mining nodes forged into steel."
+
+    - id: 1011
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1012
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Animal hide used in leatherwork."
+
+    - id: 1013
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1014
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Mining nodes forged into steel."
+
+    - id: 1015
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1016
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Animal hide used in leatherwork."
+
+    - id: 1017
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1018
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Mining nodes forged into steel."
+
+    - id: 1019
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1020
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Animal hide used in leatherwork."
+
+    - id: 1021
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven verdra fibers for tailoring armor."
+
+    - id: 1022
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged krymetal ore for smithing weapons and armor."
+
+    - id: 1023
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined sun essence for transforming magical foci."
+
+    - id: 1024
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Tanned dawnhides for crafting armor."
+
+    - id: 1025
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven sylva fibers for tailoring armor. "
+
+    - id: 1026
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged linmetal ore for smithing weapons and armor. "
+
+    - id: 1027
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined essence of wind for transforming magical foci. "
+
+    - id: 1028
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Tanned greenhides for crafting armor. "
+
+    - id: 1029
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven shetla fibers for tailoring armor."
+
+    - id: 1030
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged normetal ore for smithing weapons and armor."
+
+    - id: 1031
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined star essence for transforming magical foci. "
+
+    - id: 1032
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Tanned rough hides for crafting armor."
+
+    - id: 1033
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven toira fibers for tailoring armor."
+
+    - id: 1034
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged shadmetal ore for smithing weapons and armor."
+
+    - id: 1035
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined essences of ice for transforming magical foci."
+
+    - id: 1036
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Tanned bloodhides for crafting armor."
+
+    - id: 1037
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven luria fibers for tailoring armor."
+
+    - id: 1038
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged xermetal ore for smithing weapons and armor."
+
+    - id: 1039
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined lightning essences for transforming magical foci."
+
+    - id: 1040
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Tanned gravehides for crafting armor."
+
+    - id: 1051
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1053
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1055
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1057
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1059
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1061
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1063
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1065
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1067
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Raw plant material spun into thread."
+
+    - id: 1068
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Mining nodes forged into steel."
+
+    - id: 1069
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Crystalline energy harnessed for crafting magical items."
+
+    - id: 1071
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Can be gathered from all types of plant, this material is used for making craft oil and various alchemical items."
+
+    - id: 1072
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Can be gathered from all types of plant, this material is used for making craft oil and various alchemical items."
+
+    - id: 1074
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Used for brewing potions."
+
+    - id: 1075
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Used for reducing ore into powder."
+
+    - id: 1089
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Ground from forged krymetal ore; used for brewing potions."
+
+    - id: 1090
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Ground from forged linmetal ore; used for brewing potions."
+
+    - id: 1091
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Ground from forged normetal ore; used for brewing potions."
+
+    - id: 1092
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Ground from forged shadmetal ore; used for brewing potions."
+
+    - id: 1093
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Ground from forged xermetal ore; used for brewing potions."
+
+    - id: 1094
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined essential mana for brewing potions."
+
+    - id: 1095
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined idyllic leaves for brewing potions."
+
+    - id: 1096
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven verdra fibers for brewing potions."
+
+    - id: 1097
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven sylva fibers for brewing potions."
+
+    - id: 1098
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven shetla fibers for brewing potions."
+
+    - id: 1099
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven toira fibers for brewing potions."
+
+    - id: 1100
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven luria fibers for brewing potions."
+
+    - id: 1101
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven fine verdra fibers for brewing potions."
+
+    - id: 1102
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven fine sylva fibers for brewing potions."
+
+    - id: 1103
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven fine shetla fibers for brewing potions."
+
+    - id: 1104
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven fine toira fibers for brewing potions."
+
+    - id: 1105
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven fine luria fibers for brewing potions."
+
+    - id: 1106
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined sun essences for brewing potions."
+
+    - id: 1107
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined essences of wind for brewing potions."
+
+    - id: 1108
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined star essences for brewing potions."
+
+    - id: 1109
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined essences of ice for brewing potions."
+
+    - id: 1110
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined lightning essences for brewing potions."
+
+    - id: 1111
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined pure sun essences for brewing potions."
+
+    - id: 1112
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined pure essences of wind for brewing potions."
+
+    - id: 1113
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined pure star essences for brewing potions."
+
+    - id: 1114
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined pure essences of ice for brewing potions."
+
+    - id: 1115
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined pure lightning essences for brewing potions."
+
+    - id: 1125
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Divine essence used to craft [Dreamkeeper equipment]."
+
+    - id: 1126
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Metal of demonic origin used to craft [Dreamkeeper weapons]."
+
+    - id: 1127
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Strong strips of material used to craft [Dreamkeeper armor]."
+
+    - id: 1128
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Feather-like fragment dropped by Shandra Manaya. Used to make the [Visionmaker equipment]."
+
+    - id: 1129
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> The resources of Val Kaeli have unique properties. Used to make the [Visionmaker equipment]."
+
+    - id: 1130
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Invalesco]</font> An oily bladder from argon monsters. Used to make the [Visionmaker equipment]."
+
+    - id: 1131
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Durable material dropped from argon bosses. Used make the [Visionmaker equipment]."
+
+    - id: 1132
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Agnitor]</font> A stone fragment infused with chaotic energy of the nexus. Extremely dangerous: Only the most talented crafters should attempt to work with it. Used to make the [Visionmaker equipment]."
+
+    - id: 1133
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Bellicarium, Noctenium Society]</font> Used to make Visionmaker and Nightforge equipment."
+
+    - id: 1134
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Bellicarium, Noctenium Society]</font> An extremely rare melding agent used to make Conjunct and Strikeforce equipment."
+
+    - id: 1136
+      changes:
+        toolTip: "\"Fight cyasma with cyasma.\""
+
+    - id: 1450
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Killing Spree, Noctenium Society]</font> Metal used to upgrade Conjunct equipment into Strikeforce equipment."
+
+    - id: 1451
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Killing Spree, Noctenium Society]</font> Material used to retool Visionmaker or Bloodrave equipment into Nightforge equipment."
+
+    - id: 1452
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Killing Spree]</font> Material used to retool Visionmaker or Bloodrave equipment into Nightforge equipment."
+
+    - id: 1454
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Alliance]</font> Used to craft powerful weapons."
+
+    - id: 1455
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Woven fine luria fibers for crafting armor."
+
+    - id: 1456
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged pure xermetal ore for crafting weapons and armor."
+
+    - id: 1457
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Refined pure lightning essences for crafting weapons."
+
+    - id: 1458
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Molded from multiple layers of hide, this remarkably tough leather is used for crafting armor."
+
+    - id: 1459
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Bellicarium, Noctenium Society]</font> Material for crafting PvP equipment."
+
+    - id: 1460
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material: Killing Spree, Noctenium Society]</font> Material for crafting PvP equipment."
+
+    - id: 1461
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Material for crafting Advantaged equipment."
+
+    - id: 1611
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Inks, papers, and tools for alchemists wishing to scribe scrolls. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1612
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Inks, papers, and tools for alchemists wishing to scribe scrolls. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1613
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Inks, papers, and tools for alchemists wishing to scribe scrolls. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1614
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Inks, papers, and tools for alchemists wishing to scribe scrolls. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1615
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Inks, papers, and tools for alchemists wishing to scribe scrolls. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1616
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Materials and tools for alchemists wishing to brew potions. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1617
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Materials and tools for alchemists wishing to brew potions. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1618
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Materials and tools for alchemists wishing to brew potions. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1619
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Materials and tools for alchemists wishing to brew potions. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1620
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Materials and tools for alchemists wishing to brew potions. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1621
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for weaponsmiths to use in crafting weapons."
+
+    - id: 1622
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for armorsmiths to use in crafting armor."
+
+    - id: 1623
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for weaponsmiths to use in crafting weapons."
+
+    - id: 1624
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for armorsmiths to use in crafting armor."
+
+    - id: 1625
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for weaponsmiths to use in crafting weapons."
+
+    - id: 1626
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for armorsmiths to use in crafting armor."
+
+    - id: 1627
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for weaponsmiths to use in crafting weapons."
+
+    - id: 1628
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for armorsmiths to use in crafting armor."
+
+    - id: 1629
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for weaponsmiths to use in crafting weapons."
+
+    - id: 1630
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for armorsmiths to use in crafting armor."
+
+    - id: 1631
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Mineral supplies and tools for crafters to turn raw materials into craftable materials."
+
+    - id: 1632
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Mineral supplies and tools for crafters to turn raw materials into craftable materials."
+
+    - id: 1633
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Mineral supplies and tools for crafters to turn raw materials into craftable materials."
+
+    - id: 1634
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Mineral supplies and tools for crafters to turn raw materials into craftable materials."
+
+    - id: 1635
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Mineral supplies and tools for crafters to turn raw materials into craftable materials."
+
+    - id: 1636
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Increases the potency of magical items through alchemy. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1637
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Increases the potency of magical items through alchemy. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1638
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Increases the potency of magical items through alchemy. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1639
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Increases the potency of magical items through alchemy. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1640
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Increases the potency of magical items through alchemy. Available for purchase through Alchemy Materials merchants."
+
+    - id: 1644
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Used for making scrolls."
+
+    - id: 1645
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Used for brewing potions."
+
+    - id: 1646
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for weaponsmiths to use in crafting weapons."
+
+    - id: 1647
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Metal and wood tools and supplies for armorsmiths to use in crafting armor."
+
+    - id: 1648
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Mineral supplies and tools for crafters to turn raw materials into craftable materials."
+
+    - id: 1649
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> When used for crafting, this additive enhances the performance of the resulting item."
+
+    - id: 6313
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> A soft teardrop-shaped gemstone gathered from ore. Used in making craft oils."
+
+    - id: 6315
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> A beetle that feeds on plant sap. Found on all plants and designated as a natural treasure by the Unified Field Institute. It's usually pulverized and used for making etchings."
+
+    - id: 6316
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> A beetle that feeds on minerals. It's found on all ore and designated as a natural treasure by the Unified Field Institue. It's usually pulverized and used for making etchings."
+
+    - id: 6317
+      changes:
+        toolTip: "<font color = '#2478FF'>[Gathered Material]</font> A beetle that feeds on crystallized natural energy. It's found on all essences and designated as a natural treasure by the Unified Field Institute. It's usually pulverized and used for making etchings."
+
+    - id: 6318
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Pulverized scarabs. Used for making etchings."
+
+    - id: 6319
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Pulverized scarabs. Used for making etchings."
+
+    - id: 6320
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Pulverized scarabs. Used for making etchings."
+
+    - id: 6321
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Made by artisan-level alchemists. Used for <font color = '#FF0000'>crafting master-level weapons</font>."
+
+    - id: 6322
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Made by artisan-level weaponcrafters. Used for <font color = '#FF0000'>crafting master-level armor</font>."
+
+    - id: 6323
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Made by artisan-level armorcrafters. Used for <font color = '#FF0000'>crafting master-level etchings</font>."
+
+    - id: 6324
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Made by artisan-level etchers. Used for <font color = '#FF0000'>crafting master-level alchemy</font>."
+
+    - id: 6332
+      changes:
+        toolTip: "<font color = '#2478FF'>[Crafted Material]</font> A magic crystal rarely obtained during the production of basic etchings. Used for making advanced etchings."
+
+    - id: 6333
+      changes:
+        toolTip: "<font color = '#2478FF'>[Purchased Material]</font> Used for crafting etchings. Available for purchase through Alchemy Materials merchants."
+
+    - id: 6396
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Contaminated blood from an ancient monster. It can be purified and used for crafting bloodhoned weapons."
+
+    - id: 6397
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Contaminated blood from an ancient monster. It can be purified and used for crafting bloodhoned armor."
+
+    - id: 6398
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Purified red blood of an ancient monster. It's used for crafting bloodhoned weapons."
+
+    - id: 6399
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Purified blood of an ancient monster. It's used for crafting bloodhoned armor."
+
+    - id: 6400
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Parts of an ancient mystical blade. It can be processed into an artisan weapon material."
+
+    - id: 6401
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Ancient pieces of armor. It can be processed into the an artisan armor material."
+
+    - id: 6402
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Imbued with the power of an ancient hero, this metal is used for crafting advanced weapons."
+
+    - id: 6403
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Imbued with the power of an ancient hero, this armor is used for crafting advanced armor."
+
+    - id: 6457
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Imbued with the power of an ancient hero, this sharp blade is used for crafting Devastator weapons."
+
+    - id: 6458
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Imbued with the power of an ancient hero, this sturdy plate is used for crafting Devastator armor."
+
+    - id: 6460
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Strong and decorative material used for making brooches."
+
+    - id: 6461
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Beautiful wing from Koleogg. Used for making exemplary brooches imbued with hidden power."
+
+    - id: 6464
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Wire specially designed to affix beautiful deocrations and magical bijous to brooches."
+
+    - id: 6465
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Sticky substance perfect for affixing delicate items to brooches."
+
+    - id: 71377
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> A cube of mystical material found among Bandersnatch's possessions. Used for crafting Nightforge equipment."
+
+    - id: 71379
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Material necessary for reforging and remastering equipment."
+
+    - id: 71380
+      changes:
+        toolTip: "<font color = '#2478FF'>[Quest Item]</font> Used for crafting Nightforge equipment."
+
+    - id: 80282
+      changes:
+        toolTip: "Material to craft Advantaged equipment."
+
+    - id: 80283
+      changes:
+        toolTip: "Material to craft Archetype equipment."
+
+    - id: 80284
+      changes:
+        toolTip: "Material to craft Advantaged equipment."
+
+    - id: 91969
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> Ore laced with energy from the Great Rift. The legendary blacksmith, Muhrak, should be able to forge this into something. Material for Archetype equipment."
+
+    - id: 91970
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> A part of Koleogg's shell. Material for Archetype equipment."
+
+    - id: 91971
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> This semi-liquid bears the power of a demokron. Material for Archetype equipment."
+
+    - id: 91972
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> A shard of blade with the power of the divine weapons. Master craftsmen can craft this into Archeblade Memento. The Archeblade Memento is a material for Archetype equipment."
+
+    - id: 92025
+      changes:
+        toolTip: "<font color = '#2478FF'>[Processed Material]</font> You may acquire this item by processing Archeblade fragments. Material for crafting Archetype Equipment."
+
+    - id: 96460
+      changes:
+        toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Material for crafting Generation equipment."
+
+    # ========================================================================
+    # DESIGN TOOLTIPS RESTORATION
+    # ========================================================================
+    - id: 1462
+      changes:
+        toolTip: "Master weaponcrafting. Use this recipe to learn the corresponding crafting skill."
+
+    - id: 1463
+      changes:
+        toolTip: "Master armorcrafting. Use this recipe to learn the corresponding crafting skill."
+
+    - id: 19400
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19401
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19402
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19403
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19404
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19405
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19406
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19407
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19408
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19409
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19410
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19411
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19412
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19413
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19414
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19415
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19416
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19417
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19418
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19419
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19420
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 19421
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19422
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19423
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19424
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19425
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19426
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19427
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19428
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19429
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19430
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19431
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19432
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19433
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19434
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19435
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19436
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19437
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19438
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19439
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19440
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19441
+      changes:
+        toolTip: "Use this design to retool Bloodhoned equipment into Patron equipment."
+
+    - id: 19442
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19443
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19444
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19445
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19446
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19447
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19448
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19449
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19450
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19451
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19452
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19453
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19454
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19455
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19456
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19457
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19458
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19459
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19460
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19461
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19462
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19463
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19464
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19465
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19466
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19467
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19468
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19469
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19470
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19471
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19472
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19473
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19474
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19475
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19476
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19477
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19478
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19479
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19480
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19481
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19482
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19483
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19484
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19485
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 19486
+      changes:
+        toolTip: "Use this design to retool Patron equipment into Devastator equipment."
+
+    - id: 23001
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 23002
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23003
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 23004
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23005
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23006
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 23007
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23008
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 23009
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23010
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23011
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 23012
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23013
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 23014
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23015
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23016
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 23017
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23018
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 23019
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23020
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23021
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 23022
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23023
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 23024
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 23025
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25001
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25002
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25003
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25004
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25005
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25006
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25007
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25008
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25009
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25010
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25011
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25012
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25013
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25014
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25015
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25016
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25177
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25178
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25179
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25180
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25181
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25182
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25183
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25184
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25185
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25186
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25187
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25188
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25189
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25190
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25191
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25192
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25321
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25322
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25323
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25324
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25325
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25326
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25327
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25328
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25329
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25330
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25331
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25332
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25333
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25334
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25335
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25336
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25337
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25338
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25339
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25340
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25341
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25342
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25343
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25344
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25345
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25346
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25347
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25348
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25349
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25350
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25351
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25352
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25353
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25354
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25355
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25356
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25357
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25358
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25359
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25360
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25365
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25366
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25367
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25368
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25369
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25370
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25371
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25372
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25689
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25690
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25691
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25692
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25693
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25694
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25695
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 25696
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26001
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26002
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26003
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26004
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26005
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26006
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26007
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26008
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26009
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26010
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26011
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26012
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26013
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26014
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26015
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26016
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26017
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26018
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26199
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26200
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26201
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26202
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26203
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26204
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26205
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26206
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26207
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26208
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26209
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26210
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26211
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26212
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26213
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26214
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26215
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26216
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26361
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26362
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26363
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26364
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26365
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26366
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26367
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26368
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26369
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26370
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26371
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26372
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26373
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26374
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26375
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26376
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26377
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26378
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26379
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26380
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26381
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26382
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26383
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26384
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26385
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26386
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26387
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26388
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26389
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26390
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26391
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26392
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26393
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26394
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26395
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26396
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26397
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26398
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26399
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26400
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26401
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26402
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26403
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26404
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26405
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26415
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26416
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26417
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26418
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26419
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26420
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26421
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26422
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26423
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 26943
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26944
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26945
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26946
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26947
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26948
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26949
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26950
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26951
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 26952
+      changes:
+        toolTip: "Use this design to promote a minor rune into a major rune."
+
+    - id: 27007
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27008
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27009
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27010
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27011
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27012
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27013
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27014
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27015
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27016
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27017
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27018
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27019
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27020
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27021
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27022
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27023
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27024
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27025
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27026
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27027
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27028
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27029
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27030
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27031
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27032
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27033
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27034
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27035
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27036
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27037
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27038
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27039
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27040
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27041
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a lancer skill."
+
+    - id: 27042
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27043
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27044
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a warrior skill."
+
+    - id: 27045
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27046
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27047
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a sorcerer skill."
+
+    - id: 27048
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27049
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27050
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27051
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27052
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27053
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27054
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27055
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27056
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27057
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27058
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27059
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27060
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27061
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27062
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27063
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27064
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27065
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27066
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27067
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a berserker skill."
+
+    - id: 27068
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a slayer skill."
+
+    - id: 27069
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a mystic skill."
+
+    - id: 27070
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for an archer skill."
+
+    - id: 27071
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill best suited for a priest skill."
+
+    - id: 27132
+      changes:
+        toolTip: "Use this design to retool Conjunct weapons into Strikeforce weapons."
+
+    - id: 27133
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27134
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27135
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27136
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27137
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27138
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27139
+      changes:
+        toolTip: "Use this design to retool a Conjunct weapon into a Strikeforce weapon."
+
+    - id: 27140
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27141
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27142
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27143
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27144
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27145
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27146
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27147
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27148
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27149
+      changes:
+        toolTip: "Use this design to retool Visionmaker weapons into Nightforge PvP weapons."
+
+    - id: 27150
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27151
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27152
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27153
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27154
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27155
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27156
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvP weapon."
+
+    - id: 27157
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random lancer skill."
+
+    - id: 27158
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random berserker skill."
+
+    - id: 27159
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27160
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27161
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random warrior skill."
+
+    - id: 27162
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random slayer skill."
+
+    - id: 27163
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random archer skill."
+
+    - id: 27164
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27165
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27166
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random sorcerer skill."
+
+    - id: 27167
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random mystic skill."
+
+    - id: 27168
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor containing an enchantment for a random priest skill."
+
+    - id: 27169
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27170
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27171
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvP armor."
+
+    - id: 27172
+      changes:
+        toolTip: "Use this design to retool Bloodrave weapons into Nightforge PvP weapons."
+
+    - id: 27173
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27174
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27175
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27176
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27177
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27178
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27179
+      changes:
+        toolTip: "Use this design to retool a Bloodrave weapon into a Nightforge PvP weapon."
+
+    - id: 27180
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random lancer skill."
+
+    - id: 27181
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random berserker skill."
+
+    - id: 27182
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27183
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27184
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random warrior skill."
+
+    - id: 27185
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random slayer skill."
+
+    - id: 27186
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random archer skill."
+
+    - id: 27187
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27188
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27189
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random sorcerer skill."
+
+    - id: 27190
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random mystic skill."
+
+    - id: 27191
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor containing an enchantment for a random priest skill."
+
+    - id: 27192
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27193
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27194
+      changes:
+        toolTip: "Use this design to retool Bloodrave armor into Nightforge PvP armor."
+
+    - id: 27195
+      changes:
+        toolTip: "Use this design to retool Conjunct armor into Strikeforce armor."
+
+    - id: 27196
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27197
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27198
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27199
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27200
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27201
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27202
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27203
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27204
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27205
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27206
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27207
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27208
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27209
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27210
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27211
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27212
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27213
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27214
+      changes:
+        toolTip: "Use this design to retool Opportune equipment into Favored equipment."
+
+    - id: 27215
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27216
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27217
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27218
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27219
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27220
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27221
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27222
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27223
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27224
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random lancer skill."
+
+    - id: 27225
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random berserker skill."
+
+    - id: 27226
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27227
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27228
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random warrior skill."
+
+    - id: 27229
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random slayer skill."
+
+    - id: 27230
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random archer skill."
+
+    - id: 27231
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27232
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27233
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random sorcerer skill."
+
+    - id: 27234
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random mystic skill."
+
+    - id: 27235
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment. The resulting item will contain an enchantment for a random priest skill."
+
+    - id: 27236
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27237
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27238
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Advantaged equipment."
+
+    - id: 27239
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27240
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27241
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27242
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27243
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27244
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27245
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27246
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27247
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27248
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random lancer skill."
+
+    - id: 27249
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random berserker skill."
+
+    - id: 27250
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27251
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27252
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random warrior skill."
+
+    - id: 27253
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random slayer skill."
+
+    - id: 27254
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random archer skill."
+
+    - id: 27255
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27256
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27257
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random sorcerer skill."
+
+    - id: 27258
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random mystic skill."
+
+    - id: 27259
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. The resulting item will contain an enchantment for a random priest skill."
+
+    - id: 27260
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27261
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27262
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 27366
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random lancer skill."
+
+    - id: 27367
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random warrior skill."
+
+    - id: 27368
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random slayer skill."
+
+    - id: 27369
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random sorcerer skill."
+
+    - id: 27370
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random mystic skill."
+
+    - id: 27371
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random reaper skill."
+
+    - id: 27372
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random reaper skill."
+
+    - id: 28000
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28002
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28003
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28004
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28006
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28007
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28008
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28010
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28011
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28012
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28013
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28014
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28015
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28016
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a white dendrite, which is required for creating advanced etchings."
+
+    - id: 28017
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28018
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28019
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28020
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28021
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28022
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28023
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28024
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28025
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28026
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28027
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28029
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28030
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28031
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28033
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28034
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28035
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28036
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28037
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28038
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28039
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28040
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28041
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28042
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28043
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28044
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28045
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28046
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28047
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28048
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28049
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28050
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. A critical success while crafting results in a permanent etching."
+
+    - id: 28066
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28067
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28068
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28069
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28070
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28071
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28072
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28073
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28074
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28075
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28076
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28078
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28079
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28083
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28084
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28085
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28086
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28087
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28088
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28089
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28090
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28091
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28092
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28093
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28094
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28095
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28096
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28097
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28098
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28099
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28100
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28101
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28102
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28103
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28104
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28105
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28106
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28107
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28108
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28109
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28110
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28111
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28112
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28113
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28114
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28115
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28116
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28117
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28118
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28119
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28120
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28121
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28122
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28123
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28124
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28125
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28126
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28127
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28128
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28129
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28130
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28131
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28132
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28133
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28134
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28135
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28136
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28137
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28138
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28139
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28140
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28141
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28142
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28143
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28144
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28145
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28146
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28147
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28148
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28149
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28150
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28151
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28152
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28153
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28154
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28155
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 28156
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 28157
+      changes:
+        toolTip: "Use this design to learn the corresponding armorcrafting skill."
+
+    - id: 28158
+      changes:
+        toolTip: "Use this design to learn the corresponding weaponcrafting skill."
+
+    - id: 28159
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28160
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28161
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28162
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 28165
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. Converts Paverunes of Titans, which are no longer used, to Tera Runes."
+
+    - id: 28166
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. Converts Silrunes of Titans, which are no longer used, to Triz Runes."
+
+    - id: 28167
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. Converts Quoirunes of Titans, which are no longer used, to Emya Runes."
+
+    - id: 28168
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. Converts Archrunes of Titans, which are no longer used, to Rowan Runes."
+
+    - id: 28169
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. Converts Keyrunes of Titans, which are no longer used, to Aeru Runes."
+
+    - id: 28170
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. "
+
+    - id: 28171
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. "
+
+    - id: 28172
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. "
+
+    - id: 28173
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. "
+
+    - id: 55600
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55601
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55602
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55603
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55604
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55605
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55606
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55607
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55608
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55609
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55610
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55611
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55612
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55613
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55614
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55625
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55626
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55627
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55628
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55629
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55630
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55631
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 55632
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 71488
+      changes:
+        toolTip: "Use this design to retool Visionmaker weapons into Nightforge PvE weapons."
+
+    - id: 71489
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71490
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71491
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71492
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71493
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71494
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71495
+      changes:
+        toolTip: "Use this design to retool a Visionmaker weapon into a Nightforge PvE weapon."
+
+    - id: 71496
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random lancer skill."
+
+    - id: 71497
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71498
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71499
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71500
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random warrior skill."
+
+    - id: 71501
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71502
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71503
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71504
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random sorcerer skill."
+
+    - id: 71505
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71506
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71507
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor."
+
+    - id: 71508
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random berserker skill."
+
+    - id: 71509
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random slayer skill."
+
+    - id: 71510
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random mystic skill."
+
+    - id: 71511
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random archer skill."
+
+    - id: 71512
+      changes:
+        toolTip: "Use this design to retool Visionmaker armor into Nightforge PvE armor containing an enchantment for a random priest skill."
+
+    - id: 71531
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71532
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71533
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71534
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71535
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71536
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71537
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71538
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick wonderholme weapon. "
+
+    - id: 71539
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71540
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71541
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71542
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71543
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71544
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71545
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71546
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging wonderholme weapon. "
+
+    - id: 71547
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71548
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71549
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71550
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71551
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71552
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71553
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71554
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen wonderholme weapon. "
+
+    - id: 71555
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random lancer skill."
+
+    - id: 71556
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random berserker skill."
+
+    - id: 71557
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71558
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71559
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71560
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random warrior skill."
+
+    - id: 71561
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random slayer skill."
+
+    - id: 71562
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random archer skill."
+
+    - id: 71563
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71564
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71565
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71566
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random sorcerer skill."
+
+    - id: 71567
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random mystic skill."
+
+    - id: 71568
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random priest skill."
+
+    - id: 71569
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71570
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71571
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71616
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast weapons into +10 masterwork quick Wonderholme weapons. "
+
+    - id: 71617
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71618
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71619
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71620
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71621
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71622
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71623
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork quick Wonderholme weapon. "
+
+    - id: 71624
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast weapons into a +10 masterwork damaging Wonderholme weapons. "
+
+    - id: 71625
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71626
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71627
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71628
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71629
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71630
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71631
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork damaging Wonderholme weapon. "
+
+    - id: 71632
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast weapons into +10 masterwork keen Wonderholme weapons. "
+
+    - id: 71633
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71634
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71635
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71636
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71637
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71638
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71639
+      changes:
+        toolTip: "Use this design to remaster a +12 masterwork steadfast weapon into a +10 masterwork keen Wonderholme weapon. "
+
+    - id: 71640
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random lancer skill."
+
+    - id: 71641
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random berserker skill."
+
+    - id: 71642
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71643
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71644
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71645
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random warrior skill."
+
+    - id: 71646
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random slayer skill."
+
+    - id: 71647
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random archer skill."
+
+    - id: 71648
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71649
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71650
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71651
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random sorcerer skill."
+
+    - id: 71652
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random mystic skill."
+
+    - id: 71653
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor containing an enchantment for a random priest skill."
+
+    - id: 71654
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71655
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 71656
+      changes:
+        toolTip: "Use this design to remaster +12 masterwork steadfast armor into +10 masterwork wonderholme armor."
+
+    - id: 91980
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91981
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91982
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91983
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91984
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91985
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91986
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91987
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91988
+      changes:
+        toolTip: "Use this design to learn to craft a Keen Archetype weapon."
+
+    - id: 91989
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91990
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91991
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91992
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91993
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91994
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91995
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91996
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91997
+      changes:
+        toolTip: "Use this design to learn to craft an Intense Archetype weapon."
+
+    - id: 91998
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 91999
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92000
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92001
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92002
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92003
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92004
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92005
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92006
+      changes:
+        toolTip: "Use this design to learn to craft a Quick Archetype weapon."
+
+    - id: 92007
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random lancer skill."
+
+    - id: 92008
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random berserker skill."
+
+    - id: 92009
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92010
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92011
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92012
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random warrior skill."
+
+    - id: 92013
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random slayer skill."
+
+    - id: 92014
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random archer skill."
+
+    - id: 92015
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random reaper skill."
+
+    - id: 92016
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92017
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92018
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92019
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random sorcerer skill."
+
+    - id: 92020
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random mystic skill."
+
+    - id: 92021
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill. This armor will contain an enchantment for a random priest skill."
+
+    - id: 92022
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92023
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92024
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92026
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92027
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92028
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92029
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92030
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92031
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92032
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92033
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Keen Archetype equipment."
+
+    - id: 92035
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92036
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92037
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92038
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92039
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92040
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92041
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92042
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Intense Archetype equipment."
+
+    - id: 92044
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92045
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92046
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92047
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92048
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92049
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92050
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92051
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Quick Archetype equipment."
+
+    - id: 92053
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random lancer skill."
+
+    - id: 92054
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random berserker skill."
+
+    - id: 92055
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92056
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92057
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92058
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random warrior skill."
+
+    - id: 92059
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random slayer skill."
+
+    - id: 92060
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random archer skill."
+
+    - id: 92062
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92063
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92064
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92065
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random sorcerer skill."
+
+    - id: 92066
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random mystic skill."
+
+    - id: 92067
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment. This armor will contain an enchantment for a random priest skill."
+
+    - id: 92068
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92069
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92070
+      changes:
+        toolTip: "Use this design to retool Nightforge equipment into Archetype equipment."
+
+    - id: 92071
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 92072
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 97065
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
+
+    - id: 97066
+      changes:
+        toolTip: "Use this design to learn the corresponding crafting skill."
