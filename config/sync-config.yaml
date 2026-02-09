@@ -70,6 +70,16 @@ entities:
     id_attribute: "targetTemplateId"
     xsd_file: "EquipmentEvolutionData/EquipmentEvolutionData.xsd"
 
+  # Equipment inheritance tokens (inheritance rules for gear transfer)
+  EquipmentInheritanceData:
+    strategy: monolithic
+    server_file: "EquipmentInheritanceData.xml"
+    client_folder: "EquipmentInheritanceData"
+    client_file: "EquipmentInheritanceData-00000.xml"
+    root_element: "EquipmentInheritanceData"
+    id_attribute: "templateId"
+    xsd_file: "EquipmentInheritanceData/EquipmentInheritanceData.xsd"
+
   # Material enchant data (enchant materials, costs, probabilities)
   # Note: Client XSD filters out most attributes - only structure is synced
   MaterialEnchantData:
