@@ -1,0 +1,112 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - AERU_RUNE
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+        - KEYRUNE_OF_ARUN
+        - KEYRUNE_OF_SHARA
+      definitions:
+        - EvolutionItem
+        - KeyruneOfArunAeruPath
+        - KeyruneOfSharaAeruPath
+
+variables:
+  # ── Source Gear ──
+  SOURCE_WEAPON_DUAL: 13158  # dual — Fassad & Fassouda
+  SOURCE_WEAPON_LANCE: 13159  # lance — Lance of Gabir
+  SOURCE_WEAPON_TWOHAND: 13160  # twohand — Saif-Olek
+  SOURCE_WEAPON_AXE: 13161  # axe — Asvakar's Cleaver
+  SOURCE_WEAPON_CIRCLE: 13162  # circle — Lens of Ilderim
+  SOURCE_WEAPON_BOW: 13163  # bow — Warbow of Djonda
+  SOURCE_WEAPON_STAFF: 13164  # staff — Staff of Kahin
+  SOURCE_WEAPON_ROD: 13165  # rod — Yaghuth
+  SOURCE_WEAPON_BLASTER: 55383  # blaster — Skwee Gun
+  SOURCE_WEAPON_GLAIVE: 59431  # glaive — Mosulspear
+  SOURCE_WEAPON_GAUNTLET: 82206  # gauntlet — Fiendish Powerfists
+  SOURCE_FEETMAIL: 18395  # feetMail — Nemesis Greaves
+  SOURCE_FEETLEATHER: 18398  # feetLeather — Plagueborn Boots
+  SOURCE_FEETROBE: 18401  # feetRobe — Frostwrath Leggings
+  SOURCE_BODYMAIL: 18393  # bodyMail — Nemesis Plate
+  SOURCE_BODYLEATHER: 18396  # bodyLeather — Scourge Jerkin
+  SOURCE_BODYROBE: 18399  # bodyRobe — Frostwrath Robes
+  SOURCE_HANDMAIL: 18394  # handMail — Nemesis Fists
+  SOURCE_HANDLEATHER: 18397  # handLeather — Pestilence Grips
+  SOURCE_HANDROBE: 18400  # handRobe — Frostwrath Sleeves
+
+  # ── Result Gear ──
+  TARGET_WEAPON_DUAL: 12393  # dual — Fiend & Foe
+  TARGET_WEAPON_LANCE: 12394  # lance — Aegis of the People
+  TARGET_WEAPON_TWOHAND: 12395  # twohand — Tyrant Reaver
+  TARGET_WEAPON_AXE: 12396  # axe — Despot Dispatch
+  TARGET_WEAPON_CIRCLE: 12397  # circle — Mandala of Reflection
+  TARGET_WEAPON_BOW: 12398  # bow — Triumphant Arc
+  TARGET_WEAPON_STAFF: 12399  # staff — Temperence
+  TARGET_WEAPON_ROD: 12400  # rod — Civil Disobedience
+  TARGET_WEAPON_BLASTER: 55304  # blaster — Abatis Barrel
+  TARGET_WEAPON_GLAIVE: 59352  # glaive — Animospear
+  TARGET_WEAPON_GAUNTLET: 82304  # gauntlet — Fists of the Ebon Tower
+  TARGET_FEETMAIL: 17694  # feetMail — Greaves of Agony
+  TARGET_FEETLEATHER: 17697  # feetLeather — Treads of the Decimator
+  TARGET_FEETROBE: 17700  # feetRobe — Slippers of Slaying
+  TARGET_BODYMAIL: 17692  # bodyMail — Hauberk of Slaughter
+  TARGET_BODYLEATHER: 17695  # bodyLeather — Harness of Vardas
+  TARGET_BODYROBE: 17698  # bodyRobe — Robes of Annihilation
+  TARGET_HANDMAIL: 17693  # handMail — Gauntlets of Gore
+  TARGET_HANDLEATHER: 17696  # handLeather — Deathtouch Gloves
+  TARGET_HANDROBE: 17699  # handRobe — Carnage Handwraps
+
+# ===========================================================================
+# Thalnim Gear Set — Suryati's Peak
+# ===========================================================================
+
+evolutionPaths:
+  upsert:
+    # ── Weapons: Keyrune of Shara x2 + Aeru Rune x1 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: KeyruneOfSharaAeruPath }
+    # ── Armor: Keyrune of Arun x1 + Aeru Rune x1 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: KeyruneOfArunAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: KeyruneOfArunAeruPath }
+

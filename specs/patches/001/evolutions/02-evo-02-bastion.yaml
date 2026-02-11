@@ -1,0 +1,115 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+        - SILRUNE_OF_ARUN
+        - SILRUNE_OF_SHARA
+      definitions:
+        - EvolutionItem
+        - SilruneOfArunPath
+        - SilruneOfSharaPath
+
+variables:
+  # ── Source Gear ──
+  SOURCE_WEAPON_DUAL: 12265  # dual — Blood & Gore
+  SOURCE_WEAPON_LANCE: 12266  # lance — Bloodstrike
+  SOURCE_WEAPON_TWOHAND: 12267  # twohand — Cruelblade
+  SOURCE_WEAPON_AXE: 12268  # axe — Bloodshatter
+  SOURCE_WEAPON_CIRCLE: 12269  # circle — Heartcoil
+  SOURCE_WEAPON_BOW: 12270  # bow — Airheart
+  SOURCE_WEAPON_STAFF: 12271  # staff — Tuskrender
+  SOURCE_WEAPON_ROD: 12272  # rod — Bloodhorn
+  SOURCE_WEAPON_BLASTER: 55288  # blaster — Hemoblaster
+  SOURCE_WEAPON_SHURIKEN: 58439  # shuriken — Hemobloom
+  SOURCE_WEAPON_GLAIVE: 59336  # glaive — Truncuspear
+  SOURCE_WEAPON_GAUNTLET: 82288  # gauntlet — Bloody Knuckles
+  SOURCE_FEETMAIL: 17559  # feetMail — Grisly Greaves
+  SOURCE_FEETLEATHER: 17562  # feetLeather — Vulcanite Boots
+  SOURCE_FEETROBE: 17565  # feetRobe — Cruelhide Shoes
+  SOURCE_BODYMAIL: 17557  # bodyMail — Brutal Breastplate
+  SOURCE_BODYLEATHER: 17560  # bodyLeather — Sanguine Cuirass
+  SOURCE_BODYROBE: 17563  # bodyRobe — Vulcanite Raiment
+  SOURCE_HANDMAIL: 17558  # handMail — Tuskbreaker Gauntlets
+  SOURCE_HANDLEATHER: 17561  # handLeather — Gloves of the Vulcan
+  SOURCE_HANDROBE: 17564  # handRobe — Bloodbound Sleeves
+
+  # ── Result Gear ──
+  TARGET_WEAPON_DUAL: 12273  # dual — Fear & Tremble
+  TARGET_WEAPON_LANCE: 12274  # lance — Dreadspike
+  TARGET_WEAPON_TWOHAND: 12275  # twohand — Wraithblade
+  TARGET_WEAPON_AXE: 12276  # axe — Websplitter
+  TARGET_WEAPON_CIRCLE: 12277  # circle — Fanggyre
+  TARGET_WEAPON_BOW: 12278  # bow — Piercefang
+  TARGET_WEAPON_STAFF: 12279  # staff — Chaosbane
+  TARGET_WEAPON_ROD: 12280  # rod — Witchbinder
+  TARGET_WEAPON_BLASTER: 55289  # blaster — Trembletube
+  TARGET_WEAPON_SHURIKEN: 58440  # shuriken — Maldustar
+  TARGET_WEAPON_GLAIVE: 59337  # glaive — Anxiae
+  TARGET_WEAPON_GAUNTLET: 82289  # gauntlet — Tremorfists
+  TARGET_FEETMAIL: 17568  # feetMail — Afflicter Greaves
+  TARGET_FEETLEATHER: 17571  # feetLeather — Demonkicker Boots
+  TARGET_FEETROBE: 17574  # feetRobe — Impchaser Shoes
+  TARGET_BODYMAIL: 17566  # bodyMail — Bitter Mail
+  TARGET_BODYLEATHER: 17569  # bodyLeather — Demonfoe Cuirass
+  TARGET_BODYROBE: 17572  # bodyRobe — Robe of the Scion
+  TARGET_HANDMAIL: 17567  # handMail — Assailer Gauntlets
+  TARGET_HANDLEATHER: 17570  # handLeather — Demonsbane Gloves
+  TARGET_HANDROBE: 17573  # handRobe — Demonwitch Sleeves
+
+# ===========================================================================
+# Bastion Gear Set — Bastion of Lok
+# ===========================================================================
+
+evolutionPaths:
+  upsert:
+    # ── Weapons: Silrune of Shara x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: SilruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: SilruneOfSharaPath }
+    # ── Armor: Silrune of Arun x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: SilruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: SilruneOfArunPath }
+

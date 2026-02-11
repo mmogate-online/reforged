@@ -1,0 +1,115 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - ARCHRUNE_OF_ARUN
+        - ARCHRUNE_OF_SHARA
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+      definitions:
+        - EvolutionItem
+        - ArchruneOfArunPath
+        - ArchruneOfSharaPath
+
+variables:
+  # ── Source Gear ──
+  SOURCE_WEAPON_DUAL: 12289  # dual — Rip & Snarl
+  SOURCE_WEAPON_LANCE: 12290  # lance — Juggernaut
+  SOURCE_WEAPON_TWOHAND: 12291  # twohand — Anguish
+  SOURCE_WEAPON_AXE: 12292  # axe — Agonizer
+  SOURCE_WEAPON_CIRCLE: 12293  # circle — Ebon Spinner
+  SOURCE_WEAPON_BOW: 12294  # bow — Mistchaser
+  SOURCE_WEAPON_STAFF: 12295  # staff — Mistburner
+  SOURCE_WEAPON_ROD: 12296  # rod — Lifedrinker
+  SOURCE_WEAPON_BLASTER: 55291  # blaster — Razergun
+  SOURCE_WEAPON_SHURIKEN: 58442  # shuriken — Twemol Starblade
+  SOURCE_WEAPON_GLAIVE: 59339  # glaive — Eruxia
+  SOURCE_WEAPON_GAUNTLET: 82291  # gauntlet — Razerfists
+  SOURCE_FEETMAIL: 17586  # feetMail — Greaves of the Depths
+  SOURCE_FEETLEATHER: 17589  # feetLeather — Boots of the Raven
+  SOURCE_FEETROBE: 17592  # feetRobe — Direcrow Slippers
+  SOURCE_BODYMAIL: 17584  # bodyMail — Dreadmist Mail
+  SOURCE_BODYLEATHER: 17587  # bodyLeather — Cuirass of the Jackdaw
+  SOURCE_BODYROBE: 17590  # bodyRobe — Bloody Quill Robe
+  SOURCE_HANDMAIL: 17585  # handMail — Deepmurk Gauntlets
+  SOURCE_HANDLEATHER: 17588  # handLeather — Gloves of the Crow
+  SOURCE_HANDROBE: 17591  # handRobe — Mekonari Handwraps
+
+  # ── Result Gear ──
+  TARGET_WEAPON_DUAL: 12297  # dual — Ways & Means
+  TARGET_WEAPON_LANCE: 12298  # lance — Beastblaster
+  TARGET_WEAPON_TWOHAND: 12299  # twohand — Bruteslayer
+  TARGET_WEAPON_AXE: 12300  # axe — Mutilator
+  TARGET_WEAPON_CIRCLE: 12301  # circle — Mazespinner
+  TARGET_WEAPON_BOW: 12302  # bow — Wayfinder
+  TARGET_WEAPON_STAFF: 12303  # staff — Labyrinth Lordstaff
+  TARGET_WEAPON_ROD: 12304  # rod — Gateopener Scepter
+  TARGET_WEAPON_BLASTER: 55292  # blaster — Pathmaker
+  TARGET_WEAPON_SHURIKEN: 58443  # shuriken — Rubiblossom
+  TARGET_WEAPON_GLAIVE: 59340  # glaive — Turntwixer
+  TARGET_WEAPON_GAUNTLET: 82292  # gauntlet — Mazehammers
+  TARGET_FEETMAIL: 17595  # feetMail — Gulabane Greaves
+  TARGET_FEETLEATHER: 17598  # feetLeather — Caiman Kickers
+  TARGET_FEETROBE: 17601  # feetRobe — Sihranmade Shoes
+  TARGET_BODYMAIL: 17593  # bodyMail — Gulaslayer Breastplate
+  TARGET_BODYLEATHER: 17596  # bodyLeather — Caimanskin Cuirass
+  TARGET_BODYROBE: 17599  # bodyRobe — Sihranweave Raiment
+  TARGET_HANDMAIL: 17594  # handMail — Gula Neckwringers
+  TARGET_HANDLEATHER: 17597  # handLeather — Caimanpelt Gloves
+  TARGET_HANDROBE: 17600  # handRobe — Sihrancloth Sleeves
+
+# ===========================================================================
+# Sepulchral Gear Set — Labyrinth of Terror
+# ===========================================================================
+
+evolutionPaths:
+  upsert:
+    # ── Weapons: Archrune of Shara x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: ArchruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: ArchruneOfSharaPath }
+    # ── Armor: Archrune of Arun x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: ArchruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: ArchruneOfArunPath }
+

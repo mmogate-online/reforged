@@ -1,0 +1,196 @@
+spec:
+  version: "1.0"
+
+# =============================================================================
+# Evolution Base Package
+# Shared material IDs, evolution parameters, and path definitions
+# used by all gear-set evolution specs.
+# =============================================================================
+
+variables:
+  # ── Rune Materials (Shara = weapons, Arun = armor) ──
+  PAVERUNE_OF_SHARA: 501
+  SILRUNE_OF_SHARA: 502
+  QUOIRUNE_OF_SHARA: 503
+  ARCHRUNE_OF_SHARA: 504
+  KEYRUNE_OF_SHARA: 505
+
+  PAVERUNE_OF_ARUN: 511
+  SILRUNE_OF_ARUN: 512
+  QUOIRUNE_OF_ARUN: 513
+  ARCHRUNE_OF_ARUN: 514
+  KEYRUNE_OF_ARUN: 515
+
+  AERU_RUNE: 520
+
+  # ── Evolution Parameters ──
+  EVOLUTION_COST: 10000
+  EVOLUTION_PROB: 1.0
+
+  # ── Enchant Step Progression ──
+  # Source enchant step on the item being evolved
+  EVOLUTION_SOURCE_STEPS: [9, 10, 11, 12]
+  # Resulting enchant step on the evolved item
+  EVOLUTION_RESULT_STEPS: [0, 3, 6, 9]
+
+definitions:
+  # ── Internal base (not exported) ──
+  _EvolutionPathBase:
+    awaken: false
+    masterpiece: false
+    evolutionProb: $EVOLUTION_PROB
+    requiredMoney: $EVOLUTION_COST
+
+  # ── Tier 1: Paverune ──
+  PaveruneOfSharaPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $PAVERUNE_OF_SHARA
+        amount: 2
+        type: item
+
+  PaveruneOfArunPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $PAVERUNE_OF_ARUN
+        amount: 2
+        type: item
+
+  # ── Tier 2: Silrune ──
+  SilruneOfSharaPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $SILRUNE_OF_SHARA
+        amount: 2
+        type: item
+
+  SilruneOfArunPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $SILRUNE_OF_ARUN
+        amount: 2
+        type: item
+
+  # ── Tier 3: Quoirune ──
+  QuoiruneOfSharaPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $QUOIRUNE_OF_SHARA
+        amount: 2
+        type: item
+
+  QuoiruneOfArunPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $QUOIRUNE_OF_ARUN
+        amount: 2
+        type: item
+
+  # ── Tier 4: Archrune ──
+  ArchruneOfSharaPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $ARCHRUNE_OF_SHARA
+        amount: 2
+        type: item
+
+  ArchruneOfArunPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $ARCHRUNE_OF_ARUN
+        amount: 2
+        type: item
+
+  # ── Tier 5: Keyrune ──
+  KeyruneOfSharaPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $KEYRUNE_OF_SHARA
+        amount: 2
+        type: item
+
+  KeyruneOfArunPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $KEYRUNE_OF_ARUN
+        amount: 2
+        type: item
+
+  # ── Parameterized Evolution Template ──
+  # Encapsulates the full 4-step enchant progression for a single gear piece.
+  # Usage: $extends: EvolutionItem
+  #        $with: { SOURCE: $SOURCE_VAR, TARGET: $TARGET_VAR, PATH_DEF: RunePathDef }
+  EvolutionItem:
+    $params: [SOURCE, TARGET, PATH_DEF]
+    targetTemplateId: $SOURCE
+    paths:
+      - $extends: $PATH_DEF
+        targetEnchantStep: 9
+        resultTemplateId: $TARGET
+        resultEnchantStep: 0
+      - $extends: $PATH_DEF
+        targetEnchantStep: 10
+        resultTemplateId: $TARGET
+        resultEnchantStep: 3
+      - $extends: $PATH_DEF
+        targetEnchantStep: 11
+        resultTemplateId: $TARGET
+        resultEnchantStep: 6
+      - $extends: $PATH_DEF
+        targetEnchantStep: 12
+        resultTemplateId: $TARGET
+        resultEnchantStep: 9
+
+  # ── Tier 5+: Keyrune + Aeru Rune ──
+  KeyruneOfSharaAeruPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $KEYRUNE_OF_SHARA
+        amount: 2
+        type: item
+      - id: $AERU_RUNE
+        amount: 1
+        type: item
+
+  KeyruneOfArunAeruPath:
+    $extends: _EvolutionPathBase
+    materials:
+      - id: $KEYRUNE_OF_ARUN
+        amount: 1
+        type: item
+      - id: $AERU_RUNE
+        amount: 1
+        type: item
+
+exports:
+  variables:
+    - PAVERUNE_OF_SHARA
+    - SILRUNE_OF_SHARA
+    - QUOIRUNE_OF_SHARA
+    - ARCHRUNE_OF_SHARA
+    - KEYRUNE_OF_SHARA
+    - PAVERUNE_OF_ARUN
+    - SILRUNE_OF_ARUN
+    - QUOIRUNE_OF_ARUN
+    - ARCHRUNE_OF_ARUN
+    - KEYRUNE_OF_ARUN
+    - AERU_RUNE
+    - EVOLUTION_COST
+    - EVOLUTION_PROB
+    - EVOLUTION_SOURCE_STEPS
+    - EVOLUTION_RESULT_STEPS
+  definitions:
+    - _EvolutionPathBase
+    - PaveruneOfSharaPath
+    - PaveruneOfArunPath
+    - SilruneOfSharaPath
+    - SilruneOfArunPath
+    - QuoiruneOfSharaPath
+    - QuoiruneOfArunPath
+    - ArchruneOfSharaPath
+    - ArchruneOfArunPath
+    - KeyruneOfSharaPath
+    - KeyruneOfArunPath
+    - KeyruneOfSharaAeruPath
+    - KeyruneOfArunAeruPath
+    - EvolutionItem
