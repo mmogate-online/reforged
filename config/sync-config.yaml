@@ -80,6 +80,16 @@ entities:
     id_attribute: "templateId"
     xsd_file: "EquipmentInheritanceData/EquipmentInheritanceData.xsd"
 
+  # Item produce recipes (crafting recipes and requirements)
+  ItemProduceRecipeData:
+    strategy: monolithic
+    server_file: "ItemProduceRecipe.xml"
+    client_folder: "ItemProduceRecipe"
+    client_file: "ItemProduceRecipe-00000.xml"
+    root_element: "ItemProduceRecipe"
+    id_attribute: "id"
+    xsd_file: "ItemProduceRecipe/ItemProduceRecipe.xsd"
+
   # Material enchant data (enchant materials, costs, probabilities)
   # Note: Client XSD filters out most attributes - only structure is synced
   MaterialEnchantData:

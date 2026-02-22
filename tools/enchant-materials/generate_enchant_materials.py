@@ -6,7 +6,7 @@ Reads enchant.xlsx and generates:
 1. reforged/specs/enchant-materials.yaml - MaterialEnchantData definitions
 2. reforged/specs/enchant-item-links.yaml - Items updateWhere rules
 
-Uses DSL expansion system ($repeat, $extends, $with, $loop) for compact output.
+Uses DSL parameterized definitions ($extends, $with, $params) for compact output.
 
 ID Scheme for materialEnchantId:
   Base: 20000
@@ -197,12 +197,6 @@ def build_material_enchant_configs(
     return configs
 
 
-def format_array(values: list, formatter=str) -> str:
-    """Format a list as YAML inline array."""
-    formatted = [formatter(v) for v in values]
-    return "[" + ", ".join(formatted) + "]"
-
-
 def format_prob(p: float) -> str:
     """Format probability value."""
     if p == 1.0:
@@ -213,34 +207,76 @@ def format_prob(p: float) -> str:
         return f"{p:.2f}".rstrip('0').rstrip('.')
 
 
-def _enchant_progression_definition(name: str, max_steps: int) -> list:
-    """Generate a reusable enchant progression definition block."""
-    last_step = max_steps - 1
-    return [
-        f"  # Reusable template for {max_steps} enchant steps (0..{last_step})",
-        f"  {name}:",
-        "    $repeat:",
-        f"      range: 0..{last_step}",
-        "      as: step",
-        "    template:",
-        "      enchantStep: $step",
-        "      enchantProb: $probs[$step]",
-        "      requiredMoney: 0",
-        "      materials:",
-        f"        - id: {ALKAHEST_ID}",
-        "          type: Item",
-        "          amount: $alkahest[$step]",
-        "        - id: $feedstockId",
-        "          type: Item",
-        "          amount: $feedstock[$step]",
-    ]
+_TIER_NAMES = {0: "Default", 1: "Mythic"}
+_LEVEL_RANGE_NAMES = {0: "L1_37", 1: "L38_49", 2: "L50_57", 3: "L58"}
+_SLOT_GROUP_NAMES = {0: "WeC", 1: "GeB"}
 
 
-# Map tier max_enchant_count to definition name
-_TIER_DEFINITION_NAMES = {
-    12: "enchantProgression12",
-    15: "enchantProgression15",
-}
+def _definition_name(tier_idx: int, level_range_idx: int, slot_group_idx: int) -> str:
+    """Compute definition name from group indices."""
+    return f"{_TIER_NAMES[tier_idx]}_{_LEVEL_RANGE_NAMES[level_range_idx]}_{_SLOT_GROUP_NAMES[slot_group_idx]}"
+
+
+def _collect_material_tiers(configs: list) -> dict:
+    """Collect unique (alkahest, feedstock) amount pairs per slot group, in order of first appearance."""
+    tiers = {0: [], 1: []}
+    seen = {0: set(), 1: set()}
+    for config in configs:
+        sg = config.slot_group_idx
+        for step in config.steps:
+            key = (step.alkahest_amount, step.feedstock_amount)
+            if key not in seen[sg]:
+                seen[sg].add(key)
+                tiers[sg].append(key)
+    return tiers
+
+
+def _step_mat_name(slot_group_idx: int, tier_index: int) -> str:
+    """Get step material definition name."""
+    return f"_{_SLOT_GROUP_NAMES[slot_group_idx]}_Mat_{chr(ord('A') + tier_index)}"
+
+
+def _build_step_mat_lookup(tiers: dict) -> dict:
+    """Build (slot_group_idx, alkahest, feedstock) -> definition name lookup."""
+    lookup = {}
+    for sg_idx, pairs in tiers.items():
+        for i, (alk, feed) in enumerate(pairs):
+            lookup[(sg_idx, alk, feed)] = _step_mat_name(sg_idx, i)
+    return lookup
+
+
+def _emit_step_material_definitions(lines: list, tiers: dict) -> None:
+    """Emit step material definitions for each slot group."""
+    for sg_idx in (0, 1):
+        sg_name = _SLOT_GROUP_NAMES[sg_idx]
+        lines.append(f"  # \u2500\u2500 {sg_name} material tiers \u2500\u2500")
+        for i, (alk, feed) in enumerate(tiers[sg_idx]):
+            name = _step_mat_name(sg_idx, i)
+            lines.append(f"  {name}:")
+            lines.append("    requiredMoney: 0")
+            lines.append("    materials:")
+            lines.append(f"      - id: {ALKAHEST_ID}")
+            lines.append("        type: Item")
+            lines.append(f"        amount: {alk}")
+            lines.append("      - id: $FEEDSTOCK_ID")
+            lines.append("        type: Item")
+            lines.append(f"        amount: {feed}")
+            lines.append("")
+
+
+def _emit_definition(lines: list, name: str, max_steps: int, steps: list,
+                     slot_group_idx: int, step_mat_lookup: dict) -> None:
+    """Emit a parameterized definition using step material $extends."""
+    lines.append(f"  {name}:")
+    lines.append("    $params: [ENCHANT_ID, FEEDSTOCK_ID]")
+    lines.append("    materialEnchantId: $ENCHANT_ID")
+    lines.append(f"    maxEnchantCount: {max_steps}")
+    lines.append("    materialItems:")
+    for step in steps:
+        mat_def = step_mat_lookup[(slot_group_idx, step.alkahest_amount, step.feedstock_amount)]
+        lines.append(f"      - $extends: {mat_def}")
+        lines.append(f"        enchantStep: {step.step}")
+        lines.append(f"        enchantProb: {format_prob(step.prob)}")
 
 
 def _group_key(config: MaterialEnchantConfig) -> tuple:
@@ -248,76 +284,34 @@ def _group_key(config: MaterialEnchantConfig) -> tuple:
     return (config.tier_idx, config.level_range_idx, config.slot_group_idx)
 
 
-def _emit_individual_entries(lines: list, group: list) -> None:
-    """Emit individual YAML entries for a group of configs (non-loop)."""
+def _emit_entries(lines: list, group: list, def_name: str) -> None:
+    """Emit compact $extends + $with entries for a group of configs."""
     first = group[0]
     tier_label = "mythic" if first.tier_idx == 1 else "default"
     step_count = first.max_enchant_count
 
-    if first.tier_idx == 0:
-        comment = f"    # \u2500\u2500 {first.slot_group_name}, Level {first.level_range_str} \u2500\u2500"
+    if len(group) == 1:
+        rank_desc = f"Rank {first.rank}"
     else:
-        comment = f"    # \u2500\u2500 {first.slot_group_name}, Level {first.level_range_str} ({tier_label} {step_count}-step) \u2500\u2500"
-    lines.append(comment)
+        rank_desc = f"Ranks {group[0].rank}..{group[-1].rank}"
+
+    if first.tier_idx == 0:
+        lines.append(f"    # \u2500\u2500 {first.slot_group_name}, Level {first.level_range_str}, {rank_desc} \u2500\u2500")
+    else:
+        lines.append(f"    # \u2500\u2500 {first.slot_group_name}, Level {first.level_range_str}, {rank_desc} ({tier_label} {step_count}-step) \u2500\u2500")
 
     for config in group:
         feedstock_id = FEEDSTOCK_BASE_ID + config.rank
-        def_name = _TIER_DEFINITION_NAMES[config.max_enchant_count]
-
-        probs = [format_prob(s.prob) for s in config.steps]
-        alkahest = [s.alkahest_amount for s in config.steps]
-        feedstock = [s.feedstock_amount for s in config.steps]
-
-        lines.append(f"    - materialEnchantId: {config.material_enchant_id}")
-        lines.append(f"      maxEnchantCount: {config.max_enchant_count}")
-        lines.append("      materialItems:")
-        lines.append(f"        $extends: {def_name}")
-        lines.append("        $with:")
-        lines.append(f"          probs: {format_array(probs)}")
-        lines.append(f"          alkahest: {format_array(alkahest)}")
-        lines.append(f"          feedstock: {format_array(feedstock)}")
-        lines.append(f"          feedstockId: {feedstock_id}")
-        lines.append("")
-
-
-def _emit_loop_block(lines: list, group: list) -> None:
-    """Emit a $loop YAML block for a group of configs sharing the same arrays."""
-    representative = group[0]
-    def_name = _TIER_DEFINITION_NAMES[representative.max_enchant_count]
-    tier_label = "mythic" if representative.tier_idx == 1 else "default"
-    step_count = representative.max_enchant_count
-
-    probs = [format_prob(s.prob) for s in representative.steps]
-    alkahest = [s.alkahest_amount for s in representative.steps]
-    feedstock = [s.feedstock_amount for s in representative.steps]
-
-    base_id = 20000 + representative.tier_idx * 10000 + 3 * 1000 + representative.slot_group_idx * 100
-    rank_min = group[0].rank
-    rank_max = group[-1].rank
-
-    lines.append(f"    # \u2500\u2500 {representative.slot_group_name}, Level {representative.level_range_str}, Ranks {rank_min}..{rank_max} ({tier_label} {step_count}-step) \u2500\u2500")
-    lines.append("    - $loop:")
-    lines.append(f"        range: {rank_min}..{rank_max}")
-    lines.append("        as: rank")
-    lines.append("      template:")
-    lines.append(f"        materialEnchantId: ${{ {base_id} + $rank }}")
-    lines.append(f"        maxEnchantCount: {step_count}")
-    lines.append("        materialItems:")
-    lines.append(f"          $extends: {def_name}")
-    lines.append("          $with:")
-    lines.append(f"            probs: {format_array(probs)}")
-    lines.append(f"            alkahest: {format_array(alkahest)}")
-    lines.append(f"            feedstock: {format_array(feedstock)}")
-    lines.append(f"            feedstockId: ${{ {FEEDSTOCK_BASE_ID} + $rank }}")
-    lines.append("")
+        lines.append(f"    - $extends: {def_name}")
+        lines.append(f"      $with: {{ ENCHANT_ID: {config.material_enchant_id}, FEEDSTOCK_ID: {feedstock_id} }}")
 
 
 def generate_material_enchants_yaml(configs: list) -> str:
-    """Generate the materialEnchants YAML spec using DSL expansion system."""
+    """Generate the materialEnchants YAML spec using parameterized definitions."""
     lines = [
         "# Enchant Materials System - MaterialEnchantData",
         "# Auto-generated by generate_enchant_materials.py",
-        "# Uses DSL expansion system ($repeat, $extends, $with, $loop)",
+        "# Uses DSL parameterized definitions ($extends, $with, $params)",
         "",
         "spec:",
         '  version: "1.0"',
@@ -326,26 +320,33 @@ def generate_material_enchants_yaml(configs: list) -> str:
         "definitions:",
     ]
 
-    # Emit one definition per unique tier step count
-    seen = set()
-    for tier_idx, max_enchant_count, _ in ENCHANT_TIERS:
-        if max_enchant_count not in seen:
-            seen.add(max_enchant_count)
-            def_name = _TIER_DEFINITION_NAMES[max_enchant_count]
-            lines.extend(_enchant_progression_definition(def_name, max_enchant_count))
-            lines.append("")
+    # Collect material tiers and build lookup
+    tiers = _collect_material_tiers(configs)
+    step_mat_lookup = _build_step_mat_lookup(tiers)
 
+    # Emit step material definitions
+    _emit_step_material_definitions(lines, tiers)
+
+    # Collect groups and emit entry definitions
+    groups = []
+    for key, group_iter in groupby(configs, key=_group_key):
+        groups.append((key, list(group_iter)))
+
+    for (tier_idx, level_range_idx, slot_group_idx), group in groups:
+        def_name = _definition_name(tier_idx, level_range_idx, slot_group_idx)
+        representative = group[0]
+        _emit_definition(lines, def_name, representative.max_enchant_count,
+                         representative.steps, slot_group_idx, step_mat_lookup)
+        lines.append("")
+
+    # Emit upsert entries
     lines.append("materialEnchants:")
     lines.append("  upsert:")
 
-    for key, group_iter in groupby(configs, key=_group_key):
-        group = list(group_iter)
-        _, level_range_idx, _ = key
-
-        if level_range_idx == 3:
-            _emit_loop_block(lines, group)
-        else:
-            _emit_individual_entries(lines, group)
+    for (tier_idx, level_range_idx, slot_group_idx), group in groups:
+        def_name = _definition_name(tier_idx, level_range_idx, slot_group_idx)
+        _emit_entries(lines, group, def_name)
+        lines.append("")
 
     return "\n".join(lines)
 

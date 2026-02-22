@@ -6,7 +6,7 @@ imports:
   - from: weapons
 
 definitions:
-  # Common properties for our specific reaper weapons (IDs 51056-51068)
+  # Common properties for our specific reaper weapons (IDs 71755-71769)
   # Extends weapons.chainBase which provides: weaponBase + chain/Soulless specifics
   ourReaperWeaponBase:
     $extends: weapons.chainBase
@@ -55,7 +55,7 @@ items:
   upsert:
     # Thalnim
     - $extends: reaperWeaponRare
-      id: 51056
+      id: 71755
       linkEquipmentId: 105095
       itemLevelId: 10144
       linkPassivityId:
@@ -72,7 +72,7 @@ items:
 
     # Sardonal
     - $extends: reaperWeaponRare
-      id: 51057
+      id: 71756
       linkEquipmentId: 105095
       itemLevelId: 10139
       linkPassivityId:
@@ -89,7 +89,7 @@ items:
 
     # Adroitsum
     - $extends: reaperWeaponRare
-      id: 51058
+      id: 71757
       linkEquipmentId: 105096
       itemLevelId: 10139
       linkPassivityId:
@@ -104,9 +104,45 @@ items:
       equipment:
         computed: true
 
-    # Frostfire
+    # Frostfire Ice
+    - $extends: reaperWeaponRare
+      id: 71768
+      linkEquipmentId: 105169
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317134"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Icefangs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Frostfire Fire
+    - $extends: reaperWeaponRare
+      id: 71769
+      linkEquipmentId: 105169
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317144"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Blazearcs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Flawless Frostfire Fire
     - $extends: reaperWeaponSuperior
-      id: 51059
+      id: 71758
       linkEquipmentId: 105097
       itemLevelId: 10142
       linkPassivityId:
@@ -122,9 +158,9 @@ items:
       equipment:
         computed: true
 
-    # Frostfire
+    # Flawless Frostfire Ice
     - $extends: reaperWeaponSuperior
-      id: 51060
+      id: 71759
       linkEquipmentId: 105098
       itemLevelId: 10142
       linkPassivityId:
@@ -142,7 +178,7 @@ items:
 
     # Dreamkeeper
     - $extends: reaperWeaponSuperior
-      id: 51061
+      id: 71760
       linkEquipmentId: 105098
       itemLevelId: 10148
       linkPassivityId:
@@ -160,7 +196,7 @@ items:
 
     # Agnitor
     - $extends: reaperWeaponRare
-      id: 51062
+      id: 71761
       linkEquipmentId: 105099
       itemLevelId: 10158
       linkPassivityId:
@@ -178,7 +214,7 @@ items:
 
     # Discord
     - $extends: reaperWeaponRare
-      id: 51063
+      id: 71762
       linkEquipmentId: 105099
       itemLevelId: 10150
       linkPassivityId:
@@ -196,7 +232,7 @@ items:
 
     # Abyss
     - $extends: reaperWeaponRare
-      id: 51064
+      id: 71763
       linkEquipmentId: 105100
       itemLevelId: 10158
       linkPassivityId:
@@ -214,7 +250,7 @@ items:
 
     # Regent
     - $extends: reaperWeaponRare
-      id: 51065
+      id: 71764
       linkEquipmentId: 105101
       itemLevelId: 10165
       linkPassivityId:
@@ -233,7 +269,7 @@ items:
 
     # Visionmaker
     - $extends: reaperWeaponSuperior
-      id: 51066
+      id: 71765
       linkEquipmentId: 105102
       itemLevelId: 10165
       linkPassivityId:
@@ -253,7 +289,7 @@ items:
 
     # Steadfast
     - $extends: reaperWeaponRare
-      id: 51067
+      id: 71766
       linkEquipmentId: 104911
       itemLevelId: 10179
       linkPassivityId:
@@ -269,7 +305,7 @@ items:
 
     # Nightforge PVE
     - $extends: reaperWeaponSuperior
-      id: 51068
+      id: 71767
       linkEquipmentId: 104895
       itemLevelId: 10183
       linkPassivityId:

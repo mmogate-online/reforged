@@ -1,0 +1,194 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Shared item template for Frostfire upgrade tokens
+  frostfireTokenBase:
+    name: generalMaterial
+    combatItemType: EQUIP_INHERITANCE
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 3
+    level: 58
+    requiredLevel: 58
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 2
+    buyPrice: 100000
+    sellPrice: 10000000
+    divide: 0
+    maxStack: 10000
+    itemUseCount: 1
+    maxDropUnit: 9999
+    enchantEnable: false
+    tradable: false
+    boundType: None
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    storeSellable: true
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    icon: Icon_Items.solventK7_Tex
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+    defaultValue: 100000
+
+  # Shared inheritance flags for Frostfire tokens
+  frostfireInheritanceBase:
+    masterpiece: true
+    awaken: false
+    enchant: true
+    scroll: true
+    artifact: true
+
+# ===========================================================================
+# Frostfire Upgrade Tokens
+# ===========================================================================
+# Converts Sardonal or Adroitsum gear to Frostfire set.
+# Weapons branch into Ice or Fire variants; armor is shared.
+# Token ID range: 270001-270002 (reserved: 270000-270199)
+#
+# ===========================================================================
+
+items:
+  upsert:
+    - $extends: frostfireTokenBase
+      id: 270001
+      strings:
+        name: "Frostfire Ice Token"
+        toolTip: "Converts Sardonal or Adroitsum equipment to Frostfire Ice gear. The source equipment is destroyed, but its enchantment effects, masterwork status, permanent etchings, and any currently equipped Dyad crystals will be transferred to the Frostfire Ice gear.&lt;font color='#2478FF'&gt; The resulting Frostfire Ice gear cannot be traded.&lt;/font&gt;&lt;br&gt;[To use, right-click on the token and left-click on the target equipment.]"
+
+    - $extends: frostfireTokenBase
+      id: 270002
+      strings:
+        name: "Frostfire Fire Token"
+        toolTip: "Converts Sardonal or Adroitsum equipment to Frostfire Fire gear. The source equipment is destroyed, but its enchantment effects, masterwork status, permanent etchings, and any currently equipped Dyad crystals will be transferred to the Frostfire Fire gear.&lt;font color='#2478FF'&gt; The resulting Frostfire Fire gear cannot be traded.&lt;/font&gt;&lt;br&gt;[To use, right-click on the token and left-click on the target equipment.]"
+
+equipmentInheritance:
+  upsert:
+    # ── Ice Token ──────────────────────────────────────────────────────────
+    - $extends: frostfireInheritanceBase
+      templateId: 270001
+      inheritInfos:
+        # ── Sardonal → Frostfire Ice (Weapons) ──
+        - { targetTemplateId: 18684, resultTemplateId: 18633 }   # dual
+        - { targetTemplateId: 18685, resultTemplateId: 18634 }   # lance
+        - { targetTemplateId: 18686, resultTemplateId: 18635 }   # twohand
+        - { targetTemplateId: 18687, resultTemplateId: 18636 }   # axe
+        - { targetTemplateId: 18688, resultTemplateId: 18637 }   # circle
+        - { targetTemplateId: 18689, resultTemplateId: 18638 }   # bow
+        - { targetTemplateId: 18690, resultTemplateId: 18639 }   # staff
+        - { targetTemplateId: 18691, resultTemplateId: 18640 }   # rod
+        - { targetTemplateId: 55428, resultTemplateId: 55424 }   # blaster
+        - { targetTemplateId: 58042, resultTemplateId: 58038 }   # shuriken
+        - { targetTemplateId: 59476, resultTemplateId: 59472 }   # glaive
+        - { targetTemplateId: 82428, resultTemplateId: 82424 }   # gauntlet
+        - { targetTemplateId: 71756, resultTemplateId: 71768 }  # chain
+        # ── Sardonal → Frostfire (Armor) ──
+        - { targetTemplateId: 18692, resultTemplateId: 18312 }   # bodyMail
+        - { targetTemplateId: 18695, resultTemplateId: 18315 }   # bodyLeather
+        - { targetTemplateId: 18698, resultTemplateId: 18318 }   # bodyRobe
+        - { targetTemplateId: 18693, resultTemplateId: 18313 }   # handMail
+        - { targetTemplateId: 18696, resultTemplateId: 18316 }   # handLeather
+        - { targetTemplateId: 18699, resultTemplateId: 18319 }   # handRobe
+        - { targetTemplateId: 18694, resultTemplateId: 18742 }   # feetMail
+        - { targetTemplateId: 18697, resultTemplateId: 18745 }   # feetLeather
+        - { targetTemplateId: 18700, resultTemplateId: 18748 }   # feetRobe
+        # ── Adroitsum → Frostfire Ice (Weapons) ──
+        - { targetTemplateId: 18721, resultTemplateId: 18633 }   # dual
+        - { targetTemplateId: 18722, resultTemplateId: 18634 }   # lance
+        - { targetTemplateId: 18723, resultTemplateId: 18635 }   # twohand
+        - { targetTemplateId: 18724, resultTemplateId: 18636 }   # axe
+        - { targetTemplateId: 18725, resultTemplateId: 18637 }   # circle
+        - { targetTemplateId: 18726, resultTemplateId: 18638 }   # bow
+        - { targetTemplateId: 18727, resultTemplateId: 18639 }   # staff
+        - { targetTemplateId: 18728, resultTemplateId: 18640 }   # rod
+        - { targetTemplateId: 55430, resultTemplateId: 55424 }   # blaster
+        - { targetTemplateId: 58044, resultTemplateId: 58038 }   # shuriken
+        - { targetTemplateId: 59478, resultTemplateId: 59472 }   # glaive
+        - { targetTemplateId: 82430, resultTemplateId: 82424 }   # gauntlet
+        - { targetTemplateId: 71757, resultTemplateId: 71768 }  # chain
+        # ── Adroitsum → Frostfire (Armor) ──
+        - { targetTemplateId: 18729, resultTemplateId: 18312 }   # bodyMail
+        - { targetTemplateId: 18732, resultTemplateId: 18315 }   # bodyLeather
+        - { targetTemplateId: 18735, resultTemplateId: 18318 }   # bodyRobe
+        - { targetTemplateId: 18730, resultTemplateId: 18313 }   # handMail
+        - { targetTemplateId: 18733, resultTemplateId: 18316 }   # handLeather
+        - { targetTemplateId: 18736, resultTemplateId: 18319 }   # handRobe
+        - { targetTemplateId: 18731, resultTemplateId: 18742 }   # feetMail
+        - { targetTemplateId: 18734, resultTemplateId: 18745 }   # feetLeather
+        - { targetTemplateId: 18737, resultTemplateId: 18748 }   # feetRobe
+
+    # ── Fire Token ─────────────────────────────────────────────────────────
+    - $extends: frostfireInheritanceBase
+      templateId: 270002
+      inheritInfos:
+        # ── Sardonal → Frostfire Fire (Weapons) ──
+        - { targetTemplateId: 18684, resultTemplateId: 18641 }   # dual
+        - { targetTemplateId: 18685, resultTemplateId: 18642 }   # lance
+        - { targetTemplateId: 18686, resultTemplateId: 18643 }   # twohand
+        - { targetTemplateId: 18687, resultTemplateId: 18644 }   # axe
+        - { targetTemplateId: 18688, resultTemplateId: 18645 }   # circle
+        - { targetTemplateId: 18689, resultTemplateId: 18646 }   # bow
+        - { targetTemplateId: 18690, resultTemplateId: 18647 }   # staff
+        - { targetTemplateId: 18691, resultTemplateId: 18648 }   # rod
+        - { targetTemplateId: 55428, resultTemplateId: 55425 }   # blaster
+        - { targetTemplateId: 58042, resultTemplateId: 58039 }   # shuriken
+        - { targetTemplateId: 59476, resultTemplateId: 59473 }   # glaive
+        - { targetTemplateId: 82428, resultTemplateId: 82425 }   # gauntlet
+        - { targetTemplateId: 71756, resultTemplateId: 71769 }  # chain
+        # ── Sardonal → Frostfire (Armor) ──
+        - { targetTemplateId: 18692, resultTemplateId: 18312 }   # bodyMail
+        - { targetTemplateId: 18695, resultTemplateId: 18315 }   # bodyLeather
+        - { targetTemplateId: 18698, resultTemplateId: 18318 }   # bodyRobe
+        - { targetTemplateId: 18693, resultTemplateId: 18313 }   # handMail
+        - { targetTemplateId: 18696, resultTemplateId: 18316 }   # handLeather
+        - { targetTemplateId: 18699, resultTemplateId: 18319 }   # handRobe
+        - { targetTemplateId: 18694, resultTemplateId: 18742 }   # feetMail
+        - { targetTemplateId: 18697, resultTemplateId: 18745 }   # feetLeather
+        - { targetTemplateId: 18700, resultTemplateId: 18748 }   # feetRobe
+        # ── Adroitsum → Frostfire Fire (Weapons) ──
+        - { targetTemplateId: 18721, resultTemplateId: 18641 }   # dual
+        - { targetTemplateId: 18722, resultTemplateId: 18642 }   # lance
+        - { targetTemplateId: 18723, resultTemplateId: 18643 }   # twohand
+        - { targetTemplateId: 18724, resultTemplateId: 18644 }   # axe
+        - { targetTemplateId: 18725, resultTemplateId: 18645 }   # circle
+        - { targetTemplateId: 18726, resultTemplateId: 18646 }   # bow
+        - { targetTemplateId: 18727, resultTemplateId: 18647 }   # staff
+        - { targetTemplateId: 18728, resultTemplateId: 18648 }   # rod
+        - { targetTemplateId: 55430, resultTemplateId: 55425 }   # blaster
+        - { targetTemplateId: 58044, resultTemplateId: 58039 }   # shuriken
+        - { targetTemplateId: 59478, resultTemplateId: 59473 }   # glaive
+        - { targetTemplateId: 82430, resultTemplateId: 82425 }   # gauntlet
+        - { targetTemplateId: 71757, resultTemplateId: 71769 }  # chain
+        # ── Adroitsum → Frostfire (Armor) ──
+        - { targetTemplateId: 18729, resultTemplateId: 18312 }   # bodyMail
+        - { targetTemplateId: 18732, resultTemplateId: 18315 }   # bodyLeather
+        - { targetTemplateId: 18735, resultTemplateId: 18318 }   # bodyRobe
+        - { targetTemplateId: 18730, resultTemplateId: 18313 }   # handMail
+        - { targetTemplateId: 18733, resultTemplateId: 18316 }   # handLeather
+        - { targetTemplateId: 18736, resultTemplateId: 18319 }   # handRobe
+        - { targetTemplateId: 18731, resultTemplateId: 18742 }   # feetMail
+        - { targetTemplateId: 18734, resultTemplateId: 18745 }   # feetLeather
+        - { targetTemplateId: 18737, resultTemplateId: 18748 }   # feetRobe

@@ -5,9 +5,10 @@ spec:
 # =============================================================================
 # CRAFTING RECIPES FOR MISSING ITEMS
 # =============================================================================
-# Creates crafting recipes for 19 items across 3 crafted sets:
+# Creates crafting recipes for 21 items across 4 crafted sets:
 # - Visionmaker (8 items): 4 weapons + 4 chest armor
 # - Nightforge PVE (8 items): 4 weapons + 4 chest armor (upgrades from Visionmaker)
+# - Flawless Frostfire (2 items): 2 weapons (upgrades from Regular Frostfire)
 # - Dreamkeeper (3 items): 3 weapons
 #
 # Each recipe creates both the Recipe entry and the Design item automatically
@@ -154,7 +155,7 @@ itemProduceRecipes:
     - id: 27375
       $extends: vmWeaponRecipeBase
       categoryId: 1210
-      result: { id: 51066, count: 1 }
+      result: { id: 71765, count: 1 }
       item:
         $extends: vmDesignBase
         name: "dreamscythes_design"
@@ -219,16 +220,16 @@ itemProduceRecipes:
     # Upgrade path: Nightforge = upgrade materials + Visionmaker item
     # =========================================================================
 
-    # Chain: Shardfangs (upgrades from Dreamscythes 51066)
+    # Chain: Shardfangs (upgrades from Dreamscythes 71765)
     - id: 27381
       $extends: nfWeaponRecipeBase
       categoryId: 1210
-      result: { id: 51068, count: 1 }
+      result: { id: 71767, count: 1 }
       materials:
         - { id: 71380, count: 15 }
         - { id: 71377, count: 5 }
         - { id: 71379, count: 5 }
-        - { id: 51066, count: 1 }
+        - { id: 71765, count: 1 }
       item:
         $extends: nfDesignBase
         name: "shardfangs_design"
@@ -345,6 +346,63 @@ itemProduceRecipes:
         icon: "Icon_Items.recipearmor_bodyleather_Tex"
 
     # =========================================================================
+    # FLAWLESS FROSTFIRE WEAPONS (2 items)
+    # =========================================================================
+    # Upgrade path: Regular Frostfire weapon + crafting materials
+    # Recipe pattern matches vanilla Flawless Frostfire recipes:
+    #   needSkillId=27, exp=859664, subFatiguePoint=200, addOnSuccessProf=80
+
+    # Chain: Flawless Icefangs (upgrades from Icefangs 71768)
+    - id: 27392
+      obtainable: true
+      needSkillId: 27
+      needGrade: 0
+      needSkillProf: 400
+      maxSkillProf: 500
+      exp: "859664"
+      subFatiguePoint: 200
+      addOnSuccessProf: 80
+      categoryId: 1210
+      result: { id: 71759, count: 1 }
+      materials:
+        - { id: 71768, count: 1 }
+        - { id: 530, count: 15 }
+        - { id: 510, count: 50 }
+        - { id: 1629, count: 5 }
+      item:
+        level: 58
+        rareGrade: 1
+        buyPrice: 64560
+        sellPrice: 64560
+        name: "flawless_icefangs_design"
+        icon: "Icon_Items.recipeweapon_chain_Tex"
+
+    # Chain: Flawless Blazearcs (upgrades from Blazearcs 71769)
+    - id: 27393
+      obtainable: true
+      needSkillId: 27
+      needGrade: 0
+      needSkillProf: 400
+      maxSkillProf: 500
+      exp: "859664"
+      subFatiguePoint: 200
+      addOnSuccessProf: 80
+      categoryId: 1210
+      result: { id: 71758, count: 1 }
+      materials:
+        - { id: 71769, count: 1 }
+        - { id: 530, count: 15 }
+        - { id: 510, count: 50 }
+        - { id: 1629, count: 5 }
+      item:
+        level: 58
+        rareGrade: 1
+        buyPrice: 64560
+        sellPrice: 64560
+        name: "flawless_blazearcs_design"
+        icon: "Icon_Items.recipeweapon_chain_Tex"
+
+    # =========================================================================
     # DREAMKEEPER WEAPONS (3 items)
     # =========================================================================
 
@@ -352,7 +410,7 @@ itemProduceRecipes:
     - id: 27389
       $extends: dkWeaponRecipeBase
       categoryId: 1210
-      result: { id: 51061, count: 1 }
+      result: { id: 71760, count: 1 }
       item:
         $extends: dkDesignBase
         name: "nightpiercers_design"
@@ -440,6 +498,14 @@ itemStrings:
       toolTip: "Use this design to learn the corresponding crafting skill."
     - id: 27388
       name: "Design: Shadevest"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+
+    # Flawless Frostfire Weapons
+    - id: 27392
+      name: "Design: Flawless Icefangs"
+      toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 27393
+      name: "Design: Flawless Blazearcs"
       toolTip: "Use this design to learn the corresponding crafting skill."
 
     # Dreamkeeper Weapons

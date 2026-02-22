@@ -38,28 +38,30 @@ variables:
   SOURCE_HANDMAIL: 18394  # handMail — Nemesis Fists
   SOURCE_HANDLEATHER: 18397  # handLeather — Pestilence Grips
   SOURCE_HANDROBE: 18400  # handRobe — Frostwrath Sleeves
+  SOURCE_WEAPON_SHURIKEN: 58016  # shuriken — Fatewort Star
 
   # ── Result Gear ──
-  TARGET_WEAPON_DUAL: 12393  # dual — Fiend & Foe
-  TARGET_WEAPON_LANCE: 12394  # lance — Aegis of the People
-  TARGET_WEAPON_TWOHAND: 12395  # twohand — Tyrant Reaver
-  TARGET_WEAPON_AXE: 12396  # axe — Despot Dispatch
-  TARGET_WEAPON_CIRCLE: 12397  # circle — Mandala of Reflection
-  TARGET_WEAPON_BOW: 12398  # bow — Triumphant Arc
-  TARGET_WEAPON_STAFF: 12399  # staff — Temperence
-  TARGET_WEAPON_ROD: 12400  # rod — Civil Disobedience
-  TARGET_WEAPON_BLASTER: 55304  # blaster — Abatis Barrel
-  TARGET_WEAPON_GLAIVE: 59352  # glaive — Animospear
-  TARGET_WEAPON_GAUNTLET: 82304  # gauntlet — Fists of the Ebon Tower
-  TARGET_FEETMAIL: 17694  # feetMail — Greaves of Agony
-  TARGET_FEETLEATHER: 17697  # feetLeather — Treads of the Decimator
-  TARGET_FEETROBE: 17700  # feetRobe — Slippers of Slaying
-  TARGET_BODYMAIL: 17692  # bodyMail — Hauberk of Slaughter
-  TARGET_BODYLEATHER: 17695  # bodyLeather — Harness of Vardas
-  TARGET_BODYROBE: 17698  # bodyRobe — Robes of Annihilation
-  TARGET_HANDMAIL: 17693  # handMail — Gauntlets of Gore
-  TARGET_HANDLEATHER: 17696  # handLeather — Deathtouch Gloves
-  TARGET_HANDROBE: 17699  # handRobe — Carnage Handwraps
+  TARGET_WEAPON_DUAL: 18684  # dual — Brother & Sister
+  TARGET_WEAPON_LANCE: 18685  # lance — Insanity Defense
+  TARGET_WEAPON_TWOHAND: 18686  # twohand — Sharpened Steel Tongue
+  TARGET_WEAPON_AXE: 18687  # axe — Pain Riddler
+  TARGET_WEAPON_CIRCLE: 18688  # circle — Foolscape
+  TARGET_WEAPON_BOW: 18689  # bow — Death Chord
+  TARGET_WEAPON_STAFF: 18690  # staff — Fool's Stick
+  TARGET_WEAPON_ROD: 18691  # rod — Dichotomata
+  TARGET_WEAPON_BLASTER: 55428  # blaster — Maddener
+  TARGET_WEAPON_GLAIVE: 59476  # glaive — Lunawack
+  TARGET_WEAPON_GAUNTLET: 82428  # gauntlet — Fists of Menace
+  TARGET_FEETMAIL: 18694  # feetMail — Spiritcrushers
+  TARGET_FEETLEATHER: 18697  # feetLeather — Giggleboots
+  TARGET_FEETROBE: 18700  # feetRobe — Tickletoes
+  TARGET_BODYMAIL: 18692  # bodyMail — Bloodsoaked Chainmail
+  TARGET_BODYLEATHER: 18695  # bodyLeather — Darkhearted Jerkin
+  TARGET_BODYROBE: 18698  # bodyRobe — Twisting Robes
+  TARGET_HANDMAIL: 18693  # handMail — Dark Shredders
+  TARGET_HANDLEATHER: 18696  # handLeather — Humored Applause
+  TARGET_HANDROBE: 18699  # handRobe — Trick Sleeves
+  TARGET_WEAPON_SHURIKEN: 58042  # shuriken — Mockingstar
 
 # ===========================================================================
 # Thalnim Gear Set — Suryati's Peak
@@ -90,6 +92,8 @@ evolutionPaths:
       $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: KeyruneOfSharaAeruPath }
     - $extends: EvolutionItem
       $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: KeyruneOfSharaAeruPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: KeyruneOfSharaAeruPath }
     # ── Armor: Keyrune of Arun x1 + Aeru Rune x1 ──
     - $extends: EvolutionItem
       $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: KeyruneOfArunAeruPath }
