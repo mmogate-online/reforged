@@ -33,6 +33,7 @@ ENTITY_SYNC_MAP = {
     "eCompensations": None,
     "fCompensations": None,
     "iCompensations": None,
+    "gachaItems": "Gacha",
 }
 
 # Entity keys whose inline blocks imply additional sync entities
@@ -40,6 +41,7 @@ ENTITY_SYNC_MAP = {
 INLINE_STRING_SYNC = {
     "items": "StrSheet_Item",
     "enchantPassivityCategories": ["Passivity", "StrSheet_Passivity"],
+    "gachaItems": ["ItemData", "StrSheet_Item"],
 }
 
 ENTITY_KEY_PATTERN = re.compile(r"^(" + "|".join(ENTITY_SYNC_MAP.keys()) + r"):")

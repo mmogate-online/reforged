@@ -102,6 +102,28 @@ entities:
     xsd_file: "MaterialEnchantData/MaterialEnchantData.xsd"
 
   # ===========================================================================
+  # GACHA DATA
+  # ===========================================================================
+  # Gacha loot box definitions (random reward pools, fixed rewards).
+  # Regional variants map 1:1 like ItemData.
+
+  Gacha:
+    strategy: SourceMapped
+    client_folder: "Gacha"
+    root_element: "Gacha"
+    id_attribute: "itemTemplateId"
+    xsd_file: "Gacha/Gacha.xsd"
+    source_mapping:
+      "Gacha.xml": "Gacha-00000.xml"
+      "Gacha_JP.xml": "Gacha-00001.xml"
+      "Gacha_KR.xml": "Gacha-00002.xml"
+      "Gacha_NAEU.xml": "Gacha-00003.xml"
+      "Gacha_RUS.xml": "Gacha-00004.xml"
+      "Gacha_THA.xml": "Gacha-00005.xml"
+      "Gacha_Tool.xml": "Gacha-00006.xml"
+      "Gacha_TW.xml": "Gacha-00007.xml"
+
+  # ===========================================================================
   # ITEM DATA
   # ===========================================================================
   # ItemTemplate files are split by region/purpose. Each server file maps to a

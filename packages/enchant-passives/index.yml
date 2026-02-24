@@ -109,6 +109,17 @@ definitions:
       name: "[Masterwork] [Random] Weapon_crit Power increase"
       tooltip: "Increase Crit Power by $value."
 
+  WeaponProneDamage:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Weapon_Prone Target Damage"
+    type: 152
+    method: 3
+    condition: 21
+    conditionValue: 2
+    passivityStrings:
+      name: "[Masterwork] [Random] Weapon_more damage to prone target"
+      tooltip: "Increases damage by $value when attacking knocked-down targets."
+
   # =============================================================================
   # WEAPON - HEALER RANDOM POOL DEFINITIONS
   # =============================================================================
@@ -205,6 +216,17 @@ definitions:
     passivityStrings:
       name: "[Masterwork] [Random] Chest_less damage from most aggro"
       tooltip: "Decreases damage by $value from the monster with the most aggro toward you."
+
+  ChestProneDamageReduction:
+    $extends: _PassivityBase
+    name: "[Masterwork][Random] Chest_Prone Damage Reduction"
+    type: 102
+    method: 3
+    condition: 11
+    conditionValue: 2
+    passivityStrings:
+      name: "[Masterwork] [Random] Chest_less damage while knocked down"
+      tooltip: "Decreases damage from attacks by $value while knocked down."
 
   # =============================================================================
   # GLOVES - DPS/TANK RANDOM POOL DEFINITIONS
@@ -442,6 +464,7 @@ exports:
     - WeaponMostAggroDamage
     - WeaponAttackSpeed
     - WeaponCritPower
+    - WeaponProneDamage
     # Weapon Healer Random
     - WeaponMPRecoveryOnSkill
     - WeaponCritFactor
@@ -452,6 +475,7 @@ exports:
     - ChestEnragedDamageReduction
     - ChestMaxHP
     - ChestMostAggroDamageReduction
+    - ChestProneDamageReduction
     # Gloves Random (hybrid pools - shared across DPS/Tank and Healer)
     - GlovesAttackSpeed
     - GlovesCritFactor

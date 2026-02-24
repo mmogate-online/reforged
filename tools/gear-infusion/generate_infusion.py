@@ -4,8 +4,9 @@ Generate YAML specs for the Gear Infusion System.
 
 Reads gear_infusion_passivity.csv and generates a single combined file with:
 - enchantPassivityCategories (with inline passivities + passivityStrings)
-- Infusion items per equipment slot, replicated across decomposition tiers
+- Infusion items per equipment slot
 - Equipment entries for each item
+- Gacha boxes (one per slot × grade)
 
 Usage:
     python generate_infusion.py
@@ -31,6 +32,8 @@ OUTPUT_ITEMS = REFORGED_DIR / "specs" / "gear-infusion-items.yaml"
 PASSIVITY_ID_SEED = 9000000
 PASSIVITY_CATEGORY_ID_SEED = 900000
 ITEM_ID_SEED = 860000
+EQUIPMENT_ID_SEED = 900860000
+GACHA_ID_SEED = 602049
 
 # Passivities per category (1 = deterministic, no RNG on stat value)
 ROLLS_PER_CATEGORY = 1
@@ -46,17 +49,7 @@ GRADES = [
 # Total gradient steps = len(GRADES) * ROLLS_PER_CATEGORY = 3
 GRADIENT_STEPS = len(GRADES) * ROLLS_PER_CATEGORY
 
-# Decomposition tiers — each tier is a full replica of all items with a different decompositionId
-# 2000-wide ID blocks per tier (server hard cap: item ID < 1000000)
-DECOMP_TIERS = [
-    {"tier": 1, "id_offset": 0, "numeral": "I"},
-    {"tier": 2, "id_offset": 2000, "numeral": "II"},
-    {"tier": 3, "id_offset": 4000, "numeral": "III"},
-    {"tier": 4, "id_offset": 6000, "numeral": "IV"},
-]
-
-# Decomposition ID base (from DecompositionData.xml lines 3085-3128)
-# Formula: DECOMP_ID_BASE + (tier-1)*2 + gear_group_offset
+# Decomposition ID base (from DecompositionData.xml)
 # gear_group_offset: 0 = weapon/body (48 feedstock), 1 = arm/leg (24 feedstock)
 DECOMP_ID_BASE = 206861
 
@@ -371,10 +364,10 @@ def generate_passivity_name(definition: PassiveDefinition, grade: dict, roll: in
     return f"TIER{grade['id']}_{prefix}_{definition.passive_attribute}_R{roll}"
 
 
-def get_decomposition_id(combat_item_type: str, decomp_tier: int) -> int:
-    """Calculate decompositionId from slot type and decomposition tier."""
+def get_decomposition_id(combat_item_type: str) -> int:
+    """Calculate decompositionId from slot type."""
     gear_group_offset = 0 if combat_item_type in WEAPON_BODY_SLOTS else 1
-    return DECOMP_ID_BASE + (decomp_tier - 1) * 2 + gear_group_offset
+    return DECOMP_ID_BASE + gear_group_offset
 
 
 def generate_categories_yaml(definitions: list[PassiveDefinition]) -> tuple[list[str], list[dict]]:
@@ -456,8 +449,26 @@ def generate_categories_yaml(definitions: list[PassiveDefinition]) -> tuple[list
     return lines, passivity_data
 
 
-def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: list[dict]) -> list[str]:
-    """Generate YAML for infusion items, expanded across subtypes and decomposition tiers."""
+def build_equipment_index() -> dict:
+    """Build shared equipment index: (grade_id, combat_item_type, subtype_id) -> equipment_id.
+
+    All infusion items with the same grade + slot + subtype share one equipment entry.
+    """
+    index = {}
+    equipment_id = EQUIPMENT_ID_SEED
+
+    for slot_type, slot_config in SLOTS.items():
+        for subtype in slot_config["subtypes"]:
+            for grade in GRADES:
+                index[(grade["id"], slot_type, subtype["id"])] = equipment_id
+                equipment_id += 1
+
+    return index
+
+
+def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: list[dict],
+                        equipment_index: dict) -> list[str]:
+    """Generate YAML for infusion items, expanded across subtypes."""
     lines = [
         "items:",
         "  upsert:",
@@ -469,135 +480,224 @@ def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: li
         key = (data["definition"].order, data["grade"]["id"])
         data_by_key[key] = data
 
-    for decomp in DECOMP_TIERS:
-        item_id = ITEM_ID_SEED + decomp["id_offset"]
-        numeral = decomp["numeral"]
-        tier = decomp["tier"]
+    item_id = ITEM_ID_SEED
 
-        lines.append(f"    # === Decomposition Tier {tier} ({numeral}) ===")
+    for definition in definitions:
+        slot_config = SLOTS.get(definition.combat_item_type, {})
+        subtypes = slot_config.get("subtypes", [])
+        decomposition_id = get_decomposition_id(definition.combat_item_type)
 
-        for definition in definitions:
-            slot_config = SLOTS.get(definition.combat_item_type, {})
-            subtypes = slot_config.get("subtypes", [])
-            decomposition_id = get_decomposition_id(definition.combat_item_type, tier)
+        for grade in GRADES:
+            key = (definition.order, grade["id"])
+            data = data_by_key.get(key)
+            if not data:
+                continue
 
-            for grade in GRADES:
-                key = (definition.order, grade["id"])
-                data = data_by_key.get(key)
-                if not data:
-                    continue
+            category_id = data["category_id"]
+            grade_template = f"infusionItem{grade['name']}"
 
-                category_id = data["category_id"]
-                grade_template = f"infusionItem{grade['name']}"
+            for subtype in subtypes:
+                item_name = f"Infusion {subtype['display']} {definition.suffix}"
+                internal_name = f"infusion_{subtype['id']}_{definition.passive_attribute.lower()}_t{grade['id']}"
+                link_equipment_id = equipment_index[(grade["id"], definition.combat_item_type, subtype["id"])]
 
-                for subtype in subtypes:
-                    item_name = f"Infusion {subtype['display']} {definition.suffix} {numeral}"
-                    internal_name = f"infusion_{subtype['id']}_{definition.passive_attribute.lower()}_t{grade['id']}_d{tier}"
-                    link_equipment_id = 900000000 + item_id
+                lines.append(f"    # {item_name} ({grade['name']})")
+                lines.append(f"    - $extends: {grade_template}")
+                lines.append(f"      id: {item_id}")
+                lines.append(f'      name: "{internal_name}"')
+                lines.append(f"      combatItemType: {definition.combat_item_type}")
+                lines.append(f"      combatItemSubType: {subtype['id']}")
+                lines.append(f'      category: "{subtype["id"]}"')
+                lines.append(f"      linkEquipmentId: {link_equipment_id}")
+                lines.append(f"      decompositionId: {decomposition_id}")
+                lines.append(f"      linkPassivityCategoryId:")
+                lines.append(f"        - {category_id}")
 
-                    lines.append(f"    # {item_name} ({grade['name']})")
-                    lines.append(f"    - $extends: {grade_template}")
-                    lines.append(f"      id: {item_id}")
-                    lines.append(f'      name: "{internal_name}"')
-                    lines.append(f"      combatItemType: {definition.combat_item_type}")
-                    lines.append(f"      combatItemSubType: {subtype['id']}")
-                    lines.append(f'      category: "{subtype["id"]}"')
-                    lines.append(f"      linkEquipmentId: {link_equipment_id}")
-                    lines.append(f"      decompositionId: {decomposition_id}")
-                    lines.append(f"      linkPassivityCategoryId:")
-                    lines.append(f"        - {category_id}")
+                if definition.role != "ANY":
+                    lines.append(f"      # Role restriction: {definition.role}")
 
-                    if definition.role != "ANY":
-                        lines.append(f"      # Role restriction: {definition.role}")
+                item_tooltip = f"Infusable Fodder.$BRCan be used to infuse effect on compatible gear or dismantled for <font color = '#ffbb00'>Feedstock</font>."
+                lines.append(f"      strings:")
+                lines.append(f'        name: "{item_name}"')
+                lines.append(f'        toolTip: "{item_tooltip}"')
+                lines.append("")
 
-                    item_tooltip = f"Infusable Fodder.$BRCan be used to infuse effect on compatible gear, can be upgraded with <font color = '#00A0FF'>Enigmatic Scrolls</font> or can be dismantled for <font color = '#ffbb00'>Tier {tier} Feedstock</font>."
-                    lines.append(f"      strings:")
-                    lines.append(f'        name: "{item_name}"')
-                    lines.append(f'        toolTip: "{item_tooltip}"')
-                    lines.append("")
-
-                    item_id += 1
+                item_id += 1
 
     return lines
 
 
-def generate_equipment_yaml(definitions: list[PassiveDefinition], passivity_data: list[dict]) -> list[str]:
-    """Generate YAML for equipment entries, replicated across decomposition tiers."""
+def get_equipment_part_type(combat_item_type: str, subtype_id: str) -> tuple[str, str]:
+    """Derive equipment part and type from combat item type and subtype."""
+    if combat_item_type == "EQUIP_WEAPON":
+        return "Weapon", subtype_id.upper()
+
+    part_map = {
+        "EQUIP_ARMOR_BODY": "BODY",
+        "EQUIP_ARMOR_ARM": "HAND",
+        "EQUIP_ARMOR_LEG": "FEET",
+    }
+    part = part_map[combat_item_type]
+
+    if "Mail" in subtype_id:
+        equipment_type = "MAIL"
+    elif "Leather" in subtype_id:
+        equipment_type = "LEATHER"
+    else:
+        equipment_type = "ROBE"
+
+    return part, equipment_type
+
+
+def generate_equipment_yaml(equipment_index: dict) -> list[str]:
+    """Generate YAML for shared equipment entries (one per grade + slot + subtype)."""
     lines = [
         "equipment:",
         "  upsert:",
     ]
 
+    for slot_type, slot_config in SLOTS.items():
+        for subtype in slot_config["subtypes"]:
+            for grade in GRADES:
+                equipment_id = equipment_index[(grade["id"], slot_type, subtype["id"])]
+                part, equipment_type = get_equipment_part_type(slot_type, subtype["id"])
+
+                lines.append(f"    - equipmentId: {equipment_id}")
+                lines.append(f"      level: 1")
+                lines.append(f"      grade: {grade['name']}")
+                lines.append(f"      part: {part}")
+                lines.append(f"      type: {equipment_type}")
+                lines.append(f"      countOfSlot: 0")
+                lines.append(f"      minAtk: 1")
+                lines.append(f"      maxAtk: 1")
+                lines.append(f"      impact: 1")
+                lines.append(f"      balance: 0")
+                lines.append(f"      def: 1")
+                lines.append(f"      atkRate: 1")
+                lines.append(f"      impactRate: 1")
+                lines.append(f"      balanceRate: 1")
+                lines.append(f"      defRate: 1")
+                lines.append("")
+
+    return lines
+
+
+
+# Gacha box slot order and display names
+GACHA_SLOTS = [
+    ("EQUIP_WEAPON", "Weapon"),
+    ("EQUIP_ARMOR_BODY", "Chest"),
+    ("EQUIP_ARMOR_ARM", "Gloves"),
+    ("EQUIP_ARMOR_LEG", "Boots"),
+]
+
+# Gacha box icon per grade
+GACHA_ICONS = {
+    1: "Icon_Items.Cash_Material_box_3_Tex",
+    2: "Icon_Items.Cash_Material_box_4_Tex",
+    3: "Icon_Items.Cash_Material_box_2_Tex",
+}
+
+
+def build_gacha_reward_pools(definitions: list[PassiveDefinition], passivity_data: list[dict]) -> dict:
+    """Build item ID pools grouped by (combat_item_type, grade_id).
+
+    Returns: {(combat_item_type, grade_id): [item_id, ...]}
+    """
     data_by_key = {}
     for data in passivity_data:
         key = (data["definition"].order, data["grade"]["id"])
         data_by_key[key] = data
 
-    for decomp in DECOMP_TIERS:
-        item_id = ITEM_ID_SEED + decomp["id_offset"]
+    pools = {}
+    item_id = ITEM_ID_SEED
 
-        for definition in definitions:
-            slot_config = SLOTS.get(definition.combat_item_type, {})
-            subtypes = slot_config.get("subtypes", [])
+    for definition in definitions:
+        slot_config = SLOTS.get(definition.combat_item_type, {})
+        subtypes = slot_config.get("subtypes", [])
 
-            for grade in GRADES:
-                key = (definition.order, grade["id"])
-                data = data_by_key.get(key)
-                if not data:
-                    continue
+        for grade in GRADES:
+            key = (definition.order, grade["id"])
+            if key not in data_by_key:
+                continue
 
-                for subtype in subtypes:
-                    equipment_id = 900000000 + item_id
+            pool_key = (definition.combat_item_type, grade["id"])
+            if pool_key not in pools:
+                pools[pool_key] = []
 
-                    if definition.combat_item_type == "EQUIP_WEAPON":
-                        part = "Weapon"
-                        equipment_type = subtype['id'].upper()
-                    elif definition.combat_item_type == "EQUIP_ARMOR_BODY":
-                        part = "BODY"
-                        if subtype['id'] == "bodyMail":
-                            equipment_type = "MAIL"
-                        elif subtype['id'] == "bodyLeather":
-                            equipment_type = "LEATHER"
-                        else:
-                            equipment_type = "ROBE"
-                    elif definition.combat_item_type == "EQUIP_ARMOR_ARM":
-                        part = "HAND"
-                        if subtype['id'] == "handMail":
-                            equipment_type = "MAIL"
-                        elif subtype['id'] == "handLeather":
-                            equipment_type = "LEATHER"
-                        else:
-                            equipment_type = "ROBE"
-                    else:
-                        part = "FEET"
-                        if subtype['id'] == "feetMail":
-                            equipment_type = "MAIL"
-                        elif subtype['id'] == "feetLeather":
-                            equipment_type = "LEATHER"
-                        else:
-                            equipment_type = "ROBE"
+            for subtype in subtypes:
+                pools[pool_key].append(item_id)
+                item_id += 1
 
-                    lines.append(f"    - equipmentId: {equipment_id}")
-                    lines.append(f"      level: 1")
-                    lines.append(f"      grade: {grade['name']}")
-                    lines.append(f"      part: {part}")
-                    lines.append(f"      type: {equipment_type}")
-                    lines.append(f"      countOfSlot: 0")
-                    lines.append(f"      minAtk: 1")
-                    lines.append(f"      maxAtk: 1")
-                    lines.append(f"      impact: 1")
-                    lines.append(f"      balance: 0")
-                    lines.append(f"      def: 1")
-                    lines.append(f"      atkRate: 1")
-                    lines.append(f"      impactRate: 1")
-                    lines.append(f"      balanceRate: 1")
-                    lines.append(f"      defRate: 1")
-                    lines.append("")
+    return pools
 
-                    item_id += 1
 
-    return lines
+def generate_gacha_yaml(definitions: list[PassiveDefinition], passivity_data: list[dict]) -> tuple[list[str], list[str]]:
+    """Generate YAML for infusion gacha boxes (one per slot × grade).
 
+    Returns (gacha_lines, item_supplement_lines) — the supplement contains
+    items upsert entries for properties the gacha inline block doesn't support.
+    """
+    gacha_lines = [
+        "gachaItems:",
+        "  upsert:",
+    ]
+    item_lines = []
+
+    pools = build_gacha_reward_pools(definitions, passivity_data)
+    gacha_id = GACHA_ID_SEED
+
+    for slot_type, slot_display in GACHA_SLOTS:
+        for grade in GRADES:
+            pool_key = (slot_type, grade["id"])
+            item_ids = pools.get(pool_key, [])
+            if not item_ids:
+                continue
+
+            box_name = f"{grade['name']} {slot_display} Infusion Box"
+            n = len(item_ids)
+            base_prob = round(1.0 / n, 6)
+            last_prob = round(1.0 - base_prob * (n - 1), 6)
+
+            gacha_lines.append(f"    # {box_name} ({n} rewards)")
+            gacha_lines.append(f"    - itemTemplateId: {gacha_id}")
+            gacha_lines.append(f'      title: "{box_name}"')
+            gacha_lines.append(f'      sender: "Infusion System"')
+            gacha_lines.append(f'      memo: "Contains a random {grade["name"].lower()} {slot_display.lower()} infusion gear."')
+
+            gacha_lines.append(f"      item:")
+            gacha_lines.append(f"        icon: {GACHA_ICONS[grade['id']]}")
+            gacha_lines.append(f"        rareGrade: {grade['id']}")
+            gacha_lines.append(f"        tradable: true")
+            gacha_lines.append(f"        warehouseStorable: true")
+            gacha_lines.append(f"        boundType: None")
+            gacha_lines.append(f"      randomRewards:")
+            gacha_lines.append(f"        - rewards:")
+
+            for i, reward_id in enumerate(item_ids):
+                prob = last_prob if i == n - 1 else base_prob
+                gacha_lines.append(f"            - itemTemplateId: {reward_id}")
+                gacha_lines.append(f"              probability: {prob}")
+                gacha_lines.append(f"              min: 1")
+                gacha_lines.append(f"              max: 1")
+
+            gacha_lines.append("")
+
+            # Supplement: properties the gacha inline block doesn't support
+            box_tooltip = f"Contains a random {grade['name'].lower()} {slot_display.lower()} infusion gear."
+            item_lines.append(f"    # {box_name} (gacha supplement)")
+            item_lines.append(f"    - id: {gacha_id}")
+            item_lines.append(f"      tradeBrokerTradable: true")
+            if grade["id"] == 3:
+                item_lines.append(f"      dropEffect: FX_N_Hotfix_180813.ps.DropBoxFX_01_PS")
+            item_lines.append(f"      strings:")
+            item_lines.append(f'        name: "{box_name}"')
+            item_lines.append(f'        toolTip: "{box_tooltip}"')
+            item_lines.append("")
+
+            gacha_id += 1
+
+    return gacha_lines, item_lines
 
 
 def generate_combined_yaml(definitions: list[PassiveDefinition]) -> str:
@@ -616,8 +716,8 @@ def generate_combined_yaml(definitions: list[PassiveDefinition]) -> str:
         "  infusionItemBase:",
         "    maxStack: 1",
         "    rank: 16",
-        "    tradable: false",
-        "    tradeBrokerTradable: false",
+        "    tradable: true",
+        "    tradeBrokerTradable: true",
         "    boundType: None",
         "    enchantEnable: false",
         "    dismantlable: true",
@@ -675,11 +775,18 @@ def generate_combined_yaml(definitions: list[PassiveDefinition]) -> str:
     categories_lines, passivity_data = generate_categories_yaml(definitions)
     lines.extend(categories_lines)
 
-    items_lines = generate_items_yaml(definitions, passivity_data)
+    equipment_index = build_equipment_index()
+
+    gacha_lines, gacha_item_supplement = generate_gacha_yaml(definitions, passivity_data)
+
+    items_lines = generate_items_yaml(definitions, passivity_data, equipment_index)
+    items_lines.extend(gacha_item_supplement)
     lines.extend(items_lines)
 
-    equipment_lines = generate_equipment_yaml(definitions, passivity_data)
+    equipment_lines = generate_equipment_yaml(equipment_index)
     lines.extend(equipment_lines)
+
+    lines.extend(gacha_lines)
 
     return "\n".join(lines)
 
@@ -709,23 +816,20 @@ def main():
 
     num_categories = len(definitions) * len(GRADES)
     num_passivities = num_categories * ROLLS_PER_CATEGORY
-    items_per_tier = sum(
+    total_items = sum(
         len(SLOTS[d.combat_item_type]["subtypes"])
         for d in definitions
         for _ in GRADES
     )
-    num_tiers = len(DECOMP_TIERS)
-    total_items = items_per_tier * num_tiers
-    total_equipment = total_items
+    total_equipment = sum(len(s["subtypes"]) for s in SLOTS.values()) * len(GRADES)
+    total_gacha = len(GACHA_SLOTS) * len(GRADES)
 
     print(f"\nGenerated:")
     print(f"  - {num_categories} passivity categories (IDs {PASSIVITY_CATEGORY_ID_SEED} - {PASSIVITY_CATEGORY_ID_SEED + num_categories - 1})")
     print(f"  - {num_passivities} passivities (IDs {PASSIVITY_ID_SEED} - {PASSIVITY_ID_SEED + num_passivities - 1})")
-    print(f"  - {total_items} items ({items_per_tier}/tier x {num_tiers} tiers)")
-    print(f"  - {total_equipment} equipment entries")
-    for decomp in DECOMP_TIERS:
-        base = ITEM_ID_SEED + decomp["id_offset"]
-        print(f"    Tier {decomp['tier']} ({decomp['numeral']}): IDs {base} - {base + items_per_tier - 1}")
+    print(f"  - {total_items} items (IDs {ITEM_ID_SEED} - {ITEM_ID_SEED + total_items - 1})")
+    print(f"  - {total_equipment} shared equipment entries (IDs {EQUIPMENT_ID_SEED} - {EQUIPMENT_ID_SEED + total_equipment - 1})")
+    print(f"  - {total_gacha} gacha boxes (IDs {GACHA_ID_SEED} - {GACHA_ID_SEED + total_gacha - 1})")
     print(f"\nTo apply:")
     print(f'  dsl apply "{output_items}" --path "D:\\dev\\mmogate\\tera92\\server\\Datasheet"')
 
