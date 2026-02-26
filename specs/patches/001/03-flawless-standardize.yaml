@@ -1,0 +1,67 @@
+# Flawless Gear Standardization
+#
+# Sets rareGrade: Mythic on all flawless items and assigns standard
+# linkPassivityCategoryId per armor slot.
+#
+# This spec runs AFTER 01-weapon-standardize.yaml and 01-armor-standardize.yaml which already
+# set enchantEnable, boundType, tradable, etc. on all HIGH_TIER items. This spec only needs
+# to handle attributes those specs don't cover for flawless gear:
+# - rareGrade: Mythic (promotion from vanilla grades 2-3 to 4)
+# - linkPassivityCategoryId on hands/feet (skipped by 01-armor-standardize for HIGH_TIER)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: flawless-gear-ids
+    use:
+      variables:
+        - FLAWLESS_ALL_IDS
+        - FLAWLESS_BODY_IDS
+        - FLAWLESS_HAND_MAIL_IDS
+        - FLAWLESS_HAND_LEATHER_IDS
+        - FLAWLESS_HAND_ROBE_IDS
+        - FLAWLESS_FEET_IDS
+
+items:
+  updateWhere:
+
+    # === All Flawless Items — rareGrade: Mythic ===
+    - filter:
+        id: $FLAWLESS_ALL_IDS
+      changes:
+        rareGrade: Mythic
+
+    # === Body — linkPassivityCategoryId: 120316 ===
+    # Already set by 01-armor-standardize on HIGH_TIER_BODY_IDS, but explicitly
+    # setting here for safety in case flawless items are added before being
+    # included in equipment-item-ids.
+    - filter:
+        id: $FLAWLESS_BODY_IDS
+      changes:
+        linkPassivityCategoryId: 120316
+
+    # === Hand Mail — linkPassivityCategoryId: 4150 ===
+    - filter:
+        id: $FLAWLESS_HAND_MAIL_IDS
+      changes:
+        linkPassivityCategoryId: 4150
+
+    # === Hand Leather — linkPassivityCategoryId: 4152 ===
+    - filter:
+        id: $FLAWLESS_HAND_LEATHER_IDS
+      changes:
+        linkPassivityCategoryId: 4152
+
+    # === Hand Robe — linkPassivityCategoryId: 4151 ===
+    - filter:
+        id: $FLAWLESS_HAND_ROBE_IDS
+      changes:
+        linkPassivityCategoryId: 4151
+
+    # === Feet — linkPassivityCategoryId: 4250 ===
+    - filter:
+        id: $FLAWLESS_FEET_IDS
+      changes:
+        linkPassivityCategoryId: 4250
