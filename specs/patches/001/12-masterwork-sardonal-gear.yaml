@@ -1,0 +1,277 @@
+# Masterwork Sardonal Gear — Warrior Test
+#
+# Creates masterwork variants of Sardonal warrior equipment with 3% stat boost.
+# ID range: 280000-280003 (reserved: 280000-281999 for all masterwork equipment)
+#
+# Source → Masterwork mapping:
+#   18684 (Brother & Sister)     → 280000 (Masterwork Brother & Sister)     atk 1423 → 1466
+#   18695 (Darkhearted Jerkin)   → 280001 (Masterwork Darkhearted Jerkin)   def 1378 → 1419
+#   18696 (Humored Applause)     → 280002 (Masterwork Humored Applause)     def 1042 → 1073
+#   18697 (Giggleboots)          → 280003 (Masterwork Giggleboots)          def 1039 → 1070
+#
+# Critical inheritance constraints:
+#   linkEnchantId and linkPassivityCategoryId MUST match source items.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  masterworkSardonalBase:
+    level: 58
+    requiredLevel: 58
+    rank: 3
+    rareGrade: 3
+    boundType: Equip
+    tradable: false
+    enchantEnable: true
+    searchable: true
+    destroyable: true
+    dismantlable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    dropType: 2
+    unidentifiedItemGrade: 1
+    maxStack: 1
+    maxDropUnit: 1
+    itemUseCount: 1
+    divide: 0
+    sortingNumber: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    conversion: false
+    dropIdentify: false
+    useOnlyTerritory: false
+    masterpieceRate: 0
+    extractRatio: 12
+
+items:
+  upsert:
+    # --- Masterwork Brother & Sister (dual weapon) ---
+    - $extends: masterworkSardonalBase
+      id: 280000
+      name: dual
+      category: dual
+      combatItemType: EQUIP_WEAPON
+      combatItemSubType: dual
+      requiredClass: WARRIOR
+      linkEquipmentId: 900280000
+      linkEnchantId: 950011
+      linkPassivityCategoryId: 120300
+      linkPassivityId:
+        - "150459"
+        - "1310800"
+        - "1311100"
+        - "1310300"
+        - "310710"
+      linkMaterialEnchantId: 23003
+      linkLookInfoId: 101134
+      itemLevelId: 10139
+      changeEnchantFxId: 1007
+      combineOptionValue: 2
+      icon: Icon_Equipments.dual21_A_Tex
+      dropSilhouette: Item_DropBox.SM.Drop_Dual_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ArmorWeaponCUE.Equip_DualCue
+      buyPrice: 516423
+      sellPrice: 51643
+      defaultValue: 7688680
+      strings:
+        name: "Masterwork Brother & Sister"
+        toolTip: "Sardonal weapon."
+
+    # --- Masterwork Darkhearted Jerkin (bodyLeather) ---
+    - $extends: masterworkSardonalBase
+      id: 280001
+      name: bodyLeather
+      category: bodyLeather
+      combatItemType: EQUIP_ARMOR_BODY
+      combatItemSubType: bodyLeather
+      requiredClass:
+        - WARRIOR
+        - SLAYER
+        - ARCHER
+        - GLAIVER
+        - SOULLESS
+      linkEquipmentId: 900280001
+      linkEnchantId: 950013
+      linkPassivityCategoryId: 120316
+      linkPassivityId:
+        - "1320300"
+        - "1320600"
+        - "1325100"
+        - "320810"
+      linkMaterialEnchantId: 23003
+      linkLookInfoId: 211113
+      itemLevelId: 20141
+      combineOptionValue: 2
+      changeColorEnable: true
+      icon: Icon_Equipments.lightchest17_D_Tex
+      dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      buyPrice: 206570
+      sellPrice: 20657
+      defaultValue: 3075472
+      strings:
+        name: "Masterwork Darkhearted Jerkin"
+        toolTip: "Sardonal armor."
+
+    # --- Masterwork Humored Applause (handLeather) ---
+    - $extends: masterworkSardonalBase
+      id: 280002
+      name: handLeather
+      category: handLeather
+      combatItemType: EQUIP_ARMOR_ARM
+      combatItemSubType: handLeather
+      requiredClass:
+        - WARRIOR
+        - SLAYER
+        - ARCHER
+        - GLAIVER
+        - SOULLESS
+      linkEquipmentId: 900280002
+      linkEnchantId: 950015
+      linkPassivityCategoryId: 4152
+      linkPassivityId:
+        - "320810"
+      linkMaterialEnchantId: 23103
+      linkLookInfoId: 212113
+      itemLevelId: 30135
+      combineOptionValue: 1
+      changeColorEnable: true
+      icon: Icon_Equipments.lightgauntlet17_D_Tex
+      dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      buyPrice: 154927
+      sellPrice: 15493
+      defaultValue: 2306604
+      strings:
+        name: "Masterwork Humored Applause"
+        toolTip: "Sardonal armor."
+
+    # --- Masterwork Giggleboots (feetLeather) ---
+    - $extends: masterworkSardonalBase
+      id: 280003
+      name: feetLeather
+      category: feetLeather
+      combatItemType: EQUIP_ARMOR_LEG
+      combatItemSubType: feetLeather
+      requiredClass:
+        - WARRIOR
+        - SLAYER
+        - ARCHER
+        - GLAIVER
+        - SOULLESS
+      linkEquipmentId: 900280003
+      linkEnchantId: 950017
+      linkPassivityCategoryId: 4250
+      linkPassivityId:
+        - "320810"
+      linkMaterialEnchantId: 23103
+      linkLookInfoId: 213113
+      itemLevelId: 40134
+      combineOptionValue: 1
+      changeColorEnable: true
+      icon: Icon_Equipments.lightboots17_D_Tex
+      dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      buyPrice: 154927
+      sellPrice: 15493
+      defaultValue: 2306604
+      strings:
+        name: "Masterwork Giggleboots"
+        toolTip: "Sardonal armor."
+
+# Equipment entries with 3% stat boost
+# Source values → Masterwork values:
+#   Weapon atk 1423 → 1466 (round(1423 × 1.03))
+#   Body def 1378 → 1419 (round(1378 × 1.03))
+#   Hand def 1042 → 1073 (round(1042 × 1.03))
+#   Feet def 1039 → 1070 (round(1039 × 1.03))
+
+equipment:
+  upsert:
+    # Masterwork Brother & Sister — Weapon
+    - equipmentId: 900280000
+      part: Weapon
+      type: DUAL
+      level: 58
+      grade: 3
+      minAtk: 1466
+      maxAtk: 1466
+      impact: 1466
+      balance: 0
+      def: 0
+      atkRate: 1
+      impactRate: 1
+      balanceRate: 1
+      defRate: 1
+      countOfSlot: 4
+
+    # Masterwork Darkhearted Jerkin — Body
+    - equipmentId: 900280001
+      part: BODY
+      type: LEATHER
+      level: 58
+      grade: 3
+      minAtk: 0
+      maxAtk: 0
+      impact: 0
+      balance: 0
+      def: 1419
+      atkRate: 1
+      impactRate: 1
+      balanceRate: 1
+      defRate: 1
+      countOfSlot: 4
+
+    # Masterwork Humored Applause — Hand
+    - equipmentId: 900280002
+      part: HAND
+      type: LEATHER
+      level: 58
+      grade: 3
+      minAtk: 0
+      maxAtk: 0
+      impact: 0
+      balance: 0
+      def: 1073
+      atkRate: 1
+      impactRate: 1
+      balanceRate: 1
+      defRate: 1
+      countOfSlot: 0
+
+    # Masterwork Giggleboots — Feet
+    - equipmentId: 900280003
+      part: FEET
+      type: LEATHER
+      level: 58
+      grade: 3
+      minAtk: 0
+      maxAtk: 0
+      impact: 0
+      balance: 0
+      def: 1070
+      atkRate: 1
+      impactRate: 1
+      balanceRate: 1
+      defRate: 1
+      countOfSlot: 0

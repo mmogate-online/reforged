@@ -1,0 +1,53 @@
+# Masterwork Tokens
+#
+# Repurposes items 71 (Master Enigmatic Scroll) and 93 (Common Enigmatic Scroll)
+# as masterwork inheritance tokens. Players use these on equipment to attempt a
+# masterwork upgrade via the inheritance system.
+#
+# Token 71: 10% success chance
+# Token 93: 1% success chance
+# On failure, the scroll is consumed and the item remains unchanged.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  updateWhere:
+    - filter:
+        id: [71, 93]
+      changes:
+        combatItemType: EQUIP_INHERITANCE
+        combatItemSubType: etc
+        category: etc
+        requiredLevel: 1
+
+itemStrings:
+  update:
+    - id: 71
+      changes:
+        toolTip: "Use on equipment to attempt a <font color='#FFD700'>Masterwork</font> upgrade.$BR<font color='#00FF00'>10% success chance.</font>"
+
+    - id: 93
+      changes:
+        toolTip: "Use on equipment to attempt a <font color='#FFD700'>Masterwork</font> upgrade.$BR<font color='#FF6600'>1% success chance.</font>"
+
+equipmentInheritance:
+  upsert:
+    - templateId: 71
+      masterpiece: true
+      awaken: false
+      enchant: true
+      scroll: true
+      artifact: true
+      probability: 0.10
+      bound: true
+
+    - templateId: 93
+      masterpiece: true
+      awaken: false
+      enchant: true
+      scroll: true
+      artifact: true
+      probability: 0.01
+      bound: true
