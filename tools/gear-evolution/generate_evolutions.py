@@ -72,6 +72,7 @@ MATERIAL_LABELS = {
 
 # EvolutionSet -> (sequence, filename_suffix, dungeon_display_name, gear_set_name)
 SET_METADATA = {
+    "STARTER_0":    (0, "starter-0",    "Character Creation",  "Starter 0"),
     "STARTER_1":    (1, "starter-1",    "Quest Rewards",       "Starter 1"),
     "Bastion":      (2, "bastion",      "Bastion of Lok",      "Bastion"),
     "Demonia":      (3, "demonia",      "Sinestral Manor",     "Demonia"),

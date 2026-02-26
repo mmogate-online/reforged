@@ -1,0 +1,229 @@
+# Armor Standardization
+#
+# All armor (body, hand, feet) in gear_progression.csv gets:
+# - enchantEnable: true
+# - boundType: Equip, warehouseStorable, guildWarehouseStorable, unidentifiedItemGrade, dropType
+# - tradable: true for LOW/MID tier, false for HIGH tier (grade 4)
+# - Body armor: linkPassivityCategoryId: 120316 (standard body roll pool)
+# - Hand armor: linkPassivityCategoryId per type (mail=4150, leather=4152, robe=4151)
+# - Feet armor: linkPassivityCategoryId: 4250
+#
+# NOTE: HIGH_TIER_BODY_IDS includes class-specific chest pieces (Archetype, Nightforge, Visionmaker)
+# which get their linkPassivityCategoryId OVERRIDDEN by 03-chest-toproll-items.yaml with per-class
+# values. The generic 120316 set here is intentional as a baseline — do NOT remove HIGH_TIER_BODY_IDS
+# from this spec.
+#
+# NOTE: HIGH_TIER hand and feet pieces may have class-specific linkPassivityCategoryId values
+# (e.g. Visionmaker). Only MID/LOW tier hands and feet get the standard categories here.
+# HIGH_TIER hands/feet intentionally omit linkPassivityCategoryId to avoid overwriting
+# class-specific values.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: equipment-item-ids
+    use:
+      variables:
+        - HIGH_TIER_BODY_IDS
+        - HIGH_TIER_HAND_MAIL_IDS
+        - HIGH_TIER_HAND_LEATHER_IDS
+        - HIGH_TIER_HAND_ROBE_IDS
+        - HIGH_TIER_FEET_IDS
+        - MID_TIER_BODY_IDS
+        - MID_TIER_HAND_MAIL_IDS
+        - MID_TIER_HAND_LEATHER_IDS
+        - MID_TIER_HAND_ROBE_IDS
+        - MID_TIER_FEET_IDS
+        - LOW_TIER_BODY_IDS
+        - LOW_TIER_HAND_MAIL_IDS
+        - LOW_TIER_HAND_LEATHER_IDS
+        - LOW_TIER_HAND_ROBE_IDS
+        - LOW_TIER_FEET_IDS
+
+items:
+  updateWhere:
+
+    # === HIGH TIER (grade 4) — tradable: false ===
+    # No linkPassivityCategoryId on hands/feet (class-specific values exist)
+
+    - filter:
+        id: $HIGH_TIER_BODY_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120316
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $HIGH_TIER_HAND_MAIL_IDS
+      changes:
+        enchantEnable: true
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $HIGH_TIER_HAND_LEATHER_IDS
+      changes:
+        enchantEnable: true
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $HIGH_TIER_HAND_ROBE_IDS
+      changes:
+        enchantEnable: true
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $HIGH_TIER_FEET_IDS
+      changes:
+        enchantEnable: true
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    # === MID TIER (grade 3) — tradable: true ===
+
+    - filter:
+        id: $MID_TIER_BODY_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120316
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $MID_TIER_HAND_MAIL_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4150
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $MID_TIER_HAND_LEATHER_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4152
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $MID_TIER_HAND_ROBE_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4151
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $MID_TIER_FEET_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4250
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    # === LOW TIER (grade 1-2) — tradable: true ===
+
+    - filter:
+        id: $LOW_TIER_BODY_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120316
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $LOW_TIER_HAND_MAIL_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4150
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $LOW_TIER_HAND_LEATHER_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4152
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $LOW_TIER_HAND_ROBE_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4151
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $LOW_TIER_FEET_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 4250
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2

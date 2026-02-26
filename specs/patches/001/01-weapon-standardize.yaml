@@ -1,0 +1,97 @@
+# Weapon Standardization
+#
+# All weapons in gear_progression.csv get:
+# - enchantEnable: true
+# - linkPassivityCategoryId: 120300 (universal weapon roll pool)
+# - boundType: Equip, warehouseStorable, guildWarehouseStorable, unidentifiedItemGrade, dropType
+# - tradable: true for LOW/MID tier, false for HIGH tier (grade 4)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: equipment-item-ids
+    use:
+      variables:
+        - HIGH_TIER_DPS_WEAPON_IDS
+        - HIGH_TIER_HEALER_WEAPON_IDS
+        - MID_TIER_DPS_WEAPON_IDS
+        - MID_TIER_HEALER_WEAPON_IDS
+        - LOW_TIER_DPS_WEAPON_IDS
+        - LOW_TIER_HEALER_WEAPON_IDS
+
+items:
+  updateWhere:
+
+    - filter:
+        id: $HIGH_TIER_DPS_WEAPON_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120300
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $HIGH_TIER_HEALER_WEAPON_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120300
+        boundType: Equip
+        tradable: false
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $MID_TIER_DPS_WEAPON_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120300
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $MID_TIER_HEALER_WEAPON_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120300
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $LOW_TIER_DPS_WEAPON_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120300
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
+
+    - filter:
+        id: $LOW_TIER_HEALER_WEAPON_IDS
+      changes:
+        enchantEnable: true
+        linkPassivityCategoryId: 120300
+        boundType: Equip
+        tradable: true
+        warehouseStorable: true
+        guildWarehouseStorable: true
+        unidentifiedItemGrade: 1
+        dropType: 2
