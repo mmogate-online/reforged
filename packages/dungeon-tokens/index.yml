@@ -1,0 +1,28 @@
+# Dungeon Token IDs
+#
+# Each dungeon gets a unique MEDAL_USEABLE token that drops from bosses.
+# Players right-click the token to open a BuyMenuData shop for progression
+# items and cosmetics.
+#
+# Reserved ranges:
+#   Token items:  95214–95313 (100 IDs)
+#   Shop IDs:     95000–95099 (100 BuyMenuData IDs)
+
+spec:
+  version: "1.0"
+
+variables:
+  # Token item IDs
+  BASTION_OF_LOK_TOKEN: 95214
+  SINESTRAL_MANOR_TOKEN: 95215
+
+  # BuyMenuData shop IDs
+  BASTION_OF_LOK_SHOP: 95000
+  SINESTRAL_MANOR_SHOP: 95001
+
+exports:
+  variables:
+    - BASTION_OF_LOK_TOKEN
+    - SINESTRAL_MANOR_TOKEN
+    - BASTION_OF_LOK_SHOP
+    - SINESTRAL_MANOR_SHOP

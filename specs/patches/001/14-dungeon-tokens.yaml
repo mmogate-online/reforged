@@ -1,0 +1,140 @@
+# ===========================================================================
+# Dungeon Tokens + Medal Exchange Shops
+# ===========================================================================
+#
+# Each dungeon has a unique MEDAL_USEABLE token dropped by bosses.
+# Players spend tokens at BuyMenuData shops for progression items.
+#
+# Token economy (per dungeon run, 5-man party):
+#   Bastion of Lok:  1 boss × 3 tokens = 3 tokens/run
+#   Sinestral Manor: 3 bosses × 1 token = 3 tokens/run
+#
+# Potential Unlock Scroll: 2 tokens, 10% success rate
+#   → ~7 runs per successful unlock, ~28 runs for full 4-piece set
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: dungeon-tokens
+    use:
+      variables:
+        - BASTION_OF_LOK_TOKEN
+        - SINESTRAL_MANOR_TOKEN
+        - BASTION_OF_LOK_SHOP
+        - SINESTRAL_MANOR_SHOP
+
+# ===========================================================================
+# Token Item Definitions
+# ===========================================================================
+
+definitions:
+  _DungeonToken:
+    name: token
+    combatItemType: MEDAL_USEABLE
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 3
+    level: 1
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 2
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 10000
+    itemUseCount: 1
+    maxDropUnit: 9999
+    enchantEnable: false
+    tradable: false
+    boundType: None
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    icon: Icon_Items.mysterypaper5_Tex
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
+    defaultValue: 0
+
+# ===========================================================================
+# Token Items
+# ===========================================================================
+
+items:
+  upsert:
+    - id: $BASTION_OF_LOK_TOKEN
+      $extends: _DungeonToken
+      strings:
+        name: "Bastion of Lok Token"
+        toolTip: "A token earned by defeating the denizens of the Bastion of Lok.$BR$BR<font color = '#41FF3A'>[Right-click]</font> to open the Bastion of Lok Exchange."
+
+    - id: $SINESTRAL_MANOR_TOKEN
+      $extends: _DungeonToken
+      strings:
+        name: "Sinestral Manor Token"
+        toolTip: "A token earned by defeating the dark nobility of Sinestral Manor.$BR$BR<font color = '#41FF3A'>[Right-click]</font> to open the Sinestral Manor Exchange."
+
+# ===========================================================================
+# BuyMenuData Shops
+# ===========================================================================
+#
+# One shop per dungeon token. Each shop sells progression items
+# using the dungeon's token as currency (needMedalItemId).
+# Future: add cosmetic tabs for replay value.
+
+buyMenuDatas:
+  create:
+    - id: $BASTION_OF_LOK_SHOP
+      stringId: 950000
+      desc: "Bastion of Lok Token Exchange"
+      resetType: none
+      menus:
+        - id: 1
+          desc: "Progression Items"
+          probability: 1.0
+          needMedalItemId: $BASTION_OF_LOK_TOKEN
+          itemLists:
+            - stringed: 950001
+              items:
+                - itemTemplateId: 90
+                  buyPrice: 2
+
+    - id: $SINESTRAL_MANOR_SHOP
+      stringId: 950010
+      desc: "Sinestral Manor Token Exchange"
+      resetType: none
+      menus:
+        - id: 1
+          desc: "Progression Items"
+          probability: 1.0
+          needMedalItemId: $SINESTRAL_MANOR_TOKEN
+          itemLists:
+            - stringed: 950011
+              items:
+                - itemTemplateId: 90
+                  buyPrice: 2

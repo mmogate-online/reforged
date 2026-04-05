@@ -1,0 +1,115 @@
+# Tuwangi Mire (Zone 5) — Tier 2 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - CABOCHON_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - PAVERUNE_OF_SHARA
+        - PAVERUNE_OF_ARUN
+
+definitions:
+  # Normal mobs — 20 NPCs, Lv19-23
+  tuwangi_mire_normal:
+    itemBags:
+      - id: 1
+        bagName: "Tuwangi Mire Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Tuwangi Mire Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Tuwangi Mire Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Tuwangi Mire Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
+eCompensations:
+  upsert:
+    # Normal (20 NPCs): 1=Tuwangi Overseer Lv19-23, 2=Tuwangi Helper Lv19-23, 3=Tuwangi Worker Lv19-23, 4=Tuwangi Frogrider Lv19-23, 5=Tuwangi Blockhead Lv19-23, 6=Tuwangi Chopper Lv19-23, ... (+14 more)
+    - huntingZoneId: 5
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+      npcName: ""
+      $extends: tuwangi_mire_normal
+
+cCompensations:
+  # Delete 20 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 5
+      npcTemplateId: 1
+    - huntingZoneId: 5
+      npcTemplateId: 2
+    - huntingZoneId: 5
+      npcTemplateId: 3
+    - huntingZoneId: 5
+      npcTemplateId: 4
+    - huntingZoneId: 5
+      npcTemplateId: 5
+    - huntingZoneId: 5
+      npcTemplateId: 6
+    - huntingZoneId: 5
+      npcTemplateId: 7
+    - huntingZoneId: 5
+      npcTemplateId: 8
+    - huntingZoneId: 5
+      npcTemplateId: 9
+    - huntingZoneId: 5
+      npcTemplateId: 12
+    - huntingZoneId: 5
+      npcTemplateId: 13
+    - huntingZoneId: 5
+      npcTemplateId: 14
+    - huntingZoneId: 5
+      npcTemplateId: 15
+    - huntingZoneId: 5
+      npcTemplateId: 16
+    - huntingZoneId: 5
+      npcTemplateId: 17
+    - huntingZoneId: 5
+      npcTemplateId: 18
+    - huntingZoneId: 5
+      npcTemplateId: 19
+    - huntingZoneId: 5
+      npcTemplateId: 20
+    - huntingZoneId: 5
+      npcTemplateId: 21
+    - huntingZoneId: 5
+      npcTemplateId: 22

@@ -1,30 +1,176 @@
-# Zone Loot (eCompensation) — Celestial Hills (huntingZoneId: 7)
-# Auto-generated scaffold by generate_zone_loot.py
-# Content designers: fill in itemBags items for each group definition.
+# Celestial Hills (Zone 7) — Tier 2 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - CABOCHON_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - PAVERUNE_OF_SHARA
+        - PAVERUNE_OF_ARUN
+
 definitions:
+  # Normal mobs — 13 NPCs, Lv22-68
+  celestial_hills_normal:
+    itemBags:
+      - id: 1
+        bagName: "Celestial Hills Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Celestial Hills Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Celestial Hills Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Celestial Hills Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
   # Boss mobs — 10 NPCs, Lv22-25
   celestial_hills_boss:
     itemBags:
       - id: 1
-        bagName: "Celestial Hills Boss Loot"
+        bagName: "Celestial Hills Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Celestial Hills Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Celestial Hills Weapon Rune"
         probability: 1.0
-        distribution: auto
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Celestial Hills Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Celestial Hills Refinement"
+        probability: 0.15
+        items:
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Celestial Hills Alkahest"
+        probability: 1.0
         items:
           - templateId: 21351
             name: "Alkahest"
-            min: 1
-            max: 1
-            # <-- Designer: add more items here
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Celestial Hills Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+    goldBags:
+      - bagName: "Celestial Hills Gold"
+        probability: 1.0
+        min: 5
+        max: 15
 
 eCompensations:
   upsert:
-    # Boss (10 NPCs): 1=Naga Mercenary Lv22, 2=Naga Juggernaut Lv23, 3=Indolent Kumas Lv22, 4=Torpid Kumas Lv23, 18=Nakarash (Naga Warlord) Lv24, 19= Lv24, 23=Juggernaut Mercenary Lv24, 101=Barraq (Thunderwalker) Lv25, 1000=Radat (Kumas Guardian) Lv22, 2000=Kadas (Kumas Guardian) Lv22
+    # Normal (13 NPCs): 5=Red Fang Orcan Lv22-68, 6=Red Fang Fighter Lv22-68, 7=Red Fang Rager Lv22-68, 8=Red Fang Kobold Lv22-68, 9=Red Fang Kobold Minion Lv22-68, 10=Lean Hyena Lv22-68, ... (+7 more)
+    - huntingZoneId: 7
+      npcTemplateId: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 20, 102, 6000]
+      npcName: ""
+      $extends: celestial_hills_normal
+    # Boss (10 NPCs): 1=Naga Mercenary Lv22-25, 2=Naga Juggernaut Lv22-25, 3=Indolent Kumas Lv22-25, 4=Torpid Kumas Lv22-25, 18=Nakarash (Naga Warlord) Lv22-25, 19=19 Lv22-25, ... (+4 more)
     - huntingZoneId: 7
       npcTemplateId: [1, 2, 3, 4, 18, 19, 23, 101, 1000, 2000]
       npcName: ""
       $extends: celestial_hills_boss
+
+cCompensations:
+  # Delete 16 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 7
+      npcTemplateId: 5
+    - huntingZoneId: 7
+      npcTemplateId: 6
+    - huntingZoneId: 7
+      npcTemplateId: 7
+    - huntingZoneId: 7
+      npcTemplateId: 8
+    - huntingZoneId: 7
+      npcTemplateId: 9
+    - huntingZoneId: 7
+      npcTemplateId: 10
+    - huntingZoneId: 7
+      npcTemplateId: 11
+    - huntingZoneId: 7
+      npcTemplateId: 12
+    - huntingZoneId: 7
+      npcTemplateId: 13
+    - huntingZoneId: 7
+      npcTemplateId: 14
+    - huntingZoneId: 7
+      npcTemplateId: 15
+    - huntingZoneId: 7
+      npcTemplateId: 16
+    - huntingZoneId: 7
+      npcTemplateId: 17
+    - huntingZoneId: 7
+      npcTemplateId: 20
+    - huntingZoneId: 7
+      npcTemplateId: 100
+    - huntingZoneId: 7
+      npcTemplateId: 102

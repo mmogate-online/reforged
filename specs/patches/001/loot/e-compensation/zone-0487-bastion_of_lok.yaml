@@ -1,30 +1,276 @@
-# Zone Loot (eCompensation) — Bastion of Lok (huntingZoneId: 487)
-# Auto-generated scaffold by generate_zone_loot.py
-# Content designers: fill in itemBags items for each group definition.
+# Bastion of Lok (Zone 487) — Tier 2 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - CABOCHON_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - PAVERUNE_OF_SHARA
+        - PAVERUNE_OF_ARUN
+  - from: dungeon-tokens
+    use:
+      variables:
+        - BASTION_OF_LOK_TOKEN
+
 definitions:
+  # Elite mobs — 18 NPCs, Lv20-21
+  bastion_of_lok_elite:
+    itemBags:
+      - id: 1
+        bagName: "Bastion of Lok Elite Crystal"
+        probability: 0.08
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Bastion of Lok Elite Rune"
+        probability: 0.12
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            min: 1
+            max: 2
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            min: 1
+            max: 2
+      - id: 3
+        bagName: "Bastion of Lok Elite Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.97
+            min: 2
+            max: 4
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.03
+      - id: 4
+        bagName: "Bastion of Lok Elite Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.97
+            min: 4
+            max: 8
+
   # Boss mobs — 2 NPCs, Lv21
   bastion_of_lok_boss:
     itemBags:
       - id: 1
-        bagName: "Bastion of Lok Boss Loot"
+        bagName: "Bastion of Lok Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Bastion of Lok Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Bastion of Lok Weapon Rune"
         probability: 1.0
-        distribution: auto
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Bastion of Lok Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Bastion of Lok Refinement"
+        probability: 0.15
+        items:
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Bastion of Lok Alkahest"
+        probability: 1.0
         items:
           - templateId: 21351
             name: "Alkahest"
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Bastion of Lok Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+    goldBags:
+      - bagName: "Bastion of Lok Gold"
+        probability: 1.0
+        min: 5
+        max: 15
+
+  # Final boss — boss loot + dungeon token drop
+  bastion_of_lok_final_boss:
+    itemBags:
+      - id: 1
+        bagName: "Bastion of Lok Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Bastion of Lok Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Bastion of Lok Weapon Rune"
+        probability: 1.0
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Bastion of Lok Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Bastion of Lok Refinement"
+        probability: 0.15
+        items:
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
             min: 1
-            max: 1
-            # <-- Designer: add more items here
+            max: 2
+      - id: 6
+        bagName: "Bastion of Lok Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Bastion of Lok Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+      - id: 8
+        bagName: "Bastion of Lok Token"
+        probability: 1.0
+        items:
+          - templateId: $BASTION_OF_LOK_TOKEN
+            name: "Bastion of Lok Token"
+            probability: 1.0
+            min: 3
+            max: 3
+    goldBags:
+      - bagName: "Bastion of Lok Gold"
+        probability: 1.0
+        min: 5
+        max: 15
 
 eCompensations:
   upsert:
-    # Boss (2 NPCs): 1006=Soulcrusher (Bloodlust Killer) Lv21, 3006=Bloodbound Vulcan (Summoned Demon) Lv21
+    # Elite (18 NPCs): 1001=Devan Assassin Lv20-21, 1002=Devan Shaman Lv20-21, 1003=Devan Butcher Lv20-21, 1004=Devan Bodyguard Lv20-21, 1005=Tetra Aniask (Scion Mistress) Lv20-21, 2001=Loyal Dark Imp Lv20-21, ... (+12 more)
     - huntingZoneId: 487
-      npcTemplateId: [1006, 3006]
+      npcTemplateId: [1001, 1002, 1003, 1004, 1005, 2001, 2002, 2003, 2004, 3001, 3002, 3003, 3004, 3005, 4001, 4002, 4003, 4004]
+      npcName: ""
+      $extends: bastion_of_lok_elite
+    # Boss (1 NPC): 1006=Soulcrusher (Bloodlust Killer) Lv21
+    - huntingZoneId: 487
+      npcTemplateId: [1006]
       npcName: ""
       $extends: bastion_of_lok_boss
+    # Final Boss (1 NPC): 3006=Bloodbound Vulcan (Summoned Demon) Lv21 — drops dungeon token
+    - huntingZoneId: 487
+      npcTemplateId: [3006]
+      npcName: ""
+      $extends: bastion_of_lok_final_boss
+
+cCompensations:
+  # Delete 23 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 487
+      npcTemplateId: 101
+    - huntingZoneId: 487
+      npcTemplateId: 102
+    - huntingZoneId: 487
+      npcTemplateId: 1001
+    - huntingZoneId: 487
+      npcTemplateId: 1002
+    - huntingZoneId: 487
+      npcTemplateId: 1003
+    - huntingZoneId: 487
+      npcTemplateId: 1004
+    - huntingZoneId: 487
+      npcTemplateId: 2001
+    - huntingZoneId: 487
+      npcTemplateId: 2002
+    - huntingZoneId: 487
+      npcTemplateId: 2003
+    - huntingZoneId: 487
+      npcTemplateId: 2004
+    - huntingZoneId: 487
+      npcTemplateId: 3001
+    - huntingZoneId: 487
+      npcTemplateId: 3002
+    - huntingZoneId: 487
+      npcTemplateId: 3003
+    - huntingZoneId: 487
+      npcTemplateId: 3004
+    - huntingZoneId: 487
+      npcTemplateId: 3005
+    - huntingZoneId: 487
+      npcTemplateId: 3007
+    - huntingZoneId: 487
+      npcTemplateId: 4001
+    - huntingZoneId: 487
+      npcTemplateId: 4002
+    - huntingZoneId: 487
+      npcTemplateId: 4003
+    - huntingZoneId: 487
+      npcTemplateId: 4004
+    - huntingZoneId: 487
+      npcTemplateId: 5001
+    - huntingZoneId: 487
+      npcTemplateId: 5002
+    - huntingZoneId: 487
+      npcTemplateId: 9001

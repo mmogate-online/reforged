@@ -1,0 +1,131 @@
+# Paraanon Ravine (Zone 17) — Tier 3 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_HEXAGE
+        - ARMOR_CRYSTAL_BOX_HEXAGE
+        - HEXAGE_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - SILRUNE_OF_SHARA
+        - SILRUNE_OF_ARUN
+
+definitions:
+  # Normal mobs — 22 NPCs, Lv26-29
+  paraanon_ravine_normal:
+    itemBags:
+      - id: 1
+        bagName: "Paraanon Ravine Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Paraanon Ravine Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Paraanon Ravine Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $HEXAGE_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Paraanon Ravine Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94102
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
+eCompensations:
+  upsert:
+    # Normal (22 NPCs): 101=Heavens Fall Partisan Lv26-29, 102=Heavens Fall Laborer Lv26-29, 103=Heavens Fall Overseer Lv26-29, 104=Forked Tusk Warthog Lv26-29, 201=Thresher Rotcarn (Heavens Fall) Lv26-29, 202=Barrelhead Dwarf Lv26-29, ... (+16 more)
+    - huntingZoneId: 17
+      npcTemplateId: [101, 102, 103, 104, 201, 202, 203, 204, 205, 301, 303, 304, 305, 1001, 300050, 300442, 300470, 300551, 300552, 300580, 301201, 301220]
+      npcName: ""
+      $extends: paraanon_ravine_normal
+
+cCompensations:
+  # Delete 28 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 17
+      npcTemplateId: 101
+    - huntingZoneId: 17
+      npcTemplateId: 102
+    - huntingZoneId: 17
+      npcTemplateId: 103
+    - huntingZoneId: 17
+      npcTemplateId: 104
+    - huntingZoneId: 17
+      npcTemplateId: 201
+    - huntingZoneId: 17
+      npcTemplateId: 202
+    - huntingZoneId: 17
+      npcTemplateId: 203
+    - huntingZoneId: 17
+      npcTemplateId: 204
+    - huntingZoneId: 17
+      npcTemplateId: 205
+    - huntingZoneId: 17
+      npcTemplateId: 206
+    - huntingZoneId: 17
+      npcTemplateId: 207
+    - huntingZoneId: 17
+      npcTemplateId: 208
+    - huntingZoneId: 17
+      npcTemplateId: 301
+    - huntingZoneId: 17
+      npcTemplateId: 302
+    - huntingZoneId: 17
+      npcTemplateId: 303
+    - huntingZoneId: 17
+      npcTemplateId: 304
+    - huntingZoneId: 17
+      npcTemplateId: 305
+    - huntingZoneId: 17
+      npcTemplateId: 1000
+    - huntingZoneId: 17
+      npcTemplateId: 1001
+    - huntingZoneId: 17
+      npcTemplateId: 300050
+    - huntingZoneId: 17
+      npcTemplateId: 300442
+    - huntingZoneId: 17
+      npcTemplateId: 300443
+    - huntingZoneId: 17
+      npcTemplateId: 300470
+    - huntingZoneId: 17
+      npcTemplateId: 300551
+    - huntingZoneId: 17
+      npcTemplateId: 300552
+    - huntingZoneId: 17
+      npcTemplateId: 300580
+    - huntingZoneId: 17
+      npcTemplateId: 301201
+    - huntingZoneId: 17
+      npcTemplateId: 301220

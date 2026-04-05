@@ -1,30 +1,228 @@
-# Zone Loot (eCompensation) — Valley of Titans (huntingZoneId: 6)
-# Auto-generated scaffold by generate_zone_loot.py
-# Content designers: fill in itemBags items for each group definition.
+# Valley of Titans (Zone 6) — Tier 2 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - CABOCHON_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - PAVERUNE_OF_SHARA
+        - PAVERUNE_OF_ARUN
+
 definitions:
+  # Normal mobs — 38 NPCs, Lv16-20
+  valley_of_titans_normal:
+    itemBags:
+      - id: 1
+        bagName: "Valley of Titans Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Valley of Titans Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Valley of Titans Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Valley of Titans Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
   # Boss mobs — 1 NPCs, Lv20
   valley_of_titans_boss:
     itemBags:
       - id: 1
-        bagName: "Valley of Titans Boss Loot"
+        bagName: "Valley of Titans Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Valley of Titans Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Valley of Titans Weapon Rune"
         probability: 1.0
-        distribution: auto
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Valley of Titans Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Valley of Titans Refinement"
+        probability: 0.15
+        items:
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Valley of Titans Alkahest"
+        probability: 1.0
         items:
           - templateId: 21351
             name: "Alkahest"
-            min: 1
-            max: 1
-            # <-- Designer: add more items here
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Valley of Titans Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+    goldBags:
+      - bagName: "Valley of Titans Gold"
+        probability: 1.0
+        min: 5
+        max: 15
 
 eCompensations:
   upsert:
+    # Normal (38 NPCs): 1031=Ravenous Hyena Lv16-20, 1032=Starving Hyena Lv16-20, 1041=Gutrend Kulkari Lv16-20, 1042=Gutrend Hyena Lv16-20, 1051=Gutrend Clawtamer Lv16-20, 1052=Gutrend Hyena Lv16-20, ... (+32 more)
+    - huntingZoneId: 6
+      npcTemplateId: [1031, 1032, 1041, 1042, 1051, 1052, 1061, 1062, 1071, 1081, 1091, 2011, 2021, 2031, 2041, 2051, 2061, 2081, 2082, 3011, 3021, 3031, 3032, 3041, 3042, 5001, 5002, 7031, 7032, 7033, 7041, 7051, 8001, 8002, 8003, 8004, 8005, 8006]
+      npcName: ""
+      $extends: valley_of_titans_normal
     # Boss (1 NPCs): 5003=Arakia Lv20
     - huntingZoneId: 6
       npcTemplateId: [5003]
       npcName: ""
       $extends: valley_of_titans_boss
+
+cCompensations:
+  # Delete 42 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 6
+      npcTemplateId: 1011
+    - huntingZoneId: 6
+      npcTemplateId: 1021
+    - huntingZoneId: 6
+      npcTemplateId: 1031
+    - huntingZoneId: 6
+      npcTemplateId: 1032
+    - huntingZoneId: 6
+      npcTemplateId: 1041
+    - huntingZoneId: 6
+      npcTemplateId: 1042
+    - huntingZoneId: 6
+      npcTemplateId: 1051
+    - huntingZoneId: 6
+      npcTemplateId: 1052
+    - huntingZoneId: 6
+      npcTemplateId: 1061
+    - huntingZoneId: 6
+      npcTemplateId: 1062
+    - huntingZoneId: 6
+      npcTemplateId: 1071
+    - huntingZoneId: 6
+      npcTemplateId: 1081
+    - huntingZoneId: 6
+      npcTemplateId: 1091
+    - huntingZoneId: 6
+      npcTemplateId: 2011
+    - huntingZoneId: 6
+      npcTemplateId: 2021
+    - huntingZoneId: 6
+      npcTemplateId: 2031
+    - huntingZoneId: 6
+      npcTemplateId: 2041
+    - huntingZoneId: 6
+      npcTemplateId: 2051
+    - huntingZoneId: 6
+      npcTemplateId: 2061
+    - huntingZoneId: 6
+      npcTemplateId: 2071
+    - huntingZoneId: 6
+      npcTemplateId: 2072
+    - huntingZoneId: 6
+      npcTemplateId: 2081
+    - huntingZoneId: 6
+      npcTemplateId: 2082
+    - huntingZoneId: 6
+      npcTemplateId: 3011
+    - huntingZoneId: 6
+      npcTemplateId: 3021
+    - huntingZoneId: 6
+      npcTemplateId: 3031
+    - huntingZoneId: 6
+      npcTemplateId: 3032
+    - huntingZoneId: 6
+      npcTemplateId: 3041
+    - huntingZoneId: 6
+      npcTemplateId: 3042
+    - huntingZoneId: 6
+      npcTemplateId: 5001
+    - huntingZoneId: 6
+      npcTemplateId: 5002
+    - huntingZoneId: 6
+      npcTemplateId: 7031
+    - huntingZoneId: 6
+      npcTemplateId: 7032
+    - huntingZoneId: 6
+      npcTemplateId: 7033
+    - huntingZoneId: 6
+      npcTemplateId: 7041
+    - huntingZoneId: 6
+      npcTemplateId: 7051
+    - huntingZoneId: 6
+      npcTemplateId: 8001
+    - huntingZoneId: 6
+      npcTemplateId: 8002
+    - huntingZoneId: 6
+      npcTemplateId: 8003
+    - huntingZoneId: 6
+      npcTemplateId: 8004
+    - huntingZoneId: 6
+      npcTemplateId: 8005
+    - huntingZoneId: 6
+      npcTemplateId: 8006

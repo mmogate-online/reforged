@@ -1,30 +1,249 @@
-# Zone Loot (eCompensation) — Sinestral Manor (huntingZoneId: 488)
-# Auto-generated scaffold by generate_zone_loot.py
-# Content designers: fill in itemBags items for each group definition.
+# Sinestral Manor (Zone 488) — Tier 3 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_HEXAGE
+        - ARMOR_CRYSTAL_BOX_HEXAGE
+        - HEXAGE_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - SILRUNE_OF_SHARA
+        - SILRUNE_OF_ARUN
+  - from: dungeon-tokens
+    use:
+      variables:
+        - SINESTRAL_MANOR_TOKEN
+
 definitions:
+  # Normal mobs — 5 NPCs, Lv27-40
+  sinestral_manor_normal:
+    itemBags:
+      - id: 1
+        bagName: "Sinestral Manor Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Sinestral Manor Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Sinestral Manor Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $HEXAGE_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Sinestral Manor Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94102
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
+  # Elite mobs — 17 NPCs, Lv27-28
+  sinestral_manor_elite:
+    itemBags:
+      - id: 1
+        bagName: "Sinestral Manor Elite Crystal"
+        probability: 0.08
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Sinestral Manor Elite Rune"
+        probability: 0.12
+        equalProbability: true
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            min: 1
+            max: 2
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            min: 1
+            max: 2
+      - id: 3
+        bagName: "Sinestral Manor Elite Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.97
+            min: 2
+            max: 4
+          - templateId: $HEXAGE_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.03
+      - id: 4
+        bagName: "Sinestral Manor Elite Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94102
+            name: "Feedstock"
+            probability: 0.97
+            min: 4
+            max: 8
+
   # Boss mobs — 1 NPCs, Lv28
   sinestral_manor_boss:
     itemBags:
       - id: 1
-        bagName: "Sinestral Manor Boss Loot"
+        bagName: "Sinestral Manor Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Sinestral Manor Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Sinestral Manor Weapon Rune"
         probability: 1.0
-        distribution: auto
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Sinestral Manor Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Sinestral Manor Refinement"
+        probability: 0.15
+        items:
+          - templateId: $HEXAGE_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Sinestral Manor Alkahest"
+        probability: 1.0
         items:
           - templateId: 21351
             name: "Alkahest"
-            min: 1
-            max: 1
-            # <-- Designer: add more items here
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Sinestral Manor Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94102
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+      - id: 8
+        bagName: "Sinestral Manor Token"
+        probability: 1.0
+        items:
+          - templateId: $SINESTRAL_MANOR_TOKEN
+            name: "Sinestral Manor Token"
+            probability: 1.0
+            min: 3
+            max: 3
+    goldBags:
+      - bagName: "Sinestral Manor Gold"
+        probability: 1.0
+        min: 15
+        max: 40
 
 eCompensations:
   upsert:
+    # Normal (5 NPCs): 100=Voracious Dread Wraith Lv27-40, 101=Dire Disc Reaper Lv27-40, 1005=Jelena (Valkyon Ranger) Lv27-40, 1008=Priest of Darkness Akia (Atel Akaad) Lv27-40, 1010=Exit Teleportal Lv27-40
+    - huntingZoneId: 488
+      npcTemplateId: [100, 101, 1005, 1008, 1010]
+      npcName: ""
+      $extends: sinestral_manor_normal
+    # Elite (17 NPCs): 2=Dread Wraith Lv27-28, 3=Furious Wraith Lv27-28, 4=Lokian Defender Lv27-28, 7=Lokian Devastator Lv27-28, 8=Zealous Disc Reaper Lv27-28, 9=Ensorceled Blood Moppet Lv27-28, ... (+11 more)
+    - huntingZoneId: 488
+      npcTemplateId: [2, 3, 4, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20, 23, 102]
+      npcName: ""
+      $extends: sinestral_manor_elite
     # Boss (1 NPCs): 18=Malgarios (Hungry, Angry, Insane) Lv28
     - huntingZoneId: 488
       npcTemplateId: [18]
       npcName: ""
       $extends: sinestral_manor_boss
+
+cCompensations:
+  # Delete 20 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 488
+      npcTemplateId: 2
+    - huntingZoneId: 488
+      npcTemplateId: 3
+    - huntingZoneId: 488
+      npcTemplateId: 4
+    - huntingZoneId: 488
+      npcTemplateId: 7
+    - huntingZoneId: 488
+      npcTemplateId: 8
+    - huntingZoneId: 488
+      npcTemplateId: 9
+    - huntingZoneId: 488
+      npcTemplateId: 11
+    - huntingZoneId: 488
+      npcTemplateId: 12
+    - huntingZoneId: 488
+      npcTemplateId: 14
+    - huntingZoneId: 488
+      npcTemplateId: 15
+    - huntingZoneId: 488
+      npcTemplateId: 16
+    - huntingZoneId: 488
+      npcTemplateId: 17
+    - huntingZoneId: 488
+      npcTemplateId: 19
+    - huntingZoneId: 488
+      npcTemplateId: 20
+    - huntingZoneId: 488
+      npcTemplateId: 21
+    - huntingZoneId: 488
+      npcTemplateId: 22
+    - huntingZoneId: 488
+      npcTemplateId: 100
+    - huntingZoneId: 488
+      npcTemplateId: 101
+    - huntingZoneId: 488
+      npcTemplateId: 102
+    - huntingZoneId: 488
+      npcTemplateId: 1007

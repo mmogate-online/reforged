@@ -1,30 +1,184 @@
-# Zone Loot (eCompensation) — Cliffs of Insanity (huntingZoneId: 15)
-# Auto-generated scaffold by generate_zone_loot.py
-# Content designers: fill in itemBags items for each group definition.
+# Cliffs of Insanity (Zone 15) — Tier 3 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_HEXAGE
+        - ARMOR_CRYSTAL_BOX_HEXAGE
+        - HEXAGE_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - SILRUNE_OF_SHARA
+        - SILRUNE_OF_ARUN
+
 definitions:
+  # Normal mobs — 17 NPCs, Lv24-25
+  cliffs_of_insanity_normal:
+    itemBags:
+      - id: 1
+        bagName: "Cliffs of Insanity Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Cliffs of Insanity Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Cliffs of Insanity Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $HEXAGE_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Cliffs of Insanity Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94102
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
   # Boss mobs — 3 NPCs, Lv25-27
   cliffs_of_insanity_boss:
     itemBags:
       - id: 1
-        bagName: "Cliffs of Insanity Boss Loot"
+        bagName: "Cliffs of Insanity Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Cliffs of Insanity Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Cliffs of Insanity Weapon Rune"
         probability: 1.0
-        distribution: auto
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Cliffs of Insanity Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Cliffs of Insanity Refinement"
+        probability: 0.15
+        items:
+          - templateId: $HEXAGE_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Cliffs of Insanity Alkahest"
+        probability: 1.0
         items:
           - templateId: 21351
             name: "Alkahest"
-            min: 1
-            max: 1
-            # <-- Designer: add more items here
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Cliffs of Insanity Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94102
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+    goldBags:
+      - bagName: "Cliffs of Insanity Gold"
+        probability: 1.0
+        min: 15
+        max: 40
 
 eCompensations:
   upsert:
-    # Boss (3 NPCs): 15=Fimbrilisk Lv25, 19=Ebonathis (Shadow Fimbrilisk) Lv27, 20=Atrocitas (Cruel Fimbrilisk) Lv27
+    # Normal (17 NPCs): 1=Lunatic Yeoman Lv24-25, 2=Insane Farmer Lv24-25, 3=Sulking Inky Sabertooth Lv24-25, 4=Castanic Recruit Lv24-25, 5=Amani Recruit Lv24-25, 6=Disturbed Construct Lv24-25, ... (+11 more)
+    - huntingZoneId: 15
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18]
+      npcName: ""
+      $extends: cliffs_of_insanity_normal
+    # Boss (3 NPCs): 15=Fimbrilisk Lv25-27, 19=Ebonathis (Shadow Fimbrilisk) Lv25-27, 20=Atrocitas (Cruel Fimbrilisk) Lv25-27
     - huntingZoneId: 15
       npcTemplateId: [15, 19, 20]
       npcName: ""
       $extends: cliffs_of_insanity_boss
+
+cCompensations:
+  # Delete 20 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 15
+      npcTemplateId: 1
+    - huntingZoneId: 15
+      npcTemplateId: 2
+    - huntingZoneId: 15
+      npcTemplateId: 3
+    - huntingZoneId: 15
+      npcTemplateId: 4
+    - huntingZoneId: 15
+      npcTemplateId: 5
+    - huntingZoneId: 15
+      npcTemplateId: 6
+    - huntingZoneId: 15
+      npcTemplateId: 7
+    - huntingZoneId: 15
+      npcTemplateId: 8
+    - huntingZoneId: 15
+      npcTemplateId: 9
+    - huntingZoneId: 15
+      npcTemplateId: 10
+    - huntingZoneId: 15
+      npcTemplateId: 11
+    - huntingZoneId: 15
+      npcTemplateId: 12
+    - huntingZoneId: 15
+      npcTemplateId: 13
+    - huntingZoneId: 15
+      npcTemplateId: 14
+    - huntingZoneId: 15
+      npcTemplateId: 16
+    - huntingZoneId: 15
+      npcTemplateId: 17
+    - huntingZoneId: 15
+      npcTemplateId: 18
+    - huntingZoneId: 15
+      npcTemplateId: 21
+    - huntingZoneId: 15
+      npcTemplateId: 22
+    - huntingZoneId: 15
+      npcTemplateId: 9000

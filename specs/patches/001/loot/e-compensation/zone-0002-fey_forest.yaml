@@ -1,0 +1,119 @@
+# Fey Forest (Zone 2) — Tier 2 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - CABOCHON_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - PAVERUNE_OF_SHARA
+        - PAVERUNE_OF_ARUN
+
+definitions:
+  # Normal mobs — 32 NPCs, Lv11-15
+  fey_forest_normal:
+    itemBags:
+      - id: 1
+        bagName: "Fey Forest Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Fey Forest Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Fey Forest Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Fey Forest Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
+eCompensations:
+  upsert:
+    # Normal (32 NPCs): 1=Redcap Lv11-15, 2=Furious Faerie Lv11-15, 3=Centaur Lv11-15, 4=Slinking Sabertooth Lv11-15, 5=Hulking Sabertooth Lv11-15, 6=Sullen Unicorn Lv11-15, ... (+26 more)
+    - huntingZoneId: 2
+      npcTemplateId: [1, 2, 3, 4, 5, 6, 7, 8, 10, 13, 22, 23, 32, 33, 34, 52, 56, 57, 58, 59, 62, 102, 152, 202, 203, 206, 209, 210, 259, 260, 507, 510]
+      npcName: ""
+      $extends: fey_forest_normal
+
+cCompensations:
+  # Delete 22 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 2
+      npcTemplateId: 3
+    - huntingZoneId: 2
+      npcTemplateId: 4
+    - huntingZoneId: 2
+      npcTemplateId: 5
+    - huntingZoneId: 2
+      npcTemplateId: 6
+    - huntingZoneId: 2
+      npcTemplateId: 7
+    - huntingZoneId: 2
+      npcTemplateId: 10
+    - huntingZoneId: 2
+      npcTemplateId: 13
+    - huntingZoneId: 2
+      npcTemplateId: 21
+    - huntingZoneId: 2
+      npcTemplateId: 22
+    - huntingZoneId: 2
+      npcTemplateId: 32
+    - huntingZoneId: 2
+      npcTemplateId: 34
+    - huntingZoneId: 2
+      npcTemplateId: 56
+    - huntingZoneId: 2
+      npcTemplateId: 57
+    - huntingZoneId: 2
+      npcTemplateId: 203
+    - huntingZoneId: 2
+      npcTemplateId: 206
+    - huntingZoneId: 2
+      npcTemplateId: 209
+    - huntingZoneId: 2
+      npcTemplateId: 210
+    - huntingZoneId: 2
+      npcTemplateId: 256
+    - huntingZoneId: 2
+      npcTemplateId: 259
+    - huntingZoneId: 2
+      npcTemplateId: 260
+    - huntingZoneId: 2
+      npcTemplateId: 507
+    - huntingZoneId: 2
+      npcTemplateId: 510

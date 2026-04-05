@@ -1,30 +1,252 @@
-# Zone Loot (eCompensation) — Vale of the Fang (huntingZoneId: 16)
-# Auto-generated scaffold by generate_zone_loot.py
-# Content designers: fill in itemBags items for each group definition.
+# Vale of the Fang (Zone 16) — Tier 2 eCompensation
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - CABOCHON_REFINEMENT_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - PAVERUNE_OF_SHARA
+        - PAVERUNE_OF_ARUN
+
 definitions:
+  # Normal mobs — 20 NPCs, Lv25-28
+  vale_of_the_fang_normal:
+    itemBags:
+      - id: 1
+        bagName: "Vale of the Fang Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Vale of the Fang Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Vale of the Fang Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Vale of the Fang Normal Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.99
+            min: 2
+            max: 4
+
+  # Elite mobs — 1 NPCs, Lv29
+  vale_of_the_fang_elite:
+    itemBags:
+      - id: 1
+        bagName: "Vale of the Fang Elite Crystal"
+        probability: 0.08
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Vale of the Fang Elite Rune"
+        probability: 0.12
+        equalProbability: true
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            min: 1
+            max: 2
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            min: 1
+            max: 2
+      - id: 3
+        bagName: "Vale of the Fang Elite Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.97
+            min: 2
+            max: 4
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 0.03
+      - id: 4
+        bagName: "Vale of the Fang Elite Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 0.97
+            min: 4
+            max: 8
+
   # Boss mobs — 3 NPCs, Lv26-28
   vale_of_the_fang_boss:
     itemBags:
       - id: 1
-        bagName: "Vale of the Fang Boss Loot"
+        bagName: "Vale of the Fang Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Vale of the Fang Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Vale of the Fang Weapon Rune"
         probability: 1.0
-        distribution: auto
+        items:
+          - templateId: $PAVERUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Vale of the Fang Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $PAVERUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Vale of the Fang Refinement"
+        probability: 0.15
+        items:
+          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
+            name: "Refinement Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Vale of the Fang Alkahest"
+        probability: 1.0
         items:
           - templateId: 21351
             name: "Alkahest"
-            min: 1
-            max: 1
-            # <-- Designer: add more items here
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 7
+        bagName: "Vale of the Fang Feedstock"
+        probability: 1.0
+        items:
+          - templateId: 94101
+            name: "Feedstock"
+            probability: 1.0
+            min: 6
+            max: 12
+    goldBags:
+      - bagName: "Vale of the Fang Gold"
+        probability: 1.0
+        min: 5
+        max: 15
 
 eCompensations:
   upsert:
-    # Boss (3 NPCs): 2401=Ovolith Lv26, 2402=Lurking Ovolith Lv27, 2501=Massive Ovolith Lv28
+    # Normal (20 NPCs): 1007=Kirithia (Stalker Company) Lv25-28, 2201=Vampir Henchman Lv25-28, 2202=Vampir Retiarius Lv25-28, 2203=Violent Dwarf Lv25-28, 2204=Armored Zuulhound Lv25-28, 2205=Stalker Company Scout Lv25-28, ... (+14 more)
+    - huntingZoneId: 16
+      npcTemplateId: [1007, 2201, 2202, 2203, 2204, 2205, 2206, 2207, 2208, 2209, 2301, 2302, 2303, 2304, 2305, 2403, 2404, 2405, 2406, 2502]
+      npcName: ""
+      $extends: vale_of_the_fang_normal
+    # Elite (1 NPCs): 5003=Juvenile Ovolith Lv29
+    - huntingZoneId: 16
+      npcTemplateId: [5003]
+      npcName: ""
+      $extends: vale_of_the_fang_elite
+    # Boss (3 NPCs): 2401=Ovolith Lv26-28, 2402=Lurking Ovolith Lv26-28, 2501=Massive Ovolith Lv26-28
     - huntingZoneId: 16
       npcTemplateId: [2401, 2402, 2501]
       npcName: ""
       $extends: vale_of_the_fang_boss
+
+cCompensations:
+  # Delete 28 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 16
+      npcTemplateId: 1
+    - huntingZoneId: 16
+      npcTemplateId: 2
+    - huntingZoneId: 16
+      npcTemplateId: 1001
+    - huntingZoneId: 16
+      npcTemplateId: 1002
+    - huntingZoneId: 16
+      npcTemplateId: 1003
+    - huntingZoneId: 16
+      npcTemplateId: 1004
+    - huntingZoneId: 16
+      npcTemplateId: 1005
+    - huntingZoneId: 16
+      npcTemplateId: 1006
+    - huntingZoneId: 16
+      npcTemplateId: 1007
+    - huntingZoneId: 16
+      npcTemplateId: 2201
+    - huntingZoneId: 16
+      npcTemplateId: 2202
+    - huntingZoneId: 16
+      npcTemplateId: 2203
+    - huntingZoneId: 16
+      npcTemplateId: 2204
+    - huntingZoneId: 16
+      npcTemplateId: 2205
+    - huntingZoneId: 16
+      npcTemplateId: 2206
+    - huntingZoneId: 16
+      npcTemplateId: 2207
+    - huntingZoneId: 16
+      npcTemplateId: 2208
+    - huntingZoneId: 16
+      npcTemplateId: 2209
+    - huntingZoneId: 16
+      npcTemplateId: 2301
+    - huntingZoneId: 16
+      npcTemplateId: 2302
+    - huntingZoneId: 16
+      npcTemplateId: 2303
+    - huntingZoneId: 16
+      npcTemplateId: 2304
+    - huntingZoneId: 16
+      npcTemplateId: 2305
+    - huntingZoneId: 16
+      npcTemplateId: 2403
+    - huntingZoneId: 16
+      npcTemplateId: 2404
+    - huntingZoneId: 16
+      npcTemplateId: 2405
+    - huntingZoneId: 16
+      npcTemplateId: 2406
+    - huntingZoneId: 16
+      npcTemplateId: 2502
