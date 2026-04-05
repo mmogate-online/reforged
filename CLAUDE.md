@@ -130,11 +130,15 @@ Project skills live in `.claude/skills/`. Each skill is a folder with a `SKILL.m
 
 **Official reference:** https://docs.anthropic.com/en/docs/claude-code/skills
 
+## Patch 001 Zone Scope
+
+When doing any research, loot work, merchant audits, or NPC queries scoped to patch 001, always include **all zones defined in `reforged/docs/patch-001-scope.md`** — hunting zones, hub cities, and dungeons. Do not query hunting zones in isolation; hub cities are part of the content scope.
+
 ## DSL Issues & Feature Requests
 
-Agents in this project are end users of the DSL tool. Do not attempt to fix DSL bugs or implement missing features. Instead, log them in `docs/dsl-requests.md` with:
+Agents in this project are end users of the DSL tool. Do not attempt to fix DSL bugs or implement missing features. Instead, log them in `docs/dsl-requests/` as individual files named `YYYY-MM-DD-<topic>.md`. Multiple issues discovered during the same task can share a single file. Each entry should include:
 - Spec YAML or command that triggered the issue
 - Expected vs actual behavior
 - Relevant doc reference from the end-user starlight docs
 
-The DSL dev team will handle requests from that file separately.
+The DSL dev team will handle requests from that directory separately.

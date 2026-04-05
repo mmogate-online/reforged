@@ -3,7 +3,7 @@ Zone Loot Table Generator — Fills specs with tier-appropriate drops.
 
 Reads zone_tier_config.csv for tier assignments and npc_by_zone.csv for NPC
 groupings, then generates eCompensation YAML specs with tier-matched crystal
-boxes, runes, refinement structures, alkahest, and gold.
+boxes, runes, refinement structures, alkahest, infusion boxes, and gold.
 
 All mob types (normal, elite, boss) use eCompensation since drops are class
 agnostic — no class branching needed.
@@ -88,6 +88,18 @@ TIER_DROPS = {
 # Drop probabilities per mob type
 NORMAL_PROBS = {"crystal": 0.03, "rune": 0.05, "refinement": 0.01, "alkahest": 0.99}
 ELITE_PROBS = {"crystal": 0.08, "rune": 0.12, "refinement": 0.03, "alkahest": 0.97}
+
+# Infusion gacha box IDs — same for all zone tiers (not tier-dependent)
+# Each grade bag contains 4 items (weapon/chest/gloves/boots), equal probability
+INFUSION_BOXES = {
+    "uncommon": [602190, 602193, 602196, 602199],  # weapon, chest, gloves, boots
+    "rare":     [602191, 602194, 602197, 602200],
+    "superior": [602192, 602195, 602198, 602201],
+}
+INFUSION_PROBS_NORMAL = {"uncommon": 0.10, "rare": 0.01, "superior": 0.001}
+INFUSION_PROBS_ELITE  = {"uncommon": 0.25, "rare": 0.05, "superior": 0.005}
+INFUSION_PROBS_BOSS   = {"uncommon": 0.50, "rare": 0.10, "superior": 0.01}
+INFUSION_GRADE_LABELS = {"uncommon": "Uncommon", "rare": "Rare", "superior": "Superior"}
 
 
 # ---------------------------------------------------------------------------
@@ -234,6 +246,32 @@ def collect_imports(tier: int, has_bosses: bool) -> tuple[list[str], list[str]]:
     return crystal_vars, evo_vars
 
 
+def append_infusion_bags(lines: list[str], zone_name: str, mob_label: str,
+                         probs: dict[str, float], bag_id: int) -> int:
+    """Append 3 infusion box bags (uncommon/rare/superior) to lines.
+
+    Returns the next available bag_id.
+    """
+    for grade, prob in probs.items():
+        box_ids = INFUSION_BOXES[grade]
+        label = INFUSION_GRADE_LABELS[grade]
+        lines.append(f"      - id: {bag_id}")
+        lines.append(f'        bagName: "{zone_name} {mob_label} Infusion ({label})"')
+        lines.append(f"        probability: {prob}")
+        lines.append("        equalProbability: true")
+        lines.append("        items:")
+        lines.append(f"          - templateId: {box_ids[0]}")
+        lines.append(f'            name: "Infusion Weapon Box ({label})"')
+        lines.append(f"          - templateId: {box_ids[1]}")
+        lines.append(f'            name: "Infusion Chest Box ({label})"')
+        lines.append(f"          - templateId: {box_ids[2]}")
+        lines.append(f'            name: "Infusion Gloves Box ({label})"')
+        lines.append(f"          - templateId: {box_ids[3]}")
+        lines.append(f'            name: "Infusion Boots Box ({label})"')
+        bag_id += 1
+    return bag_id
+
+
 # ---------------------------------------------------------------------------
 # Definition generators (normal / elite / boss)
 # ---------------------------------------------------------------------------
@@ -299,6 +337,9 @@ def generate_normal_definition(slug: str, zone_name: str, npcs: list[Npc], drops
     lines.append("            min: 2")
     lines.append("            max: 4")
     bag_id += 1
+
+    # Bags: Infusion boxes (3 grades, independent rolls)
+    bag_id = append_infusion_bags(lines, zone_name, "Normal", INFUSION_PROBS_NORMAL, bag_id)
 
     return lines, bag_id
 
@@ -368,6 +409,9 @@ def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops:
     lines.append("            min: 4")
     lines.append("            max: 8")
     bag_id += 1
+
+    # Bags: Infusion boxes (3 grades, independent rolls)
+    bag_id = append_infusion_bags(lines, zone_name, "Elite", INFUSION_PROBS_ELITE, bag_id)
 
     return lines, bag_id
 
@@ -459,6 +503,9 @@ def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: 
     lines.append("            max: 12")
     bag_id += 1
 
+    # Bags: Infusion boxes (3 grades, independent rolls)
+    bag_id = append_infusion_bags(lines, zone_name, "Boss", INFUSION_PROBS_BOSS, bag_id)
+
     # T6 bonus: Aeru Rune (50%)
     if tier == 6:
         lines.append(f"      - id: {bag_id}")
@@ -502,7 +549,7 @@ def generate_e_compensation(zone: ZoneConfig, groups: ZoneNpcGroups,
 
     lines = []
     lines.append(f"# {zone.zone_name} (Zone {zone.hunting_zone_id}) — Tier {tier} eCompensation")
-    lines.append(f"# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold")
+    lines.append(f"# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, infusion boxes, gold")
     lines.append("")
     lines.append("spec:")
     lines.append('  version: "1.0"')

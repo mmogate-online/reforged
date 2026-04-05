@@ -24,10 +24,13 @@ imports:
 
 definitions:
   refinementStructureBase:
+    name: RawStone
     combatItemType: RAWSTONE
     combatItemSubType: service
     category: service
     maxStack: 100
+    slotLimit: 0
+    coolTimeGroup: 0
     tradable: true
     warehouseStorable: true
     guildWarehouseStorable: false
@@ -40,7 +43,11 @@ definitions:
     enchantEnable: false
     dismantlable: false
     artisanable: false
+    requiredEquipmentType: NO_COMBAT
     icon: Icon_Items.Combine_Crystal_Slot_Tex
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_CustomizeStoneCue
     rareGrade: 0
     rank: 0
 

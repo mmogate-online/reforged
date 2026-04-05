@@ -1,5 +1,5 @@
 # Bastion of Lok (Zone 487) — Tier 2 eCompensation
-# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, gold
+# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, infusion boxes, gold
 
 spec:
   version: "1.0"
@@ -17,10 +17,6 @@ imports:
       variables:
         - PAVERUNE_OF_SHARA
         - PAVERUNE_OF_ARUN
-  - from: dungeon-tokens
-    use:
-      variables:
-        - BASTION_OF_LOK_TOKEN
 
 definitions:
   # Elite mobs — 18 NPCs, Lv20-21
@@ -69,6 +65,45 @@ definitions:
             probability: 0.97
             min: 4
             max: 8
+      - id: 5
+        bagName: "Bastion of Lok Elite Infusion (Uncommon)"
+        probability: 0.25
+        equalProbability: true
+        items:
+          - templateId: 602190
+            name: "Infusion Weapon Box (Uncommon)"
+          - templateId: 602193
+            name: "Infusion Chest Box (Uncommon)"
+          - templateId: 602196
+            name: "Infusion Gloves Box (Uncommon)"
+          - templateId: 602199
+            name: "Infusion Boots Box (Uncommon)"
+      - id: 6
+        bagName: "Bastion of Lok Elite Infusion (Rare)"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: 602191
+            name: "Infusion Weapon Box (Rare)"
+          - templateId: 602194
+            name: "Infusion Chest Box (Rare)"
+          - templateId: 602197
+            name: "Infusion Gloves Box (Rare)"
+          - templateId: 602200
+            name: "Infusion Boots Box (Rare)"
+      - id: 7
+        bagName: "Bastion of Lok Elite Infusion (Superior)"
+        probability: 0.005
+        equalProbability: true
+        items:
+          - templateId: 602192
+            name: "Infusion Weapon Box (Superior)"
+          - templateId: 602195
+            name: "Infusion Chest Box (Superior)"
+          - templateId: 602198
+            name: "Infusion Gloves Box (Superior)"
+          - templateId: 602201
+            name: "Infusion Boots Box (Superior)"
 
   # Boss mobs — 2 NPCs, Lv21
   bastion_of_lok_boss:
@@ -128,79 +163,45 @@ definitions:
             probability: 1.0
             min: 6
             max: 12
-    goldBags:
-      - bagName: "Bastion of Lok Gold"
-        probability: 1.0
-        min: 5
-        max: 15
-
-  # Final boss — boss loot + dungeon token drop
-  bastion_of_lok_final_boss:
-    itemBags:
-      - id: 1
-        bagName: "Bastion of Lok Weapon Crystal"
-        probability: 0.5
-        items:
-          - templateId: $WEAPON_CRYSTAL_BOX_CABOCHON
-            name: "Weapon Crystal Box"
-            probability: 1.0
-      - id: 2
-        bagName: "Bastion of Lok Armor Crystal"
-        probability: 0.5
-        items:
-          - templateId: $ARMOR_CRYSTAL_BOX_CABOCHON
-            name: "Armor Crystal Box"
-            probability: 1.0
-      - id: 3
-        bagName: "Bastion of Lok Weapon Rune"
-        probability: 1.0
-        items:
-          - templateId: $PAVERUNE_OF_SHARA
-            name: "Weapon Evolution Rune"
-            probability: 1.0
-      - id: 4
-        bagName: "Bastion of Lok Armor Rune"
-        probability: 1.0
-        items:
-          - templateId: $PAVERUNE_OF_ARUN
-            name: "Armor Evolution Rune"
-            probability: 1.0
-      - id: 5
-        bagName: "Bastion of Lok Refinement"
-        probability: 0.15
-        items:
-          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
-            name: "Refinement Structure"
-            probability: 1.0
-            min: 1
-            max: 2
-      - id: 6
-        bagName: "Bastion of Lok Alkahest"
-        probability: 1.0
-        items:
-          - templateId: 21351
-            name: "Alkahest"
-            probability: 1.0
-            min: 3
-            max: 6
-      - id: 7
-        bagName: "Bastion of Lok Feedstock"
-        probability: 1.0
-        items:
-          - templateId: 94101
-            name: "Feedstock"
-            probability: 1.0
-            min: 6
-            max: 12
       - id: 8
-        bagName: "Bastion of Lok Token"
-        probability: 1.0
+        bagName: "Bastion of Lok Boss Infusion (Uncommon)"
+        probability: 0.5
+        equalProbability: true
         items:
-          - templateId: $BASTION_OF_LOK_TOKEN
-            name: "Bastion of Lok Token"
-            probability: 1.0
-            min: 3
-            max: 3
+          - templateId: 602190
+            name: "Infusion Weapon Box (Uncommon)"
+          - templateId: 602193
+            name: "Infusion Chest Box (Uncommon)"
+          - templateId: 602196
+            name: "Infusion Gloves Box (Uncommon)"
+          - templateId: 602199
+            name: "Infusion Boots Box (Uncommon)"
+      - id: 9
+        bagName: "Bastion of Lok Boss Infusion (Rare)"
+        probability: 0.1
+        equalProbability: true
+        items:
+          - templateId: 602191
+            name: "Infusion Weapon Box (Rare)"
+          - templateId: 602194
+            name: "Infusion Chest Box (Rare)"
+          - templateId: 602197
+            name: "Infusion Gloves Box (Rare)"
+          - templateId: 602200
+            name: "Infusion Boots Box (Rare)"
+      - id: 10
+        bagName: "Bastion of Lok Boss Infusion (Superior)"
+        probability: 0.01
+        equalProbability: true
+        items:
+          - templateId: 602192
+            name: "Infusion Weapon Box (Superior)"
+          - templateId: 602195
+            name: "Infusion Chest Box (Superior)"
+          - templateId: 602198
+            name: "Infusion Gloves Box (Superior)"
+          - templateId: 602201
+            name: "Infusion Boots Box (Superior)"
     goldBags:
       - bagName: "Bastion of Lok Gold"
         probability: 1.0
@@ -214,16 +215,11 @@ eCompensations:
       npcTemplateId: [1001, 1002, 1003, 1004, 1005, 2001, 2002, 2003, 2004, 3001, 3002, 3003, 3004, 3005, 4001, 4002, 4003, 4004]
       npcName: ""
       $extends: bastion_of_lok_elite
-    # Boss (1 NPC): 1006=Soulcrusher (Bloodlust Killer) Lv21
+    # Boss (2 NPCs): 1006=Soulcrusher (Bloodlust Killer) Lv21, 3006=Bloodbound Vulcan (Summoned Demon) Lv21
     - huntingZoneId: 487
-      npcTemplateId: [1006]
+      npcTemplateId: [1006, 3006]
       npcName: ""
       $extends: bastion_of_lok_boss
-    # Final Boss (1 NPC): 3006=Bloodbound Vulcan (Summoned Demon) Lv21 — drops dungeon token
-    - huntingZoneId: 487
-      npcTemplateId: [3006]
-      npcName: ""
-      $extends: bastion_of_lok_final_boss
 
 cCompensations:
   # Delete 23 vanilla cCompensation entries
