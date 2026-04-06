@@ -71,6 +71,7 @@ The tool detects top-level YAML keys and maps them to sync-config entities:
 | `itemStrings` | StrSheet_Item | Yes |
 | `passivities` | Passivity | Yes |
 | `passivityStrings` | StrSheet_Passivity | Yes |
+| `rawStoneItems` | RawStoneItems | Yes |
 | `cCompensations` | — | No (server-only) |
 | `eCompensations` | — | No (server-only) |
 | `fCompensations` | — | No (server-only) |
@@ -110,6 +111,36 @@ Server-only: cCompensations, eCompensations, passivities (no sync needed)
 Syncing: EquipmentEvolutionData, ItemData, MaterialEnchantData
 ✓ Sync complete
 ```
+
+## Clean Re-migration
+
+When specs change and you need to re-apply a patch from scratch (e.g., after fixing a spec bug), use this workflow to revert both server and client to vanilla state, re-run the migration, and repack the client.
+
+**Prerequisites:** Both `server_datasheet` and `client_datacenter` paths (from `.references`) must be git repositories with a clean baseline commit.
+
+```bash
+# 1. Revert server datasheets to vanilla
+cd <server_datasheet>
+git checkout .
+
+# 2. Revert client DataCenter to vanilla
+cd <client_datacenter>/..
+git checkout .
+
+# 3. Re-run migration (from project root)
+python reforged/tools/migrate/migrate.py --patch 001
+
+# 4. Pack client DataCenter
+cd <client_pack_dir>
+novadrop-dc_92.04/novadrop-dc pack \
+  --encryption-key 7533835567F31B7C8BF9321CF7C67A07 \
+  --encryption-iv 1A2DE14F51A8AD426FEAEB4AC3CB705C \
+  DataCenter_Final_EUR DataCenter_Final_EUR.dat
+```
+
+Replace `<server_datasheet>`, `<client_datacenter>`, and `<client_pack_dir>` with the values from `.references`.
+
+Alternatively, run `enc_EUR.bat` in the `client_pack_dir` for step 4.
 
 ## Adding New Entity Schemas
 

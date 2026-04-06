@@ -34,6 +34,10 @@ ENTITY_SYNC_MAP = {
     "fCompensations": None,
     "iCompensations": None,
     "gachaItems": "Gacha",
+    "rawStoneItems": "RawStoneItems",
+    "abnormalities": "Abnormality",
+    "customizingItems": "CustomizingItems",
+    "customizingItemBags": None,
 }
 
 # Entity keys whose inline blocks imply additional sync entities

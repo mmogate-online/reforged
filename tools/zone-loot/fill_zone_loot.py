@@ -3,7 +3,7 @@ Zone Loot Table Generator — Fills specs with tier-appropriate drops.
 
 Reads zone_tier_config.csv for tier assignments and npc_by_zone.csv for NPC
 groupings, then generates eCompensation YAML specs with tier-matched crystal
-boxes, runes, refinement structures, alkahest, infusion boxes, and gold.
+boxes, runes, fusion structures, alkahest, infusion boxes, and gold.
 
 All mob types (normal, elite, boss) use eCompensation since drops are class
 agnostic — no class branching needed.
@@ -27,6 +27,11 @@ from pathlib import Path
 
 ALKAHEST_ID = 21351
 
+# Patch scope — only generate specs for zones in the active patch
+PATCH_ZONES = {
+    "001": {2, 3, 5, 6, 7, 15, 16, 17, 487, 488},
+}
+
 # Tier → feedstock item ID mapping (Item.rank correlation)
 TIER_FEEDSTOCK = {
     2: 94101,   # Tier 1 Feedstock — Starter 0/1 gear (rank 1, Lv 1-30)
@@ -43,7 +48,9 @@ TIER_DROPS = {
         "crystal_a": "ARMOR_CRYSTAL_BOX_CABOCHON",
         "rune_shara": "PAVERUNE_OF_SHARA",
         "rune_arun": "PAVERUNE_OF_ARUN",
-        "refinement": "CABOCHON_REFINEMENT_STRUCTURE",
+        "structure": "CABOCHON_STRUCTURE",
+        "dyad_structure": "DYAD_CABOCHON_STRUCTURE",
+        "smart_dyad_structure": "SMART_DYAD_CABOCHON_STRUCTURE",
         "gold_min": 5,
         "gold_max": 15,
     },
@@ -52,7 +59,9 @@ TIER_DROPS = {
         "crystal_a": "ARMOR_CRYSTAL_BOX_HEXAGE",
         "rune_shara": "SILRUNE_OF_SHARA",
         "rune_arun": "SILRUNE_OF_ARUN",
-        "refinement": "HEXAGE_REFINEMENT_STRUCTURE",
+        "structure": "HEXAGE_STRUCTURE",
+        "dyad_structure": "DYAD_HEXAGE_STRUCTURE",
+        "smart_dyad_structure": "SMART_DYAD_HEXAGE_STRUCTURE",
         "gold_min": 15,
         "gold_max": 40,
     },
@@ -61,7 +70,9 @@ TIER_DROPS = {
         "crystal_a": "ARMOR_CRYSTAL_BOX_PENTANT",
         "rune_shara": "QUOIRUNE_OF_SHARA",
         "rune_arun": "QUOIRUNE_OF_ARUN",
-        "refinement": "PENTANT_REFINEMENT_STRUCTURE",
+        "structure": "PENTANT_STRUCTURE",
+        "dyad_structure": "DYAD_PENTANT_STRUCTURE",
+        "smart_dyad_structure": "SMART_DYAD_PENTANT_STRUCTURE",
         "gold_min": 40,
         "gold_max": 100,
     },
@@ -70,7 +81,9 @@ TIER_DROPS = {
         "crystal_a": "ARMOR_CRYSTAL_BOX_CONCACH",
         "rune_shara": "ARCHRUNE_OF_SHARA",
         "rune_arun": "ARCHRUNE_OF_ARUN",
-        "refinement": "CONCACH_REFINEMENT_STRUCTURE",
+        "structure": "CONCACH_STRUCTURE",
+        "dyad_structure": "DYAD_CONCACH_STRUCTURE",
+        "smart_dyad_structure": "SMART_DYAD_CONCACH_STRUCTURE",
         "gold_min": 100,
         "gold_max": 250,
     },
@@ -79,15 +92,23 @@ TIER_DROPS = {
         "crystal_a": "ARMOR_CRYSTAL_BOX_CRUX",
         "rune_shara": "KEYRUNE_OF_SHARA",
         "rune_arun": "KEYRUNE_OF_ARUN",
-        "refinement": "CRUX_REFINEMENT_STRUCTURE",
+        "structure": "CRUX_STRUCTURE",
+        "dyad_structure": "DYAD_CRUX_STRUCTURE",
+        "smart_dyad_structure": "SMART_DYAD_CRUX_STRUCTURE",
         "gold_min": 250,
         "gold_max": 600,
     },
 }
 
+# Boss drop probabilities for Dyad structures by zone type
+DYAD_PROBS = {
+    "field":   {"dyad": 0.10, "smart_dyad": 0.01},
+    "dungeon": {"dyad": 0.20, "smart_dyad": 0.02},
+}
+
 # Drop probabilities per mob type
-NORMAL_PROBS = {"crystal": 0.03, "rune": 0.05, "refinement": 0.01, "alkahest": 0.99}
-ELITE_PROBS = {"crystal": 0.08, "rune": 0.12, "refinement": 0.03, "alkahest": 0.97}
+NORMAL_PROBS = {"crystal": 0.03, "rune": 0.05, "structure": 0.01, "alkahest": 0.99}
+ELITE_PROBS = {"crystal": 0.08, "rune": 0.12, "structure": 0.03, "alkahest": 0.97}
 
 # Infusion gacha box IDs — same for all zone tiers (not tier-dependent)
 # Each grade bag contains 4 items (weapon/chest/gloves/boots), equal probability
@@ -239,7 +260,10 @@ def npc_comment(npcs: list[Npc], group_label: str) -> str:
 def collect_imports(tier: int, has_bosses: bool) -> tuple[list[str], list[str]]:
     """Return (crystal_vars, evo_vars) needed for imports."""
     drops = TIER_DROPS[tier]
-    crystal_vars = [drops["crystal_w"], drops["crystal_a"], drops["refinement"]]
+    crystal_vars = [drops["crystal_w"], drops["crystal_a"], drops["structure"]]
+    if has_bosses:
+        crystal_vars.append(drops["dyad_structure"])
+        crystal_vars.append(drops["smart_dyad_structure"])
     evo_vars = [drops["rune_shara"], drops["rune_arun"]]
     if tier == 6 and has_bosses:
         evo_vars.append("AERU_RUNE")
@@ -311,7 +335,7 @@ def generate_normal_definition(slug: str, zone_name: str, npcs: list[Npc], drops
     lines.append(f'            name: "Armor Evolution Rune"')
     bag_id += 1
 
-    # Bag: Alkahest + refinement
+    # Bag: Alkahest + fusion structure
     lines.append(f"      - id: {bag_id}")
     lines.append(f'        bagName: "{zone_name} Normal Alkahest"')
     lines.append("        probability: 1.0")
@@ -321,9 +345,9 @@ def generate_normal_definition(slug: str, zone_name: str, npcs: list[Npc], drops
     lines.append(f"            probability: {NORMAL_PROBS['alkahest']}")
     lines.append("            min: 1")
     lines.append("            max: 2")
-    lines.append(f"          - templateId: ${drops['refinement']}")
-    lines.append(f'            name: "Refinement Structure"')
-    lines.append(f"            probability: {NORMAL_PROBS['refinement']}")
+    lines.append(f"          - templateId: ${drops['structure']}")
+    lines.append(f'            name: "Fusion Structure"')
+    lines.append(f"            probability: {NORMAL_PROBS['structure']}")
     bag_id += 1
 
     # Bag: Feedstock (2x alkahest ratio)
@@ -383,7 +407,7 @@ def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops:
     lines.append("            max: 2")
     bag_id += 1
 
-    # Bag: Alkahest + refinement
+    # Bag: Alkahest + fusion structure
     lines.append(f"      - id: {bag_id}")
     lines.append(f'        bagName: "{zone_name} Elite Alkahest"')
     lines.append("        probability: 1.0")
@@ -393,9 +417,9 @@ def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops:
     lines.append(f"            probability: {ELITE_PROBS['alkahest']}")
     lines.append("            min: 2")
     lines.append("            max: 4")
-    lines.append(f"          - templateId: ${drops['refinement']}")
-    lines.append(f'            name: "Refinement Structure"')
-    lines.append(f"            probability: {ELITE_PROBS['refinement']}")
+    lines.append(f"          - templateId: ${drops['structure']}")
+    lines.append(f'            name: "Fusion Structure"')
+    lines.append(f"            probability: {ELITE_PROBS['structure']}")
     bag_id += 1
 
     # Bag: Feedstock (2x alkahest ratio)
@@ -416,7 +440,7 @@ def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops:
     return lines, bag_id
 
 
-def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict, tier: int, feedstock_id: int) -> list[str]:
+def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict, tier: int, feedstock_id: int, zone_type: str) -> list[str]:
     """Generate boss mob definition. Returns lines."""
     lines = []
     levels = sorted(set(n.level for n in npcs))
@@ -467,16 +491,37 @@ def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: 
     lines.append("            probability: 1.0")
     bag_id += 1
 
-    # Bag: Refinement structure (15%)
+    # Bag: Fusion structure (15%)
     lines.append(f"      - id: {bag_id}")
-    lines.append(f'        bagName: "{zone_name} Refinement"')
+    lines.append(f'        bagName: "{zone_name} Fusion Structure"')
     lines.append("        probability: 0.15")
     lines.append("        items:")
-    lines.append(f"          - templateId: ${drops['refinement']}")
-    lines.append(f'            name: "Refinement Structure"')
+    lines.append(f"          - templateId: ${drops['structure']}")
+    lines.append(f'            name: "Fusion Structure"')
     lines.append("            probability: 1.0")
     lines.append("            min: 1")
     lines.append("            max: 2")
+    bag_id += 1
+
+    # Bag: Dyad Structure
+    dyad_probs = DYAD_PROBS[zone_type]
+    lines.append(f"      - id: {bag_id}")
+    lines.append(f'        bagName: "{zone_name} Dyad Structure"')
+    lines.append(f"        probability: {dyad_probs['dyad']}")
+    lines.append("        items:")
+    lines.append(f"          - templateId: ${drops['dyad_structure']}")
+    lines.append(f'            name: "Dyad Structure"')
+    lines.append("            probability: 1.0")
+    bag_id += 1
+
+    # Bag: Smart Dyad Structure
+    lines.append(f"      - id: {bag_id}")
+    lines.append(f'        bagName: "{zone_name} Smart Dyad Structure"')
+    lines.append(f"        probability: {dyad_probs['smart_dyad']}")
+    lines.append("        items:")
+    lines.append(f"          - templateId: ${drops['smart_dyad_structure']}")
+    lines.append(f'            name: "Smart Dyad Structure"')
+    lines.append("            probability: 1.0")
     bag_id += 1
 
     # Bag: Alkahest (guaranteed)
@@ -549,7 +594,7 @@ def generate_e_compensation(zone: ZoneConfig, groups: ZoneNpcGroups,
 
     lines = []
     lines.append(f"# {zone.zone_name} (Zone {zone.hunting_zone_id}) — Tier {tier} eCompensation")
-    lines.append(f"# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, infusion boxes, gold")
+    lines.append(f"# All mob drops: crystal boxes, runes, fusion structures, alkahest, feedstock, infusion boxes, gold")
     lines.append("")
     lines.append("spec:")
     lines.append('  version: "1.0"')
@@ -584,7 +629,7 @@ def generate_e_compensation(zone: ZoneConfig, groups: ZoneNpcGroups,
         lines.append("")
 
     if groups.bosses:
-        boss_lines = generate_boss_definition(slug, zone.zone_name, groups.bosses, drops, tier, feedstock_id)
+        boss_lines = generate_boss_definition(slug, zone.zone_name, groups.bosses, drops, tier, feedstock_id, zone.zone_type)
         lines.extend(boss_lines)
         lines.append("")
 
@@ -675,12 +720,20 @@ def main():
     # Stats
     stats = {"e_written": 0, "skipped_no_tier": 0, "skipped_no_npcs": 0, "skipped_filtered": 0}
 
+    # Resolve patch scope
+    patch_scope = PATCH_ZONES.get(args.patch)
+
     for zid, config in sorted(zone_configs.items()):
         # Skip non-combat zones and tier 0
         if config.tier == 0 or config.zone_type in ("hub", "excluded"):
             continue
 
-        # Apply zone filter
+        # Apply patch scope filter (unless --zones override is active)
+        if not zone_filter and patch_scope and zid not in patch_scope:
+            stats["skipped_filtered"] += 1
+            continue
+
+        # Apply manual zone filter
         if zone_filter and zid not in zone_filter:
             stats["skipped_filtered"] += 1
             continue

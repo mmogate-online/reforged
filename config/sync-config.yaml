@@ -102,6 +102,51 @@ entities:
     xsd_file: "MaterialEnchantData/MaterialEnchantData.xsd"
 
   # ===========================================================================
+  # ABNORMALITY DATA
+  # ===========================================================================
+  # Abnormality.xml defines buff/debuff status effects.
+  # Regional variants map 1:1 like ItemData.
+
+  Abnormality:
+    strategy: SourceMapped
+    client_folder: "Abnormality"
+    root_element: "Abnormality"
+    id_attribute: "id"
+    xsd_file: "Abnormality/Abnormality.xsd"
+    source_mapping:
+      "Abnormality.xml": "Abnormality-00000.xml"
+
+  # ===========================================================================
+  # CUSTOMIZING (CRYSTAL SOCKET) DATA
+  # ===========================================================================
+  # CustomizingItem.xml defines crystal socket entries with passivity links.
+  # Single server file maps to single client file.
+
+  CustomizingItems:
+    strategy: monolithic
+    server_file: "CustomizingItem.xml"
+    client_folder: "CustomizingItems"
+    client_file: "CustomizingItems-00000.xml"
+    root_element: "CustomizingItems"
+    id_attribute: "id"
+    xsd_file: "CustomizingItems/CustomizingItems.xsd"
+
+  # ===========================================================================
+  # RAW STONE (CRYSTAL FUSION) DATA
+  # ===========================================================================
+  # RawStoneItem.xml defines crystal fusion structure behaviors (TIERUP/UPGRADE).
+  # Single server file maps to single client file.
+
+  RawStoneItems:
+    strategy: monolithic
+    server_file: "RawStoneItem.xml"
+    client_folder: "RawStoneItems"
+    client_file: "RawStoneItems-00000.xml"
+    root_element: "RawStoneItems"
+    id_attribute: "id"
+    xsd_file: "RawStoneItems/RawStoneItems.xsd"
+
+  # ===========================================================================
   # GACHA DATA
   # ===========================================================================
   # Gacha loot box definitions (random reward pools, fixed rewards).
@@ -186,7 +231,7 @@ entities:
         max: 6000166
       - seq: 1
         min: 80010
-        max: 81013
+        max: 81067
       - seq: 2
         min: 120100
         max: 5006952

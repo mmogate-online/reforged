@@ -1,0 +1,4823 @@
+# Dyad Crystal Passivities — Patch 001
+# Primary passivities (186) + Secondary passivities (54)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+passivities:
+  create:
+    # ========== PRIMARY PASSIVITIES ==========
+    # --- Tier 1 (Rhomb) ---
+    - id: 80400
+      name: "Dyad_Pounding_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.041
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Pounding I"
+        tooltip: "Increases damage to monsters by $value."
+    - id: 80401
+      name: "Dyad_Bitter_Rhomb"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.37
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Bitter I"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80402
+      name: "Dyad_Slaying_Rhomb"
+      category: Equipment
+      kind: 50
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.44
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Slaying I"
+        tooltip: "Increases Crit Power by $value when below 50% HP."
+    - id: 80403
+      name: "Dyad_Furious_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.051
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Furious I"
+        tooltip: "Increases damage by $value when below 50% HP."
+    - id: 80404
+      name: "Dyad_Focused_Rhomb"
+      category: Equipment
+      kind: 52
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.47
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 26
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Focused I"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80405
+      name: "Dyad_Virulent_Rhomb"
+      category: Equipment
+      kind: 5
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 225
+      value: 12291
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Virulent I"
+        tooltip: "Crits to knocked-down opponents apply $H_W_GOODPoison I$COLOR_END."
+    - id: 80406
+      name: "Dyad_Brutal_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.049
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brutal I"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 80407
+      name: "Dyad_Cruel_Rhomb"
+      category: Equipment
+      kind: 6
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 208
+      value: 12292
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cruel I"
+        tooltip: "Increases Crit Power after knocking down an opponent. Applies $H_W_GOODCruelty I$COLOR_END."
+    - id: 80408
+      name: "Dyad_Forceful_Rhomb"
+      category: Equipment
+      kind: 7
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12293
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Forceful I"
+        tooltip: "Crits increase Power when attacking from behind. Applies $H_W_GOODForcefulness I$COLOR_END."
+    - id: 80409
+      name: "Dyad_Savage_Rhomb"
+      category: Equipment
+      kind: 55
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.32
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Savage I"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80410
+      name: "Dyad_Cunning_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 134
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning I"
+        tooltip: "Increases maximum MP by $value."
+    - id: 80411
+      name: "Dyad_Infused_Rhomb"
+      category: Equipment
+      kind: 8
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12294
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Infused I"
+        tooltip: "Replenishes 153 MP when knocked down."
+    - id: 80412
+      name: "Dyad_Glistening_Rhomb"
+      category: Equipment
+      kind: 9
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12295
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Glistening I"
+        tooltip: "Crits replenish 141 MP when attacking from behind."
+    - id: 80413
+      name: "Dyad_Swift_Rhomb"
+      category: Equipment
+      kind: 3
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 8
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift I"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    - id: 80414
+      name: "Dyad_Brilliant_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 25
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brilliant I"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 80415
+      name: "Dyad_Carving_Rhomb"
+      category: Equipment
+      kind: 15
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 155
+      value: 0.015
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Carving I"
+        tooltip: "Increases the chance to crit by $value."
+    - id: 80416
+      name: "Dyad_Salivating_Rhomb"
+      category: Equipment
+      kind: 56
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 157
+      value: 12296
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Salivating I"
+        tooltip: "Replenishes 43 MP when attacking a player."
+    - id: 80417
+      name: "Dyad_Threatening_Rhomb"
+      category: Equipment
+      kind: 61
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.413
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening I"
+        tooltip: "Increases aggro by $value."
+    - id: 80418
+      name: "Dyad_Wrathful_Rhomb"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 1
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Wrathful I"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80419
+      name: "Dyad_Spiteful_Rhomb"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.37
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 10
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Spiteful I"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80420
+      name: "Dyad_Hardy_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.959
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 15
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Hardy I"
+        tooltip: "Reduces damage from monsters by $value."
+    - id: 80421
+      name: "Dyad_Protective_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 105
+      value: 0.951
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Protective I"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 80422
+      name: "Dyad_Resolute_Rhomb"
+      category: Equipment
+      kind: 59
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.951
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Resolute I"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 80423
+      name: "Dyad_Poised_Rhomb"
+      category: Equipment
+      kind: 62
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.956
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Poised I"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 80424
+      name: "Dyad_Empyrean_Rhomb"
+      category: Equipment
+      kind: 11
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12297
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 9
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Empyrean I"
+        tooltip: "Applies $H_W_GOODWarding I$COLOR_END when knocked down by enraged monsters."
+    - id: 80425
+      name: "Dyad_Warding_Rhomb"
+      category: Equipment
+      kind: 12
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12298
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Warding I"
+        tooltip: "Applies $H_W_GOODWarding I$COLOR_END when knocked down ($prob chance)."
+    - id: 80426
+      name: "Dyad_Inspiring_Rhomb"
+      category: Equipment
+      kind: 13
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12299
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Inspiring I"
+        tooltip: "Applies $H_W_GOODHP Recovery I$COLOR_END when knocked down ($prob chance)."
+    - id: 80427
+      name: "Dyad_Relentless_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 227
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless I"
+        tooltip: "Increase maximum HP by $value."
+    - id: 80428
+      name: "Dyad_Fleetfoot_Rhomb"
+      category: Equipment
+      kind: 4
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 18
+      value: 16
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Fleetfoot I"
+        tooltip: "Increases Movement Speed by $value while out of combat."
+    - id: 80429
+      name: "Dyad_Vigorous_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 15
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Vigorous I"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 80430
+      name: "Dyad_Grieving_Rhomb"
+      category: Equipment
+      kind: 57
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 106
+      value: 12300
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grieving I"
+        tooltip: "Replenishes 56 MP when attacked by a player."
+    # --- Tier 2 (Cabochon) ---
+    - id: 80431
+      name: "Dyad_Pounding_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.049
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Pounding II"
+        tooltip: "Increases damage to monsters by $value."
+    - id: 80432
+      name: "Dyad_Bitter_Cabochon"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.44
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Bitter II"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80433
+      name: "Dyad_Slaying_Cabochon"
+      category: Equipment
+      kind: 50
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.52
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Slaying II"
+        tooltip: "Increases Crit Power by $value when below 50% HP."
+    - id: 80434
+      name: "Dyad_Furious_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.06
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Furious II"
+        tooltip: "Increases damage by $value when below 50% HP."
+    - id: 80435
+      name: "Dyad_Focused_Cabochon"
+      category: Equipment
+      kind: 52
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.55
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 26
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Focused II"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80436
+      name: "Dyad_Virulent_Cabochon"
+      category: Equipment
+      kind: 5
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 225
+      value: 12301
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Virulent II"
+        tooltip: "Crits to knocked-down opponents apply $H_W_GOODPoison II$COLOR_END."
+    - id: 80437
+      name: "Dyad_Brutal_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.06
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brutal II"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 80438
+      name: "Dyad_Cruel_Cabochon"
+      category: Equipment
+      kind: 6
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 208
+      value: 12302
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cruel II"
+        tooltip: "Increases Crit Power after knocking down an opponent. Applies $H_W_GOODCruelty II$COLOR_END."
+    - id: 80439
+      name: "Dyad_Forceful_Cabochon"
+      category: Equipment
+      kind: 7
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12303
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Forceful II"
+        tooltip: "Crits increase Power when attacking from behind. Applies $H_W_GOODForcefulness II$COLOR_END."
+    - id: 80440
+      name: "Dyad_Savage_Cabochon"
+      category: Equipment
+      kind: 55
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.39
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Savage II"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80441
+      name: "Dyad_Cunning_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 161
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning II"
+        tooltip: "Increases maximum MP by $value."
+    - id: 80442
+      name: "Dyad_Infused_Cabochon"
+      category: Equipment
+      kind: 8
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12304
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Infused II"
+        tooltip: "Replenishes 168 MP when knocked down."
+    - id: 80443
+      name: "Dyad_Glistening_Cabochon"
+      category: Equipment
+      kind: 9
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12305
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Glistening II"
+        tooltip: "Crits replenish 153 MP when attacking from behind."
+    - id: 80444
+      name: "Dyad_Swift_Cabochon"
+      category: Equipment
+      kind: 3
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 10
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift II"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    - id: 80445
+      name: "Dyad_Brilliant_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 28
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brilliant II"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 80446
+      name: "Dyad_Carving_Cabochon"
+      category: Equipment
+      kind: 15
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 155
+      value: 0.019
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Carving II"
+        tooltip: "Increases the chance to crit by $value."
+    - id: 80447
+      name: "Dyad_Salivating_Cabochon"
+      category: Equipment
+      kind: 56
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 157
+      value: 12306
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Salivating II"
+        tooltip: "Replenishes 52 MP when attacking a player."
+    - id: 80448
+      name: "Dyad_Threatening_Cabochon"
+      category: Equipment
+      kind: 61
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.454
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening II"
+        tooltip: "Increases aggro by $value."
+    - id: 80449
+      name: "Dyad_Wrathful_Cabochon"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.48
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 1
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Wrathful II"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80450
+      name: "Dyad_Spiteful_Cabochon"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.44
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 10
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Spiteful II"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80451
+      name: "Dyad_Hardy_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.952
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 15
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Hardy II"
+        tooltip: "Reduces damage from monsters by $value."
+    - id: 80452
+      name: "Dyad_Protective_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 105
+      value: 0.94
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Protective II"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 80453
+      name: "Dyad_Resolute_Cabochon"
+      category: Equipment
+      kind: 59
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.94
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Resolute II"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 80454
+      name: "Dyad_Poised_Cabochon"
+      category: Equipment
+      kind: 62
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.946
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Poised II"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 80455
+      name: "Dyad_Empyrean_Cabochon"
+      category: Equipment
+      kind: 11
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12307
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 9
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Empyrean II"
+        tooltip: "Applies $H_W_GOODWarding II$COLOR_END when knocked down by enraged monsters."
+    - id: 80456
+      name: "Dyad_Warding_Cabochon"
+      category: Equipment
+      kind: 12
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12308
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Warding II"
+        tooltip: "Applies $H_W_GOODWarding II$COLOR_END when knocked down ($prob chance)."
+    - id: 80457
+      name: "Dyad_Inspiring_Cabochon"
+      category: Equipment
+      kind: 13
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12309
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Inspiring II"
+        tooltip: "Applies $H_W_GOODHP Recovery II$COLOR_END when knocked down ($prob chance)."
+    - id: 80458
+      name: "Dyad_Relentless_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 394
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless II"
+        tooltip: "Increase maximum HP by $value."
+    - id: 80459
+      name: "Dyad_Fleetfoot_Cabochon"
+      category: Equipment
+      kind: 4
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 18
+      value: 19
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Fleetfoot II"
+        tooltip: "Increases Movement Speed by $value while out of combat."
+    - id: 80460
+      name: "Dyad_Vigorous_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 26
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Vigorous II"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 80461
+      name: "Dyad_Grieving_Cabochon"
+      category: Equipment
+      kind: 57
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 106
+      value: 12310
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grieving II"
+        tooltip: "Replenishes 68 MP when attacked by a player."
+    # --- Tier 3 (Hexage) ---
+    - id: 80462
+      name: "Dyad_Pounding_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.057
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Pounding III"
+        tooltip: "Increases damage to monsters by $value."
+    - id: 80463
+      name: "Dyad_Bitter_Hexage"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.51
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Bitter III"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80464
+      name: "Dyad_Slaying_Hexage"
+      category: Equipment
+      kind: 50
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.59
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Slaying III"
+        tooltip: "Increases Crit Power by $value when below 50% HP."
+    - id: 80465
+      name: "Dyad_Furious_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.071
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Furious III"
+        tooltip: "Increases damage by $value when below 50% HP."
+    - id: 80466
+      name: "Dyad_Focused_Hexage"
+      category: Equipment
+      kind: 52
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.64
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 26
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Focused III"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80467
+      name: "Dyad_Virulent_Hexage"
+      category: Equipment
+      kind: 5
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 225
+      value: 12311
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Virulent III"
+        tooltip: "Crits to knocked-down opponents apply $H_W_GOODPoison III$COLOR_END."
+    - id: 80468
+      name: "Dyad_Brutal_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.069
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brutal III"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 80469
+      name: "Dyad_Cruel_Hexage"
+      category: Equipment
+      kind: 6
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 208
+      value: 12312
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cruel III"
+        tooltip: "Increases Crit Power after knocking down an opponent. Applies $H_W_GOODCruelty III$COLOR_END."
+    - id: 80470
+      name: "Dyad_Forceful_Hexage"
+      category: Equipment
+      kind: 7
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12313
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Forceful III"
+        tooltip: "Crits increase Power when attacking from behind. Applies $H_W_GOODForcefulness III$COLOR_END."
+    - id: 80471
+      name: "Dyad_Savage_Hexage"
+      category: Equipment
+      kind: 55
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.45
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Savage III"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80472
+      name: "Dyad_Cunning_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 187
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning III"
+        tooltip: "Increases maximum MP by $value."
+    - id: 80473
+      name: "Dyad_Infused_Hexage"
+      category: Equipment
+      kind: 8
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12314
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Infused III"
+        tooltip: "Replenishes 195 MP when knocked down."
+    - id: 80474
+      name: "Dyad_Glistening_Hexage"
+      category: Equipment
+      kind: 9
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12315
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Glistening III"
+        tooltip: "Crits replenish 180 MP when attacking from behind."
+    - id: 80475
+      name: "Dyad_Swift_Hexage"
+      category: Equipment
+      kind: 3
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 11
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift III"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    - id: 80476
+      name: "Dyad_Brilliant_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 32
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brilliant III"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 80477
+      name: "Dyad_Carving_Hexage"
+      category: Equipment
+      kind: 15
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 155
+      value: 0.022
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Carving III"
+        tooltip: "Increases the chance to crit by $value."
+    - id: 80478
+      name: "Dyad_Salivating_Hexage"
+      category: Equipment
+      kind: 56
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 157
+      value: 12316
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Salivating III"
+        tooltip: "Replenishes 60 MP when attacking a player."
+    - id: 80479
+      name: "Dyad_Threatening_Hexage"
+      category: Equipment
+      kind: 61
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.495
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening III"
+        tooltip: "Increases aggro by $value."
+    - id: 80480
+      name: "Dyad_Wrathful_Hexage"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.55
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 1
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Wrathful III"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80481
+      name: "Dyad_Spiteful_Hexage"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.51
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 10
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Spiteful III"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80482
+      name: "Dyad_Hardy_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.943
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 15
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Hardy III"
+        tooltip: "Reduces damage from monsters by $value."
+    - id: 80483
+      name: "Dyad_Protective_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 105
+      value: 0.931
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Protective III"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 80484
+      name: "Dyad_Resolute_Hexage"
+      category: Equipment
+      kind: 59
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.931
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Resolute III"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 80485
+      name: "Dyad_Poised_Hexage"
+      category: Equipment
+      kind: 62
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.938
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Poised III"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 80486
+      name: "Dyad_Empyrean_Hexage"
+      category: Equipment
+      kind: 11
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12317
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 9
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Empyrean III"
+        tooltip: "Applies $H_W_GOODWarding III$COLOR_END when knocked down by enraged monsters."
+    - id: 80487
+      name: "Dyad_Warding_Hexage"
+      category: Equipment
+      kind: 12
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12318
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Warding III"
+        tooltip: "Applies $H_W_GOODWarding III$COLOR_END when knocked down ($prob chance)."
+    - id: 80488
+      name: "Dyad_Inspiring_Hexage"
+      category: Equipment
+      kind: 13
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12319
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Inspiring III"
+        tooltip: "Applies $H_W_GOODHP Recovery III$COLOR_END when knocked down ($prob chance)."
+    - id: 80489
+      name: "Dyad_Relentless_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 758
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless III"
+        tooltip: "Increase maximum HP by $value."
+    - id: 80490
+      name: "Dyad_Fleetfoot_Hexage"
+      category: Equipment
+      kind: 4
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 18
+      value: 22
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Fleetfoot III"
+        tooltip: "Increases Movement Speed by $value while out of combat."
+    - id: 80491
+      name: "Dyad_Vigorous_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 50
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Vigorous III"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 80492
+      name: "Dyad_Grieving_Hexage"
+      category: Equipment
+      kind: 57
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 106
+      value: 12320
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grieving III"
+        tooltip: "Replenishes 79 MP when attacked by a player."
+    # --- Tier 4 (Pentant) ---
+    - id: 80493
+      name: "Dyad_Pounding_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.065
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Pounding IV"
+        tooltip: "Increases damage to monsters by $value."
+    - id: 80494
+      name: "Dyad_Bitter_Pentant"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.59
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Bitter IV"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80495
+      name: "Dyad_Slaying_Pentant"
+      category: Equipment
+      kind: 50
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.67
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Slaying IV"
+        tooltip: "Increases Crit Power by $value when below 50% HP."
+    - id: 80496
+      name: "Dyad_Furious_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.081
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Furious IV"
+        tooltip: "Increases damage by $value when below 50% HP."
+    - id: 80497
+      name: "Dyad_Focused_Pentant"
+      category: Equipment
+      kind: 52
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.72
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 26
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Focused IV"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80498
+      name: "Dyad_Virulent_Pentant"
+      category: Equipment
+      kind: 5
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 225
+      value: 12321
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Virulent IV"
+        tooltip: "Crits to knocked-down opponents apply $H_W_GOODPoison IV$COLOR_END."
+    - id: 80499
+      name: "Dyad_Brutal_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.079
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brutal IV"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 80500
+      name: "Dyad_Cruel_Pentant"
+      category: Equipment
+      kind: 6
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 208
+      value: 12322
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cruel IV"
+        tooltip: "Increases Crit Power after knocking down an opponent. Applies $H_W_GOODCruelty IV$COLOR_END."
+    - id: 80501
+      name: "Dyad_Forceful_Pentant"
+      category: Equipment
+      kind: 7
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12323
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Forceful IV"
+        tooltip: "Crits increase Power when attacking from behind. Applies $H_W_GOODForcefulness IV$COLOR_END."
+    - id: 80502
+      name: "Dyad_Savage_Pentant"
+      category: Equipment
+      kind: 55
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.51
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Savage IV"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80503
+      name: "Dyad_Cunning_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 215
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning IV"
+        tooltip: "Increases maximum MP by $value."
+    - id: 80504
+      name: "Dyad_Infused_Pentant"
+      category: Equipment
+      kind: 8
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12324
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Infused IV"
+        tooltip: "Replenishes 234 MP when knocked down."
+    - id: 80505
+      name: "Dyad_Glistening_Pentant"
+      category: Equipment
+      kind: 9
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12325
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Glistening IV"
+        tooltip: "Crits replenish 213 MP when attacking from behind."
+    - id: 80506
+      name: "Dyad_Swift_Pentant"
+      category: Equipment
+      kind: 3
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 14
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift IV"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    - id: 80507
+      name: "Dyad_Brilliant_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 38
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brilliant IV"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 80508
+      name: "Dyad_Carving_Pentant"
+      category: Equipment
+      kind: 15
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 155
+      value: 0.025
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Carving IV"
+        tooltip: "Increases the chance to crit by $value."
+    - id: 80509
+      name: "Dyad_Salivating_Pentant"
+      category: Equipment
+      kind: 56
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 157
+      value: 12326
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Salivating IV"
+        tooltip: "Replenishes 69 MP when attacking a player."
+    - id: 80510
+      name: "Dyad_Threatening_Pentant"
+      category: Equipment
+      kind: 61
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.537
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening IV"
+        tooltip: "Increases aggro by $value."
+    - id: 80511
+      name: "Dyad_Wrathful_Pentant"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.64
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 1
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Wrathful IV"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80512
+      name: "Dyad_Spiteful_Pentant"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.59
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 10
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Spiteful IV"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80513
+      name: "Dyad_Hardy_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.935
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 15
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Hardy IV"
+        tooltip: "Reduces damage from monsters by $value."
+    - id: 80514
+      name: "Dyad_Protective_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 105
+      value: 0.92
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Protective IV"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 80515
+      name: "Dyad_Resolute_Pentant"
+      category: Equipment
+      kind: 59
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.92
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Resolute IV"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 80516
+      name: "Dyad_Poised_Pentant"
+      category: Equipment
+      kind: 62
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.928
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Poised IV"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 80517
+      name: "Dyad_Empyrean_Pentant"
+      category: Equipment
+      kind: 11
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12327
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 9
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Empyrean IV"
+        tooltip: "Applies $H_W_GOODWarding IV$COLOR_END when knocked down by enraged monsters."
+    - id: 80518
+      name: "Dyad_Warding_Pentant"
+      category: Equipment
+      kind: 12
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12328
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Warding IV"
+        tooltip: "Applies $H_W_GOODWarding IV$COLOR_END when knocked down ($prob chance)."
+    - id: 80519
+      name: "Dyad_Inspiring_Pentant"
+      category: Equipment
+      kind: 13
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12329
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Inspiring IV"
+        tooltip: "Applies $H_W_GOODHP Recovery IV$COLOR_END when knocked down ($prob chance)."
+    - id: 80520
+      name: "Dyad_Relentless_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 1447
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless IV"
+        tooltip: "Increase maximum HP by $value."
+    - id: 80521
+      name: "Dyad_Fleetfoot_Pentant"
+      category: Equipment
+      kind: 4
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 18
+      value: 26
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Fleetfoot IV"
+        tooltip: "Increases Movement Speed by $value while out of combat."
+    - id: 80522
+      name: "Dyad_Vigorous_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 96
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Vigorous IV"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 80523
+      name: "Dyad_Grieving_Pentant"
+      category: Equipment
+      kind: 57
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 106
+      value: 12330
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grieving IV"
+        tooltip: "Replenishes 90 MP when attacked by a player."
+    # --- Tier 5 (Concach) ---
+    - id: 80524
+      name: "Dyad_Pounding_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.073
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Pounding V"
+        tooltip: "Increases damage to monsters by $value."
+    - id: 80525
+      name: "Dyad_Bitter_Concach"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.66
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Bitter V"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80526
+      name: "Dyad_Slaying_Concach"
+      category: Equipment
+      kind: 50
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.76
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Slaying V"
+        tooltip: "Increases Crit Power by $value when below 50% HP."
+    - id: 80527
+      name: "Dyad_Furious_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.091
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Furious V"
+        tooltip: "Increases damage by $value when below 50% HP."
+    - id: 80528
+      name: "Dyad_Focused_Concach"
+      category: Equipment
+      kind: 52
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.82
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 26
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Focused V"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80529
+      name: "Dyad_Virulent_Concach"
+      category: Equipment
+      kind: 5
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 225
+      value: 12331
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Virulent V"
+        tooltip: "Crits to knocked-down opponents apply $H_W_GOODPoison V$COLOR_END."
+    - id: 80530
+      name: "Dyad_Brutal_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.088
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brutal V"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 80531
+      name: "Dyad_Cruel_Concach"
+      category: Equipment
+      kind: 6
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 208
+      value: 12332
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cruel V"
+        tooltip: "Increases Crit Power after knocking down an opponent. Applies $H_W_GOODCruelty V$COLOR_END."
+    - id: 80532
+      name: "Dyad_Forceful_Concach"
+      category: Equipment
+      kind: 7
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12333
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Forceful V"
+        tooltip: "Crits increase Power when attacking from behind. Applies $H_W_GOODForcefulness V$COLOR_END."
+    - id: 80533
+      name: "Dyad_Savage_Concach"
+      category: Equipment
+      kind: 55
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.57
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Savage V"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80534
+      name: "Dyad_Cunning_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 241
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning V"
+        tooltip: "Increases maximum MP by $value."
+    - id: 80535
+      name: "Dyad_Infused_Concach"
+      category: Equipment
+      kind: 8
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12334
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Infused V"
+        tooltip: "Replenishes 243 MP when knocked down."
+    - id: 80536
+      name: "Dyad_Glistening_Concach"
+      category: Equipment
+      kind: 9
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12335
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Glistening V"
+        tooltip: "Crits replenish 222 MP when attacking from behind."
+    - id: 80537
+      name: "Dyad_Swift_Concach"
+      category: Equipment
+      kind: 3
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 15
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift V"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    - id: 80538
+      name: "Dyad_Brilliant_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 40
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brilliant V"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 80539
+      name: "Dyad_Carving_Concach"
+      category: Equipment
+      kind: 15
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 155
+      value: 0.028
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Carving V"
+        tooltip: "Increases the chance to crit by $value."
+    - id: 80540
+      name: "Dyad_Salivating_Concach"
+      category: Equipment
+      kind: 56
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 157
+      value: 12336
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Salivating V"
+        tooltip: "Replenishes 77 MP when attacking a player."
+    - id: 80541
+      name: "Dyad_Threatening_Concach"
+      category: Equipment
+      kind: 61
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.578
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening V"
+        tooltip: "Increases aggro by $value."
+    - id: 80542
+      name: "Dyad_Wrathful_Concach"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.72
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 1
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Wrathful V"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80543
+      name: "Dyad_Spiteful_Concach"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.66
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 10
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Spiteful V"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80544
+      name: "Dyad_Hardy_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.927
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 15
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Hardy V"
+        tooltip: "Reduces damage from monsters by $value."
+    - id: 80545
+      name: "Dyad_Protective_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 105
+      value: 0.911
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Protective V"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 80546
+      name: "Dyad_Resolute_Concach"
+      category: Equipment
+      kind: 59
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.911
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Resolute V"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 80547
+      name: "Dyad_Poised_Concach"
+      category: Equipment
+      kind: 62
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.92
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Poised V"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 80548
+      name: "Dyad_Empyrean_Concach"
+      category: Equipment
+      kind: 11
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12337
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 9
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Empyrean V"
+        tooltip: "Applies $H_W_GOODWarding V$COLOR_END when knocked down by enraged monsters."
+    - id: 80549
+      name: "Dyad_Warding_Concach"
+      category: Equipment
+      kind: 12
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12338
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Warding V"
+        tooltip: "Applies $H_W_GOODWarding V$COLOR_END when knocked down ($prob chance)."
+    - id: 80550
+      name: "Dyad_Inspiring_Concach"
+      category: Equipment
+      kind: 13
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12339
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Inspiring V"
+        tooltip: "Applies $H_W_GOODHP Recovery V$COLOR_END when knocked down ($prob chance)."
+    - id: 80551
+      name: "Dyad_Relentless_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 2913
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless V"
+        tooltip: "Increase maximum HP by $value."
+    - id: 80552
+      name: "Dyad_Fleetfoot_Concach"
+      category: Equipment
+      kind: 4
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 18
+      value: 29
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Fleetfoot V"
+        tooltip: "Increases Movement Speed by $value while out of combat."
+    - id: 80553
+      name: "Dyad_Vigorous_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 194
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Vigorous V"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 80554
+      name: "Dyad_Grieving_Concach"
+      category: Equipment
+      kind: 57
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 106
+      value: 12340
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grieving V"
+        tooltip: "Replenishes 101 MP when attacked by a player."
+    # --- Tier 6 (Crux) ---
+    - id: 80555
+      name: "Dyad_Pounding_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.082
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Pounding VI"
+        tooltip: "Increases damage to monsters by $value."
+    - id: 80556
+      name: "Dyad_Bitter_Crux"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.73
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Bitter VI"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80557
+      name: "Dyad_Slaying_Crux"
+      category: Equipment
+      kind: 50
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.84
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Slaying VI"
+        tooltip: "Increases Crit Power by $value when below 50% HP."
+    - id: 80558
+      name: "Dyad_Furious_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.101
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 28
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Furious VI"
+        tooltip: "Increases damage by $value when below 50% HP."
+    - id: 80559
+      name: "Dyad_Focused_Crux"
+      category: Equipment
+      kind: 52
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.9
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 26
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Focused VI"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80560
+      name: "Dyad_Virulent_Crux"
+      category: Equipment
+      kind: 5
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 225
+      value: 12341
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Virulent VI"
+        tooltip: "Crits to knocked-down opponents apply $H_W_GOODPoison VI$COLOR_END."
+    - id: 80561
+      name: "Dyad_Brutal_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.099
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brutal VI"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 80562
+      name: "Dyad_Cruel_Crux"
+      category: Equipment
+      kind: 6
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 208
+      value: 12342
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cruel VI"
+        tooltip: "Increases Crit Power after knocking down an opponent. Applies $H_W_GOODCruelty VI$COLOR_END."
+    - id: 80563
+      name: "Dyad_Forceful_Crux"
+      category: Equipment
+      kind: 7
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12343
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Forceful VI"
+        tooltip: "Crits increase Power when attacking from behind. Applies $H_W_GOODForcefulness VI$COLOR_END."
+    - id: 80564
+      name: "Dyad_Savage_Crux"
+      category: Equipment
+      kind: 55
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.63
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 24
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Savage VI"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80565
+      name: "Dyad_Cunning_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 267
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning VI"
+        tooltip: "Increases maximum MP by $value."
+    - id: 80566
+      name: "Dyad_Infused_Crux"
+      category: Equipment
+      kind: 8
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12344
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Infused VI"
+        tooltip: "Replenishes 249 MP when knocked down."
+    - id: 80567
+      name: "Dyad_Glistening_Crux"
+      category: Equipment
+      kind: 9
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 224
+      value: 12345
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Glistening VI"
+        tooltip: "Crits replenish 243 MP when attacking from behind."
+    - id: 80568
+      name: "Dyad_Swift_Crux"
+      category: Equipment
+      kind: 3
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 17
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift VI"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    - id: 80569
+      name: "Dyad_Brilliant_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 42
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Brilliant VI"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 80570
+      name: "Dyad_Carving_Crux"
+      category: Equipment
+      kind: 15
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 155
+      value: 0.031
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Carving VI"
+        tooltip: "Increases the chance to crit by $value."
+    - id: 80571
+      name: "Dyad_Salivating_Crux"
+      category: Equipment
+      kind: 56
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 157
+      value: 12346
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Salivating VI"
+        tooltip: "Replenishes 86 MP when attacking a player."
+    - id: 80572
+      name: "Dyad_Threatening_Crux"
+      category: Equipment
+      kind: 61
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.619
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening VI"
+        tooltip: "Increases aggro by $value."
+    - id: 80573
+      name: "Dyad_Wrathful_Crux"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.79
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 1
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Wrathful VI"
+        tooltip: "Increases Crit Power by $value when attacking from the front."
+    - id: 80574
+      name: "Dyad_Spiteful_Crux"
+      category: Equipment
+      kind: 53
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 167
+      value: 1.73
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: any
+      condition: 24
+      conditionValue: 10
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Spiteful VI"
+        tooltip: "Increases Crit Power by $value when attacking from behind."
+    - id: 80575
+      name: "Dyad_Hardy_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.919
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: any
+      condition: 15
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Hardy VI"
+        tooltip: "Reduces damage from monsters by $value."
+    - id: 80576
+      name: "Dyad_Protective_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 105
+      value: 0.9
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Protective VI"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 80577
+      name: "Dyad_Resolute_Crux"
+      category: Equipment
+      kind: 59
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.9
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Resolute VI"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 80578
+      name: "Dyad_Poised_Crux"
+      category: Equipment
+      kind: 62
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.91
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Poised VI"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 80579
+      name: "Dyad_Empyrean_Crux"
+      category: Equipment
+      kind: 11
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12347
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 9
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Empyrean VI"
+        tooltip: "Applies $H_W_GOODWarding VI$COLOR_END when knocked down by enraged monsters."
+    - id: 80580
+      name: "Dyad_Warding_Crux"
+      category: Equipment
+      kind: 12
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12348
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Warding VI"
+        tooltip: "Applies $H_W_GOODWarding VI$COLOR_END when knocked down ($prob chance)."
+    - id: 80581
+      name: "Dyad_Inspiring_Crux"
+      category: Equipment
+      kind: 13
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 201
+      value: 12349
+      tickInterval: 0
+      method: 4
+      prob: 0.5
+      mobSize: all
+      condition: 1
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Inspiring VI"
+        tooltip: "Applies $H_W_GOODHP Recovery VI$COLOR_END when knocked down ($prob chance)."
+    - id: 80582
+      name: "Dyad_Relentless_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 5638
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless VI"
+        tooltip: "Increase maximum HP by $value."
+    - id: 80583
+      name: "Dyad_Fleetfoot_Crux"
+      category: Equipment
+      kind: 4
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 18
+      value: 32
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Fleetfoot VI"
+        tooltip: "Increases Movement Speed by $value while out of combat."
+    - id: 80584
+      name: "Dyad_Vigorous_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 376
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Vigorous VI"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 80585
+      name: "Dyad_Grieving_Crux"
+      category: Equipment
+      kind: 57
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 106
+      value: 12350
+      tickInterval: 0
+      method: 4
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grieving VI"
+        tooltip: "Replenishes 113 MP when attacked by a player."
+    # ========== SECONDARY PASSIVITIES ==========
+    # --- Secondary Tier 1 (Rhomb) ---
+    - id: 81014
+      name: "DyadSec_Poised_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.989
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Poised I"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 81015
+      name: "DyadSec_Resolute_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 102
+      value: 0.988
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Resolute I"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 81016
+      name: "DyadSec_Protective_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 105
+      value: 0.988
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Protective I"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 81017
+      name: "DyadSec_Relentless_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 654
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless I"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81018
+      name: "DyadSec_Vigorous_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 44
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Vigorous I"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 81019
+      name: "DyadSec_Cunning_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 32
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning I"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81020
+      name: "DyadSec_Brutal_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.012
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brutal I"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 81021
+      name: "DyadSec_Brilliant_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 5
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brilliant I"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 81022
+      name: "DyadSec_Swift_Rhomb"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Swift I"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    # --- Secondary Tier 2 (Cabochon) ---
+    - id: 81023
+      name: "DyadSec_Poised_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.987
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Poised II"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 81024
+      name: "DyadSec_Resolute_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 102
+      value: 0.986
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Resolute II"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 81025
+      name: "DyadSec_Protective_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 105
+      value: 0.986
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Protective II"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 81026
+      name: "DyadSec_Relentless_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 788
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless II"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81027
+      name: "DyadSec_Vigorous_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 53
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Vigorous II"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 81028
+      name: "DyadSec_Cunning_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 38
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning II"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81029
+      name: "DyadSec_Brutal_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.014
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brutal II"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 81030
+      name: "DyadSec_Brilliant_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 6
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brilliant II"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 81031
+      name: "DyadSec_Swift_Cabochon"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Swift II"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    # --- Secondary Tier 3 (Hexage) ---
+    - id: 81032
+      name: "DyadSec_Poised_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.985
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Poised III"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 81033
+      name: "DyadSec_Resolute_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 102
+      value: 0.983
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Resolute III"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 81034
+      name: "DyadSec_Protective_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 105
+      value: 0.983
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Protective III"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 81035
+      name: "DyadSec_Relentless_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 906
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless III"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81036
+      name: "DyadSec_Vigorous_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 61
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Vigorous III"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 81037
+      name: "DyadSec_Cunning_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 44
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning III"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81038
+      name: "DyadSec_Brutal_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.016
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brutal III"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 81039
+      name: "DyadSec_Brilliant_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 7
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brilliant III"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 81040
+      name: "DyadSec_Swift_Hexage"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Swift III"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    # --- Secondary Tier 4 (Pentant) ---
+    - id: 81041
+      name: "DyadSec_Poised_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.983
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Poised IV"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 81042
+      name: "DyadSec_Resolute_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 102
+      value: 0.981
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Resolute IV"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 81043
+      name: "DyadSec_Protective_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 105
+      value: 0.981
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Protective IV"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 81044
+      name: "DyadSec_Relentless_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 1040
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless IV"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81045
+      name: "DyadSec_Vigorous_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 70
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Vigorous IV"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 81046
+      name: "DyadSec_Cunning_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 50
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning IV"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81047
+      name: "DyadSec_Brutal_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.018
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brutal IV"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 81048
+      name: "DyadSec_Brilliant_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 8
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brilliant IV"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 81049
+      name: "DyadSec_Swift_Pentant"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Swift IV"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    # --- Secondary Tier 5 (Concach) ---
+    - id: 81050
+      name: "DyadSec_Poised_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.981
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Poised V"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 81051
+      name: "DyadSec_Resolute_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 102
+      value: 0.978
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Resolute V"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 81052
+      name: "DyadSec_Protective_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 105
+      value: 0.978
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Protective V"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 81053
+      name: "DyadSec_Relentless_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 1174
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless V"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81054
+      name: "DyadSec_Vigorous_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 79
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Vigorous V"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 81055
+      name: "DyadSec_Cunning_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 57
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning V"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81056
+      name: "DyadSec_Brutal_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.021
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brutal V"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 81057
+      name: "DyadSec_Brilliant_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 10
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brilliant V"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 81058
+      name: "DyadSec_Swift_Concach"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Swift V"
+        tooltip: "Increases Movement Speed by $value while in combat."
+    # --- Secondary Tier 6 (Crux) ---
+    - id: 81059
+      name: "DyadSec_Poised_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 102
+      value: 0.979
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 9
+      conditionValue: 4
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Poised VI"
+        tooltip: "Reduces damage from enraged monsters by $value."
+    - id: 81060
+      name: "DyadSec_Resolute_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 102
+      value: 0.976
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.5
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Resolute VI"
+        tooltip: "Reduces damage taken by $value when below 50% HP."
+    - id: 81061
+      name: "DyadSec_Protective_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 105
+      value: 0.976
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 17
+      conditionValue: 0.6
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Protective VI"
+        tooltip: "Increases the chance to resist crits by $value when below 50% HP."
+    - id: 81062
+      name: "DyadSec_Relentless_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 1308
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless VI"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81063
+      name: "DyadSec_Vigorous_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 51
+      value: 88
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Vigorous VI"
+        tooltip: "Recovers $value HP per $tickInterval."
+    - id: 81064
+      name: "DyadSec_Cunning_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 64
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning VI"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81065
+      name: "DyadSec_Brutal_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: true
+      balancedByTargetCount: false
+      type: 152
+      value: 1.023
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 21
+      conditionValue: 2
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brutal VI"
+        tooltip: "Increases damage to knocked-down opponents by $value."
+    - id: 81066
+      name: "DyadSec_Brilliant_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 52
+      value: 11
+      tickInterval: 5
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Brilliant VI"
+        tooltip: "Replenishes $value MP per $tickInterval."
+    - id: 81067
+      name: "DyadSec_Swift_Crux"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 17
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Swift VI"
+        tooltip: "Increases Movement Speed by $value while in combat."

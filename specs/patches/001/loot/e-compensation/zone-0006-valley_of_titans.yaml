@@ -1,5 +1,5 @@
 # Valley of Titans (Zone 6) — Tier 2 eCompensation
-# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, infusion boxes, gold
+# All mob drops: crystal boxes, runes, fusion structures, alkahest, feedstock, infusion boxes, gold
 
 spec:
   version: "1.0"
@@ -11,7 +11,9 @@ imports:
       variables:
         - WEAPON_CRYSTAL_BOX_CABOCHON
         - ARMOR_CRYSTAL_BOX_CABOCHON
-        - CABOCHON_REFINEMENT_STRUCTURE
+        - CABOCHON_STRUCTURE
+        - DYAD_CABOCHON_STRUCTURE
+        - SMART_DYAD_CABOCHON_STRUCTURE
   - from: evolution-base
     use:
       variables:
@@ -49,8 +51,8 @@ definitions:
             probability: 0.99
             min: 1
             max: 2
-          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
-            name: "Refinement Structure"
+          - templateId: $CABOCHON_STRUCTURE
+            name: "Fusion Structure"
             probability: 0.01
       - id: 4
         bagName: "Valley of Titans Normal Feedstock"
@@ -133,15 +135,29 @@ definitions:
             name: "Armor Evolution Rune"
             probability: 1.0
       - id: 5
-        bagName: "Valley of Titans Refinement"
+        bagName: "Valley of Titans Fusion Structure"
         probability: 0.15
         items:
-          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
-            name: "Refinement Structure"
+          - templateId: $CABOCHON_STRUCTURE
+            name: "Fusion Structure"
             probability: 1.0
             min: 1
             max: 2
       - id: 6
+        bagName: "Valley of Titans Dyad Structure"
+        probability: 0.1
+        items:
+          - templateId: $DYAD_CABOCHON_STRUCTURE
+            name: "Dyad Structure"
+            probability: 1.0
+      - id: 7
+        bagName: "Valley of Titans Smart Dyad Structure"
+        probability: 0.01
+        items:
+          - templateId: $SMART_DYAD_CABOCHON_STRUCTURE
+            name: "Smart Dyad Structure"
+            probability: 1.0
+      - id: 8
         bagName: "Valley of Titans Alkahest"
         probability: 1.0
         items:
@@ -150,7 +166,7 @@ definitions:
             probability: 1.0
             min: 3
             max: 6
-      - id: 7
+      - id: 9
         bagName: "Valley of Titans Feedstock"
         probability: 1.0
         items:
@@ -159,7 +175,7 @@ definitions:
             probability: 1.0
             min: 6
             max: 12
-      - id: 8
+      - id: 10
         bagName: "Valley of Titans Boss Infusion (Uncommon)"
         probability: 0.5
         equalProbability: true
@@ -172,7 +188,7 @@ definitions:
             name: "Infusion Gloves Box (Uncommon)"
           - templateId: 602199
             name: "Infusion Boots Box (Uncommon)"
-      - id: 9
+      - id: 11
         bagName: "Valley of Titans Boss Infusion (Rare)"
         probability: 0.1
         equalProbability: true
@@ -185,7 +201,7 @@ definitions:
             name: "Infusion Gloves Box (Rare)"
           - templateId: 602200
             name: "Infusion Boots Box (Rare)"
-      - id: 10
+      - id: 12
         bagName: "Valley of Titans Boss Infusion (Superior)"
         probability: 0.01
         equalProbability: true

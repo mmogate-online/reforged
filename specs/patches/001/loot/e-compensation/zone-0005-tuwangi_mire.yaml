@@ -1,5 +1,5 @@
 # Tuwangi Mire (Zone 5) — Tier 2 eCompensation
-# All mob drops: crystal boxes, runes, refinement, alkahest, feedstock, infusion boxes, gold
+# All mob drops: crystal boxes, runes, fusion structures, alkahest, feedstock, infusion boxes, gold
 
 spec:
   version: "1.0"
@@ -11,7 +11,7 @@ imports:
       variables:
         - WEAPON_CRYSTAL_BOX_CABOCHON
         - ARMOR_CRYSTAL_BOX_CABOCHON
-        - CABOCHON_REFINEMENT_STRUCTURE
+        - CABOCHON_STRUCTURE
   - from: evolution-base
     use:
       variables:
@@ -49,8 +49,8 @@ definitions:
             probability: 0.99
             min: 1
             max: 2
-          - templateId: $CABOCHON_REFINEMENT_STRUCTURE
-            name: "Refinement Structure"
+          - templateId: $CABOCHON_STRUCTURE
+            name: "Fusion Structure"
             probability: 0.01
       - id: 4
         bagName: "Tuwangi Mire Normal Feedstock"

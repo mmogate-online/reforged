@@ -1,0 +1,1749 @@
+# Dyad Crystal Abnormalities — Patch 001
+# Proc-based primary effects (60 total: 10 families x 6 tiers)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+abnormalities:
+  create:
+    # --- Tier 1 (Rhomb) ---
+    - id: 12291
+      name: "Dyad_virulent_Rhomb"
+      kind: 38401
+      level: 21
+      property: 2
+      category: "2,13,902"
+      time: 5000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: false
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - type: 51
+          method: 2
+          value: "-15"
+          tickInterval: 1
+          variation: 0
+          min: -90
+          max: 0
+      abnormalityStrings:
+        name: "Virulence I"
+        tooltip: "Reduces HP by $H_W_BAD$value$COLOR_END every $H_W_BAD$tickInterval$COLOR_END."
+    - id: 12292
+      name: "Dyad_cruel_Rhomb"
+      kind: 16001
+      level: 21
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 19
+          method: 3
+          value: "1.12"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Cruelty I"
+        tooltip: "Increases Crit Power."
+    - id: 12293
+      name: "Dyad_forceful_Rhomb"
+      kind: 16002
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 3
+          method: 2
+          value: "9"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Forcefulness I"
+        tooltip: "Increases Power by $H_W_GOOD$value$COLOR_END."
+    - id: 12294
+      name: "Dyad_infused_w_Rhomb"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "51"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 306
+      abnormalityStrings:
+        name: "Infusion I"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12295
+      name: "Dyad_glistening_w_Rhomb"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "47"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 282
+      abnormalityStrings:
+        name: "Infusion I"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12296
+      name: "Dyad_salivating_w_Rhomb"
+      kind: 16005
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "43"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 86
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] I"
+        tooltip: "Restores MP."
+    - id: 12297
+      name: "Dyad_empyrean_Rhomb"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "246"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding I"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12298
+      name: "Dyad_warding_Rhomb"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "202"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding I"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12299
+      name: "Dyad_inspiring_Rhomb"
+      kind: 16003
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 51
+          method: 2
+          value: "27"
+          tickInterval: 2
+          variation: 0
+          min: 0
+          max: 162
+      abnormalityStrings:
+        name: "Restoration I"
+        tooltip: "Recovers $H_W_GOOD$value$COLOR_END HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12300
+      name: "Dyad_grieving_a_Rhomb"
+      kind: 16006
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "56"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 112
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] I"
+        tooltip: "Restores MP."
+    # --- Tier 2 (Cabochon) ---
+    - id: 12301
+      name: "Dyad_virulent_Cabochon"
+      kind: 38401
+      level: 21
+      property: 2
+      category: "2,13,902"
+      time: 5000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: false
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - type: 51
+          method: 2
+          value: "-30"
+          tickInterval: 1
+          variation: 0
+          min: -180
+          max: 0
+      abnormalityStrings:
+        name: "Virulence II"
+        tooltip: "Reduces HP by $H_W_BAD$value$COLOR_END every $H_W_BAD$tickInterval$COLOR_END."
+    - id: 12302
+      name: "Dyad_cruel_Cabochon"
+      kind: 16001
+      level: 21
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 19
+          method: 3
+          value: "1.14"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Cruelty II"
+        tooltip: "Increases Crit Power."
+    - id: 12303
+      name: "Dyad_forceful_Cabochon"
+      kind: 16002
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 3
+          method: 2
+          value: "12"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Forcefulness II"
+        tooltip: "Increases Power by $H_W_GOOD$value$COLOR_END."
+    - id: 12304
+      name: "Dyad_infused_w_Cabochon"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "56"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 336
+      abnormalityStrings:
+        name: "Infusion II"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12305
+      name: "Dyad_glistening_w_Cabochon"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "51"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 306
+      abnormalityStrings:
+        name: "Infusion II"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12306
+      name: "Dyad_salivating_w_Cabochon"
+      kind: 16005
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "52"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 104
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] II"
+        tooltip: "Restores MP."
+    - id: 12307
+      name: "Dyad_empyrean_Cabochon"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "428"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding II"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12308
+      name: "Dyad_warding_Cabochon"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "351"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding II"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12309
+      name: "Dyad_inspiring_Cabochon"
+      kind: 16003
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 51
+          method: 2
+          value: "47"
+          tickInterval: 2
+          variation: 0
+          min: 0
+          max: 282
+      abnormalityStrings:
+        name: "Restoration II"
+        tooltip: "Recovers $H_W_GOOD$value$COLOR_END HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12310
+      name: "Dyad_grieving_a_Cabochon"
+      kind: 16006
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "68"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 136
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] II"
+        tooltip: "Restores MP."
+    # --- Tier 3 (Hexage) ---
+    - id: 12311
+      name: "Dyad_virulent_Hexage"
+      kind: 38401
+      level: 21
+      property: 2
+      category: "2,13,902"
+      time: 5000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: false
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - type: 51
+          method: 2
+          value: "-75"
+          tickInterval: 1
+          variation: 0
+          min: -450
+          max: 0
+      abnormalityStrings:
+        name: "Virulence III"
+        tooltip: "Reduces HP by $H_W_BAD$value$COLOR_END every $H_W_BAD$tickInterval$COLOR_END."
+    - id: 12312
+      name: "Dyad_cruel_Hexage"
+      kind: 16001
+      level: 21
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 19
+          method: 3
+          value: "1.16"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Cruelty III"
+        tooltip: "Increases Crit Power."
+    - id: 12313
+      name: "Dyad_forceful_Hexage"
+      kind: 16002
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 3
+          method: 2
+          value: "14"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Forcefulness III"
+        tooltip: "Increases Power by $H_W_GOOD$value$COLOR_END."
+    - id: 12314
+      name: "Dyad_infused_w_Hexage"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "65"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 390
+      abnormalityStrings:
+        name: "Infusion III"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12315
+      name: "Dyad_glistening_w_Hexage"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "60"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 360
+      abnormalityStrings:
+        name: "Infusion III"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12316
+      name: "Dyad_salivating_w_Hexage"
+      kind: 16005
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "60"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 120
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] III"
+        tooltip: "Restores MP."
+    - id: 12317
+      name: "Dyad_empyrean_Hexage"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "821"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding III"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12318
+      name: "Dyad_warding_Hexage"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "673"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding III"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12319
+      name: "Dyad_inspiring_Hexage"
+      kind: 16003
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 51
+          method: 2
+          value: "90"
+          tickInterval: 2
+          variation: 0
+          min: 0
+          max: 540
+      abnormalityStrings:
+        name: "Restoration III"
+        tooltip: "Recovers $H_W_GOOD$value$COLOR_END HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12320
+      name: "Dyad_grieving_a_Hexage"
+      kind: 16006
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "79"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 158
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] III"
+        tooltip: "Restores MP."
+    # --- Tier 4 (Pentant) ---
+    - id: 12321
+      name: "Dyad_virulent_Pentant"
+      kind: 38401
+      level: 21
+      property: 2
+      category: "2,13,902"
+      time: 5000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: false
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - type: 51
+          method: 2
+          value: "-187"
+          tickInterval: 1
+          variation: 0
+          min: -1122
+          max: 0
+      abnormalityStrings:
+        name: "Virulence IV"
+        tooltip: "Reduces HP by $H_W_BAD$value$COLOR_END every $H_W_BAD$tickInterval$COLOR_END."
+    - id: 12322
+      name: "Dyad_cruel_Pentant"
+      kind: 16001
+      level: 21
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 19
+          method: 3
+          value: "1.19"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Cruelty IV"
+        tooltip: "Increases Crit Power."
+    - id: 12323
+      name: "Dyad_forceful_Pentant"
+      kind: 16002
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 3
+          method: 2
+          value: "16"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Forcefulness IV"
+        tooltip: "Increases Power by $H_W_GOOD$value$COLOR_END."
+    - id: 12324
+      name: "Dyad_infused_w_Pentant"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "78"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 468
+      abnormalityStrings:
+        name: "Infusion IV"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12325
+      name: "Dyad_glistening_w_Pentant"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "71"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 426
+      abnormalityStrings:
+        name: "Infusion IV"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12326
+      name: "Dyad_salivating_w_Pentant"
+      kind: 16005
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "69"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 138
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] IV"
+        tooltip: "Restores MP."
+    - id: 12327
+      name: "Dyad_empyrean_Pentant"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "1568"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding IV"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12328
+      name: "Dyad_warding_Pentant"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "1287"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding IV"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12329
+      name: "Dyad_inspiring_Pentant"
+      kind: 16003
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 51
+          method: 2
+          value: "171"
+          tickInterval: 2
+          variation: 0
+          min: 0
+          max: 1026
+      abnormalityStrings:
+        name: "Restoration IV"
+        tooltip: "Recovers $H_W_GOOD$value$COLOR_END HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12330
+      name: "Dyad_grieving_a_Pentant"
+      kind: 16006
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "90"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 180
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] IV"
+        tooltip: "Restores MP."
+    # --- Tier 5 (Concach) ---
+    - id: 12331
+      name: "Dyad_virulent_Concach"
+      kind: 38401
+      level: 21
+      property: 2
+      category: "2,13,902"
+      time: 5000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: false
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - type: 51
+          method: 2
+          value: "-445"
+          tickInterval: 1
+          variation: 0
+          min: -2670
+          max: 0
+      abnormalityStrings:
+        name: "Virulence V"
+        tooltip: "Reduces HP by $H_W_BAD$value$COLOR_END every $H_W_BAD$tickInterval$COLOR_END."
+    - id: 12332
+      name: "Dyad_cruel_Concach"
+      kind: 16001
+      level: 21
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 19
+          method: 3
+          value: "1.21"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Cruelty V"
+        tooltip: "Increases Crit Power."
+    - id: 12333
+      name: "Dyad_forceful_Concach"
+      kind: 16002
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 3
+          method: 2
+          value: "18"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Forcefulness V"
+        tooltip: "Increases Power by $H_W_GOOD$value$COLOR_END."
+    - id: 12334
+      name: "Dyad_infused_w_Concach"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "81"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 486
+      abnormalityStrings:
+        name: "Infusion V"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12335
+      name: "Dyad_glistening_w_Concach"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "74"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 444
+      abnormalityStrings:
+        name: "Infusion V"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12336
+      name: "Dyad_salivating_w_Concach"
+      kind: 16005
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "77"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 154
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] V"
+        tooltip: "Restores MP."
+    - id: 12337
+      name: "Dyad_empyrean_Concach"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "3156"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding V"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12338
+      name: "Dyad_warding_Concach"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "2590"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding V"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12339
+      name: "Dyad_inspiring_Concach"
+      kind: 16003
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 51
+          method: 2
+          value: "345"
+          tickInterval: 2
+          variation: 0
+          min: 0
+          max: 2070
+      abnormalityStrings:
+        name: "Restoration V"
+        tooltip: "Recovers $H_W_GOOD$value$COLOR_END HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12340
+      name: "Dyad_grieving_a_Concach"
+      kind: 16006
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "101"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 202
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] V"
+        tooltip: "Restores MP."
+    # --- Tier 6 (Crux) ---
+    - id: 12341
+      name: "Dyad_virulent_Crux"
+      kind: 38401
+      level: 21
+      property: 2
+      category: "2,13,902"
+      time: 5000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: false
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - type: 51
+          method: 2
+          value: "-996"
+          tickInterval: 1
+          variation: 0
+          min: -5976
+          max: 0
+      abnormalityStrings:
+        name: "Virulence VI"
+        tooltip: "Reduces HP by $H_W_BAD$value$COLOR_END every $H_W_BAD$tickInterval$COLOR_END."
+    - id: 12342
+      name: "Dyad_cruel_Crux"
+      kind: 16001
+      level: 21
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 2
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 19
+          method: 3
+          value: "1.23"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Cruelty VI"
+        tooltip: "Increases Crit Power."
+    - id: 12343
+      name: "Dyad_forceful_Crux"
+      kind: 16002
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 3
+          method: 2
+          value: "20"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Forcefulness VI"
+        tooltip: "Increases Power by $H_W_GOOD$value$COLOR_END."
+    - id: 12344
+      name: "Dyad_infused_w_Crux"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "83"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 498
+      abnormalityStrings:
+        name: "Infusion VI"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12345
+      name: "Dyad_glistening_w_Crux"
+      kind: 16004
+      level: 21
+      property: 4
+      category: "4"
+      time: 3000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "81"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 486
+      abnormalityStrings:
+        name: "Infusion VI"
+        tooltip: "Replenishes $H_W_GOOD$value$COLOR_END MP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12346
+      name: "Dyad_salivating_w_Crux"
+      kind: 16005
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "86"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 172
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] VI"
+        tooltip: "Restores MP."
+    - id: 12347
+      name: "Dyad_empyrean_Crux"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "6108"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding VI"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12348
+      name: "Dyad_warding_Crux"
+      kind: 9624
+      level: 7
+      property: 4
+      category: "4"
+      time: 7000
+      cancelCondition: 9
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 3
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 227
+          method: 0
+          value: "5012"
+          tickInterval: 0
+          variation: 0
+          min: 0
+          max: 0
+      abnormalityStrings:
+        name: "Warding VI"
+        tooltip: "Absorbs up to $H_W_GOOD$value$COLOR_END damage."
+    - id: 12349
+      name: "Dyad_inspiring_Crux"
+      kind: 16003
+      level: 21
+      property: 4
+      category: "4"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 51
+          method: 2
+          value: "668"
+          tickInterval: 2
+          variation: 0
+          min: 0
+          max: 4008
+      abnormalityStrings:
+        name: "Restoration VI"
+        tooltip: "Recovers $H_W_GOOD$value$COLOR_END HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 12350
+      name: "Dyad_grieving_a_Crux"
+      kind: 16006
+      level: 21
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 1
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      group: skill
+      effects:
+        - type: 52
+          method: 2
+          value: "113"
+          tickInterval: 1
+          variation: 0
+          min: 0
+          max: 226
+      abnormalityStrings:
+        name: "Instant MP Replenishment [Crystal] VI"
+        tooltip: "Restores MP."

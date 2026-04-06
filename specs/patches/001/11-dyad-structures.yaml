@@ -1,0 +1,374 @@
+# Dyad Crystal Structures — Patch 001
+# Dyad/Smart Dyad structures (UPGRADE) + Rhomb Structure (TIERUP)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - DYAD_RHOMB_STRUCTURE
+        - SMART_DYAD_RHOMB_STRUCTURE
+        - DYAD_CABOCHON_STRUCTURE
+        - SMART_DYAD_CABOCHON_STRUCTURE
+        - DYAD_HEXAGE_STRUCTURE
+        - SMART_DYAD_HEXAGE_STRUCTURE
+        - DYAD_PENTANT_STRUCTURE
+        - SMART_DYAD_PENTANT_STRUCTURE
+        - DYAD_CONCACH_STRUCTURE
+        - SMART_DYAD_CONCACH_STRUCTURE
+        - DYAD_CRUX_STRUCTURE
+        - SMART_DYAD_CRUX_STRUCTURE
+        - RHOMB_STRUCTURE
+
+definitions:
+  dyadStructureBase:
+    name: RawStone
+    combatItemType: RAWSTONE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    rank: 0
+    sortingNumber: 1
+    maxStack: 100
+    maxDropUnit: 100
+    slotLimit: 0
+    coolTimeGroup: 0
+    tradable: false
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    boundType: None
+    destroyable: true
+    storeSellable: true
+    searchable: true
+    obtainable: true
+    relocatable: true
+    enchantEnable: false
+    dismantlable: false
+    artisanable: false
+    requiredEquipmentType: NO_COMBAT
+    requiredLevel: 1
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_CustomizeStoneCue
+
+items:
+  upsert:
+    - id: $DYAD_RHOMB_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 2
+      level: 1
+      buyPrice: 262
+      sellPrice: 26
+      defaultValue: 262
+      linkRawStoneId: $DYAD_RHOMB_STRUCTURE
+      icon: Icon_Items.RawCrystal01A_Tex
+      strings:
+        name: "Dyad Rhomb Structure"
+        toolTip: "Fuse 3 fine rhomb crystals to produce a random dyad rhomb.\nSuccess Rate: 100%"
+    - id: $SMART_DYAD_RHOMB_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 3
+      level: 1
+      buyPrice: 786
+      sellPrice: 78
+      defaultValue: 786
+      linkRawStoneId: $SMART_DYAD_RHOMB_STRUCTURE
+      icon: Icon_Items.RawCrystal01A_Tex
+      strings:
+        name: "Smart Dyad Rhomb Structure"
+        toolTip: "Fuse 3 fine rhomb crystals of the same type to produce a dyad rhomb preserving the primary effect.\nSuccess Rate: 100%"
+    - id: $DYAD_CABOCHON_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 2
+      level: 11
+      buyPrice: 830
+      sellPrice: 83
+      defaultValue: 830
+      linkRawStoneId: $DYAD_CABOCHON_STRUCTURE
+      icon: Icon_Items.RawCrystal01B_Tex
+      strings:
+        name: "Dyad Cabochon Structure"
+        toolTip: "Fuse 3 fine cabochon crystals to produce a random dyad cabochon.\nSuccess Rate: 100%"
+    - id: $SMART_DYAD_CABOCHON_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 3
+      level: 11
+      buyPrice: 2490
+      sellPrice: 249
+      defaultValue: 2490
+      linkRawStoneId: $SMART_DYAD_CABOCHON_STRUCTURE
+      icon: Icon_Items.RawCrystal01B_Tex
+      strings:
+        name: "Smart Dyad Cabochon Structure"
+        toolTip: "Fuse 3 fine cabochon crystals of the same type to produce a dyad cabochon preserving the primary effect.\nSuccess Rate: 100%"
+    - id: $DYAD_HEXAGE_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 2
+      level: 20
+      buyPrice: 5372
+      sellPrice: 537
+      defaultValue: 5372
+      linkRawStoneId: $DYAD_HEXAGE_STRUCTURE
+      icon: Icon_Items.RawCrystal01C_Tex
+      strings:
+        name: "Dyad Hexage Structure"
+        toolTip: "Fuse 3 fine hexage crystals to produce a random dyad hexage.\nSuccess Rate: 100%"
+    - id: $SMART_DYAD_HEXAGE_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 3
+      level: 20
+      buyPrice: 16116
+      sellPrice: 1611
+      defaultValue: 16116
+      linkRawStoneId: $SMART_DYAD_HEXAGE_STRUCTURE
+      icon: Icon_Items.RawCrystal01C_Tex
+      strings:
+        name: "Smart Dyad Hexage Structure"
+        toolTip: "Fuse 3 fine hexage crystals of the same type to produce a dyad hexage preserving the primary effect.\nSuccess Rate: 100%"
+    - id: $DYAD_PENTANT_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 2
+      level: 32
+      buyPrice: 16554
+      sellPrice: 1655
+      defaultValue: 16554
+      linkRawStoneId: $DYAD_PENTANT_STRUCTURE
+      icon: Icon_Items.RawCrystal01D_Tex
+      strings:
+        name: "Dyad Pentant Structure"
+        toolTip: "Fuse 3 fine pentant crystals to produce a random dyad pentant.\nSuccess Rate: 100%"
+    - id: $SMART_DYAD_PENTANT_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 3
+      level: 32
+      buyPrice: 49662
+      sellPrice: 4965
+      defaultValue: 49662
+      linkRawStoneId: $SMART_DYAD_PENTANT_STRUCTURE
+      icon: Icon_Items.RawCrystal01D_Tex
+      strings:
+        name: "Smart Dyad Pentant Structure"
+        toolTip: "Fuse 3 fine pentant crystals of the same type to produce a dyad pentant preserving the primary effect.\nSuccess Rate: 100%"
+    - id: $DYAD_CONCACH_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 2
+      level: 44
+      buyPrice: 60160
+      sellPrice: 6016
+      defaultValue: 60160
+      linkRawStoneId: $DYAD_CONCACH_STRUCTURE
+      icon: Icon_Items.RawCrystal01E_Tex
+      strings:
+        name: "Dyad Concach Structure"
+        toolTip: "Fuse 3 fine concach crystals to produce a random dyad concach.\nSuccess Rate: 100%"
+    - id: $SMART_DYAD_CONCACH_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 3
+      level: 44
+      buyPrice: 180480
+      sellPrice: 18048
+      defaultValue: 180480
+      linkRawStoneId: $SMART_DYAD_CONCACH_STRUCTURE
+      icon: Icon_Items.RawCrystal01E_Tex
+      strings:
+        name: "Smart Dyad Concach Structure"
+        toolTip: "Fuse 3 fine concach crystals of the same type to produce a dyad concach preserving the primary effect.\nSuccess Rate: 100%"
+    - id: $DYAD_CRUX_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 2
+      level: 55
+      buyPrice: 108919
+      sellPrice: 10891
+      defaultValue: 108919
+      linkRawStoneId: $DYAD_CRUX_STRUCTURE
+      icon: Icon_Items.RawCrystal01F_Tex
+      strings:
+        name: "Dyad Crux Structure"
+        toolTip: "Fuse 3 fine crux crystals to produce a random dyad crux.\nSuccess Rate: 100%"
+    - id: $SMART_DYAD_CRUX_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 3
+      level: 55
+      buyPrice: 326757
+      sellPrice: 32673
+      defaultValue: 326757
+      linkRawStoneId: $SMART_DYAD_CRUX_STRUCTURE
+      icon: Icon_Items.RawCrystal01F_Tex
+      strings:
+        name: "Smart Dyad Crux Structure"
+        toolTip: "Fuse 3 fine crux crystals of the same type to produce a dyad crux preserving the primary effect.\nSuccess Rate: 100%"
+    - id: $RHOMB_STRUCTURE
+      $extends: dyadStructureBase
+      rareGrade: 1
+      tradable: true
+      guildWarehouseStorable: true
+      level: 1
+      buyPrice: 200
+      sellPrice: 20
+      defaultValue: 200
+      linkRawStoneId: $RHOMB_STRUCTURE
+      icon: Icon_Items.RawCrystal01A_Tex
+      strings:
+        name: "Rhomb Structure"
+        toolTip: "Fuse 3 fine rhomb crystals to produce a random fine cabochon.\nSuccess Rate: 100%"
+
+rawStoneItems:
+  upsert:
+    # Dyad Rhomb — 3x Fine Rhomb (rareGrade 1) → Random Dyad Rhomb
+    - rawStoneItemId: $DYAD_RHOMB_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 1
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    # Smart Dyad Rhomb — 3x Same Fine Rhomb (rareGrade 1) → Same-type Dyad Rhomb
+    - rawStoneItemId: $SMART_DYAD_RHOMB_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 1
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 1
+      needSameMaterial: true
+    # Dyad Cabochon — 3x Fine Cabochon (rareGrade 1) → Random Dyad Cabochon
+    - rawStoneItemId: $DYAD_CABOCHON_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 2
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    # Smart Dyad Cabochon — 3x Same Fine Cabochon (rareGrade 1) → Same-type Dyad Cabochon
+    - rawStoneItemId: $SMART_DYAD_CABOCHON_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 2
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 1
+      needSameMaterial: true
+    # Dyad Hexage — 3x Fine Hexage (rareGrade 1) → Random Dyad Hexage
+    - rawStoneItemId: $DYAD_HEXAGE_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 3
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    # Smart Dyad Hexage — 3x Same Fine Hexage (rareGrade 1) → Same-type Dyad Hexage
+    - rawStoneItemId: $SMART_DYAD_HEXAGE_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 3
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 1
+      needSameMaterial: true
+    # Dyad Pentant — 3x Fine Pentant (rareGrade 1) → Random Dyad Pentant
+    - rawStoneItemId: $DYAD_PENTANT_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 4
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    # Smart Dyad Pentant — 3x Same Fine Pentant (rareGrade 1) → Same-type Dyad Pentant
+    - rawStoneItemId: $SMART_DYAD_PENTANT_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 4
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 1
+      needSameMaterial: true
+    # Dyad Concach — 3x Fine Concach (rareGrade 1) → Random Dyad Concach
+    - rawStoneItemId: $DYAD_CONCACH_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 5
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    # Smart Dyad Concach — 3x Same Fine Concach (rareGrade 1) → Same-type Dyad Concach
+    - rawStoneItemId: $SMART_DYAD_CONCACH_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 5
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 1
+      needSameMaterial: true
+    # Dyad Crux — 3x Fine Crux (rareGrade 1) → Random Dyad Crux
+    - rawStoneItemId: $DYAD_CRUX_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 6
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    # Smart Dyad Crux — 3x Same Fine Crux (rareGrade 1) → Same-type Dyad Crux
+    - rawStoneItemId: $SMART_DYAD_CRUX_STRUCTURE
+      type: UPGRADE
+      useGambleItemGrade:
+        - 6
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 1
+      needSameMaterial: true
+    # Rhomb Structure (TIERUP) — 3x Fine Rhomb → Fine Cabochon
+    - rawStoneItemId: $RHOMB_STRUCTURE
+      type: TIERUP
+      useGambleItemGrade:
+        - 1
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_WEAPON
+        - EQUIP_ARMOR_BODY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
