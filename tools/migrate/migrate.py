@@ -38,6 +38,10 @@ ENTITY_SYNC_MAP = {
     "abnormalities": "Abnormality",
     "customizingItems": "CustomizingItems",
     "customizingItemBags": None,
+    "exchanges": None,          # ItemMedalExchange — server-only, client reads at runtime
+    "villagerMenuItems": None,  # VillagerMenuItem — server-only
+    "buyMenuLists": None,       # BuyMenuList — server-only
+    "buyLists": None,           # BuyList — server-only
 }
 
 # Entity keys whose inline blocks imply additional sync entities

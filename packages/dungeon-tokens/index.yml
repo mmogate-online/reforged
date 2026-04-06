@@ -1,12 +1,12 @@
 # Dungeon Token IDs
 #
-# Each dungeon gets a unique MEDAL_USEABLE token that drops from bosses.
-# Players right-click the token to open a BuyMenuData shop for progression
-# items and cosmetics.
+# Each dungeon gets a unique MEDAL_USEABLE token dropped by bosses.
+# Right-click opens a MedalStore shop (VillagerMenuItem → BuyMenuList → BuyList).
 #
 # Reserved ranges:
-#   Token items:  95214–95313 (100 IDs)
-#   Shop IDs:     95000–95099 (100 BuyMenuData IDs)
+#   Token items:   95214–95313 (100 IDs)
+#   Menu/VMI IDs:  9999002–9999099
+#   BuyList IDs:   20732803–20732899
 
 spec:
   version: "1.0"
@@ -16,13 +16,19 @@ variables:
   BASTION_OF_LOK_TOKEN: 95214
   SINESTRAL_MANOR_TOKEN: 95215
 
-  # BuyMenuData shop IDs
-  BASTION_OF_LOK_SHOP: 95000
-  SINESTRAL_MANOR_SHOP: 95001
+  # VillagerMenuItem + BuyMenuList menu IDs (must match)
+  BASTION_OF_LOK_MENU: 9999002
+  SINESTRAL_MANOR_MENU: 9999003
+
+  # BuyList catalog IDs
+  BASTION_OF_LOK_LIST: 20732803
+  SINESTRAL_MANOR_LIST: 20732804
 
 exports:
   variables:
     - BASTION_OF_LOK_TOKEN
     - SINESTRAL_MANOR_TOKEN
-    - BASTION_OF_LOK_SHOP
-    - SINESTRAL_MANOR_SHOP
+    - BASTION_OF_LOK_MENU
+    - SINESTRAL_MANOR_MENU
+    - BASTION_OF_LOK_LIST
+    - SINESTRAL_MANOR_LIST

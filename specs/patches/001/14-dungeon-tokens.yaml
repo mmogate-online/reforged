@@ -3,7 +3,7 @@
 # ===========================================================================
 #
 # Each dungeon has a unique MEDAL_USEABLE token dropped by bosses.
-# Players spend tokens at BuyMenuData shops for progression items.
+# Right-click opens a MedalStore shop via VillagerMenuItem → BuyMenuList → BuyList.
 #
 # Token economy (per dungeon run, 5-man party):
 #   Bastion of Lok:  1 boss × 3 tokens = 3 tokens/run
@@ -22,8 +22,10 @@ imports:
       variables:
         - BASTION_OF_LOK_TOKEN
         - SINESTRAL_MANOR_TOKEN
-        - BASTION_OF_LOK_SHOP
-        - SINESTRAL_MANOR_SHOP
+        - BASTION_OF_LOK_MENU
+        - SINESTRAL_MANOR_MENU
+        - BASTION_OF_LOK_LIST
+        - SINESTRAL_MANOR_LIST
 
 # ===========================================================================
 # Token Item Definitions
@@ -102,41 +104,53 @@ items:
         toolTip: "A token earned by defeating the dark nobility of Sinestral Manor.$BR$BR<font color = '#41FF3A'>[Right-click]</font> to open the Sinestral Manor Exchange."
 
 # ===========================================================================
-# BuyMenuData Shops
+# Medal Store Wiring
 # ===========================================================================
 #
-# One shop per dungeon token. Each shop sells progression items
-# using the dungeon's token as currency (needMedalItemId).
-# Future: add cosmetic tabs for replay value.
+# Right-click shop chain:
+#   VillagerMenuItem (itemTemplateId=token, type=MedalStore, id=MENU)
+#     → BuyMenuList (Menu id=MENU)
+#       → BuyList (List id=LIST, NeedMedalItemId=token)
+#         → Potential Unlock Scroll (item 90), cost 2 tokens
 
-buyMenuDatas:
-  create:
-    - id: $BASTION_OF_LOK_SHOP
-      stringId: 950000
+villagerMenuItems:
+  upsert:
+    - id: $BASTION_OF_LOK_MENU
+      itemTemplateId: $BASTION_OF_LOK_TOKEN
+      type: MedalStore
+
+    - id: $SINESTRAL_MANOR_MENU
+      itemTemplateId: $SINESTRAL_MANOR_TOKEN
+      type: MedalStore
+
+buyMenuLists:
+  upsert:
+    - id: $BASTION_OF_LOK_MENU
+      stringId: $BASTION_OF_LOK_MENU
       desc: "Bastion of Lok Token Exchange"
-      resetType: none
-      menus:
-        - id: 1
-          desc: "Progression Items"
-          probability: 1.0
-          needMedalItemId: $BASTION_OF_LOK_TOKEN
-          itemLists:
-            - stringed: 950001
-              items:
-                - itemTemplateId: 90
-                  buyPrice: 2
+      itemLists:
+        - id: $BASTION_OF_LOK_LIST
+          stringed: $BASTION_OF_LOK_MENU
 
-    - id: $SINESTRAL_MANOR_SHOP
-      stringId: 950010
+    - id: $SINESTRAL_MANOR_MENU
+      stringId: $SINESTRAL_MANOR_MENU
       desc: "Sinestral Manor Token Exchange"
-      resetType: none
-      menus:
-        - id: 1
-          desc: "Progression Items"
-          probability: 1.0
-          needMedalItemId: $SINESTRAL_MANOR_TOKEN
-          itemLists:
-            - stringed: 950011
-              items:
-                - itemTemplateId: 90
-                  buyPrice: 2
+      itemLists:
+        - id: $SINESTRAL_MANOR_LIST
+          stringed: $SINESTRAL_MANOR_MENU
+
+buyLists:
+  upsert:
+    - id: $BASTION_OF_LOK_LIST
+      desc: "Bastion of Lok Progression Items"
+      needMedalItemId: $BASTION_OF_LOK_TOKEN
+      items:
+        - itemId: 90
+          priceRevision: 2
+
+    - id: $SINESTRAL_MANOR_LIST
+      desc: "Sinestral Manor Progression Items"
+      needMedalItemId: $SINESTRAL_MANOR_TOKEN
+      items:
+        - itemId: 90
+          priceRevision: 2
