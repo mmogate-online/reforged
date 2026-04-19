@@ -1,0 +1,41 @@
+# Island of Dawn — Quest 1384 dialog revamp
+#
+# Removes all references to the discontinued Stamina system.
+# Rewrites Milene's dialogue (texts 4, 5, 6) for the new task flow:
+#   1 → 2 (Milene gives campfire + charm) → 5 (use charm) → 6 (return to Milene)
+#
+# Text 4: campfire + charm intro; sends player to use charm (replaces Stamina lesson)
+# Text 5: journal text for Tasks 5+6; rewritten to single page matching new flow
+# Text 6: final tips; page 2 Stamina/30min reference replaced with campfire tips
+# Text 100: quest summary minor wording fix
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 84
+      texts:
+        update:
+          - id: 100
+            pages:
+              - social: 0
+                content: "After an explosives lesson with Kiriya, you met with Rutgar the supplies manager, and then learned how to use campfires and infused charms from Milene."
+          - id: 4
+            pages:
+              - social: 4
+                content: "Welcome, recruit! Before you head out, two things every adventurer needs: a campfire and a charm.<BR><BR>Campfires let you rest between battles — and more importantly, they let you use <font color='#660000'>infused charms</font>: temporary buffs that sharpen your edge in combat.<NEXTPAGEBUTTON>\"What do I do with them?\"</NEXTPAGEBUTTON>"
+              - social: 4
+                content: "Here, take this campfire and a charm. Find a good spot, set up the campfire, and use the charm while resting nearby.<BR><BR>Come back to me after and I'll tell you a bit more about how they work."
+          - id: 5
+            pages:
+              - social: 4
+                content: "Milene gave you a campfire and an infused charm. Set up the campfire, then use the charm while resting nearby. Return to Milene when done."
+          - id: 6
+            pages:
+              - social: 4
+                content: "Once active, icons representing charms and other status effects appear at the top of your screen. Mouse over an icon to see its description.<BR><BR>You can have up to three charms active at any one time, but be careful. Using another charm of the same type will replace the current one, whether you want it to or not.<NEXTPAGEBUTTON>\"Understood.\"</NEXTPAGEBUTTON>"
+              - social: 0
+                content: "Charms are temporary, but their effects last a good while in the field.<BR><BR>One more thing: campfires placed by others appear on your minimap and work for everyone. Keep an eye out for them — no need to carry your own every time."

@@ -9,7 +9,7 @@
 version: 1
 
 paths:
-  server: "D:/dev/mmogate/tera92/server/DataSheet"                           # Server DataSheet XML files
+  server: "D:/dev/mmogate/tera92/server/Datasheet"                           # Server DataSheet XML files
   client: "D:/dev/mmogate/tera92/client-dc/DataCenter_Final_EUR"   # Client DataCenter folder
   schemas: "D:/dev/mmogate/tera92/client-dc/DataCenter_Final_EUR"  # XSD schemas (usually same as client)
 
@@ -241,6 +241,100 @@ entities:
       - seq: 3
         min: 8885001
         max: 8886107
+
+  # ===========================================================================
+  # NPC DATA
+  # ===========================================================================
+  # NPC templates (monsters, villagers, bosses) organized by hunting zone.
+  # Uses ZoneBased strategy with numeric sorting by huntingZoneId.
+  #
+  # Server files: NpcData_{huntingZoneId}.xml (424 files)
+  # Client files: NpcData-{sequence}.xml (425 files, numeric zone order)
+
+  NpcData:
+    strategy: ZoneBased
+    server_pattern: "NpcData_*.xml"
+    client_folder: "NpcData"
+    client_pattern: "NpcData-{seq:D5}.xml"
+    root_element: "NpcData"
+    zone_attribute: "huntingZoneId"
+    id_attribute: "id"
+    sorting: numeric
+    xsd_file: "NpcData/NpcData.xsd"
+
+  # ===========================================================================
+  # TERRITORY DATA
+  # ===========================================================================
+  # Territory definitions (spawn zones, groups, areas) organized by hunting zone.
+  # Uses ZoneBased strategy with alphabetical sorting by huntingZoneId.
+
+  TerritoryData:
+    strategy: ZoneBased
+    server_pattern: "TerritoryData_*.xml"
+    client_folder: "TerritoryData"
+    client_pattern: "TerritoryData-{seq:D5}.xml"
+    root_element: "TerritoryData"
+    zone_attribute: "huntingZoneId"
+    id_attribute: "id"
+    sorting: alphabetical
+    xsd_file: "TerritoryData/TerritoryData.xsd"
+
+  # BuyMenuList server files map to MenuList client folder.
+  # 8 server files (base + 7 regional) → 10 client files (2 client-only).
+  # StrSheet_Npc.xml contains NPC/shop display names.
+  # stringId in BuyMenuList resolves here.
+  StrSheet_Npc:
+    strategy: monolithic
+    server_file: "StrSheet_Npc.xml"
+    client_folder: "StrSheet_Npc"
+    client_file: "StrSheet_Npc-00000.xml"
+    root_element: "StrSheet_Npc"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Npc/StrSheet_Npc.xsd"
+
+  BuyMenuList:
+    strategy: SourceMapped
+    client_folder: "MenuList"
+    root_element: "MenuList"
+    id_attribute: "id"
+    xsd_file: "MenuList/MenuList.xsd"
+    source_mapping:
+      "BuyMenuList.xml": "MenuList-00000.xml"
+      "BuyMenuList_CN.xml": "MenuList-00001.xml"
+      "BuyMenuList_JP.xml": "MenuList-00002.xml"
+      "BuyMenuList_KR.xml": "MenuList-00003.xml"
+      "BuyMenuList_NAEU.xml": "MenuList-00004.xml"
+      "BuyMenuList_RUS.xml": "MenuList-00005.xml"
+      "BuyMenuList_THA.xml": "MenuList-00006.xml"
+      "BuyMenuList_TW.xml": "MenuList-00007.xml"
+
+  # ===========================================================================
+  # QUEST DATA
+  # ===========================================================================
+  # Quest files (one quest per server file, zero-padded ID as filename).
+  # Uses IdSorted strategy: server files sorted alphabetically by filename,
+  # each maps to a client file at its sorted position.
+
+  QuestDialog:
+    strategy: IdSorted
+    server_path: "QuestDialog"
+    server_pattern: "QuestDialog_*.xml"
+    sorting: numeric
+    client_folder: "QuestDialog"
+    client_pattern: "QuestDialog-{seq:D5}.xml"
+    root_element: "QuestDialog"
+    id_attribute: "id"
+    xsd_file: "QuestDialog/QuestDialog.xsd"
+
+  Quest:
+    strategy: IdSorted
+    server_path: "QuestData"
+    server_pattern: "*.quest"
+    client_folder: "Quest"
+    client_pattern: "Quest-{seq:D5}.xml"
+    root_element: "Quest"
+    id_attribute: "id"
+    xsd_file: "Quest/Quest.xsd"
 
   StrSheet_Item:
     strategy: SourceMapped

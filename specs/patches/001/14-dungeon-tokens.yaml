@@ -154,3 +154,36 @@ buyLists:
       items:
         - itemId: 90
           priceRevision: 2
+
+# ===========================================================================
+# Shop Title Strings
+# ===========================================================================
+#
+# BuyMenuList.stringId resolves against StrSheet_Npc.
+# Must match the Menu id used in BuyMenuList.
+
+npcStrings:
+  upsert:
+    - id: $BASTION_OF_LOK_MENU
+      string: "Bastion of Lok Exchange"
+
+    - id: $SINESTRAL_MANOR_MENU
+      string: "Sinestral Manor Exchange"
+
+# ===========================================================================
+# Medal Exchange Rates
+# ===========================================================================
+#
+# ItemMedalExchange defines the actual transaction cost for each item.
+# Required alongside BuyList — BuyList drives the shop UI, ItemMedalExchange
+# drives the exchange validation. Both must agree on the price.
+
+exchanges:
+  upsert:
+    - itemId: 90
+      medalItemId: $BASTION_OF_LOK_TOKEN
+      buyPriceMedal: 2
+
+    - itemId: 90
+      medalItemId: $SINESTRAL_MANOR_TOKEN
+      buyPriceMedal: 2

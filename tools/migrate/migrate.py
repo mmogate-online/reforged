@@ -39,8 +39,9 @@ ENTITY_SYNC_MAP = {
     "customizingItems": "CustomizingItems",
     "customizingItemBags": None,
     "exchanges": None,          # ItemMedalExchange — server-only, client reads at runtime
+    "npcStrings": "StrSheet_Npc",   # StrSheet_Npc — shop/NPC title strings
     "villagerMenuItems": None,  # VillagerMenuItem — server-only
-    "buyMenuLists": None,       # BuyMenuList — server-only
+    "buyMenuLists": "BuyMenuList",  # BuyMenuList — synced to client MenuList/
     "buyLists": None,           # BuyList — server-only
 }
 

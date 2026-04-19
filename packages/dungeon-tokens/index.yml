@@ -5,8 +5,12 @@
 #
 # Reserved ranges:
 #   Token items:   95214–95313 (100 IDs)
-#   Menu/VMI IDs:  9999002–9999099
-#   BuyList IDs:   20732803–20732899
+#   Menu/VMI IDs:  9999004–9999099  (9999001–9999003 reserved by vanilla JP content)
+#   BuyList IDs:   follow Menu id + 1 (9999005, 9999007, ...)
+#
+# ID layout (Menu=N, List=N+1 per vanilla pattern):
+#   Bastion of Lok:   Menu=9999004, List=9999005
+#   Sinestral Manor:  Menu=9999006, List=9999007
 
 spec:
   version: "1.0"
@@ -17,12 +21,12 @@ variables:
   SINESTRAL_MANOR_TOKEN: 95215
 
   # VillagerMenuItem + BuyMenuList menu IDs (must match)
-  BASTION_OF_LOK_MENU: 9999002
-  SINESTRAL_MANOR_MENU: 9999003
+  BASTION_OF_LOK_MENU: 9999004
+  SINESTRAL_MANOR_MENU: 9999006
 
-  # BuyList catalog IDs
-  BASTION_OF_LOK_LIST: 20732803
-  SINESTRAL_MANOR_LIST: 20732804
+  # BuyList catalog IDs (Menu id + 1)
+  BASTION_OF_LOK_LIST: 9999005
+  SINESTRAL_MANOR_LIST: 9999007
 
 exports:
   variables:
