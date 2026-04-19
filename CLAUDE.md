@@ -95,26 +95,7 @@ Glob the directory to discover available files rather than assuming specific fil
 
 ## Datasheet MCP Server
 
-The `datasheet` MCP server provides read-only access to server datasheet XML files. Use these tools instead of writing Python XML-parsing scripts:
-
-| Tool | Use When |
-|------|----------|
-| `lookup` | Get a single entity by ID |
-| `search` | Find entities by attribute filters |
-| `profile_item` | Full item profile (equipment, enchant chain, passivities, strings) |
-| `find_similar_items` | Find items sharing attributes with a reference item |
-| `compare` | Attribute diff between two entities |
-| `find_free_ids` | Find unused ID ranges |
-| `trace_enchant_chain` | Trace enchant → categories → passivities |
-| `trace_evolution` | Find evolution paths for an item |
-| `check_references` | Validate cross-entity links |
-| `audit_zone_loot` | All NPCs + loot tables in a zone |
-| `trace_item_dependencies` | Reverse lookup — what references this item |
-| `describe_entity` | Discover entity XML structure and attribute distributions |
-| `search_text` | Full-text search across string tables |
-| `count` | Count entities with optional grouping |
-| `scan_zones` | Search across all zone-partitioned files |
-| `batch_lookup` | Multiple entities by ID with attribute projection |
+The `datasheet` MCP server provides read-only access to server datasheet XML files. Use it instead of writing Python XML-parsing scripts. Available tools are listed in the system-reminder at conversation start.
 
 ## Skills
 
