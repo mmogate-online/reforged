@@ -115,6 +115,15 @@ Project skills live in `.claude/skills/`. Each skill is a folder with a `SKILL.m
 
 When doing any research, loot work, merchant audits, or NPC queries scoped to patch 001, always include **all zones defined in `reforged/docs/patch-001-scope.md`** — hunting zones, hub cities, and dungeons. Do not query hunting zones in isolation; hub cities are part of the content scope.
 
+## Client DC Migration — Schema Error Handling
+
+When migrating client DC files and a schema error or incompatibility is encountered (packer rejects a file, XSD validation fails, required attributes missing):
+
+1. **Never revert the migrated file and move on.** Reverting a change without resolving the underlying content problem is silent data loss — the task is not done.
+2. **Investigate first.** Compare the server file counterpart to understand whether the content difference is real or just a schema format issue. A DSL sync from the server file is often the correct fix (server is source of truth; XSD filtering produces compliant output).
+3. **If DSL sync was already used and the error persists**, consider whether it is a DSL bug and log it in `docs/dsl-requests/`.
+4. **If the issue cannot be resolved**, stop and report it explicitly. Do not mark the task complete.
+
 ## DSL Issues & Feature Requests
 
 Agents in this project are end users of the DSL tool. Do not attempt to fix DSL bugs or implement missing features. Instead, log them in `docs/dsl-requests/` as individual files named `YYYY-MM-DD-<topic>.md`. Multiple issues discovered during the same task can share a single file. Each entry should include:

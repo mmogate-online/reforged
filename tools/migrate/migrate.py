@@ -1,8 +1,10 @@
 """Patch migration tool — applies all specs from a patch and syncs affected entities."""
 
 import argparse
+import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -35,6 +37,7 @@ ENTITY_SYNC_MAP = {
     "iCompensations": None,
     "gachaItems": "Gacha",
     "rawStoneItems": "RawStoneItems",
+    "collections": "CollectionData",
     "abnormalities": "Abnormality",
     "customizingItems": "CustomizingItems",
     "customizingItemBags": None,
@@ -43,6 +46,9 @@ ENTITY_SYNC_MAP = {
     "villagerMenuItems": None,  # VillagerMenuItem — server-only
     "buyMenuLists": "BuyMenuList",  # BuyMenuList — synced to client MenuList/
     "buyLists": None,           # BuyList — server-only
+    "commonSkills": "SkillData",
+    "userSkills": "SkillData",
+    "npcSkills": "SkillData",
 }
 
 # Entity keys whose inline blocks imply additional sync entities
@@ -89,6 +95,21 @@ def detect_entities(spec_path: Path) -> set[str]:
     return entities
 
 
+def manifest_slug(spec_path: Path, patch_dir: Path) -> str:
+    """Derive a stable filename slug for a spec's manifest."""
+    rel = spec_path.relative_to(patch_dir).with_suffix("")
+    return rel.as_posix().replace("/", "_")
+
+
+def scan_for_nul_files(server_datasheet: str) -> list[Path]:
+    """Windows 'nul' is a reserved filename; its presence blocks robocopy."""
+    hits: list[Path] = []
+    for root, _, files in os.walk(server_datasheet):
+        if "nul" in files:
+            hits.append(Path(root) / "nul")
+    return hits
+
+
 def apply_spec(
     dsl_cli: str,
     spec_path: Path,
@@ -96,11 +117,14 @@ def apply_spec(
     project_root: Path,
     dry_run: bool,
     verbose: bool,
+    manifest_out: Path | None,
 ) -> tuple[bool, str]:
     rel_path = spec_path.relative_to(project_root)
     cmd = [dsl_cli, "apply", str(rel_path), "--path", server_datasheet]
     if dry_run:
         cmd.append("--dry-run")
+    if manifest_out is not None:
+        cmd.extend(["--manifest-out", str(manifest_out)])
 
     result = subprocess.run(
         cmd,
@@ -123,11 +147,15 @@ def run_sync(
     project_root: Path,
     dry_run: bool,
     verbose: bool,
+    manifest_paths: list[Path] | None,
 ) -> tuple[bool, str]:
     config = project_root / "reforged" / "config" / "sync-config.yaml"
     cmd = [dsl_cli, "sync", "--config", str(config)]
     for e in entities:
         cmd.extend(["-e", e])
+    if manifest_paths:
+        for p in manifest_paths:
+            cmd.extend(["--from-manifest", str(p)])
     if dry_run:
         cmd.append("--dry-run")
 
@@ -158,11 +186,20 @@ def count_by_category(specs: list[Path], patch_dir: Path) -> tuple[int, int]:
     return root_count, loot_count
 
 
+def load_manifest_modified_count(manifest_path: Path) -> int:
+    try:
+        data = json.loads(manifest_path.read_text(encoding="utf-8"))
+        return len(data.get("modified_files", []))
+    except (OSError, json.JSONDecodeError):
+        return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Apply all specs from a patch and sync affected entities.")
     parser.add_argument("--patch", required=True, help="Patch folder name under reforged/specs/patches/")
     parser.add_argument("--dry-run", action="store_true", help="Pass --dry-run to dsl apply and dsl sync")
     parser.add_argument("--skip-sync", action="store_true", help="Apply specs only, skip client sync")
+    parser.add_argument("--no-narrow", action="store_true", help="Run full sync instead of manifest-narrowed sync (escape hatch)")
     parser.add_argument("--verbose", action="store_true", help="Show detailed DSL output")
     args = parser.parse_args()
 
@@ -182,6 +219,25 @@ def main() -> int:
         print(f"Error: No .yaml specs found in {patch_dir}")
         return 1
 
+    # Preflight: warn on Windows reserved 'nul' files in the server datasheet tree
+    nul_files = scan_for_nul_files(server_datasheet)
+    if nul_files:
+        print(f"\u26a0 Warning: {len(nul_files)} 'nul' file(s) found in server datasheet (will block robocopy push):")
+        for p in nul_files[:5]:
+            print(f"    {p}")
+        if len(nul_files) > 5:
+            print(f"    ... and {len(nul_files) - 5} more")
+        print("  Delete with: python -c \"import os; os.remove(r'\\\\\\\\?\\\\<full-path>')\"")
+        print()
+
+    # Manifest output directory — wiped per-run, gitignored via reforged/.gitignore
+    manifests_dir = project_root / "reforged" / "tools" / "migrate" / ".manifests" / args.patch
+    emit_manifests = not (args.dry_run or args.skip_sync)
+    if emit_manifests:
+        if manifests_dir.exists():
+            shutil.rmtree(manifests_dir)
+        manifests_dir.mkdir(parents=True, exist_ok=True)
+
     root_count, loot_count = count_by_category(specs, patch_dir)
     total = len(specs)
 
@@ -193,12 +249,15 @@ def main() -> int:
     print(f"Patch {args.patch} — {' + '.join(header_parts)} ({total} total)")
     if args.dry_run:
         print("(dry-run mode)")
+    if args.no_narrow and emit_manifests:
+        print("(--no-narrow: sync will skip manifest narrowing)")
     print()
 
     all_entity_keys: set[str] = set()
     applied = 0
     failed = 0
     failed_specs: list[str] = []
+    successful_manifests: list[Path] = []
 
     for i, spec in enumerate(specs, 1):
         rel = spec.relative_to(patch_dir).as_posix()
@@ -207,9 +266,19 @@ def main() -> int:
         entities = detect_entities(spec)
         all_entity_keys.update(entities)
 
-        ok, output = apply_spec(dsl_cli, spec, server_datasheet, project_root, args.dry_run, args.verbose)
+        manifest_path: Path | None = None
+        if emit_manifests:
+            manifest_path = manifests_dir / f"{manifest_slug(spec, patch_dir)}.json"
+
+        ok, output = apply_spec(
+            dsl_cli, spec, server_datasheet, project_root,
+            args.dry_run, args.verbose, manifest_path,
+        )
+
         if ok:
             applied += 1
+            if manifest_path is not None and manifest_path.exists():
+                successful_manifests.append(manifest_path)
             if args.verbose and output:
                 for line in output.splitlines():
                     print(f"        {line}")
@@ -249,7 +318,6 @@ def main() -> int:
     for k in all_entity_keys:
         if k in INLINE_STRING_SYNC:
             inline_entities = INLINE_STRING_SYNC[k]
-            # Support both single string and list of strings
             if isinstance(inline_entities, list):
                 sync_set.update(inline_entities)
             else:
@@ -274,11 +342,33 @@ def main() -> int:
         print("\nNo syncable entities — nothing to sync")
         return 0
 
-    print()
-    print("\u2500\u2500 Client Sync \u2500\u2500")
-    print(f"Syncing: {', '.join(syncable_entities)}")
+    if applied == 0:
+        print("\nAll specs failed — sync skipped")
+        return 1
 
-    ok, output = run_sync(dsl_cli, syncable_entities, project_root, args.dry_run, args.verbose)
+    # Manifest-narrowed sync decision
+    manifest_paths: list[Path] | None = None
+    if not args.no_narrow and emit_manifests:
+        total_modified = sum(load_manifest_modified_count(m) for m in successful_manifests)
+        if total_modified == 0:
+            print("\nNo server-side file changes — sync skipped")
+            return 0
+        manifest_paths = successful_manifests
+        print()
+        print(f"\u2500\u2500 Client Sync \u2500\u2500")
+        print(f"Syncing: {', '.join(syncable_entities)}")
+        print(f"Narrowing: {len(manifest_paths)} manifest(s), {total_modified} modified file(s)")
+    else:
+        print()
+        print(f"\u2500\u2500 Client Sync \u2500\u2500")
+        print(f"Syncing: {', '.join(syncable_entities)}")
+        if args.no_narrow:
+            print("(--no-narrow: full sync, manifest narrowing disabled)")
+
+    ok, output = run_sync(
+        dsl_cli, syncable_entities, project_root,
+        args.dry_run, args.verbose, manifest_paths,
+    )
     if ok:
         print("\u2713 Sync complete")
         if args.verbose and output:
