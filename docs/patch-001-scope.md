@@ -1,7 +1,14 @@
 # Patch 001 — Zone Scope
 
 This document defines the complete set of zones in scope for patch 001 content development.
-Future research, loot table work, merchant audits, and NPC queries must include **all zones listed here** — not just hunting zones.
+Future research, loot table work, merchant audits, and NPC queries must include **all zones listed here**, not just hunting zones.
+
+## Island of Dawn
+
+| Zone ID | Name | Type |
+|---------|------|------|
+| 13 | Island of Dawn | channelingZone |
+| 436 | Karascha's Lair | dungeon |
 
 ## Hunting Zones (Open World)
 
