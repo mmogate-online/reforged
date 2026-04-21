@@ -2,7 +2,7 @@
 
 ## Zone-Partitioned Files
 
-### Files to copy from v31 → v92 (35 files)
+### Files to copy from v31 → v92 (46 files)
 
 These files exist in both versions. The v31 version replaces the v92 version.
 
@@ -12,36 +12,47 @@ These files exist in both versions. The v31 version replaces the v92 version.
 | AIData_213.xml | 213 | AI behavior |
 | AIData_313.xml | 313 | AI behavior |
 | AIData_364.xml | 364 | AI behavior |
+| AIData_436.xml | 436 | AI behavior |
 | ActiveMove_13.xml | 13 | NPC movement paths |
 | ActiveMove_416.xml | 416 | NPC movement paths |
+| ActiveMove_436.xml | 436 | NPC movement paths |
 | AiData_416.xml | 416 | AI behavior |
 | AiData_64.xml | 64 | AI behavior |
 | BonfireData_13.xml | 13 | Campfire locations |
 | CollectionTerritory_13_ATW_P.xml | 13 | Gathering node spawn positions (v31 copy) |
 | BonfireData_213.xml | 213 | Campfire locations |
 | BonfireData_64.xml | 64 | Campfire locations |
+| DungeonData_9036.xml | 436 (continent 9036) | Dungeon entry conditions — **CRITICAL: v92 has lv65 endgame conditions; v31 has lv9 IoD conditions** |
 | DynamicSpawn_13.xml | 13 | Dynamic spawn rules |
 | DynamicSpawn_416.xml | 416 | Dynamic spawn rules |
+| DynamicSpawn_436.xml | 436 | Dynamic spawn rules |
 | FormationData_13.xml | 13 | NPC formations |
 | FormationData_416.xml | 416 | NPC formations |
+| FormationData_436.xml | 436 | NPC formations |
 | NpcData_13.xml | 13 | NPC spawn points |
 | NpcData_213.xml | 213 | NPC spawn points |
 | NpcData_313.xml | 313 | NPC spawn points |
 | NpcData_364.xml | 364 | NPC spawn points |
 | NpcData_416.xml | 416 | NPC spawn points |
+| NpcData_436.xml | 436 | NPC spawn points |
 | NpcData_64.xml | 64 | NPC spawn points |
 | NpcSkillData_13.xml | 13 | NPC skill assignments |
 | NpcSkillData_213.xml | 213 | NPC skill assignments |
 | NpcSkillData_313.xml | 313 | NPC skill assignments |
 | NpcSkillData_364.xml | 364 | NPC skill assignments |
 | NpcSkillData_416.xml | 416 | NPC skill assignments |
+| NpcSkillData_436.xml | 436 | NPC skill assignments |
 | NpcSkillData_64.xml | 64 | NPC skill assignments |
 | TerritoryData_13.xml | 13 | Zone territory definitions |
 | TerritoryData_213.xml | 213 | Zone territory definitions |
 | TerritoryData_313.xml | 313 | Zone territory definitions |
 | TerritoryData_364.xml | 364 | Zone territory definitions |
 | TerritoryData_416.xml | 416 | Zone territory definitions |
+| TerritoryData_436.xml | 436 | Zone territory definitions |
 | TerritoryData_64.xml | 64 | Zone territory definitions |
+| VillagerData/04360000001010.condition | 436 | NPC 1010 dialog conditions |
+| VillagerData/04360000001030.condition | 436 | NPC 1030 dialog conditions |
+| VillagerData/04360000001501.condition | 436 | NPC 1501 dialog conditions |
 | WorkObjectTerritory_13.xml | 13 | Work object placements |
 
 ### Files patched (not copied) — v92-only active variants
@@ -51,6 +62,17 @@ These files exist in both versions. The v31 version replaces the v92 version.
 | CollectionTerritory_13_ATW_Death_P.xml | 13 | Territory id=1: downgraded collection types from endgame (63/151/351) to v31 starter (1/101/301); spawn positions kept. Territory id=5 added from v31 (quest nodes incl. Mock Rock typeId=496). |
 
 > **Why:** The server loads `_ATW_Death_P` as the active gathering territory for zone 13, not `_ATW_P`. This file has no v31 equivalent — it was introduced in v92 as an endgame replacement using the same spawn positions. Direct copy from v31 is not possible; targeted patching was required.
+
+### v92-only files to keep — Zone 436 additions
+
+These zone 436 files exist only in v92 and represent additions layered on top of the v31 dungeon. They are kept as-is.
+
+| File | Zone | Notes |
+|------|------|-------|
+| VillagerData/04360000001502.condition | 436 | NPC 1502 "Dimensional Magic Stone" — teleportal inside dungeon added in v92 |
+| VillagerData/04360000008001.condition | 436 | NPC 8001 "Joel" — story scene participant added in v92 |
+| VillagerData/04360000008002.condition | 436 | NPC 8002 "Jowyn Rionas" — story scene participant added in v92 |
+| VillagerDialog/VillagerDialog_436.xml | 436 | Dialog tree covering all zone 436 NPCs (both v31 story NPCs and v92 additions) |
 
 ### v92-only files to handle (8 files)
 
@@ -133,6 +155,16 @@ IoD loot is minimal — zone 13 drops only motes (items 8000, 8005), zone 416 ha
 | AIData | AIData_*.xml | Yes (v92 only) | v92-only folder — may not exist in v31 client DC |
 | DungeonData | DungeonData_*.xml | Yes (both versions) | Map zoneId → shard, copy IoD shards |
 | DynamicGeoData | DynamicGeoData_*.xml | Yes (both versions) | Map zoneId → shard, copy IoD shards |
+
+#### Zone 436 — Shard Mapping
+
+| Client DC Folder | v31 Shard | v92 Shard | Action |
+|---|---|---|---|
+| NpcData | NpcData-00209.xml | NpcData-00212.xml | Copy v31 shard to v92 target |
+| TerritoryData | TerritoryData-00167.xml | TerritoryData-00218.xml | Copy v31 shard to v92 target |
+| DungeonData | Not present (server-only) | Not present | No action |
+| AIData | Not in v31 client DC | v92 only | No action (v92 left as-is) |
+| VillagerDialog | Shards 05218, 05219, 05220 (zone 436 dialogs) | Shards 06090–06095 | Merge v31 zone 436 entries into v92 shards |
 
 ### Quest Client Files (shard copy by quest ID)
 

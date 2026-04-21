@@ -6,7 +6,7 @@
 |-------|-------------|--------|-------|
 | Assessment | Zone mapping, file inventory, tooling gaps | Done | See assessment.md |
 | Phase 0 | Revert pending v92 datasheet + client DC changes | Done | 49+45 files reverted |
-| Phase 1 | Server zone-partitioned file copy (v31 → v92) | Done | 34 copied, 8 emptied, MCP verified |
+| Phase 1 | Server zone-partitioned file copy (v31 → v92) | Done | 34 copied + 8 emptied (zones 13/64/213/313/364/416); zone 436: 8 files + 3 VillagerData conditions |
 | Phase 2 | Server monolithic file merging | Done | 133 files modified; see data/phase2-log.md |
 | Phase 3 | Client DC migration (direct v31 copy) | Done | 245 quest files copied; zone files reverted (schema incompatible); see data/client-dc-shards.md |
 | Phase 4 | Validation | In Progress | Initial functional testing started |
@@ -32,6 +32,16 @@
 > - Territory id=5 (quest nodes, including Mock Rock typeId=496 for quests 1382/1383) added from v31
 >
 > `CollectionTerritory_13_ATW_P.xml` was still replaced with the full v31 copy as a correctness measure.
+
+### 1b — Zone 436 (Karascha's Lair) — scope added 2026-04-18
+
+- [x] Copy 8 zone-partitioned files from v31 → v92 (AIData, ActiveMove, DungeonData_9036, DynamicSpawn, FormationData, NpcData, NpcSkillData, TerritoryData)
+- [x] Copy 3 VillagerData conditions from v31 → v92 (01010, 01030, 01501)
+- [x] Verify 3 v92-only VillagerData conditions intact (01502, 08001, 08002)
+- [x] Verify VillagerDialog_436.xml intact (v92-only, keep)
+- [x] DungeonData_9036.xml: confirmed `levelOver value="9"` and quest 1316 conditions after copy
+
+> **DungeonData note:** v92 repurposed DungeonData_9036.xml for lv65 endgame content (`levelOver="65"`, `RestoreTargetQuest id="21306,21307"`). The v31 version has the correct IoD conditions (`levelOver="9"`, `progressQuest value="1316"`, `completeQuest value="1316"`). This is why players cannot enter "Dark Revelations" dungeon — direct file copy from v31 fixes it.
 
 ## Phase 2 — Server Monolithic File Merging
 
@@ -105,6 +115,12 @@ dsl sync -c reforged/config/sync-config.yaml -e NpcData -e TerritoryData --zones
 - [x] NpcShape — no merge needed (150 IoD shapes functionally identical)
 - [x] StrSheet_Npc — deferred (investigate only if NPC names wrong in-game)
 - [x] StrSheet_ZoneName — no merge needed (IoD zone names identical)
+
+### 3f — Zone 436 Client DC — scope added 2026-04-18
+
+- [x] NpcData zone 436 — generated via DSL sync from server NpcData_436.xml (v31); NpcData-00212.xml written with 8 NPC entries in v92-compliant format
+- [x] TerritoryData zone 436 — generated via DSL sync from server TerritoryData_436.xml (v31); TerritoryData-00218.xml written with 4 territory groups (43600003/4/8/9) in v92-compliant format
+- [x] VillagerDialog — no action needed; v92 shards 06090/06091 already identical to v31; stubs match
 
 ### 3e — Verify
 - [ ] Count client DC files modified per folder

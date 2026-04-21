@@ -1,6 +1,6 @@
 # Client DC Shard Mapping — IoD Zones
 
-IoD zones: 13, 64, 213, 313, 364, 416
+IoD zones: 13, 64, 213, 313, 364, 416, 436 (Karascha's Lair dungeon)
 
 ## v31 Path
 
@@ -24,6 +24,7 @@ IoD zones: 13, 64, 213, 313, 364, 416
 | 313  | NpcData-00158.xml | NpcData-00156.xml |
 | 364  | NpcData-00164.xml | NpcData-00162.xml |
 | 416  | NpcData-00196.xml | NpcData-00194.xml |
+| 436  | NpcData-00209.xml | NpcData-00212.xml | v92 shard already has same template IDs in v92 format — no copy needed |
 
 ### TerritoryData
 
@@ -35,6 +36,7 @@ IoD zones: 13, 64, 213, 313, 364, 416
 | 313  | TerritoryData-00100.xml | TerritoryData-00145.xml |
 | 364  | TerritoryData-00112.xml | TerritoryData-00158.xml |
 | 416  | TerritoryData-00152.xml | TerritoryData-00198.xml |
+| 436  | TerritoryData-00167.xml | TerritoryData-00218.xml | v92 shard already correct in v92 format — no copy needed |
 
 ### AIData
 
@@ -117,6 +119,16 @@ All monolithic files investigated; **none require merging**:
 | NpcShape | 00000 | 00000 | No action | 150 IoD shapes functionally identical; v92 adds `name` attr + 776 new shapes |
 | StrSheet_Npc | 00000 | 00000 | Deferred | v92 has 1,836 entries vs 630; investigate only if NPC names wrong in-game |
 | StrSheet_ZoneName | 00000 | 00000 | No action | IoD zone names (13, 64, 416) identical |
+
+### VillagerDialog
+
+Zone 436 dialogs are split across multiple shards in both versions (shard boundaries are by overall dialog ID, not by zone).
+
+| Zone | v31 Shards | v92 Shards | Migration |
+|------|-----------|-----------|-----------|
+| 436  | 05218, 05219, 05220 | 06090–06095 | Surgical merge — extract zone 436 entries from v31 shards, merge into v92 shards |
+
+**Note:** VillagerDialog_436.xml (server file) is v92-only and covers all zone 436 NPCs including v92 additions (NPC 1502, 8001, 8002). The v92 VillagerDialog shards (06090–06095) already contain dialog for those NPCs. The v31 shards contain dialog for the original IoD NPCs (1010, 1030, 1501). Migration must preserve v92 entries while adding v31 entries where absent — full shard replacement is NOT safe.
 
 ---
 
