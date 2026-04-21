@@ -5,7 +5,17 @@
 #    (mine/pick axe) is correct for a mineral node and matches the silhouette
 #    and despawn assets already on the entry.
 #
-# 2. CollectionTerritory_13_ATW_Death_P:
+# 2. Skyreach Flower (collectionId=492): fix pickSkillType 5→1.
+#    Type 5 produces no gathering animation in game; type 1 (plant/herb) is
+#    correct for a flower node.
+#
+# 3. Supply Crate (collectionId=409): fix pickSkillType 8→4.
+# 4. Inscribed Fragment (collectionId=410): fix pickSkillType 8→4.
+# 5. Expedition Member's Corpse (collectionId=411): fix pickSkillType 5→4.
+#    Types 5 and 8 have no corresponding client CollectionSkill entry; type 4
+#    (Energy) is valid and appropriate for quest interaction nodes.
+#
+# 3. CollectionTerritory_13_ATW_Death_P:
 #    - Territory id=1 (general gathering): downgrade from v92 endgame types
 #      (63/151/351, respawnTime=45, lawlessExtractorPriority=1) back to v31
 #      starter values (1/101/301, respawnTime=30, lawlessExtractorPriority=0).
@@ -17,6 +27,18 @@ spec:
 
 collections:
   update:
+    - collectionId: 409
+      changes:
+        pickSkillType: 4
+    - collectionId: 410
+      changes:
+        pickSkillType: 4
+    - collectionId: 411
+      changes:
+        pickSkillType: 4
+    - collectionId: 492
+      changes:
+        pickSkillType: 1
     - collectionId: 496
       changes:
         pickSkillType: 2
@@ -43,7 +65,7 @@ collectionTerritories:
             giftNum: 301
             respawnTime: 30
             lawlessExtractorPriority: 0
-  create:
+  upsert:
     - territoryId: 5
       desc: "퀘스트 채집물"
       collections:
