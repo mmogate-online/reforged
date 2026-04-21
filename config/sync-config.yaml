@@ -36,6 +36,21 @@ defaults:
 entities:
 
   # ===========================================================================
+  # COLLECTION DATA
+  # ===========================================================================
+  # Collections.xml defines gathering node behaviors (animation, proficiency,
+  # spawn timing). pickSkillType controls the client-side gathering animation.
+
+  CollectionData:
+    strategy: monolithic
+    server_file: "CollectionData/Collections.xml"
+    client_folder: "Collections"
+    client_file: "Collections-00000.xml"
+    root_element: "Collections"
+    id_attribute: "collectionId"
+    xsd_file: "Collections/Collections.xsd"
+
+  # ===========================================================================
   # EQUIPMENT DATA
   # ===========================================================================
   # EquipmentTemplate.xml contains equipment stats, requirements, and attributes.
@@ -307,6 +322,36 @@ entities:
       "BuyMenuList_RUS.xml": "MenuList-00005.xml"
       "BuyMenuList_THA.xml": "MenuList-00006.xml"
       "BuyMenuList_TW.xml": "MenuList-00007.xml"
+
+  # ===========================================================================
+  # SKILL DATA (USER + NPC)
+  # ===========================================================================
+  # Segmented strategy consolidates two server file groups into one client folder.
+  # Segment 1 "user": UserSkillData_*.xml (alphabetical).
+  # Segment 2 "npc":  NpcSkillData_*.xml  (numeric_suffix, zone-keyed).
+  # Any active filter or --segment disables orphan deletion.
+
+  SkillData:
+    strategy: Segmented
+    client_folder: "SkillData"
+    client_pattern: "SkillData-{seq:D5}.xml"
+    root_element: "SkillData"
+    id_attribute: "id"
+    xsd_file: "SkillData/SkillData.xsd"
+    segments:
+      - id: user
+        server_pattern: "UserSkillData_*.xml"
+        order: alphabetical
+        filters:
+          class:  { regex: '^UserSkillData_([^_.]+)' }
+          race:   { regex: '^UserSkillData_[^_]+_([^_]+)_' }
+          gender: { regex: '^UserSkillData_[^_]+_[^_]+_([FM])\.' }
+          region: { regex: '^UserSkillData_Common_[^_]+_([A-Za-z]+)\.' }
+      - id: npc
+        server_pattern: "NpcSkillData_*.xml"
+        order: numeric_suffix
+        filters:
+          zone: { from: numeric_suffix }
 
   # ===========================================================================
   # QUEST DATA
