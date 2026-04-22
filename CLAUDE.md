@@ -132,3 +132,21 @@ Agents in this project are end users of the DSL tool. Do not attempt to fix DSL 
 - Relevant doc reference from the end-user starlight docs
 
 The DSL dev team will handle requests from that directory separately.
+
+## Progress Tracking
+
+Two files track project state across all patches and correlated projects:
+- `reforged/CHANGELOG.md` — append-only historical record (newest first)
+- `reforged/STATUS.md` — living current-state dashboard (updated in place)
+
+**Invoke `/log-progress` immediately when:**
+- A migration phase entry in any `docs/migrations/*/progress.md` transitions to Done
+- A batch of patch specs is applied **and** validated end-to-end
+- Phase 4 (validation) confirms a migration is correct
+
+**Proactively ask the user "Should I log this progress?" when:**
+- The session is wrapping up and meaningful work was done without a clear phase boundary
+- A DSL fix or MCP capability is noted that unblocked content work
+- Work spans multiple areas and it's unclear if the threshold has been crossed
+
+**Never log** exploratory research, specs written but not yet applied, or bugs discovered but not resolved.

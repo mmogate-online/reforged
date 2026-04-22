@@ -9,7 +9,7 @@
 | Phase 1 | Server zone-partitioned file copy (v31 → v92) | Done | 34 copied + 8 emptied (zones 13/64/213/313/364/416); zone 436: 8 files + 3 VillagerData conditions |
 | Phase 2 | Server monolithic file merging | Done | 133 files modified; see data/phase2-log.md |
 | Phase 3 | Client DC migration (direct v31 copy) | Done | 245 quest files copied; zone files reverted (schema incompatible); see data/client-dc-shards.md |
-| Phase 4 | Validation | In Progress | Initial functional testing started |
+| Phase 4 | Validation | Done | MCP audit 2026-04-21: all zones, quests, reward items confirmed |
 
 ## Phase 0 — Revert Pending Changes
 
@@ -59,7 +59,7 @@
 - [x] Selective merge QuestGroupList.xml — StoryGroup 1, 2 + HuntingZone 13 replaced
 - [x] QuestCompensation.xml — does not exist in either version; quest rewards in .quest files
 - [x] QuestCompensationData — all IoD quests use ID 0 (null) or 1 (empty placeholder); no copy needed
-- [ ] Verify reward items exist in v92 (class weapon/armor bags, consumables)
+- [x] Verify reward items exist in v92 — 72/72 items confirmed: weapon bags (10009–10016, 55006, 12129–12136, 55271, 10593–10600, 55079), armor/glove bags (17404–17716, 15019–15673), consumables (8007, 7200, 7100/7104/7108, 6048, 8200, 160)
 - [ ] Post-migration: smooth out dangling chain connections to v92 questline via DSL
 
 ### 2c — NPC Behavioral Files
@@ -123,34 +123,39 @@ dsl sync -c reforged/config/sync-config.yaml -e NpcData -e TerritoryData --zones
 - [x] VillagerDialog — no action needed; v92 shards 06090/06091 already identical to v31; stubs match
 
 ### 3e — Verify
-- [ ] Count client DC files modified per folder
-- [ ] Spot-check copied shards for IoD content
-- [ ] Cross-reference server NPC template IDs against client DC NpcData shards
+- [x] Count client DC files modified per folder
+- [x] Spot-check copied shards for IoD content
+- [x] Cross-reference server NPC template IDs against client DC NpcData shards
 
 ## Phase 4 — Validation
 
 ### 4a — Server-Side (MCP v92)
-- [ ] Zone 13 NPC population matches v31 (57 NPCs)
-- [ ] Zone 416 prologue NPCs intact (58 NPCs)
-- [ ] Sub-zones correct (64: 51, 213: 93, 313: 8, 364: 8)
-- [ ] Zone 13 loot audit (~50 NPCs with mote drops)
-- [ ] IoD quest chains complete (story groups 1 and 2)
-- [ ] Quest dialogs spot-check
+- [x] Zone 13 NPC population matches v31 — 57 NPCs confirmed via audit_zone_loot; NPC template IDs zero-diff vs v31
+- [x] Zone 416 prologue NPCs intact — 8/8 prologue quests (41510–41517) confirmed via MCP
+- [x] Sub-zones correct — all 6 zones (13, 64, 213, 313, 364, 416) NPC templates match v31 exactly; only cosmetic name diff on template 1050
+- [x] Zone 13 loot audit — 50 NPCs with mote drops (items 8000, 8005); 7 NPCs with no loot (vendors/quest NPCs); matches v31
+- [x] Zone 436 loot audit — 8 NPCs, 0 regular drops (correct: boss uses ECompensation, not CCompensation)
+- [x] IoD quest chains complete — story group 1: 18/18; story group 2: 7/7 IoD quests (4 extra level-65 v92 quests in group are non-migration); side quests zone 64: 16/16; side quests zone 213: 7/7; zoneless 1339: present; prologue 415: 8/8; prologue 416: 8/8 — total 65/65
+- [x] Quest 1316 (Dark Revelations) task chain confirmed — zone 436 boss kill (templateId 1002) + dialog chain intact
+- [x] Quest dialogs spot-check — quest 1339 prerequisites identical to v31 (Quest 9999 is original design)
 
 ### 4b — Client-Server Consistency
-- [ ] NPC template IDs: server NpcData refs all present in client DC
-- [ ] Quest IDs: server QuestData all present in client DC Quest shards
-- [ ] Zone/continent data consistent between server and client
+- [x] Teleport scroll (skill 60130101) — server UserSkillData_Common.xml and client SkillData-00023.xml both have recallContinent=13, recallPos=66600.8672,-79855.5234,-2993.1643
+- [x] Full NPC template IDs: server NpcData refs all present in client DC — validated via MCP audit
+- [x] Quest IDs: server QuestData all present in client DC Quest shards — 65/65 confirmed
+- [x] Zone/continent data consistent between server and client
 
 ### 4c — Functional Testing
 - [ ] New character lands in IoD prologue (zone 416) — *entry point manual, out of scope*
 - [x] Gathering nodes present in zone 13 (verified: Mock Rock nodes spawn, Primer Ore gatherable, quests 1382/1383 completable)
-- [ ] Story group 1 quest chain walkthrough
-- [ ] Story group 2 quest chain walkthrough
-- [ ] NPC dialog text displays correctly
-- [ ] Loot drops from zone 13 mobs
+- [x] Story group 1 quest chain walkthrough — in-game validated 2026-04-22
+- [x] Story group 2 quest chain walkthrough — in-game validated 2026-04-22
+- [x] NPC dialog text displays correctly — in-game validated 2026-04-22
+- [x] Loot drops from zone 13 mobs — in-game validated 2026-04-22
 
 ## Post-Migration
 
 - [ ] Adopt DSL sync configs for NpcData, TerritoryData, DungeonData, ContinentData
 - [ ] File DSL requests for missing sync entries (QuestData, QuestDialog, QuestCompensation, StrSheet_Quest, AIData, DynamicGeoData, NpcShape, StrSheet_ZoneName)
+- [ ] Smooth out dangling IoD quest chain connections to v92 questline via DSL
+- [ ] DynamicGeoData zone 416 (dungeon doors/elevators — client-only data, server source missing)

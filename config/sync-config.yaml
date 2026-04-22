@@ -350,6 +350,7 @@ entities:
       - id: npc
         server_pattern: "NpcSkillData_*.xml"
         order: numeric_suffix
+        composite_id_attributes: ["id", "templateId"]
         filters:
           zone: { from: numeric_suffix }
 
