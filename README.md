@@ -2,7 +2,7 @@
 
 This repository contains the game content specifications for Reforged Server. Every stat, loot table, enchant chain, item progression, and merchant inventory applied to the server originates here as a versioned, reviewable change.
 
-Content is authored in DatasheetLang, a domain-specific language built for declarative game datasheet management, and applied through an automated pipeline.
+Content is authored in [DatasheetLang](https://dsl.mmogate.online), a domain-specific language built for declarative game datasheet management, and applied through an automated pipeline.
 
 ---
 
@@ -58,37 +58,47 @@ specs/patches/001/
 
 ### tools/
 
-Python generator scripts that convert structured source data (CSV, XLSX) into DSL specs. Each tool lives in its own subfolder with a `README.md` and accepts a `--patch` argument so output lands in the correct patch folder.
+The `tools/` folder contains two kinds of scripts with very different roles.
 
-| Tool | Purpose |
-|------|---------|
-| `enchant-materials` | Generate enchant material definitions |
-| `gear-enchant-sync` | Bulk-link enchant IDs across all equipment items |
-| `gear-evolution` | Generate evolution path specs for gear progression |
-| `gear-infusion` | Generate infusion passivity and item specs |
-| `gear-tiers` | Generate gear tier and item progression configuration |
-| `infusion-loot` | Generate zone loot tables for infusion fodder |
-| `zone-loot` | Extract NPC data and generate zone compensation tables |
-| `potential-unlock` | Generate potential unlock passivity definitions |
-| `migrate` | Apply all specs in a patch, detect changed entities, and sync to client |
+**`migrate/`** is the primary workflow tool. It applies all specs in a patch to the server datasheet and syncs affected entities to the client DataCenter. This is what you run when deploying a patch.
+
+**Spec generators** are development-time scripts that convert structured source data (CSV, XLSX) into DSL spec files. They are only needed when the underlying input data changes and specs need to be regenerated. Once the specs exist in `specs/patches/`, they are the deliverable — the generators are not part of the apply workflow.
+
+| Tool | Input | Output |
+|------|-------|--------|
+| `enchant-materials` | `enchant.xlsx` | Enchant material and item link specs |
+| `gear-enchant-sync` | `gear_progression.csv` | Gear enchant link spec; also regenerates `equipment-item-ids` package |
+| `gear-evolution` | `gear_progression.csv` | Per-gear-set evolution path specs |
+| `gear-infusion` | `gear_infusion_passivity.csv` | Infusion passivity and item specs |
+| `infusion-loot` | `loot_tier_rates.csv`, `zone_loot_config.csv` | Zone infusion loot specs |
+| `zone-loot` | Zone/NPC CSVs | Zone compensation loot scaffold specs |
+| `potential-unlock` | `gear_progression.csv` + live server XML | Potential unlock scroll, gear, and evolution specs |
 
 ---
 
 ## How a Patch Works
 
+The normal workflow starts with the specs that already exist in the repository:
+
 ```
-Source data  ->  Generate  ->  Apply  ->  Sync  ->  Pack  ->  Deploy
- (CSV / XLSX)    (Python)      (DSL)     (DSL)    (.bat)
+Apply (DSL)  ->  Sync (DSL)  ->  Pack  ->  Deploy
 ```
 
-1. Source data is edited (CSV, XLSX) in `config/<tool>/`
-2. A generator script converts it into YAML specs under `specs/patches/<NNN>/`
-3. `dsl apply` validates and writes each spec into the server datasheet
-4. `dsl sync` propagates server-side changes to the client DataCenter
-5. `pack-client.bat` packs the client DataCenter for distribution
-6. Files are deployed to the running server
+```bash
+# Apply all specs from patch 001 and sync to client
+py tools/migrate/migrate.py --patch 001
+```
 
-The `migrate` tool runs steps 3 and 4 for an entire patch in one command, detecting which entities changed and syncing only those.
+The migrate tool applies every spec in `specs/patches/001/` in order, detects which server entities changed, and syncs only those to the client DataCenter.
+
+**Regenerating specs from source data** is a separate, less frequent activity. It is only needed when the input CSV or XLSX changes:
+
+```
+Source data  ->  Generate (Python)  ->  specs/patches/{NNN}/
+ (CSV / XLSX)                             (committed to repo)
+```
+
+Each generator in `tools/` has its own `README.md` with usage instructions.
 
 ---
 
@@ -120,7 +130,6 @@ This file is machine-specific and not committed to the repository.
 
 | Topic | Location |
 |-------|----------|
-| DatasheetLang documentation | [dsl.mmogate.online](https://dsl.mmogate.online) |
 | Gear infusion system | `tools/gear-infusion/README.md` |
 | Infusion loot tables | `tools/infusion-loot/README.md` |
 | Patch migration tooling | `tools/migrate/README.md` |

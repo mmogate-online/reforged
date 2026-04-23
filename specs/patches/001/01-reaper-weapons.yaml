@@ -3,58 +3,51 @@ spec:
   schema: v92
 
 imports:
-  - from: weapons
+  - from: equipment-item-standard
+    use:
+      definitions:
+        - MidTierChainWeapon
+        - HighTierChainWeapon
 
 definitions:
-  # Common properties for our specific reaper weapons (IDs 71755-71769)
-  # Extends weapons.chainBase which provides: weaponBase + chain/Soulless specifics
-  ourReaperWeaponBase:
-    $extends: weapons.chainBase
+  midTierReaperWeapon:
+    $extends: MidTierChainWeapon
     name: "chain"
     level: 60
     rank: 4
     divide: 0
     buyPrice: 445360
     sellPrice: 44536
-    guildWarehouseStorable: false
-    boundType: Loot
-    dismantlable: true
-    storeSellable: true
-    tradable: false
     extractRatio: 24
-    enchantEnable: true
-    unidentifiedItemGrade: 1
-    dropIdentify: false
-    masterpieceRate: 0
-    linkLookInfoId: 9101002
-    linkPassivityCategoryId:
-      - "120300"
-    changeColorEnable: false
     requiredLevel: 60
     icon: "Icon_Equipments.Chain26_B_Tex"
     defaultValue: 8907188
+    linkLookInfoId: 9101002
+    changeColorEnable: false
     changeEnchantFxId: 1007
-
-  # Superior grade reaper weapon (rareGrade 3) - Regent/Steadfast tier
-  reaperWeaponRare:
-    $extends: ourReaperWeaponBase
-    rareGrade: 3
-    linkEnchantId: 950011
     linkMaterialEnchantId: 23004
-    combineOptionValue: 2
 
-  # Legendary grade reaper weapon (rareGrade 4) - Visionmaker/Nightforge tier
-  reaperWeaponSuperior:
-    $extends: ourReaperWeaponBase
-    rareGrade: 4
-    linkEnchantId: 950001
+  highTierReaperWeapon:
+    $extends: HighTierChainWeapon
+    name: "chain"
+    level: 60
+    rank: 4
+    divide: 0
+    buyPrice: 445360
+    sellPrice: 44536
+    extractRatio: 24
+    requiredLevel: 60
+    icon: "Icon_Equipments.Chain26_B_Tex"
+    defaultValue: 8907188
+    linkLookInfoId: 9101002
+    changeColorEnable: false
+    changeEnchantFxId: 1007
     linkMaterialEnchantId: 33004
-    combineOptionValue: 3
 
 items:
   upsert:
     # Thalnim
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71755
       linkEquipmentId: 105095
       itemLevelId: 10144
@@ -71,7 +64,7 @@ items:
         computed: true
 
     # Sardonal
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71756
       linkEquipmentId: 105095
       itemLevelId: 10139
@@ -88,7 +81,7 @@ items:
         computed: true
 
     # Adroitsum
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71757
       linkEquipmentId: 105096
       itemLevelId: 10139
@@ -105,7 +98,7 @@ items:
         computed: true
 
     # Frostfire Ice
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71768
       linkEquipmentId: 105169
       itemLevelId: 10142
@@ -123,7 +116,7 @@ items:
         computed: true
 
     # Frostfire Fire
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71769
       linkEquipmentId: 105169
       itemLevelId: 10142
@@ -141,7 +134,7 @@ items:
         computed: true
 
     # Flawless Frostfire Fire
-    - $extends: reaperWeaponSuperior
+    - $extends: highTierReaperWeapon
       id: 71758
       linkEquipmentId: 105097
       itemLevelId: 10142
@@ -159,7 +152,7 @@ items:
         computed: true
 
     # Flawless Frostfire Ice
-    - $extends: reaperWeaponSuperior
+    - $extends: highTierReaperWeapon
       id: 71759
       linkEquipmentId: 105098
       itemLevelId: 10142
@@ -177,7 +170,7 @@ items:
         computed: true
 
     # Dreamkeeper
-    - $extends: reaperWeaponSuperior
+    - $extends: highTierReaperWeapon
       id: 71760
       linkEquipmentId: 105098
       itemLevelId: 10148
@@ -195,7 +188,7 @@ items:
         computed: true
 
     # Agnitor
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71761
       linkEquipmentId: 105099
       itemLevelId: 10158
@@ -213,7 +206,7 @@ items:
         computed: true
 
     # Discord
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71762
       linkEquipmentId: 105099
       itemLevelId: 10150
@@ -231,7 +224,7 @@ items:
         computed: true
 
     # Abyss
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71763
       linkEquipmentId: 105100
       itemLevelId: 10158
@@ -249,7 +242,7 @@ items:
         computed: true
 
     # Regent
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71764
       linkEquipmentId: 105101
       itemLevelId: 10165
@@ -268,7 +261,7 @@ items:
         computed: true
 
     # Visionmaker
-    - $extends: reaperWeaponSuperior
+    - $extends: highTierReaperWeapon
       id: 71765
       linkEquipmentId: 105102
       itemLevelId: 10165
@@ -288,7 +281,7 @@ items:
         computed: true
 
     # Steadfast
-    - $extends: reaperWeaponRare
+    - $extends: midTierReaperWeapon
       id: 71766
       linkEquipmentId: 104911
       itemLevelId: 10179
@@ -304,7 +297,7 @@ items:
         computed: true
 
     # Nightforge PVE
-    - $extends: reaperWeaponSuperior
+    - $extends: highTierReaperWeapon
       id: 71767
       linkEquipmentId: 104895
       itemLevelId: 10183

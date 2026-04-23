@@ -1,0 +1,110 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+        - PAVERUNE_OF_ARUN
+        - PAVERUNE_OF_SHARA
+      definitions:
+        - EvolutionItem
+        - PaveruneOfArunPath
+        - PaveruneOfSharaPath
+
+variables:
+  # ── Source Gear (Kugai's, level 8) ──
+  SOURCE_WEAPON_DUAL: 12137      # Kugai's Left & Right
+  SOURCE_WEAPON_LANCE: 12138     # Resistance of the Mighty
+  SOURCE_WEAPON_TWOHAND: 12139   # Kugai's Greatsword
+  SOURCE_WEAPON_AXE: 12140       # Kugai's Axe
+  SOURCE_WEAPON_CIRCLE: 12141    # Kugai's Disc
+  SOURCE_WEAPON_BOW: 12142       # Kugai's Bow
+  SOURCE_WEAPON_STAFF: 12143     # Kugai's Staff
+  SOURCE_WEAPON_ROD: 12144       # Kugai's Scepter
+  SOURCE_WEAPON_BLASTER: 55272   # Kugai's Arcannon
+  SOURCE_WEAPON_GAUNTLET: 82272  # Kugai's Powerfists
+  SOURCE_WEAPON_SHURIKEN: 58523  # Kugai's Shuriken
+  SOURCE_WEAPON_GLAIVE: 59320    # Kugai's Runeglaive
+  SOURCE_BODYMAIL: 17413         # Second-in-Command's Breastplate
+  SOURCE_HANDMAIL: 17414         # Demonic Claws
+  SOURCE_FEETMAIL: 17415         # Kugai's Mighty Big Greaves
+  SOURCE_BODYLEATHER: 17416      # Corruption-Covered Cuirass
+  SOURCE_HANDLEATHER: 17417      # Gloves of Two Minds
+  SOURCE_FEETLEATHER: 17418      # Kugai's Pacing Boots
+  SOURCE_BODYROBE: 17419         # Robes of Unnatural Order
+  SOURCE_HANDROBE: 17420         # Demon's Wraps
+  SOURCE_FEETROBE: 17421         # Kugai's Mighty Big Shoes
+
+  # ── Result Gear (Starter 0, level 11) ──
+  TARGET_WEAPON_DUAL: 10593
+  TARGET_WEAPON_LANCE: 10594
+  TARGET_WEAPON_TWOHAND: 10595
+  TARGET_WEAPON_AXE: 10596
+  TARGET_WEAPON_CIRCLE: 10597
+  TARGET_WEAPON_BOW: 10598
+  TARGET_WEAPON_STAFF: 10599
+  TARGET_WEAPON_ROD: 10600
+  TARGET_WEAPON_BLASTER: 55079
+  TARGET_WEAPON_GAUNTLET: 82079
+  TARGET_WEAPON_SHURIKEN: 58245
+  TARGET_WEAPON_GLAIVE: 59127
+  TARGET_BODYMAIL: 15667
+  TARGET_HANDMAIL: 15668
+  TARGET_FEETMAIL: 15669
+  TARGET_BODYLEATHER: 15670
+  TARGET_HANDLEATHER: 15671
+  TARGET_FEETLEATHER: 15672
+  TARGET_BODYROBE: 15673
+  TARGET_HANDROBE: 15674
+  TARGET_FEETROBE: 15675
+
+evolutionPaths:
+  upsert:
+    # ── Weapons: Paverune of Shara x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: PaveruneOfSharaPath }
+    # ── Armor: Paverune of Arun x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: PaveruneOfArunPath }

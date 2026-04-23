@@ -6,6 +6,23 @@ Newest entries first.
 
 ---
 
+## 2026-04-23
+
+### Content
+- `01-reaper-weapons.yaml` migrated from `weapons` package to `equipment-item-standard` — spec reduced from 3 local definitions to 2, 20+ attributes removed from spec scope
+- `06-brawler-weapons.yaml` migrated from `weapons` package to `equipment-item-standard`
+- `packages/weapons/` removed; `datasheetlang.yml` `defaultImports` cleared — no specs depend on it
+- `packages/equipment-item-standard` restructured: universal standard attrs added to `_EquipmentBase`; 8 tier intermediary bases introduced per slot; `linkPassivityCategoryId: 120300` added to `_WeaponBase`; `MidTierChainWeapon`, `HighTierChainWeapon`, `MidTierGauntletWeapon`, `HighTierGauntletWeapon` added as class-specific derivations
+- Package and patch 001 READMEs updated to reflect new hierarchy and consumers
+
+### Infrastructure
+- datasheetlang: Fixed package-internal variable scope — definitions exported from a package no longer require consumers to re-import the variables used internally
+
+### Blockers resolved
+- `2026-04-23-package-variable-scope-not-resolved-at-export.md` — resolved ✅
+
+---
+
 ## 2026-04-22
 
 ### Content

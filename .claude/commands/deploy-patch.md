@@ -25,11 +25,11 @@ Execute these steps sequentially, stopping on any failure:
    ```
    The packed `DataCenter_Final_EUR.dat` is distributed to clients manually by the project lead. This step only produces the file — distribution is out of scope for this pipeline.
 
-3. **Push to server share** — use PowerShell to robocopy server datasheets to the live server (UNC paths require PowerShell):
+3. **Push to server share** — copy only the files modified by this patch run (listed in the manifests). Use PowerShell so UNC paths resolve:
    ```
-   powershell -Command "& { \$rc = robocopy '<server_datasheet>' '<server_share>' /MIR /IS /NFL /NDL; if (\$rc -le 7) { exit 0 } else { exit \$rc } }"
+   powershell -Command "python reforged/tools/migrate/push_changes.py --patches {patch1} {patch2} ... --src '<server_datasheet>' --dst '<server_share>'"
    ```
-   Robocopy exit codes 0–7 are success (files copied or no change). Exit code 8+ is a failure.
+   Replace `{patch1} {patch2} ...` with the actual patch numbers passed to this command.
 
 Replace `<project_root>`, `<server_datasheet>`, `<client_pack_dir>`, and `<server_share>` with values from `.references`.
 

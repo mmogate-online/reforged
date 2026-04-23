@@ -124,6 +124,10 @@ When migrating client DC files and a schema error or incompatibility is encounte
 3. **If DSL sync was already used and the error persists**, consider whether it is a DSL bug and log it in `docs/dsl-requests/`.
 4. **If the issue cannot be resolved**, stop and report it explicitly. Do not mark the task complete.
 
+## Spec Authoring Rules
+
+**Specs must be idempotent by default.** Always use `upsert` for create-style operations. Never use `create` unless explicitly instructed — `create` fails on re-runs, breaks manifest generation for the affected spec, and causes files to be silently omitted from server pushes.
+
 ## DSL Issues & Feature Requests
 
 Agents in this project are end users of the DSL tool. Do not attempt to fix DSL bugs or implement missing features. Instead, log them in `docs/dsl-requests/` as individual files named `YYYY-MM-DD-<topic>.md`. Multiple issues discovered during the same task can share a single file. Each entry should include:

@@ -5,79 +5,62 @@
 # Sets completed:
 #   - Visionmaker (1 item: 82597)
 #   - Steadfast (1 item: 82598)
-#
-# Reference items used:
-#   - Regent Gauntlet (82447) - grade 3 template
-#   - Nightforge Gauntlet (82492) - grade 4 template
-#   - Visionmaker Lance (18971) - set-specific attributes
-#   - Steadfast Lance (71265) - set-specific attributes
 
 spec:
   version: "1.0"
   schema: v92
 
 imports:
-  - from: weapons
+  - from: equipment-item-standard
+    use:
+      definitions:
+        - MidTierGauntletWeapon
+        - HighTierGauntletWeapon
 
 definitions:
-  # Common attributes for all our gauntlet weapons
-  gauntletWeaponBase:
-    $extends: weapons.gauntletBase
+  midTierBrawlerWeapon:
+    $extends: MidTierGauntletWeapon
     name: gauntlet
     level: 60
-    requiredLevel: 60
     rank: 4
     divide: 0
     buyPrice: 445360
     sellPrice: 44536
-    dismantlable: true
-    storeSellable: true
     extractRatio: 24
-    enchantEnable: true
-    unidentifiedItemGrade: 1
-    dropIdentify: false
-    masterpieceRate: 0
-    dropType: 0
+    requiredLevel: 60
+    icon: Icon_Equipments.Gauntlet3_B_Tex
+    defaultValue: 8907188
+    linkLookInfoId: 111012
     changeColorEnable: false
     changeEnchantFxId: 1007
-    icon: Icon_Equipments.Gauntlet3_B_Tex
-    linkLookInfoId: 111012
-    defaultValue: 8907188
-    linkPassivityCategoryId:
-      - "120300"
-
-  # Visionmaker tier (rareGrade 4)
-  visionmakerGauntlet:
-    $extends: gauntletWeaponBase
-    rareGrade: 4
-    itemLevelId: 10165
-    linkEnchantId: 950001
-    linkMaterialEnchantId: 33004
-    combineOptionValue: 3
-    artisanable: true
-    tradable: false
-    guildWarehouseStorable: false
-    boundType: Equip
-
-  # Steadfast tier (rareGrade 3)
-  steadfastGauntlet:
-    $extends: gauntletWeaponBase
-    rareGrade: 3
-    itemLevelId: 10179
-    linkEnchantId: 950011
     linkMaterialEnchantId: 23004
-    combineOptionValue: 2
     artisanable: false
-    tradable: false
-    guildWarehouseStorable: false
-    boundType: Loot
+
+  highTierBrawlerWeapon:
+    $extends: HighTierGauntletWeapon
+    name: gauntlet
+    level: 60
+    rank: 4
+    divide: 0
+    buyPrice: 445360
+    sellPrice: 44536
+    extractRatio: 24
+    requiredLevel: 60
+    icon: Icon_Equipments.Gauntlet3_B_Tex
+    defaultValue: 8907188
+    linkLookInfoId: 111012
+    changeColorEnable: false
+    changeEnchantFxId: 1007
+    linkMaterialEnchantId: 33004
+    artisanable: true
 
 items:
   upsert:
     # Visionmaker Gauntlet
-    - $extends: visionmakerGauntlet
+    - $extends: highTierBrawlerWeapon
       id: 82597
       linkEquipmentId: 105169
+      itemLevelId: 10165
       linkPassivityId:
         - "130470"
         - "317261"
@@ -94,9 +77,10 @@ items:
         computed: true
 
     # Steadfast Gauntlet
-    - $extends: steadfastGauntlet
+    - $extends: midTierBrawlerWeapon
       id: 82598
       linkEquipmentId: 105170
+      itemLevelId: 10179
       linkPassivityId:
         - "210907"
         - "130469"

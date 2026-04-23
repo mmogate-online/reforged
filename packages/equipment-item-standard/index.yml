@@ -6,7 +6,7 @@
 #   - MidTier (Grade 3, Superior): Progression gear with +12 weapons, +9 armor
 #
 # Usage: Patch specs extend these templates and provide item-specific properties
-#   (id, name, icon, category, combatItemSubType, requiredClass, etc.)
+#   (id, name, icon, level, rank, buyPrice, sellPrice, extractRatio, etc.)
 
 imports:
   - from: enchant-standard
@@ -31,15 +31,26 @@ imports:
 definitions:
   # ===========================================================================
   # BASE TEMPLATES (internal)
-  # Common properties shared across all equipment items
+  # Universal properties shared across all equipment items regardless of tier.
   # ===========================================================================
 
   _EquipmentBase:
     enchantEnable: true
+    storeSellable: false
+    unidentifiedItemGrade: 1
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    dropType: 2
+    dropIdentify: false
+    masterpieceRate: 0
+
+  # Slot bases — add combatItemType and slot-specific defaults.
 
   _WeaponBase:
     $extends: _EquipmentBase
     combatItemType: EQUIP_WEAPON
+    linkPassivityCategoryId:
+      - "120300"
 
   _ChestBase:
     $extends: _EquipmentBase
@@ -54,17 +65,81 @@ definitions:
     combatItemType: EQUIP_ARMOR_LEG
 
   # ===========================================================================
+  # TIER INTERMEDIARIES (internal)
+  # Slot base → Tier intermediary → Exported definition
+  # Each intermediary adds the tier-specific standard attributes:
+  #   High Tier: boundType Loot, not dismantlable, not tradable, combineOptionValue 3
+  #   Mid Tier:  boundType Equip, dismantlable, tradable, combineOptionValue 2
+  # ===========================================================================
+
+  _HighTierWeaponBase:
+    $extends: _WeaponBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierWeaponBase:
+    $extends: _WeaponBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _HighTierChestBase:
+    $extends: _ChestBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierChestBase:
+    $extends: _ChestBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _HighTierGlovesBase:
+    $extends: _GlovesBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierGlovesBase:
+    $extends: _GlovesBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _HighTierBootsBase:
+    $extends: _BootsBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierBootsBase:
+    $extends: _BootsBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  # ===========================================================================
   # TOP TIER (Grade 4 / Mythic) - WEAPONS
   # ===========================================================================
 
   # DPS and Tank classes share the same weapon enchant pool
   HighTierWeaponDPSTankItem:
-    $extends: _WeaponBase
+    $extends: _HighTierWeaponBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
 
   HighTierWeaponHealerItem:
-    $extends: _WeaponBase
+    $extends: _HighTierWeaponBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_HEALER
 
@@ -73,27 +148,27 @@ definitions:
   # ===========================================================================
 
   HighTierChestItem:
-    $extends: _ChestBase
+    $extends: _HighTierChestBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_CHEST
 
   HighTierHandMailItem:
-    $extends: _GlovesBase
+    $extends: _HighTierGlovesBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_HAND_MAIL
 
   HighTierHandLeatherItem:
-    $extends: _GlovesBase
+    $extends: _HighTierGlovesBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_HAND_LEATHER
 
   HighTierHandRobeItem:
-    $extends: _GlovesBase
+    $extends: _HighTierGlovesBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_HAND_ROBE
 
   HighTierBootsItem:
-    $extends: _BootsBase
+    $extends: _HighTierBootsBase
     rareGrade: Mythic
     linkEnchantId: $ENCHANT_HIGH_TIER_BOOTS
 
@@ -103,12 +178,12 @@ definitions:
 
   # DPS and Tank classes share the same weapon enchant pool
   MidTierWeaponDPSTankItem:
-    $extends: _WeaponBase
+    $extends: _MidTierWeaponBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_WEAPON_DPS_TANK
 
   MidTierWeaponHealerItem:
-    $extends: _WeaponBase
+    $extends: _MidTierWeaponBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_WEAPON_HEALER
 
@@ -117,29 +192,69 @@ definitions:
   # ===========================================================================
 
   MidTierChestItem:
-    $extends: _ChestBase
+    $extends: _MidTierChestBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_CHEST
 
   MidTierHandMailItem:
-    $extends: _GlovesBase
+    $extends: _MidTierGlovesBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_HAND_MAIL
 
   MidTierHandLeatherItem:
-    $extends: _GlovesBase
+    $extends: _MidTierGlovesBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_HAND_LEATHER
 
   MidTierHandRobeItem:
-    $extends: _GlovesBase
+    $extends: _MidTierGlovesBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_HAND_ROBE
 
   MidTierBootsItem:
-    $extends: _BootsBase
+    $extends: _MidTierBootsBase
     rareGrade: Superior
     linkEnchantId: $ENCHANT_MID_TIER_BOOTS
+
+  # ===========================================================================
+  # CLASS-SPECIFIC WEAPON DERIVATIONS
+  # Each extends the appropriate tier weapon definition and adds the subtype,
+  # category, and requiredClass attributes for its class.
+  # ===========================================================================
+
+  # Chain — Soulless (Reaper)
+  MidTierChainWeapon:
+    $extends: MidTierWeaponDPSTankItem
+    combatItemSubType: chain
+    category: chain
+    dropType: 0
+    requiredClass:
+      - SOULLESS
+
+  HighTierChainWeapon:
+    $extends: HighTierWeaponDPSTankItem
+    combatItemSubType: chain
+    category: chain
+    dropType: 0
+    requiredClass:
+      - SOULLESS
+
+  # Gauntlet — Fighter (Brawler)
+  MidTierGauntletWeapon:
+    $extends: MidTierWeaponDPSTankItem
+    combatItemSubType: gauntlet
+    category: gauntlet
+    dropType: 0
+    requiredClass:
+      - FIGHTER
+
+  HighTierGauntletWeapon:
+    $extends: HighTierWeaponDPSTankItem
+    combatItemSubType: gauntlet
+    category: gauntlet
+    dropType: 0
+    requiredClass:
+      - FIGHTER
 
 exports:
   variables:
@@ -159,7 +274,7 @@ exports:
     - ENCHANT_MID_TIER_HAND_ROBE
     - ENCHANT_MID_TIER_BOOTS
   definitions:
-    # Top Tier Items
+    # Top Tier (Mythic) items
     - HighTierWeaponDPSTankItem
     - HighTierWeaponHealerItem
     - HighTierChestItem
@@ -167,7 +282,7 @@ exports:
     - HighTierHandLeatherItem
     - HighTierHandRobeItem
     - HighTierBootsItem
-    # Mid Tier Items
+    # Mid Tier (Superior) items
     - MidTierWeaponDPSTankItem
     - MidTierWeaponHealerItem
     - MidTierChestItem
@@ -175,3 +290,8 @@ exports:
     - MidTierHandLeatherItem
     - MidTierHandRobeItem
     - MidTierBootsItem
+    # Class-specific weapon derivations
+    - MidTierChainWeapon
+    - HighTierChainWeapon
+    - MidTierGauntletWeapon
+    - HighTierGauntletWeapon

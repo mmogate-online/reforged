@@ -1,6 +1,6 @@
 # Reforged Server Content — Status
 
-_Last updated: 2026-04-22_
+_Last updated: 2026-04-23_
 
 ---
 
@@ -72,6 +72,7 @@ Custom content layer applied on top of the IoD migration baseline.
 | `dsl apply` UTF-8 BOM preservation (5427ba1) | ✅ Validated |
 | SkillData sync attribute ordering | ✅ XSD attribute-order feature reverted upstream (ab41f20); source-order pass-through restored; one-time reformat diff expected on first sync per entity |
 | Float precision in `dsl apply` | ✅ Capped to 8 decimal places (92fa465) |
+| Package-internal variable scope at export | ✅ Variables resolved at export time — consumers no longer re-import package-internal vars |
 
 **Open DSL requests:** ~27 filed in `docs/dsl-requests/`. Key pending items:
 - ZoneBased and IdSorted sync support for Quest, QuestDialog, StrSheet_Quest (no server-side schema yet)
@@ -87,6 +88,6 @@ Custom content layer applied on top of the IoD migration baseline.
 
 | Repo | Role | Current State |
 |------|------|---------------|
-| `reforged-server` (ATP) | Live v92 server datasheets + client DC | IoD restored, patch 000 fixes applied |
+| `reforged-server` (ATP) | Live v92 server datasheets + client DC | IoD restored, patch 000 fixes applied; patch 001 reaper + brawler weapons applied |
 | `datasheetlang` | DSL CLI source | Manifest narrowing complete, all strategies operational |
 | `datasheet-domain` | Game entity domain docs | Source of truth for entity schemas and ID ranges |
