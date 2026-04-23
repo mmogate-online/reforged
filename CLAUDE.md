@@ -20,7 +20,7 @@ The `.references` file uses `key=value` format. Read it to resolve any path refe
 
 ## Packages
 
-Packages are reusable modules located in `packages/`. Each package folder must contain an `index.yml` file.
+Packages are reusable modules located in `packages/`. Each package folder must contain an `index.yml` file. See `packages/README.md` for the full index of available packages, their types, and dependency relationships.
 
 **Important:** New packages must be registered in `datasheetlang.yml` under `workspace.packages`:
 

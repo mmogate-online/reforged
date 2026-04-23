@@ -39,7 +39,7 @@ reforged/
 
 ### packages/
 
-Reusable DSL modules imported by specs. Packages encapsulate shared definitions such as ID variables, stat templates, and enchant structures so specs stay concise and consistent. The available packages are listed in `datasheetlang.yml`.
+Reusable DSL modules imported by specs. Packages encapsulate shared definitions such as ID variables, stat templates, and enchant structures so specs stay concise and consistent. See `packages/README.md` for the full index of available packages, their types, and dependency relationships.
 
 ### specs/patches/
 
@@ -130,6 +130,7 @@ This file is machine-specific and not committed to the repository.
 
 | Topic | Location |
 |-------|----------|
+| Packages index | `packages/README.md` |
 | Gear infusion system | `tools/gear-infusion/README.md` |
 | Infusion loot tables | `tools/infusion-loot/README.md` |
 | Patch migration tooling | `tools/migrate/README.md` |
