@@ -1,31 +1,81 @@
 # Armor Standardization
 #
-# All armor (body, hand, feet) in gear_progression.csv gets:
-# - enchantEnable: true
-# - boundType: Equip, warehouseStorable, guildWarehouseStorable, unidentifiedItemGrade, dropType
-# - tradable: true for LOW/MID tier, false for HIGH tier (grade 4)
-# - Body armor: linkPassivityCategoryId: 120316 (standard body roll pool)
-# - Hand armor: linkPassivityCategoryId per type (mail=4150, leather=4152, robe=4151)
-# - Feet armor: linkPassivityCategoryId: 4250
+# Applies the equipment-item-standard package's tier-baseline definitions to
+# every armor item via $extends inside updateWhere.changes. Per-class chest
+# overrides run after the generic body sweep (declaration order within
+# updateWhere).
 #
-# NOTE: HIGH_TIER_BODY_IDS includes class-specific chest pieces (Archetype, Nightforge, Visionmaker)
-# which get their linkPassivityCategoryId OVERRIDDEN by 03-chest-toproll-items.yaml with per-class
-# values. The generic 120316 set here is intentional as a baseline — do NOT remove HIGH_TIER_BODY_IDS
-# from this spec.
+# Layering (processed in this order within items.updateWhere):
+#   1. Tier baseline — per tier × slot, filter on full tier pool, $extends the
+#      exported package definition. Flows bound/tradable/dismantlable/storeSellable/
+#      warehouseStorable/guildWarehouseStorable/enchantEnable/dropType/dropIdentify/
+#      masterpieceRate/unidentifiedItemGrade/combineOptionValue/combatItemType/
+#      rareGrade/linkEnchantId/linkPassivityCategoryId in one line.
+#   2. Per-class chest overrides — for HIGH/MID class-specific chest sets,
+#      filter on per-class partition IDs and $extends the class-specific chest
+#      definition (HighTierChest{Class}Item / MidTierChest{Class}Item) to apply
+#      per-class linkPassivityCategoryId + requiredClass.
 #
-# NOTE: HIGH_TIER hand and feet pieces may have class-specific linkPassivityCategoryId values
-# (e.g. Visionmaker). Only MID/LOW tier hands and feet get the standard categories here.
-# HIGH_TIER hands/feet intentionally omit linkPassivityCategoryId to avoid overwriting
-# class-specific values.
+# The package is the single source of truth for every tier-wide attribute — this
+# spec never hardcodes values. Per-item data (name, icon, prices, strings,
+# per-item passivities, equipment stats) is left untouched on server.
 
 spec:
   version: "1.0"
   schema: v92
 
 imports:
+  - from: equipment-item-standard
+    use:
+      definitions:
+        # Tier exports
+        - HighTierChestItem
+        - HighTierHandMailItem
+        - HighTierHandLeatherItem
+        - HighTierHandRobeItem
+        - HighTierBootsItem
+        - MidTierChestItem
+        - MidTierHandMailItem
+        - MidTierHandLeatherItem
+        - MidTierHandRobeItem
+        - MidTierBootsItem
+        - LowTierChestItem
+        - LowTierHandMailItem
+        - LowTierHandLeatherItem
+        - LowTierHandRobeItem
+        - LowTierBootsItem
+        # Per-class chest derivations
+        - HighTierChestWarriorItem
+        - HighTierChestLancerItem
+        - HighTierChestBerserkerItem
+        - HighTierChestSlayerItem
+        - HighTierChestSorcererItem
+        - HighTierChestArcherItem
+        - HighTierChestMysticItem
+        - HighTierChestPriestItem
+        - HighTierChestNinjaItem
+        - HighTierChestGunnerItem
+        - HighTierChestBrawlerItem
+        - HighTierChestReaperItem
+        - HighTierChestValkyrieItem
+        - MidTierChestWarriorItem
+        - MidTierChestLancerItem
+        - MidTierChestBerserkerItem
+        - MidTierChestSlayerItem
+        - MidTierChestSorcererItem
+        - MidTierChestArcherItem
+        - MidTierChestMysticItem
+        - MidTierChestPriestItem
+        - MidTierChestNinjaItem
+        - MidTierChestGunnerItem
+        - MidTierChestBrawlerItem
+        - MidTierChestReaperItem
+        - MidTierChestValkyrieItem
+
   - from: equipment-item-ids
     use:
       variables:
+        # Tier-wide ID pools
         - HIGH_TIER_BODY_IDS
         - HIGH_TIER_HAND_MAIL_IDS
         - HIGH_TIER_HAND_LEATHER_IDS
@@ -41,189 +91,183 @@ imports:
         - LOW_TIER_HAND_LEATHER_IDS
         - LOW_TIER_HAND_ROBE_IDS
         - LOW_TIER_FEET_IDS
+        # Per-class chest partitions (HIGH)
+        - HIGH_TIER_CHEST_WARRIOR_IDS
+        - HIGH_TIER_CHEST_LANCER_IDS
+        - HIGH_TIER_CHEST_BERSERKER_IDS
+        - HIGH_TIER_CHEST_SLAYER_IDS
+        - HIGH_TIER_CHEST_SORCERER_IDS
+        - HIGH_TIER_CHEST_ARCHER_IDS
+        - HIGH_TIER_CHEST_MYSTIC_IDS
+        - HIGH_TIER_CHEST_PRIEST_IDS
+        - HIGH_TIER_CHEST_NINJA_IDS
+        - HIGH_TIER_CHEST_GUNNER_IDS
+        - HIGH_TIER_CHEST_BRAWLER_IDS
+        - HIGH_TIER_CHEST_REAPER_IDS
+        - HIGH_TIER_CHEST_VALKYRIE_IDS
+        # Per-class chest partitions (MID)
+        - MID_TIER_CHEST_WARRIOR_IDS
+        - MID_TIER_CHEST_LANCER_IDS
+        - MID_TIER_CHEST_BERSERKER_IDS
+        - MID_TIER_CHEST_SLAYER_IDS
+        - MID_TIER_CHEST_SORCERER_IDS
+        - MID_TIER_CHEST_ARCHER_IDS
+        - MID_TIER_CHEST_MYSTIC_IDS
+        - MID_TIER_CHEST_PRIEST_IDS
+        - MID_TIER_CHEST_NINJA_IDS
+        - MID_TIER_CHEST_GUNNER_IDS
+        - MID_TIER_CHEST_BRAWLER_IDS
+        - MID_TIER_CHEST_REAPER_IDS
+        - MID_TIER_CHEST_VALKYRIE_IDS
 
 items:
   updateWhere:
 
-    # === HIGH TIER (grade 4) — tradable: false ===
-    # No linkPassivityCategoryId on hands/feet (class-specific values exist)
+    # ==========================================================================
+    # TIER BASELINE — HIGH Tier (Mythic)
+    # ==========================================================================
 
-    - filter:
-        id: $HIGH_TIER_BODY_IDS
+    - filter: { id: $HIGH_TIER_BODY_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120316
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $HIGH_TIER_HAND_MAIL_IDS
+        $extends: HighTierChestItem
+    - filter: { id: $HIGH_TIER_HAND_MAIL_IDS }
       changes:
-        enchantEnable: true
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $HIGH_TIER_HAND_LEATHER_IDS
+        $extends: HighTierHandMailItem
+    - filter: { id: $HIGH_TIER_HAND_LEATHER_IDS }
       changes:
-        enchantEnable: true
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $HIGH_TIER_HAND_ROBE_IDS
+        $extends: HighTierHandLeatherItem
+    - filter: { id: $HIGH_TIER_HAND_ROBE_IDS }
       changes:
-        enchantEnable: true
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $HIGH_TIER_FEET_IDS
+        $extends: HighTierHandRobeItem
+    - filter: { id: $HIGH_TIER_FEET_IDS }
       changes:
-        enchantEnable: true
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: HighTierBootsItem
 
-    # === MID TIER (grade 3) — tradable: true ===
+    # ==========================================================================
+    # TIER BASELINE — MID Tier (Superior)
+    # ==========================================================================
 
-    - filter:
-        id: $MID_TIER_BODY_IDS
+    - filter: { id: $MID_TIER_BODY_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120316
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $MID_TIER_HAND_MAIL_IDS
+        $extends: MidTierChestItem
+    - filter: { id: $MID_TIER_HAND_MAIL_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4150
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $MID_TIER_HAND_LEATHER_IDS
+        $extends: MidTierHandMailItem
+    - filter: { id: $MID_TIER_HAND_LEATHER_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4152
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $MID_TIER_HAND_ROBE_IDS
+        $extends: MidTierHandLeatherItem
+    - filter: { id: $MID_TIER_HAND_ROBE_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4151
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $MID_TIER_FEET_IDS
+        $extends: MidTierHandRobeItem
+    - filter: { id: $MID_TIER_FEET_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4250
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: MidTierBootsItem
 
-    # === LOW TIER (grade 1-2) — tradable: true ===
+    # ==========================================================================
+    # TIER BASELINE — LOW Tier (Rare)
+    # ==========================================================================
 
-    - filter:
-        id: $LOW_TIER_BODY_IDS
+    - filter: { id: $LOW_TIER_BODY_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120316
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $LOW_TIER_HAND_MAIL_IDS
+        $extends: LowTierChestItem
+    - filter: { id: $LOW_TIER_HAND_MAIL_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4150
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $LOW_TIER_HAND_LEATHER_IDS
+        $extends: LowTierHandMailItem
+    - filter: { id: $LOW_TIER_HAND_LEATHER_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4152
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $LOW_TIER_HAND_ROBE_IDS
+        $extends: LowTierHandLeatherItem
+    - filter: { id: $LOW_TIER_HAND_ROBE_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4151
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
-
-    - filter:
-        id: $LOW_TIER_FEET_IDS
+        $extends: LowTierHandRobeItem
+    - filter: { id: $LOW_TIER_FEET_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 4250
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: LowTierBootsItem
+
+    # ==========================================================================
+    # PER-CLASS CHEST OVERRIDES — HIGH Tier
+    # Runs after HIGH tier baseline; overrides linkPassivityCategoryId + requiredClass.
+    # ==========================================================================
+
+    - filter: { id: $HIGH_TIER_CHEST_WARRIOR_IDS }
+      changes:
+        $extends: HighTierChestWarriorItem
+    - filter: { id: $HIGH_TIER_CHEST_LANCER_IDS }
+      changes:
+        $extends: HighTierChestLancerItem
+    - filter: { id: $HIGH_TIER_CHEST_BERSERKER_IDS }
+      changes:
+        $extends: HighTierChestBerserkerItem
+    - filter: { id: $HIGH_TIER_CHEST_SLAYER_IDS }
+      changes:
+        $extends: HighTierChestSlayerItem
+    - filter: { id: $HIGH_TIER_CHEST_SORCERER_IDS }
+      changes:
+        $extends: HighTierChestSorcererItem
+    - filter: { id: $HIGH_TIER_CHEST_ARCHER_IDS }
+      changes:
+        $extends: HighTierChestArcherItem
+    - filter: { id: $HIGH_TIER_CHEST_MYSTIC_IDS }
+      changes:
+        $extends: HighTierChestMysticItem
+    - filter: { id: $HIGH_TIER_CHEST_PRIEST_IDS }
+      changes:
+        $extends: HighTierChestPriestItem
+    - filter: { id: $HIGH_TIER_CHEST_NINJA_IDS }
+      changes:
+        $extends: HighTierChestNinjaItem
+    - filter: { id: $HIGH_TIER_CHEST_GUNNER_IDS }
+      changes:
+        $extends: HighTierChestGunnerItem
+    - filter: { id: $HIGH_TIER_CHEST_BRAWLER_IDS }
+      changes:
+        $extends: HighTierChestBrawlerItem
+    - filter: { id: $HIGH_TIER_CHEST_REAPER_IDS }
+      changes:
+        $extends: HighTierChestReaperItem
+    - filter: { id: $HIGH_TIER_CHEST_VALKYRIE_IDS }
+      changes:
+        $extends: HighTierChestValkyrieItem
+
+    # ==========================================================================
+    # PER-CLASS CHEST OVERRIDES — MID Tier
+    # ==========================================================================
+
+    - filter: { id: $MID_TIER_CHEST_WARRIOR_IDS }
+      changes:
+        $extends: MidTierChestWarriorItem
+    - filter: { id: $MID_TIER_CHEST_LANCER_IDS }
+      changes:
+        $extends: MidTierChestLancerItem
+    - filter: { id: $MID_TIER_CHEST_BERSERKER_IDS }
+      changes:
+        $extends: MidTierChestBerserkerItem
+    - filter: { id: $MID_TIER_CHEST_SLAYER_IDS }
+      changes:
+        $extends: MidTierChestSlayerItem
+    - filter: { id: $MID_TIER_CHEST_SORCERER_IDS }
+      changes:
+        $extends: MidTierChestSorcererItem
+    - filter: { id: $MID_TIER_CHEST_ARCHER_IDS }
+      changes:
+        $extends: MidTierChestArcherItem
+    - filter: { id: $MID_TIER_CHEST_MYSTIC_IDS }
+      changes:
+        $extends: MidTierChestMysticItem
+    - filter: { id: $MID_TIER_CHEST_PRIEST_IDS }
+      changes:
+        $extends: MidTierChestPriestItem
+    - filter: { id: $MID_TIER_CHEST_NINJA_IDS }
+      changes:
+        $extends: MidTierChestNinjaItem
+    - filter: { id: $MID_TIER_CHEST_GUNNER_IDS }
+      changes:
+        $extends: MidTierChestGunnerItem
+    - filter: { id: $MID_TIER_CHEST_BRAWLER_IDS }
+      changes:
+        $extends: MidTierChestBrawlerItem
+    - filter: { id: $MID_TIER_CHEST_REAPER_IDS }
+      changes:
+        $extends: MidTierChestReaperItem
+    - filter: { id: $MID_TIER_CHEST_VALKYRIE_IDS }
+      changes:
+        $extends: MidTierChestValkyrieItem

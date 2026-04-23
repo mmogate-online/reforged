@@ -6,6 +6,22 @@ Newest entries first.
 
 ---
 
+## 2026-04-23 (session 2)
+
+### Content
+- `equipment-item-standard` package extended to own every gear baseline: LOW tier intermediaries, `LowTierChainWeapon`/`LowTierGauntletWeapon`, 26 per-class chest definitions (`{High,Mid}TierChest{Class}Item` × 13 classes), per-material armor `linkPassivityCategoryId` on exported items (120316/4150/4152/4151/4250), `_WeaponBase.linkPassivityCategoryId` scalarized, `dropType:0` override dropped from class-restricted weapon derivations
+- `01-armor-standardize.yaml` rewritten to sweep via `$extends: {Tier}{Slot}Item` for tier baseline + `$extends: {Tier}Chest{Class}Item` for per-class chest overrides (zero hardcoded attributes)
+- `01-weapon-standardize.yaml` rewritten to sweep via `$extends: {Tier}Weapon{Role}Item` for tier × role baseline + per-subtype overrides for chain/gauntlet weapons
+- `equipment-item-ids`: added 26 per-class chest partitions (`{HIGH,MID}_TIER_CHEST_{CLASS}_IDS`) and 5 per-subtype weapon partitions (`{HIGH,MID}_TIER_CHAIN_WEAPON_IDS`, `{HIGH,MID,LOW}_TIER_GAUNTLET_WEAPON_IDS`)
+- `enchant-standard`: `ENCHANT_LOW_TIER_*` values aliased to `ENCHANT_MID_TIER_*` (950011-950017) per shared-enchant-pool decision
+- Retired as redundant: `03-flawless-standardize.yaml`, `03-chest-toproll-items.yaml`, `07-gear-enchant-sync.yaml`
+- `06-brawler-weapons.yaml` renamed → `01-brawler-weapons.yaml` so authoring specs precede standardize sweeps alphabetically
+- `tools/gear-enchant-sync/` generator disabled with updated README (scripts preserved)
+- `tools/potential-unlock/generate_potential_unlock.py` refactored to emit `$extends`-based specs (added `TIER_BY_GRADE` + `resolve_tier_def()`, `COPY_ATTRS` trimmed 55 → 17, emits `imports:` block + `$extends` per item); regenerated `12-potential-unlock-gear.yaml` (5333 → 2788 lines)
+- Fixed server load crash: Token 90 (Bastion Masterwork) had 15 `linkEnchantId` mismatches between source LOW Bastion items and result Unlocked items; resolved by regenerated `12-potential-unlock-gear.yaml` flowing `linkEnchantId` from package `$extends` (0 mismatches across all 582 pairs / 53 tokens)
+
+---
+
 ## 2026-04-23
 
 ### Content

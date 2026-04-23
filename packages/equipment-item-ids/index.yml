@@ -183,6 +183,9 @@ variables:
     - 82416  # gauntlet - Flawless Mazehammers
 
   # High Tier (Mythic) - Body (43 items)
+  # Used by 01-armor-standardize.yaml for the tier-baseline sweep.
+  # Per-class chest override sweeps target per-class partitions below
+  # (HIGH_TIER_CHEST_{CLASS}_IDS).
   HIGH_TIER_BODY_IDS:
     # --- Archetype (PowerTier 8) ---
     - 55561  # bodyMail - Top Tempoplate
@@ -607,11 +610,14 @@ variables:
     - 82425  # gauntlet - Emberfists
 
   # Mid Tier (Superior) - Body (75 items)
+  # Used by 01-armor-standardize.yaml for the tier-baseline sweep.
+  # Per-class chest override sweeps target per-class partitions below
+  # (MID_TIER_CHEST_{CLASS}_IDS).
   MID_TIER_BODY_IDS:
     # --- Devastator (PowerTier 8) ---
     - 55558  # bodyMail - Cruelplate
     - 58633  # bodyRobe - Tellerocks Robe
-    - 59619  # bodyLeather - Gladstock Coat 
+    - 59619  # bodyLeather - Gladstock Coat
     - 82568  # bodyMail - Legacy Hauberk
     - 91700  # bodyMail - Ruleplate
     - 91701  # bodyMail - Duelplate
@@ -627,6 +633,9 @@ variables:
     - 71276  # bodyLeather - Vetted Vest
     - 71280  # bodyRobe - Finishing Coat
     # --- Regent (PowerTier 6) ---
+    # NOTE: 48xxx IDs are phantoms (listed here but do not exist in the server Item
+    # datasheet); the sweep silently no-ops on them. If/when created, they inherit
+    # the tier baseline via this sweep.
     - 19063  # bodyMail - Queensplate
     - 19066  # bodyLeather - Regentsvest
     - 19069  # bodyRobe - Royalfire Gown
@@ -635,14 +644,14 @@ variables:
     - 19109  # bodyRobe - Royalzan Gown
     - 19110  # bodyLeather - Courtly Jacket
     - 19111  # bodyRobe - Royalrite Gown
-    - 48025  # bodyLeather - Regentsvest
-    - 48029  # bodyMail - Queensplate
-    - 48033  # bodyLeather - Regentsvest
-    - 48037  # bodyMail - Queensplate
-    - 48041  # bodyRobe - Royalfire Gown
-    - 48045  # bodyLeather - Regentsvest
-    - 48049  # bodyRobe - Royalfire Gown
-    - 48053  # bodyRobe - Royalfire Gown
+    - 48025  # bodyLeather - Regentsvest (phantom)
+    - 48029  # bodyMail - Queensplate (phantom)
+    - 48033  # bodyLeather - Regentsvest (phantom)
+    - 48037  # bodyMail - Queensplate (phantom)
+    - 48041  # bodyRobe - Royalfire Gown (phantom)
+    - 48045  # bodyLeather - Regentsvest (phantom)
+    - 48049  # bodyRobe - Royalfire Gown (phantom)
+    - 48053  # bodyRobe - Royalfire Gown (phantom)
     - 58607  # bodyRobe - Royalpain Gown
     # --- Queen's Wrath (PowerTier 5) ---
     - 19142  # bodyMail - Piquemail
@@ -1038,6 +1047,196 @@ variables:
     - 17562  # feetLeather - Vulcanite Boots
     - 17565  # feetRobe - Cruelhide Shoes
 
+  # ==========================================================================
+  # Per-subtype WEAPON partitions (for class-restricted weapon sweeps).
+  # Chain weapons are Soulless (Reaper) only. Gauntlet weapons are Fighter
+  # (Brawler) only. Paired with {Tier}ChainWeapon / {Tier}GauntletWeapon
+  # definitions from the equipment-item-standard package.
+  # ==========================================================================
+
+  HIGH_TIER_CHAIN_WEAPON_IDS:
+    - 91635  # Destiny's Edge (Archetype)
+    - 91644  # Bitter Harvesters (Archetype)
+    - 91653  # Whip-Scythes (Archetype)
+    - 92101  # Shifteur (Archetype)
+    - 71767  # Shardfangs (Nightforge PvE)
+    - 71765  # Dreamscythes (Visionmaker)
+    - 71758  # Flawless Blazearcs (Flawless Frostfire)
+    - 71760  # Nightpiercers (Dreamkeeper)
+    - 71759  # Flawless Icefangs (Flawless Frostfire)
+
+  MID_TIER_CHAIN_WEAPON_IDS:
+    - 91681  # Occluded Arcs (Devastator)
+    - 91690  # Weepharp (Devastator)
+    - 91699  # Seversickle (Devastator)
+    - 71766  # Bloodlash (Steadfast)
+    - 71764  # Regal Scythes (Regent)
+    - 71763  # Abyssfangs (Abyss)
+    - 71761  # Ephemeral Truth (Agnitor)
+    - 71762  # Fractured Arcs (Discord)
+    - 71755  # Whisperfangs (Thalnim)
+    - 71756  # Echoing Scythes (Sardonal)
+    - 71757  # Abyssweavers (Adroitsum)
+    - 900001  # Shadowrend Scythes (Ebon Tower)
+    - 71768  # Icefangs (Frostfire)
+    - 71769  # Blazearcs (Frostfire)
+
+  # LOW_TIER has no chain weapons in current content.
+
+  HIGH_TIER_GAUNTLET_WEAPON_IDS:
+    - 82517  # Lawbringers (Archetype)
+    - 82518  # Cold Comforters (Archetype)
+    - 82519  # Castigators (Archetype)
+    - 82532  # Pinnacle Fists (Archetype)
+    - 82492  # Flawless Generation Powerfists (Nightforge PvE)
+    - 82393  # Sacred Powerfists (Dreamkeeper)
+    - 82417  # Flawless Frozen Mitts (Flawless Frostfire)
+    - 82418  # Flawless Emberfists (Flawless Frostfire)
+    - 82414  # Flawless Bloody Knuckles (Flawless Bastion)
+    - 82415  # Flawless Love Taps (Flawless Covenant)
+    - 82416  # Flawless Mazehammers (Flawless Starter 6)
+
+  MID_TIER_GAUNTLET_WEAPON_IDS:
+    - 82520  # Binding Arbiters (Devastator)
+    - 82521  # Fighting Furies (Devastator)
+    - 82522  # Swift Resolutions (Devastator)
+    - 82447  # Fists of the Argon Queen (Regent)
+    - 82437  # Fists of the Argon's Eye (Abyss)
+    - 82439  # Fists of the Scholar (Agnitor)
+    - 82435  # Fists of the Seer (Discord)
+    - 82206  # Fiendish Powerfists (Thalnim)
+    - 82428  # Fists of Menace (Sardonal)
+    - 82430  # Fists of the Red Shaman (Adroitsum)
+    - 82304  # Fists of the Ebon Tower (Ebon Tower)
+    - 82289  # Tremorfists (Demonia)
+    - 82420  # Love Taps (Covenant)
+    - 82291  # Razerfists (Sepulchral)
+    - 82292  # Mazehammers (Starter 6)
+    - 82354  # Runechased Powerfists (Counterglow)
+    - 82424  # Frozen Mitts (Frostfire)
+    - 82425  # Emberfists (Frostfire)
+
+  LOW_TIER_GAUNTLET_WEAPON_IDS:
+    - 82272  # Kugai's Powerfists
+    - 82079  # Feather Dusters (Starter 0)
+    - 82020  # Warfists (Starter 1)
+    - 82288  # Bloody Knuckles (Bastion)
+
+  # ==========================================================================
+  # Per-class CHEST partitions (for class-specific top-roll sweeps)
+  # Union of all class-specific chest IDs across Archetype / Nightforge PvE /
+  # Visionmaker (HIGH) and Devastator / Regent (MID). Paired with
+  # HighTierChest{Class}Item / MidTierChest{Class}Item definitions from the
+  # equipment-item-standard package.
+  # ==========================================================================
+
+  HIGH_TIER_CHEST_WARRIOR_IDS:
+    - 91659  # Constervest (Archetype)
+    - 71317  # Nimblevest (Nightforge PvE)
+    - 18981  # Dreamroll Vest (Visionmaker)
+
+  HIGH_TIER_CHEST_LANCER_IDS:
+    - 91654  # Tempered Chestplate (Archetype)
+    - 71312  # Mainstay Plate (Nightforge PvE)
+    - 18978  # Steelgaze Defender (Visionmaker)
+
+  HIGH_TIER_CHEST_BERSERKER_IDS:
+    - 91655  # Temperplate (Archetype)
+    - 71313  # Bloodflay Plate (Nightforge PvE)
+    - 19112  # Steelgaze Rageplate (Visionmaker)
+
+  HIGH_TIER_CHEST_SLAYER_IDS:
+    - 91660  # Hemorrvest (Archetype)
+    - 71318  # Noblevest (Nightforge PvE)
+    - 19113  # Dreamswept Vest (Visionmaker)
+
+  HIGH_TIER_CHEST_SORCERER_IDS:
+    - 91666  # Pyrogown (Archetype)
+    - 71323  # Deathsewn Robe (Nightforge PvE)
+    - 18984  # Firesight Robe (Visionmaker)
+
+  HIGH_TIER_CHEST_ARCHER_IDS:
+    - 91661  # Centesivest (Archetype)
+    - 71319  # Nettlevest (Nightforge PvE)
+    - 19115  # Dreamshot Vest (Visionmaker)
+
+  HIGH_TIER_CHEST_MYSTIC_IDS:
+    - 91667  # Malevagown (Archetype)
+    - 71324  # Venomsewn Robe (Nightforge PvE)
+    - 19114  # Hexsight Robe (Visionmaker)
+
+  HIGH_TIER_CHEST_PRIEST_IDS:
+    - 91668  # Vespegown (Archetype)
+    - 71325  # Gracesewn Robe (Nightforge PvE)
+    - 19116  # Divinesight Robe (Visionmaker)
+
+  HIGH_TIER_CHEST_NINJA_IDS:
+    - 58632  # Mordagown (Archetype)
+    - 58621  # Snaresewn Robe (Nightforge PvE)
+    - 58606  # Dusksight Robe (Visionmaker)
+
+  # Classes that postdate Nightforge PvE / Visionmaker — only Archetype covers them.
+  HIGH_TIER_CHEST_GUNNER_IDS:
+    - 55561  # Top Tempoplate (Archetype)
+
+  HIGH_TIER_CHEST_BRAWLER_IDS:
+    - 82571  # Hardscrabble Hauberk (Archetype)
+
+  HIGH_TIER_CHEST_REAPER_IDS:
+    - 91662  # Sombervest (Archetype)
+
+  HIGH_TIER_CHEST_VALKYRIE_IDS:
+    - 59615  # Flintervest (Archetype)
+
+  MID_TIER_CHEST_WARRIOR_IDS:
+    - 91705  # Cutterstock Coat (Devastator)
+    - 19066  # Regentsvest (Regent)
+
+  MID_TIER_CHEST_LANCER_IDS:
+    - 91700  # Ruleplate (Devastator)
+    - 19063  # Queensplate (Regent)
+
+  MID_TIER_CHEST_BERSERKER_IDS:
+    - 91701  # Duelplate (Devastator)
+    - 19107  # Courtplate (Regent)
+
+  MID_TIER_CHEST_SLAYER_IDS:
+    - 91706  # Bloodstock Coat (Devastator)
+    - 19108  # Grandcoat (Regent)
+
+  MID_TIER_CHEST_SORCERER_IDS:
+    - 91712  # Tinderbox Robe (Devastator)
+    - 19069  # Royalfire Gown (Regent)
+
+  MID_TIER_CHEST_ARCHER_IDS:
+    - 91707  # Springstock Coat (Devastator)
+    - 19110  # Courtly Jacket (Regent)
+
+  MID_TIER_CHEST_MYSTIC_IDS:
+    - 91713  # Tannershocks Robe (Devastator)
+    - 19109  # Royalzan Gown (Regent)
+
+  MID_TIER_CHEST_PRIEST_IDS:
+    - 91714  # Tendervox Robe (Devastator)
+    - 19111  # Royalrite Gown (Regent)
+
+  MID_TIER_CHEST_NINJA_IDS:
+    - 58633  # Tellerocks Robe (Devastator)
+    - 58607  # Royalpain Gown (Regent)
+
+  # Classes that postdate Regent — only Devastator covers them in MID.
+  MID_TIER_CHEST_GUNNER_IDS:
+    - 55558  # Cruelplate (Devastator)
+
+  MID_TIER_CHEST_BRAWLER_IDS:
+    - 82568  # Legacy Hauberk (Devastator)
+
+  MID_TIER_CHEST_REAPER_IDS:
+    - 91708  # Deadstock Coat (Devastator)
+
+  MID_TIER_CHEST_VALKYRIE_IDS:
+    - 59619  # Gladstock Coat (Devastator)
+
 exports:
   variables:
     - HIGH_TIER_HEALER_WEAPON_IDS
@@ -1061,3 +1260,37 @@ exports:
     - LOW_TIER_HAND_LEATHER_IDS
     - LOW_TIER_HAND_ROBE_IDS
     - LOW_TIER_FEET_IDS
+    # Per-subtype weapon partitions
+    - HIGH_TIER_CHAIN_WEAPON_IDS
+    - MID_TIER_CHAIN_WEAPON_IDS
+    - HIGH_TIER_GAUNTLET_WEAPON_IDS
+    - MID_TIER_GAUNTLET_WEAPON_IDS
+    - LOW_TIER_GAUNTLET_WEAPON_IDS
+    # Per-class chest partitions (HIGH)
+    - HIGH_TIER_CHEST_WARRIOR_IDS
+    - HIGH_TIER_CHEST_LANCER_IDS
+    - HIGH_TIER_CHEST_BERSERKER_IDS
+    - HIGH_TIER_CHEST_SLAYER_IDS
+    - HIGH_TIER_CHEST_SORCERER_IDS
+    - HIGH_TIER_CHEST_ARCHER_IDS
+    - HIGH_TIER_CHEST_MYSTIC_IDS
+    - HIGH_TIER_CHEST_PRIEST_IDS
+    - HIGH_TIER_CHEST_NINJA_IDS
+    - HIGH_TIER_CHEST_GUNNER_IDS
+    - HIGH_TIER_CHEST_BRAWLER_IDS
+    - HIGH_TIER_CHEST_REAPER_IDS
+    - HIGH_TIER_CHEST_VALKYRIE_IDS
+    # Per-class chest partitions (MID)
+    - MID_TIER_CHEST_WARRIOR_IDS
+    - MID_TIER_CHEST_LANCER_IDS
+    - MID_TIER_CHEST_BERSERKER_IDS
+    - MID_TIER_CHEST_SLAYER_IDS
+    - MID_TIER_CHEST_SORCERER_IDS
+    - MID_TIER_CHEST_ARCHER_IDS
+    - MID_TIER_CHEST_MYSTIC_IDS
+    - MID_TIER_CHEST_PRIEST_IDS
+    - MID_TIER_CHEST_NINJA_IDS
+    - MID_TIER_CHEST_GUNNER_IDS
+    - MID_TIER_CHEST_BRAWLER_IDS
+    - MID_TIER_CHEST_REAPER_IDS
+    - MID_TIER_CHEST_VALKYRIE_IDS

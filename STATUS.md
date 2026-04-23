@@ -1,6 +1,6 @@
 # Reforged Server Content — Status
 
-_Last updated: 2026-04-23_
+_Last updated: 2026-04-23 (session 2)_
 
 ---
 
@@ -46,6 +46,9 @@ Custom content layer applied on top of the IoD migration baseline.
 | Infusion loot | ✅ | Zone loot distribution strategy implemented |
 | Zone loot overhaul | ✅ | All patch 001 open-world zones + dungeons |
 | Dungeon tokens + shop chain | ✅ | MedalStore VillagerMenuItem→BuyMenuList→BuyList wiring |
+| Equipment standardization via `equipment-item-standard` | ✅ | Package is authoritative baseline for all gear (HIGH/MID/LOW × weapon/chest/hand/boot + class-specific chest & class-restricted weapons); `01-armor-standardize.yaml` and `01-weapon-standardize.yaml` sweep via `$extends` into package definitions; redundant specs retired (`03-flawless-standardize`, `03-chest-toproll-items`, `07-gear-enchant-sync`) |
+| Potential unlock generator on package | ✅ | `tools/potential-unlock/generate_potential_unlock.py` emits `$extends`-based specs referencing `equipment-item-standard`; `12-potential-unlock-gear.yaml` reduced 5333→2788 lines |
+| EquipmentInheritance compatibility | ✅ | 0 mismatches across all 582 pairs / 53 tokens — server loads with all changes applied |
 | Full patch 001 validation | 🔄 | Pending — equivalent of IoD Phase 4 |
 
 **In scope (patch 001 zones):** Fey Forest (2), Oblivion Woods (3), Tuwangi Mire (5), Valley of Titans (6), Celestial Hills (7), Cliffs of Insanity (15), Vale of the Fang (16), Paraanon Ravine (17), Crescentia (59), Lumbertown (60), Velika (63), Bastion of Lok (487), Sinestral Manor (488), Island of Dawn (13), Karascha's Lair (436).

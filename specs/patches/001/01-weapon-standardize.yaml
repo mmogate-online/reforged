@@ -1,16 +1,41 @@
 # Weapon Standardization
 #
-# All weapons in gear_progression.csv get:
-# - enchantEnable: true
-# - linkPassivityCategoryId: 120300 (universal weapon roll pool)
-# - boundType: Equip, warehouseStorable, guildWarehouseStorable, unidentifiedItemGrade, dropType
-# - tradable: true for LOW/MID tier, false for HIGH tier (grade 4)
+# Applies the equipment-item-standard package's tier/role-baseline definitions
+# to every weapon item via $extends inside updateWhere.changes, then layers
+# per-subtype overrides for class-restricted weapon types (chain = Soulless,
+# gauntlet = Fighter).
+#
+# Layering (processed in order within items.updateWhere):
+#   1. Tier × role baseline — {Tier}Weapon{DPSTank,Healer}Item flows bound/
+#      tradable/dismantlable/storeSellable/warehouseStorable/guildWarehouseStorable/
+#      enchantEnable/dropType/dropIdentify/masterpieceRate/unidentifiedItemGrade/
+#      combineOptionValue/combatItemType/rareGrade/linkEnchantId/
+#      linkPassivityCategoryId (generic 120300).
+#   2. Per-subtype override — for chain and gauntlet weapons, {Tier}ChainWeapon /
+#      {Tier}GauntletWeapon adds combatItemSubType, category, and requiredClass.
 
 spec:
   version: "1.0"
   schema: v92
 
 imports:
+  - from: equipment-item-standard
+    use:
+      definitions:
+        # Tier × role exports
+        - HighTierWeaponDPSTankItem
+        - HighTierWeaponHealerItem
+        - MidTierWeaponDPSTankItem
+        - MidTierWeaponHealerItem
+        - LowTierWeaponDPSTankItem
+        - LowTierWeaponHealerItem
+        # Class-restricted subtype derivations
+        - HighTierChainWeapon
+        - MidTierChainWeapon
+        - HighTierGauntletWeapon
+        - MidTierGauntletWeapon
+        - LowTierGauntletWeapon
+
   - from: equipment-item-ids
     use:
       variables:
@@ -20,78 +45,61 @@ imports:
         - MID_TIER_HEALER_WEAPON_IDS
         - LOW_TIER_DPS_WEAPON_IDS
         - LOW_TIER_HEALER_WEAPON_IDS
+        - HIGH_TIER_CHAIN_WEAPON_IDS
+        - MID_TIER_CHAIN_WEAPON_IDS
+        - HIGH_TIER_GAUNTLET_WEAPON_IDS
+        - MID_TIER_GAUNTLET_WEAPON_IDS
+        - LOW_TIER_GAUNTLET_WEAPON_IDS
 
 items:
   updateWhere:
 
-    - filter:
-        id: $HIGH_TIER_DPS_WEAPON_IDS
-      changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120300
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+    # ==========================================================================
+    # TIER × ROLE BASELINE
+    # ==========================================================================
 
-    - filter:
-        id: $HIGH_TIER_HEALER_WEAPON_IDS
+    - filter: { id: $HIGH_TIER_DPS_WEAPON_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120300
-        boundType: Equip
-        tradable: false
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: HighTierWeaponDPSTankItem
+    - filter: { id: $HIGH_TIER_HEALER_WEAPON_IDS }
+      changes:
+        $extends: HighTierWeaponHealerItem
 
-    - filter:
-        id: $MID_TIER_DPS_WEAPON_IDS
+    - filter: { id: $MID_TIER_DPS_WEAPON_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120300
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: MidTierWeaponDPSTankItem
+    - filter: { id: $MID_TIER_HEALER_WEAPON_IDS }
+      changes:
+        $extends: MidTierWeaponHealerItem
 
-    - filter:
-        id: $MID_TIER_HEALER_WEAPON_IDS
+    - filter: { id: $LOW_TIER_DPS_WEAPON_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120300
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: LowTierWeaponDPSTankItem
+    - filter: { id: $LOW_TIER_HEALER_WEAPON_IDS }
+      changes:
+        $extends: LowTierWeaponHealerItem
 
-    - filter:
-        id: $LOW_TIER_DPS_WEAPON_IDS
-      changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120300
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+    # ==========================================================================
+    # PER-SUBTYPE OVERRIDE — Chain (Soulless / Reaper)
+    # ==========================================================================
 
-    - filter:
-        id: $LOW_TIER_HEALER_WEAPON_IDS
+    - filter: { id: $HIGH_TIER_CHAIN_WEAPON_IDS }
       changes:
-        enchantEnable: true
-        linkPassivityCategoryId: 120300
-        boundType: Equip
-        tradable: true
-        warehouseStorable: true
-        guildWarehouseStorable: true
-        unidentifiedItemGrade: 1
-        dropType: 2
+        $extends: HighTierChainWeapon
+    - filter: { id: $MID_TIER_CHAIN_WEAPON_IDS }
+      changes:
+        $extends: MidTierChainWeapon
+
+    # ==========================================================================
+    # PER-SUBTYPE OVERRIDE — Gauntlet (Fighter / Brawler)
+    # ==========================================================================
+
+    - filter: { id: $HIGH_TIER_GAUNTLET_WEAPON_IDS }
+      changes:
+        $extends: HighTierGauntletWeapon
+    - filter: { id: $MID_TIER_GAUNTLET_WEAPON_IDS }
+      changes:
+        $extends: MidTierGauntletWeapon
+    - filter: { id: $LOW_TIER_GAUNTLET_WEAPON_IDS }
+      changes:
+        $extends: LowTierGauntletWeapon

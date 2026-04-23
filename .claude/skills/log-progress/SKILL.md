@@ -73,6 +73,23 @@ Rules:
 - Infrastructure entries: prefix with `datasheetlang:`, `datasheet-domain:`, or `reforged-server:` as appropriate
 - Only include infrastructure items that directly enabled the content work done this session
 
+### The changelog is a log of changes, not a session diary
+
+Only record artifacts and outcomes — things that exist differently after the session than before. Do **not** record process or narrative:
+
+- ❌ "Empirically confirmed `$extends` works inside `updateWhere.changes`" — verification, not a change
+- ❌ "Catalogued the Equipment Item Defaults section to remove 24+ attrs" — describes what you did, not what changed
+- ❌ "Analyzed 53 inheritance tokens to find 15 mismatches" — investigation, not a change
+- ❌ "Tested apply order to confirm sweep pattern works" — testing, not a change
+
+Do record:
+
+- ✅ "Generator refactored to emit `$extends`-based specs (`COPY_ATTRS` trimmed 55 → 17); regenerated `12-potential-unlock-gear.yaml` (5333 → 2788 lines)" — the generator changed, the output file changed
+- ✅ "Fixed server load crash: 15 `linkEnchantId` mismatches on Token 90 resolved" — the crash state changed
+- ✅ "Retired as redundant: `03-flawless-standardize.yaml`, `03-chest-toproll-items.yaml`" — files removed
+
+Discovery, reasoning, verification steps, and decision rationale belong in PR descriptions or design docs — never in the changelog. If the entry reads like "I did X to find Y", it's a diary entry; rewrite it as "X now does Y" or drop it.
+
 ---
 
 ## Step 3 — Update STATUS.md

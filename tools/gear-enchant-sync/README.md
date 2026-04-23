@@ -1,59 +1,42 @@
-# Gear Enchant Sync Tool
+# Gear Enchant Sync Tool — DEPRECATED / DISABLED
 
-Generates a DSL spec that bulk-updates all equipment items to use the correct `linkEnchantId` values using `updateWhere` filters and imported variables from the `enchant-standard` package.
+**Status: disabled as of the equipment-item-standard package-owned migration.**
 
-## Purpose
+## Why Disabled
 
-Ensures all Grade 3 (Superior) and Grade 4 (Mythic) equipment items reference the correct enchant definitions for their tier and slot type.
+This tool previously generated `07-gear-enchant-sync.yaml`, a bulk `updateWhere`
+spec that set `linkEnchantId` on every tier × slot item pool using variables
+from the `enchant-standard` package.
 
-## Usage
+After the migration that made `equipment-item-standard` the authoritative
+baseline for equipment gear, the refactored `01-armor-standardize.yaml` and
+`01-weapon-standardize.yaml` already set `linkEnchantId` via `$extends` into
+package definitions (`HighTierChestItem`, `HighTierWeaponDPSTankItem`, …). The
+per-tier × slot linkEnchantId assignment is now a natural side effect of
+applying the tier baseline — duplicating it in a standalone spec is redundant
+and risked divergence (e.g., Low Tier enchant references).
 
-```bash
-cd reforged/tools/gear-enchant-sync
+The generated spec `07-gear-enchant-sync.yaml` has been deleted. The generator
+scripts (`generate_spec.py`, `generate_id_lists.py`) are preserved here for
+historical reference but **must not be re-run** — regeneration would resurrect
+a spec whose authority is now held by the armor/weapon standardize sweeps.
 
-# Default output (specs/gear-enchant-sync.yaml)
-python generate_spec.py
+## If you need to add a new tier/slot enchant binding
 
-# Patch-specific output (specs/patches/{patch}/04-gear-enchant-sync.yaml)
-python generate_spec.py --patch 001
-```
+Edit the `equipment-item-standard` package definition for the target tier/slot
+(e.g., add `linkEnchantId: $ENCHANT_NEW_TIER_NEW_SLOT` on `NewTierNewSlotItem`).
+The next apply of `01-armor-standardize.yaml` / `01-weapon-standardize.yaml`
+will propagate the change to every item in the corresponding pool.
 
-## How It Works
+## Historical Notes
 
-The generated spec uses `updateWhere` with filters by `enchantEnable`, `rareGrade`, and `category` instead of individual upserts. This ensures only enchantable gear is matched. The spec produces 14 concise rules that cover all combinations of:
+The tool produced 14+ `updateWhere` rules covering Mythic, Superior, and Rare
+tiers across weapons (healer vs DPS/Tank) and armor (body, hand by material,
+feet). Filter strategy evolved from `category`-based to ID-based before the
+tool was deprecated.
 
-- **Tiers**: Mythic (rareGrade=4), Superior (rareGrade=3)
-- **Slots**: Weapons (healer vs DPS/Tank), Body, Hand (by armor type), Feet
+Preserved files:
 
-The enchant IDs are imported as variables from `enchant-standard` package:
-
-| Variable | Enchant ID | Usage |
-|----------|------------|-------|
-| `ENCHANT_HIGH_TIER_WEAPON_HEALER` | 12304 | Mythic staff, rod |
-| `ENCHANT_HIGH_TIER_WEAPON_DPS_TANK` | 12302 | Mythic dual, lance, etc. |
-| `ENCHANT_HIGH_TIER_CHEST` | 20336 | Mythic body armor |
-| `ENCHANT_HIGH_TIER_HAND_MAIL` | 20500 | Mythic handMail |
-| `ENCHANT_HIGH_TIER_HAND_LEATHER` | 20501 | Mythic handLeather |
-| `ENCHANT_HIGH_TIER_HAND_ROBE` | 20502 | Mythic handRobe |
-| `ENCHANT_HIGH_TIER_BOOTS` | 20339 | Mythic feet armor |
-| `ENCHANT_MID_TIER_WEAPON_HEALER` | 12303 | Superior staff, rod |
-| `ENCHANT_MID_TIER_WEAPON_DPS_TANK` | 12301 | Superior dual, lance, etc. |
-| `ENCHANT_MID_TIER_CHEST` | 20328 | Superior body armor |
-| `ENCHANT_MID_TIER_HAND_MAIL` | 20510 | Superior handMail |
-| `ENCHANT_MID_TIER_HAND_LEATHER` | 20511 | Superior handLeather |
-| `ENCHANT_MID_TIER_HAND_ROBE` | 20512 | Superior handRobe |
-| `ENCHANT_MID_TIER_BOOTS` | 20331 | Superior feet armor |
-
-## After Generation
-
-1. Validate the spec:
-   ```bash
-   dsl validate <output_file> --path "<server_datasheet>"
-   ```
-
-2. Apply to server datasheets:
-   ```bash
-   dsl apply <output_file> --path "<server_datasheet>"
-   ```
-
-Replace `<server_datasheet>` with the path from `.references`.
+- `generate_spec.py` — generated the now-deleted `07-gear-enchant-sync.yaml`
+- `generate_id_lists.py` — generated per-tier ID lists from
+  `gear_progression.csv`

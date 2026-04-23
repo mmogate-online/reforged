@@ -25,11 +25,11 @@ Execute these steps sequentially, stopping on any failure:
    ```
    The packed `DataCenter_Final_EUR.dat` is distributed to clients manually by the project lead. This step only produces the file — distribution is out of scope for this pipeline.
 
-3. **Push to server share** — copy only the files modified by this patch run (listed in the manifests). Use PowerShell so UNC paths resolve:
+3. **Push to server share** — mirror every working-tree change in the server datasheet repo (modified, added, deleted, renamed, untracked) to the share, preserving subdirectory structure. This is a 1:1 push of whatever currently differs from HEAD, including any unrelated edits sitting in the working tree. Use PowerShell so UNC paths resolve:
    ```
-   powershell -Command "python reforged/tools/migrate/push_changes.py --patches {patch1} {patch2} ... --src '<server_datasheet>' --dst '<server_share>'"
+   powershell -Command "python reforged/tools/migrate/push_changes.py --src '<server_datasheet>' --dst '<server_share>'"
    ```
-   Replace `{patch1} {patch2} ...` with the actual patch numbers passed to this command.
+   The script reads `git status` in `<server_datasheet>` — no patch numbers or manifests are consulted.
 
 Replace `<project_root>`, `<server_datasheet>`, `<client_pack_dir>`, and `<server_share>` with values from `.references`.
 
