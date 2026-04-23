@@ -1,0 +1,15 @@
+# Island of Dawn — Teleport scroll item string fix
+# v92 renamed item 133 to "Island of Dawn Teleport Scroll" pointing to "North Dock",
+# which is unrelated to the IoD Tower Base destination restored in spec 06.
+# Restore v31 strings: name and tooltip match the actual teleport destination.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    - id: 133
+      changes:
+        name: "Tower Base Teleport Scroll"
+        toolTip: "Teleports you to the Tower Base."
