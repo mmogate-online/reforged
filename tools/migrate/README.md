@@ -1,12 +1,14 @@
 # Patch Migration Tool
 
-Applies all specs from a patch in sequence and syncs affected entities to the client DataCenter, using DSL apply manifests to narrow the sync to exactly the files each spec touched.
+Applies all specs from a patch in a single batch and syncs affected entities to the client DataCenter, using DSL apply manifests to narrow the sync to exactly the files touched.
 
 ## Overview
 
-The migration tool automates the full apply→sync pipeline for a patch. It discovers all YAML specs under a patch folder, applies them sequentially via `dsl apply --manifest-out`, and then runs a single `dsl sync --from-manifest …` that regenerates only the client shards whose server sources were actually modified.
+The migration tool automates the full apply→sync pipeline for a patch. It discovers all YAML specs under a patch folder, applies them in **one batch call** (specs share an in-memory cache — later specs see earlier specs' mutations without disk round-trips), and then runs `dsl sync --from-manifest` that regenerates only the client shards whose server sources were actually modified.
 
-Individual spec failures (expected for zones without XML) do not stop the pipeline. Sync failures are fatal.
+Reads are pinned to the server datasheet repo's HEAD commit via `--source-ref`. This ensures `multiply`/`add` transforms in balance specs are idempotent — re-applying the same patch against the same HEAD produces the same result.
+
+Any spec failure stops the run (fail-fast); **nothing is committed** — DSL rolls back the whole batch transaction. Sync failures are also fatal.
 
 ## Quick Start
 
@@ -23,7 +25,10 @@ python reforged/tools/migrate/migrate.py --patch 001 --skip-sync
 # Full sync (escape hatch: disable manifest narrowing)
 python reforged/tools/migrate/migrate.py --patch 001 --no-narrow
 
-# Verbose output (full DSL output + failed spec list)
+# Read from working tree instead of HEAD (bypass source-ref)
+python reforged/tools/migrate/migrate.py --patch 001 --no-source-ref
+
+# Verbose DSL diagnostic output
 python reforged/tools/migrate/migrate.py --patch 001 --verbose
 ```
 
@@ -34,35 +39,33 @@ python reforged/tools/migrate/migrate.py --patch 001 --verbose
 | `--patch` | Yes | Patch folder name under `reforged/specs/patches/` |
 | `--dry-run` | No | Pass `--dry-run` to `dsl apply` and `dsl sync`; no files written, no manifests emitted |
 | `--skip-sync` | No | Apply specs only, skip client sync; no manifests emitted |
-| `--no-narrow` | No | Emit apply manifests for inspection but run broad sync without `--from-manifest` (escape hatch) |
-| `--verbose` | No | Show detailed DSL output and list all failed specs in summary |
+| `--no-narrow` | No | Emit apply manifest for inspection but run broad sync without `--from-manifest` (escape hatch) |
+| `--no-source-ref` | No | Read datasheets from working tree instead of server repo HEAD (disables idempotency guarantee for balance specs) |
+| `--verbose` | No | Pass `--verbose` to `dsl apply` for diagnostic output |
 
 ## Execution Order
 
 1. **Preflight** — scan server datasheet tree for Windows-reserved `nul` files and warn (they block robocopy later)
-2. **Prepare manifest dir** — wipe `reforged/tools/migrate/.manifests/<patch>/` (gitignored)
-3. **Discover** — recursively scans `reforged/specs/patches/{patch}/` for `*.yaml` files
-4. **Sort** — `sorted()` on relative paths; numbered prefixes (`01-`, `02-`) control order; subdirectory files sort after root-level specs
-5. **Apply** — runs `dsl apply <spec> --path <server_datasheet> --manifest-out <path>` for each spec; collects the emitted manifest for successful specs
-6. **Detect entities** — parses each spec to extract top-level entity keys for the sync `-e` arguments
-7. **Sync** — runs `dsl sync -e Entity1 -e Entity2 ... --from-manifest m1.json --from-manifest m2.json ...` for the union of per-spec manifests
+2. **Source-ref** — resolve `git rev-parse HEAD` in `server_datasheet`; passed as `--source-ref` to `dsl apply`
+3. **Detect entities** — pre-scans all spec YAML files for top-level entity keys (determines sync targets before any apply runs)
+4. **Prepare manifest dir** — wipe `reforged/tools/migrate/.manifests/<patch>/` (gitignored)
+5. **Discover** — recursively scans `reforged/specs/patches/{patch}/` for `*.yaml` files
+6. **Sort** — `sorted()` on relative paths; numbered prefixes (`01-`, `02-`) control order; subdirectory files sort after root-level specs
+7. **Apply** — runs `dsl apply spec1 spec2 … --path <server_datasheet> --source-ref <HEAD> --manifest-out run.json`; specs share an in-memory cache; first failure stops the run and rolls back everything (nothing written to disk)
+8. **Sync** — runs `dsl sync -e Entity1 -e Entity2 … --from-manifest run.json` against the manifest
 
 ## Manifest Directory
 
-Each run emits one manifest per successfully-applied spec at:
+Each run emits a single merged manifest:
 
 ```
-reforged/tools/migrate/.manifests/<patch>/<spec-slug>.json
+reforged/tools/migrate/.manifests/<patch>/
+  run.json    ← manifest from dsl apply (all specs, union of modified files)
 ```
 
-The slug mirrors the spec's relative path under the patch folder, with `/` replaced by `_` and the `.yaml` extension dropped. Example:
+`run.json` follows DSL manifest v2 format. The tool passes it to `dsl sync --from-manifest` to narrow the sync.
 
-```
-specs/patches/001/loot/c-compensation/zone-0013-iod.yaml
- → .manifests/001/loot_c-compensation_zone-0013-iod.json
-```
-
-The directory is gitignored, wiped at the start of each run, and persisted until the next run so you can inspect what the tool saw when diagnosing a failure. Manifest JSON is emitted by the DSL (`dsl apply --manifest-out`) and contains the list of server files the apply actually wrote.
+The directory is gitignored, wiped at the start of each run, and persisted until the next run for post-run diagnostics. No manifests are emitted on `--dry-run` or `--skip-sync`.
 
 ## Sync-Skip Conditions
 
@@ -70,12 +73,14 @@ The tool skips the sync phase in several cases. Each prints a clear message and 
 
 | Condition | Exit | Message |
 |-----------|------|---------|
+| Any spec fails | 1 | DSL prints per-spec FAILED output; no files written |
 | `--skip-sync` passed | 0 | `Sync skipped (--skip-sync)` |
 | No specs declared a syncable entity | 0 | `No syncable entities — nothing to sync` |
-| Every spec apply failed | 1 | `All specs failed — sync skipped` |
 | Applies succeeded but wrote nothing (idempotent) | 0 | `No server-side file changes — sync skipped` |
 
-The last case is common when re-running a patch against already-applied server state — the apply reports "N operations successful" but produces no file diffs. With manifest narrowing the tool detects this and skips sync entirely rather than spending time regenerating client shards that won't change. Use `--no-narrow` to force the broad sync anyway.
+The last case is common when re-running a patch against already-applied server state — specs find all items/entities already in the correct state, write nothing, and the manifest has an empty `modified_files` list. Use `--no-narrow` to force the broad sync anyway.
+
+On failure, the batch transaction rolls back automatically — the working tree is left unchanged. Use `git checkout .` in the server datasheet repo only if you made manual edits that need reverting.
 
 ## Spec Ordering
 
@@ -83,13 +88,24 @@ Root-level specs must use numbered prefixes to control execution order:
 
 ```
 reforged/specs/patches/001/
-├── 01-reaper-weapons.yaml          # Applied first
-├── 02-evolutions.yaml              # Applied second
-├── 03-flawless-mythic-grade.yaml
+├── 01-armor-standardize.yaml       # Applied first
+├── 02-reaper-weapons.yaml          # Applied second
+├── 02-brawler-weapons.yaml         # Applied third (same prefix → alphabetical)
 ├── ...
-├── 08-infusion-loot.yaml           # Applied eighth
-├── loot/c-compensation/zone-*.yaml # Applied after all root specs
-└── loot/e-compensation/zone-*.yaml # Applied last
+├── 15-infusion-boxes.yaml          # Applied last root-level
+├── balance/zone-0013-island_of_dawn.yaml  # After all root specs
+└── loot/c-compensation/zone-*.yaml # Applied after all root specs
+```
+
+## Source-Ref and Balance Specs
+
+Balance specs (`balanceProfiles` with `multiply`/`add`) are non-idempotent when reading from the working tree — re-applying compounds the multipliers. The tool avoids this by passing `--source-ref HEAD` (the server repo's last committed state) to every apply run. Reads go through the git object database at that commit; writes still land on the working tree.
+
+**Re-migration after spec changes:** If you need to re-apply a patch after fixing a spec, you need a clean working tree first so HEAD is still the correct baseline:
+
+```bash
+git -C <server_datasheet> checkout .
+python reforged/tools/migrate/migrate.py --patch 001
 ```
 
 ## Supported Entity Schemas
@@ -120,6 +136,9 @@ The tool detects top-level YAML keys and maps them to sync-config entities:
 | `commonSkills` | SkillData | Yes |
 | `userSkills` | SkillData | Yes |
 | `npcSkills` | SkillData | Yes |
+| `npcs` | — | No (server-only) |
+| `ai` | — | No (server-only) |
+| `balanceProfiles` | — | No (server-only NpcData; SkillData added automatically when `skills:` section present) |
 | `cCompensations` | — | No (server-only) |
 | `eCompensations` | — | No (server-only) |
 | `fCompensations` | — | No (server-only) |
@@ -138,28 +157,29 @@ Paths are read from `reforged/.references`:
 | Key | Used For |
 |-----|----------|
 | `dsl_cli` | DSL CLI binary path |
-| `server_datasheet` | `--path` argument for `dsl apply` |
+| `server_datasheet` | `--path` argument for `dsl apply`; also the git repo used for HEAD resolution |
 
 ## Output Example
 
 ```
-Patch 000 — 7 specs (7 total)
+Patch 001 — 38 specs + 19 sub-specs (57 total)
+Baseline: HEAD → a1b2c3d4e5f6
 
-[1/7] 00-iod-training-bomb.yaml
-        ✓ Applied 1 operations (1 successful, 0 failed)
-[2/7] 01-iod-garrison-quest.yaml
-        ✓ Applied 7 operations (7 successful, 0 failed)
-[3/7] 02-iod-skill-quest-strings.yaml
-        ✓ Applied 10 operations (10 successful, 0 failed)
+[1/57] 00-enchant-system.yaml  →  applied (43 operations)
+[2/57] 01-armor-standardize.yaml  →  applied (61 operations)
+[3/57] 01-weapon-standardize.yaml  →  applied (23 operations)
 ...
 
+Run complete: 57 applied, 0 failed, 1842 operation(s), 0 warning(s).
+Manifest: 47 modified, 0 deleted -> .manifests/001/run.json
+
 ── Summary ──
-Applied: 7 specs
-Entities modified: CollectionData, ItemData, SkillData, StrSheet_Item
+Entities modified: CollectionData, EquipmentData, ItemData, ...
+Server-only: balanceProfiles, npcs (no sync needed)
 
 ── Client Sync ──
-Syncing: CollectionData, ItemData, SkillData, StrSheet_Item
-Narrowing: 7 manifest(s), 12 modified file(s)
+Syncing: CollectionData, EquipmentData, ItemData, ...
+Narrowing: 1 manifest, 47 modified file(s)
 ✓ Sync complete
 ```
 

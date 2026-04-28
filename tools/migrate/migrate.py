@@ -7,6 +7,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 # Force UTF-8 output on Windows
@@ -42,13 +43,16 @@ ENTITY_SYNC_MAP = {
     "customizingItems": "CustomizingItems",
     "customizingItemBags": None,
     "exchanges": None,          # ItemMedalExchange — server-only, client reads at runtime
-    "npcStrings": "StrSheet_Npc",   # StrSheet_Npc — shop/NPC title strings
+    "npcStrings": "StrSheet_Npc",
     "villagerMenuItems": None,  # VillagerMenuItem — server-only
-    "buyMenuLists": "BuyMenuList",  # BuyMenuList — synced to client MenuList/
+    "buyMenuLists": "BuyMenuList",
     "buyLists": None,           # BuyList — server-only
     "commonSkills": "SkillData",
     "userSkills": "SkillData",
     "npcSkills": "SkillData",
+    "npcs": None,               # NpcData — server-only
+    "ai": None,                 # AIData — server-only
+    "balanceProfiles": None,    # NpcData (+ SkillData when skills: present — see detect_entities)
 }
 
 # Entity keys whose inline blocks imply additional sync entities
@@ -60,6 +64,9 @@ INLINE_STRING_SYNC = {
 }
 
 ENTITY_KEY_PATTERN = re.compile(r"^(" + "|".join(ENTITY_SYNC_MAP.keys()) + r"):")
+
+# Detects a skills: section indented under a balanceProfiles block
+BALANCE_SKILLS_HINT = re.compile(r"^\s+skills:\s*$")
 
 
 def load_references(project_root: Path) -> dict[str, str]:
@@ -87,18 +94,15 @@ def discover_specs(patch_dir: Path) -> list[Path]:
 
 def detect_entities(spec_path: Path) -> set[str]:
     entities = set()
-    with open(spec_path, "r", encoding="utf-8") as f:
-        for line in f:
-            m = ENTITY_KEY_PATTERN.match(line)
-            if m:
-                entities.add(m.group(1))
+    lines = spec_path.read_text(encoding="utf-8").splitlines()
+    for line in lines:
+        m = ENTITY_KEY_PATTERN.match(line)
+        if m:
+            entities.add(m.group(1))
+    # A balanceProfiles block with a skills: section modifies NpcSkillData → SkillData sync needed
+    if "balanceProfiles" in entities and any(BALANCE_SKILLS_HINT.match(l) for l in lines):
+        entities.add("npcSkills")
     return entities
-
-
-def manifest_slug(spec_path: Path, patch_dir: Path) -> str:
-    """Derive a stable filename slug for a spec's manifest."""
-    rel = spec_path.relative_to(patch_dir).with_suffix("")
-    return rel.as_posix().replace("/", "_")
 
 
 def scan_for_nul_files(server_datasheet: str) -> list[Path]:
@@ -110,35 +114,47 @@ def scan_for_nul_files(server_datasheet: str) -> list[Path]:
     return hits
 
 
-def apply_spec(
+def resolve_server_head(server_datasheet: str) -> str | None:
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=server_datasheet,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return None
+    return result.stdout.strip()
+
+
+def apply_specs_batch(
     dsl_cli: str,
-    spec_path: Path,
+    spec_paths: list[Path],
     server_datasheet: str,
     project_root: Path,
     dry_run: bool,
     verbose: bool,
-    manifest_out: Path | None,
-) -> tuple[bool, str]:
-    rel_path = spec_path.relative_to(project_root)
-    cmd = [dsl_cli, "apply", str(rel_path), "--path", server_datasheet]
+    manifest_path: Path | None,
+    source_ref: str | None,
+) -> bool:
+    """Apply all specs in one dsl apply call. DSL output streams to the terminal.
+
+    Uses the shared in-memory cache — later specs see earlier specs' mutations
+    without disk round-trips. On fail-fast failure DSL rolls back everything;
+    nothing is committed to the working tree.
+    """
+    cmd = [dsl_cli, "apply"]
+    cmd.extend(spec.relative_to(project_root).as_posix() for spec in spec_paths)
+    cmd.extend(["--path", server_datasheet])
+    if manifest_path is not None and not dry_run:
+        cmd.extend(["--manifest-out", str(manifest_path)])
+    if source_ref is not None:
+        cmd.extend(["--source-ref", source_ref])
     if dry_run:
         cmd.append("--dry-run")
-    if manifest_out is not None:
-        cmd.extend(["--manifest-out", str(manifest_out)])
-
-    result = subprocess.run(
-        cmd,
-        cwd=str(project_root),
-        capture_output=True,
-        text=True,
-    )
-
-    output = result.stdout.strip()
-    if result.returncode != 0:
-        error = result.stderr.strip() or output or "Unknown error"
-        return False, error
-
-    return True, output
+    if verbose:
+        cmd.append("--verbose")
+    result = subprocess.run(cmd, cwd=str(project_root))
+    return result.returncode == 0
 
 
 def run_sync(
@@ -147,21 +163,20 @@ def run_sync(
     project_root: Path,
     dry_run: bool,
     verbose: bool,
-    manifest_paths: list[Path] | None,
+    manifest_path: Path | None,
 ) -> tuple[bool, str]:
     config = project_root / "reforged" / "config" / "sync-config.yaml"
     cmd = [dsl_cli, "sync", "--config", str(config)]
     for e in entities:
         cmd.extend(["-e", e])
-    if manifest_paths:
-        for p in manifest_paths:
-            cmd.extend(["--from-manifest", str(p)])
+    if manifest_path is not None:
+        cmd.extend(["--from-manifest", str(manifest_path)])
     if dry_run:
         cmd.append("--dry-run")
 
     result = subprocess.run(
         cmd,
-        cwd=str(project_root),
+        cwd=str(project_root / "reforged"),
         capture_output=True,
         text=True,
     )
@@ -176,14 +191,14 @@ def run_sync(
 
 def count_by_category(specs: list[Path], patch_dir: Path) -> tuple[int, int]:
     root_count = 0
-    loot_count = 0
+    sub_count = 0
     for s in specs:
         rel = s.relative_to(patch_dir).as_posix()
         if "/" in rel:
-            loot_count += 1
+            sub_count += 1
         else:
             root_count += 1
-    return root_count, loot_count
+    return root_count, sub_count
 
 
 def load_manifest_modified_count(manifest_path: Path) -> int:
@@ -200,7 +215,8 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Pass --dry-run to dsl apply and dsl sync")
     parser.add_argument("--skip-sync", action="store_true", help="Apply specs only, skip client sync")
     parser.add_argument("--no-narrow", action="store_true", help="Run full sync instead of manifest-narrowed sync (escape hatch)")
-    parser.add_argument("--verbose", action="store_true", help="Show detailed DSL output")
+    parser.add_argument("--no-source-ref", action="store_true", help="Read datasheets from working tree instead of server repo HEAD")
+    parser.add_argument("--verbose", action="store_true", help="Pass --verbose to dsl apply for diagnostic output")
     args = parser.parse_args()
 
     project_root = Path(__file__).resolve().parents[3]
@@ -222,7 +238,7 @@ def main() -> int:
     # Preflight: warn on Windows reserved 'nul' files in the server datasheet tree
     nul_files = scan_for_nul_files(server_datasheet)
     if nul_files:
-        print(f"\u26a0 Warning: {len(nul_files)} 'nul' file(s) found in server datasheet (will block robocopy push):")
+        print(f"⚠ Warning: {len(nul_files)} 'nul' file(s) found in server datasheet (will block robocopy push):")
         for p in nul_files[:5]:
             print(f"    {p}")
         if len(nul_files) > 5:
@@ -230,22 +246,36 @@ def main() -> int:
         print("  Delete with: python -c \"import os; os.remove(r'\\\\\\\\?\\\\<full-path>')\"")
         print()
 
-    # Manifest output directory — wiped per-run, gitignored via reforged/.gitignore
-    manifests_dir = project_root / "reforged" / "tools" / "migrate" / ".manifests" / args.patch
+    # Source-ref: pin reads to server repo HEAD so multiply/add transforms are idempotent
+    source_ref: str | None = None
+    if not args.no_source_ref:
+        source_ref = resolve_server_head(server_datasheet)
+        if source_ref is None:
+            print("⚠ Warning: server datasheet is not a git repo; reading from working tree")
+
+    # Pre-scan all specs for entity keys before invoking DSL
+    all_entity_keys: set[str] = set()
+    for spec in specs:
+        all_entity_keys.update(detect_entities(spec))
+
+    # Manifest setup — run.json per patch run (wiped at start of each run)
     emit_manifests = not (args.dry_run or args.skip_sync)
+    manifest_path: Path | None = None
     if emit_manifests:
+        manifests_dir = project_root / "reforged" / "tools" / "migrate" / ".manifests" / args.patch
         if manifests_dir.exists():
             shutil.rmtree(manifests_dir)
         manifests_dir.mkdir(parents=True, exist_ok=True)
+        manifest_path = manifests_dir / "run.json"
 
-    root_count, loot_count = count_by_category(specs, patch_dir)
+    root_count, sub_count = count_by_category(specs, patch_dir)
     total = len(specs)
 
     header_parts = []
     if root_count:
         header_parts.append(f"{root_count} specs")
-    if loot_count:
-        header_parts.append(f"{loot_count} loot specs")
+    if sub_count:
+        header_parts.append(f"{sub_count} sub-specs")
     print(f"Patch {args.patch} — {' + '.join(header_parts)} ({total} total)")
     if args.dry_run:
         print("(dry-run mode)")
@@ -253,63 +283,24 @@ def main() -> int:
         print("(--no-narrow: sync will skip manifest narrowing)")
     print()
 
-    all_entity_keys: set[str] = set()
-    applied = 0
-    failed = 0
-    failed_specs: list[str] = []
-    successful_manifests: list[Path] = []
+    sys.stdout.flush()
 
-    for i, spec in enumerate(specs, 1):
-        rel = spec.relative_to(patch_dir).as_posix()
-        print(f"[{i}/{total}] {rel}")
+    t_apply = time.monotonic()
+    run_ok = apply_specs_batch(
+        dsl_cli, specs, server_datasheet, project_root,
+        args.dry_run, args.verbose, manifest_path, source_ref,
+    )
+    apply_secs = time.monotonic() - t_apply
 
-        entities = detect_entities(spec)
-        all_entity_keys.update(entities)
+    if not run_ok:
+        return 1
 
-        manifest_path: Path | None = None
-        if emit_manifests:
-            manifest_path = manifests_dir / f"{manifest_slug(spec, patch_dir)}.json"
-
-        ok, output = apply_spec(
-            dsl_cli, spec, server_datasheet, project_root,
-            args.dry_run, args.verbose, manifest_path,
-        )
-
-        if ok:
-            applied += 1
-            if manifest_path is not None and manifest_path.exists():
-                successful_manifests.append(manifest_path)
-            if args.verbose and output:
-                for line in output.splitlines():
-                    print(f"        {line}")
-            else:
-                summary_line = ""
-                for line in output.splitlines():
-                    if "Applied" in line or "operations" in line.lower():
-                        summary_line = line.strip()
-                        break
-                if summary_line:
-                    print(f"        \u2713 {summary_line}")
-                else:
-                    print(f"        \u2713 Applied")
-        else:
-            failed += 1
-            failed_specs.append(rel)
-            error_brief = output.splitlines()[0] if output else "Unknown error"
-            print(f"        \u2717 Failed \u2014 {error_brief}")
-            if args.verbose and output:
-                for line in output.splitlines()[1:]:
-                    print(f"          {line}")
+    if args.dry_run:
+        print("\n(dry-run completed — no files written)")
 
     # Summary
     print()
-    print("\u2500\u2500 Summary \u2500\u2500")
-    fail_note = f" ({failed} failed)" if failed else ""
-    print(f"Applied: {applied} specs{fail_note}")
-
-    if failed_specs and args.verbose:
-        for fs in failed_specs:
-            print(f"  \u2717 {fs}")
+    print("── Summary ──")
 
     sync_set = {
         ENTITY_SYNC_MAP[k] for k in all_entity_keys
@@ -328,10 +319,13 @@ def main() -> int:
         if k in ENTITY_SYNC_MAP and ENTITY_SYNC_MAP[k] is None
     })
 
+    summary_parts = []
     if syncable_entities:
-        print(f"Entities modified: {', '.join(syncable_entities)}")
+        summary_parts.append(f"{len(syncable_entities)} entities modified")
     if server_only_keys:
-        print(f"Server-only: {', '.join(server_only_keys)} (no sync needed)")
+        summary_parts.append(f"{len(server_only_keys)} server-only skipped")
+    summary_parts.append(f"{apply_secs:.0f}s")
+    print("  |  ".join(summary_parts))
 
     # Client sync
     if args.skip_sync:
@@ -342,41 +336,39 @@ def main() -> int:
         print("\nNo syncable entities — nothing to sync")
         return 0
 
-    if applied == 0:
-        print("\nAll specs failed — sync skipped")
-        return 1
-
     # Manifest-narrowed sync decision
-    manifest_paths: list[Path] | None = None
-    if not args.no_narrow and emit_manifests:
-        total_modified = sum(load_manifest_modified_count(m) for m in successful_manifests)
+    use_manifest: Path | None = None
+    if not args.no_narrow and emit_manifests and manifest_path is not None:
+        total_modified = load_manifest_modified_count(manifest_path)
         if total_modified == 0:
             print("\nNo server-side file changes — sync skipped")
             return 0
-        manifest_paths = successful_manifests
+        use_manifest = manifest_path
         print()
-        print(f"\u2500\u2500 Client Sync \u2500\u2500")
-        print(f"Syncing: {', '.join(syncable_entities)}")
-        print(f"Narrowing: {len(manifest_paths)} manifest(s), {total_modified} modified file(s)")
+        print("── Client Sync ──")
+        print(f"Syncing {len(syncable_entities)} entities  ·  {total_modified} file(s) via manifest")
     else:
         print()
-        print(f"\u2500\u2500 Client Sync \u2500\u2500")
-        print(f"Syncing: {', '.join(syncable_entities)}")
+        print("── Client Sync ──")
+        print(f"Syncing {len(syncable_entities)} entities")
         if args.no_narrow:
             print("(--no-narrow: full sync, manifest narrowing disabled)")
 
+    t_sync = time.monotonic()
     ok, output = run_sync(
         dsl_cli, syncable_entities, project_root,
-        args.dry_run, args.verbose, manifest_paths,
+        args.dry_run, args.verbose, use_manifest,
     )
+    sync_secs = time.monotonic() - t_sync
+
     if ok:
-        print("\u2713 Sync complete")
+        print(f"✓ Sync complete ({sync_secs:.0f}s)")
         if args.verbose and output:
             for line in output.splitlines():
                 print(f"  {line}")
         return 0
     else:
-        print(f"\u2717 Sync failed \u2014 {output}")
+        print(f"✗ Sync failed — {output}")
         return 1
 
 
