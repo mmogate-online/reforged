@@ -39,6 +39,7 @@ These four packages form a strict dependency chain. See `enchant-standard/README
 | `crystals` | ID Registry | All crystal item IDs (Common/Fine weapon, armor, accessory), fusion structure IDs, dyad crystal IDs, and gacha box IDs. Split across 11 sub-files. | `crystals/README.md` |
 | `dungeon-tokens` | ID Registry | Token, menu, and list item IDs for Bastion of Lok and Sinestral Manor. | — |
 | `gear-infusion-boxes` | ID Registry | Infusion fodder gacha box IDs by slot and rarity (12 IDs total). | — |
+| `npc-ids` | ID Registry | NPC template IDs per zone with individual-NPC variables and category group lists (Friendly/Normal/Elite/Boss/World Boss/Objects). Starts with IoD (zone 13). | `npc-ids/README.md` |
 
 ### Templates
 

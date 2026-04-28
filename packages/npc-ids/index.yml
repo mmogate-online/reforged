@@ -1,0 +1,162 @@
+# npc-ids — NPC Template ID Registry
+#
+# Central registry of NPC template IDs for rebalancing and reference.
+# Organized as one sub-file per zone. Each sub-file exports individual NPC
+# variables (named after the NPC) and category group lists (lists of IDs).
+#
+# Variable naming convention: {ZONE_ABBR}_{NPC_NAME_UPPER_SNAKE}
+# Category naming convention: {ZONE_ABBR}_{FRIENDLY_NPCS|NORMAL_MONSTERS|
+#                              ELITE_MONSTERS|BOSS_MONSTERS|WORLD_BOSSES|OBJECTS}
+#
+# See README.md for the zone abbreviation table and categorization rules.
+
+spec:
+  version: "1.0"
+
+imports:
+  - from: ./zone-436-karascha_lair.yml
+    use:
+      variables:
+        - KL_CULTIST_DEVASTATOR
+        - KL_KARASCHA
+        - KL_LEMAN
+        - KL_SERSINE
+        - KL_DEVOTED_EBON_IMP
+        - KL_EXIT_TELEPORTAL
+        - KL_FRIENDLY_NPCS
+        - KL_NORMAL_MONSTERS
+        - KL_BOSS_MONSTERS
+        - KL_OBJECTS
+
+  - from: ./zone-013-iod.yml
+    use:
+      variables:
+        # IoD individuals
+        - IOD_PIGLING
+        - IOD_SPOREWALKER
+        - IOD_PONDEROUS_SPOREWALKER
+        - IOD_DWARF_ORCAN
+        - IOD_ORCAN_RAIDER
+        - IOD_KARIAGON
+        - IOD_DISC_REAPER
+        - IOD_RUNEKEEPER
+        - IOD_DESTROYER
+        - IOD_GIANT_HONEYBEE
+        - IOD_DOCILE_TERRON
+        - IOD_GENTLE_PIGLING
+        - IOD_TERRON_RINGLEADER
+        - IOD_TERRON_THIEF
+        - IOD_SICKLY_NORUK
+        - IOD_DARK_MARAUDER
+        - IOD_TRAINING_DUMMY
+        - IOD_ORCAN_GUARDIAN
+        - IOD_DWARF_GUARDIAN
+        - IOD_EXPLODING_BARREL
+        - IOD_VEKAS
+        - IOD_ACHARAK
+        - IOD_ACHARAKS_SOLDIER
+        - IOD_KUGAI
+        - IOD_TERRON_SABOTEUR_ENV
+        - IOD_ROCKCRAWLER
+        - IOD_ROCKCRAWLER_CLEAVER
+        - IOD_PROWLING_CROMOS
+        - IOD_CROMOS
+        - IOD_SHAGGY_NORUK
+        - IOD_NORUK
+        - IOD_ELDER_GHILLIEDHU
+        - IOD_GHILLIEDHU
+        - IOD_HORNED_GHILLIEDHU
+        - IOD_HARDENED_GHILLIEDHU
+        - IOD_TERRON
+        - IOD_TERRON_THRALL
+        - IOD_TERRON_SABOTEUR
+        - IOD_TERRON_CHIEF
+        - IOD_TERRON_LAMA
+        - IOD_DARK_RAIDER
+        - IOD_DEVOTED_EBON_IMP
+        - IOD_STONEBEAK_RAIDER
+        - IOD_STONEBEAK_BRIGAND
+        - IOD_STONEBEAK_HIGHCREST
+        - IOD_SCION_SCOUT_1
+        - IOD_SCION_SCOUT_2
+        - IOD_SCION_SCOUT_3
+        - IOD_SCION_SCOUT_4
+        # IoD category groups
+        - IOD_FRIENDLY_NPCS
+        - IOD_NORMAL_MONSTERS
+        - IOD_ELITE_MONSTERS
+        - IOD_BOSS_MONSTERS
+        - IOD_WORLD_BOSSES
+        - IOD_OBJECTS
+
+exports:
+  variables:
+    # Karascha's Lair individuals
+    - KL_CULTIST_DEVASTATOR
+    - KL_KARASCHA
+    - KL_LEMAN
+    - KL_SERSINE
+    - KL_DEVOTED_EBON_IMP
+    - KL_EXIT_TELEPORTAL
+    # Karascha's Lair category groups
+    - KL_FRIENDLY_NPCS
+    - KL_NORMAL_MONSTERS
+    - KL_BOSS_MONSTERS
+    - KL_OBJECTS
+    # IoD individuals
+    - IOD_PIGLING
+    - IOD_SPOREWALKER
+    - IOD_PONDEROUS_SPOREWALKER
+    - IOD_DWARF_ORCAN
+    - IOD_ORCAN_RAIDER
+    - IOD_KARIAGON
+    - IOD_DISC_REAPER
+    - IOD_RUNEKEEPER
+    - IOD_DESTROYER
+    - IOD_GIANT_HONEYBEE
+    - IOD_DOCILE_TERRON
+    - IOD_GENTLE_PIGLING
+    - IOD_TERRON_RINGLEADER
+    - IOD_TERRON_THIEF
+    - IOD_SICKLY_NORUK
+    - IOD_DARK_MARAUDER
+    - IOD_TRAINING_DUMMY
+    - IOD_ORCAN_GUARDIAN
+    - IOD_DWARF_GUARDIAN
+    - IOD_EXPLODING_BARREL
+    - IOD_VEKAS
+    - IOD_ACHARAK
+    - IOD_ACHARAKS_SOLDIER
+    - IOD_KUGAI
+    - IOD_TERRON_SABOTEUR_ENV
+    - IOD_ROCKCRAWLER
+    - IOD_ROCKCRAWLER_CLEAVER
+    - IOD_PROWLING_CROMOS
+    - IOD_CROMOS
+    - IOD_SHAGGY_NORUK
+    - IOD_NORUK
+    - IOD_ELDER_GHILLIEDHU
+    - IOD_GHILLIEDHU
+    - IOD_HORNED_GHILLIEDHU
+    - IOD_HARDENED_GHILLIEDHU
+    - IOD_TERRON
+    - IOD_TERRON_THRALL
+    - IOD_TERRON_SABOTEUR
+    - IOD_TERRON_CHIEF
+    - IOD_TERRON_LAMA
+    - IOD_DARK_RAIDER
+    - IOD_DEVOTED_EBON_IMP
+    - IOD_STONEBEAK_RAIDER
+    - IOD_STONEBEAK_BRIGAND
+    - IOD_STONEBEAK_HIGHCREST
+    - IOD_SCION_SCOUT_1
+    - IOD_SCION_SCOUT_2
+    - IOD_SCION_SCOUT_3
+    - IOD_SCION_SCOUT_4
+    # IoD category groups
+    - IOD_FRIENDLY_NPCS
+    - IOD_NORMAL_MONSTERS
+    - IOD_ELITE_MONSTERS
+    - IOD_BOSS_MONSTERS
+    - IOD_WORLD_BOSSES
+    - IOD_OBJECTS

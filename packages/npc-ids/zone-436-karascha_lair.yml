@@ -1,0 +1,61 @@
+# Karascha's Lair (Zone 436) — NPC Template IDs
+#
+# Classification sources (via mcp__datasheet-v92__audit_zone_spawns):
+#   - Friendly NPCs: villager=true
+#   - Boss Monsters: elite=true + showAggroTarget=true
+#   - Objects: isObjectNpc=true
+#   - Normal Monsters: everything else (catch-all)
+#
+# Zone 436 scan results:
+#   - 2 villager=true: Leman (combat companion), Sersine (quest NPC)
+#   - 1 boss: Karascha (elite=true, showAggroTarget=true, giant, lv9)
+#   - 2 normal monsters: Cultist Devastator (basic, lv9), Devoted Ebon Imp (zarco, lv9)
+#   - 1 object: Exit Teleportal
+#
+# Non-combat NPCs (1010, 1012, 4000-4002, 8001-8010) have voidSpawn=true and
+# are excluded — they are never placed in active territory spawns.
+
+spec:
+  version: "1.0"
+
+variables:
+
+  # --- Individual NPCs ---
+
+  KL_CULTIST_DEVASTATOR: 1001    # Cultist Devastator (lv9, basic)
+  KL_KARASCHA: 1002              # Karascha (lv9, elite boss, giant)
+  KL_LEMAN: 1011                 # Leman (lv9, companion — villager=true)
+  KL_SERSINE: 1030               # Sersine (lv40, quest NPC — villager=true)
+  KL_DEVOTED_EBON_IMP: 1101      # Devoted Ebon Imp (lv9, zarco)
+  KL_EXIT_TELEPORTAL: 1501       # Exit Teleportal — Object
+
+  # --- Category groups ---
+
+  KL_FRIENDLY_NPCS:
+    - $KL_LEMAN
+    - $KL_SERSINE
+
+  KL_NORMAL_MONSTERS:
+    - $KL_CULTIST_DEVASTATOR
+    - $KL_DEVOTED_EBON_IMP
+
+  KL_BOSS_MONSTERS:
+    - $KL_KARASCHA
+
+  KL_OBJECTS:
+    - $KL_EXIT_TELEPORTAL
+
+exports:
+  variables:
+    # Individuals
+    - KL_CULTIST_DEVASTATOR
+    - KL_KARASCHA
+    - KL_LEMAN
+    - KL_SERSINE
+    - KL_DEVOTED_EBON_IMP
+    - KL_EXIT_TELEPORTAL
+    # Category groups
+    - KL_FRIENDLY_NPCS
+    - KL_NORMAL_MONSTERS
+    - KL_BOSS_MONSTERS
+    - KL_OBJECTS
