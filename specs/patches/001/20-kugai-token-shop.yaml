@@ -1,0 +1,281 @@
+# ===========================================================================
+# Kugai Token Shop — IoD Medal Exchange
+# ===========================================================================
+#
+# Token: Kugai's Crest (95216)
+# Dropped by Kugai (npcTemplateId 1004) in 3 bags: 2+3+5 = 10/kill
+# Shop: 3 tabs — Weapons / Armor / Materials
+#
+# Pricing (G = 15):
+#   Weapons (12): 30 tokens each  →  full set = 9 kills
+#   Chest   (3):  30 tokens each
+#   Gloves  (3):  15 tokens each
+#   Boots   (3):  15 tokens each
+#   Materials:     Alkahest 2 tokens, Feedstock 1 token (1:2 enchant ratio)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: iod-tokens
+    use:
+      variables:
+        - KUGAI_TOKEN
+        - KUGAI_MENU
+        - KUGAI_LIST_WEAPONS
+        - KUGAI_LIST_ARMOR
+        - KUGAI_LIST_MATERIALS
+
+# ===========================================================================
+# Token Item Definition
+# ===========================================================================
+
+definitions:
+  _KugaiToken:
+    name: token
+    combatItemType: MEDAL_USEABLE
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 3
+    level: 1
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 2
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 10000
+    slotLimit: 0
+    coolTimeGroup: 0
+    itemUseCount: 1
+    maxDropUnit: 9999
+    enchantEnable: false
+    tradable: false
+    boundType: None
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    icon: Icon_Items.mysterypaper5_Tex
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
+    defaultValue: 0
+
+items:
+  upsert:
+    - id: $KUGAI_TOKEN
+      $extends: _KugaiToken
+      strings:
+        name: "Kugai's Crest"
+        toolTip: "A crest earned by defeating Kugai on the Island of Dawn.$BR$BR<font color = '#41FF3A'>[Right-click]</font> to open the Kugai Exchange."
+
+# ===========================================================================
+# Medal Store Wiring
+# ===========================================================================
+
+villagerMenuItems:
+  upsert:
+    - id: $KUGAI_MENU
+      itemTemplateId: $KUGAI_TOKEN
+      type: MedalStore
+
+buyMenuLists:
+  upsert:
+    - id: $KUGAI_MENU
+      stringId: $KUGAI_MENU
+      desc: "Kugai Token Exchange"
+      itemLists:
+        - id: $KUGAI_LIST_WEAPONS
+          stringed: $KUGAI_LIST_WEAPONS
+        - id: $KUGAI_LIST_ARMOR
+          stringed: $KUGAI_LIST_ARMOR
+        - id: $KUGAI_LIST_MATERIALS
+          stringed: $KUGAI_LIST_MATERIALS
+
+buyLists:
+  upsert:
+    - id: $KUGAI_LIST_WEAPONS
+      desc: "Kugai Weapons"
+      needMedalItemId: $KUGAI_TOKEN
+      items:
+        # DPS Weapons — 30 tokens each
+        - itemId: 12137  # Kugai's Left & Right (Warrior)
+          priceRevision: 30
+        - itemId: 12138  # Resistance of the Mighty (Lancer)
+          priceRevision: 30
+        - itemId: 12139  # Kugai's Greatsword (Slayer)
+          priceRevision: 30
+        - itemId: 12140  # Kugai's Axe (Berserker)
+          priceRevision: 30
+        - itemId: 12141  # Kugai's Disc (Sorcerer)
+          priceRevision: 30
+        - itemId: 12142  # Kugai's Bow (Archer)
+          priceRevision: 30
+        - itemId: 55272  # Kugai's Arcannon (Gunner)
+          priceRevision: 30
+        - itemId: 58523  # Kugai's Shuriken (Ninja)
+          priceRevision: 30
+        - itemId: 59320  # Kugai's Runeglaive (Valkyrie)
+          priceRevision: 30
+        - itemId: 82272  # Kugai's Powerfists (Brawler)
+          priceRevision: 30
+        # Healer Weapons — 30 tokens each
+        - itemId: 12143  # Kugai's Staff (Priest)
+          priceRevision: 30
+        - itemId: 12144  # Kugai's Scepter (Mystic)
+          priceRevision: 30
+
+    - id: $KUGAI_LIST_ARMOR
+      desc: "Kugai Armor"
+      needMedalItemId: $KUGAI_TOKEN
+      items:
+        # Chest — 30 tokens each
+        - itemId: 17413  # Second-in-Command's Breastplate (Mail)
+          priceRevision: 30
+        - itemId: 17416  # Corruption-Covered Cuirass (Leather)
+          priceRevision: 30
+        - itemId: 17419  # Robes of Unnatural Order (Robe)
+          priceRevision: 30
+        # Gloves — 15 tokens each
+        - itemId: 17414  # Demonic Claws (Mail)
+          priceRevision: 15
+        - itemId: 17417  # Gloves of Two Minds (Leather)
+          priceRevision: 15
+        - itemId: 17420  # Demon's Wraps (Robe)
+          priceRevision: 15
+        # Boots — 15 tokens each
+        - itemId: 17415  # Kugai's Mighty Big Greaves (Mail)
+          priceRevision: 15
+        - itemId: 17418  # Kugai's Pacing Boots (Leather)
+          priceRevision: 15
+        - itemId: 17421  # Kugai's Mighty Big Shoes (Robe)
+          priceRevision: 15
+
+    - id: $KUGAI_LIST_MATERIALS
+      desc: "Kugai Materials"
+      needMedalItemId: $KUGAI_TOKEN
+      items:
+        - itemId: 21351  # Masterwork Alkahest
+          priceRevision: 2
+        - itemId: 94101  # Tier 1 Feedstock
+          priceRevision: 1
+
+# ===========================================================================
+# Shop Title Strings
+# ===========================================================================
+
+npcStrings:
+  upsert:
+    - id: $KUGAI_MENU
+      string: "Kugai Exchange"
+    - id: $KUGAI_LIST_WEAPONS
+      string: "Weapons"
+    - id: $KUGAI_LIST_ARMOR
+      string: "Armor"
+    - id: $KUGAI_LIST_MATERIALS
+      string: "Materials"
+
+# ===========================================================================
+# Medal Exchange Rates
+# ===========================================================================
+
+exchanges:
+  upsert:
+    # Weapons — 30 tokens
+    - itemId: 12137
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12138
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12139
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12140
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12141
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12142
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 55272
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 58523
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 59320
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 82272
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12143
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 12144
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    # Chest — 30 tokens
+    - itemId: 17413
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 17416
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    - itemId: 17419
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 30
+    # Gloves — 15 tokens
+    - itemId: 17414
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 15
+    - itemId: 17417
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 15
+    - itemId: 17420
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 15
+    # Boots — 15 tokens
+    - itemId: 17415
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 15
+    - itemId: 17418
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 15
+    - itemId: 17421
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 15
+    # Materials — Alkahest 2 tokens, Feedstock 1 token (1:2 enchant ratio)
+    - itemId: 21351
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 2
+    - itemId: 94101
+      medalItemId: $KUGAI_TOKEN
+      buyPriceMedal: 1

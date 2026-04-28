@@ -1,0 +1,3566 @@
+# Island of Dawn (zone 13) — difficulty-weighted loot table
+#
+# Difficulty scoring: sqrt(maxHp * atk) per mob, scaled to base_prob=0.4 at mean.
+# Environmental mobs (creature playStyle, HP<50): floored at 0.01.
+# Probability range: [0.01, 0.8].
+# Drop qty also scales by ceil(base_qty * sqrt(score_ratio)) — bosses drop more per trigger.
+#
+# To adjust rates edit the constants in generate_iod_loot.py and re-run.
+# Idempotency: upsert — safe to re-apply against any baseline.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  upsert:
+    - huntingZoneId: 13
+      npcTemplateId: 1
+      npcName: "Pigling"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.05
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.05
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 2
+      npcName: "Sporewalker"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.5
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.5
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.012
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0012
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.012
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 3
+      npcName: "Ponderous Sporewalker"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.46
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.46
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.17
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.011
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0011
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.011
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 4
+      npcName: "Dwarf Orcan"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.04
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.04
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 5
+      npcName: "Orcan Raider"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.41
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.41
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.15
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 6
+      npcName: "Kariagon"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.51
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.51
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+        - id: 6
+          bagName: "KugaiToken_2"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 2
+              max: 2
+              probability: 1.0
+    - huntingZoneId: 13
+      npcTemplateId: 7
+      npcName: "Disc Reaper"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.52
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.52
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.2
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 8
+      npcName: "Runekeeper"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.52
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.52
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.2
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+        - id: 6
+          bagName: "KugaiToken_2"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 2
+              max: 2
+              probability: 1.0
+    - huntingZoneId: 13
+      npcTemplateId: 9
+      npcName: "Destroyer"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.67
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.67
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 6
+              max: 6
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.25
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.017
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0017
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.017
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+        - id: 6
+          bagName: "KugaiToken_3"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 3
+              max: 3
+              probability: 1.0
+    - huntingZoneId: 13
+      npcTemplateId: 101
+      npcName: "Giant Honeybee"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.01
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.01
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 102
+      npcName: "Docile Terron"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.01
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.01
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 111
+      npcName: "Gentle Pigling"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.05
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.05
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 302
+      npcName: "Terron Ringleader"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.43
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.43
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.16
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.011
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0011
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.011
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 303
+      npcName: "Terron Thief"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.05
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.05
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 304
+      npcName: "Sickly Noruk"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.49
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.49
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.012
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0012
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.012
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 555
+      npcName: "Scion Scout"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.59
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.59
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.22
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.015
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0015
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.015
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 556
+      npcName: "Scion Scout"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.59
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.59
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.22
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.015
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0015
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.015
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 557
+      npcName: "Scion Scout"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.59
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.59
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.22
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.015
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0015
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.015
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 558
+      npcName: "Scion Scout"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.59
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.59
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.22
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.015
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0015
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.015
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 601
+      npcName: "Dark Marauder"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.55
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.55
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.21
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.014
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0014
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.014
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 901
+      npcName: "Orcan Guardian"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.47
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.47
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.18
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.012
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0012
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.012
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+        - id: 6
+          bagName: "KugaiToken_1"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 1
+              max: 1
+              probability: 1.0
+    - huntingZoneId: 13
+      npcTemplateId: 902
+      npcName: "Dwarf Guardian"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.04
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.04
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 1001
+      npcName: "Vekas"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.77
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.77
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 6
+              max: 6
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.29
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.019
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0019
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.019
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 1002
+      npcName: "Acharak"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.8
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.8
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 6
+              max: 6
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.31
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.021
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0021
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.021
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 1003
+      npcName: "Acharak's Soldier"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.11
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.11
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.04
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 1004
+      npcName: "Kugai"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.8
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 4
+              max: 4
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.8
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 7
+              max: 7
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.4
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.027
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0027
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.027
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+        - id: 6
+          bagName: "KugaiToken_2"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 7
+          bagName: "KugaiToken_3"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 8
+          bagName: "KugaiToken_5"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 5
+              max: 5
+              probability: 1.0
+    - huntingZoneId: 13
+      npcTemplateId: 1011
+      npcName: "Terron Saboteur"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.01
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.01
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 300541
+      npcName: "Rockcrawler"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.06
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.06
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 300542
+      npcName: "Rockcrawler Cleaver"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.52
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.52
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300910
+      npcName: "Prowling Cromos"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.53
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.53
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.2
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300911
+      npcName: "Cromos"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.59
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.59
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.22
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.015
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0015
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.015
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300920
+      npcName: "Shaggy Noruk"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.5
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.5
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.012
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0012
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.012
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300921
+      npcName: "Noruk"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.48
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.48
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.18
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.012
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0012
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.012
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300930
+      npcName: "Elder Ghilliedhu"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.45
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.45
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.17
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.011
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0011
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.011
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300931
+      npcName: "Ghilliedhu"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.43
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.43
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.16
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.011
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0011
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.011
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300932
+      npcName: "Horned Ghilliedhu"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.51
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.51
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300933
+      npcName: "Hardened Ghilliedhu"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.46
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.46
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.17
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.012
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0012
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.012
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300941
+      npcName: "Terron"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.05
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.05
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 300942
+      npcName: "Terron Thrall"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.04
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.04
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 300943
+      npcName: "Terron Saboteur"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.06
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.06
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 300944
+      npcName: "Terron Chief"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.4
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.4
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.15
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300945
+      npcName: "Terron Lama"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.52
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.52
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+    - huntingZoneId: 13
+      npcTemplateId: 300951
+      npcName: "Dark Raider"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.51
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.51
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.19
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.013
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0013
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.013
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2
+        - id: 6
+          bagName: "KugaiToken_2"
+          probability: 1.0
+          items:
+            - templateId: 95216
+              name: "Kugai's Crest"
+              min: 2
+              max: 2
+              probability: 1.0
+    - huntingZoneId: 13
+      npcTemplateId: 300960
+      npcName: "Devoted Ebon Imp"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.04
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.04
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 301191
+      npcName: "Stonebeak Raider"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.06
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.06
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 301193
+      npcName: "Stonebeak Brigand"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.05
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.05
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.02
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 1
+              max: 1
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.01
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.001
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 1
+              max: 1
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.01
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 1
+              max: 1
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 1
+              max: 1
+    - huntingZoneId: 13
+      npcTemplateId: 301194
+      npcName: "Stonebeak Highcrest"
+      itemBags:
+        - id: 1
+          bagName: "Alkahest"
+          probability: 0.42
+          items:
+            - templateId: 21351
+              name: "Masterwork Alkahest"
+              min: 3
+              max: 3
+              probability: 1.0
+        - id: 9
+          bagName: "Feedstock"
+          probability: 0.42
+          items:
+            - templateId: 94101
+              name: "Tier 1 Feedstock"
+              min: 5
+              max: 5
+              probability: 1.0
+        - id: 2
+          bagName: "CrystalBoxes"
+          probability: 0.16
+          equalProbability: true
+          items:
+            - templateId: 602176
+              name: "Weapon Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+            - templateId: 602177
+              name: "Armor Crystal Box (Rhomb)"
+              min: 2
+              max: 2
+        - id: 3
+          bagName: "DyadStructure"
+          probability: 0.011
+          items:
+            - templateId: 96108
+              name: "Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 4
+          bagName: "SmartDyadStructure"
+          probability: 0.0011
+          items:
+            - templateId: 96114
+              name: "Smart Dyad Rhomb Structure"
+              min: 2
+              max: 2
+              probability: 1.0
+        - id: 5
+          bagName: "InfusionBoxUncommon"
+          probability: 0.011
+          equalProbability: true
+          items:
+            - templateId: 602190
+              name: "Infusion Weapon Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602193
+              name: "Infusion Chest Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602196
+              name: "Infusion Gloves Box (Uncommon)"
+              min: 2
+              max: 2
+            - templateId: 602199
+              name: "Infusion Boots Box (Uncommon)"
+              min: 2
+              max: 2

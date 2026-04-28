@@ -1,0 +1,38 @@
+# Island of Dawn (zone 13) — NPC stat balance
+#
+# Scales Normal Monster stats to match the gear formula applied to player equipment.
+# Calibration reference (baseline: standard-issue level-1 gear):
+#   - Standard Issue Greatsword (item 10003):  atk  50 → 253  (×5.06)
+#   - Standard Issue Cuirass    (item 15004):  def  20 → 203  (×10.15)
+#
+# To preserve the pre-formula combat feel on the post-formula gear:
+#   - NPC maxHp ×5   preserves time-to-kill against the ~5× player attack growth
+#   - NPC atk   ×10  preserves damage pressure through the ~10× player armor growth
+#
+# Scope: IOD_NORMAL_MONSTERS (47 templates). Environmental creatures
+# (playStyle=creature, HP<1) and cinematic NPCs are intentionally included per the
+# package's categorization — the multiplier has no practical effect on them.
+#
+# Idempotency note: `multiply` transforms are non-idempotent. Re-applying this spec
+# compounds the multipliers. Apply against a clean v31→v92 migration baseline
+# and do not re-run without reverting first.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - IOD_NORMAL_MONSTERS
+
+balanceProfiles:
+  - name: IoDNormalMonstersGearFormula
+    npcFilter:
+      huntingZoneId: 13
+      id: $IOD_NORMAL_MONSTERS
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 60 }

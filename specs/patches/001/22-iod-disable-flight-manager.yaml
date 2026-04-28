@@ -1,0 +1,18 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Temporarily disable Leiyane (Flight Manager, npcTemplateId 1016) in Dawn
+# Garden (zone 213, Pegasus Boarding Platform) so players cannot leave Island
+# of Dawn during this testing release.
+#
+# Reverse by setting voidSpawn back to false in a follow-up spec.
+
+territorySpawns:
+  update:
+    - huntingZoneId: 213
+      groupId: 1300005
+      territoryId: 1300243
+      npcInstanceId: 1305602
+      changes:
+        voidSpawn: true

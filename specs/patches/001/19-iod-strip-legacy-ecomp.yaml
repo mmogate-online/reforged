@@ -1,0 +1,30 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Remove pre-existing stubs from ECompensation_13.xml that are not part of the
+# reforged IoD loot design. Entries 7001-7009 are empty fearsome-variant stubs;
+# 9001 is the Sinus Thief treasure chest entry.
+
+eCompensations:
+  delete:
+    - huntingZoneId: 13
+      npcTemplateId: 7001
+    - huntingZoneId: 13
+      npcTemplateId: 7002
+    - huntingZoneId: 13
+      npcTemplateId: 7003
+    - huntingZoneId: 13
+      npcTemplateId: 7004
+    - huntingZoneId: 13
+      npcTemplateId: 7005
+    - huntingZoneId: 13
+      npcTemplateId: 7006
+    - huntingZoneId: 13
+      npcTemplateId: 7007
+    - huntingZoneId: 13
+      npcTemplateId: 7008
+    - huntingZoneId: 13
+      npcTemplateId: 7009
+    - huntingZoneId: 13
+      npcTemplateId: 9001

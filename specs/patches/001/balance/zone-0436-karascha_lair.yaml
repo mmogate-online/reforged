@@ -1,0 +1,41 @@
+# Karascha's Lair (zone 436) — NPC stat balance
+#
+# Same calibration as zone 13 (Island of Dawn):
+#   - NPC maxHp ×10  preserves time-to-kill against ~5× player attack growth
+#   - NPC atk   ×60  preserves damage pressure through ~10× player armor growth
+#
+# Scope: Karascha (boss) + Cultist Devastator + Devoted Ebon Imp.
+# Friendly NPCs (Leman, Sersine) and objects (Exit Teleportal) are excluded.
+#
+# Idempotency note: `multiply` transforms are non-idempotent. Apply against
+# the clean v31→v92 migration baseline (Phase 1 of zone-436-dungeon-migration.md).
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - KL_NORMAL_MONSTERS
+        - KL_BOSS_MONSTERS
+
+balanceProfiles:
+  - name: KaraschaNormalMonstersGearFormula
+    npcFilter:
+      huntingZoneId: 436
+      id: $KL_NORMAL_MONSTERS
+    npc:
+      stat:
+        maxHp: { multiply: 8 }
+        atk:   { multiply: 70 }
+
+  - name: KaraschaBossGearFormula
+    npcFilter:
+      huntingZoneId: 436
+      id: $KL_BOSS_MONSTERS
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 120 }
