@@ -6,6 +6,34 @@ Newest entries first.
 
 ---
 
+## 2026-04-25 (session 2)
+
+### Infrastructure
+- `migrate.py`: switched from per-spec sequential apply back to single batch `dsl apply`; DSL's shared in-memory cache now correct; adds `--source-ref HEAD` for idempotent balance specs; adds `--no-source-ref` escape hatch
+
+### Blockers resolved
+- `2026-04-25-multi-spec-upsert-updatewhere-e422.md` — fixed in DSL commit `2278066c` (write-aware ElementIndex in EntityLocator) ✅
+- `2026-04-25-multi-spec-apply-progress-not-streamed.md` — fixed in DSL commit `e66cda21` (per-spec lines streamed immediately on completion) ✅
+
+---
+
+## 2026-04-25
+
+### Content
+- `packages/npc-ids` package added — IoD (zone 13) NPC template IDs: 47 individual variables + 6 category groups (Friendly/Normal/Elite/Boss/World Boss/Objects); registered in `datasheetlang.yml`
+- `specs/patches/001/balance/zone-0013-island_of_dawn.yaml` — IoD normal monster rebalance: maxHp ×5, atk ×10 (calibrated to gear formula multipliers from standard-issue starter gear)
+- `01-reaper-weapons.yaml` renamed → `02-reaper-weapons.yaml`; `01-brawler-weapons.yaml` renamed → `02-brawler-weapons.yaml` (execution order fix)
+- Patch 001: all 57 specs applied via per-spec sequential migrate; sync narrowed to 47 modified server files
+
+### Infrastructure
+- `migrate.py`: replaced batch `dsl apply` with per-spec sequential apply — each spec flushes to disk before the next reads; cwd set to project root (no implicit sourceRef)
+- `tools/spec-check/` added — single-spec validate/apply tool; passes `--source-ref HEAD` of the datasheet repo for deterministic baseline on non-idempotent specs
+
+### Blockers resolved
+- `2026-04-25-multi-spec-upsert-updatewhere-e422.md` — worked around via per-spec apply; DSL bug filed
+
+---
+
 ## 2026-04-23 (session 2)
 
 ### Content

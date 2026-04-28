@@ -1,6 +1,6 @@
 # Reforged Server Content — Status
 
-_Last updated: 2026-04-23 (session 2)_
+_Last updated: 2026-04-25_
 
 ---
 
@@ -49,6 +49,7 @@ Custom content layer applied on top of the IoD migration baseline.
 | Equipment standardization via `equipment-item-standard` | ✅ | Package is authoritative baseline for all gear (HIGH/MID/LOW × weapon/chest/hand/boot + class-specific chest & class-restricted weapons); `01-armor-standardize.yaml` and `01-weapon-standardize.yaml` sweep via `$extends` into package definitions; redundant specs retired (`03-flawless-standardize`, `03-chest-toproll-items`, `07-gear-enchant-sync`) |
 | Potential unlock generator on package | ✅ | `tools/potential-unlock/generate_potential_unlock.py` emits `$extends`-based specs referencing `equipment-item-standard`; `12-potential-unlock-gear.yaml` reduced 5333→2788 lines |
 | EquipmentInheritance compatibility | ✅ | 0 mismatches across all 582 pairs / 53 tokens — server loads with all changes applied |
+| IoD NPC balance | ✅ | Normal monsters: maxHp ×5, atk ×10 (calibrated to gear formula); spec applied via migrate |
 | Full patch 001 validation | 🔄 | Pending — equivalent of IoD Phase 4 |
 
 **In scope (patch 001 zones):** Fey Forest (2), Oblivion Woods (3), Tuwangi Mire (5), Valley of Titans (6), Celestial Hills (7), Cliffs of Insanity (15), Vale of the Fang (16), Paraanon Ravine (17), Crescentia (59), Lumbertown (60), Velika (63), Bastion of Lok (487), Sinestral Manor (488), Island of Dawn (13), Karascha's Lair (436).
@@ -77,7 +78,8 @@ Custom content layer applied on top of the IoD migration baseline.
 | Float precision in `dsl apply` | ✅ Capped to 8 decimal places (92fa465) |
 | Package-internal variable scope at export | ✅ Variables resolved at export time — consumers no longer re-import package-internal vars |
 
-**Open DSL requests:** ~27 filed in `docs/dsl-requests/`. Key pending items:
+**Open DSL requests:** ~28 filed in `docs/dsl-requests/`. Key pending items:
+- ~~Multi-spec in-memory cache E422~~ — resolved in DSL commit `2278066c`; `migrate.py` switched to batch apply
 - ZoneBased and IdSorted sync support for Quest, QuestDialog, StrSheet_Quest (no server-side schema yet)
 - DynamicGeoData, AIData, NpcShape, StrSheet_ZoneName sync support
 - `collectionTerritories` cross-file ID uniqueness enforcement
@@ -91,6 +93,6 @@ Custom content layer applied on top of the IoD migration baseline.
 
 | Repo | Role | Current State |
 |------|------|---------------|
-| `reforged-server` (ATP) | Live v92 server datasheets + client DC | IoD restored, patch 000 fixes applied; patch 001 reaper + brawler weapons applied |
+| `reforged-server` (ATP) | Live v92 server datasheets + client DC | IoD restored, patch 000 applied; patch 001 all 57 specs applied (sync narrowed to 47 files) |
 | `datasheetlang` | DSL CLI source | Manifest narrowing complete, all strategies operational |
 | `datasheet-domain` | Game entity domain docs | Source of truth for entity schemas and ID ranges |
