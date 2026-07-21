@@ -1,0 +1,5290 @@
+{
+  "generated": "2026-07-17 19:49:27",
+  "zones": [
+    13,
+    64,
+    213,
+    313,
+    364,
+    436
+  ],
+  "scope": [
+    1301,
+    1302,
+    1303,
+    1304,
+    1305,
+    1306,
+    1307,
+    1308,
+    1309,
+    1310,
+    1311,
+    1312,
+    1313,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1321,
+    1322,
+    1323,
+    1324,
+    1325,
+    1326,
+    1327,
+    1328,
+    1329,
+    1330,
+    1331,
+    1332,
+    1333,
+    1334,
+    1335,
+    1336,
+    1337,
+    1338,
+    1339,
+    1340,
+    1341,
+    1343,
+    1344,
+    1345,
+    1346,
+    1347,
+    1348,
+    1349,
+    1350,
+    1351,
+    1352,
+    1371,
+    1372,
+    1373,
+    1374,
+    1375,
+    1376,
+    1377,
+    1378,
+    1379,
+    1382,
+    1383,
+    1384,
+    1385,
+    1386,
+    1389,
+    1390
+  ],
+  "rows": [
+    {
+      "gid": 1301,
+      "hz": 13,
+      "local": 1,
+      "title": "Dawn's Early Light",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "100xp 10g pp=0",
+          "v31": "500xp 50g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1302,
+      "hz": 13,
+      "local": 2,
+      "title": "Another Fine Mess",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "150xp 15g pp=0",
+          "v31": "400xp 40g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1303,
+      "hz": 13,
+      "local": 3,
+      "title": "The Secret Life of Trees",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,71",
+            "13,72",
+            "13,73",
+            "13,74",
+            "13,75",
+            "13,76",
+            "13,77",
+            "13,78",
+            "13,79"
+          ],
+          "v92": [
+            "13,71",
+            "13,72",
+            "13,73",
+            "13,74",
+            "13,75",
+            "13,76",
+            "13,77",
+            "13,78",
+            "13,79"
+          ],
+          "v31_agrees_client": false
+        },
+        "levelband": {
+          "client": [
+            "4",
+            ""
+          ],
+          "v92": [
+            "3",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "1500xp 0g bag=class pp=0 items[17712x1/berserker,17712x1/lancer,17715x1/archer,17715x1/slayer,17715x1/warrior,17718x1/elementalist,17718x1/priest,17718x1/sorcerer]",
+          "v31": "2600xp 260g bag=class items[12129x1/warrior,12130x1/lancer,12131x1/slayer,12132x1/berserker,12133x1/sorcerer,12134x1/archer,12135x1/priest,12136x1/elementalist,17404x1/berserker,17404x1/engineer,17404x1/lancer,17407x1/archer,17407x1/slayer,17407x1/warrior,17410x1/elementalist,17410x1/priest,17410x1/sorcerer,55271x1/engineer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1304,
+      "hz": 13,
+      "local": 4,
+      "title": "Making the Rounds",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 2,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "13,300931",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300931",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1017"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              "213,1017"
+            ],
+            "v92": [
+              "213,1017"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "present",
+            "v92": "absent",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "present",
+            "v92": "absent",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "600xp 0g bag=class pp=0 items[17701x1/berserker,17701x1/lancer,17704x1/archer,17704x1/slayer,17704x1/warrior,17707x1/elementalist,17707x1/priest,17707x1/sorcerer]",
+          "v31": "800xp 80g bag=class items[10009x1/warrior,10010x1/lancer,10011x1/slayer,10012x1/berserker,10013x1/sorcerer,10014x1/archer,10015x1/priest,10016x1/elementalist,55006x1/engineer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1305,
+      "hz": 13,
+      "local": 5,
+      "title": "Elleon's Fate",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,04"
+          ],
+          "v31": [
+            "13,31"
+          ],
+          "v92": [
+            "13,31"
+          ],
+          "v31_agrees_client": false
+        },
+        "levelband": {
+          "client": [
+            "6",
+            ""
+          ],
+          "v92": [
+            "5",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "64,1001"
+            ],
+            "v31": [
+              "213,1008"
+            ],
+            "v92": [
+              "213,1008"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "13,300932",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,300932",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1009"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 4,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1008"
+            ],
+            "v31": [
+              "213,1147"
+            ],
+            "v92": [
+              "213,1147"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 6,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 7,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "800xp 0g bag=class pp=0 items[17710x1/berserker,17710x1/lancer,17713x1/archer,17713x1/slayer,17713x1/warrior,17716x1/elementalist,17716x1/priest,17716x1/sorcerer]",
+          "v31": "4900xp 490g bag=class items[10017x1/warrior,10018x1/lancer,10019x1/slayer,10020x1/berserker,10021x1/sorcerer,10022x1/archer,10023x1/priest,10024x1/elementalist,15019x1/berserker,15019x1/engineer,15019x1/lancer,15020x1/berserker,15020x1/engineer,15020x1/lancer,15021x1/berserker,15021x1/engineer,15021x1/lancer,15022x1/archer,15022x1/slayer,15022x1/warrior,15023x1/archer,15023x1/slayer,15023x1/warrior,15024x1/archer,15024x1/slayer,15024x1/warrior,15025x1/elementalist,15025x1/priest,15025x1/sorcerer,15026x1/elementalist,15026x1/priest,15026x1/sorcerer,15027x1/elementalist,15027x1/priest,15027x1/sorcerer,55007x1/engineer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1306,
+      "hz": 13,
+      "local": 6,
+      "title": "Traces of Darkness",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "COMP_EMPTY",
+        "TARGET_UNSPAWNED",
+        "GROUPLIST_UNREGISTERED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "type": {
+          "client": "미션",
+          "v92": "일반"
+        },
+        "story_group": {
+          "client": "1",
+          "v92": ""
+        },
+        "comp": {
+          "client": "800xp 80g pp=0",
+          "v31": "800xp 80g",
+          "v92": "(empty stub)"
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1036",
+            "v31_spawned": false
+          }
+        ],
+        "story_group_id": "1"
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1307,
+      "hz": 13,
+      "local": 7,
+      "title": "Live by the Sword...",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "TARGET_UNSPAWNED",
+        "GROUPLIST_UNREGISTERED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "type": {
+          "client": "미션",
+          "v92": "일반"
+        },
+        "story_group": {
+          "client": "1",
+          "v92": ""
+        },
+        "taskref": [
+          {
+            "task": 2,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,601",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,601",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,601",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1000xp 100g bag=allpay pp=0 items[8200x1]",
+          "v31": "1000xp 100g bag=allpay items[8200x1]",
+          "v92": "(empty stub)"
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1027",
+            "v31_spawned": false
+          }
+        ],
+        "story_group_id": "1"
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1308,
+      "hz": 13,
+      "local": 8,
+      "title": "Essence of Foreboding",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "GROUPLIST_UNREGISTERED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "type": {
+          "client": "미션",
+          "v92": "일반"
+        },
+        "story_group": {
+          "client": "1",
+          "v92": ""
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,3",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,3",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,3",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1000xp 100g pp=0",
+          "v31": "1000xp 100g",
+          "v92": "(empty stub)"
+        },
+        "story_group_id": "1"
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1309,
+      "hz": 13,
+      "local": 9,
+      "title": "Acharak Attacks",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,07"
+          ],
+          "v31": [
+            "13,11"
+          ],
+          "v92": [
+            "13,11"
+          ],
+          "v31_agrees_client": false
+        },
+        "story_group": {
+          "client": "1",
+          "v92": "2"
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [
+              [
+                "13,1002",
+                "1",
+                ""
+              ],
+              [
+                "13,1003",
+                "5",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,1002",
+                "1",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,1002",
+                "1",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1008"
+            ],
+            "v31": [
+              "213,1134"
+            ],
+            "v92": [
+              "213,1134"
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "2000xp 0g bag=class pp=0 items[10537x1/warrior,10538x1/lancer,10539x1/slayer,10540x1/berserker,10541x1/sorcerer,10542x1/archer,10543x1/priest,10544x1/elementalist]",
+          "v31": "3200xp 320g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1310,
+      "hz": 13,
+      "local": 10,
+      "title": "A Clue In the Dark",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "TARGET_UNSPAWNED",
+        "GROUPLIST_UNREGISTERED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "type": {
+          "client": "미션",
+          "v92": "일반"
+        },
+        "story_group": {
+          "client": "1",
+          "v92": ""
+        },
+        "comp": {
+          "client": "1000xp 100g pp=0",
+          "v31": "1000xp 100g bag=class items[10017x1/warrior,10018x1/lancer,10019x1/slayer,10020x1/berserker,10021x1/sorcerer,10022x1/archer,10023x1/priest,10024x1/elementalist,15019x1/berserker,15019x1/lancer,15022x1/archer,15022x1/slayer,15022x1/warrior,15025x1/elementalist,15025x1/priest,15025x1/sorcerer,55007x1/engineer]",
+          "v92": "(empty stub)"
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1130",
+            "v31_spawned": false
+          }
+        ],
+        "story_group_id": "1"
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1311,
+      "hz": 13,
+      "local": 11,
+      "title": "Clearing the Gorge",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,10"
+          ],
+          "v31": [
+            "13,05"
+          ],
+          "v92": [
+            "13,05"
+          ],
+          "v31_agrees_client": false
+        },
+        "levelband": {
+          "client": [
+            "8",
+            ""
+          ],
+          "v92": [
+            "7",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "64,1001"
+            ],
+            "v31": [
+              "64,1033"
+            ],
+            "v92": [
+              "64,1033"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "13,901",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,901",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "64,1033"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "collections",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              "409"
+            ],
+            "v92": [
+              "409"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "9010",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "9010",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1007"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              "213,1007"
+            ],
+            "v92": [
+              "213,1007"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "present",
+            "v92": "absent",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "1000xp 100g pp=0",
+          "v31": "3600xp 360g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1312,
+      "hz": 13,
+      "local": 12,
+      "title": "The Dark Patrol",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300910",
+                "6",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300910",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,300910",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1134"
+            ],
+            "v31": [
+              "213,1025"
+            ],
+            "v92": [
+              "213,1025"
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1700xp 170g bag=class pp=0 items[15606x1/berserker,15606x1/lancer,15609x1/archer,15609x1/slayer,15609x1/warrior,15612x1/elementalist,15612x1/priest,15612x1/sorcerer]",
+          "v31": "2500xp 250g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1313,
+      "hz": 13,
+      "local": 13,
+      "title": "Into the Gorge",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,11"
+          ],
+          "v31": [
+            "13,09"
+          ],
+          "v92": [
+            "13,09"
+          ],
+          "v31_agrees_client": false
+        },
+        "levelband": {
+          "client": [
+            "8",
+            ""
+          ],
+          "v92": [
+            "7",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "13,300910",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,300910",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1005"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1025"
+            ],
+            "v31": [
+              "213,1005"
+            ],
+            "v92": [
+              "213,1005"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "1000xp 100g bag=allpay pp=0",
+          "v31": "6840xp 470g items[7100x1,7104x1,7108x1]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1315,
+      "hz": 13,
+      "local": 15,
+      "title": "Putting the Pieces Together",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [
+              [
+                "13,8",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,1004",
+                "1",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,1004",
+                "1",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1026"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "deliver_direct",
+            "kind": "ref",
+            "client": [
+              [
+                "@quest:1315009",
+                "10"
+              ]
+            ],
+            "v31": [
+              [
+                "@quest:1315004",
+                "1"
+              ]
+            ],
+            "v92": [
+              [
+                "@quest:1315004",
+                "1"
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "present",
+            "v92": "absent",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "present",
+            "v92": "absent",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "5200xp 0g bag=class pp=0 items[15668x1/berserker,15668x1/lancer,15671x1/archer,15671x1/slayer,15671x1/warrior,15674x1/elementalist,15674x1/priest,15674x1/sorcerer]",
+          "v31": "4500xp 450g bag=class items[12137x1/warrior,12138x1/lancer,12139x1/slayer,12140x1/berserker,12141x1/sorcerer,12142x1/archer,12143x1/priest,12144x1/elementalist,17413x1/berserker,17413x1/engineer,17413x1/lancer,17416x1/archer,17416x1/slayer,17416x1/warrior,17419x1/elementalist,17419x1/priest,17419x1/sorcerer,55272x1/engineer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1316,
+      "hz": 13,
+      "local": 16,
+      "title": "Dark Revelations",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,43"
+          ],
+          "v31": [
+            "13,15"
+          ],
+          "v92": [
+            "13,15"
+          ],
+          "v31_agrees_client": false
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [
+              [
+                "436,1002",
+                "1",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,8",
+                "",
+                ""
+              ],
+              [
+                "13,9",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,8",
+                "",
+                ""
+              ],
+              [
+                "13,9",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "deliver_direct",
+            "kind": "ref",
+            "client": [
+              [
+                "@quest:1316006",
+                "1"
+              ]
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1025"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 4,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "436,1002",
+                "1",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "436,1002",
+                "1",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 4,
+            "field": "deliver_direct",
+            "kind": "ref",
+            "client": [
+              [
+                "@quest:1316010",
+                "1"
+              ]
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 4,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1037"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 5,
+            "field": "deliver_direct",
+            "kind": "ref",
+            "client": [
+              [
+                "@quest:1316014",
+                "1"
+              ]
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 5,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "64,1001"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 6,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 7,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 8,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "6000xp 0g bag=class pp=0 items[10593x1/warrior,10594x1/lancer,10595x1/slayer,10596x1/berserker,10597x1/sorcerer,10598x1/archer,10599x1/priest,10600x1/elementalist,160x2/archer,160x2/berserker,160x2/elementalist,160x2/lancer,160x2/priest,160x2/slayer,160x2/sorcerer,160x2/warrior]",
+          "v31": "14600xp 1460g bag=class items[10593x1/warrior,10594x1/lancer,10595x1/slayer,10596x1/berserker,10597x1/sorcerer,10598x1/archer,10599x1/priest,10600x1/elementalist,55079x1/engineer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1317,
+      "hz": 13,
+      "local": 17,
+      "title": "Ride Off Into the Sunset",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 4,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "63,1097"
+            ],
+            "v31": [
+              "63,1107"
+            ],
+            "v92": [
+              "63,1107"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "present",
+            "v92": "absent",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "1500xp 0g bag=class pp=0 items[15667x1/berserker,15667x1/lancer,15670x1/archer,15670x1/slayer,15670x1/warrior,15673x1/elementalist,15673x1/priest,15673x1/sorcerer]",
+          "v31": "2000xp 200g bag=class items[15667x1/berserker,15667x1/engineer,15667x1/lancer,15670x1/archer,15670x1/slayer,15670x1/warrior,15673x1/elementalist,15673x1/priest,15673x1/sorcerer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1318,
+      "hz": 13,
+      "local": 18,
+      "title": "Hunting the Beasts",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "levelband": {
+          "client": [
+            "1",
+            ""
+          ],
+          "v92": [
+            "2",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300921",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300921",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300921",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1114"
+            ],
+            "v31": [
+              "213,1004"
+            ],
+            "v92": [
+              "213,1004"
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "900xp 90g bag=allpay pp=0 items[5132x1]",
+          "v31": "1500xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1319,
+      "hz": 13,
+      "local": 19,
+      "title": "Dwellers of the Island",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "GIVER_UNSPAWNED",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300941",
+                "",
+                ""
+              ],
+              [
+                "13,300944",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300941",
+                "",
+                "12"
+              ],
+              [
+                "13,300944",
+                "",
+                "85"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300941",
+                "",
+                "12"
+              ],
+              [
+                "13,300944",
+                "",
+                "85"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "600xp 0g bag=class pp=0 items[12401x1/warrior,12402x1/lancer,12403x1/slayer,12404x1/berserker,12405x1/sorcerer,12406x1/archer,12407x1/priest,12408x1/elementalist]",
+          "v31": "600xp 60g bag=class items[12401x1/warrior,12402x1/lancer,12403x1/slayer,12404x1/berserker,12405x1/sorcerer,12406x1/archer,12407x1/priest,12408x1/elementalist,55305x1/engineer]",
+          "v92": "(empty stub)"
+        },
+        "giver": {
+          "ref": "213,1110",
+          "v92_spawned": false,
+          "v31_spawned": false
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1110",
+            "v31_spawned": false
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1321,
+      "hz": 13,
+      "local": 21,
+      "title": "A Bridge Pretty Near",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "300xp 30g pp=0",
+          "v31": "800xp 80g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1322,
+      "hz": 13,
+      "local": 22,
+      "title": "Unrest in the Forest",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300931",
+                "4",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300931",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,300931",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "500xp 0g bag=class pp=0 items[17703x1/berserker,17703x1/lancer,17706x1/archer,17706x1/slayer,17706x1/warrior,17709x1/elementalist,17709x1/priest,17709x1/sorcerer]",
+          "v31": "500xp 50g bag=class items[17703x1/berserker,17703x1/engineer,17703x1/lancer,17706x1/archer,17706x1/slayer,17706x1/warrior,17709x1/elementalist,17709x1/priest,17709x1/sorcerer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1323,
+      "hz": 13,
+      "local": 23,
+      "title": "Getting Some Answers",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300931",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300931",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300931",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "800xp 80g bag=allpay pp=0 items[5132x1]",
+          "v31": "800xp 80g bag=class items[10009x1/warrior,10010x1/lancer,10011x1/slayer,10012x1/berserker,10013x1/sorcerer,10014x1/archer,10015x1/priest,10016x1/elementalist,55006x1/engineer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1324,
+      "hz": 13,
+      "local": 24,
+      "title": "Essence and Sensibility",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300930",
+                "",
+                ""
+              ],
+              [
+                "13,300933",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300930",
+                "",
+                "100"
+              ],
+              [
+                "13,300933",
+                "",
+                "85"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300930",
+                "",
+                "100"
+              ],
+              [
+                "13,300933",
+                "",
+                "85"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "900xp 90g bag=allpay pp=0 items[5132x1]",
+          "v31": "900xp 90g bag=allpay",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1325,
+      "hz": 13,
+      "local": 25,
+      "title": "The Perfect Cut",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,1",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,1",
+                "",
+                "30"
+              ]
+            ],
+            "v92": [
+              [
+                "13,1",
+                "",
+                "30"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "500xp 0g bag=class pp=0 items[17702x1/berserker,17702x1/lancer,17705x1/archer,17705x1/slayer,17705x1/warrior,17708x1/elementalist,17708x1/priest,17708x1/sorcerer]",
+          "v31": "500xp 50g bag=class items[17702x1/berserker,17702x1/engineer,17702x1/lancer,17705x1/archer,17705x1/slayer,17705x1/warrior,17708x1/elementalist,17708x1/priest,17708x1/sorcerer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1326,
+      "hz": 13,
+      "local": 26,
+      "title": "Mana out of Mudmen",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,2",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,2",
+                "",
+                "90"
+              ]
+            ],
+            "v92": [
+              [
+                "13,2",
+                "",
+                "90"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "2000xp 200g bag=choice pp=0 items[125x10,129x1,130x1]",
+          "v31": "2000xp 200g bag=class items[15021x1/berserker,15021x1/engineer,15021x1/lancer,15024x1/archer,15024x1/slayer,15024x1/warrior,15027x1/elementalist,15027x1/priest,15027x1/sorcerer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1327,
+      "hz": 13,
+      "local": 27,
+      "title": "Garrison in Distress",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 3,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [
+              [
+                "13,304",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300921",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300921",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "800xp 80g bag=allpay pp=0 items[5132x1]",
+          "v31": "800xp 80g bag=allpay",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1328,
+      "hz": 13,
+      "local": 28,
+      "title": "Academic Theft",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,301191",
+                "",
+                ""
+              ],
+              [
+                "13,301193",
+                "",
+                ""
+              ],
+              [
+                "13,301194",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,301191",
+                "",
+                "12"
+              ],
+              [
+                "13,301193",
+                "",
+                "12"
+              ],
+              [
+                "13,301194",
+                "",
+                "90"
+              ]
+            ],
+            "v92": [
+              [
+                "13,301191",
+                "",
+                "12"
+              ],
+              [
+                "13,301193",
+                "",
+                "12"
+              ],
+              [
+                "13,301194",
+                "",
+                "90"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1100xp 110g bag=allpay pp=0 items[5132x1]",
+          "v31": "1500xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1329,
+      "hz": 13,
+      "local": 29,
+      "title": "Going Above and Beyond",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,04"
+          ],
+          "v31": [
+            "13,03"
+          ],
+          "v92": [
+            "13,03"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "5002",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "5002",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "64,1006"
+            ],
+            "v31": [
+              "64,1029"
+            ],
+            "v92": [
+              "64,1029"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 3,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "100xp 10g bag=class pp=0 items[12409x1/warrior,12410x1/lancer,12411x1/slayer,12412x1/berserker,12413x1/sorcerer,12414x1/archer,12415x1/priest,12416x1/elementalist]",
+          "v31": "400xp 10g bag=allpay items[7200x10,8007x3]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1330,
+      "hz": 13,
+      "local": 30,
+      "title": "Horned Horrors",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "levelband": {
+          "client": [
+            "4",
+            ""
+          ],
+          "v92": [
+            "5",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300932",
+                "4",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300932",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,300932",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1900xp 190g bag=allpay pp=0 items[5132x1]",
+          "v31": "1900xp 190g bag=class items[15020x1/berserker,15020x1/engineer,15020x1/lancer,15023x1/archer,15023x1/slayer,15023x1/warrior,15026x1/elementalist,15026x1/priest,15026x1/sorcerer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1331,
+      "hz": 13,
+      "local": 31,
+      "title": "I'll Take the High Road",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [
+            "13,86"
+          ],
+          "v31": [
+            "13,82",
+            "13,83"
+          ],
+          "v92": [
+            "13,82",
+            "13,83"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "levelband": {
+          "client": [
+            "4",
+            ""
+          ],
+          "v92": [
+            "5",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "200001",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "200001",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1053"
+            ],
+            "v31": [
+              "64,1024"
+            ],
+            "v92": [
+              "64,1024"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "13,301191",
+                "",
+                "12"
+              ],
+              [
+                "13,301193",
+                "",
+                "12"
+              ],
+              [
+                "13,301194",
+                "",
+                "90"
+              ]
+            ],
+            "v92": [
+              [
+                "13,301191",
+                "",
+                "12"
+              ],
+              [
+                "13,301193",
+                "",
+                "12"
+              ],
+              [
+                "13,301194",
+                "",
+                "90"
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "collections",
+            "kind": "ref",
+            "client": [
+              "492"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [
+              [
+                "9095",
+                "1",
+                ""
+              ]
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "64,1001"
+            ],
+            "v31": [
+              "213,1053"
+            ],
+            "v92": [
+              "213,1053"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "800xp 80g bag=allpay pp=0 items[8007x2]",
+          "v31": "2300xp 230g bag=class items[17710x1/berserker,17710x1/engineer,17710x1/lancer,17713x1/archer,17713x1/slayer,17713x1/warrior,17716x1/elementalist,17716x1/priest,17716x1/sorcerer]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1332,
+      "hz": 13,
+      "local": 32,
+      "title": "They'll Eat Anything",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "GIVER_UNSPAWNED",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300920",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300920",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300920",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "900xp 90g bag=allpay pp=0 items[5132x1]",
+          "v31": "900xp 90g bag=allpay",
+          "v92": "(empty stub)"
+        },
+        "giver": {
+          "ref": "213,1009",
+          "v92_spawned": false,
+          "v31_spawned": false
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1130",
+            "v31_spawned": false
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1333,
+      "hz": 13,
+      "local": 33,
+      "title": "Twice the Bark, Twice the Bite",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "GIVER_UNSPAWNED",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300911",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300911",
+                "",
+                "90"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300911",
+                "",
+                "90"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1700xp 170g bag=allpay pp=0 items[5132x1]",
+          "v31": "1700xp 170g bag=allpay",
+          "v92": "(empty stub)"
+        },
+        "giver": {
+          "ref": "213,1130",
+          "v92_spawned": false,
+          "v31_spawned": false
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1130",
+            "v31_spawned": false
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1334,
+      "hz": 13,
+      "local": 34,
+      "title": "Investigating the Relics &lt;Repeatable&gt;",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "CLEAN"
+      ],
+      "severity": "clean",
+      "detail": {
+        "comp": {
+          "client": "800xp 80g pp=0",
+          "v31": "800xp 80g",
+          "v92": "800xp 80g"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1335,
+      "hz": 13,
+      "local": 35,
+      "title": "One of Our Couriers is Missing",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "600xp 60g pp=0",
+          "v31": "600xp 60g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1336,
+      "hz": 13,
+      "local": 36,
+      "title": "Chione's Missing Cargo",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "levelband": {
+          "client": [
+            "8",
+            ""
+          ],
+          "v92": [
+            "7",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "collections",
+            "kind": "ref",
+            "client": [
+              "409"
+            ],
+            "v31": [
+              "409"
+            ],
+            "v92": [
+              "403"
+            ],
+            "v31_agrees_client": true
+          },
+          {
+            "task": 1,
+            "field": "deliver_items",
+            "kind": "count",
+            "client": [
+              [
+                "9010",
+                "4",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "9010",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "9010",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "600xp 60g pp=0",
+          "v31": "600xp 60g",
+          "v92": "600xp 60g"
+        }
+      },
+      "signals": {
+        "taskref_regression": true,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1337,
+      "hz": 13,
+      "local": 37,
+      "title": "Searching for the Stolen Stones",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "levelband": {
+          "client": [
+            "8",
+            ""
+          ],
+          "v92": [
+            "7",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [
+              [
+                "13,300943",
+                "",
+                ""
+              ],
+              [
+                "13,300945",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,901",
+                "",
+                "95"
+              ]
+            ],
+            "v92": [
+              [
+                "13,901",
+                "",
+                "95"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1100xp 0g bag=class pp=0 items[15605x1/berserker,15605x1/lancer,15608x1/archer,15608x1/slayer,15608x1/warrior,15611x1/elementalist,15611x1/priest,15611x1/sorcerer]",
+          "v31": "1500xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1338,
+      "hz": 13,
+      "local": 38,
+      "title": "Chione's Report",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "levelband": {
+          "client": [
+            "8",
+            ""
+          ],
+          "v92": [
+            "7",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [
+              "213,1137"
+            ],
+            "v31": [
+              "213,1134"
+            ],
+            "v92": [
+              "213,1134"
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "500xp 50g pp=0",
+          "v31": "500xp 50g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1339,
+      "hz": 13,
+      "local": 39,
+      "title": "Sersine, She Seeks Shackles",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300942",
+                "",
+                ""
+              ],
+              [
+                "13,6",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300942",
+                "",
+                "5"
+              ],
+              [
+                "13,6",
+                "",
+                "95"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300942",
+                "",
+                "5"
+              ],
+              [
+                "13,6",
+                "",
+                "95"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "2900xp 290g bag=allpay pp=0 items[5132x1]",
+          "v31": "3200xp 320g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1340,
+      "hz": 13,
+      "local": 40,
+      "title": "Painful Disc-overies",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,7",
+                "8",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,7",
+                "5",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,7",
+                "5",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "2300xp 230g bag=choice pp=0 items[7100x1,7104x1,7108x1]",
+          "v31": "3200xp 320g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1341,
+      "hz": 13,
+      "local": 41,
+      "title": "Bequest of the Dead &lt;Repeatable&gt;",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "COMP_DRIFT"
+      ],
+      "severity": "drift",
+      "detail": {
+        "comp": {
+          "client": "1000xp 100g pp=0",
+          "v31": "1500xp bag=allpay items[7100x1,7104x1,7108x1]",
+          "v92": "1500xp bag=allpay items[7100x1,7104x1,7108x1]"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1343,
+      "hz": 13,
+      "local": 43,
+      "title": "Answers Lead to More Questions",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "COMP_EMPTY",
+        "GROUPLIST_UNREGISTERED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "type": {
+          "client": "미션",
+          "v92": "일반"
+        },
+        "story_group": {
+          "client": "2",
+          "v92": ""
+        },
+        "comp": {
+          "client": "800xp 80g pp=0",
+          "v31": "800xp 80g",
+          "v92": "(empty stub)"
+        },
+        "story_group_id": "2"
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1344,
+      "hz": 13,
+      "local": 44,
+      "title": "Destroy All Destroyers!",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "3000xp 300g bag=allpay pp=0 items[5132x1]",
+          "v31": "3000xp 300g bag=allpay",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1345,
+      "hz": 13,
+      "local": 45,
+      "title": "Desperately Seeking Sorscha",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "500xp 50g bag=allpay pp=0 items[8007x1]",
+          "v31": "500xp 50g bag=allpay items[8007x1]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1346,
+      "hz": 13,
+      "local": 46,
+      "title": "Sorcha's Reckless Challenge",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "dungeon",
+            "kind": "ref",
+            "client": "",
+            "v31": "9037",
+            "v92": "9037",
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "6000xp 600g pp=0",
+          "v31": "6000xp 600g",
+          "v92": "(empty stub)"
+        },
+        "targets_unspawned": [
+          {
+            "ref": "437,1001",
+            "v31_spawned": true
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": false,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1347,
+      "hz": 13,
+      "local": 47,
+      "title": "It Was a Rock...Crawler!",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "GIVER_UNSPAWNED",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,300541",
+                "",
+                ""
+              ],
+              [
+                "13,300542",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300541",
+                "",
+                "17"
+              ],
+              [
+                "13,300542",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300541",
+                "",
+                "17"
+              ],
+              [
+                "13,300542",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "900xp 0g bag=class pp=0 items[17711x1/berserker,17711x1/lancer,17714x1/archer,17714x1/slayer,17714x1/warrior,17717x1/elementalist,17717x1/priest,17717x1/sorcerer]",
+          "v31": "900xp 90g bag=class items[17711x1/berserker,17711x1/engineer,17711x1/lancer,17714x1/archer,17714x1/slayer,17714x1/warrior,17717x1/elementalist,17717x1/priest,17717x1/sorcerer]",
+          "v92": "(empty stub)"
+        },
+        "giver": {
+          "ref": "213,1128",
+          "v92_spawned": false,
+          "v31_spawned": false
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1128",
+            "v31_spawned": false
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1348,
+      "hz": 13,
+      "local": 48,
+      "title": "Ferocious Flowering Felons",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,302",
+                "",
+                ""
+              ],
+              [
+                "13,303",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,302",
+                "",
+                "90"
+              ],
+              [
+                "13,303",
+                "",
+                "17"
+              ]
+            ],
+            "v92": [
+              [
+                "13,302",
+                "",
+                "90"
+              ],
+              [
+                "13,303",
+                "",
+                "17"
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "900xp 90g bag=allpay pp=0 items[5132x1]",
+          "v31": "900xp 90g bag=allpay",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1349,
+      "hz": 13,
+      "local": 49,
+      "title": "Gotta Kill 'em All",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "GIVER_UNSPAWNED",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "2300xp 230g bag=allpay pp=0 items[5132x1]",
+          "v31": "2300xp 230g bag=allpay",
+          "v92": "(empty stub)"
+        },
+        "giver": {
+          "ref": "213,1126",
+          "v92_spawned": false,
+          "v31_spawned": false
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1126",
+            "v31_spawned": false
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1350,
+      "hz": 13,
+      "local": 50,
+      "title": "Strange Attractors",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "levelband": {
+          "client": [
+            "9",
+            ""
+          ],
+          "v92": [
+            "8",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "monsters",
+            "kind": "ref",
+            "client": [
+              [
+                "13,300951",
+                "",
+                ""
+              ],
+              [
+                "13,300960",
+                "",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,300942",
+                "",
+                "5"
+              ],
+              [
+                "13,6",
+                "",
+                "95"
+              ],
+              [
+                "13,7",
+                "",
+                "100"
+              ]
+            ],
+            "v92": [
+              [
+                "13,300942",
+                "",
+                "5"
+              ],
+              [
+                "13,6",
+                "",
+                "95"
+              ],
+              [
+                "13,7",
+                "",
+                "100"
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1026"
+            ],
+            "v31": [
+              "213,1025"
+            ],
+            "v92": [
+              "213,1025"
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "1800xp 180g pp=0",
+          "v31": "8400xp 840g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1351,
+      "hz": 13,
+      "local": 51,
+      "title": "Supply and Demand",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "800xp 80g bag=allpay pp=0 items[6048x5]",
+          "v31": "800xp 80g bag=allpay items[6048x3]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1352,
+      "hz": 13,
+      "local": 52,
+      "title": "Supply and Demand",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "800xp 80g bag=allpay pp=0 items[6048x5]",
+          "v31": "800xp 80g bag=allpay items[6048x3]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1371,
+      "hz": 13,
+      "local": 71,
+      "title": "Initial Warrior Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1372,
+      "hz": 13,
+      "local": 72,
+      "title": "Initial Lancer Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1373,
+      "hz": 13,
+      "local": 73,
+      "title": "Initial Slayer Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1374,
+      "hz": 13,
+      "local": 74,
+      "title": "Initial Berserker Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1375,
+      "hz": 13,
+      "local": 75,
+      "title": "Initial Archer Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1376,
+      "hz": 13,
+      "local": 76,
+      "title": "Initial Sorcerer Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1377,
+      "hz": 13,
+      "local": 77,
+      "title": "Initial Priest Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1378,
+      "hz": 13,
+      "local": 78,
+      "title": "Initial Mystic Training",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,04"
+          ],
+          "v92": [
+            "13,04"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "taskref": [
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1379,
+      "hz": 13,
+      "local": 79,
+      "title": "",
+      "present": {
+        "client": false,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "50xp 5g",
+          "v31": "2100xp 150g",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1382,
+      "hz": 13,
+      "local": 82,
+      "title": "Introduction to Gathering",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,84"
+          ],
+          "v92": [
+            "13,84"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "levelband": {
+          "client": [
+            "3",
+            ""
+          ],
+          "v92": [
+            "5",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "collections",
+            "kind": "ref",
+            "client": [
+              "496"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [
+              [
+                "9100",
+                "2",
+                ""
+              ]
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              "64,1007"
+            ],
+            "v92": [
+              "64,1007"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 1,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "64,1048"
+            ],
+            "v31": [],
+            "v92": [],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 3,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "100xp 10g pp=0",
+          "v31": "100xp",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1383,
+      "hz": 13,
+      "local": 83,
+      "title": "",
+      "present": {
+        "client": false,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "50xp 5g",
+          "v31": "100xp",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1384,
+      "hz": 13,
+      "local": 84,
+      "title": "Recharge It",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": false,
+      "active": true,
+      "flags": [
+        "PREREQ_DRIFT",
+        "TYPE_DRIFT",
+        "STORYGROUP_DRIFT",
+        "LEVELBAND_DRIFT",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "prereq": {
+          "client": [],
+          "v31": [
+            "13,29"
+          ],
+          "v92": [
+            "13,29"
+          ],
+          "v31_agrees_client": false
+        },
+        "type": {
+          "client": "일반",
+          "v92": "미션"
+        },
+        "story_group": {
+          "client": "",
+          "v92": "1"
+        },
+        "levelband": {
+          "client": [
+            "3",
+            ""
+          ],
+          "v92": [
+            "4",
+            ""
+          ]
+        },
+        "taskref": [
+          {
+            "task": 1,
+            "field": "visits",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              "64,1005"
+            ],
+            "v92": [
+              "64,1005"
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "98",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "70033",
+                "",
+                ""
+              ],
+              [
+                "98",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 4,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 5,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          },
+          {
+            "task": 6,
+            "field": "task-presence",
+            "kind": "ref",
+            "client": "absent",
+            "v92": "present",
+            "v31_agrees_client": null
+          }
+        ],
+        "comp": {
+          "client": "50xp 5g bag=allpay pp=0 items[7100x2]",
+          "v31": "900xp 80g bag=allpay items[6048x3,7100x2]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": true
+      }
+    },
+    {
+      "gid": 1385,
+      "hz": 13,
+      "local": 85,
+      "title": "Always After Me Lucky Charms",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "comp": {
+          "client": "50xp 5g pp=0",
+          "v31": "50xp",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": false,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1386,
+      "hz": 13,
+      "local": 86,
+      "title": "Bombs Away!",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "5002",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "5002",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 2,
+            "field": "monsters",
+            "kind": "count",
+            "client": [
+              [
+                "13,888",
+                "5",
+                ""
+              ]
+            ],
+            "v31": [
+              [
+                "13,888",
+                "3",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "13,888",
+                "3",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          },
+          {
+            "task": 3,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "5002",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "5002",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "300xp 30g bag=allpay pp=0 items[7200x10]",
+          "v31": "300xp bag=allpay items[7200x10]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1389,
+      "hz": 13,
+      "local": 89,
+      "title": "판도라 상자 사용 안내",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT",
+        "GIVER_UNSPAWNED",
+        "TARGET_UNSPAWNED"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 1,
+            "field": "deliver_items",
+            "kind": "ref",
+            "client": [],
+            "v31": [
+              [
+                "1002",
+                "",
+                ""
+              ]
+            ],
+            "v92": [
+              [
+                "1002",
+                "",
+                ""
+              ]
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "200xp 20g pp=0",
+          "v31": "200xp",
+          "v92": "(empty stub)"
+        },
+        "giver": {
+          "ref": "213,1020",
+          "v92_spawned": false,
+          "v31_spawned": false
+        },
+        "targets_unspawned": [
+          {
+            "ref": "213,1020",
+            "v31_spawned": false
+          }
+        ]
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    },
+    {
+      "gid": 1390,
+      "hz": 13,
+      "local": 90,
+      "title": "Special Delivery",
+      "present": {
+        "client": true,
+        "v31": true,
+        "v92": true
+      },
+      "disabled": true,
+      "active": false,
+      "flags": [
+        "SENTINEL_DISABLED",
+        "TASKREF_DRIFT",
+        "COMP_EMPTY",
+        "COMP_DRIFT"
+      ],
+      "severity": "blocking",
+      "detail": {
+        "taskref": [
+          {
+            "task": 3,
+            "field": "target_npc",
+            "kind": "ref",
+            "client": [
+              "213,1130"
+            ],
+            "v31": [
+              "213,1141"
+            ],
+            "v92": [
+              "213,1141"
+            ],
+            "v31_agrees_client": false
+          }
+        ],
+        "comp": {
+          "client": "300xp 30g bag=allpay pp=0 items[160x2]",
+          "v31": "300xp bag=allpay items[160x2]",
+          "v92": "(empty stub)"
+        }
+      },
+      "signals": {
+        "taskref_regression": false,
+        "taskref_conflict": true,
+        "comp_needs_decision": true,
+        "prereq_conflict": false
+      }
+    }
+  ],
+  "buckets": {
+    "A": [
+      1302,
+      1321,
+      1325,
+      1326,
+      1330,
+      1336,
+      1340,
+      1348,
+      1390
+    ],
+    "B": [
+      1306,
+      1307,
+      1310,
+      1319,
+      1332,
+      1333,
+      1346,
+      1347,
+      1349,
+      1389
+    ],
+    "C": [
+      1308,
+      1312,
+      1318,
+      1322,
+      1323,
+      1324,
+      1327,
+      1328,
+      1335,
+      1337,
+      1338,
+      1339,
+      1343,
+      1344,
+      1345,
+      1351,
+      1352,
+      1385,
+      1386
+    ],
+    "D": [
+      1301,
+      1303,
+      1304,
+      1305,
+      1309,
+      1311,
+      1313,
+      1315,
+      1316,
+      1317,
+      1329,
+      1331,
+      1350,
+      1371,
+      1372,
+      1373,
+      1374,
+      1375,
+      1376,
+      1377,
+      1378,
+      1379,
+      1382,
+      1383,
+      1384
+    ]
+  },
+  "chain": {
+    "preds": {
+      "1301": [],
+      "1302": [],
+      "1303": [],
+      "1304": [
+        1301
+      ],
+      "1305": [
+        1304
+      ],
+      "1306": [
+        1305
+      ],
+      "1307": [
+        1308
+      ],
+      "1308": [
+        1306
+      ],
+      "1309": [
+        1307
+      ],
+      "1310": [
+        1309
+      ],
+      "1311": [
+        1310
+      ],
+      "1312": [
+        1311
+      ],
+      "1313": [
+        1311
+      ],
+      "1315": [
+        1350
+      ],
+      "1316": [
+        1343
+      ],
+      "1317": [
+        1316
+      ],
+      "1318": [
+        1322
+      ],
+      "1319": [],
+      "1321": [],
+      "1322": [],
+      "1323": [
+        1322
+      ],
+      "1324": [
+        1323
+      ],
+      "1325": [],
+      "1326": [],
+      "1327": [
+        1324
+      ],
+      "1328": [
+        1386
+      ],
+      "1329": [
+        1304
+      ],
+      "1330": [],
+      "1331": [
+        1386
+      ],
+      "1332": [],
+      "1333": [
+        1332
+      ],
+      "1334": [],
+      "1335": [
+        1310
+      ],
+      "1336": [
+        1335
+      ],
+      "1337": [
+        1335
+      ],
+      "1338": [
+        1337
+      ],
+      "1339": [
+        1313
+      ],
+      "1340": [],
+      "1341": [],
+      "1343": [
+        1315
+      ],
+      "1344": [
+        1343
+      ],
+      "1345": [],
+      "1346": [
+        1345
+      ],
+      "1347": [],
+      "1348": [],
+      "1349": [],
+      "1350": [
+        1313
+      ],
+      "1351": [
+        1329
+      ],
+      "1352": [
+        1329
+      ],
+      "1371": [],
+      "1372": [],
+      "1373": [],
+      "1374": [],
+      "1375": [],
+      "1376": [],
+      "1377": [],
+      "1378": [],
+      "1379": [
+        1304
+      ],
+      "1382": [],
+      "1383": [
+        1384
+      ],
+      "1384": [],
+      "1385": [
+        1384
+      ],
+      "1386": [
+        1329
+      ],
+      "1389": [],
+      "1390": []
+    },
+    "succs": {
+      "1301": [
+        1304
+      ],
+      "1302": [],
+      "1303": [],
+      "1304": [
+        1305,
+        1329,
+        1379
+      ],
+      "1305": [
+        1306
+      ],
+      "1306": [
+        1308
+      ],
+      "1307": [
+        1309
+      ],
+      "1308": [
+        1307
+      ],
+      "1309": [
+        1310
+      ],
+      "1310": [
+        1311,
+        1335
+      ],
+      "1311": [
+        1312,
+        1313
+      ],
+      "1312": [],
+      "1313": [
+        1339,
+        1350
+      ],
+      "1315": [
+        1343
+      ],
+      "1316": [
+        1317
+      ],
+      "1317": [],
+      "1318": [],
+      "1319": [],
+      "1321": [],
+      "1322": [
+        1318,
+        1323
+      ],
+      "1323": [
+        1324
+      ],
+      "1324": [
+        1327
+      ],
+      "1325": [],
+      "1326": [],
+      "1327": [],
+      "1328": [],
+      "1329": [
+        1351,
+        1352,
+        1386
+      ],
+      "1330": [],
+      "1331": [],
+      "1332": [
+        1333
+      ],
+      "1333": [],
+      "1334": [],
+      "1335": [
+        1336,
+        1337
+      ],
+      "1336": [],
+      "1337": [
+        1338
+      ],
+      "1338": [],
+      "1339": [],
+      "1340": [],
+      "1341": [],
+      "1343": [
+        1316,
+        1344
+      ],
+      "1344": [],
+      "1345": [
+        1346
+      ],
+      "1346": [],
+      "1347": [],
+      "1348": [],
+      "1349": [],
+      "1350": [
+        1315
+      ],
+      "1351": [],
+      "1352": [],
+      "1371": [],
+      "1372": [],
+      "1373": [],
+      "1374": [],
+      "1375": [],
+      "1376": [],
+      "1377": [],
+      "1378": [],
+      "1379": [],
+      "1382": [],
+      "1383": [],
+      "1384": [
+        1383,
+        1385
+      ],
+      "1385": [],
+      "1386": [
+        1328,
+        1331
+      ],
+      "1389": [],
+      "1390": []
+    }
+  }
+}

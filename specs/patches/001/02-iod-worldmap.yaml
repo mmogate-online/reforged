@@ -1,0 +1,119 @@
+# IoD World Map - Patch 001 (classic restoration, v31-primary)
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md (v31 wins on divergence).
+# Source of truth: v31 server WorldMap/NewWorldMapData.xml (World 1 / Guard 2).
+# Diff artifact: docs/plans/classic-restoration/iod/data/worldmap-diff.md / .json
+# Tracker ruling 3 (TRACKER.md "Diff artifacts" section, 2026-07-20):
+#   - Re-enable sec6 Tower Base town (asset-safe, MapDefine ships in client).
+#   - Revert sec7 (13001 field) mapId from WMap_ATW_Death_Field to WMap_ATW_Field_01.
+#   - Remove sec9 (13001 duplicate hidden field).
+#
+# This spec carries TWO of the three ruled ops. The sec9 removal is NOT expressible
+# in DSL: newWorldMap exposes only a world-level delete (DeleteNewWorldMapOperation
+# -> DeleteWorldEntryCommand); there is no section-level delete on the spec surface
+# (the section-delete command exists in the runtime but is unreachable). Logged in
+# docs/dsl-requests/2026-07-20-newworldmap-section-delete.md and flagged to the
+# orchestrator. sec9 is already visibleInMap="false" (hidden), so leaving it in
+# place is cosmetically inert pending the DSL capability.
+#
+# sec7 note: the DSL always clears a section's npc list on upsert, then recreates
+# whatever is supplied. The v31 op is mapId-only, and the v92 sec7 markers point at
+# the KEPT camp cluster (13032-34, ruling 1), so the exact live v92 marker roster is
+# re-supplied verbatim to preserve it while the mapId reverts. NOT included: the old
+# 9034/9053 sync-compat ops (Phase 5 conditional salvage only, added if client sync
+# fails E650).
+#
+# World/guard desc values are the exact v92/v31 (identical) Korean dev labels; they
+# are re-supplied because upsert always rewrites world/guard desc, and must not be
+# clobbered.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+newWorldMap:
+  upsert:
+    - worldId: 1
+      desc: "월드맵아보레아"
+      guards:
+        - guardId: 2
+          desc: "2 발키온 보호령"
+          sections:
+            # Re-enable Tower Base town (v31 sec6, full v31 marker roster).
+            - sectionId: 6
+              type: town
+              desc: "64 원정대 보급기지"
+              floor: 1
+              nameId: 64001
+              top: 73728
+              left: -84480
+              width: 13107.2
+              height: 9830.4
+              mapId: "WMap_ATW_Vill_01"
+              npcs:
+                - continentId: 13
+                  desc: "64_케롱"
+                  nameId: "99,32"
+                  pos: "66933.2813,-80063.5625,-3002.9648"
+                  type: "MARKER_WAREHOUSE"
+                - continentId: 13
+                  desc: "64_코헨"
+                  nameId: "99,11"
+                  pos: "67560.9141,-80128.4453,-3018.9492"
+                  type: "MARKER_MERCHANT"
+                - continentId: 13
+                  desc: "64_허마이오니 엘린"
+                  nameId: "99,6"
+                  pos: "67183.5313,-79444.1406,-2967.3867"
+                  type: "MARKER_CAMP_TELEPORT"
+                - continentId: 13
+                  desc: "아이나 로헨"
+                  nameId: "99,9"
+                  pos: "66603.1563,-77933.0781,-2963.3398"
+                  type: "MARKER_ROYAL_MERCHANT"
+                - continentId: 13
+                  desc: "알리오스 렌더스"
+                  nameId: "99,7"
+                  pos: "66913.5156,-79107.5078,-2965.7109"
+                  type: "MARKER_COMBAT_SKILL_LEARN"
+                - continentId: 13
+                  desc: "하이뉴"
+                  nameId: "99,10"
+                  pos: "67830.3672,-80533.9063,-3021.7109"
+                  type: "MARKER_RECOVERY"
+            # Revert sec7 field mapId to v31; re-supply live v92 KEEP-camp markers.
+            - sectionId: 7
+              desc: "13 여명의 정원"
+              floor: 1
+              nameId: 13001
+              top: 97556.37
+              left: -111011
+              width: 71493.82
+              height: 53620.37
+              mapId: "WMap_ATW_Field_01"
+              npcs:
+                - continentId: 13
+                  desc: "수비대 북부 캠프"
+                  nameId: "99,1170"
+                  pos: "81472,-80507,-4452"
+                  type: "MARKER_CAMP"
+                - continentId: 13
+                  desc: "수비대 중부 캠프"
+                  nameId: "99,1171"
+                  pos: "64121,-84576,-3779"
+                  type: "MARKER_CAMP"
+                - continentId: 13
+                  desc: "수비대 남부 캠프"
+                  nameId: "99,1172"
+                  pos: "53354,-69539,-5658"
+                  type: "MARKER_CAMP"
+                - continentId: 13
+                  desc: "기어올라가는 좌표"
+                  nameId: "99,60"
+                  pos: "56884.8867,-85628.3750,-4157.7852"
+                  type: "MARKER_CLIMB"
+                - continentId: 13
+                  desc: "기어올라가는 좌표"
+                  nameId: "99,61"
+                  pos: "73032.5781,-72971.3438,-2707.2717"
+                  type: "MARKER_CLIMB"

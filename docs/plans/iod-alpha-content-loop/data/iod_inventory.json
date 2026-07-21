@@ -1,0 +1,8963 @@
+{
+ "island": [
+  {
+   "file": "Quest-00390.xml",
+   "docId": "1301",
+   "questNo": "13,1",
+   "titleRef": "@quest:1301001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1105"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1014"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1301005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1014
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Dawn's Early Light",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "10",
+     "exp": "100",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00390.xml",
+    "size": 1861,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00391.xml",
+   "docId": "1302",
+   "questNo": "13,2",
+   "titleRef": "@quest:1302001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1014"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1106"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1302005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1106
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Another Fine Mess",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "15",
+     "exp": "150",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00391.xml",
+    "size": 1428,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00392.xml",
+   "docId": "1303",
+   "questNo": "13,3",
+   "titleRef": "@quest:1303001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "5",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1115"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "동영상재생Task",
+     "details": [
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "동영상재생Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,1001"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1303004"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1115"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1303006"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1115
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "The Secret Life of Trees",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "1500",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "17712",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17712",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17715",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17715",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17715",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17718",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17718",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17718",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00392.xml",
+    "size": 1620,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00393.xml",
+   "docId": "1304",
+   "questNo": "13,4",
+   "titleRef": "@quest:1304001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,01"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1014"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1003"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1304005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1017"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1304007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1004"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1304009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1304011"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1001
+    ],
+    [
+     213,
+     1003
+    ],
+    [
+     213,
+     1004
+    ],
+    [
+     213,
+     1017
+    ]
+   ],
+   "npcZones": [
+    64,
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Making the Rounds",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "600",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "17701",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17701",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17704",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17704",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17704",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17707",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17707",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17707",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00393.xml",
+    "size": 3542,
+    "texts": 7,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00394.xml",
+   "docId": "1305",
+   "questNo": "13,5",
+   "titleRef": "@quest:1305001",
+   "repeat": "1회성",
+   "minLevel": "6",
+   "maxLevel": null,
+   "recLevel": "6",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,04"
+   ],
+   "startCond": [
+    [
+     "/발생조건/즉시수주",
+     "1"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1305005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1028"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1305007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1009"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1305009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1305011"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1001
+    ],
+    [
+     64,
+     1028
+    ],
+    [
+     213,
+     1008
+    ],
+    [
+     213,
+     1009
+    ]
+   ],
+   "npcZones": [
+    64,
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Elleon's Fate",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "800",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "17710",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17710",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17713",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17713",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17713",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17716",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17716",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17716",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00394.xml",
+    "size": 3725,
+    "texts": 7,
+    "pages": 7
+   }
+  },
+  {
+   "file": "Quest-00395.xml",
+   "docId": "1306",
+   "questNo": "13,6",
+   "titleRef": "@quest:1306001",
+   "repeat": "1회성",
+   "minLevel": "6",
+   "maxLevel": null,
+   "recLevel": "7",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,05"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1008"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1306005"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1021"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "61"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1306006"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1306009"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "PC이동Task",
+     "details": [
+      [
+       "/Task/Body/목표지역",
+       "213,21300020"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1306012"
+      ],
+      [
+       "/Task/Body/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/지역명",
+       "@quest:1306010"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "PC이동Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "동영상재생Task",
+     "details": [
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "동영상재생Task"
+      ]
+     ]
+    },
+    {
+     "id": "5",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1036"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1306014"
+      ],
+      [
+       "/Task/Header/Id",
+       "5"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "6",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1306016"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1021"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "145"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1306017"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "6"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1008
+    ],
+    [
+     213,
+     1036
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Traces of Darkness",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00395.xml",
+    "size": 4013,
+    "texts": 7,
+    "pages": 10
+   }
+  },
+  {
+   "file": "Quest-00396.xml",
+   "docId": "1307",
+   "questNo": "13,7",
+   "titleRef": "@quest:1307001",
+   "repeat": "1회성",
+   "minLevel": "7",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,08"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1008"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1027"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1307005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1027"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1307006"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,601"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "98"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1307007"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1307008"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1307011"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1008
+    ],
+    [
+     213,
+     1027
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Live by the Sword...",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "100",
+     "exp": "1000",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "8200",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00396.xml",
+    "size": 3251,
+    "texts": 7,
+    "pages": 8
+   }
+  },
+  {
+   "file": "Quest-00397.xml",
+   "docId": "1308",
+   "questNo": "13,8",
+   "titleRef": "@quest:1308001",
+   "repeat": "1회성",
+   "minLevel": "7",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,06"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1021"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1021"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1308004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,3"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "63"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "6"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1308005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1308006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1308009"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1008
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Essence of Foreboding",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "100",
+     "exp": "1000",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00397.xml",
+    "size": 2580,
+    "texts": 6,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00398.xml",
+   "docId": "1309",
+   "questNo": "13,9",
+   "titleRef": "@quest:1309001",
+   "repeat": "1회성",
+   "minLevel": "7",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,07"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1008"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,1002"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "1"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,1003"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "5"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1309006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1309008"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "89"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1309009"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Acharak Attacks",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "2000",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "10537",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10538",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10539",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10540",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10542",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10541",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10543",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10544",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00398.xml",
+    "size": 1630,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00399.xml",
+   "docId": "1310",
+   "questNo": "13,10",
+   "titleRef": "@quest:1310001",
+   "repeat": "1회성",
+   "minLevel": "7",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": "1",
+   "type": "미션",
+   "prereqs": [
+    "13,09"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1008"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1130"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1310004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1310006"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "64,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "98"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1310007"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1009"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1310010"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1009
+    ],
+    [
+     213,
+     1130
+    ]
+   ],
+   "npcZones": [
+    64,
+    213
+   ],
+   "qnoHz": 13,
+   "title": "A Clue In the Dark",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "100",
+     "exp": "1000",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00399.xml",
+    "size": 2323,
+    "texts": 6,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00400.xml",
+   "docId": "1311",
+   "questNo": "13,11",
+   "titleRef": "@quest:1311001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "9",
+   "party": "1",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,10"
+   ],
+   "startCond": [
+    [
+     "/발생조건/즉시수주",
+     "1"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1311005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1033"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1311007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1007"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1311009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1311011"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1018"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "98"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1311012"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1001
+    ],
+    [
+     64,
+     1033
+    ],
+    [
+     213,
+     1007
+    ]
+   ],
+   "npcZones": [
+    64,
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Clearing the Gorge",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "100",
+     "exp": "1000",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00400.xml",
+    "size": 2509,
+    "texts": 7,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00401.xml",
+   "docId": "1312",
+   "questNo": "13,12",
+   "titleRef": "@quest:1312001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "9",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,11"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1134"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,300910"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "6"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1312004"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1134"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1312006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1134
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "The Dark Patrol",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "170",
+     "exp": "1700",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "15606",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15606",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15609",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15609",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15609",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15612",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15612",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15612",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00401.xml",
+    "size": 1239,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00402.xml",
+   "docId": "1313",
+   "questNo": "13,13",
+   "titleRef": "@quest:1313001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "9",
+   "party": "1",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,11"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1018"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "PC이동Task",
+     "details": [
+      [
+       "/Task/Body/목표지역",
+       "213,21300011"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1313006"
+      ],
+      [
+       "/Task/Body/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/지역명",
+       "@quest:1313004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "PC이동Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1005"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1313008"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1025"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1313010"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1005
+    ],
+    [
+     213,
+     1025
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Into the Gorge",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "100",
+     "exp": "1000",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00402.xml",
+    "size": 2036,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00403.xml",
+   "docId": "1315",
+   "questNo": "13,15",
+   "titleRef": "@quest:1315001",
+   "repeat": "1회성",
+   "minLevel": "9",
+   "maxLevel": null,
+   "recLevel": "11",
+   "party": "1",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,50"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1026"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1026"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1315004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,8"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "42"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1315005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1315006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1315009"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1025"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "42"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1315010"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,1004"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1315012"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1315014"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1025"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "100"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1315015"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Putting the Pieces Together",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "5200",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "15668",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15668",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15671",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15671",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15671",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15674",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15674",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15674",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00403.xml",
+    "size": 2637,
+    "texts": 7,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00404.xml",
+   "docId": "1316",
+   "questNo": "13,16",
+   "titleRef": "@quest:1316001",
+   "repeat": "1회성",
+   "minLevel": "9",
+   "maxLevel": null,
+   "recLevel": "11",
+   "party": "5",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,43"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1025"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "436,1002"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1316004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "동영상재생Task",
+     "details": [
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "동영상재생Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1316006"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1025"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "103"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1316007"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1316010"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1037"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "103"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1316011"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "5",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1316014"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "64,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "99"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1316015"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "5"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Dark Revelations",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "6000",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "10593",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10594",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10595",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10596",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10597",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10598",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10599",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "10600",
+       "class": "elementalist",
+       "quantity": "1"
+      },
+      {
+       "templateId": "160",
+       "class": "lancer",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "berserker",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "warrior",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "slayer",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "archer",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "sorcerer",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "priest",
+       "quantity": "2"
+      },
+      {
+       "templateId": "160",
+       "class": "elementalist",
+       "quantity": "2"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00404.xml",
+    "size": 3182,
+    "texts": 6,
+    "pages": 8
+   }
+  },
+  {
+   "file": "Quest-00405.xml",
+   "docId": "1317",
+   "questNo": "13,17",
+   "titleRef": "@quest:1317001",
+   "repeat": "1회성",
+   "minLevel": "10",
+   "maxLevel": null,
+   "recLevel": "11",
+   "party": "1",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,16"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1001"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1009"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1317005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1317007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1016"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1317009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "63,1097"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1317011"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "5"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "5",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "63,1107"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1317013"
+      ],
+      [
+       "/Task/Header/Id",
+       "5"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "6"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     63,
+     1097
+    ],
+    [
+     63,
+     1107
+    ],
+    [
+     64,
+     1009
+    ],
+    [
+     213,
+     1001
+    ],
+    [
+     213,
+     1016
+    ]
+   ],
+   "npcZones": [
+    63,
+    64,
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Ride Off Into the Sunset",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "1500",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "15667",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15667",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15670",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15670",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15670",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15673",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15673",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15673",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00405.xml",
+    "size": 3263,
+    "texts": 8,
+    "pages": 7
+   }
+  },
+  {
+   "file": "Quest-00406.xml",
+   "docId": "1318",
+   "questNo": "13,18",
+   "titleRef": "@quest:1318001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,22"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1112"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1114"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1318004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300921"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "86"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "3"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1318005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1318006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Hunting the Beasts",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "90",
+     "exp": "900",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00406.xml",
+    "size": 1583,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00407.xml",
+   "docId": "1319",
+   "questNo": "13,19",
+   "titleRef": "@quest:1319001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "3",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1110"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1110"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1319004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300944"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300941"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "96"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "8"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1319005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1319006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Dwellers of the Island",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "600",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "12401",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12402",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12403",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12404",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12405",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12407",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12406",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12408",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00407.xml",
+    "size": 1647,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00408.xml",
+   "docId": "1321",
+   "questNo": "13,21",
+   "titleRef": "@quest:1321001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1106"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1003"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1321005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1003
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "A Bridge Pretty Near",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "30",
+     "exp": "300",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00408.xml",
+    "size": 1317,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00409.xml",
+   "docId": "1322",
+   "questNo": "13,22",
+   "titleRef": "@quest:1322001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1003"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,300931"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "4"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1322004"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1003"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1322006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1003
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Unrest in the Forest",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "500",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "17703",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17703",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17706",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17706",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17706",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17709",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17709",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17709",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00409.xml",
+    "size": 1146,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00410.xml",
+   "docId": "1323",
+   "questNo": "13,23",
+   "titleRef": "@quest:1323001",
+   "repeat": "1회성",
+   "minLevel": "1",
+   "maxLevel": null,
+   "recLevel": "1",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,22"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1003"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1017"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1323004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300931"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "87"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "5"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1323005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1323006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Getting Some Answers",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00410.xml",
+    "size": 1653,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00411.xml",
+   "docId": "1324",
+   "questNo": "13,24",
+   "titleRef": "@quest:1324001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "3",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,23"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1017"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1324004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300930"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300933"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "63"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "5"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1324005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1324006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Essence and Sensibility",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "90",
+     "exp": "900",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00411.xml",
+    "size": 1732,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00412.xml",
+   "docId": "1325",
+   "questNo": "13,25",
+   "titleRef": "@quest:1325001",
+   "repeat": "1회성",
+   "minLevel": "3",
+   "maxLevel": null,
+   "recLevel": "3",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1121"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1121"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1325004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "122"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1325005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1325006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "The Perfect Cut",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "500",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "17702",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17702",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17705",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17705",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17705",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17708",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17708",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17708",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00412.xml",
+    "size": 1863,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00413.xml",
+   "docId": "1326",
+   "questNo": "13,26",
+   "titleRef": "@quest:1326001",
+   "repeat": "1회성",
+   "minLevel": "5",
+   "maxLevel": null,
+   "recLevel": "5",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1023"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "64,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1326004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,2"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "96"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "8"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1326005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1326006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Mana out of Mudmen",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "200",
+     "exp": "2000",
+     "itemBag": "choice",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "125",
+       "quantity": "10"
+      },
+      {
+       "templateId": "129",
+       "quantity": "1"
+      },
+      {
+       "templateId": "130",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00413.xml",
+    "size": 1681,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00414.xml",
+   "docId": "1327",
+   "questNo": "13,27",
+   "titleRef": "@quest:1327001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,24"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1038"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1327005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1004"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1327007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1119"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1327008"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,304"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "29"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "5"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1327009"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1327010"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1004
+    ],
+    [
+     213,
+     1038
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Garrison in Distress",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00414.xml",
+    "size": 2775,
+    "texts": 7,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00415.xml",
+   "docId": "1328",
+   "questNo": "13,28",
+   "titleRef": "@quest:1328001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,86"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1001"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "64,1042"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1328004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,301194"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,301191"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,301193"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "33"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1328005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1328006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Academic Theft",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "110",
+     "exp": "1100",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00415.xml",
+    "size": 1816,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00416.xml",
+   "docId": "1329",
+   "questNo": "13,29",
+   "titleRef": "@quest:1329001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,04"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1001"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1006"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1329004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1006
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Going Above and Beyond",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "10",
+     "exp": "100",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "12409",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12410",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12411",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12412",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12413",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12414",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12415",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "12416",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00416.xml",
+    "size": 1246,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00417.xml",
+   "docId": "1330",
+   "questNo": "13,30",
+   "titleRef": "@quest:1330001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "5",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1028"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,300932"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "4"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1330004"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1028"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1330006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1028
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Horned Horrors",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "190",
+     "exp": "1900",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00417.xml",
+    "size": 1545,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00418.xml",
+   "docId": "1331",
+   "questNo": "13,31",
+   "titleRef": "@quest:1331001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,86"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1006"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1053"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1331005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "채집Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "64,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1331007"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1331008"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/아이템Id",
+       "9095"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Body/제한시간설정/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/채집물지정/채집물지정/콜렉션Id",
+       "492"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "채집Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1053
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "I'll Take the High Road",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "8007",
+       "quantity": "2"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00418.xml",
+    "size": 2273,
+    "texts": 6,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00419.xml",
+   "docId": "1332",
+   "questNo": "13,32",
+   "titleRef": "@quest:1332001",
+   "repeat": "1회성",
+   "minLevel": "6",
+   "maxLevel": null,
+   "recLevel": "7",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1009"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1130"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1332004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300920"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "61"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "4"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1332005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1332006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "They'll Eat Anything",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "90",
+     "exp": "900",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00419.xml",
+    "size": 1818,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00420.xml",
+   "docId": "1333",
+   "questNo": "13,33",
+   "titleRef": "@quest:1333001",
+   "repeat": "1회성",
+   "minLevel": "6",
+   "maxLevel": null,
+   "recLevel": "7",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,32"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1130"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1130"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1333004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300911"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "61"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "6"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1333005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1333006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Twice the Bark, Twice the Bite",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "170",
+     "exp": "1700",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00420.xml",
+    "size": 1731,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00421.xml",
+   "docId": "1334",
+   "questNo": "13,34",
+   "titleRef": "@quest:1334001",
+   "repeat": "반복",
+   "minLevel": "6",
+   "maxLevel": "10",
+   "recLevel": "7",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1021"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "채집Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1021"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1334005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1334006"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/아이템Id",
+       "9011"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/전달수량",
+       "5"
+      ],
+      [
+       "/Task/Body/제한시간설정/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/채집물지정/채집물지정/콜렉션Id",
+       "410"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "채집Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Investigating the Relics <Repeatable>",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00421.xml",
+    "size": 1914,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00422.xml",
+   "docId": "1335",
+   "questNo": "13,35",
+   "titleRef": "@quest:1335001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,10"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1001"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1003"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1335005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1007"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1335007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1003
+    ],
+    [
+     213,
+     1007
+    ]
+   ],
+   "npcZones": [
+    64,
+    213
+   ],
+   "qnoHz": 13,
+   "title": "One of Our Couriers is Missing",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "60",
+     "exp": "600",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00422.xml",
+    "size": 2006,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00423.xml",
+   "docId": "1336",
+   "questNo": "13,36",
+   "titleRef": "@quest:1336001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,35"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1007"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "채집Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1007"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1336005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1336006"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/아이템Id",
+       "9010"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/전달수량",
+       "4"
+      ],
+      [
+       "/Task/Body/제한시간설정/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/채집물지정/채집물지정/콜렉션Id",
+       "409"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "채집Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Chione's Missing Cargo",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "60",
+     "exp": "600",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00423.xml",
+    "size": 1420,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00424.xml",
+   "docId": "1337",
+   "questNo": "13,37",
+   "titleRef": "@quest:1337001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,35"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1007"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1007"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1337004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300945"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300943"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "60"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "8"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1337005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1337006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Searching for the Stolen Stones",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "1100",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "15605",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15605",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15608",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15608",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15608",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15611",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15611",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "15611",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00424.xml",
+    "size": 1575,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00425.xml",
+   "docId": "1338",
+   "questNo": "13,38",
+   "titleRef": "@quest:1338001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,37"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1007"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1137"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1338005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1137
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Chione's Report",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "50",
+     "exp": "500",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00425.xml",
+    "size": 1225,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00426.xml",
+   "docId": "1339",
+   "questNo": "13,39",
+   "titleRef": "@quest:1339001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "9",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,13"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1025"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1025"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1339004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,6"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300942"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "153"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1339005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1339006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Sersine, She Seeks Shackles",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "290",
+     "exp": "2900",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00426.xml",
+    "size": 1518,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00427.xml",
+   "docId": "1340",
+   "questNo": "13,40",
+   "titleRef": "@quest:1340001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "9",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1143"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,7"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "8"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1340004"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1143"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1340006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1143
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Painful Disc-overies",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "230",
+     "exp": "2300",
+     "itemBag": "choice",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "7100",
+       "quantity": "1"
+      },
+      {
+       "templateId": "7104",
+       "quantity": "1"
+      },
+      {
+       "templateId": "7108",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00427.xml",
+    "size": 1371,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00428.xml",
+   "docId": "1341",
+   "questNo": "13,41",
+   "titleRef": "@quest:1341001",
+   "repeat": "반복",
+   "minLevel": "8",
+   "maxLevel": "12",
+   "recLevel": "9",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1141"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "채집Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1141"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1341005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1341006"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/아이템Id",
+       "9012"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/전달수량",
+       "5"
+      ],
+      [
+       "/Task/Body/제한시간설정/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/채집물지정/채집물지정/콜렉션Id",
+       "411"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "채집Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Bequest of the Dead <Repeatable>",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "100",
+     "exp": "1000",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00428.xml",
+    "size": 1894,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00429.xml",
+   "docId": "1343",
+   "questNo": "13,43",
+   "titleRef": "@quest:1343001",
+   "repeat": "1회성",
+   "minLevel": "9",
+   "maxLevel": null,
+   "recLevel": "11",
+   "party": "1",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,15"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1025"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1343005"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1028"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "100"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1343006"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1343009"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "100"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1343010"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1343013"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1025"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "99"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1343014"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "1"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Answers Lead to More Questions",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00429.xml",
+    "size": 3091,
+    "texts": 6,
+    "pages": 8
+   }
+  },
+  {
+   "file": "Quest-00430.xml",
+   "docId": "1344",
+   "questNo": "13,44",
+   "titleRef": "@quest:1344001",
+   "repeat": "1회성",
+   "minLevel": "9",
+   "maxLevel": null,
+   "recLevel": "11",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,43"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1143"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1028"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1344005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,9"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "5"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1344006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1028"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1344008"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1143"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1344010"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1028
+    ],
+    [
+     213,
+     1143
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Destroy All Destroyers!",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "300",
+     "exp": "3000",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00430.xml",
+    "size": 2420,
+    "texts": 6,
+    "pages": 5
+   }
+  },
+  {
+   "file": "Quest-00431.xml",
+   "docId": "1345",
+   "questNo": "13,45",
+   "titleRef": "@quest:1345001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "10",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1006"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1007"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1345005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1050"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1345007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1007
+    ],
+    [
+     64,
+     1050
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Desperately Seeking Sorscha",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "50",
+     "exp": "500",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "8007",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00431.xml",
+    "size": 1678,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00432.xml",
+   "docId": "1346",
+   "questNo": "13,46",
+   "titleRef": "@quest:1346001",
+   "repeat": "1회성",
+   "minLevel": "8",
+   "maxLevel": null,
+   "recLevel": "10",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,45"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1050"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "수호Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "437,1001"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1346005"
+      ],
+      [
+       "/Task/Body/제한시간",
+       "0,7"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "수호Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "437,1001"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1346007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1006"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1346009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1006
+    ],
+    [
+     437,
+     1001
+    ]
+   ],
+   "npcZones": [
+    64,
+    437
+   ],
+   "qnoHz": 13,
+   "title": "Sorcha's Reckless Challenge",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "600",
+     "exp": "6000",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00432.xml",
+    "size": 2052,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00433.xml",
+   "docId": "1347",
+   "questNo": "13,47",
+   "titleRef": "@quest:1347001",
+   "repeat": "1회성",
+   "minLevel": "6",
+   "maxLevel": null,
+   "recLevel": "6",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1128"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1128"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1347004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300542"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300541"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "107"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "8"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1347005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1347006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "It Was a Rock...Crawler!",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "0",
+     "exp": "900",
+     "itemBag": "class",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "17711",
+       "class": "lancer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17711",
+       "class": "berserker",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17714",
+       "class": "warrior",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17714",
+       "class": "slayer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17714",
+       "class": "archer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17717",
+       "class": "sorcerer",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17717",
+       "class": "priest",
+       "quantity": "1"
+      },
+      {
+       "templateId": "17717",
+       "class": "elementalist",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00433.xml",
+    "size": 1602,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00434.xml",
+   "docId": "1348",
+   "questNo": "13,48",
+   "titleRef": "@quest:1348001",
+   "repeat": "1회성",
+   "minLevel": "5",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1147"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1147"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1348004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,302"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,303"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "89"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "8"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1348005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1348006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Ferocious Flowering Felons",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "90",
+     "exp": "900",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00434.xml",
+    "size": 1748,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00435.xml",
+   "docId": "1349",
+   "questNo": "13,49",
+   "titleRef": "@quest:1349001",
+   "repeat": "1회성",
+   "minLevel": "7",
+   "maxLevel": null,
+   "recLevel": "8",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1126"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,5"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "6"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,4"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "48"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1349004"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1126"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1349006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1126
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Gotta Kill 'em All",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "230",
+     "exp": "2300",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "5132",
+       "quantity": "1"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00435.xml",
+    "size": 1211,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00436.xml",
+   "docId": "1350",
+   "questNo": "13,50",
+   "titleRef": "@quest:1350001",
+   "repeat": "1회성",
+   "minLevel": "9",
+   "maxLevel": null,
+   "recLevel": "10",
+   "party": "1",
+   "storyGroup": "2",
+   "type": "미션",
+   "prereqs": [
+    "13,13"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1026"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "사냥전달Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1026"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/Flag아이템이름",
+       "@quest:1350004"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300951"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/몬스터지정/몬스터지정/몬스터Id",
+       "13,300960"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/아이콘지정",
+       "42"
+      ],
+      [
+       "/Task/Body/아이템작성/아이템작성/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1350005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1350006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Strange Attractors",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "180",
+     "exp": "1800",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00436.xml",
+    "size": 2491,
+    "texts": 5,
+    "pages": 5
+   }
+  },
+  {
+   "file": "Quest-00437.xml",
+   "docId": "1351",
+   "questNo": "13,51",
+   "titleRef": "@quest:1351001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,29"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1006"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1005"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1351005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1007"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1351007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1048"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1351009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1005
+    ],
+    [
+     64,
+     1007
+    ],
+    [
+     64,
+     1048
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Supply and Demand",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "6048",
+       "quantity": "5"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00437.xml",
+    "size": 2688,
+    "texts": 6,
+    "pages": 7
+   }
+  },
+  {
+   "file": "Quest-00438.xml",
+   "docId": "1352",
+   "questNo": "13,52",
+   "titleRef": "@quest:1352001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,29"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1006"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1005"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1352005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1008"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1352007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1048"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1352009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1005
+    ],
+    [
+     64,
+     1008
+    ],
+    [
+     64,
+     1048
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Supply and Demand",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "80",
+     "exp": "800",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "6048",
+       "quantity": "5"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00438.xml",
+    "size": 2931,
+    "texts": 6,
+    "pages": 7
+   }
+  },
+  {
+   "file": "Quest-00439.xml",
+   "docId": "1371",
+   "questNo": "13,71",
+   "titleRef": "@quest:1371001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1371005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "40100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1371006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1371009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1023
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Warrior Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00439.xml",
+    "size": 1873,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00440.xml",
+   "docId": "1372",
+   "questNo": "13,72",
+   "titleRef": "@quest:1372001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1372005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "180100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1372006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1372009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1023
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Lancer Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00440.xml",
+    "size": 1913,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00441.xml",
+   "docId": "1373",
+   "questNo": "13,73",
+   "titleRef": "@quest:1373001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1373005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "30100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1373006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1373009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1023
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Slayer Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00441.xml",
+    "size": 1854,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00442.xml",
+   "docId": "1374",
+   "questNo": "13,74",
+   "titleRef": "@quest:1374001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1374005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "100100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1374006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1374009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1023
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Berserker Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00442.xml",
+    "size": 1885,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00443.xml",
+   "docId": "1375",
+   "questNo": "13,75",
+   "titleRef": "@quest:1375001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1375005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "20100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1375006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1023"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1375009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1023
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Archer Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00443.xml",
+    "size": 1946,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00444.xml",
+   "docId": "1376",
+   "questNo": "13,76",
+   "titleRef": "@quest:1376001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1024"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1376005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "70100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1376006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1024"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1376009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1024
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Sorcerer Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00444.xml",
+    "size": 1854,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00445.xml",
+   "docId": "1377",
+   "questNo": "13,77",
+   "titleRef": "@quest:1377001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1024"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1377005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "110100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1377006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1024"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1377009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1024
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Priest Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00445.xml",
+    "size": 1953,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00446.xml",
+   "docId": "1378",
+   "questNo": "13,78",
+   "titleRef": "@quest:1378001",
+   "repeat": "1회성",
+   "minLevel": "2",
+   "maxLevel": null,
+   "recLevel": "2",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1017"
+    ]
+   ],
+   "classFilter": "",
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1024"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1378005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/스킬습득/스킬Id",
+       "80100"
+      ],
+      [
+       "/Task/Body/완료조건/스킬습득/스킬종류",
+       "전투"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1378006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1024"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1378009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1024
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "Initial Mystic Training",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00446.xml",
+    "size": 1953,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00447.xml",
+   "docId": "1382",
+   "questNo": "13,82",
+   "titleRef": "@quest:1382001",
+   "repeat": "1회성",
+   "minLevel": "3",
+   "maxLevel": null,
+   "recLevel": "3",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1048"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "채집Task",
+     "details": [
+      [
+       "/Task/Body/대상NPC지정",
+       "64,1048"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1382005"
+      ],
+      [
+       "/Task/Body/저널Text2",
+       "@quest:1382006"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/아이템Id",
+       "9100"
+      ],
+      [
+       "/Task/Body/전달아이템지정/전달아이템지정/전달수량",
+       "2"
+      ],
+      [
+       "/Task/Body/제한시간설정/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Body/채집물지정/채집물지정/콜렉션Id",
+       "496"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "채집Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [],
+   "npcZones": [],
+   "qnoHz": 13,
+   "title": "Introduction to Gathering",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "10",
+     "exp": "100",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00447.xml",
+    "size": 2222,
+    "texts": 5,
+    "pages": 5
+   }
+  },
+  {
+   "file": "Quest-00448.xml",
+   "docId": "1384",
+   "questNo": "13,84",
+   "titleRef": "@quest:1384001",
+   "repeat": "1회성",
+   "minLevel": "3",
+   "maxLevel": null,
+   "recLevel": "3",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1049"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/저널Text",
+       "@quest:1384004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1049"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1384007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1049
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Recharge It",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "7100",
+       "quantity": "2"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00448.xml",
+    "size": 1912,
+    "texts": 4,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00449.xml",
+   "docId": "1385",
+   "questNo": "13,85",
+   "titleRef": "@quest:1385001",
+   "repeat": "1회성",
+   "minLevel": "3",
+   "maxLevel": null,
+   "recLevel": "3",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,84"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1049"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/아이템사용/아이템Id",
+       "7100"
+      ],
+      [
+       "/Task/Body/완료조건/아이템사용/아이템갯수",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1385004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1049"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1385007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1049
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Always After Me Lucky Charms",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "5",
+     "exp": "50",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00449.xml",
+    "size": 1390,
+    "texts": 4,
+    "pages": 3
+   }
+  },
+  {
+   "file": "Quest-00450.xml",
+   "docId": "1386",
+   "questNo": "13,86",
+   "titleRef": "@quest:1386001",
+   "repeat": "1회성",
+   "minLevel": "4",
+   "maxLevel": null,
+   "recLevel": "4",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [
+    "13,29"
+   ],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "64,1006"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1029"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1386005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "사냥Task",
+     "details": [
+      [
+       "/Task/Body/몬스터지정/몬스터지정/몬스터Id",
+       "13,888"
+      ],
+      [
+       "/Task/Body/몬스터지정/몬스터지정/사냥마리수",
+       "5"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1386006"
+      ],
+      [
+       "/Task/Body/진행조건/제한시간",
+       "0,0"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "사냥Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1029"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1386008"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "4",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1006"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1386010"
+      ],
+      [
+       "/Task/Header/Id",
+       "4"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "4"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1006
+    ],
+    [
+     64,
+     1029
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Bombs Away!",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "30",
+     "exp": "300",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "7200",
+       "quantity": "10"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00450.xml",
+    "size": 2207,
+    "texts": 6,
+    "pages": 6
+   }
+  },
+  {
+   "file": "Quest-00451.xml",
+   "docId": "1389",
+   "questNo": "13,89",
+   "titleRef": "@quest:1389001",
+   "repeat": "1회성",
+   "minLevel": "5",
+   "maxLevel": null,
+   "recLevel": "6",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1020"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1020"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1389005"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/저널Text",
+       "@quest:1389006"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "213,1020"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1389009"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     213,
+     1020
+    ]
+   ],
+   "npcZones": [
+    213
+   ],
+   "qnoHz": 13,
+   "title": "판도라 상자 사용 안내",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "20",
+     "exp": "200",
+     "policyPoint": "0",
+     "items": []
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00451.xml",
+    "size": 2967,
+    "texts": 5,
+    "pages": 4
+   }
+  },
+  {
+   "file": "Quest-00452.xml",
+   "docId": "1390",
+   "questNo": "13,90",
+   "titleRef": "@quest:1390001",
+   "repeat": "1회성",
+   "minLevel": "6",
+   "maxLevel": "12",
+   "recLevel": "7",
+   "party": "1",
+   "storyGroup": null,
+   "type": "일반",
+   "prereqs": [],
+   "startCond": [
+    [
+     "/발생조건/NPC대화",
+     "213,1130"
+    ]
+   ],
+   "classFilter": null,
+   "tasks": [
+    {
+     "id": "1",
+     "name": "조건Task",
+     "details": [
+      [
+       "/Task/Body/완료조건/아이템사용/아이템Id",
+       "160"
+      ],
+      [
+       "/Task/Body/완료조건/아이템사용/아이템갯수",
+       "1"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1390004"
+      ],
+      [
+       "/Task/Header/Id",
+       "1"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "조건Task"
+      ]
+     ]
+    },
+    {
+     "id": "2",
+     "name": "방문Task",
+     "details": [
+      [
+       "/Task/Body/방문그룹/방문그룹/NPCId",
+       "64,1050"
+      ],
+      [
+       "/Task/Body/보상",
+       "0"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1390007"
+      ],
+      [
+       "/Task/Header/Id",
+       "2"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "2"
+      ],
+      [
+       "/Task/Header/이름",
+       "방문Task"
+      ]
+     ]
+    },
+    {
+     "id": "3",
+     "name": "찔러준아이템전달Task",
+     "details": [
+      [
+       "/Task/Body/Flag아이템이름",
+       "@quest:1390009"
+      ],
+      [
+       "/Task/Body/대상NPC지정",
+       "213,1130"
+      ],
+      [
+       "/Task/Body/보상",
+       "1"
+      ],
+      [
+       "/Task/Body/아이콘지정",
+       "60"
+      ],
+      [
+       "/Task/Body/저널Text",
+       "@quest:1390010"
+      ],
+      [
+       "/Task/Body/전달수량",
+       "10"
+      ],
+      [
+       "/Task/Header/Id",
+       "3"
+      ],
+      [
+       "/Task/Header/JournalScript",
+       "3"
+      ],
+      [
+       "/Task/Header/이름",
+       "찔러준아이템전달Task"
+      ]
+     ]
+    }
+   ],
+   "npcRefs": [
+    [
+     64,
+     1050
+    ]
+   ],
+   "npcZones": [
+    64
+   ],
+   "qnoHz": 13,
+   "title": "Special Delivery",
+   "compensation": [
+    {
+     "type": "normal",
+     "gold": "30",
+     "exp": "300",
+     "itemBag": "allpay",
+     "policyPoint": "0",
+     "items": [
+      {
+       "templateId": "160",
+       "quantity": "2"
+      }
+     ]
+    }
+   ],
+   "dialog": {
+    "file": "QuestDialog-00452.xml",
+    "size": 2053,
+    "texts": 5,
+    "pages": 4
+   }
+  }
+ ],
+ "totalQuests": 2121
+}

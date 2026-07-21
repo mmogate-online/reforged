@@ -1,0 +1,91 @@
+# IoD padding polish: Patch 001 (classic-restoration, v31-primary doctrine)
+# Two live-test corrections found during the IoD padding wave (2026-07-21), both
+# re-applied from the retired pilot after re-confirmation by the user.
+#
+# Artifacts:
+#   docs/plans/classic-restoration/iod/data/padding-ramun-dupes.md (ISSUE 1, ISSUE 2)
+#   User approvals 2026-07-21 (density/Ramun/dupes polish wave).
+#
+# FIX 2 - Ramun / quest 1327 "Garrison in Distress" (ISSUE 1).
+#   Template 1038 (Herald Ramun, HZ 213 group 1300005 territory 1300467, instance
+#   21300005) carries spawnScriptId 10023, an entrance script that ends in a move:
+#   the interactable entity stays at the spawn coordinate while the client visual
+#   walks to the script endpoint, so C_NPC_CONTACT fails the server range check and
+#   the Task-1 visit never completes. The fix moves the server spawn onto the
+#   script's move endpoint (80672, -81177, -4409) so server and client agree. This
+#   is an INTERNAL server/client position-consistency correction (NOT a v31
+#   divergence); the endpoint was packet-capture-proven by the retired pilot
+#   (temp/patch-001-v17-reference/12-iod-spawn-script-fixes.yaml, 2026-07-19) and is
+#   re-applied here because the reposition lived only in discarded specs and never
+#   reached the current baseline (the un-fixed 80798,-80691,-4433 is HEAD). Verified
+#   live in D:\dev\mmogate\tera92\server\Datasheet\TerritoryData_213.xml, 2026-07-21.
+#
+# FIX 3 - Politics dual-state NPC removals (ISSUE 2).
+#   Five classic dual-state (vanarch / political) NPCs spawn permanently because
+#   this build runs no policy gating and both rows carry conditionalSpawn="false",
+#   so the working service NPC and its menu-less OFF/placeholder twin overlap
+#   (<500u, within one layer). Remove the inert twin, keep the working one. The
+#   Harger pair (313 templates 1003/1004) is NOT removed: v31 has them as two
+#   distinct services (BuffStore / ConditionRestore) whose names v92 collapsed.
+#   keep/remove is NOT a blanket template rule (the working merchant is tpl 1002 in
+#   layer 313 but tpl 1001 in layer 364), so removals target exact instanceIds.
+#   territorySpawns.delete (NOT a territory cascade): the shared territories hold
+#   kept NPCs (e.g. 313 t31300009 also carries the working Jilva 1007 / Misrile
+#   1008), so only the specific spawn rows are removed. NpcData template rows are
+#   left in place as dormant templates.
+#
+#   Policy call: v31 itself carries these dual-state NPCs (valid v31 data toggled by
+#   a policy system this build does not run), so removing them is a DELIBERATE
+#   divergence from v31 under v31-primary. Approved once as pilot "decision 24"
+#   (2026-07-19); RE-CONFIRMED by the user 2026-07-21, superseding that decision.
+#   Divergence category: policy. Logged in the zone divergence log.
+#
+#   Removal set (instanceId / template / territory), verified live against
+#   TerritoryData_313.xml and TerritoryData_364.xml, 2026-07-21:
+#     HZ 313 group 31300002:
+#       31300014  tpl 1001  t31300005  Ashley  (menu-less "Specialty Store" retitle; keep 1002 Merchant)
+#       31300018  tpl 1005  t31300009  Jilva   (Off-Duty, menu-less; keep 1007 Tactics Instructor)
+#       31300019  tpl 1006  t31300009  Misrile (Off-Duty, menu-less; keep 1008 Magic Instructor)
+#     HZ 364 group 36400001:
+#       36400002  tpl 1002  t36400002  Ainah   ("Vacationing Shopowner" placeholder; keep 1001 Merchant)
+#       36400007  tpl 1101  t36400005  Hyneu   (policy cleric, inert; keep 1102 Noble Cleric)
+#
+#   Deletes are idempotent-tolerant: absent-delete warnings on re-replay are the
+#   accepted pattern.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territorySpawns:
+  update:
+    # FIX 2 - move Herald Ramun (1038) onto the spawn-script move endpoint.
+    - huntingZoneId: 213
+      groupId: 1300005
+      territoryId: 1300467
+      npcInstanceId: 21300005
+      changes:
+        pos: [80672, -81177, -4409]
+
+  delete:
+    # FIX 3 - remove the inert dual-state twins; keep the working service NPC.
+    - huntingZoneId: 313          # Ashley twin (menu-less); keep 1002 Merchant
+      groupId: 31300002
+      territoryId: 31300005
+      npcInstanceId: 31300014
+    - huntingZoneId: 313          # Jilva twin (Off-Duty); keep 1007 Tactics Instructor
+      groupId: 31300002
+      territoryId: 31300009
+      npcInstanceId: 31300018
+    - huntingZoneId: 313          # Misrile twin (Off-Duty); keep 1008 Magic Instructor
+      groupId: 31300002
+      territoryId: 31300009
+      npcInstanceId: 31300019
+    - huntingZoneId: 364          # Ainah placeholder; keep 1001 Merchant
+      groupId: 36400001
+      territoryId: 36400002
+      npcInstanceId: 36400002
+    - huntingZoneId: 364          # Hyneu policy cleric (inert); keep 1102 Noble Cleric
+      groupId: 36400001
+      territoryId: 36400005
+      npcInstanceId: 36400007

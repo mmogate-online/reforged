@@ -1,0 +1,118 @@
+# ==============================================================================
+# Spec: 13 - IoD Alpha Boundary (quest 1317 "Ride Off into the Sunset")
+# ==============================================================================
+# POLICY DIVERGENCE (not a v31 restoration). This spec deliberately closes the
+# alpha at Island of Dawn: the pegasus route to the mainland (Velika) is grounded
+# and quest 1317 is re-terminated at Flight Manager Leiyane on the island instead
+# of at Legate Troius in Velika.
+#
+#   User decision: 2026-07-20.
+#   REVERT THIS SPEC AT LAUNCH. When the mainland opens, drop this file from the
+#   patch-001 batch and re-apply the v31-faithful 1317 (task 4 -> Troius 63,1107,
+#   the pegasus binding, and the original dialog/strings) to restore travel.
+#
+# Inputs:
+#   Research (verbatim current data): docs/plans/classic-restoration/iod/data/
+#     sunset-boundary-research.md
+#   Doctrine: docs/plans/classic-restoration/DOCTRINE.md (this is a logged policy
+#     divergence per rule 6; see the zone divergence log).
+#
+# Encoding notes:
+#   * Line breaks: quest/villager dialog bodies store <BR> XML-escaped as &lt;BR&gt;.
+#     The DSL content/text field takes the LOGICAL string with literal angle
+#     brackets (<BR>, <B>, <PCNAME>, <NEXTPAGEBUTTON>); the writer XML-escapes on
+#     output. Confirmed against applied spec patches/000/04-iod-garrison-dialog.yaml.
+#   * Task 4 is DELETED via removeTasks (supported); no orphan fallback was needed.
+#   * The approved texts below contain no long-dash characters by design; the
+#     original Text 5 (which held a literal em dash) is fully replaced.
+#
+# Op groups:
+#   1. quests        - re-terminate 1317 at task 3 (Leiyane), delete task 4 (Troius)
+#   2. questStrings   - end popup 1317003
+#   3. questDialogs   - QuestDialog hz13/id17 texts 100, 3, 4, 5
+#   4. villagerMenus  - delete Leiyane's pegasus binding 213,1016 (grounds flight UI)
+#
+# NOT in this spec (DSL bug): Leiyane's ambient line (server VillagerDialog_213
+#   id 1016). The `villagerDialogs` entity cannot express this edit on v92:
+#   `upsert` crashes ("Element must be VillagerDialogList root" though the file
+#   root IS VillagerDialogList) and `update` resolves the wrong path (drops the
+#   VillagerDialog/ subfolder -> File not found). Both server and client sides of
+#   the ambient line were applied as hand edits instead. Logged in
+#   docs/dsl-requests/2026-07-20-villagerdialogs-entity-broken.md.
+#
+# Companion hand edits (villagerDialogs entity unusable + no client sync entity):
+#   server VillagerData/VillagerDialog_213.xml Text 1 (id 1016, hz 213)
+#   client-dc VillagerDialog/VillagerDialog-03804.xml Text 1 (id 1016, hz 213)
+#   Logged in docs/dsl-requests/2026-07-20-villagerdialog-client-sync.md.
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# ---- 1. Quest task rewire: task 3 (Leiyane) becomes the completing task -------
+# Task 3 currently: 다음Task=4, 보상=0. Task 4 (visit Troius 63,1107) is the final
+# reward task. Grounding travel means the player can never reach Troius, so the
+# reward must move to task 3 and task 4 is removed.
+quests:
+  update:
+    - id: 1317
+      changes:
+        removeTasks: [4]
+        tasks:
+          - taskId: 3
+            type: VisitTask
+            nextTaskId: 0
+            hasReward: true
+
+# ---- 2. Quest end popup --------------------------------------------------------
+questStrings:
+  update:
+    - id: 1317003
+      changes:
+        string: "This is where the alpha ends. Velika awaits when the skies reopen!"
+
+# ---- 3. Quest dialog (QuestDialog hz13/id17) -----------------------------------
+# Text-level update: only texts 100, 3, 4, 5 are touched. Texts 1, 2, and 6
+# (Troius, now inert once task 4 is gone) are left untouched. For text 3, pages are
+# replace-all, so page 2 is reproduced verbatim alongside the edited page 1.
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 17
+      texts:
+        update:
+          - id: 100
+            pages:
+              - social: 0
+                content: "Adria and Teil thanked you for your valorous service, and said your skills will be needed elsewhere.<BR><BR>They directed you to Flight Manager Leiyane, but the pegasus routes to the mainland are grounded for now. When the skies reopen, Velika awaits."
+          - id: 3
+            pages:
+              - social: 4
+                content: "In the name of the Valkyon Federation, I'd like to extend our thanks for everything you've done. Adria, Sersine, and Leander speak quite highly of you.<BR><BR>The federation needs good soldiers elsewhere, however. With Karascha's death, we can make do here. Soon it will be time for you to go to Velika!<BR><NEXTPAGEBUTTON>\"Yes, sir!\"</NEXTPAGEBUTTON>"
+              - social: 4
+                content: "{@linkcreature:213#1001#Taleb} will help you arrange your return to Arun.<BR><BR>He's just on the other side of this pavilion."
+          - id: 4
+            pages:
+              - social: 4
+                content: "I've been expecting you, <PCNAME>.<BR><BR>We've adjusted your orders so that you remain on detached duty. This should let you search for Elleon without too much interference, but you're still expected to complete any orders you're given.<BR><BR>And on a personal note: once the flights to Velika reopen, the scenery around the city is really something.<BR><BR>Flight Manager Leiyane will get you saddled up."
+          - id: 5
+            pages:
+              - social: 4
+                content: "Pegasus travel is for long journeys, like back to the mainland and the capital, Velika.<BR><BR>But I'm afraid the mainland routes are grounded for now: this is where the alpha ends, <PCNAME>.<BR><BR>You've done the island proud. When the skies reopen, I'll saddle the fastest pegasus we have for your first flight to <B>Velika</B>."
+
+# ---- 4. Villager menu: ground the pegasus ---------------------------------------
+# Leiyane's only menu is the Pegasus binding (flight table id 13). Deleting the
+# whole Villager binding removes the flight UI and its guideEffectId 106 map icon
+# (both intended).
+villagerMenus:
+  delete:
+    - huntingZoneId: 213
+      npcTemplateId: 1016
+
+# ---- 5. Villager ambient dialog: HAND EDIT (villagerDialogs entity broken) -------
+# Leiyane's Text 1 ambient line (VillagerDialog_213 id 1016) is applied by hand on
+# both server and client because the `villagerDialogs` DSL entity is unusable on v92
+# (see the header note and docs/dsl-requests/2026-07-20-villagerdialogs-entity-broken.md).
+# New Text 1 line (server & client, keep &lt;BR&gt; escaping on the client):
+#   Your orders, please.<BR><BR>(Pegasus flights to the mainland are grounded during the alpha. Velika awaits at launch!)

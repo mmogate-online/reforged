@@ -1,0 +1,190 @@
+# ==============================================================================
+# Spec: 14 - IoD Quest Enables (padding Level 1, Wave A)
+# ==============================================================================
+# Enables 25 sentinel-disabled IoD quests (1300-1399 band) by replacing the
+# never-satisfiable prerequisite 99,99 (id 9999) with the real anchor, or by
+# clearing the prerequisite entirely for quests that are v17-line roots.
+# Quest bodies stay v31-faithful; rewards were already ported by patch 001
+# spec 04. Plus one doctrine rule 1 internal-consistency dialog fix (1322).
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md, rule 4 (Level 1 padding:
+#   re-enable gate-clean disabled quests on their recovered v17 wiring).
+# Source artifacts (adjudicated 2026-07-20):
+#   docs/plans/classic-restoration/iod/data/padding-quest-gates.md
+#   docs/plans/classic-restoration/iod/data/padding-overlap-rewards.md
+#   docs/plans/classic-restoration/iod/data/padding-level1-proposal.md
+#
+# Enable mechanics (per quest-data schema, requirements.prerequisites):
+#   * prerequisites: [] clears the prereq block AND the logic operator together
+#     (canonical "no prerequisites"); idempotent. Used for v17-root quests.
+#   * prerequisites: [<qid>] replaces the 9999 sentinel with the anchor quest id
+#     (written as the huntingZone,offset ref qid//100,qid%100). Idempotent.
+#
+# Chain co-enablement (all anchors are either live quests or co-enabled here):
+#   1322(root) -> {1318, 1323};  1329(live) -> {1351, 1352, 1386 -> 1328};
+#   1345(root) -> 1346;  1335 -> 1337 -> 1338;  1343 -> 1344.
+#
+# RE-ANCHOR adaptations (ship differs from the v17 parent; divergence-logged):
+#   1335: anchored on live 1309 (v17 parent 1310 stays disabled as an
+#         AWKWARD-DUPLICATE cut subplot; re-anchor unstrands the gate-clean
+#         courier branch 1335/1337/1338 without pulling 1310 in).
+#   1343: anchored on live 1316 (v17 parent 1315; 1343 is a lore-reveal branch,
+#         gated post-climax so its reveal cannot precede the compressed story).
+#   1344: anchored on 1343 (v17 wiring; listed because it chains off a
+#         re-anchored quest, so it cannot start until 1343 is live).
+#
+# Auto-accept safety: verified NONE of the enabled quests carries 즉시수주
+#   (autoAccept) behind a prerequisite, so staged re-enable cannot strand a
+#   character on a mid-chain auto-accept quest.
+#
+# Collections axis (tracker ruling 3, resolved 2026-07-20): the v92 bodies of the
+#   collect quests carry remapped collection ids with NO placed nodes in IoD
+#   (1336: 403, 1341: 405). The v31 ids ARE placed in the live
+#   CollectionTerritory_13 files, so the collect tasks are retargeted to the v31
+#   ids (doctrine: v31 wins). Items, quantities, and target NPCs already match
+#   v31. 1334 is fixed in spec 17, which owns its enable.
+#
+# Op groups: quests (25 prereq rewrites + 2 collection retargets) + questDialogs
+#   (1 text token fix, 1322).
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# ---- 1. Quest prerequisite rewrites (25) --------------------------------------
+quests:
+  update:
+    # -- v17-line roots: clear the sentinel, no anchor (10) --------------------
+    - id: 1302            # Another Fine Mess
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1321            # A Bridge Pretty Near
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1322            # Unrest in the Forest (dialog fix below)
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1325            # The Perfect Cut
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1326            # Mana out of Mudmen
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1330            # Horned Horrors
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1340            # Painful Disc-overies
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1341            # Bequest of the Dead (repeatable) + collection retarget
+      changes:
+        requirements:
+          prerequisites: []
+        tasks:
+          - taskId: 1
+            type: CollectTask
+            body:
+              itemId: 411   # v31 collection (expedition remains); v92 body said 405, unplaced in IoD
+    - id: 1345            # Desperately Seeking Sorcha
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1390            # Special Delivery
+      changes:
+        requirements:
+          prerequisites: []
+
+    # -- v17-parent anchors on live or co-enabled quests (12) ------------------
+    - id: 1312            # The Dark Patrol -> live 1311
+      changes:
+        requirements:
+          prerequisites: [1311]
+    - id: 1318            # Hunting the Beasts -> 1322
+      changes:
+        requirements:
+          prerequisites: [1322]
+    - id: 1323            # Getting Some Answers -> 1322
+      changes:
+        requirements:
+          prerequisites: [1322]
+    - id: 1328            # Academic Theft -> 1386
+      changes:
+        requirements:
+          prerequisites: [1386]
+    - id: 1336            # Chione's Missing Cargo -> 1335 + collection retarget
+      changes:
+        requirements:
+          prerequisites: [1335]
+        tasks:
+          - taskId: 1
+            type: CollectTask
+            body:
+              itemId: 409   # v31 collection (supply crates); v92 body said 403, unplaced in IoD
+    - id: 1337            # The Last One -> 1335
+      changes:
+        requirements:
+          prerequisites: [1335]
+    - id: 1338            # Chione's Report -> 1337
+      changes:
+        requirements:
+          prerequisites: [1337]
+    - id: 1339            # Sersine, She Seeks Shackles -> live 1313
+      changes:
+        requirements:
+          prerequisites: [1313]
+    - id: 1346            # Sorcha's Reckless Challenge -> 1345
+      changes:
+        requirements:
+          prerequisites: [1345]
+    - id: 1351            # Supply and Demand -> live 1329
+      changes:
+        requirements:
+          prerequisites: [1329]
+    - id: 1352            # Supply and Demand (class twin) -> live 1329
+      changes:
+        requirements:
+          prerequisites: [1329]
+    - id: 1386            # Bombs Away -> live 1329
+      changes:
+        requirements:
+          prerequisites: [1329]
+
+    # -- RE-ANCHOR adaptations (differ from v17 parent, see header) (3) --------
+    - id: 1335            # One of Our Couriers Is Missing -> live 1309 (v17: 1310)
+      changes:
+        requirements:
+          prerequisites: [1309]
+    - id: 1343            # Answers Lead to More Questions -> live 1316 (v17: 1315)
+      changes:
+        requirements:
+          prerequisites: [1316]
+    - id: 1344            # Destroy All Destroyers -> 1343 (chains off re-anchor)
+      changes:
+        requirements:
+          prerequisites: [1343]
+
+# ---- 2. Dialog internal-consistency fix: quest 1322 (doctrine rule 1) ----------
+# QuestDialog hz13/id22, Text 2 LinkCreature points at 13#300932 (Rotting Ghillie
+# Dhu A) but the task hunts 13,300931 (Dying Ghillie Dhu B, spawns 59x). Task side
+# is authoritative; retarget the dialog token to 300931. Text 2 has one page, so
+# the page is reproduced verbatim except the token. The original long dash before
+# "it's best" is normalized to a colon (the long-dash family is banned from file
+# writes); punctuation-only change, meaning preserved.
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 22
+      texts:
+        update:
+          - id: 2
+            pages:
+              - social: 4
+                content: "A searching eye sees many {@LinkCreature:13#300931#ghilliedhus} between here and your duties. Demonstrate your combat skills so that we might know how best to use you.<BR><BR>Watch their limbs: it's best to block or dodge when they swoop downward. When exhausted or injured, rest here at the fire or speak to the clerics."

@@ -1,0 +1,223 @@
+# IoD ECompensation Drops - Patch 001 (v31-primary restoration)
+# Restores the v31 open-world mob-drop path for the First Expedition armor set
+# in Island of Dawn hunting zone 13.
+#
+# Provenance:
+#   Approval: user-approved 2026-07-21 (IoD padding session, final spec).
+#   Source:   v31 server CompensationData/ECompensation_13.xml, Compensation
+#             npcTemplateId=300945 "타락한 테론 대장" (Corrupted Theron Chief),
+#             lines 150-193 (Z:\tera pserver\v31.04\...\Datasheet).
+#   Artifact: docs/plans/classic-restoration/iod/data/padding-first-expedition.md
+#             (v31 ECompensation_13 section; option 3 "faithful-restoration extra").
+#   Purpose:  restores the classic non-quest drop acquisition path for the First
+#             Expedition set. In v31, NPC 300945 drops the 9 First Expedition armor
+#             pieces (body 15022/15019/15025, hand 15023/15020/15026,
+#             feet 15024/15021/15027) at 1/3 each per slot bag, plus the matching
+#             First Expedition weapon set and the mob's normal gold/materials/ring/orb.
+#
+# v92 state: the entire v31 natural-mob table in ECompensation_13.xml is commented
+#   out (lines 3-450); only new fierce-variant stubs (7001-7009) and the Sinus Thief
+#   (9001) are active. NPC 300945 has NO active entry, and even the commented copy was
+#   already stripped of the weapon bag (id=5) and the three armor bags (id=6/7/8).
+#   This upsert re-creates NPC 300945 as an active entry matching v31 1:1.
+#
+# Class-scoping: ECompensation ItemBags are NOT class-scoped (no per-class rows, no
+#   itemBag=class). Each armor bag drops all three armor-class variants at 1/3, and the
+#   engine hands the wearable piece to any looter. No new-class (fighter/assassin/
+#   glaiver) append is required, and no soulless omission applies. This differs from the
+#   class-scoped QuestCompensationData rows, which do need the new-class whitelist rows.
+#
+# Fidelity: bag ids, bagNames, probabilities, wValues, and the derived `t` cache strings
+#   are copied verbatim from v31. Item `name` labels keep the v31 Korean internal names
+#   (functionally inert; templateId is the key). eCompensations is server-only (no client
+#   sync). No divergence from v31.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  upsert:
+    - huntingZoneId: 13
+      npcTemplateId: 300945
+      npcName: "타락한 테론 대장"
+      goldBags:
+        - bagName: "골드"
+          probability: 0.7
+          wValue: 0.28
+          min: 13
+          max: 135.2
+          t: "13;300945;227.227790389065;0.28;0.7"
+      itemBags:
+        - id: 1
+          bagName: "재료"
+          probability: 0.060485095283
+          wValue: "0.037"
+          t: "13;300945;227.227790389065;0.037;0.0604850952834202"
+          items:
+            - templateId: 1003
+              name: "대지의 정수"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 1001
+              name: "거친 섬유"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 1002
+              name: "구리 광석"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+        - id: 3
+          bagName: "제련석"
+          probability: 0.047921502367
+          wValue: "0.12"
+          t: "13;300945;227.227790389065;0.12;0.0479215023667624"
+          items:
+            - templateId: 511
+              name: "하급 방어구 제련석"
+              min: 1
+              max: 1
+              probability: 0.5
+            - templateId: 501
+              name: "하급 무기 제련석"
+              min: 1
+              max: 1
+              probability: 0.5
+        - id: 5
+          bagName: "무기_0"
+          probability: 0.084158440885
+          wValue: "0.45"
+          t: "13;300945;227.227790389065;0.45;0.0841584408848389"
+          items:
+            - templateId: 10020
+              name: "쿠벨 탐험대의 도끼"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10022
+              name: "쿠벨 탐험대의 활"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10021
+              name: "쿠벨 탐험대의 원반"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10017
+              name: "쿠벨 탐험대의 쌍검"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10018
+              name: "쿠벨 탐험대의 창"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10024
+              name: "쿠벨 탐험대의 마법봉"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10023
+              name: "쿠벨 탐험대의 지팡이"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 10019
+              name: "쿠벨 탐험대의 대검"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+            - templateId: 55007
+              name: "쿠벨 탐험대의 마공포"
+              min: 1
+              max: 1
+              probability: 0.111111111111111
+        - id: 6
+          bagName: "상의_0"
+          probability: 0.056105627257
+          wValue: "0.12"
+          t: "13;300945;227.227790389065;0.12;0.0561056272565593"
+          items:
+            - templateId: 15022
+              name: "쿠벨 탐험대의 경갑"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 15019
+              name: "쿠벨 탐험대의 중갑"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 15025
+              name: "쿠벨 탐험대의 로브"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+        - id: 7
+          bagName: "장갑_0"
+          probability: 0.060864586711
+          wValue: "0.0975"
+          t: "13;300945;227.227790389065;0.0975;0.0608645867113567"
+          items:
+            - templateId: 15023
+              name: "쿠벨 탐험대의 경갑 장갑"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 15020
+              name: "쿠벨 탐험대의 중갑 장갑"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 15026
+              name: "쿠벨 탐험대의 글러브"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+        - id: 8
+          bagName: "신발_0"
+          probability: 0.060864586711
+          wValue: "0.0975"
+          t: "13;300945;227.227790389065;0.0975;0.0608645867113567"
+          items:
+            - templateId: 15024
+              name: "쿠벨 탐험대의 경갑 신발"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 15021
+              name: "쿠벨 탐험대의 중갑 신발"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+            - templateId: 15027
+              name: "쿠벨 탐험대의 슈즈"
+              min: 1
+              max: 1
+              probability: 0.333333333333
+        - id: 9
+          bagName: "악세서리_0"
+          probability: 0.096282962029
+          wValue: "0.075"
+          t: "13;300945;227.227790389065;0.075;0.0962829620292648"
+          items:
+            - templateId: 20001
+              name: "인도자의 반지"
+              min: 1
+              max: 1
+              probability: 1
+        - id: 20
+          bagName: "이동 속도 구슬"
+          probability: 0.3
+          wValue: "0.3"
+          items:
+            - templateId: 649
+              name: "이동속도 구슬"
+              min: 1
+              max: 1
+              probability: 1

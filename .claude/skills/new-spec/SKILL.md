@@ -10,6 +10,13 @@ argument-hint: [spec-name]
 
 Follow this structure when creating a new spec file.
 
+## Before authoring
+
+- Use `mcp__datasheet-v92__find_free_ids` to pick IDs for new entities.
+- Use `mcp__datasheet-v92__describe_entity` or `mcp__datasheet-v92__profile_item` to inspect existing entities before writing operations.
+- For attributes not covered by the tables in this skill, consult the schema docs at the `dsl_docs_enduser` path from `.references`, under `schemas/`.
+- For content affecting balance, rewards, or currencies, check the content framework docs (`content_framework` in `.references`) first.
+
 ## 1. Choose location
 
 Specs are organized by patch and concern:
@@ -179,3 +186,11 @@ items:
       strings:
         name: "Training Axe"
 ```
+
+
+## Lessons
+
+### Never invent an XML encoding; verify format precedent in the stock corpus first
+- **Date/source:** 2026-07-21: live run paid single-class reward rows but none of the semicolon-merged `class="warrior;slayer;..."` rows spec 04's generator emitted; `class="...;..."` had ZERO occurrences in stock v92 and v31 CompensationData (filed as `docs/dsl-requests/2026-07-21-compensation-class-row-collapse.md`, fixed in datasheetlang d79aca90 with an E207 guard).
+- **Why:** `dsl validate` checks spec-vs-schema, not engine parseability; a workaround encoding can validate green, apply cleanly, survive a value-level reconciliation gate, and still be dead data the engine silently ignores.
+- **Apply:** before shipping any encoding not copied verbatim from a source datasheet, grep the STOCK corpus (all zones of the same family, both eras) for the exact pattern; zero occurrences means the engine almost certainly does not parse it. File the underlying DSL limitation instead of inventing a format, and treat "validation green" as necessary, never sufficient.

@@ -1,119 +1,50 @@
-# Patch 001 Specs
+# Patch 001 - Island of Dawn v31-Primary Baseline
 
-## Numbering Convention
+This patch ports Island of Dawn's classic v31 server state 1:1 onto the v92 server as the
+restoration baseline for continent 13 (five layered hunting zones: 13 combat, 64 hub, 213 social,
+313 politics, 364 hub-politics) plus dungeon 436. Specs 00-04 are direct v31 ports (area sections,
+region strings, worldmap surfaces, shop inventories, quest rewards); specs 05-11 are salvage
+carried over from the retired v17-reference pilot under CARRY-OVER verdicts (legacy string repair,
+Stepstone disable, villager dialogs, the charm system, and item string fixes). The baseline itself
+needed no spawn, quest enable, quest task, or story-group specs: the v92 TerritoryData and quest
+spine are already semantically identical to v31 (verified by the Phase 3 diff artifacts). Specs
+12-13 are policy ops (T-cat exclusion, alpha boundary). Specs 14-17 are the Level 1 padding wave
+(doctrine rule 4, adjudicated 2026-07-20 in
+`docs/plans/classic-restoration/iod/data/padding-level1-proposal.md`): quest enables, v17 mob
+habitat restoration, and quest-giver NPC spawns.
 
-Specs are prefixed with a two-digit number that controls apply order and groups related specs:
+All specs are idempotent upserts, applied ONLY via the migrate batch replay (never single-spec
+`dsl apply`). Governing doctrine: `docs/plans/classic-restoration/DOCTRINE.md` (v31-primary,
+adopted 2026-07-20). Zone tracker with per-family diff rulings:
+`docs/plans/classic-restoration/iod/TRACKER.md`. Salvage dispositions:
+`docs/plans/classic-restoration/iod/data/salvage-manifest.md`.
 
-| Prefix | Group | Files |
-|--------|-------|-------|
-| `01-` | Gear standardization | `01-weapon-standardize.yaml`, `01-armor-standardize.yaml`, `03-flawless-standardize.yaml` |
-| `02-` | Gear evolution paths | `evolutions/02-evo-*.yaml` |
-| `03-` | Chest top-roll system | `02-chest-toproll-system.yaml`, `03-chest-toproll-items.yaml` |
-| `04–09` | Enchant, infusion, crafting | Various |
-| `10–15` | Crystals, dyad, dungeon tokens, infusion boxes | Various |
-| `loot/` | Zone loot tables | Subfolder, per-zone files |
+## Specs
 
----
+| # | Spec | Purpose | Provenance |
+|---|------|---------|------------|
+| 00 | iod-area-sections | Restore the v31 IoD area sections (7 re-adds, 3 diverged realigns, Tower Base 64001/64007 re-enable) | ported-from-v31 |
+| 01 | iod-region-strings | Port the v31 continent-13 region strings (keep the 13031-13034 camp cluster; drop the v92-only 13035 Ruined Temple string) | ported-from-v31 |
+| 02 | iod-worldmap | Restore the v31 worldmap/minimap surfaces (sec7 mapId revert to WMap_ATW_Field_01, sec6 Tower Base town re-enable, remove the sec9 hidden duplicate) | ported-from-v31 |
+| 03 | iod-shops | Port the v31 IoD merchant inventories (Viator 2 ops, Ashley 1, Rutgar 1) | ported-from-v31 |
+| 04 | iod-quest-rewards | Fill the empty v92 QuestCompensationData_13 with the 65 v31 reward rows, plus new-class (fighter/assassin/glaiver) reward-bag extension rows | ported-from-v31 |
+| 05 | legacy-strings-restore | Restore original tooltips for 207 crafting materials and 873 crafted designs deprecated by the v92 item-economy overhaul (global, not IoD-scoped) | carry-over |
+| 06 | iod-stepstone-disable | Sentinel-disable Stepstone chain head quest 59901 (v92-only content, out of classic scope; policy divergence) | carry-over |
+| 07 | iod-villager-dialogs | Restore villager speechConditions for IoD NPCs, re-derived against the v31 spawn set (92 ops: 50 survey ops dropped for having no spawn in scope, plus 64/9000 T-cat re-added since it does spawn) | carry-over |
+| 08 | charm-abnormalities | The 50 charm buff abnormalities (named/greater/bundle tiers) plus their icon rows, backing the charm chain the v31 quest 1384 lineage depends on | carry-over |
+| 09 | charm-items | Flip retired charm items back to usable (combatItemType DISPOSAL) and restore their strings; includes the load-bearing 70033 string op (quest 1384 keeps its v92 patch-000 body using 70033) | carry-over |
+| 10 | charm-skills | Inject the buff TargetingList into each charm-linked skill (self + ally food-buff pattern) and clean up the superseded spike abnormalities | carry-over |
+| 11 | iod-item-string-fixes | Restore strings for item 98 (Campfire, granted by quest 1384 task 2) and item 21351 (Masterwork Alkahest) | carry-over |
+| 12 | iod-tcat-removal | Remove the T-cat/Tikat 64,9000 spawn (single cascade territory delete; user exclusion decision) | policy |
+| 13 | iod-alpha-boundary | Alpha-closure boundary on quest 1317 (ends at Leiyane with reward, task 4 removed, Pegasus menu deleted; revert at launch) | policy |
+| 14 | iod-quest-enables | Enable 25 gate-clean padding quests (prereq swap or root clear) plus the 1322 dialog consistency fix | padding-level-1 |
+| 15 | iod-mob-habitats | Restore 17 deleted v17 mob habitat groups (217 territories) plus 2 bespoke quest-target territories; generated by `tools/dc-restore/gen_habitat_specs.py` | padding-level-1 |
+| 16 | iod-npc-spawns | Spawn the 6 never-spawned quest-giver villagers at their v17 NpcLoc markers | padding-level-1 |
+| 17 | iod-quest-enables-2 | Enable the 9 world-dependent padding quests (need specs 15/16) plus the 1327 dialog consistency fix | padding-level-1 |
+| 18 | iod-padding-polish | Live-test polish: Herald Ramun spawn-script reposition (quest 1327 fix) and removal of the five inert dual-state politics NPC twins | padding-level-1 |
+| 19 | iod-sorcha-dungeon | Reclaim continent 9037 for the classic Sorcha challenge (restore v31 DungeonData for quest 1346) and sentinel-disable the non-classic level-65 line 21301-21307 | padding-level-1 |
+| 20 | iod-ecomp-drops | Restore the v31 ECompensation_13 entry for Corrupted Theron Chief 300945 (First Expedition weapon/armor drop bags, gold, materials) | ported-from-v31 |
 
-## Gear Standardization
-
-**The most complex system in this patch.** Spans the `equipment-item-ids` package and two spec files.
-
-### What It Does
-
-Every gear item in the progression pipeline must have a set of server-required properties configured correctly. The game will not display enchanting, passivity rolls, or loot correctly without them. These properties are not set by default in the base datasheets.
-
-**Properties applied to all gear:**
-
-| Property | Value | Purpose |
-|----------|-------|---------|
-| `enchantEnable` | `true` | Allows enchanting at the enchant NPC |
-| `boundType` | `Equip` | Item binds on equip |
-| `warehouseStorable` | `true` | Can be stored in account warehouse |
-| `guildWarehouseStorable` | `true` | Can be stored in guild warehouse |
-| `unidentifiedItemGrade` | `1` | Required for identification/passivity roll system |
-| `dropType` | `2` | Controls loot-bag behavior in group play |
-| `tradable` | `true` / `false` | LOW/MID=true, HIGH=false (Mythic gear is bind-on-pickup) |
-
-**Passivity category IDs by slot** (controls which roll pool the item draws from):
-
-| Slot | `linkPassivityCategoryId` |
-|------|--------------------------|
-| Weapon (all types) | `120300` |
-| Body armor (all types) | `120316` |
-| Hand armor — mail | `4150` |
-| Hand armor — leather | `4152` |
-| Hand armor — robe | `4151` |
-| Feet armor (all types) | `4250` |
-
-> HIGH_TIER hand and feet pieces intentionally omit `linkPassivityCategoryId` — some sets (e.g. Visionmaker) have class-specific values already set and must not be overwritten.
->
-> HIGH_TIER body pieces do get `120316` as a baseline, which is then overridden for class-specific chest pieces by `03-chest-toproll-items.yaml`.
-
-### How It Works
-
-```
-packages/equipment-item-ids/index.yml
-         (ID lists by tier + slot)
-                   │
-                   │  import (use.variables)
-                   ▼
-01-weapon-standardize.yaml  ←─ applies weapon properties
-01-armor-standardize.yaml   ←─ applies armor properties (body/hand/feet)
-03-flawless-standardize.yaml ←─ extra pass for Flawless-grade items
-```
-
-The `equipment-item-ids` package exports 21 named ID list variables. The standardize specs import only the ones they need via `use.variables` in the import block. This is a DSL requirement — variables must be explicitly opted in, they are not auto-imported.
-
-### Adding Gear to the Pipeline
-
-See `packages/equipment-item-ids/README.md` for how to add a new gear tier. Once IDs are in the package, re-running the two standardize specs covers them automatically.
-
----
-
-## Gear Evolution (`evolutions/`)
-
-The evolution system lets players upgrade gear by consuming Rune materials at the Evolution NPC. Each spec in the `evolutions/` subfolder defines one step in the gear progression chain.
-
-**Current chain (LOW_TIER progression):**
-
-```
-Kugai's (lv8) → Starter 0 (lv11) → Starter 1 → Bastion → (MID_TIER chain continues...)
-   evo-00-pre-starter    evo-00-starter-0    evo-01    evo-02
-```
-
-**Materials:**
-- Weapons use Paverune of Shara (item 501)
-- Armor uses Paverune of Arun (item 511)
-- Higher-tier evolutions use Sil/Quoi/Arch/Keyrune variants
-
-**How a spec works:**
-
-Each `02-evo-NN-*.yaml` spec imports from `evolution-base` package and uses the `EvolutionItem` definition template. One `EvolutionItem` entry covers a single gear piece (SOURCE→TARGET) across 4 enchant steps: `+9→+0`, `+10→+3`, `+11→+6`, `+12→+9`. The `evolutionPaths: upsert` block lists one entry per gear piece (12 weapons + 9 armor = 21 entries for a full low-tier set).
-
-The `evolution-base` package (`packages/evolution-base/index.yml`) defines all shared materials, cost, probability, and the `EvolutionItem` / rune path templates.
-
-**All evolution specs use `upsert`** — they are idempotent and safe to re-apply.
-
----
-
-## Other Systems (Brief Index)
-
-| File(s) | System |
-|---------|--------|
-| `00-enchant-system.yaml` | Enchant probability and material configuration |
-| `02-chest-toproll-system.yaml`, `03-chest-toproll-items.yaml` | Per-class passivity roll categories for HIGH_TIER chest pieces |
-| `04-enchant-materials.yaml` | Enchant material item definitions |
-| `05-enchant-item-links.yaml` | Links enchant materials to gear items |
-| `06-brawler-weapons.yaml`, `06-gear-infusion-items.yaml` | Fighter (Brawler) weapon fixes; gear infusion item setup |
-| `07-gear-enchant-sync.yaml`, `07-crafting-recipes.yaml` | Enchant data sync; crafting recipe definitions |
-| `08-legacy-strings-restore.yaml` | Restores display strings overwritten by base patch |
-| `09-frostfire-inheritance.yaml` | Frostfire gear set property inheritance |
-| `10-crystal-boxes.yaml` | Crystal box item definitions |
-| `11-dyad-*.yaml` | Full dyad crystal system (structures, abnormalities, passivities, crystal sets) |
-| `11-potential-unlock-*.yaml` | Potential unlock scroll and gear configuration |
-| `12-potential-unlock-gear.yaml` | Gear-side potential unlock properties |
-| `13-potential-unlock-evolution.yaml` | Evolution paths for potential unlock gear |
-| `14-dungeon-tokens.yaml` | Dungeon token items |
-| `15-infusion-boxes.yaml` | Gear infusion box items |
-| `loot/e-compensation/` | Zone-specific loot compensation tables, one file per zone |
+Validated op counts (against `D:\dev\mmogate\tera92\server\Datasheet`): 05 = 1080, 06 = 1,
+07 = 92, 08 = 150, 09 = 98, 10 = 62, 11 = 2, 14 = 26, 15 = 509 (density fix 2026-07-21),
+16 = 13, 17 = 11, 18 = 6, 19 = 2.

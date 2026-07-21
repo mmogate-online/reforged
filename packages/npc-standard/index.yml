@@ -1,0 +1,787 @@
+spec:
+  version: "1.0"
+
+# AUTO-GENERATED NPC template + territory-spawn archetypes from full-population statistical analysis of the live datasheet.
+# tau=0.9 modal-share acceptance; each value annotated share=modal-share, n=sample.
+# Source: tools/npc-standard/ (analyze_all.py -> codegen.py). Do not hand-edit.
+
+definitions:
+  # ===== NPC template archetypes =====
+  MerchantVillager:
+    class: ""  # share=100% n=8762
+    resourceSize: 100  # share=98% n=10754
+    resourceType: "medium"  # share=96% n=10754
+    size: "medium"  # share=95% n=10842
+    villager: true  # share=100% n=10842
+    villagerVolumeOffset: ""  # share=100% n=7028
+    abnormalityResistanceOverride:
+      resetTime: 60000  # share=95% n=10842
+      abnormalities:
+        - { kind: 5, initRes: 40, incRes: 3 }
+        - { kind: 6, initRes: 50, incRes: 3 }
+        - { kind: 7, initRes: 30, incRes: 3 }
+    aggro:
+      aggroReceiveOnlyInSight: false  # share=99% n=10842
+      aggroSendRate: 1  # share=99% n=10842
+      aggroSendStackRate: 0.1  # share=99% n=10842
+      aggroSendToClanDistance: 300  # share=92% n=10842
+      bigReactionAggroWeight: 0.5  # share=92% n=10842
+      clanName: ""  # share=95% n=10842
+      hateSkillAggroWeight: 1  # share=92% n=10842
+      hateSkillCategoryName: ""  # share=100% n=10842
+      sightRangeAggroWeight: 1.3  # share=92% n=10842
+    anger:
+      accumRateWhenHpHigh: 1  # share=97% n=10842
+    balanceRef:
+      ignoreAttr: ""  # share=93% n=6499
+    critical:
+      powRate: 1.5  # share=98% n=10842
+    criticalAdjust:
+      front: 1  # share=92% n=10842
+    namePlate:
+      deathNameplateHeight: 0  # share=100% n=6451
+    npcOnly:
+      onDeathSkill: 0  # share=91% n=10807
+    reaction:
+      basicGaugeResetTime: 20000  # share=92% n=10842
+      basicIncRes: 0  # share=93% n=10842
+      maxAdditionalGauge: 600000  # share=92% n=10842
+      maxBasicGauge: 2000  # share=92% n=10842
+    stackPoint:
+      maxStackPoint: 10  # share=96% n=10631
+      stackPointPeriod: 8000  # share=97% n=10675
+  QuestVillager:
+    class: ""  # share=100% n=390
+    invincible: true  # share=98% n=440
+    questVillager: true  # share=100% n=440
+    resourceSize: 100  # share=100% n=440
+    resourceType: "medium"  # share=99% n=440
+    size: "medium"  # share=99% n=440
+    villager: true  # share=100% n=440
+    villagerVolumeOffset: ""  # share=100% n=323
+    abnormalityResistanceOverride:
+      resetTime: 60000  # share=98% n=440
+      abnormalities:
+        - { kind: 5, initRes: 40, incRes: 3 }
+        - { kind: 6, initRes: 50, incRes: 3 }
+        - { kind: 7, initRes: 30, incRes: 3 }
+    aggro:
+      aggroReceiveOnlyInSight: false  # share=100% n=440
+      aggroSendRate: 1  # share=99% n=440
+      aggroSendStackRate: 0.1  # share=99% n=440
+      aggroSendToClanDistance: 300  # share=93% n=440
+      clanName: ""  # share=100% n=440
+      hateSkillCategoryName: ""  # share=100% n=440
+    anger:
+      accumRateWhenHpHigh: 1  # share=99% n=440
+    critical:
+      powRate: 1.5  # share=99% n=440
+    namePlate:
+      deathNameplateHeight: 0  # share=100% n=233
+    stackPoint:
+      maxStackPoint: 10  # share=100% n=433
+      stackPointPeriod: 8000  # share=100% n=433
+  NormalMonster:
+    gender: "male"  # share=91% n=4946
+    isObjectNpc: false  # share=100% n=3455
+    questVillager: false  # share=100% n=3449
+    unionElite: false  # share=100% n=3044
+    villager: false  # share=100% n=3455
+    aggro:
+      aggroReceiveOnlyInSight: false  # share=100% n=5830
+      aggroReceiveRate: 1  # share=94% n=5830
+      aggroSendRate: 1  # share=95% n=5830
+      aggroSendStackRate: 0.1  # share=97% n=5830
+      aggroSendStackRateWhenFirstAttacked: 0.5  # share=94% n=5830
+      bigReactionAggroWeight: 0.5  # share=96% n=5830
+      hateSkillAggroWeight: 1  # share=95% n=5830
+      hateSkillCategoryName: ""  # share=98% n=5830
+      sightRangeAggroWeight: 1.3  # share=96% n=5830
+    criticalAdjust:
+      front: 1  # share=96% n=5830
+    reaction:
+      basicGaugeResetTime: 20000  # share=97% n=5836
+      basicIncRes: 0  # share=99% n=5836
+      maxAdditionalGauge: 600000  # share=98% n=5836
+      maxBasicGauge: 2000  # share=97% n=5836
+    stackPoint:
+      maxStackPoint: 10  # share=97% n=5562
+      stackPointPeriod: 8000  # share=100% n=5590
+  EliteMonster:
+    elite: true  # share=100% n=1731
+    gender: "male"  # share=92% n=1672
+    invincible: false  # share=94% n=1010
+    isFreeNamed: false  # share=97% n=1640
+    isObjectNpc: false  # share=100% n=968
+    questVillager: false  # share=100% n=969
+    resourceSize: 100  # share=92% n=1660
+    villager: false  # share=100% n=974
+    abnormalityResistanceOverride:
+      resetTime: 60000  # share=92% n=1731
+      abnormalities:
+        - { kind: 5, initRes: 40, incRes: 3 }
+        - { kind: 6, initRes: 50, incRes: 3 }
+        - { kind: 7, initRes: 30, incRes: 3 }
+    aggro:
+      aggroReceiveOnlyInSight: false  # share=100% n=1731
+      aggroReceiveRate: 1  # share=99% n=1731
+      aggroSendRate: 1  # share=100% n=1731
+      aggroSendStackRate: 0.1  # share=100% n=1731
+      aggroSendStackRateWhenFirstAttacked: 0.5  # share=100% n=1731
+      bigReactionAggroWeight: 0.5  # share=100% n=1731
+      hateSkillAggroWeight: 1  # share=98% n=1731
+      hateSkillCategoryName: ""  # share=96% n=1731
+      sightRangeAggroWeight: 1.3  # share=100% n=1731
+      viewAngle: 360  # share=90% n=1731
+    criticalAdjust:
+      back: 1.6  # share=94% n=1731
+      front: 1  # share=100% n=1731
+      left: 1.2  # share=94% n=1731
+      right: 1.2  # share=94% n=1731
+    reaction:
+      basicGaugeResetTime: 20000  # share=100% n=1731
+      basicIncRes: 0  # share=100% n=1731
+      maxAdditionalGauge: 600000  # share=100% n=1731
+      maxBasicGauge: 2000  # share=97% n=1731
+    stackPoint:
+      maxStackPoint: 10  # share=98% n=1717
+      stackPointPeriod: 8000  # share=99% n=1717
+  BossMonster:
+    huntingStyle: "raid"  # share=100% n=876
+    isObjectNpc: false  # share=100% n=851
+    questVillager: false  # share=100% n=854
+    unionElite: false  # share=98% n=810
+    villager: false  # share=100% n=854
+    aggro:
+      aggroReceiveOnlyInSight: false  # share=100% n=876
+      aggroReceiveRate: 1  # share=94% n=876
+      aggroSendRate: 1  # share=94% n=876
+      aggroSendStackRate: 0.1  # share=94% n=876
+      aggroSendStackRateWhenFirstAttacked: 0.5  # share=94% n=876
+      bigReactionAggroWeight: 0.5  # share=94% n=876
+      hateSkillAggroWeight: 1  # share=93% n=876
+      hateSkillCategoryName: ""  # share=99% n=876
+      sightRangeAggroWeight: 1.3  # share=94% n=876
+    criticalAdjust:
+      front: 1  # share=95% n=876
+    npcOnly:
+      onDeathSkill: 0  # share=93% n=876
+    reaction:
+      basicGaugeResetTime: 20000  # share=95% n=876
+      basicIncRes: 0  # share=100% n=876
+      maxAdditionalGauge: 600000  # share=95% n=876
+      maxBasicGauge: 2000  # share=100% n=876
+    stackPoint:
+      maxStackPoint: 10  # share=99% n=825
+      stackPointPeriod: 8000  # share=99% n=825
+  ObjectNpc:
+    isObjectNpc: true  # share=100% n=2633
+    questVillager: false  # share=98% n=2255
+    unionElite: false  # share=100% n=1813
+    aggro:
+      aggroIgnoreClanName: false  # share=92% n=2633
+      aggroReceiveOnlyInSight: false  # share=100% n=2633
+      aggroSendRate: 1  # share=95% n=2633
+      aggroSendStackRate: 0.1  # share=95% n=2633
+      bigReactionAggroWeight: 0.5  # share=92% n=2633
+      hateSkillAggroWeight: 1  # share=92% n=2633
+      hateSkillCategoryName: ""  # share=100% n=2633
+      sightRangeAggroWeight: 1.3  # share=92% n=2633
+    critical:
+      powRate: 1.5  # share=90% n=2633
+    criticalAdjust:
+      front: 1  # share=92% n=2633
+    npcOnly:
+      onDeathSkill: 0  # share=99% n=2240
+    objectNpcAiParam:
+      deathSkillId: 0  # share=94% n=2097
+      hitSkillId: 0  # share=100% n=2097
+    reaction:
+      basicGaugeResetTime: 20000  # share=92% n=2633
+      basicIncRes: 0  # share=98% n=2633
+      maxAdditionalGauge: 600000  # share=92% n=2633
+      maxBasicGauge: 2000  # share=93% n=2633
+    stackPoint:
+      maxStackPoint: 10  # share=98% n=2546
+      stackPointPeriod: 8000  # share=100% n=2546
+  # ===== Territory spawn archetypes =====
+  MerchantVillagerSpawn:
+    aggroIgnorePartyId: ""  # share=100% n=14133
+    aggroReceiveOnlyInSight: false  # share=99% n=14133
+    aggroSendToTerritory: ""  # share=100% n=13641
+    aggroShareGroupId: 0  # share=100% n=14133
+    aggroTargetIsUserOnly: false  # share=96% n=7686
+    alertAngle: 360  # share=94% n=14133
+    cautionStateNoMoving: false  # share=91% n=14132
+    conditionalSpawn: false  # share=100% n=14133
+    delaySpawnTimeWhenWorldStart: 0  # share=100% n=11518
+    excludeAggroLimit: false  # share=100% n=11987
+    isReturnMyTerritory: false  # share=100% n=12993
+    memberId: 0  # share=94% n=14133
+    msgBroadcastingChannel: false  # share=100% n=11727
+    msgInterval: 0  # share=100% n=14132
+    msgProb: 0  # share=100% n=14132
+    offsetZ: 0  # share=99% n=14133
+    popupMsg: ""  # share=100% n=14132
+    questPatrol: false  # share=99% n=14133
+    randomPos: false  # share=94% n=14133
+    spawnCount: 1  # share=99% n=14133
+    voidSpawn: false  # share=99% n=14132
+  QuestVillagerSpawn:
+    aggroIgnorePartyId: ""  # share=100% n=306
+    aggroReceiveOnlyInSight: false  # share=100% n=306
+    aggroSendToTerritory: ""  # share=100% n=297
+    aggroShareGroupId: 0  # share=100% n=306
+    aggroTargetIsUserOnly: false  # share=96% n=168
+    alertAngle: 360  # share=96% n=306
+    battlefieldTeam: ""  # share=100% n=157
+    cautionStateNoMoving: false  # share=99% n=306
+    conditionalSpawn: false  # share=100% n=306
+    delaySpawnTimeWhenWorldStart: 0  # share=100% n=217
+    excludeAggroLimit: false  # share=100% n=219
+    isAggressiveMonster: false  # share=92% n=306
+    isReturnMyTerritory: false  # share=100% n=268
+    memberId: 0  # share=100% n=306
+    msgBroadcastingChannel: false  # share=100% n=219
+    msgInterval: 0  # share=100% n=306
+    msgProb: 0  # share=100% n=306
+    offsetZ: 0  # share=99% n=306
+    peaceStateNoMoving: false  # share=97% n=306
+    popupMsg: ""  # share=100% n=306
+    questPatrol: false  # share=100% n=306
+    randomPos: false  # share=100% n=306
+    respawnRandomTime: 20000  # share=94% n=306
+    spawnCount: 1  # share=100% n=306
+    voidSpawn: false  # share=100% n=306
+  NormalMonsterSpawn:
+    aggroIgnorePartyId: ""  # share=100% n=56745
+    aggroReceiveOnlyInSight: false  # share=99% n=56745
+    aggroSendToTerritory: ""  # share=100% n=50649
+    aggroShareGroupId: 0  # share=100% n=56745
+    alertAngle: 360  # share=98% n=56745
+    cautionStateNoMoving: false  # share=94% n=56130
+    conditionalSpawn: false  # share=100% n=56745
+    delaySpawnTimeWhenWorldStart: 0  # share=100% n=41475
+    excludeAggroLimit: false  # share=99% n=44477
+    isReturnMyTerritory: false  # share=100% n=46856
+    msgBroadcastingChannel: false  # share=100% n=41004
+    msgInterval: 0  # share=100% n=56130
+    msgProb: 0  # share=100% n=56130
+    offsetZ: 0  # share=100% n=56745
+    popupMsg: ""  # share=100% n=56130
+    questPatrol: false  # share=100% n=56745
+    spawnCount: 1  # share=95% n=56745
+    viewAngle: 360  # share=95% n=56745
+    voidSpawn: false  # share=98% n=56130
+  EliteMonsterSpawn:
+    aggroIgnorePartyId: ""  # share=100% n=8670
+    aggroReceiveOnlyInSight: false  # share=99% n=8670
+    aggroSendToTerritory: ""  # share=99% n=8209
+    aggroShareGroupId: 0  # share=100% n=8670
+    alertAngle: 360  # share=96% n=8670
+    conditionalSpawn: false  # share=100% n=8670
+    delaySpawnTimeWhenWorldStart: 0  # share=100% n=5852
+    excludeAggroLimit: false  # share=100% n=6371
+    isAggressiveMonster: true  # share=92% n=8670
+    isReturnMyTerritory: false  # share=98% n=6587
+    msgBroadcastingChannel: false  # share=100% n=5849
+    msgInterval: 0  # share=100% n=8670
+    msgProb: 0  # share=100% n=8670
+    offsetZ: 0  # share=100% n=8670
+    popupMsg: ""  # share=100% n=8670
+    questPatrol: false  # share=100% n=8670
+    spawnCount: 1  # share=92% n=8670
+    viewAngle: 360  # share=90% n=8670
+    voidSpawn: false  # share=94% n=8670
+  BossMonsterSpawn:
+    aggroIgnorePartyId: ""  # share=100% n=7030
+    aggroReceiveOnlyInSight: false  # share=100% n=7030
+    aggroSendToTerritory: ""  # share=94% n=7030
+    aggroShareGroupId: 0  # share=100% n=7030
+    aggroTargetIsUserOnly: true  # share=92% n=6365
+    alertAngle: 360  # share=100% n=7030
+    conditionalSpawn: false  # share=100% n=7030
+    delaySpawnTimeWhenWorldStart: 0  # share=100% n=7030
+    excludeAggroLimit: false  # share=100% n=7029
+    isAggressiveMonster: true  # share=97% n=7030
+    isReturn: true  # share=98% n=7030
+    isReturnMyTerritory: false  # share=100% n=7030
+    moveInTerritory: true  # share=96% n=7030
+    msgBroadcastingChannel: false  # share=100% n=7029
+    msgInterval: 0  # share=100% n=7030
+    msgProb: 0  # share=100% n=7030
+    offsetZ: 0  # share=100% n=7030
+    popupMsg: ""  # share=100% n=7030
+    questPatrol: false  # share=100% n=7030
+    respawnRandomTime: 20000  # share=92% n=7030
+    respawnTime: 0  # share=95% n=7030
+    spawnCount: 1  # share=100% n=7030
+    viewAngle: 360  # share=99% n=7030
+    voidSpawn: false  # share=95% n=7030
+  ObjectNpcSpawn:
+    aggroIgnorePartyId: ""  # share=100% n=8922
+    aggroReceiveOnlyInSight: false  # share=100% n=8922
+    aggroSendToTerritory: ""  # share=99% n=8756
+    aggroShareGroupId: 0  # share=100% n=8922
+    alertAngle: 360  # share=96% n=8922
+    conditionalSpawn: false  # share=100% n=8922
+    delaySpawnTimeWhenWorldStart: 0  # share=99% n=7427
+    excludeAggroLimit: false  # share=100% n=7756
+    isReturn: true  # share=92% n=8922
+    isReturnMyTerritory: false  # share=98% n=8000
+    msgBroadcastingChannel: false  # share=100% n=7577
+    msgInterval: 0  # share=100% n=8922
+    msgProb: 0  # share=100% n=8922
+    offsetZ: 0  # share=98% n=8922
+    popupMsg: ""  # share=100% n=8922
+    questPatrol: false  # share=100% n=8922
+    spawnCount: 1  # share=99% n=8922
+
+  # ===== NpcSkill archetypes (data-derived, npcSkills section) =====
+  MerchantVillagerSkill:
+    adjAtkByNpcHp: false  # share=100% n=17151
+    adjustHeight: 0  # share=100% n=12314
+    aiRotateThreshold: 0  # share=99% n=17588
+    allDirectionDefence: false  # share=98% n=17151
+    attackRangeMin: 0  # share=92% n=16953
+    autoUse: false  # share=99% n=17588
+    canUseOnCombatMode: true  # share=98% n=17588
+    changeDirMethodOnSkillEnd: "dir"  # share=99% n=17588
+    changeDirOnSkillEnd: false  # share=97% n=17588
+    ignoreDefence: "false"  # share=94% n=17588
+    needWeapon: true  # share=97% n=17588
+    nextSkill: "0"  # share=100% n=17588
+    returnAnimName: ""  # share=100% n=17353
+    switchInfo: "0"  # share=99% n=17588
+    aggro:
+      aggroWhenStart: 0  # share=97% n=17588
+    anger:
+      attackUpRate: 0  # share=99% n=17588
+    balanceRef:
+      ignoreAttr: ""  # share=95% n=12509
+      refItemLevel: ""  # share=100% n=12509
+    defence:
+      damageReduceValue: 0  # share=100% n=17151
+      perfectDefenceForAllies: false  # share=100% n=15311
+      rootMotion: false  # share=100% n=17588
+      successAnimName: ""  # share=100% n=17350
+    drain:
+      backSkillId: 0  # share=100% n=17588
+      drainGaugeExpireTime: 0  # share=100% n=17588
+      maxDrainGauge: 0  # share=100% n=17588
+    drainBack:
+      gaugeToMpRate: 1  # share=100% n=17588
+    precondition:
+      coolTime: 0  # share=97% n=17588
+      modeChangeMethod: 2  # share=100% n=17588
+      modeNo: 0  # share=100% n=17588
+    projectile:
+      areaBoxSizeX: 0  # share=100% n=17588
+      areaBoxSizeY: 0  # share=100% n=17588
+      areaBoxSizeZ: 0  # share=100% n=17588
+      destroyWhenHit: true  # share=97% n=17588
+      lifeTime: 0  # share=96% n=17588
+      loopingTime: 0  # share=99% n=17588
+    property:
+      abnormalMultiHitAdjustId: 0  # share=99% n=15311
+      adjustLoopRepeat: false  # share=100% n=13076
+      defence: false  # share=100% n=17151
+      movingWithAbnormalId: 0  # share=100% n=17588
+      reactionPendingType: "normal"  # share=100% n=17151
+      skillPendingType: "normal"  # share=100% n=17151
+      toCenterWhenNoMove: false  # share=100% n=14119
+      weaponStatus: "out"  # share=100% n=17151
+    resistance:
+      addResA: 0  # share=100% n=12169
+      addResB: 0  # share=100% n=12169
+      addResC: 0  # share=100% n=12169
+      damageRes: 1  # share=100% n=17151
+      endTime: 0  # share=100% n=17588
+      startTime: 0  # share=100% n=17588
+    teleport:
+      distRange: "0"  # share=100% n=17588
+      istrue: "false"  # share=100% n=17588
+      range: "0"  # share=100% n=17588
+      type: "BONFIRE"  # share=100% n=17588
+  QuestVillagerSkill:
+    adjAtkByNpcHp: false  # share=100% n=330
+    adjustHeight: 0  # share=100% n=330
+    aiRotateThreshold: 0  # share=100% n=330
+    allDirectionDefence: false  # share=100% n=330
+    autoUse: false  # share=100% n=330
+    canUseOnCombatMode: true  # share=100% n=330
+    changeDirMethodOnSkillEnd: "dir"  # share=100% n=330
+    changeDirOnSkillEnd: false  # share=100% n=330
+    changeDirToCenter: false  # share=94% n=330
+    ignoreDefence: "false"  # share=100% n=330
+    needWeapon: true  # share=100% n=330
+    nextSkill: "0"  # share=100% n=330
+    returnAnimName: ""  # share=100% n=261
+    switchInfo: "0"  # share=100% n=330
+    type: "normal"  # share=94% n=330
+    aggro:
+      aggroWhenStart: 0  # share=96% n=330
+      offensiveSkill: true  # share=97% n=330
+    anger:
+      attackUpRate: 0  # share=100% n=330
+    bullet:
+      createTime: 0  # share=99% n=330
+      detachTime: 0  # share=99% n=330
+      flyingDuration: 1000  # share=99% n=330
+      shotSkill: "0"  # share=98% n=261
+      startSkill: -1  # share=99% n=330
+    defence:
+      damageReduceValue: 0  # share=100% n=330
+      perfectDefenceForAllies: false  # share=100% n=330
+      rootMotion: false  # share=100% n=330
+      successAnimName: ""  # share=100% n=261
+    drain:
+      backSkillId: 0  # share=100% n=330
+      drainGaugeExpireTime: 0  # share=100% n=330
+      maxDrainGauge: 0  # share=100% n=330
+    drainBack:
+      gaugeToMpRate: 1  # share=100% n=330
+    precondition:
+      coolTime: 0  # share=99% n=330
+      modeChangeMethod: 2  # share=100% n=330
+      modeNo: 0  # share=100% n=330
+    projectile:
+      areaBoxSizeX: 0  # share=100% n=330
+      areaBoxSizeY: 0  # share=100% n=330
+      areaBoxSizeZ: 0  # share=100% n=330
+      destroyWhenHit: true  # share=98% n=330
+      lifeTime: 0  # share=98% n=330
+      loopingTime: 0  # share=99% n=330
+    property:
+      abnormalMultiHitAdjustId: 0  # share=100% n=330
+      adjustLoopRepeat: false  # share=100% n=330
+      defence: false  # share=100% n=330
+      movingWithAbnormalId: 0  # share=100% n=330
+      reactionPendingType: "normal"  # share=100% n=330
+      skillPendingType: "normal"  # share=100% n=330
+      toCenterWhenNoMove: false  # share=100% n=220
+      weaponStatus: "out"  # share=100% n=330
+    resistance:
+      addResA: 0  # share=100% n=330
+      addResB: 0  # share=100% n=330
+      addResC: 0  # share=100% n=330
+      basicIncRes: 0  # share=90% n=330
+      basicRes: 100  # share=97% n=330
+      damageRes: 1  # share=100% n=330
+      endTime: 0  # share=100% n=330
+      miniRes: 100  # share=97% n=330
+      startTime: 0  # share=100% n=330
+    teleport:
+      distRange: "0"  # share=100% n=330
+      istrue: "false"  # share=100% n=330
+      range: "0"  # share=100% n=330
+      type: "BONFIRE"  # share=100% n=330
+  NormalMonsterSkill:
+    adjAtkByNpcHp: false  # share=100% n=92564
+    aiRotateThreshold: 0  # share=97% n=92564
+    allDirectionDefence: false  # share=95% n=92564
+    autoUse: false  # share=100% n=92537
+    canUseOnCombatMode: true  # share=100% n=92537
+    changeDirMethodOnSkillEnd: "dir"  # share=100% n=92564
+    changeDirOnSkillEnd: false  # share=97% n=92564
+    changeDirToCenter: false  # share=97% n=92564
+    ignoreDefence: "false"  # share=96% n=92562
+    needWeapon: true  # share=100% n=92535
+    nextSkill: "0"  # share=100% n=92537
+    returnAnimName: ""  # share=98% n=87808
+    switchInfo: "0"  # share=100% n=92537
+    type: "normal"  # share=93% n=92564
+    aggro:
+      aggroWhenStart: 0  # share=99% n=92537
+      offensiveSkill: true  # share=99% n=92537
+    anger:
+      attackUpRate: 0  # share=100% n=92537
+    balanceRef:
+      ignoreAttr: ""  # share=97% n=69851
+      refItemLevel: ""  # share=100% n=69851
+    bullet:
+      createTime: 0  # share=97% n=92537
+      detachTime: 0  # share=97% n=92537
+      flyingDuration: 1000  # share=98% n=92537
+      shotSkill: "0"  # share=96% n=87743
+      startSkill: -1  # share=97% n=92537
+    defence:
+      damageReduceValue: 0  # share=100% n=92537
+      perfectDefenceForAllies: false  # share=100% n=92533
+      rootMotion: false  # share=100% n=91963
+      successAnimName: ""  # share=98% n=87743
+    drain:
+      backSkillId: 0  # share=100% n=92537
+      drainGaugeExpireTime: 0  # share=100% n=92537
+      maxDrainGauge: 0  # share=100% n=92537
+    drainBack:
+      gaugeToMpRate: 1  # share=100% n=92537
+    precondition:
+      coolTime: 0  # share=99% n=91963
+      modeChangeMethod: 2  # share=100% n=91963
+      modeNo: 0  # share=100% n=91963
+    projectile:
+      areaBoxSizeX: 0  # share=100% n=92539
+      areaBoxSizeY: 0  # share=100% n=92539
+      areaBoxSizeZ: 0  # share=100% n=92539
+      destroyWhenHit: true  # share=97% n=92539
+      lifeTime: 0  # share=97% n=92539
+      loopingTime: 0  # share=99% n=92539
+    property:
+      abnormalMultiHitAdjustId: 0  # share=100% n=92533
+      adjustLoopRepeat: false  # share=100% n=51283
+      defence: false  # share=100% n=92537
+      movingWithAbnormalId: 0  # share=100% n=92537
+      reactionPendingType: "normal"  # share=100% n=92537
+      skillPendingType: "normal"  # share=100% n=92537
+      toCenterWhenNoMove: false  # share=100% n=73538
+      weaponStatus: "out"  # share=100% n=92535
+    resistance:
+      basicIncRes: 0  # share=92% n=92537
+      damageRes: 1  # share=100% n=92535
+      endTime: 0  # share=99% n=92537
+      startTime: 0  # share=99% n=92537
+    teleport:
+      distRange: "0"  # share=100% n=92537
+      istrue: "false"  # share=100% n=92537
+      range: "0"  # share=100% n=92537
+      type: "BONFIRE"  # share=100% n=92537
+  EliteMonsterSkill:
+    adjAtkByNpcHp: false  # share=100% n=44205
+    adjustHeight: 0  # share=100% n=22931
+    aiRotateThreshold: 0  # share=94% n=44205
+    allDirectionDefence: false  # share=91% n=44205
+    autoUse: false  # share=100% n=44051
+    canUseOnCombatMode: true  # share=100% n=44051
+    changeDirMethodOnSkillEnd: "dir"  # share=100% n=44206
+    changeDirOnSkillEnd: false  # share=99% n=44206
+    changeDirToCenter: false  # share=96% n=44206
+    ignoreDefence: "false"  # share=96% n=44205
+    needWeapon: true  # share=100% n=44052
+    nextSkill: "0"  # share=100% n=44052
+    returnAnimName: ""  # share=98% n=42251
+    switchInfo: "0"  # share=100% n=44052
+    type: "normal"  # share=92% n=44206
+    aggro:
+      aggroWhenStart: 0  # share=99% n=44052
+      offensiveSkill: true  # share=99% n=44052
+    anger:
+      attackUpRate: 0  # share=100% n=44052
+    bullet:
+      createTime: 0  # share=97% n=44052
+      detachTime: 0  # share=97% n=44052
+      flyingDuration: 1000  # share=99% n=44052
+      shotSkill: "0"  # share=96% n=42230
+      startSkill: -1  # share=97% n=44052
+    defence:
+      damageReduceValue: 0  # share=100% n=44051
+      perfectDefenceForAllies: false  # share=100% n=44051
+      rootMotion: false  # share=100% n=44051
+      successAnimName: ""  # share=98% n=42222
+    drain:
+      backSkillId: 0  # share=100% n=44052
+      drainGaugeExpireTime: 0  # share=100% n=44052
+      maxDrainGauge: 0  # share=100% n=44052
+    drainBack:
+      gaugeToMpRate: 1  # share=100% n=44052
+    precondition:
+      coolTime: 0  # share=99% n=44052
+      modeChangeMethod: 2  # share=100% n=44052
+      modeNo: 0  # share=100% n=44052
+    projectile:
+      areaBoxSizeX: 0  # share=100% n=44060
+      areaBoxSizeY: 0  # share=100% n=44060
+      areaBoxSizeZ: 0  # share=100% n=44060
+      destroyWhenHit: true  # share=97% n=44060
+      lifeTime: 0  # share=96% n=44060
+      loopingTime: 0  # share=99% n=44060
+    property:
+      abnormalMultiHitAdjustId: 0  # share=100% n=44052
+      adjustLoopRepeat: false  # share=100% n=23691
+      defence: false  # share=100% n=44051
+      movingWithAbnormalId: 0  # share=100% n=44052
+      reactionPendingType: "normal"  # share=100% n=44052
+      skillPendingType: "normal"  # share=100% n=44052
+      toCenterWhenNoMove: false  # share=100% n=35942
+      weaponStatus: "out"  # share=100% n=44052
+    resistance:
+      basicIncRes: 0  # share=93% n=44052
+      damageRes: 1  # share=100% n=44051
+      endTime: 0  # share=100% n=44052
+      startTime: 0  # share=100% n=44052
+    teleport:
+      distRange: "0"  # share=100% n=44052
+      istrue: "false"  # share=100% n=44052
+      range: "0"  # share=100% n=44052
+      type: "BONFIRE"  # share=100% n=44052
+  BossMonsterSkill:
+    adjAtkByNpcHp: false  # share=100% n=12518
+    adjustHeight: 0  # share=100% n=11803
+    aiRotateThreshold: 0  # share=96% n=12518
+    allDirectionDefence: false  # share=94% n=12518
+    autoUse: false  # share=100% n=12518
+    canUseOnCombatMode: true  # share=100% n=12518
+    changeDirMethodOnSkillEnd: "dir"  # share=100% n=12518
+    changeDirOnSkillEnd: false  # share=99% n=12518
+    changeDirToCenter: false  # share=97% n=12518
+    ignoreDefence: "false"  # share=91% n=12518
+    needWeapon: true  # share=100% n=12518
+    nextSkill: "0"  # share=100% n=12518
+    returnAnimName: ""  # share=99% n=11800
+    switchInfo: "0"  # share=100% n=12518
+    type: "normal"  # share=92% n=12518
+    aggro:
+      aggroWhenStart: 0  # share=99% n=12518
+      offensiveSkill: true  # share=99% n=12518
+    anger:
+      attackUpRate: 0  # share=100% n=12518
+    bullet:
+      createTime: 0  # share=98% n=12518
+      detachTime: 0  # share=98% n=12518
+      flyingDuration: 1000  # share=99% n=12518
+      shotSkill: "0"  # share=98% n=11818
+      startSkill: -1  # share=98% n=12518
+    defence:
+      damageReduceValue: 0  # share=100% n=12518
+      perfectDefenceForAllies: false  # share=100% n=12518
+      rootMotion: false  # share=100% n=12518
+      successAnimName: ""  # share=99% n=11818
+    drain:
+      backSkillId: 0  # share=100% n=12518
+      drainGaugeExpireTime: 0  # share=100% n=12518
+      maxDrainGauge: 0  # share=100% n=12518
+    drainBack:
+      gaugeToMpRate: 1  # share=100% n=12518
+    precondition:
+      coolTime: 0  # share=100% n=12518
+      modeChangeMethod: 2  # share=100% n=12518
+      modeNo: 0  # share=100% n=12518
+    projectile:
+      areaBoxSizeX: 0  # share=100% n=12518
+      areaBoxSizeY: 0  # share=100% n=12518
+      areaBoxSizeZ: 0  # share=100% n=12518
+      destroyWhenHit: true  # share=96% n=12518
+      lifeTime: 0  # share=95% n=12518
+      loopingTime: 0  # share=100% n=12518
+    property:
+      abnormalMultiHitAdjustId: 0  # share=100% n=12518
+      adjustLoopRepeat: false  # share=100% n=12390
+      defence: false  # share=100% n=12518
+      movingWithAbnormalId: 0  # share=100% n=12518
+      reactionPendingType: "normal"  # share=100% n=12518
+      skillPendingType: "normal"  # share=100% n=12518
+      toCenterWhenNoMove: false  # share=100% n=7458
+      weaponStatus: "out"  # share=100% n=12518
+    resistance:
+      addResA: 0  # share=100% n=10048
+      addResB: 0  # share=100% n=10048
+      addResC: 0  # share=100% n=10048
+      basicIncRes: 0  # share=93% n=12518
+      damageRes: 1  # share=100% n=12516
+      endTime: 0  # share=100% n=12518
+      startTime: 0  # share=100% n=12518
+    teleport:
+      distRange: "0"  # share=100% n=12518
+      istrue: "false"  # share=100% n=12518
+      range: "0"  # share=100% n=12518
+      type: "BONFIRE"  # share=100% n=12518
+  ObjectNpcSkill:
+    adjAtkByNpcHp: false  # share=100% n=7066
+    adjustHeight: 0  # share=99% n=5724
+    aiRotateThreshold: 0  # share=100% n=7066
+    allDirectionDefence: false  # share=100% n=7066
+    autoUse: false  # share=100% n=7066
+    canUseOnCombatMode: true  # share=100% n=7066
+    changeDirMethodOnSkillEnd: "dir"  # share=100% n=7066
+    changeDirOnSkillEnd: false  # share=97% n=7066
+    changeDirToCenter: false  # share=100% n=7066
+    needWeapon: true  # share=100% n=7066
+    nextSkill: "0"  # share=100% n=7065
+    pushtarget: "stop"  # share=95% n=7066
+    returnAnimName: ""  # share=99% n=6886
+    switchInfo: "0"  # share=100% n=7066
+    totalAtkRate: ""  # share=96% n=3944
+    aggro:
+      aggroWhenStart: 0  # share=100% n=7066
+      offensiveSkill: true  # share=100% n=7066
+    anger:
+      attackUpRate: 0  # share=100% n=7066
+    balanceRef:
+      ignoreAttr: ""  # share=100% n=4017
+      isAngerSkill: "False"  # share=94% n=4017
+      needBalance: ""  # share=96% n=4017
+      refItemLevel: ""  # share=100% n=4017
+      refLeatherDmgRate: ""  # share=96% n=4017
+      refMailDmgRate: ""  # share=96% n=4017
+      refRobeDmgRate: ""  # share=96% n=4017
+      refTotalAtk: ""  # share=96% n=4017
+    bullet:
+      createTime: 0  # share=99% n=7066
+      detachTime: 0  # share=99% n=7066
+      flyingDuration: 1000  # share=99% n=7066
+      shotSkill: "0"  # share=98% n=6890
+      startSkill: -1  # share=99% n=7066
+    defence:
+      damageReduceValue: 0  # share=100% n=7066
+      perfectDefenceForAllies: false  # share=100% n=7063
+      rootMotion: false  # share=100% n=7066
+      successAnimName: ""  # share=99% n=6890
+      successAnimSet: ""  # share=90% n=6890
+    drain:
+      backSkillId: 0  # share=100% n=7066
+      drainGaugeExpireTime: 0  # share=100% n=7066
+      maxDrainGauge: 0  # share=100% n=7066
+    drainBack:
+      gaugeToMpRate: 1  # share=100% n=7066
+    precondition:
+      coolTime: 0  # share=99% n=7066
+      modeChangeMethod: 2  # share=100% n=7066
+      modeNo: 0  # share=100% n=7066
+    projectile:
+      areaBoxSizeX: 0  # share=100% n=7066
+      areaBoxSizeY: 0  # share=100% n=7066
+      areaBoxSizeZ: 0  # share=100% n=7066
+      loopingTime: 0  # share=100% n=7066
+    property:
+      abnormalMultiHitAdjustId: 0  # share=100% n=7063
+      adjustLoopRepeat: false  # share=100% n=6029
+      defence: false  # share=100% n=7066
+      movingWithAbnormalId: 0  # share=100% n=7066
+      reactionPendingType: "normal"  # share=100% n=7066
+      skillPendingType: "normal"  # share=100% n=7066
+      weaponStatus: "out"  # share=100% n=7066
+    resistance:
+      addResA: 0  # share=100% n=5445
+      addResB: 0  # share=100% n=5445
+      addResC: 0  # share=100% n=5445
+      basicIncRes: 0  # share=99% n=7066
+      basicRes: 100  # share=96% n=7066
+      damageRes: 1  # share=100% n=7066
+      endTime: 0  # share=100% n=7066
+      miniRes: 100  # share=96% n=7066
+      startTime: 0  # share=100% n=7066
+    teleport:
+      distRange: "0"  # share=100% n=7066
+      istrue: "false"  # share=100% n=7066
+      range: "0"  # share=100% n=7066
+      type: "BONFIRE"  # share=100% n=7066
+exports:
+  definitions:
+    - MerchantVillager
+    - QuestVillager
+    - NormalMonster
+    - EliteMonster
+    - BossMonster
+    - ObjectNpc
+    - MerchantVillagerSpawn
+    - QuestVillagerSpawn
+    - NormalMonsterSpawn
+    - EliteMonsterSpawn
+    - BossMonsterSpawn
+    - ObjectNpcSpawn
+    - MerchantVillagerSkill
+    - QuestVillagerSkill
+    - NormalMonsterSkill
+    - EliteMonsterSkill
+    - BossMonsterSkill
+    - ObjectNpcSkill

@@ -161,10 +161,10 @@ Definitions do not need `use:` — they are available automatically after `- fro
 
 ## 9. Validate
 
-Resolve the datasheet path from `.references` (`server_datasheet` key) and run:
+Resolve paths from `.references` (keys: `project_root`, `server_datasheet`). The DSL binary is at `<project_root>/dsl.exe`; always use the full absolute path, never `./dsl` or relative paths. Run:
 
-```
-dsl validate <spec-that-imports-package>.yaml --path "<server_datasheet>"
+```bash
+"<project_root>/dsl.exe" validate <spec-that-imports-package>.yaml --path "<server_datasheet>"
 ```
 
 The package is correct when the consuming spec validates without E535 or E536 errors.

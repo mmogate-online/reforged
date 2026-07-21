@@ -1,0 +1,279 @@
+# IoD Area Sections - Patch 001 (classic restoration, v31-primary)
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md (v31 wins on divergence).
+# Source of truth: v31 server AreaData_13_ATW_P.xml (geometry + attributes verbatim).
+# Target file: AreaData_13_ATW_Death_P.xml (v92 continent 13 area).
+# Diff artifact: docs/plans/classic-restoration/iod/data/sections-diff.md / .json
+# Tracker rulings (TRACKER.md "Diff artifacts" section, 2026-07-20):
+#   - Ruling 1: camp-teleport cluster KEEP; do NOT re-add classic 13017/13020/13027
+#     (they survive as v92 renumbers 13032-34). PORT list drops to 12 sections:
+#     7 re-adds + 3 diverged realigns + Tower Base 64001/64007 re-enable.
+#   - Ruling 2: section 13035 Ruined Temple REMOVE (v92-only, cosmetic labels only).
+#
+# v31 CORRECTION adopted: nameId 13013 stays "Airship Approach" and 13015 stays
+# "Abandoned Camp" (both already MATCH v92). The retired v17 plan's Terron-Run-13036
+# remap and Leander's-Outpost rename are DROPPED. Geometry note: v31 Tower Base
+# (64001) carries 12 fence vertices, not the 10 the retired v17 spec used.
+#
+# All full-section re-adds/re-enables extend area-section-standard.ClassicSection;
+# only fields deviating from that archetype's defaults are listed. The 3 realigns
+# (13004, 13007, 13030) are partial upserts on live sections (merge provided
+# attributes; 13030 also replaces its fence ring), so they do not extend the
+# archetype.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: area-section-standard
+
+areaSections:
+  upsert:
+    # --- A. Re-add 7 v31 sections absent from v92 (children of 13001, id 4) ---
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 6
+      $extends: area-section-standard.ClassicSection
+      desc: "13002 원정대 보급기지 페가수스 승강장"
+      nameId: 13002
+      priority: 4
+      addMaxZ: 1000.000000
+      duel: false
+      enableItemId: "131,132"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [70152.3203, -70773.4063, -3485.0825]
+        - [71523.9063, -70641.6953, -3384.7163]
+        - [71325.6250, -69111.0938, -3456.4333]
+        - [70137.2422, -69416.7969, -3425.9626]
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 9
+      $extends: area-section-standard.ClassicSection
+      desc: "13005 북부 경계 초소"
+      nameId: 13005
+      priority: 5
+      addMaxZ: 2000.000000
+      restBonus: false
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [88056.5547, -84728.3984, -4524.3008]
+        - [86481.3203, -84112.1328, -4651.4053]
+        - [86086.1406, -85860.8672, -4616.9048]
+        - [87074.9609, -86452.0703, -4529.0039]
+        - [87800.1172, -86353.2500, -4824.1885]
+        - [88266.8516, -85317.5625, -4554.7393]
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 56
+      $extends: area-section-standard.ClassicSection
+      desc: "13008 오칸 야영지"
+      nameId: 13008
+      priority: 12
+      addMaxZ: 500.000000
+      subtractMinZ: 1000.000000
+      pcMoveCylinder: true
+      pk: "false"
+      restBonus: false
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [49859.4883, -79127.0391, -4713.7271]
+        - [51016.5039, -77576.3125, -4732.8457]
+        - [50058.0547, -77081.6875, -4661.1465]
+        - [49028.2188, -78672.3594, -4715.5747]
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 47
+      $extends: area-section-standard.ClassicSection
+      desc: "13013 키오네 추락지"
+      nameId: 13013
+      priority: 4
+      addMaxZ: 1000.000000
+      pcMoveCylinder: true
+      pk: "false"
+      restBonus: false
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [66586.6875, -70810.1953, -3272.4849]
+        - [66565.6016, -70106.9922, -3350.0205]
+        - [65794.1797, -69567.2578, -3702.7031]
+        - [65231.9648, -70254.9375, -3727.5015]
+        - [65682.0781, -70826.0391, -3636.5122]
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 36
+      $extends: area-section-standard.ClassicSection
+      desc: "13015 쿠벨 야영지"
+      nameId: 13015
+      campId: 1
+      priority: 12
+      addMaxZ: 1000.000000
+      vender: true
+      restBonus: false
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [56199.3125, -81541.0313, -4197.0229]
+        - [55513.9766, -81234.0625, -4199.6958]
+        - [54786.0195, -81420.3438, -4215.1162]
+        - [54600.9336, -82760.3906, -4358.5195]
+        - [54743.5156, -83247.1563, -4333.3379]
+        - [55584.2891, -83338.2109, -4227.6592]
+        - [56547.0039, -82790.0781, -4255.0195]
+        - [56378.6016, -82199.7969, -4241.6450]
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 43
+      $extends: area-section-standard.ClassicSection
+      desc: "13018 수비대 북부 캠프"
+      nameId: 13018
+      priority: 3
+      addMaxZ: 2000.000000
+      restBonus: false
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [73904.4609, -81629.7578, -3305.1865]
+        - [72710.8750, -82256.7734, -3364.1992]
+        - [72461.0234, -82825.3516, -3456.8645]
+        - [73015.6250, -83585.4297, -3548.1328]
+        - [73424.5703, -83581.1563, -3557.4985]
+        - [74772.6094, -83680.1016, -3324.2844]
+        - [75596.4219, -83219.4844, -3773.3064]
+        - [75489.1875, -82480.8750, -3914.9502]
+        - [74437.7031, -81603.7891, -3258.4126]
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      parentSectionId: 4
+      sectionId: 34
+      $extends: area-section-standard.ClassicSection
+      desc: "13022 검은 틈 수비대 캠프"
+      nameId: 13022
+      priority: 5
+      addMaxZ: 1000.000000
+      restBonus: false
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [65439.0508, -64649.9063, -4059.2800]
+        - [63663.7695, -64576.6484, -4199.9775]
+        - [63998.2461, -65897.4609, -4221.2388]
+        - [64442.1523, -66608.4922, -4210.4780]
+        - [65257.2266, -66592.7734, -4192.3223]
+        - [65536.3984, -65797.2656, -4183.0239]
+
+    # --- C. Re-enable Tower Base 64001 (root-level) + nested 64007 ---
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 30
+      $extends: area-section-standard.ClassicSection
+      desc: "64001 원정대 보급기지"
+      nameId: 64001
+      worldMapSectionId: 6
+      priority: 64
+      addMaxZ: 2000.000000
+      vender: true
+      restBonus: true
+      disableItemId: "1164,1167,1170"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      fences:
+        - [67617.67968750, -81764.85937500, -3179.79785156]
+        - [68346.59375000, -82144.90625000, -3165.90380859]
+        - [70060.10937500, -82601.10156250, -3175.56396484]
+        - [71184.27343750, -82584.64062500, -3221.37011719]
+        - [71203.39062500, -77517.80468750, -2458.46191406]
+        - [68134.49218750, -75281.26562500, -2794.77978516]
+        - [67605.69531250, -75922.92968750, -2793.55468750]
+        - [66187.17968750, -74988.82031250, -3058.35327148]
+        - [65538.57812500, -76531.67968750, -3049.69091797]
+        - [65440.39843750, -78079.57812500, -3092.11132813]
+        - [65919.19531250, -79795.62500000, -3113.90722656]
+        - [66866.62500000, -81207.52343750, -3230.83593750]
+      sections:
+        - sectionId: 40
+          $extends: area-section-standard.ClassicSection
+          desc: "64007 연구원 숙소"
+          nameId: 64007
+          priority: 5
+          addMaxZ: 2000.000000
+          vender: true
+          restBonus: true
+          disableItemId: "1164,1167,1170"
+          recallReviveContinentId: 13
+          recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+          recallScrollContinentId: 13
+          recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+          fences:
+            - [70999.8594, -81079.4063, -2979.5801]
+            - [69591.5313, -81031.6406, -2971.7017]
+            - [69319.0703, -82259.8359, -3165.4658]
+            - [70101.7344, -82354.9063, -3165.2622]
+            - [71053.4688, -82258.9922, -3164.8843]
+
+    # --- B. Realign 3 diverged live sections to v31 (partial merge upserts) ---
+    # 13004 Tainted Gorge: addMaxZ 4096 -> 1000 (v31). Fence exact, untouched.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 8
+      nameId: 13004
+      addMaxZ: 1000.000000
+    # 13007 Mathar Spire: priority 5 -> 0 (v31). Fence exact, untouched.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 55
+      nameId: 13007
+      priority: 0
+    # 13030 Timeless Woods: priority 2 -> 1 and ring 12 -> 13 verts (v31 wins).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 53
+      nameId: 13030
+      priority: 1
+      fences:
+        - [89910.8672, -80322.6719, -5517.3428]
+        - [83914.2344, -77451.2266, -5681.2012]
+        - [75924.7109, -77081.8594, -3282.1794]
+        - [74585.1328, -78217.7500, -2079.3623]
+        - [74051.9141, -79878.2031, -3037.8967]
+        - [74439.2578, -81441.6016, -3103.7173]
+        - [74798.8047, -84235.1953, -3284.4326]
+        - [74881.7578, -87251.8359, -5700.1152]
+        - [81923.3906, -91053.0156, -4486.3945]
+        - [93671.4531, -91424.7891, -4520.5908]
+        - [95360.7500, -90244.9688, -6827.9131]
+        - [96119.6719, -86891.7188, -4218.5742]
+        - [96213.7656, -85641.8750, -2693.7981]
+
+  delete:
+    # Ruling 2: 13035 Ruined Temple (v92-only, id 61). Removes section + subtree.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 61

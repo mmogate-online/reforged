@@ -1,0 +1,666 @@
+{
+  "quests": [
+    {
+      "id": 1303,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "동영상재생Task",
+        "사냥Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "동영상재생Task",
+        "사냥Task",
+        "방문Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1304,
+      "verdict": "FALLBACK",
+      "reason": "v17 has 4 tasks vs v92 2; reconstruction must CREATE 2 task(s) with a fabricated <Body>. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "방문Task",
+        "방문Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1305,
+      "verdict": "FALLBACK",
+      "reason": "task types diverge at aligned slots, so reconstruction must remove-and-recreate under the v17 type (fabricated <Body>): slot3 v17=방문Task vs v92=사냥Task. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "방문Task",
+        "방문Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "방문Task",
+        "사냥Task",
+        "방문Task",
+        "사냥Task",
+        "찔러준아이템전달Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1311,
+      "verdict": "FALLBACK",
+      "reason": "v17 has 4 tasks vs v92 3; reconstruction must CREATE 1 task(s) with a fabricated <Body>. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "방문Task",
+        "방문Task",
+        "방문Task",
+        "찔러준아이템전달Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "사냥Task",
+        "채집Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1313,
+      "verdict": "FALLBACK",
+      "reason": "task types diverge at aligned slots, so reconstruction must remove-and-recreate under the v17 type (fabricated <Body>): slot1 v17=PC이동Task vs v92=사냥Task; slot2 v17=방문Task vs v92=PC이동Task. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "PC이동Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "사냥Task",
+        "PC이동Task",
+        "방문Task",
+        "그룹사냥Task",
+        "채집Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1315,
+      "verdict": "FALLBACK",
+      "reason": "v17 has 4 tasks vs v92 2; reconstruction must CREATE 2 task(s) with a fabricated <Body>. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "사냥전달Task",
+        "찔러준아이템전달Task",
+        "사냥Task",
+        "찔러준아이템전달Task"
+      ],
+      "v92_types": [
+        "사냥Task",
+        "찔러준아이템전달Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1316,
+      "verdict": "FALLBACK",
+      "reason": "task types diverge at aligned slots, so reconstruction must remove-and-recreate under the v17 type (fabricated <Body>): slot1 v17=사냥Task vs v92=그룹사냥Task; slot2 v17=동영상재생Task vs v92=PC이동Task; slot3 v17=찔러준아이템전달Task vs v92=PC이동Task; slot4 v17=찔러준아이템전달Task vs v92=사냥Task; slot5 v17=찔러준아이템전달Task vs v92=동영상재생Task. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "사냥Task",
+        "동영상재생Task",
+        "찔러준아이템전달Task",
+        "찔러준아이템전달Task",
+        "찔러준아이템전달Task"
+      ],
+      "v92_types": [
+        "그룹사냥Task",
+        "PC이동Task",
+        "PC이동Task",
+        "사냥Task",
+        "동영상재생Task",
+        "찔러준아이템전달Task",
+        "찔러준아이템전달Task",
+        "찔러준아이템전달Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1317,
+      "verdict": "FALLBACK",
+      "reason": "v17 has 5 tasks vs v92 4; reconstruction must CREATE 1 task(s) with a fabricated <Body>. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "방문Task",
+        "방문Task",
+        "방문Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "방문Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1329,
+      "verdict": "FALLBACK",
+      "reason": "trimming the surplus tail would strand completion item(s) 5002: a kept task injects them but only a removed task deleted them, leaving an orphaned quest item. Keep v92.",
+      "v17_types": [
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "사냥Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1331,
+      "verdict": "FALLBACK",
+      "reason": "task types diverge at aligned slots, so reconstruction must remove-and-recreate under the v17 type (fabricated <Body>): slot2 v17=채집Task vs v92=사냥전달Task. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "방문Task",
+        "채집Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "사냥전달Task",
+        "PC이동Task",
+        "채집완료Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1334,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "채집Task"
+      ],
+      "v92_types": [
+        "채집Task"
+      ],
+      "ops": [
+        {
+          "taskId": 1,
+          "type": "CollectTask",
+          "body": {
+            "itemId": 410
+          }
+        }
+      ],
+      "remove_tasks": [],
+      "notes": [
+        "collection node -> 410 (v17)"
+      ]
+    },
+    {
+      "id": 1336,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "채집Task"
+      ],
+      "v92_types": [
+        "채집Task"
+      ],
+      "ops": [
+        {
+          "taskId": 1,
+          "type": "CollectTask",
+          "body": {
+            "itemId": 409,
+            "deliveryItems": [
+              {
+                "itemId": 9010,
+                "quantity": 4
+              }
+            ]
+          }
+        }
+      ],
+      "remove_tasks": [],
+      "notes": [
+        "collection node -> 409 (v17)",
+        "hand-in items -> 9010x4 (v17)"
+      ]
+    },
+    {
+      "id": 1341,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "채집Task"
+      ],
+      "v92_types": [
+        "채집Task"
+      ],
+      "ops": [
+        {
+          "taskId": 1,
+          "type": "CollectTask",
+          "body": {
+            "itemId": 411
+          }
+        }
+      ],
+      "remove_tasks": [],
+      "notes": [
+        "collection node -> 411 (v17)"
+      ]
+    },
+    {
+      "id": 1346,
+      "verdict": "FALLBACK",
+      "reason": "v92 already matches the v17 task structure and targets (it differs only in v92-added task dialogue or a version-drifted condition skill id that v17 also intends); reconstructing would strip content with no faithful gain. Keep v92.",
+      "v17_types": [
+        "수호Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "수호Task",
+        "방문Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1371,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1372,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1373,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1374,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1375,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1376,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1377,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1378,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "방문Task",
+        "사냥전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "VisitTask",
+          "nextTaskId": 0,
+          "hasReward": true
+        }
+      ],
+      "remove_tasks": [
+        4,
+        5
+      ],
+      "notes": [
+        "trim v92-added tail tasks [4, 5]; task 3 becomes the completing task (보상=1)."
+      ]
+    },
+    {
+      "id": 1382,
+      "verdict": "FALLBACK",
+      "reason": "task types diverge at aligned slots, so reconstruction must remove-and-recreate under the v17 type (fabricated <Body>): slot1 v17=채집Task vs v92=방문Task. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "채집Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "방문Task",
+        "채집Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1384,
+      "verdict": "FALLBACK",
+      "reason": "task types diverge at aligned slots, so reconstruction must remove-and-recreate under the v17 type (fabricated <Body>): slot1 v17=조건Task vs v92=방문Task. The DSL now supports this (type write, task create, removeTasks), but a fabricated body cannot be proven server-load-safe by the structural apply gate (the loader rejects missing or mis-ordered elements: the 2026-07-18 quest-1390 crash) and would import v17-era monster / collection / NPC refs of unverified v92 spawn-state while discarding deliberate v92 content evolution. Held for a live-load pass.",
+      "v17_types": [
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "방문Task",
+        "조건Task",
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1385,
+      "verdict": "FALLBACK",
+      "reason": "v92 already matches the v17 task structure and targets (it differs only in v92-added task dialogue or a version-drifted condition skill id that v17 also intends); reconstructing would strip content with no faithful gain. Keep v92.",
+      "v17_types": [
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "조건Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1389,
+      "verdict": "FALLBACK",
+      "reason": "v17 slot2 조건Task is an empty placeholder (<완료조건 />) while v92 encodes a real 도박시도 condition; restoring the empty condition has unverifiable runtime behaviour, keep v92.",
+      "v17_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "v92_types": [
+        "방문Task",
+        "조건Task",
+        "방문Task"
+      ],
+      "ops": [],
+      "remove_tasks": [],
+      "notes": []
+    },
+    {
+      "id": 1390,
+      "verdict": "DEEP_OK",
+      "reason": "",
+      "v17_types": [
+        "조건Task",
+        "방문Task",
+        "찔러준아이템전달Task"
+      ],
+      "v92_types": [
+        "조건Task",
+        "방문Task",
+        "찔러준아이템전달Task"
+      ],
+      "ops": [
+        {
+          "taskId": 3,
+          "type": "DeliverInjectedItemTask",
+          "body": {
+            "targetNpc": "213,1130"
+          }
+        }
+      ],
+      "remove_tasks": [],
+      "notes": [
+        "delivery npc -> 213,1130 (v17)"
+      ]
+    }
+  ]
+}

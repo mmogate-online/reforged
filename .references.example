@@ -10,8 +10,13 @@ server_datasheet=D:\path\to\server\Datasheet
 # Client DataCenter folder
 client_datacenter=D:\path\to\client-dc\DataCenter_Final_EUR
 
-# Live server share (push target for deploy-patch)
-server_share=\\server-host\Datasheet
+# Deployment infra repo (private; dev server access and operations docs live there)
+deploy_repo=D:\path\to\reforged-deploy
+
+# Dev game server SSH alias (defined in your ~/.ssh/config; never commit connection details)
+dev_server_ssh=my-dev-server
+# Remote datasheet path on the dev game server
+dev_server_datasheet=D:/tera/server/Datasheet
 
 # Client pack tool directory
 client_pack_dir=D:\path\to\client-dc
@@ -28,3 +33,21 @@ dsl_docs_internal=D:\path\to\datasheetlang\docs
 
 # Domain knowledge documentation (raw markdown for Claude, Starlight site for humans)
 domain_docs=D:\path\to\datasheet-domain\src\content\docs
+domain_data=D:\path\to\datasheet-domain\public\data
+
+# Content design framework repo (design source of truth for progression, economy, seasons)
+content_framework=D:\path\to\reforged-content-framework
+
+# Client deploy pipeline (deploy-client tool)
+# Local game client installation (the patcher publish gameDir; keep free of extra files)
+game_client_install=D:\path\to\game-client
+# Patcher origin unit in the private deploy repo (rporigin profile, vendored publish CLI, staged creds)
+patcher_origin=D:\path\to\reforged-deploy\patcher-origin
+
+# Historical restoration sources (dc-restore toolkit)
+# Old-era unpacked client DataCenter (Novadrop layout; content archaeology source)
+old_client_dc=D:\path\to\old-client\DataCenter_Final_USA
+# v31 server datasheet folder (canonical server-format restoration source)
+v31_datasheet=D:\path\to\v31\Datasheet
+# v31 client DataCenter (client-side cross-check source for the v31-primary doctrine)
+client_dc_v31=D:\path\to\v31-client\DataCenter_Final_EUR

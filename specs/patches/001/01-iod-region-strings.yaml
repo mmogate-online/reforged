@@ -1,0 +1,22 @@
+# IoD Region Strings - Patch 001 (classic restoration, v31-primary)
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md (v31 wins on divergence).
+# Source of truth: v31 server StrSheet_Region.xml.
+# Diff artifact: docs/plans/classic-restoration/iod/data/region-strings-diff.md / .json
+# Tracker rulings (TRACKER.md "Diff artifacts" section, 2026-07-20):
+#   - Ruling 2: remove the 13035 Ruined Temple string with its section.
+#   - Ruling 4: 13031-13034 strings KEEP (camp cluster); all other classic IoD
+#     names already exist and MATCH v31 exactly, so no add/upsert is needed.
+#
+# Every in-scope classic region name (46 ids) already MATCHes between v31 and v92,
+# so this spec carries a single op: delete the v92-only 13035 string. The retired
+# v17 upserts (13036 "Terron Run", 13015 "Leander's Outpost") are DROPPED under
+# v31-primary (13013/13015 already carry their classic names in v31).
+
+spec:
+  version: "1.0"
+  schema: v92
+
+regionStrings:
+  delete:
+    - 13035

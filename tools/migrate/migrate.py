@@ -40,6 +40,8 @@ ENTITY_SYNC_MAP = {
     "rawStoneItems": "RawStoneItems",
     "collections": "CollectionData",
     "abnormalities": "Abnormality",
+    "abnormalityIconData": "AbnormalityIconData",
+    "abnormalityStrings": "StrSheet_Abnormality",
     "customizingItems": "CustomizingItems",
     "customizingItemBags": None,
     "exchanges": None,          # ItemMedalExchange — server-only, client reads at runtime
@@ -53,12 +55,35 @@ ENTITY_SYNC_MAP = {
     "npcs": None,               # NpcData — server-only
     "ai": None,                 # AIData — server-only
     "balanceProfiles": None,    # NpcData (+ SkillData when skills: present — see detect_entities)
+    "quests": "Quest",
+    "questDialogs": "QuestDialog",
+    # StrSheet_Quest: 1 monolithic server file vs 2879 per-quest client shards.
+    # Wired via `merge: shard-routed` (datasheetlang 8a3d89ab), which rewrites each
+    # record in the shard that already owns it. See the entity note in sync-config.yaml.
+    "questStrings": "StrSheet_Quest",
+    "questCompensations": None, # QuestCompensationData: server-only
+    "territorySpawns": "TerritoryData",
+    "territoryGroups": "TerritoryData",
+    "territories": "TerritoryData",
+    "territoryParties": "TerritoryData",
+    "villagerDialogs": None,    # VillagerDialog: server-only
+    "areaSections": "AreaData", # sync filtering fixed in DSL commit 735abf92, apply-verified 2026-07-19
+    "regionStrings": "StrSheet_Region",
+    "villagerMenus": "VillagerMenu",
+    "speechConditions": None,   # VillagerData .condition files: server-only (client strings resolve elsewhere)
+    "questStoryGroups": None,   # QuestGroupList.xml: client copy handling pending Stage 5 validation item 7
+    "questHuntingZones": None,  # QuestGroupList.xml co-tenant: same as above
+    "newWorldMap": "NewWorldMapData",  # monolithic merge-by-id sync (see sync-config entity note)
+    "dungeonDatas": None,       # DungeonData: server-authoritative scripting, no client sync (spec 19 precedent)
+    "workObjects": "WorkObjectData",  # client carries isForQuestId/task gating (spec 19 portal)
+    "workObjectTerritories": None,    # WorkObjectTerritory_{hz}: server-only, no client family
 }
 
 # Entity keys whose inline blocks imply additional sync entities
 # Values can be a string (single entity) or list (multiple entities)
 INLINE_STRING_SYNC = {
     "items": "StrSheet_Item",
+    "abnormalities": "StrSheet_Abnormality",  # inline abnormalityStrings blocks
     "enchantPassivityCategories": ["Passivity", "StrSheet_Passivity"],
     "gachaItems": ["ItemData", "StrSheet_Item"],
 }

@@ -131,6 +131,31 @@ entities:
     source_mapping:
       "Abnormality.xml": "Abnormality-00000.xml"
 
+  # AbnormalityIconData.xml maps abnormality ids to buff-bar icons.
+  # Base file only; regionals untouched (same policy as Abnormality above).
+  AbnormalityIconData:
+    strategy: SourceMapped
+    client_folder: "AbnormalityIconData"
+    root_element: "AbnormalityIconData"
+    id_attribute: "abnormalityId"
+    xsd_file: "AbnormalityIconData/AbnormalityIconData.xsd"
+    source_mapping:
+      "AbnormalityIconData.xml": "AbnormalityIconData-00000.xml"
+
+  # Abnormality names/tooltips. Client shard 00000 holds the base roster
+  # (verified: custom 488xxxxxx ids live there); shards 00002+ are content-pack
+  # extras that keep ownership of their records via shard-aware merge (the
+  # server file is the merged superset; without it ~1315 records duplicate).
+  StrSheet_Abnormality:
+    strategy: SourceMapped
+    merge: shard-aware
+    client_folder: "StrSheet_Abnormality"
+    root_element: "StrSheet_Abnormality"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Abnormality/StrSheet_Abnormality.xsd"
+    source_mapping:
+      "StrSheet_Abnormality.xml": "StrSheet_Abnormality-00000.xml"
+
   # ===========================================================================
   # CUSTOMIZING (CRYSTAL SOCKET) DATA
   # ===========================================================================
@@ -307,6 +332,82 @@ entities:
     id_attribute: "id"
     xsd_file: "StrSheet_Npc/StrSheet_Npc.xsd"
 
+# Villager shop/menu registry. Server VillagerData/VillagerMenu.xml (rich: Menu
+  # children) maps to the single client shard (bare registry; XSD filtering strips
+  # the server-only structure).
+  VillagerMenu:
+    strategy: monolithic
+    server_file: "VillagerData/VillagerMenu.xml"
+    client_folder: "VillagerMenu"
+    client_file: "VillagerMenu-00000.xml"
+    root_element: "VillagerMenu"
+    id_attribute: "id"
+    xsd_file: "VillagerMenu/VillagerMenu.xsd"
+
+  # Region name strings (world map / zone banners). Single global file both sides.
+  StrSheet_Region:
+    strategy: monolithic
+    server_file: "StrSheet_Region.xml"
+    client_folder: "StrSheet_Region"
+    client_file: "StrSheet_Region-00000.xml"
+    root_element: "StrSheet_Region"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Region/StrSheet_Region.xsd"
+
+  # World area/section topology. Per the DSL team's sync-config template
+  # (commit 75da0211): SourceMapped with an explicit server->client filename map;
+  # server files rank 1:1 onto client Area-{seq:D5}.xml by alphabetical order
+  # (verified 289/289). Add one source_mapping line per file we intend to sync.
+  # Note: XSD-driven attribute filtering keeps recallReviveContinentIdB/C on
+  # client Sections because the client Area.xsd genuinely declares them; that
+  # is correct behavior, not a server-attribute leak.
+  AreaData:
+    strategy: SourceMapped
+    client_folder: "Area"
+    root_element: "Area"
+    id_attribute: "id"
+    xsd_file: "Area/Area.xsd"
+    source_mapping:
+      "AreaData_13_ATW_Death_P.xml": "Area-00013.xml"
+
+  # World map hierarchy (worlds > guards > sections > NPC markers). Drives the
+  # client minimap/world-map bindings (section nameId -> MapDefine mapId).
+  # merge: merge-by-id (added 2026-07-19). A plain monolithic sync is LOSSY here:
+  # the EUR client file carries ~35 curated markers (dungeon entrances, brokers,
+  # reputation stores across all cities) plus a couple of client-only sections
+  # that the server file does not, so a full-file replace deletes them game-wide.
+  # merge-by-id recursively merges the server projection into the client file down
+  # the World > Guard > Section > Npc hierarchy: server records overwrite matched
+  # ones, server-only records are added (e.g. the patch 001 Tower Base town from
+  # spec 13), and client-only siblings are preserved at every level.
+  # merge_key_attributes lists the key per level: Sections/Guards/Worlds key on
+  # id, Npc markers on nameId (first attribute present wins).
+  # See docs/dsl-requests/2026-07-19-newworldmapdata-sync-lossy.md.
+  NewWorldMapData:
+    strategy: monolithic
+    merge: merge-by-id
+    merge_key_attributes: [id, nameId]
+    server_file: "WorldMap/NewWorldMapData.xml"
+    client_folder: "NewWorldMapData"
+    client_file: "NewWorldMapData-00000.xml"
+    root_element: "NewWorldMapData"
+    id_attribute: "id"
+    xsd_file: "NewWorldMapData/NewWorldMapData.xsd"
+
+  # Work object templates (portals, altars, gimmicks). Client copy carries the
+  # isForQuestId/firstTaskId/lastTaskId gating, so a new or re-gated work object
+  # needs this sync (spec 19 Sorcha portal precedent). Placement files
+  # (WorkObjectTerritory_{hz}) have no client family and never sync. The
+  # StrSheet_WorkObject / StrSheet_WorkObjectLoc legs stay hand-managed.
+  WorkObjectData:
+    strategy: monolithic
+    server_file: "WorkObjectData.xml"
+    client_folder: "WorkObjectData"
+    client_file: "WorkObjectData-00000.xml"
+    root_element: "WorkObjectData"
+    id_attribute: "templateId"
+    xsd_file: "WorkObjectData/WorkObjectData.xsd"
+
   BuyMenuList:
     strategy: SourceMapped
     client_folder: "MenuList"
@@ -381,6 +482,25 @@ entities:
     root_element: "Quest"
     id_attribute: "id"
     xsd_file: "Quest/Quest.xsd"
+
+  # Quest strings (journal text, popups, task success messages). One monolithic
+  # server file against 2879 per-quest client shards whose shard number is an
+  # opaque sequence index, not a function of the ids (shard order is not even
+  # monotonic by quest id, and 00000/01765 are irregular). No bucket ranges can
+  # express that, and shard-aware would drop every edit since each record is
+  # sibling-owned. shard-routed follows the existing ownership instead: it
+  # rewrites each record in the shard that already holds it, so the layout is
+  # read from the client and never inferred. The source_mapping value is the
+  # FALLBACK primary (where unowned/new records land), not the sole write target.
+  StrSheet_Quest:
+    strategy: SourceMapped
+    merge: shard-routed
+    client_folder: "StrSheet_Quest"
+    root_element: "StrSheet_Quest"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Quest/StrSheet_Quest.xsd"
+    source_mapping:
+      "StrSheet_Quest.xml": "StrSheet_Quest-00000.xml"
 
   StrSheet_Item:
     strategy: SourceMapped

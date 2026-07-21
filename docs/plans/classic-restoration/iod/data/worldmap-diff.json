@@ -1,0 +1,136 @@
+{
+ "counts": {
+  "PORT": 2,
+  "DECISION": 2,
+  "MATCH": 2
+ },
+ "rows": [
+  {
+   "sectionId": "6",
+   "nameId": "64001",
+   "v31": {
+    "id": "6",
+    "nameId": "64001",
+    "type": "town",
+    "mapId": "WMap_ATW_Vill_01",
+    "floor": "1",
+    "commented": false
+   },
+   "v92": {
+    "id": "6",
+    "nameId": "64001",
+    "type": "town",
+    "mapId": "WMap_ATW_Vill_01",
+    "floor": "1",
+    "commented": true
+   },
+   "verdict": "PORT",
+   "reason": "live in v31, COMMENTED-OUT in v92; re-enable"
+  },
+  {
+   "sectionId": "7",
+   "nameId": "13001",
+   "v31": {
+    "id": "7",
+    "nameId": "13001",
+    "type": "",
+    "mapId": "WMap_ATW_Field_01",
+    "floor": "1",
+    "commented": false
+   },
+   "v92": {
+    "id": "7",
+    "nameId": "13001",
+    "type": "",
+    "mapId": "WMap_ATW_Death_Field",
+    "floor": "1",
+    "commented": false
+   },
+   "verdict": "PORT",
+   "reason": "live both, diverged: {\"mapId\": [\"WMap_ATW_Field_01\", \"WMap_ATW_Death_Field\"]}"
+  },
+  {
+   "sectionId": "8",
+   "nameId": "13031",
+   "v31": null,
+   "v92": {
+    "id": "8",
+    "nameId": "13031",
+    "type": "town",
+    "mapId": "WMap_ATW_Death_Vill",
+    "floor": "1",
+    "commented": false
+   },
+   "verdict": "DECISION",
+   "reason": "v92-only live worldmap section"
+  },
+  {
+   "sectionId": "9",
+   "nameId": "13001",
+   "v31": null,
+   "v92": {
+    "id": "9",
+    "nameId": "13001",
+    "type": "",
+    "mapId": "WMap_ATW_Death_Empty",
+    "floor": "1",
+    "commented": false
+   },
+   "verdict": "DECISION",
+   "reason": "v92-only live worldmap section"
+  },
+  {
+   "sectionId": "9036",
+   "nameId": "9036001",
+   "v31": {
+    "id": "9036",
+    "nameId": "9036001",
+    "type": "",
+    "mapId": "WMap_SJ_03",
+    "floor": "1",
+    "commented": false
+   },
+   "v92": {
+    "id": "9036",
+    "nameId": "9036001",
+    "type": "",
+    "mapId": "WMap_SJ_03",
+    "floor": "1",
+    "commented": false
+   },
+   "verdict": "MATCH",
+   "reason": "live both identical"
+  },
+  {
+   "sectionId": "9037",
+   "nameId": "13009",
+   "v31": {
+    "id": "9037",
+    "nameId": "13009",
+    "type": "",
+    "mapId": "WMap_ATW_Empty_02",
+    "floor": "0",
+    "commented": false
+   },
+   "v92": {
+    "id": "9037",
+    "nameId": "13009",
+    "type": "",
+    "mapId": "WMap_ATW_Empty_02",
+    "floor": "0",
+    "commented": false
+   },
+   "verdict": "MATCH",
+   "reason": "live both identical"
+  }
+ ],
+ "mapIds": [
+  "WMap_ATW_Death_Empty",
+  "WMap_ATW_Death_Field",
+  "WMap_ATW_Death_Vill",
+  "WMap_ATW_Empty_02",
+  "WMap_ATW_Field_01",
+  "WMap_ATW_Vill_01",
+  "WMap_SJ_03"
+ ]
+}

@@ -1,0 +1,108 @@
+# ==============================================================================
+# Spec: 17 - IoD Quest Enables 2 (padding Level 1, world-dependent)
+# ==============================================================================
+# Enables 9 sentinel-disabled IoD quests whose givers/targets are the NPC and
+# mob spawns restored by specs 15 (NPC givers) and 16 (mob habitats). Spec
+# numbering guarantees 15/16 apply before this file in the migrate batch, so the
+# world exists by the time these quests become offerable. Same enable mechanic
+# as spec 14 (replace the 99,99 sentinel / clear for v17 roots). Bodies stay
+# v31-faithful; rewards were ported by patch 001 spec 04. Plus one doctrine
+# rule 1 internal-consistency dialog fix (1327).
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md, rule 4 (Level 1 padding).
+# Source artifacts (adjudicated 2026-07-20):
+#   docs/plans/classic-restoration/iod/data/padding-quest-gates.md
+#   docs/plans/classic-restoration/iod/data/padding-overlap-rewards.md
+#   docs/plans/classic-restoration/iod/data/padding-level1-proposal.md
+#
+# Chain co-enablement:
+#   1323(spec 14, applied first) -> 1324 -> 1327;  1332(root) -> 1333.
+#
+# Auto-accept safety: verified NONE of these quests carries 즉시수주 (autoAccept)
+#   behind a prerequisite; staged re-enable cannot strand a character.
+#
+# Collections axis (tracker ruling 3, resolved 2026-07-20): the v92 bodies of the
+#   collect quests carry remapped collection ids with NO placed nodes in IoD
+#   (1334: 404). The v31 ids ARE placed in the live CollectionTerritory_13 files,
+#   so the collect tasks are retargeted to the v31 ids (doctrine: v31 wins).
+#   Items, quantities, and target NPCs already match v31. 1336/1341 are fixed in
+#   spec 14, which owns their enables.
+#
+# Op groups: quests (9 prereq rewrites + 1 collection retarget) + questDialogs
+#   (1 dialog fix, 1327).
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# ---- 1. Quest prerequisite rewrites (9) ---------------------------------------
+quests:
+  update:
+    # -- v17-line roots: clear the sentinel, no anchor (6) --------------------
+    - id: 1319            # Dwellers of the Island
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1332            # They'll Eat Anything
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1334            # Investigating the Relics (repeatable) + collection retarget
+      changes:
+        requirements:
+          prerequisites: []
+        tasks:
+          - taskId: 1
+            type: CollectTask
+            body:
+              itemId: 410   # v31 collection (ancient relics); v92 body said 404, unplaced in IoD
+    - id: 1347            # It Was a Rock...Crawler
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1348            # Ferocious Flowering Felons
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1349            # Gotta Kill 'Em All
+      changes:
+        requirements:
+          prerequisites: []
+
+    # -- v17-parent anchors on co-enabled quests (3) --------------------------
+    - id: 1324            # Essence and Sensibility -> 1323 (spec 14)
+      changes:
+        requirements:
+          prerequisites: [1323]
+    - id: 1327            # Garrison in Distress -> 1324 (dialog fix below)
+      changes:
+        requirements:
+          prerequisites: [1324]
+    - id: 1333            # Twice the Bark, Twice the Bite -> 1332
+      changes:
+        requirements:
+          prerequisites: [1332]
+
+# ---- 2. Dialog internal-consistency fix: quest 1327 (doctrine rule 1) ----------
+# QuestDialog hz13/id27 LinkCreature points at 13#304 (Dying Argas, base template,
+# unspawned) but the task hunts 13,300921 (Dying Argas B, spawns 48x). Task side
+# is authoritative; retarget the token to 300921 in BOTH texts that carry it:
+# Text 4 (the task-assignment line) and Text 6 (the not-enough-serum retry line).
+# Each text has one page; pages replace-all, so each is reproduced verbatim except
+# the token. (The English label "sickly noruks" mislabels the creature and is a
+# separate cosmetic string issue owned by the string-fix track, not touched here.)
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 27
+      texts:
+        update:
+          - id: 4
+            pages:
+              - social: 4
+                content: "Stand tall, <PCNAME>. I need you to see to these {@LinkCreature:13#300921#sickly noruks}. We have received a request from the researchers to examine the blood of apparently weakened spirits and beasts.<BR><BR>You are my subordinate, so now you have orders. Kill as many as it takes. Just get the serum they want. When you're done, report to <font color='#660000'>Prefect Ashak</font>."
+          - id: 6
+            pages:
+              - social: 0
+                content: "It seems you don't have enough serum for my research. You will have to gather more from {@LinkCreature:13#300921#sickly noruks}. <BR><BR>I never would have thought that Neziir would assign this task to a raw recruit. I asked for the best, not the least."

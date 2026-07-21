@@ -1,0 +1,31 @@
+{
+  "$schema_note": "IoD section translation table v17.11 -> v92. Dispositions: KEEP | REMAP | RESTORE | RESTORE_NEW_ID | REMOVE. See section-mapping.md for rationale and evidence.",
+  "generated": "2026-07-18",
+  "sources": ["section-spatial.json", "section-census.json", "v92-section-refs.json"],
+  "sections": [
+    {"v17Id": 13001, "name": "Island of Dawn", "disposition": "KEEP", "v92Id": 13001},
+    {"v17Id": 13003, "name": "Mysterious Ruins", "disposition": "KEEP", "v92Id": 13003, "fenceDrift": "identical"},
+    {"v17Id": 13004, "name": "Tainted Gorge", "disposition": "KEEP", "v92Id": 13004, "fenceDrift": "identical"},
+    {"v17Id": 13006, "name": "Shrine of the Demon God", "disposition": "KEEP", "v92Id": 13006, "fenceDrift": "identical"},
+    {"v17Id": 13007, "name": "Mathar Spire", "disposition": "KEEP", "v92Id": 13007, "fenceDrift": "identical"},
+    {"v17Id": 13024, "name": "Shrine of Yurian", "disposition": "KEEP", "v92Id": 13024, "fenceDrift": "identical"},
+    {"v17Id": 13028, "name": "Arun Heights", "disposition": "KEEP", "v92Id": 13028, "fenceDrift": "identical"},
+    {"v17Id": 13030, "name": "Timeless Woods", "disposition": "RESTORE", "v92Id": 13030, "fenceDrift": "v92 had redrawn the ring (13 to 12 vertices, ~8400u southern arc shift); DECIDED 2026-07-18: restore the v17 ring"},
+    {"v17Id": 13017, "name": "Dulari's Camp", "disposition": "REMAP", "v92Id": 13032, "reclampSpawns": true, "oldFootprintOutsideNewFencePct": 16.7},
+    {"v17Id": 13020, "name": "Southern Checkpoint", "disposition": "REMAP", "v92Id": 13033, "reclampSpawns": true, "oldFootprintOutsideNewFencePct": 30.7},
+    {"v17Id": 13027, "name": "Tainted Gorge Outpost", "disposition": "REMAP", "v92Id": 13034, "reclampSpawns": false},
+    {"v17Id": 13005, "name": "Northern Checkpoint", "disposition": "RESTORE", "v92Id": 13005, "stringSurvives": true},
+    {"v17Id": 13008, "name": "Orcan Bivouac", "disposition": "RESTORE", "v92Id": 13008, "stringSurvives": true},
+    {"v17Id": 13018, "name": "Northern Overwatch", "disposition": "RESTORE", "v92Id": 13018, "stringSurvives": true},
+    {"v17Id": 13022, "name": "Tainted Gorge Garrison", "disposition": "RESTORE", "v92Id": 13022, "stringSurvives": true},
+    {"v17Id": 13002, "name": "Pegasus Platform", "disposition": "RESTORE", "v92Id": 13002, "stringSurvives": true, "groundUnder": 13035},
+    {"v17Id": 64001, "name": "Tower Base", "disposition": "RESTORE", "v92Id": 64001, "stringSurvives": true, "groundUnder": 13035, "commentedOutTemplate": true, "healsDanglingRefs": ["GuardData", "QuestGroupList", "TeleportData", "MapDefineData", "NewWorldMapData(commented)"]},
+    {"v17Id": 64007, "name": "Researcher Quarters", "disposition": "RESTORE", "v92Id": 64007, "stringSurvives": true, "groundUnder": 13035, "commentedOutTemplate": true, "nestedIn": 64001},
+    {"v17Id": 13015, "name": "Leander's Outpost", "disposition": "RESTORE", "v92Id": 13015, "revertString": {"from": "Abandoned Camp", "to": "Leander's Outpost"}, "v92NewMeaningInboundRefs": 0, "alternative": "RESTORE_NEW_ID"},
+    {"v17Id": 13013, "name": "Terron Run", "disposition": "RESTORE_NEW_ID", "v92Id": 13036, "newIdVerified": "free in v92 client+server (StrSheet_Region, AreaData, Area, NewWorldMapData, MapDefineData, TeleportData, GuardData); conforms to XXYYY hz*1000+seq convention", "v92IdKeptFor": "Airship Approach (3 live minimap labels)"}
+  ],
+  "v92Additions": [
+    {"v92Id": 13031, "name": "North Dock", "disposition": "KEEP", "reason": "live world-map town + camp teleport network node (menus 13032/13033/13034 -> campId 13031)", "revisit": "classic teleport network restoration"},
+    {"v92Id": 13035, "name": "Ruined Temple", "disposition": "REMOVE", "cleanup": ["MapDefineData-00048 label", "MapDefineData-00049 label"], "occupiesGroundOf": [13002, 64001, 64007, 13020]}
+  ]
+}

@@ -1,0 +1,5983 @@
+{
+  "summary": {
+    "total": 63,
+    "by_type": {
+      "story": 16,
+      "zone": 45,
+      "repeatable": 2
+    },
+    "by_accept": {
+      "npc": 61,
+      "auto": 2
+    },
+    "quests_touching_zone": {
+      "13": 27,
+      "64": 21,
+      "213": 51,
+      "313": 0,
+      "364": 0,
+      "436": 1
+    },
+    "giver_zone_counts": {
+      "213": 46,
+      "64": 15
+    },
+    "autogrant_chain_quests": [
+      1305,
+      1311
+    ],
+    "autogrant_chain_count": 2,
+    "story_group_count": 2
+  },
+  "story_groups": [
+    {
+      "group_id": "1",
+      "name": "The World of TERA",
+      "island_order": [
+        1301,
+        1304,
+        1303,
+        1305,
+        1306,
+        1308,
+        1307,
+        1309,
+        1310
+      ]
+    },
+    {
+      "group_id": "2",
+      "name": "To the Tainted Gorge",
+      "island_order": [
+        1311,
+        1313,
+        1350,
+        1343,
+        1315,
+        1316,
+        1317
+      ]
+    }
+  ],
+  "quests": [
+    {
+      "id": 1301,
+      "quest_no": "13,1",
+      "title": "Dawn's Early Light",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1105",
+      "giver_zone": 213,
+      "receiver": "213,1014",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 1,
+      "chain_group_size": 9,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1014"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit"
+      ],
+      "reward": {
+        "exp": "100",
+        "gold": "10",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "100xp 10g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00390.xml"
+    },
+    {
+      "id": 1302,
+      "quest_no": "13,2",
+      "title": "Another Fine Mess",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1014",
+      "giver_zone": 213,
+      "receiver": "213,1106",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1106"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit"
+      ],
+      "reward": {
+        "exp": "150",
+        "gold": "15",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "150xp 15g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00391.xml"
+    },
+    {
+      "id": 1303,
+      "quest_no": "13,3",
+      "title": "The Secret Life of Trees",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1115",
+      "giver_zone": 213,
+      "receiver": "213,1115",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 3,
+      "chain_group_size": 9,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "cinematic",
+          "type_raw": "동영상재생Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,1001",
+              "count": "1"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1115"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "cinematic",
+        "hunt",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1500",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "17712",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "17712",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "17715",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "17715",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "17715",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "17718",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "17718",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "17718",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "1500xp 0g bag=class pp=0 items[17712x1/berserker,17712x1/lancer,17715x1/archer,17715x1/slayer,17715x1/warrior,17718x1/elementalist,17718x1/priest,17718x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00392.xml"
+    },
+    {
+      "id": 1304,
+      "quest_no": "13,4",
+      "title": "Making the Rounds",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1014",
+      "giver_zone": 213,
+      "receiver": "64,1001",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,01",
+          "gid": 1301
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 2,
+      "chain_group_size": 9,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1003"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1017"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1004"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "600",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "17701",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "17701",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "17704",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "17704",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "17704",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "17707",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "17707",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "17707",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "600xp 0g bag=class pp=0 items[17701x1/berserker,17701x1/lancer,17704x1/archer,17704x1/slayer,17704x1/warrior,17707x1/elementalist,17707x1/priest,17707x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00393.xml"
+    },
+    {
+      "id": 1305,
+      "quest_no": "13,5",
+      "title": "Elleon's Fate",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "auto",
+      "giver": null,
+      "giver_zone": null,
+      "receiver": "213,1008",
+      "min_level": "6",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,04",
+          "gid": 1304
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 4,
+      "chain_group_size": 9,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1028"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1009"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "17710",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "17710",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "17713",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "17713",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "17713",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "17716",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "17716",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "17716",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "800xp 0g bag=class pp=0 items[17710x1/berserker,17710x1/lancer,17713x1/archer,17713x1/slayer,17713x1/warrior,17716x1/elementalist,17716x1/priest,17716x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": true,
+      "source_file": "Quest-00394.xml"
+    },
+    {
+      "id": 1306,
+      "quest_no": "13,6",
+      "title": "Traces of Darkness",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1008",
+      "giver_zone": 213,
+      "receiver": "213,1021",
+      "min_level": "6",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,05",
+          "gid": 1305
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 5,
+      "chain_group_size": 9,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1021"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "travel",
+          "type_raw": "PC이동Task",
+          "npc_targets": [],
+          "regions": [
+            "213,21300020"
+          ],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "cinematic",
+          "type_raw": "동영상재생Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 5,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1036"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 6,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1021"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "deliver-item",
+        "visit",
+        "travel",
+        "cinematic",
+        "visit",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "800xp 80g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00395.xml"
+    },
+    {
+      "id": 1307,
+      "quest_no": "13,7",
+      "title": "Live by the Sword...",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1008",
+      "giver_zone": 213,
+      "receiver": "213,1008",
+      "min_level": "7",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,08",
+          "gid": 1308
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 7,
+      "chain_group_size": 9,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1027"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1027"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,601",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "hunt-deliver",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1000",
+        "gold": "100",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "8200",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "1000xp 100g bag=allpay pp=0 items[8200x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00396.xml"
+    },
+    {
+      "id": 1308,
+      "quest_no": "13,8",
+      "title": "Essence of Foreboding",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1021",
+      "giver_zone": 213,
+      "receiver": "213,1008",
+      "min_level": "7",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,06",
+          "gid": 1306
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 6,
+      "chain_group_size": 9,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1021"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,3",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1000",
+        "gold": "100",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "1000xp 100g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00397.xml"
+    },
+    {
+      "id": 1309,
+      "quest_no": "13,9",
+      "title": "Acharak Attacks",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1008",
+      "giver_zone": 213,
+      "receiver": "213,1008",
+      "min_level": "7",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,07",
+          "gid": 1307
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 8,
+      "chain_group_size": 9,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,1002",
+              "count": "1"
+            },
+            {
+              "ref": "13,1003",
+              "count": "5"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "2000",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "10537",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "10538",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "10539",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "10540",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "10541",
+            "quantity": "1",
+            "class": "sorcerer"
+          },
+          {
+            "templateId": "10542",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "10543",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "10544",
+            "quantity": "1",
+            "class": "elementalist"
+          }
+        ],
+        "summary": "2000xp 0g bag=class pp=0 items[10537x1/warrior,10538x1/lancer,10539x1/slayer,10540x1/berserker,10541x1/sorcerer,10542x1/archer,10543x1/priest,10544x1/elementalist]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00398.xml"
+    },
+    {
+      "id": 1310,
+      "quest_no": "13,10",
+      "title": "A Clue In the Dark",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1008",
+      "giver_zone": 213,
+      "receiver": "64,1009",
+      "min_level": "7",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,09",
+          "gid": 1309
+        }
+      ],
+      "story_group": "1",
+      "story_group_name": "The World of TERA",
+      "chain_position": 9,
+      "chain_group_size": 9,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1130"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "64,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1009"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "deliver-item",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1000",
+        "gold": "100",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "1000xp 100g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00399.xml"
+    },
+    {
+      "id": 1311,
+      "quest_no": "13,11",
+      "title": "Clearing the Gorge",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "auto",
+      "giver": null,
+      "giver_zone": null,
+      "receiver": "213,1018",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,10",
+          "gid": 1310
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 1,
+      "chain_group_size": 7,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1033"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1007"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1018"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "visit",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "1000",
+        "gold": "100",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "1000xp 100g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": true,
+      "source_file": "Quest-00400.xml"
+    },
+    {
+      "id": 1312,
+      "quest_no": "13,12",
+      "title": "The Dark Patrol",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1134",
+      "giver_zone": 213,
+      "receiver": "213,1134",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,11",
+          "gid": 1311
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300910",
+              "count": "6"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1134"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1700",
+        "gold": "170",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "15606",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "15606",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "15609",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "15609",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "15609",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "15612",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "15612",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "15612",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "1700xp 170g bag=class pp=0 items[15606x1/berserker,15606x1/lancer,15609x1/archer,15609x1/slayer,15609x1/warrior,15612x1/elementalist,15612x1/priest,15612x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00401.xml"
+    },
+    {
+      "id": 1313,
+      "quest_no": "13,13",
+      "title": "Into the Gorge",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1018",
+      "giver_zone": 213,
+      "receiver": "213,1025",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,11",
+          "gid": 1311
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 2,
+      "chain_group_size": 7,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "travel",
+          "type_raw": "PC이동Task",
+          "npc_targets": [],
+          "regions": [
+            "213,21300011"
+          ],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1005"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1025"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "travel",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1000",
+        "gold": "100",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "1000xp 100g bag=allpay pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00402.xml"
+    },
+    {
+      "id": 1315,
+      "quest_no": "13,15",
+      "title": "Putting the Pieces Together",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1026",
+      "giver_zone": 213,
+      "receiver": "213,1025",
+      "min_level": "9",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,50",
+          "gid": 1350
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 5,
+      "chain_group_size": 7,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1026"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,8",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1025"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,1004",
+              "count": "1"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1025"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver",
+        "deliver-item",
+        "hunt",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "5200",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "15668",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "15668",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "15671",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "15671",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "15671",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "15674",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "15674",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "15674",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "5200xp 0g bag=class pp=0 items[15668x1/berserker,15668x1/lancer,15671x1/archer,15671x1/slayer,15671x1/warrior,15674x1/elementalist,15674x1/priest,15674x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00403.xml"
+    },
+    {
+      "id": 1316,
+      "quest_no": "13,16",
+      "title": "Dark Revelations",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1025",
+      "giver_zone": 213,
+      "receiver": "64,1001",
+      "min_level": "9",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,43",
+          "gid": 1343
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 6,
+      "chain_group_size": 7,
+      "physical_zones": [
+        64,
+        213,
+        436
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "436,1002",
+              "count": "1"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "cinematic",
+          "type_raw": "동영상재생Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1025"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1037"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 5,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "64,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "cinematic",
+        "deliver-item",
+        "deliver-item",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "6000",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "10593",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "10594",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "10595",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "10596",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "10597",
+            "quantity": "1",
+            "class": "sorcerer"
+          },
+          {
+            "templateId": "10598",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "10599",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "10600",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "archer"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "berserker"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "lancer"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "priest"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "slayer"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "sorcerer"
+          },
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": "warrior"
+          }
+        ],
+        "summary": "6000xp 0g bag=class pp=0 items[10593x1/warrior,10594x1/lancer,10595x1/slayer,10596x1/berserker,10597x1/sorcerer,10598x1/archer,10599x1/priest,10600x1/elementalist,160x2/archer,160x2/berserker,160x2/elementalist,160x2/lancer,160x2/priest,160x2/slayer,160x2/sorcerer,160x2/warrior]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00404.xml"
+    },
+    {
+      "id": 1317,
+      "quest_no": "13,17",
+      "title": "Ride Off Into the Sunset",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1001",
+      "giver_zone": 64,
+      "receiver": "63,1107",
+      "min_level": "10",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,16",
+          "gid": 1316
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 7,
+      "chain_group_size": 7,
+      "physical_zones": [
+        63,
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1009"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1016"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "63,1097"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 5,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "63,1107"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "visit",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1500",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "15667",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "15667",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "15670",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "15670",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "15670",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "15673",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "15673",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "15673",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "1500xp 0g bag=class pp=0 items[15667x1/berserker,15667x1/lancer,15670x1/archer,15670x1/slayer,15670x1/warrior,15673x1/elementalist,15673x1/priest,15673x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00405.xml"
+    },
+    {
+      "id": 1318,
+      "quest_no": "13,18",
+      "title": "Hunting the Beasts",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1112",
+      "giver_zone": 213,
+      "receiver": "213,1114",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,22",
+          "gid": 1322
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1114"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300921",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "900",
+        "gold": "90",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "900xp 90g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00406.xml"
+    },
+    {
+      "id": 1319,
+      "quest_no": "13,19",
+      "title": "Dwellers of the Island",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1110",
+      "giver_zone": 213,
+      "receiver": "213,1110",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1110"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300941",
+              "count": ""
+            },
+            {
+              "ref": "13,300944",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "600",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "12401",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "12402",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "12403",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "12404",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "12405",
+            "quantity": "1",
+            "class": "sorcerer"
+          },
+          {
+            "templateId": "12406",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "12407",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "12408",
+            "quantity": "1",
+            "class": "elementalist"
+          }
+        ],
+        "summary": "600xp 0g bag=class pp=0 items[12401x1/warrior,12402x1/lancer,12403x1/slayer,12404x1/berserker,12405x1/sorcerer,12406x1/archer,12407x1/priest,12408x1/elementalist]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00407.xml"
+    },
+    {
+      "id": 1321,
+      "quest_no": "13,21",
+      "title": "A Bridge Pretty Near",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1106",
+      "giver_zone": 213,
+      "receiver": "213,1003",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1003"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit"
+      ],
+      "reward": {
+        "exp": "300",
+        "gold": "30",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "300xp 30g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00408.xml"
+    },
+    {
+      "id": 1322,
+      "quest_no": "13,22",
+      "title": "Unrest in the Forest",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1003",
+      "giver_zone": 213,
+      "receiver": "213,1003",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300931",
+              "count": "4"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1003"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "visit"
+      ],
+      "reward": {
+        "exp": "500",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "17703",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "17703",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "17706",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "17706",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "17706",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "17709",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "17709",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "17709",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "500xp 0g bag=class pp=0 items[17703x1/berserker,17703x1/lancer,17706x1/archer,17706x1/slayer,17706x1/warrior,17709x1/elementalist,17709x1/priest,17709x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00409.xml"
+    },
+    {
+      "id": 1323,
+      "quest_no": "13,23",
+      "title": "Getting Some Answers",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1003",
+      "giver_zone": 213,
+      "receiver": "213,1017",
+      "min_level": "1",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,22",
+          "gid": 1322
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1017"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300931",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "800xp 80g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00410.xml"
+    },
+    {
+      "id": 1324,
+      "quest_no": "13,24",
+      "title": "Essence and Sensibility",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1017",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,23",
+          "gid": 1323
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1017"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300930",
+              "count": ""
+            },
+            {
+              "ref": "13,300933",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "900",
+        "gold": "90",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "900xp 90g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00411.xml"
+    },
+    {
+      "id": 1325,
+      "quest_no": "13,25",
+      "title": "The Perfect Cut",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1121",
+      "giver_zone": 213,
+      "receiver": "213,1121",
+      "min_level": "3",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1121"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,1",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "500",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "17702",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "17702",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "17705",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "17705",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "17705",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "17708",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "17708",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "17708",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "500xp 0g bag=class pp=0 items[17702x1/berserker,17702x1/lancer,17705x1/archer,17705x1/slayer,17705x1/warrior,17708x1/elementalist,17708x1/priest,17708x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00412.xml"
+    },
+    {
+      "id": 1326,
+      "quest_no": "13,26",
+      "title": "Mana out of Mudmen",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1023",
+      "giver_zone": 64,
+      "receiver": "64,1023",
+      "min_level": "5",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "64,1023"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,2",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "2000",
+        "gold": "200",
+        "itemBag": "choice",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "125",
+            "quantity": "10",
+            "class": ""
+          },
+          {
+            "templateId": "129",
+            "quantity": "1",
+            "class": ""
+          },
+          {
+            "templateId": "130",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "2000xp 200g bag=choice pp=0 items[125x10,129x1,130x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00413.xml"
+    },
+    {
+      "id": 1327,
+      "quest_no": "13,27",
+      "title": "Garrison in Distress",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1119",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,24",
+          "gid": 1324
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1038"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1004"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1119"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,304",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "800xp 80g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00414.xml"
+    },
+    {
+      "id": 1328,
+      "quest_no": "13,28",
+      "title": "Academic Theft",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1001",
+      "giver_zone": 64,
+      "receiver": "64,1042",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,86",
+          "gid": 1386
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "64,1042"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,301191",
+              "count": ""
+            },
+            {
+              "ref": "13,301193",
+              "count": ""
+            },
+            {
+              "ref": "13,301194",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "1100",
+        "gold": "110",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "1100xp 110g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00415.xml"
+    },
+    {
+      "id": 1329,
+      "quest_no": "13,29",
+      "title": "Going Above and Beyond",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1001",
+      "giver_zone": 64,
+      "receiver": "64,1006",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,04",
+          "gid": 1304
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1006"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit"
+      ],
+      "reward": {
+        "exp": "100",
+        "gold": "10",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "12409",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "12410",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "12411",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "12412",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "12413",
+            "quantity": "1",
+            "class": "sorcerer"
+          },
+          {
+            "templateId": "12414",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "12415",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "12416",
+            "quantity": "1",
+            "class": "elementalist"
+          }
+        ],
+        "summary": "100xp 10g bag=class pp=0 items[12409x1/warrior,12410x1/lancer,12411x1/slayer,12412x1/berserker,12413x1/sorcerer,12414x1/archer,12415x1/priest,12416x1/elementalist]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00416.xml"
+    },
+    {
+      "id": 1330,
+      "quest_no": "13,30",
+      "title": "Horned Horrors",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1028",
+      "giver_zone": 64,
+      "receiver": "64,1028",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300932",
+              "count": "4"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1028"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "visit"
+      ],
+      "reward": {
+        "exp": "1900",
+        "gold": "190",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "1900xp 190g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00417.xml"
+    },
+    {
+      "id": 1331,
+      "quest_no": "13,31",
+      "title": "I'll Take the High Road",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1006",
+      "giver_zone": 64,
+      "receiver": "64,1001",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,86",
+          "gid": 1386
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1053"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "gather",
+          "type_raw": "채집Task",
+          "npc_targets": [
+            "64,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [
+            "492"
+          ],
+          "deliver_items": [
+            {
+              "ref": "9095",
+              "qty": "1"
+            }
+          ],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "gather"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "8007",
+            "quantity": "2",
+            "class": ""
+          }
+        ],
+        "summary": "800xp 80g bag=allpay pp=0 items[8007x2]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00418.xml"
+    },
+    {
+      "id": 1332,
+      "quest_no": "13,32",
+      "title": "They'll Eat Anything",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1009",
+      "giver_zone": 213,
+      "receiver": "213,1130",
+      "min_level": "6",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1130"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300920",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "900",
+        "gold": "90",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "900xp 90g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00419.xml"
+    },
+    {
+      "id": 1333,
+      "quest_no": "13,33",
+      "title": "Twice the Bark, Twice the Bite",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1130",
+      "giver_zone": 213,
+      "receiver": "213,1130",
+      "min_level": "6",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,32",
+          "gid": 1332
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1130"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300911",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "1700",
+        "gold": "170",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "1700xp 170g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00420.xml"
+    },
+    {
+      "id": 1334,
+      "quest_no": "13,34",
+      "title": "Investigating the Relics <Repeatable>",
+      "type": "repeatable",
+      "quest_type_raw": "일반",
+      "repeat": "반복",
+      "accept": "npc",
+      "giver": "213,1021",
+      "giver_zone": 213,
+      "receiver": "213,1021",
+      "min_level": "6",
+      "max_level": "10",
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "gather",
+          "type_raw": "채집Task",
+          "npc_targets": [
+            "213,1021"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [
+            "410"
+          ],
+          "deliver_items": [
+            {
+              "ref": "9011",
+              "qty": "5"
+            }
+          ],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "gather"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "800xp 80g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00421.xml"
+    },
+    {
+      "id": 1335,
+      "quest_no": "13,35",
+      "title": "One of Our Couriers is Missing",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1001",
+      "giver_zone": 64,
+      "receiver": "213,1007",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,10",
+          "gid": 1310
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1003"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1007"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "600",
+        "gold": "60",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "600xp 60g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00422.xml"
+    },
+    {
+      "id": 1336,
+      "quest_no": "13,36",
+      "title": "Chione's Missing Cargo",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1007",
+      "giver_zone": 213,
+      "receiver": "213,1007",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,35",
+          "gid": 1335
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "gather",
+          "type_raw": "채집Task",
+          "npc_targets": [
+            "213,1007"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [
+            "409"
+          ],
+          "deliver_items": [
+            {
+              "ref": "9010",
+              "qty": "4"
+            }
+          ],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "gather"
+      ],
+      "reward": {
+        "exp": "600",
+        "gold": "60",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "600xp 60g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00423.xml"
+    },
+    {
+      "id": 1337,
+      "quest_no": "13,37",
+      "title": "Searching for the Stolen Stones",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1007",
+      "giver_zone": 213,
+      "receiver": "213,1007",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,35",
+          "gid": 1335
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1007"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300943",
+              "count": ""
+            },
+            {
+              "ref": "13,300945",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "1100",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "15605",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "15605",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "15608",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "15608",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "15608",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "15611",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "15611",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "15611",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "1100xp 0g bag=class pp=0 items[15605x1/berserker,15605x1/lancer,15608x1/archer,15608x1/slayer,15608x1/warrior,15611x1/elementalist,15611x1/priest,15611x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00424.xml"
+    },
+    {
+      "id": 1338,
+      "quest_no": "13,38",
+      "title": "Chione's Report",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1007",
+      "giver_zone": 213,
+      "receiver": "213,1137",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,37",
+          "gid": 1337
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1137"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit"
+      ],
+      "reward": {
+        "exp": "500",
+        "gold": "50",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "500xp 50g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00425.xml"
+    },
+    {
+      "id": 1339,
+      "quest_no": "13,39",
+      "title": "Sersine, She Seeks Shackles",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1025",
+      "giver_zone": 213,
+      "receiver": "213,1025",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,13",
+          "gid": 1313
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1025"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300942",
+              "count": ""
+            },
+            {
+              "ref": "13,6",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "2900",
+        "gold": "290",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "2900xp 290g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00426.xml"
+    },
+    {
+      "id": 1340,
+      "quest_no": "13,40",
+      "title": "Painful Disc-overies",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1143",
+      "giver_zone": 213,
+      "receiver": "213,1143",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,7",
+              "count": "8"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1143"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "visit"
+      ],
+      "reward": {
+        "exp": "2300",
+        "gold": "230",
+        "itemBag": "choice",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "7100",
+            "quantity": "1",
+            "class": ""
+          },
+          {
+            "templateId": "7104",
+            "quantity": "1",
+            "class": ""
+          },
+          {
+            "templateId": "7108",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "2300xp 230g bag=choice pp=0 items[7100x1,7104x1,7108x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00427.xml"
+    },
+    {
+      "id": 1341,
+      "quest_no": "13,41",
+      "title": "Bequest of the Dead <Repeatable>",
+      "type": "repeatable",
+      "quest_type_raw": "일반",
+      "repeat": "반복",
+      "accept": "npc",
+      "giver": "213,1141",
+      "giver_zone": 213,
+      "receiver": "213,1141",
+      "min_level": "8",
+      "max_level": "12",
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "gather",
+          "type_raw": "채집Task",
+          "npc_targets": [
+            "213,1141"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [
+            "411"
+          ],
+          "deliver_items": [
+            {
+              "ref": "9012",
+              "qty": "5"
+            }
+          ],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "gather"
+      ],
+      "reward": {
+        "exp": "1000",
+        "gold": "100",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "1000xp 100g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00428.xml"
+    },
+    {
+      "id": 1343,
+      "quest_no": "13,43",
+      "title": "Answers Lead to More Questions",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1025",
+      "giver_zone": 213,
+      "receiver": "213,1025",
+      "min_level": "9",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,15",
+          "gid": 1315
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 4,
+      "chain_group_size": 7,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1028"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1025"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "deliver-item",
+        "deliver-item",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "800xp 80g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00429.xml"
+    },
+    {
+      "id": 1344,
+      "quest_no": "13,44",
+      "title": "Destroy All Destroyers!",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1143",
+      "giver_zone": 213,
+      "receiver": "213,1143",
+      "min_level": "9",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,43",
+          "gid": 1343
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1028"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,9",
+              "count": "5"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1028"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1143"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "hunt",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "3000",
+        "gold": "300",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "3000xp 300g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00430.xml"
+    },
+    {
+      "id": 1345,
+      "quest_no": "13,45",
+      "title": "Desperately Seeking Sorscha",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1006",
+      "giver_zone": 64,
+      "receiver": "64,1050",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1007"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1050"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "500",
+        "gold": "50",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "8007",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "500xp 50g bag=allpay pp=0 items[8007x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00431.xml"
+    },
+    {
+      "id": 1346,
+      "quest_no": "13,46",
+      "title": "Sorcha's Reckless Challenge",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1050",
+      "giver_zone": 64,
+      "receiver": "64,1006",
+      "min_level": "8",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,45",
+          "gid": 1345
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64,
+        437
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "guard",
+          "type_raw": "수호Task",
+          "npc_targets": [
+            "437,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "437,1001"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1006"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "guard",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "6000",
+        "gold": "600",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "6000xp 600g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00432.xml"
+    },
+    {
+      "id": 1347,
+      "quest_no": "13,47",
+      "title": "It Was a Rock...Crawler!",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1128",
+      "giver_zone": 213,
+      "receiver": "213,1128",
+      "min_level": "6",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1128"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300541",
+              "count": ""
+            },
+            {
+              "ref": "13,300542",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "900",
+        "gold": "0",
+        "itemBag": "class",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "17711",
+            "quantity": "1",
+            "class": "berserker"
+          },
+          {
+            "templateId": "17711",
+            "quantity": "1",
+            "class": "lancer"
+          },
+          {
+            "templateId": "17714",
+            "quantity": "1",
+            "class": "archer"
+          },
+          {
+            "templateId": "17714",
+            "quantity": "1",
+            "class": "slayer"
+          },
+          {
+            "templateId": "17714",
+            "quantity": "1",
+            "class": "warrior"
+          },
+          {
+            "templateId": "17717",
+            "quantity": "1",
+            "class": "elementalist"
+          },
+          {
+            "templateId": "17717",
+            "quantity": "1",
+            "class": "priest"
+          },
+          {
+            "templateId": "17717",
+            "quantity": "1",
+            "class": "sorcerer"
+          }
+        ],
+        "summary": "900xp 0g bag=class pp=0 items[17711x1/berserker,17711x1/lancer,17714x1/archer,17714x1/slayer,17714x1/warrior,17717x1/elementalist,17717x1/priest,17717x1/sorcerer]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00433.xml"
+    },
+    {
+      "id": 1348,
+      "quest_no": "13,48",
+      "title": "Ferocious Flowering Felons",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1147",
+      "giver_zone": 213,
+      "receiver": "213,1147",
+      "min_level": "5",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1147"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,302",
+              "count": ""
+            },
+            {
+              "ref": "13,303",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "900",
+        "gold": "90",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "900xp 90g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00434.xml"
+    },
+    {
+      "id": 1349,
+      "quest_no": "13,49",
+      "title": "Gotta Kill 'em All",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1126",
+      "giver_zone": 213,
+      "receiver": "213,1126",
+      "min_level": "7",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,4",
+              "count": "48"
+            },
+            {
+              "ref": "13,5",
+              "count": "6"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1126"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt",
+        "visit"
+      ],
+      "reward": {
+        "exp": "2300",
+        "gold": "230",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "5132",
+            "quantity": "1",
+            "class": ""
+          }
+        ],
+        "summary": "2300xp 230g bag=allpay pp=0 items[5132x1]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00435.xml"
+    },
+    {
+      "id": 1350,
+      "quest_no": "13,50",
+      "title": "Strange Attractors",
+      "type": "story",
+      "quest_type_raw": "미션",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1026",
+      "giver_zone": 213,
+      "receiver": "213,1026",
+      "min_level": "9",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,13",
+          "gid": 1313
+        }
+      ],
+      "story_group": "2",
+      "story_group_name": "To the Tainted Gorge",
+      "chain_position": 3,
+      "chain_group_size": 7,
+      "physical_zones": [
+        13,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "hunt-deliver",
+          "type_raw": "사냥전달Task",
+          "npc_targets": [
+            "213,1026"
+          ],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,300951",
+              "count": ""
+            },
+            {
+              "ref": "13,300960",
+              "count": ""
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "hunt-deliver"
+      ],
+      "reward": {
+        "exp": "1800",
+        "gold": "180",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "1800xp 180g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00436.xml"
+    },
+    {
+      "id": 1351,
+      "quest_no": "13,51",
+      "title": "Supply and Demand",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1006",
+      "giver_zone": 64,
+      "receiver": "64,1048",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,29",
+          "gid": 1329
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1005"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1007"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1048"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "6048",
+            "quantity": "5",
+            "class": ""
+          }
+        ],
+        "summary": "800xp 80g bag=allpay pp=0 items[6048x5]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00437.xml"
+    },
+    {
+      "id": 1352,
+      "quest_no": "13,52",
+      "title": "Supply and Demand",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1006",
+      "giver_zone": 64,
+      "receiver": "64,1048",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,29",
+          "gid": 1329
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1005"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1008"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1048"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "800",
+        "gold": "80",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "6048",
+            "quantity": "5",
+            "class": ""
+          }
+        ],
+        "summary": "800xp 80g bag=allpay pp=0 items[6048x5]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00438.xml"
+    },
+    {
+      "id": 1371,
+      "quest_no": "13,71",
+      "title": "Initial Warrior Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1023",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00439.xml"
+    },
+    {
+      "id": 1372,
+      "quest_no": "13,72",
+      "title": "Initial Lancer Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1023",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00440.xml"
+    },
+    {
+      "id": 1373,
+      "quest_no": "13,73",
+      "title": "Initial Slayer Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1023",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00441.xml"
+    },
+    {
+      "id": 1374,
+      "quest_no": "13,74",
+      "title": "Initial Berserker Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1023",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00442.xml"
+    },
+    {
+      "id": 1375,
+      "quest_no": "13,75",
+      "title": "Initial Archer Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1023",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1023"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00443.xml"
+    },
+    {
+      "id": 1376,
+      "quest_no": "13,76",
+      "title": "Initial Sorcerer Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1024",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1024"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1024"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00444.xml"
+    },
+    {
+      "id": 1377,
+      "quest_no": "13,77",
+      "title": "Initial Priest Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1024",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1024"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1024"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00445.xml"
+    },
+    {
+      "id": 1378,
+      "quest_no": "13,78",
+      "title": "Initial Mystic Training",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1017",
+      "giver_zone": 213,
+      "receiver": "213,1024",
+      "min_level": "2",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1024"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1024"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00446.xml"
+    },
+    {
+      "id": 1382,
+      "quest_no": "13,82",
+      "title": "Introduction to Gathering",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1048",
+      "giver_zone": 64,
+      "receiver": "64,1048",
+      "min_level": "3",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "gather",
+          "type_raw": "채집Task",
+          "npc_targets": [
+            "64,1048"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [
+            "496"
+          ],
+          "deliver_items": [
+            {
+              "ref": "9100",
+              "qty": "2"
+            }
+          ],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "gather"
+      ],
+      "reward": {
+        "exp": "100",
+        "gold": "10",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "100xp 10g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00447.xml"
+    },
+    {
+      "id": 1384,
+      "quest_no": "13,84",
+      "title": "Recharge It",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1049",
+      "giver_zone": 64,
+      "receiver": "64,1049",
+      "min_level": "3",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1049"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "7100",
+            "quantity": "2",
+            "class": ""
+          }
+        ],
+        "summary": "50xp 5g bag=allpay pp=0 items[7100x2]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00448.xml"
+    },
+    {
+      "id": 1385,
+      "quest_no": "13,85",
+      "title": "Always After Me Lucky Charms",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1049",
+      "giver_zone": 64,
+      "receiver": "64,1049",
+      "min_level": "3",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,84",
+          "gid": 1384
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [
+            {
+              "ref": "7100",
+              "qty": ""
+            }
+          ],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1049"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "50",
+        "gold": "5",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "50xp 5g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00449.xml"
+    },
+    {
+      "id": 1386,
+      "quest_no": "13,86",
+      "title": "Bombs Away!",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "64,1006",
+      "giver_zone": 64,
+      "receiver": "64,1006",
+      "min_level": "4",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [
+        {
+          "ref": "13,29",
+          "gid": 1329
+        }
+      ],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        13,
+        64
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1029"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "hunt",
+          "type_raw": "사냥Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [
+            {
+              "ref": "13,888",
+              "count": "5"
+            }
+          ],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1029"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 4,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1006"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "hunt",
+        "visit",
+        "visit"
+      ],
+      "reward": {
+        "exp": "300",
+        "gold": "30",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "7200",
+            "quantity": "10",
+            "class": ""
+          }
+        ],
+        "summary": "300xp 30g bag=allpay pp=0 items[7200x10]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00450.xml"
+    },
+    {
+      "id": 1389,
+      "quest_no": "13,89",
+      "title": "판도라 상자 사용 안내",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1020",
+      "giver_zone": 213,
+      "receiver": "213,1020",
+      "min_level": "5",
+      "max_level": null,
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1020"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "213,1020"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "visit",
+        "condition",
+        "visit"
+      ],
+      "reward": {
+        "exp": "200",
+        "gold": "20",
+        "itemBag": "",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [],
+        "summary": "200xp 20g pp=0"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00451.xml"
+    },
+    {
+      "id": 1390,
+      "quest_no": "13,90",
+      "title": "Special Delivery",
+      "type": "zone",
+      "quest_type_raw": "일반",
+      "repeat": "1회성",
+      "accept": "npc",
+      "giver": "213,1130",
+      "giver_zone": 213,
+      "receiver": "213,1130",
+      "min_level": "6",
+      "max_level": "12",
+      "classes": null,
+      "prereqs": [],
+      "story_group": null,
+      "story_group_name": null,
+      "chain_position": null,
+      "chain_group_size": null,
+      "physical_zones": [
+        64,
+        213
+      ],
+      "tasks": [
+        {
+          "id": 1,
+          "type": "condition",
+          "type_raw": "조건Task",
+          "npc_targets": [],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [
+            {
+              "ref": "160",
+              "qty": ""
+            }
+          ],
+          "dungeon": null
+        },
+        {
+          "id": 2,
+          "type": "visit",
+          "type_raw": "방문Task",
+          "npc_targets": [
+            "64,1050"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        },
+        {
+          "id": 3,
+          "type": "deliver-item",
+          "type_raw": "찔러준아이템전달Task",
+          "npc_targets": [
+            "213,1130"
+          ],
+          "regions": [],
+          "monsters": [],
+          "collections": [],
+          "deliver_items": [],
+          "dungeon": null
+        }
+      ],
+      "task_types": [
+        "condition",
+        "visit",
+        "deliver-item"
+      ],
+      "reward": {
+        "exp": "300",
+        "gold": "30",
+        "itemBag": "allpay",
+        "policyPoint": "0",
+        "type": "normal",
+        "items": [
+          {
+            "templateId": "160",
+            "quantity": "2",
+            "class": ""
+          }
+        ],
+        "summary": "300xp 30g bag=allpay pp=0 items[160x2]"
+      },
+      "dialog_present": true,
+      "autogrant_chain": false,
+      "source_file": "Quest-00452.xml"
+    }
+  ],
+  "prereq_graph": {
+    "roots": [
+      1301,
+      1302,
+      1303,
+      1319,
+      1321,
+      1322,
+      1325,
+      1326,
+      1330,
+      1332,
+      1334,
+      1340,
+      1341,
+      1345,
+      1347,
+      1348,
+      1349,
+      1371,
+      1372,
+      1373,
+      1374,
+      1375,
+      1376,
+      1377,
+      1378,
+      1382,
+      1384,
+      1389,
+      1390
+    ],
+    "children": {
+      "1301": [
+        1304
+      ],
+      "1302": [],
+      "1303": [],
+      "1304": [
+        1305,
+        1329
+      ],
+      "1305": [
+        1306
+      ],
+      "1306": [
+        1308
+      ],
+      "1307": [
+        1309
+      ],
+      "1308": [
+        1307
+      ],
+      "1309": [
+        1310
+      ],
+      "1310": [
+        1311,
+        1335
+      ],
+      "1311": [
+        1312,
+        1313
+      ],
+      "1312": [],
+      "1313": [
+        1339,
+        1350
+      ],
+      "1315": [
+        1343
+      ],
+      "1316": [
+        1317
+      ],
+      "1317": [],
+      "1318": [],
+      "1319": [],
+      "1321": [],
+      "1322": [
+        1318,
+        1323
+      ],
+      "1323": [
+        1324
+      ],
+      "1324": [
+        1327
+      ],
+      "1325": [],
+      "1326": [],
+      "1327": [],
+      "1328": [],
+      "1329": [
+        1351,
+        1352,
+        1386
+      ],
+      "1330": [],
+      "1331": [],
+      "1332": [
+        1333
+      ],
+      "1333": [],
+      "1334": [],
+      "1335": [
+        1336,
+        1337
+      ],
+      "1336": [],
+      "1337": [
+        1338
+      ],
+      "1338": [],
+      "1339": [],
+      "1340": [],
+      "1341": [],
+      "1343": [
+        1316,
+        1344
+      ],
+      "1344": [],
+      "1345": [
+        1346
+      ],
+      "1346": [],
+      "1347": [],
+      "1348": [],
+      "1349": [],
+      "1350": [
+        1315
+      ],
+      "1351": [],
+      "1352": [],
+      "1371": [],
+      "1372": [],
+      "1373": [],
+      "1374": [],
+      "1375": [],
+      "1376": [],
+      "1377": [],
+      "1378": [],
+      "1382": [],
+      "1384": [
+        1385
+      ],
+      "1385": [],
+      "1386": [
+        1328,
+        1331
+      ],
+      "1389": [],
+      "1390": []
+    },
+    "parents": {
+      "1301": [],
+      "1302": [],
+      "1303": [],
+      "1304": [
+        1301
+      ],
+      "1305": [
+        1304
+      ],
+      "1306": [
+        1305
+      ],
+      "1307": [
+        1308
+      ],
+      "1308": [
+        1306
+      ],
+      "1309": [
+        1307
+      ],
+      "1310": [
+        1309
+      ],
+      "1311": [
+        1310
+      ],
+      "1312": [
+        1311
+      ],
+      "1313": [
+        1311
+      ],
+      "1315": [
+        1350
+      ],
+      "1316": [
+        1343
+      ],
+      "1317": [
+        1316
+      ],
+      "1318": [
+        1322
+      ],
+      "1319": [],
+      "1321": [],
+      "1322": [],
+      "1323": [
+        1322
+      ],
+      "1324": [
+        1323
+      ],
+      "1325": [],
+      "1326": [],
+      "1327": [
+        1324
+      ],
+      "1328": [
+        1386
+      ],
+      "1329": [
+        1304
+      ],
+      "1330": [],
+      "1331": [
+        1386
+      ],
+      "1332": [],
+      "1333": [
+        1332
+      ],
+      "1334": [],
+      "1335": [
+        1310
+      ],
+      "1336": [
+        1335
+      ],
+      "1337": [
+        1335
+      ],
+      "1338": [
+        1337
+      ],
+      "1339": [
+        1313
+      ],
+      "1340": [],
+      "1341": [],
+      "1343": [
+        1315
+      ],
+      "1344": [
+        1343
+      ],
+      "1345": [],
+      "1346": [
+        1345
+      ],
+      "1347": [],
+      "1348": [],
+      "1349": [],
+      "1350": [
+        1313
+      ],
+      "1351": [
+        1329
+      ],
+      "1352": [
+        1329
+      ],
+      "1371": [],
+      "1372": [],
+      "1373": [],
+      "1374": [],
+      "1375": [],
+      "1376": [],
+      "1377": [],
+      "1378": [],
+      "1382": [],
+      "1384": [],
+      "1385": [
+        1384
+      ],
+      "1386": [
+        1329
+      ],
+      "1389": [],
+      "1390": []
+    }
+  }
+}

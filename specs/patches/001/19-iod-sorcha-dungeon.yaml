@@ -1,0 +1,231 @@
+# ==============================================================================
+# IoD padding phase - Sorcha's Reckless Challenge (quest 1346) dungeon unlock.
+#
+# USER APPROVAL: 2026-07-21. Reclaim continent 9037 (dungeon 437, "Tainted Gorge
+#   Bridge") for the classic level-8 Sorcha guard dungeon, and sentinel-disable the
+#   modern level-65 "Garden of Dawn" IoD line (quests 21301-21307) that currently
+#   occupies it. This is a v31-primary classic restoration for 9037 plus a policy
+#   divergence (the 213 line is non-classic and out of the patch-001 baseline scope).
+#
+# PRIOR ANALYSIS: docs/plans/classic-restoration/iod/data/padding-sorcha-entrance.md
+# PATTERN COMMIT (server repo D:\dev\mmogate\tera92\server): 7230489e64dc369119b48bd23f4187fdb29379f0
+#   "Liberacao de dungeons bloqueadas". That precedent restores blocked dungeons by
+#   uncommenting AreaData <Section> blocks and DungeonData <EventGroup> blocks, plus
+#   registration files (DungeonConstraint, DungeonMatching, Teleport*). It is a
+#   server-repo-only commit; it touches NO client DataCenter files.
+#
+# FILE-SET DISPOSITION FOR 9037 (evaluated against the pattern-commit checklist):
+#   - DungeonData_9037.xml        -> THIS SPEC (dungeonDatas upsert). Upsert fully
+#                                    replaces conditions + eventGroups + restoreTargetQuests,
+#                                    so the classic 1346 config replaces the 21307 config
+#                                    atomically (RestoreTargetQuest 21307, initialize Zik
+#                                    spawns, and all 21307 EventGroups are dropped).
+#   - QuestData/021301.quest      -> THIS SPEC (quests update, prerequisite sentinel).
+#   - AreaData_9037_ATW_Death_P   -> RULED OUT. Section 57 is already active (uncommented);
+#                                    the 21307 instance is live, so the playable area needs
+#                                    no change. (Pattern commit only uncomments dead sections.)
+#   - DungeonConstraint.xml       -> RULED OUT. continentId 9037 / hz 437 is already
+#                                    isActive="true" in v92; reclaim keeps it registered.
+#   - DungeonMatching.xml         -> RULED OUT. 9037 is a solo quest instance (physical entrance
+#                                    portal, not matchmaking).
+#   - Teleport* / WorkObject 125  -> SUPERSEDED 2026-07-21 (live finding). The original ruling
+#                                    "classic 1346 auto-enters from the guard task, no portal
+#                                    needed" is REFUTED: user could not enter, and a full survey
+#                                    proved a bare 수호Task never teleports the player in. 1346 is
+#                                    the ONLY quest in the dataset whose dungeon-carrying task is
+#                                    the START task; every functioning instance is entered through
+#                                    a physical portal, and 1346 was sentinel-disabled (99,99) in
+#                                    v31 so its entrance was never wired in any source we hold. See
+#                                    the ENTRANCE PORTAL companion edit below. WorkObject 125
+#                                    (isForQuestId=21307) is left intact (dormant 21307 data).
+#   - NpcData_437 / TerritoryData_437 -> RULED OUT. Sorcha (437,1001) and her wave territories
+#                                    (43700322-43700363) are intact in v92 (prior analysis).
+#   - Client DataCenter (Dungeon shard) -> DOCUMENTED CLIENT LEG, non-blocking. See the
+#                                    dsl-request note below and the report. dungeonDatas is not
+#                                    in migrate ENTITY_SYNC_MAP; dungeon scripting is
+#                                    server-authoritative and the pattern precedent is
+#                                    server-only, so no client edit is required to function.
+#
+# CONDITIONS: solo + levelOver 8 + maxMemberCount 1 (matches quest 적정수행인원 1) +
+#   progressQuest 1346 taskId 1 + completeQuest 1346. Diverges from v31 (party / maxMember 5)
+#   per the prior analysis; eventGroups and start/exit positions are the classic v31 values.
+#
+# KNOWN DSL FIDELITY NOTES (see docs/dsl-requests/2026-07-21-dungeon-data-mapper.md):
+#   - DELIVERED (363ed076, adopted 2026-07-21): invalid EventTaskStyle enum values now
+#     surface as E426. This spec uses the literal `default` (the schema doc's `@default`
+#     was wrong); it validates cleanly.
+#   - DELIVERED (363ed076, adopted 2026-07-21): EventTask gains the `npc` speaker-
+#     attribution field. The legacy `npc="437,1001"` on the 45%-HP message (v31 9037007,
+#     targetNpcId="0,0") is restored via `npc: {huntingZone: 437, templateId: 1001}`
+#     (previously dropped for lack of a schema field).
+#   - DELIVERED (885dd4eb, adopted 2026-07-21): restoreTargetQuests is a full replace on
+#     a non-null list, so `restoreTargetQuests: []` below clears the modern
+#     `<RestoreTargetQuest id="21307" forceRestore="true"/>` row on every apply. This
+#     RETIRES the former companion hand edit (delete the row by hand after every migrate
+#     batch replay); no hand edit is needed anymore. forceRestore would inject the
+#     disabled level-65 quest into entrants, so the empty list must stay.
+#
+# ENTRANCE PORTAL (2026-07-21, user-approved authored content; live-validated same day).
+#   Nothing put a level-8 player on quest 1346 into 9037: the only dungeon task is the
+#   guard task, and it is the quest START task, so no task-advance fires and no portal
+#   existed (1346 was sentinel-disabled in v31, its entrance never wired in any source).
+#   Work object template 134 mirrors the proven 21307 Black Rift portal pattern re-gated
+#   to quest 1346 task 1 (shape 200201 NPC_Trans pad; teleport 642501 lands at the
+#   classic 9037 startPos). This is AUTHORED content -> logged in the divergence log.
+#   Server legs are SPEC-MANAGED below since the DSL delivered workObject entities
+#   (3db84f4f, adopted 2026-07-21; supersedes the original 5-file hand edit):
+#     workObjects            -> WorkObjectData.xml tpl 134
+#     workObjectTerritories  -> WorkObjectTerritory_13.xml placement (57908,-67648,-5097)
+#   Client legs (deployed dev.28/dev.29, validated live 2026-07-21):
+#     client WorkObjectData-00000.xml    : tpl 134 mirror; SYNCED via
+#                                          `dsl sync -e WorkObjectData` (entity added to
+#                                          sync-config + migrate ENTITY_SYNC_MAP)
+#     client StrSheet_WorkObject-00000   : id 134 "Black Rift Entrance" (hand-managed;
+#                                          no DSL entity for this string sheet)
+#     client StrSheet_WorkObjectLoc-00000: tpl 134 loc 13#57908,-67648,-5097 (hand-managed)
+#   dsl-request 2026-07-21-workobject-entity.md: DELIVERED and adopted here.
+#
+# Idempotent: upsert + update only. Validated with dsl.exe validate (no apply).
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9037
+      name: "@dungeon:9037"
+      startPos: [58475.543, -67826.4375, -5075.7671]
+      exitContinentId: 13
+      exitPos: [66615, -79814, -3003]
+      # Full replace (DSL 885dd4eb): empty list clears the modern forceRestore row for
+      # the disabled 21307 line. Classic 1346 has no RestoreTargetQuest.
+      restoreTargetQuests: []
+      conditions:
+        - type: solo
+        - type: levelOver
+          value: 8
+        - type: maxMemberCount
+          value: 1
+        - type: progressQuest
+          value: 1346
+          taskId: 1
+        - type: completeQuest
+          value: 1346
+      eventGroups:
+        # ---- Sorcha spawn waves + guard timer (classic 1346, task 1) ----
+        - type: talkNpc
+          uniqueId: "437,1001"
+          events:
+            # Wave spawns over territories 43700322-43700363 (active v31 set).
+            - textId: "2"
+              questId: "1346"
+              taskId: "1"
+              eventTaskGroups:
+                - eventTasks:
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700322", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "2" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700327", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "6" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700324", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700328", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700323", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700329", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700325", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700331", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: "40" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700332", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "2" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700338", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "6" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700333", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700341", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700344", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700334", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700339", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700345", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700346", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: "60" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700347", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700359", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700372", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700354", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700360", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700374", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700361", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700362", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700378", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700363", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: "" }
+            # 420s guard timer + staged narration.
+            - textId: "2"
+              questId: "1346"
+              taskId: "1"
+              eventTaskGroups:
+                - eventTasks:
+                    - { type: timerUi, time: 420, next: "time", nextValue: "1" }
+                    - { type: message, string: "@dungeon:9037001", style: "default", next: "time", nextValue: "3" }
+                    - { type: message, string: "@dungeon:9037012", style: "default", next: "time", nextValue: "77" }
+                    - { type: message, string: "@dungeon:9037002", style: "default", next: "time", nextValue: "126" }
+                    - { type: message, string: "@dungeon:9037003", style: "default", next: "time", nextValue: "209" }
+                    - { type: message, string: "@dungeon:9037004", style: "default", next: "none" }
+        # ---- Sorcha HP-threshold barks ----
+        - type: npcHp
+          uniqueId: "437,1001"
+          value: "90"
+          tasks:
+            - { type: message, string: "@dungeon:9037005", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "90", next: "complete" }
+            - { type: message, string: "@dungeon:9037006", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "50", next: "complete" }
+            - { type: message, string: "@dungeon:9037007", targetNpcId: { huntingZone: 0, templateId: 0 }, npc: { huntingZone: 437, templateId: 1001 }, style: "default", nextValue: "45", next: "complete" }
+            - { type: message, string: "@dungeon:9037008", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "30", next: "complete" }
+            - { type: message, string: "@dungeon:9037009", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "10", next: "complete" }
+            - { type: message, string: "@dungeon:9037010", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "0", next: "complete" }
+        # ---- Guard failure: alert + eject to continent 13 ----
+        - type: questFail
+          events:
+            - questId: "1346"
+              taskId: "1"
+              eventTaskGroups:
+                - eventTasks:
+                    - { type: message, string: "@dungeon:9037011", style: "alert", next: "time", nextValue: "3" }
+                    - { type: teleport, continentId: 13, pos: [66615, -79814, -3003], next: "none" }
+
+# Entrance portal server legs (transcribed 1:1 from the live-validated hand edit).
+workObjects:
+  upsert:
+    - templateId: 134
+      shapeId: 200201
+      scale: 1.0
+      type: onoff
+      enableTime: 1000
+      prepareDuration: 3000
+      socialMotionId: 11
+      isForQuestId: 1346
+      firstTaskId: 1
+      lastTaskId: 1
+      despawnAfterWork: false
+      partyCantWork: true
+      actionScript: {}
+      namePlate:
+        nameplateHeight: 20
+      workGroups:
+        - prob: 1
+          works:
+            - type: teleport
+              prob: 1
+              teleportId: 642501
+              pcDespawnScriptId: 40000
+
+workObjectTerritories:
+  upsert:
+    - huntingZoneId: 13
+      templateId: 134
+      pos: "57908,-67648,-5097"
+      dir: 0
+      respawnTimeMin: 0
+      respawnTimeMax: 0
+
+quests:
+  update:
+    # Sentinel-disable the modern level-65 "Garden of Dawn" IoD line. The chain is
+    # strictly linear: 21301 -> 21302 -> 21303 -> 21304 -> 21305 -> 21306 -> 21307,
+    # each quest's only prerequisite is its predecessor, and only 21301 auto-accepts
+    # (즉시수주). Sentinelling the head (prerequisites [9999] -> ref 99,99, never
+    # satisfiable) makes the whole chain unofferable. 21301's real prereq 63,66 is replaced.
+    - id: 21301
+      changes:
+        requirements:
+          prerequisites: [9999]

@@ -1,0 +1,7194 @@
+{
+ "generated": "2026-07-20",
+ "purpose": "Full v17.11 client StrSheet_NpcLoc sweep for Island of Dawn hunting zones (13,64,213,313,364,436,437,9036,9037). Reconciles every v17 quest-marker entry against v92 server NpcData existence, TerritoryData baseline spawn state, and v17/v31/v92 name sources. Analysis only.",
+ "sources": {
+  "v17_npcloc": "D:/dev/tera/tera-dc-17_11/DataCenter_Final_USA/StrSheet_NpcLoc-00000.xml (USA, English display names)",
+  "v17_names": "v17.11 USA StrSheet_Creature (English)",
+  "v31_names": "Z:/tera pserver/v31.04/client-dc_v31 StrSheet_Creature (EUR, English == v92 baseline displayed name)",
+  "v92_existence_and_kr_name": "D:/dev/mmogate/tera92/server/Datasheet/NpcData_{hz}.xml (Korean internal name)",
+  "v92_baseline_spawns": "D:/dev/mmogate/tera92/server/Datasheet/TerritoryData_{hz}.xml",
+  "v17_fences": "padding-habitat-gaps.json (v17 client TerritoryData carries Fence polygons only, no Npc spawn points)"
+ },
+ "key_findings": [
+  "v17 client TerritoryData holds only Fence polygons (no per-Npc spawn points); NpcLoc is the only v17 source of discrete world coordinates per template.",
+  "NpcLoc coordinate system matches server coordinates (SPAWNED single-marker NPC median offset 145u), but encodes the v17-era layout: 17 of 44 spawned NPCs sit >300u from the current baseline spawn and some moved thousands of units (Leander 1008 ~13975u), so NpcLoc positions must be authored then tuned in-game.",
+  "No DEAD entries: every scoped marker template still exists in v92 NpcData.",
+  "English displayed-name line is stable v17->v31: only 4 utility-object renames, zero human-NPC renames.",
+  "The v92 Korean server carries a wholesale re-identified NPC roster (Kamarnu=Rabram, Taleb=Albert, Clovis=Muriel, ...) diverging from the English client across essentially all ~54 IoD villagers; this is a NA/EU-English vs KR localization split, not a content rename over time."
+ ],
+ "summary_counts": {
+  "13": {
+   "SPAWNED": 21,
+   "PLANNED-MOB": 13,
+   "NEW-CANDIDATE": 4
+  },
+  "64": {
+   "SPAWNED": 15
+  },
+  "213": {
+   "SPAWNED": 28,
+   "PLANNED-NPC": 9,
+   "NEW-CANDIDATE": 2
+  },
+  "436": {
+   "SPAWNED": 1
+  },
+  "437": {
+   "SPAWNED": 1
+  }
+ },
+ "totals": {
+  "SPAWNED": 66,
+  "PLANNED-MOB": 13,
+  "NEW-CANDIDATE": 6,
+  "PLANNED-NPC": 9
+ },
+ "records": [
+  {
+   "hz": "13",
+   "templateId": "1",
+   "n_markers": 17,
+   "region_prefix": "13",
+   "v17_name": "Pigling",
+   "v17_title": "",
+   "v31_english_name": "Pigling",
+   "v31_english_title": "",
+   "v92_stale_english": "Pigling",
+   "v92_korean_npcdata": "피그링",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 13,
+   "rename": false,
+   "marker_centroid": [
+    70560.6,
+    -84563.6
+   ],
+   "first_marker": [
+    68917.0,
+    -83165.0,
+    -3386.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "피그링",
+   "markers": [
+    [
+     68917.0,
+     -83165.0,
+     -3386.0
+    ],
+    [
+     66185.0,
+     -81760.0,
+     -3350.0
+    ],
+    [
+     67678.0,
+     -82717.0,
+     -3328.0
+    ],
+    [
+     72414.0,
+     -83816.0,
+     -3560.0
+    ],
+    [
+     70005.0,
+     -83868.0,
+     -3473.0
+    ],
+    [
+     70059.0,
+     -85827.0,
+     -3643.0
+    ],
+    [
+     70051.0,
+     -84855.0,
+     -3638.0
+    ],
+    [
+     71573.0,
+     -84392.0,
+     -3601.0
+    ],
+    [
+     73176.0,
+     -84605.0,
+     -3880.0
+    ],
+    [
+     70672.0,
+     -85343.0,
+     -3670.0
+    ],
+    [
+     71929.0,
+     -85531.0,
+     -3790.0
+    ],
+    [
+     70695.0,
+     -84191.0,
+     -3532.0
+    ],
+    [
+     72487.0,
+     -85043.0,
+     -3843.0
+    ],
+    [
+     70815.0,
+     -83258.0,
+     -3369.0
+    ],
+    [
+     71516.0,
+     -86179.0,
+     -3728.0
+    ],
+    [
+     70860.0,
+     -86163.0,
+     -3654.0
+    ],
+    [
+     70498.0,
+     -86868.0,
+     -3533.0
+    ]
+   ],
+   "baseline_pos_agreement": 108009.0
+  },
+  {
+   "hz": "13",
+   "templateId": "2",
+   "n_markers": 20,
+   "region_prefix": "13",
+   "v17_name": "Sporewalker",
+   "v17_title": "",
+   "v31_english_name": "Sporewalker",
+   "v31_english_title": "",
+   "v92_stale_english": "Sporewalker",
+   "v92_korean_npcdata": "오염된 흙의 정령B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 15,
+   "rename": false,
+   "marker_centroid": [
+    64923.2,
+    -79375.9
+   ],
+   "first_marker": [
+    64913.0,
+    -82199.0,
+    -3672.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "오염된 흙의 정령B",
+   "markers": [
+    [
+     64913.0,
+     -82199.0,
+     -3672.0
+    ],
+    [
+     65883.0,
+     -82521.0,
+     -3527.0
+    ],
+    [
+     64710.0,
+     -82846.0,
+     -3808.0
+    ],
+    [
+     62919.0,
+     -82569.0,
+     -3929.0
+    ],
+    [
+     65491.0,
+     -81557.0,
+     -3463.0
+    ],
+    [
+     64552.0,
+     -80926.0,
+     -3528.0
+    ],
+    [
+     65348.0,
+     -82748.0,
+     -3664.0
+    ],
+    [
+     63822.0,
+     -82781.0,
+     -3929.0
+    ],
+    [
+     64257.0,
+     -82054.0,
+     -3808.0
+    ],
+    [
+     63437.0,
+     -82153.0,
+     -3906.0
+    ],
+    [
+     65091.0,
+     -80708.0,
+     -3443.0
+    ],
+    [
+     65028.0,
+     -79966.0,
+     -3320.0
+    ],
+    [
+     64874.0,
+     -81546.0,
+     -3622.0
+    ],
+    [
+     64243.0,
+     -81528.0,
+     -3701.0
+    ],
+    [
+     64899.0,
+     -75979.0,
+     -2928.0
+    ],
+    [
+     66701.0,
+     -73234.0,
+     -3330.0
+    ],
+    [
+     65240.0,
+     -71952.0,
+     -3502.0
+    ],
+    [
+     65582.0,
+     -72622.0,
+     -3399.0
+    ],
+    [
+     65705.0,
+     -74249.0,
+     -3074.0
+    ],
+    [
+     65769.0,
+     -73381.0,
+     -3221.0
+    ]
+   ],
+   "baseline_pos_agreement": 104740.0
+  },
+  {
+   "hz": "13",
+   "templateId": "3",
+   "n_markers": 18,
+   "region_prefix": "13",
+   "v17_name": "Ponderous Sporewalker",
+   "v17_title": "",
+   "v31_english_name": "Ponderous Sporewalker",
+   "v31_english_title": "",
+   "v92_stale_english": "Ponderous Sporewalker",
+   "v92_korean_npcdata": "타락한 흙의 정령A",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    57335.9,
+    -78823.9
+   ],
+   "first_marker": [
+    59284.0,
+    -80042.0,
+    -4280.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1308",
+     "missing_mob",
+     "Corrupted Earth Spirit A"
+    ]
+   ],
+   "v92_korean_romanized": "타락한 흙의 정령A",
+   "markers": [
+    [
+     59284.0,
+     -80042.0,
+     -4280.0
+    ],
+    [
+     56780.0,
+     -77497.0,
+     -4448.0
+    ],
+    [
+     54256.0,
+     -77414.0,
+     -4566.0
+    ],
+    [
+     56552.0,
+     -78312.0,
+     -4487.0
+    ],
+    [
+     55100.0,
+     -77301.0,
+     -4564.0
+    ],
+    [
+     58426.0,
+     -78547.0,
+     -4382.0
+    ],
+    [
+     54941.0,
+     -78139.0,
+     -4600.0
+    ],
+    [
+     55731.0,
+     -78102.0,
+     -4561.0
+    ],
+    [
+     57772.0,
+     -78726.0,
+     -4417.0
+    ],
+    [
+     58967.0,
+     -79077.0,
+     -4283.0
+    ],
+    [
+     56025.0,
+     -77455.0,
+     -4548.0
+    ],
+    [
+     58017.0,
+     -80001.0,
+     -4420.0
+    ],
+    [
+     58668.0,
+     -79797.0,
+     -4356.0
+    ],
+    [
+     58746.0,
+     -80468.0,
+     -4376.0
+    ],
+    [
+     57617.0,
+     -79469.0,
+     -4449.0
+    ],
+    [
+     58268.0,
+     -79166.0,
+     -4410.0
+    ],
+    [
+     59837.0,
+     -80475.0,
+     -4294.0
+    ],
+    [
+     57060.0,
+     -78843.0,
+     -4418.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "4",
+   "n_markers": 12,
+   "region_prefix": "13",
+   "v17_name": "Dwarf Orcan",
+   "v17_title": "",
+   "v31_english_name": "Dwarf Orcan",
+   "v31_english_title": "",
+   "v92_stale_english": "Dwarf Orcan",
+   "v92_korean_npcdata": "미니 오칸",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    51667.3,
+    -79883.2
+   ],
+   "first_marker": [
+    51963.0,
+    -78922.0,
+    -4631.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1349",
+     "missing_mob",
+     "Mini Okan"
+    ]
+   ],
+   "v92_korean_romanized": "미니 오칸",
+   "markers": [
+    [
+     51963.0,
+     -78922.0,
+     -4631.0
+    ],
+    [
+     51530.0,
+     -78031.0,
+     -4738.0
+    ],
+    [
+     51136.0,
+     -79888.0,
+     -4677.0
+    ],
+    [
+     50778.0,
+     -79014.0,
+     -4754.0
+    ],
+    [
+     51403.0,
+     -80770.0,
+     -4572.0
+    ],
+    [
+     52855.0,
+     -78660.0,
+     -4587.0
+    ],
+    [
+     50621.0,
+     -80292.0,
+     -4636.0
+    ],
+    [
+     52487.0,
+     -79812.0,
+     -4582.0
+    ],
+    [
+     51583.0,
+     -81871.0,
+     -4503.0
+    ],
+    [
+     50486.0,
+     -81438.0,
+     -4497.0
+    ],
+    [
+     53195.0,
+     -79305.0,
+     -4527.0
+    ],
+    [
+     51971.0,
+     -80596.0,
+     -4596.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "5",
+   "n_markers": 12,
+   "region_prefix": "13",
+   "v17_name": "Orcan Raider",
+   "v17_title": "",
+   "v31_english_name": "Orcan Raider",
+   "v31_english_title": "",
+   "v92_stale_english": "Orcan Raider",
+   "v92_korean_npcdata": "오칸 습격자",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    51667.3,
+    -79883.2
+   ],
+   "first_marker": [
+    51963.0,
+    -78922.0,
+    -4631.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1349",
+     "missing_mob",
+     "Okan Raider"
+    ]
+   ],
+   "v92_korean_romanized": "오칸 습격자",
+   "markers": [
+    [
+     51963.0,
+     -78922.0,
+     -4631.0
+    ],
+    [
+     51530.0,
+     -78031.0,
+     -4738.0
+    ],
+    [
+     51136.0,
+     -79888.0,
+     -4677.0
+    ],
+    [
+     50778.0,
+     -79014.0,
+     -4754.0
+    ],
+    [
+     51403.0,
+     -80770.0,
+     -4572.0
+    ],
+    [
+     52855.0,
+     -78660.0,
+     -4587.0
+    ],
+    [
+     50621.0,
+     -80292.0,
+     -4636.0
+    ],
+    [
+     52487.0,
+     -79812.0,
+     -4582.0
+    ],
+    [
+     51583.0,
+     -81871.0,
+     -4503.0
+    ],
+    [
+     50486.0,
+     -81438.0,
+     -4497.0
+    ],
+    [
+     53195.0,
+     -79305.0,
+     -4527.0
+    ],
+    [
+     51971.0,
+     -80596.0,
+     -4596.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "6",
+   "n_markers": 10,
+   "region_prefix": "13",
+   "v17_name": "Kariagon",
+   "v17_title": "",
+   "v31_english_name": "Kariagon",
+   "v31_english_title": "",
+   "v92_stale_english": "Kariagon",
+   "v92_korean_npcdata": "어둠의 마법사",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 10,
+   "rename": false,
+   "marker_centroid": [
+    50190.6,
+    -71658.5
+   ],
+   "first_marker": [
+    52060.0,
+    -72453.0,
+    -5695.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "어둠의 마법사",
+   "markers": [
+    [
+     52060.0,
+     -72453.0,
+     -5695.0
+    ],
+    [
+     50910.0,
+     -72501.0,
+     -5716.0
+    ],
+    [
+     50294.0,
+     -71659.0,
+     -5838.0
+    ],
+    [
+     49158.0,
+     -70985.0,
+     -5844.0
+    ],
+    [
+     49831.0,
+     -69498.0,
+     -5833.0
+    ],
+    [
+     49468.0,
+     -72270.0,
+     -5733.0
+    ],
+    [
+     48488.0,
+     -72672.0,
+     -5541.0
+    ],
+    [
+     50224.0,
+     -70691.0,
+     -5874.0
+    ],
+    [
+     48396.0,
+     -70965.0,
+     -5771.0
+    ],
+    [
+     53077.0,
+     -72891.0,
+     -5572.0
+    ]
+   ],
+   "baseline_pos_agreement": 3251.0
+  },
+  {
+   "hz": "13",
+   "templateId": "7",
+   "n_markers": 27,
+   "region_prefix": "13",
+   "v17_name": "Disc Reaper",
+   "v17_title": "",
+   "v31_english_name": "Disc Reaper",
+   "v31_english_title": "",
+   "v92_stale_english": "Disc Reaper",
+   "v92_korean_npcdata": "악마의 실험체",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 23,
+   "rename": false,
+   "marker_centroid": [
+    54483.8,
+    -70638.6
+   ],
+   "first_marker": [
+    54878.0,
+    -69635.0,
+    -5564.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "악마의 실험체",
+   "markers": [
+    [
+     54878.0,
+     -69635.0,
+     -5564.0
+    ],
+    [
+     54661.0,
+     -72981.0,
+     -5539.0
+    ],
+    [
+     54764.0,
+     -71922.0,
+     -5518.0
+    ],
+    [
+     54738.0,
+     -71025.0,
+     -5545.0
+    ],
+    [
+     53039.0,
+     -71787.0,
+     -5687.0
+    ],
+    [
+     55238.0,
+     -70983.0,
+     -5573.0
+    ],
+    [
+     54911.0,
+     -68884.0,
+     -5563.0
+    ],
+    [
+     54060.0,
+     -69809.0,
+     -5623.0
+    ],
+    [
+     54721.0,
+     -68145.0,
+     -5465.0
+    ],
+    [
+     55434.0,
+     -71636.0,
+     -5591.0
+    ],
+    [
+     54413.0,
+     -68615.0,
+     -5487.0
+    ],
+    [
+     54315.0,
+     -72585.0,
+     -5553.0
+    ],
+    [
+     52395.0,
+     -71530.0,
+     -5750.0
+    ],
+    [
+     52824.0,
+     -70672.0,
+     -5804.0
+    ],
+    [
+     53672.0,
+     -71836.0,
+     -5616.0
+    ],
+    [
+     55173.0,
+     -72071.0,
+     -5583.0
+    ],
+    [
+     54968.0,
+     -72640.0,
+     -5568.0
+    ],
+    [
+     54156.0,
+     -72048.0,
+     -5563.0
+    ],
+    [
+     54938.0,
+     -71514.0,
+     -5522.0
+    ],
+    [
+     55178.0,
+     -68256.0,
+     -5504.0
+    ],
+    [
+     55393.0,
+     -70495.0,
+     -5619.0
+    ],
+    [
+     55311.0,
+     -69409.0,
+     -5570.0
+    ],
+    [
+     54376.0,
+     -70025.0,
+     -5600.0
+    ],
+    [
+     54086.0,
+     -70337.0,
+     -5620.0
+    ],
+    [
+     54435.0,
+     -69115.0,
+     -5568.0
+    ],
+    [
+     54158.0,
+     -69407.0,
+     -5600.0
+    ],
+    [
+     54827.0,
+     -69879.0,
+     -5569.0
+    ]
+   ],
+   "baseline_pos_agreement": 88660.0
+  },
+  {
+   "hz": "13",
+   "templateId": "8",
+   "n_markers": 20,
+   "region_prefix": "13",
+   "v17_name": "Runekeeper",
+   "v17_title": "",
+   "v31_english_name": "Runekeeper",
+   "v31_english_title": "",
+   "v92_stale_english": "Runekeeper",
+   "v92_korean_npcdata": "어둠의 하수인",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 20,
+   "rename": false,
+   "marker_centroid": [
+    57480.9,
+    -72331.6
+   ],
+   "first_marker": [
+    58206.0,
+    -74897.0,
+    -5778.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "어둠의 하수인",
+   "markers": [
+    [
+     58206.0,
+     -74897.0,
+     -5778.0
+    ],
+    [
+     57404.0,
+     -70897.0,
+     -5858.0
+    ],
+    [
+     58366.0,
+     -75809.0,
+     -5720.0
+    ],
+    [
+     59176.0,
+     -73414.0,
+     -5714.0
+    ],
+    [
+     59475.0,
+     -74711.0,
+     -5725.0
+    ],
+    [
+     58561.0,
+     -75186.0,
+     -5726.0
+    ],
+    [
+     55943.0,
+     -72882.0,
+     -5648.0
+    ],
+    [
+     58437.0,
+     -71330.0,
+     -5879.0
+    ],
+    [
+     56354.0,
+     -71955.0,
+     -5775.0
+    ],
+    [
+     56328.0,
+     -70338.0,
+     -5751.0
+    ],
+    [
+     57541.0,
+     -71849.0,
+     -5934.0
+    ],
+    [
+     56551.0,
+     -72797.0,
+     -5718.0
+    ],
+    [
+     56821.0,
+     -70864.0,
+     -5813.0
+    ],
+    [
+     57365.0,
+     -72523.0,
+     -5890.0
+    ],
+    [
+     56338.0,
+     -70848.0,
+     -5767.0
+    ],
+    [
+     57871.0,
+     -70636.0,
+     -5863.0
+    ],
+    [
+     56878.0,
+     -72169.0,
+     -5847.0
+    ],
+    [
+     57071.0,
+     -71483.0,
+     -5885.0
+    ],
+    [
+     56533.0,
+     -71323.0,
+     -5822.0
+    ],
+    [
+     58399.0,
+     -70722.0,
+     -5827.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "13",
+   "templateId": "9",
+   "n_markers": 11,
+   "region_prefix": "13",
+   "v17_name": "Destroyer",
+   "v17_title": "",
+   "v31_english_name": "Destroyer",
+   "v31_english_title": "",
+   "v92_stale_english": "Destroyer",
+   "v92_korean_npcdata": "어둠의 파괴자",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 11,
+   "rename": false,
+   "marker_centroid": [
+    56525.7,
+    -74082.1
+   ],
+   "first_marker": [
+    56935.0,
+    -74983.0,
+    -5656.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "어둠의 파괴자",
+   "markers": [
+    [
+     56935.0,
+     -74983.0,
+     -5656.0
+    ],
+    [
+     56995.0,
+     -74187.0,
+     -5743.0
+    ],
+    [
+     57521.0,
+     -73664.0,
+     -5800.0
+    ],
+    [
+     58591.0,
+     -72559.0,
+     -5829.0
+    ],
+    [
+     54606.0,
+     -74523.0,
+     -5408.0
+    ],
+    [
+     57688.0,
+     -74470.0,
+     -5773.0
+    ],
+    [
+     57749.0,
+     -72847.0,
+     -5872.0
+    ],
+    [
+     56073.0,
+     -73983.0,
+     -5628.0
+    ],
+    [
+     55225.0,
+     -73907.0,
+     -5503.0
+    ],
+    [
+     54814.0,
+     -75198.0,
+     -5371.0
+    ],
+    [
+     55586.0,
+     -74582.0,
+     -5537.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "13",
+   "templateId": "302",
+   "n_markers": 10,
+   "region_prefix": "13",
+   "v17_name": "Terron Ringleader",
+   "v17_title": "",
+   "v31_english_name": "Terron Ringleader",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron Ringleader",
+   "v92_korean_npcdata": "자연의 정령",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    65841.7,
+    -84146.1
+   ],
+   "first_marker": [
+    66432.0,
+    -83644.0,
+    -3667.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "NEW-CANDIDATE",
+   "quest_refs": [
+    [
+     "1348",
+     "missing_mob",
+     "Nature Spirit"
+    ]
+   ],
+   "v92_korean_romanized": "Nature Spirit",
+   "markers": [
+    [
+     66432.0,
+     -83644.0,
+     -3667.0
+    ],
+    [
+     67621.0,
+     -84803.0,
+     -3691.0
+    ],
+    [
+     66951.0,
+     -85049.0,
+     -3653.0
+    ],
+    [
+     66346.0,
+     -84656.0,
+     -3644.0
+    ],
+    [
+     65607.0,
+     -84494.0,
+     -3714.0
+    ],
+    [
+     67155.0,
+     -84037.0,
+     -3627.0
+    ],
+    [
+     64911.0,
+     -84103.0,
+     -3805.0
+    ],
+    [
+     65625.0,
+     -83528.0,
+     -3763.0
+    ],
+    [
+     63443.0,
+     -83545.0,
+     -3896.0
+    ],
+    [
+     64326.0,
+     -83602.0,
+     -3870.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "303",
+   "n_markers": 10,
+   "region_prefix": "13",
+   "v17_name": "Terron Thief",
+   "v17_title": "",
+   "v31_english_name": "Terron Thief",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron Thief",
+   "v92_korean_npcdata": "자연의 정령",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    65841.7,
+    -84146.1
+   ],
+   "first_marker": [
+    66432.0,
+    -83644.0,
+    -3667.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "NEW-CANDIDATE",
+   "quest_refs": [
+    [
+     "1348",
+     "missing_mob",
+     "Nature Spirit"
+    ]
+   ],
+   "v92_korean_romanized": "Nature Spirit",
+   "markers": [
+    [
+     66432.0,
+     -83644.0,
+     -3667.0
+    ],
+    [
+     67621.0,
+     -84803.0,
+     -3691.0
+    ],
+    [
+     66951.0,
+     -85049.0,
+     -3653.0
+    ],
+    [
+     66346.0,
+     -84656.0,
+     -3644.0
+    ],
+    [
+     65607.0,
+     -84494.0,
+     -3714.0
+    ],
+    [
+     67155.0,
+     -84037.0,
+     -3627.0
+    ],
+    [
+     64911.0,
+     -84103.0,
+     -3805.0
+    ],
+    [
+     65625.0,
+     -83528.0,
+     -3763.0
+    ],
+    [
+     63443.0,
+     -83545.0,
+     -3896.0
+    ],
+    [
+     64326.0,
+     -83602.0,
+     -3870.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "304",
+   "n_markers": 32,
+   "region_prefix": "13",
+   "v17_name": "Sickly Noruk",
+   "v17_title": "",
+   "v31_english_name": "Sickly Noruk",
+   "v31_english_title": "",
+   "v92_stale_english": "Sickly Noruk",
+   "v92_korean_npcdata": "죽어가는 아르가스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    70890.2,
+    -85309.4
+   ],
+   "first_marker": [
+    77234.0,
+    -85424.0,
+    -4507.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [],
+   "v92_korean_romanized": "죽어가는 아르가스",
+   "markers": [
+    [
+     77234.0,
+     -85424.0,
+     -4507.0
+    ],
+    [
+     68162.0,
+     -84193.0,
+     -3602.0
+    ],
+    [
+     70702.0,
+     -84813.0,
+     -3625.0
+    ],
+    [
+     71934.0,
+     -86380.0,
+     -3745.0
+    ],
+    [
+     69235.0,
+     -86396.0,
+     -3548.0
+    ],
+    [
+     72884.0,
+     -84212.0,
+     -3724.0
+    ],
+    [
+     73315.0,
+     -86140.0,
+     -3976.0
+    ],
+    [
+     75355.0,
+     -86037.0,
+     -4321.0
+    ],
+    [
+     71333.0,
+     -85288.0,
+     -3699.0
+    ],
+    [
+     74730.0,
+     -86149.0,
+     -4188.0
+    ],
+    [
+     76277.0,
+     -85010.0,
+     -4447.0
+    ],
+    [
+     72181.0,
+     -84582.0,
+     -3704.0
+    ],
+    [
+     72265.0,
+     -86819.0,
+     -3705.0
+    ],
+    [
+     70071.0,
+     -86773.0,
+     -3503.0
+    ],
+    [
+     69645.0,
+     -86744.0,
+     -3524.0
+    ],
+    [
+     73886.0,
+     -86153.0,
+     -4081.0
+    ],
+    [
+     73459.0,
+     -85266.0,
+     -4013.0
+    ],
+    [
+     70896.0,
+     -86865.0,
+     -3575.0
+    ],
+    [
+     69939.0,
+     -85290.0,
+     -3657.0
+    ],
+    [
+     71177.0,
+     -84264.0,
+     -3549.0
+    ],
+    [
+     72137.0,
+     -85219.0,
+     -3791.0
+    ],
+    [
+     70192.0,
+     -84307.0,
+     -3551.0
+    ],
+    [
+     71225.0,
+     -86000.0,
+     -3703.0
+    ],
+    [
+     69058.0,
+     -85710.0,
+     -3632.0
+    ],
+    [
+     68608.0,
+     -86456.0,
+     -3481.0
+    ],
+    [
+     68120.0,
+     -85686.0,
+     -3663.0
+    ],
+    [
+     69454.0,
+     -84446.0,
+     -3502.0
+    ],
+    [
+     65504.0,
+     -84026.0,
+     -3781.0
+    ],
+    [
+     66786.0,
+     -83349.0,
+     -3615.0
+    ],
+    [
+     67419.0,
+     -83877.0,
+     -3613.0
+    ],
+    [
+     68941.0,
+     -83775.0,
+     -3520.0
+    ],
+    [
+     66363.0,
+     -84251.0,
+     -3642.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "601",
+   "n_markers": 6,
+   "region_prefix": "13",
+   "v17_name": "Dark Marauder",
+   "v17_title": "",
+   "v31_english_name": "Dark Marauder",
+   "v31_english_title": "",
+   "v92_stale_english": "Dark Marauder",
+   "v92_korean_npcdata": "어둠의 약탈자",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    56888.3,
+    -73763.2
+   ],
+   "first_marker": [
+    64138.0,
+    -69086.0,
+    -3944.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1307",
+     "missing_mob",
+     "Dark Marauder"
+    ]
+   ],
+   "v92_korean_romanized": "어둠의 약탈자",
+   "markers": [
+    [
+     64138.0,
+     -69086.0,
+     -3944.0
+    ],
+    [
+     63451.0,
+     -69272.0,
+     -4037.0
+    ],
+    [
+     63860.0,
+     -69806.0,
+     -3898.0
+    ],
+    [
+     50511.0,
+     -77607.0,
+     -4734.0
+    ],
+    [
+     49732.0,
+     -78080.0,
+     -4751.0
+    ],
+    [
+     49638.0,
+     -78728.0,
+     -4765.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "888",
+   "n_markers": 8,
+   "region_prefix": "13",
+   "v17_name": "Training Dummy",
+   "v17_title": "",
+   "v31_english_name": "Training Dummy",
+   "v31_english_title": "",
+   "v92_stale_english": "Training Dummy",
+   "v92_korean_npcdata": "허수아비",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 8,
+   "rename": false,
+   "marker_centroid": [
+    67978.8,
+    -78293.2
+   ],
+   "first_marker": [
+    67969.0,
+    -78522.0,
+    -2784.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "허수아비",
+   "markers": [
+    [
+     67969.0,
+     -78522.0,
+     -2784.0
+    ],
+    [
+     68101.0,
+     -78485.0,
+     -2771.0
+    ],
+    [
+     67936.0,
+     -78384.0,
+     -2784.0
+    ],
+    [
+     68063.0,
+     -78348.0,
+     -2774.0
+    ],
+    [
+     67900.0,
+     -78242.0,
+     -2784.0
+    ],
+    [
+     68025.0,
+     -78203.0,
+     -2771.0
+    ],
+    [
+     67855.0,
+     -78098.0,
+     -2783.0
+    ],
+    [
+     67981.0,
+     -78064.0,
+     -2772.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "13",
+   "templateId": "1001",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Vekas",
+   "v17_title": "Wicked Tree",
+   "v31_english_name": "Vekas",
+   "v31_english_title": "Wicked Tree",
+   "v92_stale_english": "Vekas",
+   "v92_korean_npcdata": "저항하는 길리두",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 6,
+   "rename": false,
+   "marker_centroid": [
+    76313.0,
+    -80926.0
+   ],
+   "first_marker": [
+    76313.0,
+    -80926.0,
+    -4208.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "저항하는 길리두",
+   "markers": [
+    [
+     76313.0,
+     -80926.0,
+     -4208.0
+    ]
+   ],
+   "baseline_pos_agreement": 249.0
+  },
+  {
+   "hz": "13",
+   "templateId": "1002",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Acharak",
+   "v17_title": "Dark Claw Warlord",
+   "v31_english_name": "Acharak",
+   "v31_english_title": "Dark Claw Warlord",
+   "v92_stale_english": "Acharak",
+   "v92_korean_npcdata": "오칸",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 2,
+   "rename": false,
+   "marker_centroid": [
+    52161.0,
+    -75388.0
+   ],
+   "first_marker": [
+    52161.0,
+    -75388.0,
+    -3625.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "오칸",
+   "markers": [
+    [
+     52161.0,
+     -75388.0,
+     -3625.0
+    ]
+   ],
+   "baseline_pos_agreement": 91674.0
+  },
+  {
+   "hz": "13",
+   "templateId": "1003",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Acharak's Soldier",
+   "v17_title": "",
+   "v31_english_name": "Acharak's Soldier",
+   "v31_english_title": "",
+   "v92_stale_english": "Acharak's Soldier",
+   "v92_korean_npcdata": "오칸미니미",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 2,
+   "rename": false,
+   "marker_centroid": [
+    52161.0,
+    -75388.0
+   ],
+   "first_marker": [
+    52161.0,
+    -75388.0,
+    -3625.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "오칸미니미",
+   "markers": [
+    [
+     52161.0,
+     -75388.0,
+     -3625.0
+    ]
+   ],
+   "baseline_pos_agreement": 91674.0
+  },
+  {
+   "hz": "13",
+   "templateId": "1004",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Kugai",
+   "v17_title": "The Mighty",
+   "v31_english_name": "Kugai",
+   "v31_english_title": "The Mighty",
+   "v92_stale_english": "Kugai",
+   "v92_korean_npcdata": "노예 관리인",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    49514.0,
+    -70416.0
+   ],
+   "first_marker": [
+    49514.0,
+    -70416.0,
+    -5874.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "노예 관리인",
+   "markers": [
+    [
+     49514.0,
+     -70416.0,
+     -5874.0
+    ]
+   ],
+   "baseline_pos_agreement": 6280.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300541",
+   "n_markers": 14,
+   "region_prefix": "13",
+   "v17_name": "Rockcrawler",
+   "v17_title": "",
+   "v31_english_name": "Rockcrawler",
+   "v31_english_title": "",
+   "v92_stale_english": "Rockcrawler",
+   "v92_korean_npcdata": "스톤크라울러B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    56628.3,
+    -80102.9
+   ],
+   "first_marker": [
+    55728.0,
+    -79769.0,
+    -4350.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1347",
+     "missing_mob",
+     "Stone Crawler B"
+    ]
+   ],
+   "v92_korean_romanized": "스톤크라울러B",
+   "markers": [
+    [
+     55728.0,
+     -79769.0,
+     -4350.0
+    ],
+    [
+     57465.0,
+     -81124.0,
+     -4382.0
+    ],
+    [
+     54685.0,
+     -79881.0,
+     -4342.0
+    ],
+    [
+     58044.0,
+     -80631.0,
+     -4400.0
+    ],
+    [
+     53653.0,
+     -77911.0,
+     -4585.0
+    ],
+    [
+     54144.0,
+     -78638.0,
+     -4563.0
+    ],
+    [
+     56479.0,
+     -79420.0,
+     -4444.0
+    ],
+    [
+     58417.0,
+     -81248.0,
+     -4424.0
+    ],
+    [
+     55974.0,
+     -78849.0,
+     -4455.0
+    ],
+    [
+     57299.0,
+     -80231.0,
+     -4420.0
+    ],
+    [
+     55060.0,
+     -79035.0,
+     -4444.0
+    ],
+    [
+     58814.0,
+     -81903.0,
+     -4408.0
+    ],
+    [
+     59152.0,
+     -80995.0,
+     -4411.0
+    ],
+    [
+     57882.0,
+     -81805.0,
+     -4406.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300542",
+   "n_markers": 14,
+   "region_prefix": "13",
+   "v17_name": "Rockcrawler Cleaver",
+   "v17_title": "",
+   "v31_english_name": "Rockcrawler Cleaver",
+   "v31_english_title": "",
+   "v92_stale_english": "Rockcrawler Cleaver",
+   "v92_korean_npcdata": "스톤 크라울러 대장",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    56628.3,
+    -80102.9
+   ],
+   "first_marker": [
+    55728.0,
+    -79769.0,
+    -4350.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1347",
+     "missing_mob",
+     "Stone Crawler Chief"
+    ]
+   ],
+   "v92_korean_romanized": "스톤 크라울러 대장",
+   "markers": [
+    [
+     55728.0,
+     -79769.0,
+     -4350.0
+    ],
+    [
+     57465.0,
+     -81124.0,
+     -4382.0
+    ],
+    [
+     54685.0,
+     -79881.0,
+     -4342.0
+    ],
+    [
+     58044.0,
+     -80631.0,
+     -4400.0
+    ],
+    [
+     53653.0,
+     -77911.0,
+     -4585.0
+    ],
+    [
+     54144.0,
+     -78638.0,
+     -4563.0
+    ],
+    [
+     56479.0,
+     -79420.0,
+     -4444.0
+    ],
+    [
+     58417.0,
+     -81248.0,
+     -4424.0
+    ],
+    [
+     55974.0,
+     -78849.0,
+     -4455.0
+    ],
+    [
+     57299.0,
+     -80231.0,
+     -4420.0
+    ],
+    [
+     55060.0,
+     -79035.0,
+     -4444.0
+    ],
+    [
+     58814.0,
+     -81903.0,
+     -4408.0
+    ],
+    [
+     59152.0,
+     -80995.0,
+     -4411.0
+    ],
+    [
+     57882.0,
+     -81805.0,
+     -4406.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300910",
+   "n_markers": 17,
+   "region_prefix": "13",
+   "v17_name": "Prowling Cromos",
+   "v17_title": "",
+   "v31_english_name": "Prowling Cromos",
+   "v31_english_title": "",
+   "v92_stale_english": "Prowling Cromos",
+   "v92_korean_npcdata": "죽어가는 크로모스A",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 17,
+   "rename": false,
+   "marker_centroid": [
+    57051.5,
+    -67414.8
+   ],
+   "first_marker": [
+    55412.0,
+    -68779.0,
+    -5547.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "죽어가는 크로모스A",
+   "markers": [
+    [
+     55412.0,
+     -68779.0,
+     -5547.0
+    ],
+    [
+     54430.0,
+     -65811.0,
+     -5509.0
+    ],
+    [
+     55408.0,
+     -67885.0,
+     -5497.0
+    ],
+    [
+     55131.0,
+     -65298.0,
+     -5472.0
+    ],
+    [
+     57612.0,
+     -68272.0,
+     -5467.0
+    ],
+    [
+     56596.0,
+     -68717.0,
+     -5614.0
+    ],
+    [
+     54785.0,
+     -67195.0,
+     -5449.0
+    ],
+    [
+     55422.0,
+     -66228.0,
+     -5434.0
+    ],
+    [
+     53518.0,
+     -65419.0,
+     -5467.0
+    ],
+    [
+     56774.0,
+     -68000.0,
+     -5494.0
+    ],
+    [
+     57224.0,
+     -69221.0,
+     -5637.0
+    ],
+    [
+     54035.0,
+     -66739.0,
+     -5462.0
+    ],
+    [
+     61867.0,
+     -66924.0,
+     -4713.0
+    ],
+    [
+     60060.0,
+     -67668.0,
+     -5063.0
+    ],
+    [
+     61063.0,
+     -67269.0,
+     -4919.0
+    ],
+    [
+     60764.0,
+     -68188.0,
+     -5062.0
+    ],
+    [
+     59774.0,
+     -68439.0,
+     -5086.0
+    ]
+   ],
+   "baseline_pos_agreement": 88323.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300911",
+   "n_markers": 27,
+   "region_prefix": "13",
+   "v17_name": "Cromos",
+   "v17_title": "",
+   "v31_english_name": "Cromos",
+   "v31_english_title": "",
+   "v92_stale_english": "Cromos",
+   "v92_korean_npcdata": "죽어가는 크로모스B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    55538.5,
+    -83820.6
+   ],
+   "first_marker": [
+    53233.0,
+    -82352.0,
+    -4369.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1333",
+     "missing_mob",
+     "Dying Chromos B"
+    ]
+   ],
+   "v92_korean_romanized": "죽어가는 크로모스B",
+   "markers": [
+    [
+     53233.0,
+     -82352.0,
+     -4369.0
+    ],
+    [
+     51985.0,
+     -82729.0,
+     -4483.0
+    ],
+    [
+     52456.0,
+     -81561.0,
+     -4511.0
+    ],
+    [
+     53536.0,
+     -80939.0,
+     -4381.0
+    ],
+    [
+     55442.0,
+     -84427.0,
+     -4394.0
+    ],
+    [
+     54361.0,
+     -85407.0,
+     -4345.0
+    ],
+    [
+     53960.0,
+     -83991.0,
+     -4437.0
+    ],
+    [
+     53506.0,
+     -79832.0,
+     -4477.0
+    ],
+    [
+     53417.0,
+     -83096.0,
+     -4432.0
+    ],
+    [
+     55918.0,
+     -85247.0,
+     -4321.0
+    ],
+    [
+     59620.0,
+     -83064.0,
+     -4318.0
+    ],
+    [
+     57602.0,
+     -84106.0,
+     -4443.0
+    ],
+    [
+     57300.0,
+     -84870.0,
+     -4399.0
+    ],
+    [
+     58680.0,
+     -82939.0,
+     -4363.0
+    ],
+    [
+     58720.0,
+     -83791.0,
+     -4346.0
+    ],
+    [
+     56869.0,
+     -83537.0,
+     -4344.0
+    ],
+    [
+     52654.0,
+     -83954.0,
+     -4373.0
+    ],
+    [
+     52031.0,
+     -87417.0,
+     -3287.0
+    ],
+    [
+     53539.0,
+     -86773.0,
+     -3376.0
+    ],
+    [
+     58242.0,
+     -84544.0,
+     -4381.0
+    ],
+    [
+     57896.0,
+     -82806.0,
+     -4433.0
+    ],
+    [
+     57136.0,
+     -82748.0,
+     -4281.0
+    ],
+    [
+     58009.0,
+     -83496.0,
+     -4413.0
+    ],
+    [
+     59488.0,
+     -83803.0,
+     -4357.0
+    ],
+    [
+     53660.0,
+     -84755.0,
+     -4393.0
+    ],
+    [
+     55123.0,
+     -85092.0,
+     -4393.0
+    ],
+    [
+     55157.0,
+     -85879.0,
+     -4280.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300920",
+   "n_markers": 22,
+   "region_prefix": "13",
+   "v17_name": "Shaggy Noruk",
+   "v17_title": "",
+   "v31_english_name": "Shaggy Noruk",
+   "v31_english_title": "",
+   "v92_stale_english": "Shaggy Noruk",
+   "v92_korean_npcdata": "죽어가는 아르가스A",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    58116.0,
+    -83900.9
+   ],
+   "first_marker": [
+    57960.0,
+    -85453.0,
+    -4286.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1332",
+     "missing_mob",
+     "Dying Argas A"
+    ]
+   ],
+   "v92_korean_romanized": "죽어가는 아르가스A",
+   "markers": [
+    [
+     57960.0,
+     -85453.0,
+     -4286.0
+    ],
+    [
+     60362.0,
+     -83999.0,
+     -4331.0
+    ],
+    [
+     60550.0,
+     -83107.0,
+     -4321.0
+    ],
+    [
+     58797.0,
+     -85352.0,
+     -4257.0
+    ],
+    [
+     61187.0,
+     -82375.0,
+     -4252.0
+    ],
+    [
+     61346.0,
+     -83511.0,
+     -4254.0
+    ],
+    [
+     61270.0,
+     -84380.0,
+     -4141.0
+    ],
+    [
+     59769.0,
+     -84517.0,
+     -4265.0
+    ],
+    [
+     62106.0,
+     -82429.0,
+     -4112.0
+    ],
+    [
+     62302.0,
+     -83544.0,
+     -4056.0
+    ],
+    [
+     59889.0,
+     -81427.0,
+     -4328.0
+    ],
+    [
+     60402.0,
+     -81074.0,
+     -4250.0
+    ],
+    [
+     59502.0,
+     -82039.0,
+     -4344.0
+    ],
+    [
+     53314.0,
+     -81527.0,
+     -4372.0
+    ],
+    [
+     52745.0,
+     -82961.0,
+     -4471.0
+    ],
+    [
+     54472.0,
+     -84585.0,
+     -4428.0
+    ],
+    [
+     53990.0,
+     -87877.0,
+     -3230.0
+    ],
+    [
+     51284.0,
+     -84565.0,
+     -3648.0
+    ],
+    [
+     56605.0,
+     -84638.0,
+     -4431.0
+    ],
+    [
+     60364.0,
+     -82018.0,
+     -4278.0
+    ],
+    [
+     55352.0,
+     -87631.0,
+     -4191.0
+    ],
+    [
+     54984.0,
+     -86811.0,
+     -4161.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300921",
+   "n_markers": 16,
+   "region_prefix": "13",
+   "v17_name": "Noruk",
+   "v17_title": "",
+   "v31_english_name": "Noruk",
+   "v31_english_title": "",
+   "v92_stale_english": "Noruk",
+   "v92_korean_npcdata": "죽어가는 아르가스B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 48,
+   "rename": false,
+   "marker_centroid": [
+    82726.1,
+    -83742.4
+   ],
+   "first_marker": [
+    84429.0,
+    -81442.0,
+    -4509.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "죽어가는 아르가스B",
+   "markers": [
+    [
+     84429.0,
+     -81442.0,
+     -4509.0
+    ],
+    [
+     83687.0,
+     -88170.0,
+     -4713.0
+    ],
+    [
+     81181.0,
+     -88261.0,
+     -4715.0
+    ],
+    [
+     83099.0,
+     -86787.0,
+     -4668.0
+    ],
+    [
+     84957.0,
+     -86407.0,
+     -4690.0
+    ],
+    [
+     82612.0,
+     -83057.0,
+     -4529.0
+    ],
+    [
+     85597.0,
+     -83188.0,
+     -4621.0
+    ],
+    [
+     84402.0,
+     -83101.0,
+     -4636.0
+    ],
+    [
+     80853.0,
+     -86754.0,
+     -4730.0
+    ],
+    [
+     82630.0,
+     -80693.0,
+     -4544.0
+    ],
+    [
+     84520.0,
+     -85153.0,
+     -4688.0
+    ],
+    [
+     80928.0,
+     -79806.0,
+     -4436.0
+    ],
+    [
+     83663.0,
+     -79507.0,
+     -4479.0
+    ],
+    [
+     82230.0,
+     -78476.0,
+     -4407.0
+    ],
+    [
+     79627.0,
+     -84960.0,
+     -4717.0
+    ],
+    [
+     79202.0,
+     -84116.0,
+     -4560.0
+    ]
+   ],
+   "baseline_pos_agreement": 117308.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300930",
+   "n_markers": 11,
+   "region_prefix": "13",
+   "v17_name": "Elder Ghilliedhu",
+   "v17_title": "",
+   "v31_english_name": "Elder Ghilliedhu",
+   "v31_english_title": "",
+   "v92_stale_english": "Elder Ghilliedhu",
+   "v92_korean_npcdata": "죽어가는 길리두A",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    78287.1,
+    -81106.6
+   ],
+   "first_marker": [
+    78571.0,
+    -80509.0,
+    -4366.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1324",
+     "missing_mob",
+     "Dying Ghillie Dhu A"
+    ]
+   ],
+   "v92_korean_romanized": "죽어가는 길리두A",
+   "markers": [
+    [
+     78571.0,
+     -80509.0,
+     -4366.0
+    ],
+    [
+     80151.0,
+     -81627.0,
+     -4438.0
+    ],
+    [
+     77304.0,
+     -82338.0,
+     -4289.0
+    ],
+    [
+     78547.0,
+     -82486.0,
+     -4386.0
+    ],
+    [
+     77636.0,
+     -81261.0,
+     -4321.0
+    ],
+    [
+     76698.0,
+     -80036.0,
+     -4236.0
+    ],
+    [
+     80125.0,
+     -80669.0,
+     -4370.0
+    ],
+    [
+     77939.0,
+     -80390.0,
+     -4327.0
+    ],
+    [
+     75655.0,
+     -80676.0,
+     -4156.0
+    ],
+    [
+     79557.0,
+     -80849.0,
+     -4369.0
+    ],
+    [
+     78975.0,
+     -81332.0,
+     -4401.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300931",
+   "n_markers": 37,
+   "region_prefix": "13",
+   "v17_name": "Ghilliedhu",
+   "v17_title": "",
+   "v31_english_name": "Ghilliedhu",
+   "v31_english_title": "",
+   "v92_stale_english": "Ghilliedhu",
+   "v92_korean_npcdata": "죽어가는 길리두B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 59,
+   "rename": false,
+   "marker_centroid": [
+    83635.6,
+    -84420.0
+   ],
+   "first_marker": [
+    85045.0,
+    -83575.0,
+    -4664.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "죽어가는 길리두B",
+   "markers": [
+    [
+     85045.0,
+     -83575.0,
+     -4664.0
+    ],
+    [
+     83053.0,
+     -87554.0,
+     -4678.0
+    ],
+    [
+     81983.0,
+     -87825.0,
+     -4714.0
+    ],
+    [
+     80545.0,
+     -87635.0,
+     -4703.0
+    ],
+    [
+     84394.0,
+     -86941.0,
+     -4645.0
+    ],
+    [
+     82554.0,
+     -86005.0,
+     -4754.0
+    ],
+    [
+     82892.0,
+     -88651.0,
+     -4740.0
+    ],
+    [
+     84168.0,
+     -86144.0,
+     -4720.0
+    ],
+    [
+     83201.0,
+     -82561.0,
+     -4568.0
+    ],
+    [
+     83319.0,
+     -80328.0,
+     -4548.0
+    ],
+    [
+     84288.0,
+     -80399.0,
+     -4486.0
+    ],
+    [
+     84461.0,
+     -82325.0,
+     -4555.0
+    ],
+    [
+     85414.0,
+     -81947.0,
+     -4538.0
+    ],
+    [
+     86009.0,
+     -82379.0,
+     -4578.0
+    ],
+    [
+     81685.0,
+     -86400.0,
+     -4735.0
+    ],
+    [
+     81449.0,
+     -87147.0,
+     -4710.0
+    ],
+    [
+     83316.0,
+     -81461.0,
+     -4563.0
+    ],
+    [
+     81894.0,
+     -80097.0,
+     -4517.0
+    ],
+    [
+     81733.0,
+     -82335.0,
+     -4543.0
+    ],
+    [
+     82140.0,
+     -81200.0,
+     -4499.0
+    ],
+    [
+     83270.0,
+     -85432.0,
+     -4750.0
+    ],
+    [
+     83924.0,
+     -84292.0,
+     -4685.0
+    ],
+    [
+     83647.0,
+     -83559.0,
+     -4617.0
+    ],
+    [
+     85345.0,
+     -84526.0,
+     -4722.0
+    ],
+    [
+     83820.0,
+     -87396.0,
+     -4684.0
+    ],
+    [
+     84638.0,
+     -87780.0,
+     -4690.0
+    ],
+    [
+     81652.0,
+     -85552.0,
+     -4727.0
+    ],
+    [
+     82689.0,
+     -79546.0,
+     -4531.0
+    ],
+    [
+     81519.0,
+     -79273.0,
+     -4437.0
+    ],
+    [
+     85620.0,
+     -85818.0,
+     -4661.0
+    ],
+    [
+     86501.0,
+     -83082.0,
+     -4633.0
+    ],
+    [
+     85160.0,
+     -81205.0,
+     -4505.0
+    ],
+    [
+     83534.0,
+     -89005.0,
+     -4724.0
+    ],
+    [
+     84270.0,
+     -88540.0,
+     -4669.0
+    ],
+    [
+     85534.0,
+     -86792.0,
+     -4684.0
+    ],
+    [
+     83862.0,
+     -84963.0,
+     -4697.0
+    ],
+    [
+     85989.0,
+     -83871.0,
+     -4692.0
+    ]
+   ],
+   "baseline_pos_agreement": 153.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300932",
+   "n_markers": 16,
+   "region_prefix": "13",
+   "v17_name": "Horned Ghilliedhu",
+   "v17_title": "",
+   "v31_english_name": "Horned Ghilliedhu",
+   "v31_english_title": "",
+   "v92_stale_english": "Horned Ghilliedhu",
+   "v92_korean_npcdata": "썩어가는 길리두A",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 18,
+   "rename": false,
+   "marker_centroid": [
+    68308.2,
+    -84686.6
+   ],
+   "first_marker": [
+    68562.0,
+    -85944.0,
+    -3602.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "썩어가는 길리두A",
+   "markers": [
+    [
+     68562.0,
+     -85944.0,
+     -3602.0
+    ],
+    [
+     66670.0,
+     -82937.0,
+     -3515.0
+    ],
+    [
+     67315.0,
+     -83358.0,
+     -3553.0
+    ],
+    [
+     67926.0,
+     -84049.0,
+     -3599.0
+    ],
+    [
+     67673.0,
+     -85672.0,
+     -3658.0
+    ],
+    [
+     69336.0,
+     -85122.0,
+     -3642.0
+    ],
+    [
+     68814.0,
+     -84353.0,
+     -3546.0
+    ],
+    [
+     67949.0,
+     -86361.0,
+     -3500.0
+    ],
+    [
+     72604.0,
+     -86265.0,
+     -3852.0
+    ],
+    [
+     72658.0,
+     -85602.0,
+     -3900.0
+    ],
+    [
+     70567.0,
+     -85782.0,
+     -3668.0
+    ],
+    [
+     68247.0,
+     -83487.0,
+     -3485.0
+    ],
+    [
+     64920.0,
+     -83611.0,
+     -3811.0
+    ],
+    [
+     66669.0,
+     -83909.0,
+     -3631.0
+    ],
+    [
+     65971.0,
+     -83998.0,
+     -3702.0
+    ],
+    [
+     67050.0,
+     -84536.0,
+     -3649.0
+    ]
+   ],
+   "baseline_pos_agreement": 109941.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300933",
+   "n_markers": 11,
+   "region_prefix": "13",
+   "v17_name": "Hardened Ghilliedhu",
+   "v17_title": "",
+   "v31_english_name": "Hardened Ghilliedhu",
+   "v31_english_title": "",
+   "v92_stale_english": "Hardened Ghilliedhu",
+   "v92_korean_npcdata": "썩어가는 길리두B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    77094.4,
+    -81345.8
+   ],
+   "first_marker": [
+    78275.0,
+    -81309.0,
+    -4386.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": true,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [
+    [
+     "1324",
+     "missing_mob",
+     "Rotting Ghillie Dhu B"
+    ]
+   ],
+   "v92_korean_romanized": "썩어가는 길리두B",
+   "markers": [
+    [
+     78275.0,
+     -81309.0,
+     -4386.0
+    ],
+    [
+     75606.0,
+     -81644.0,
+     -4004.0
+    ],
+    [
+     75935.0,
+     -79713.0,
+     -4197.0
+    ],
+    [
+     75229.0,
+     -80401.0,
+     -4098.0
+    ],
+    [
+     79176.0,
+     -80540.0,
+     -4374.0
+    ],
+    [
+     77416.0,
+     -80283.0,
+     -4264.0
+    ],
+    [
+     76486.0,
+     -82588.0,
+     -4148.0
+    ],
+    [
+     76701.0,
+     -81559.0,
+     -4201.0
+    ],
+    [
+     75848.0,
+     -82788.0,
+     -3933.0
+    ],
+    [
+     77909.0,
+     -82319.0,
+     -4352.0
+    ],
+    [
+     79457.0,
+     -81660.0,
+     -4405.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300941",
+   "n_markers": 17,
+   "region_prefix": "13",
+   "v17_name": "Terron",
+   "v17_title": "",
+   "v31_english_name": "Terron",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron",
+   "v92_korean_npcdata": "자연의 정령 테론B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    79568.3,
+    -84880.1
+   ],
+   "first_marker": [
+    79848.0,
+    -83405.0,
+    -4501.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "NEW-CANDIDATE",
+   "quest_refs": [
+    [
+     "1319",
+     "missing_mob",
+     "Nature Spirit Theron B"
+    ]
+   ],
+   "v92_korean_romanized": "Nature Spirit Theron B",
+   "markers": [
+    [
+     79848.0,
+     -83405.0,
+     -4501.0
+    ],
+    [
+     79151.0,
+     -82716.0,
+     -4431.0
+    ],
+    [
+     78481.0,
+     -83415.0,
+     -4388.0
+    ],
+    [
+     78279.0,
+     -85524.0,
+     -4580.0
+    ],
+    [
+     80130.0,
+     -85184.0,
+     -4719.0
+    ],
+    [
+     79610.0,
+     -86051.0,
+     -4696.0
+    ],
+    [
+     79134.0,
+     -85193.0,
+     -4701.0
+    ],
+    [
+     79717.0,
+     -84393.0,
+     -4613.0
+    ],
+    [
+     77901.0,
+     -84702.0,
+     -4540.0
+    ],
+    [
+     80973.0,
+     -86006.0,
+     -4741.0
+    ],
+    [
+     80211.0,
+     -86552.0,
+     -4726.0
+    ],
+    [
+     78668.0,
+     -84378.0,
+     -4583.0
+    ],
+    [
+     80849.0,
+     -82845.0,
+     -4515.0
+    ],
+    [
+     79448.0,
+     -86803.0,
+     -4703.0
+    ],
+    [
+     80078.0,
+     -82567.0,
+     -4502.0
+    ],
+    [
+     80363.0,
+     -85818.0,
+     -4734.0
+    ],
+    [
+     79820.0,
+     -87410.0,
+     -4675.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300942",
+   "n_markers": 21,
+   "region_prefix": "13",
+   "v17_name": "Terron Thrall",
+   "v17_title": "",
+   "v31_english_name": "Terron Thrall",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron Thrall",
+   "v92_korean_npcdata": "타락한 자연의 정령 테론A",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 30,
+   "rename": false,
+   "marker_centroid": [
+    49691.7,
+    -71275.1
+   ],
+   "first_marker": [
+    52060.0,
+    -72453.0,
+    -5695.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "타락한 자연의 정령 테론A",
+   "markers": [
+    [
+     52060.0,
+     -72453.0,
+     -5695.0
+    ],
+    [
+     50910.0,
+     -72501.0,
+     -5716.0
+    ],
+    [
+     50294.0,
+     -71659.0,
+     -5838.0
+    ],
+    [
+     49193.0,
+     -70944.0,
+     -5848.0
+    ],
+    [
+     49230.0,
+     -70968.0,
+     -5848.0
+    ],
+    [
+     49167.0,
+     -70894.0,
+     -5849.0
+    ],
+    [
+     49281.0,
+     -70975.0,
+     -5849.0
+    ],
+    [
+     49142.0,
+     -70847.0,
+     -5849.0
+    ],
+    [
+     49328.0,
+     -70978.0,
+     -5850.0
+    ],
+    [
+     49267.0,
+     -70941.0,
+     -5851.0
+    ],
+    [
+     49234.0,
+     -70911.0,
+     -5851.0
+    ],
+    [
+     49209.0,
+     -70874.0,
+     -5852.0
+    ],
+    [
+     49188.0,
+     -70827.0,
+     -5852.0
+    ],
+    [
+     49288.0,
+     -71011.0,
+     -5847.0
+    ],
+    [
+     49250.0,
+     -71008.0,
+     -5846.0
+    ],
+    [
+     49831.0,
+     -69498.0,
+     -5833.0
+    ],
+    [
+     49468.0,
+     -72270.0,
+     -5733.0
+    ],
+    [
+     48488.0,
+     -72672.0,
+     -5541.0
+    ],
+    [
+     50224.0,
+     -70691.0,
+     -5874.0
+    ],
+    [
+     48396.0,
+     -70965.0,
+     -5771.0
+    ],
+    [
+     53077.0,
+     -72891.0,
+     -5572.0
+    ]
+   ],
+   "baseline_pos_agreement": 3104.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300943",
+   "n_markers": 10,
+   "region_prefix": "13",
+   "v17_name": "Terron Saboteur",
+   "v17_title": "",
+   "v31_english_name": "Terron Saboteur",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron Saboteur",
+   "v92_korean_npcdata": "타락한 자연의 정령 테론B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    65732.8,
+    -70445.9
+   ],
+   "first_marker": [
+    65276.0,
+    -67833.0,
+    -4049.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [],
+   "v92_korean_romanized": "타락한 자연의 정령 테론B",
+   "markers": [
+    [
+     65276.0,
+     -67833.0,
+     -4049.0
+    ],
+    [
+     66340.0,
+     -71284.0,
+     -3581.0
+    ],
+    [
+     65354.0,
+     -69856.0,
+     -3776.0
+    ],
+    [
+     65204.0,
+     -68823.0,
+     -3941.0
+    ],
+    [
+     64221.0,
+     -68072.0,
+     -4100.0
+    ],
+    [
+     64138.0,
+     -70429.0,
+     -3747.0
+    ],
+    [
+     66749.0,
+     -72128.0,
+     -3476.0
+    ],
+    [
+     67298.0,
+     -72689.0,
+     -3387.0
+    ],
+    [
+     64807.0,
+     -71123.0,
+     -3603.0
+    ],
+    [
+     67941.0,
+     -72222.0,
+     -3322.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300944",
+   "n_markers": 17,
+   "region_prefix": "13",
+   "v17_name": "Terron Chief",
+   "v17_title": "",
+   "v31_english_name": "Terron Chief",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron Chief",
+   "v92_korean_npcdata": "자연의 정령 테론 대장",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    79568.3,
+    -84880.1
+   ],
+   "first_marker": [
+    79848.0,
+    -83405.0,
+    -4501.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "NEW-CANDIDATE",
+   "quest_refs": [
+    [
+     "1319",
+     "missing_mob",
+     "Nature Spirit Theron Chief"
+    ]
+   ],
+   "v92_korean_romanized": "Nature Spirit Theron Chief",
+   "markers": [
+    [
+     79848.0,
+     -83405.0,
+     -4501.0
+    ],
+    [
+     79151.0,
+     -82716.0,
+     -4431.0
+    ],
+    [
+     78481.0,
+     -83415.0,
+     -4388.0
+    ],
+    [
+     78279.0,
+     -85524.0,
+     -4580.0
+    ],
+    [
+     80130.0,
+     -85184.0,
+     -4719.0
+    ],
+    [
+     79610.0,
+     -86051.0,
+     -4696.0
+    ],
+    [
+     79134.0,
+     -85193.0,
+     -4701.0
+    ],
+    [
+     79717.0,
+     -84393.0,
+     -4613.0
+    ],
+    [
+     77901.0,
+     -84702.0,
+     -4540.0
+    ],
+    [
+     80973.0,
+     -86006.0,
+     -4741.0
+    ],
+    [
+     80211.0,
+     -86552.0,
+     -4726.0
+    ],
+    [
+     78668.0,
+     -84378.0,
+     -4583.0
+    ],
+    [
+     80849.0,
+     -82845.0,
+     -4515.0
+    ],
+    [
+     79448.0,
+     -86803.0,
+     -4703.0
+    ],
+    [
+     80078.0,
+     -82567.0,
+     -4502.0
+    ],
+    [
+     80363.0,
+     -85818.0,
+     -4734.0
+    ],
+    [
+     79820.0,
+     -87410.0,
+     -4675.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300945",
+   "n_markers": 10,
+   "region_prefix": "13",
+   "v17_name": "Terron Lama",
+   "v17_title": "",
+   "v31_english_name": "Terron Lama",
+   "v31_english_title": "",
+   "v92_stale_english": "Terron Lama",
+   "v92_korean_npcdata": "타락한 자연의 정령 테론 대장",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    65732.8,
+    -70445.9
+   ],
+   "first_marker": [
+    65276.0,
+    -67833.0,
+    -4049.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "PLANNED-MOB",
+   "quest_refs": [],
+   "v92_korean_romanized": "타락한 자연의 정령 테론 대장",
+   "markers": [
+    [
+     65276.0,
+     -67833.0,
+     -4049.0
+    ],
+    [
+     66340.0,
+     -71284.0,
+     -3581.0
+    ],
+    [
+     65354.0,
+     -69856.0,
+     -3776.0
+    ],
+    [
+     65204.0,
+     -68823.0,
+     -3941.0
+    ],
+    [
+     64221.0,
+     -68072.0,
+     -4100.0
+    ],
+    [
+     64138.0,
+     -70429.0,
+     -3747.0
+    ],
+    [
+     66749.0,
+     -72128.0,
+     -3476.0
+    ],
+    [
+     67298.0,
+     -72689.0,
+     -3387.0
+    ],
+    [
+     64807.0,
+     -71123.0,
+     -3603.0
+    ],
+    [
+     67941.0,
+     -72222.0,
+     -3322.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "13",
+   "templateId": "300951",
+   "n_markers": 9,
+   "region_prefix": "13",
+   "v17_name": "Dark Raider",
+   "v17_title": "",
+   "v31_english_name": "Dark Raider",
+   "v31_english_title": "",
+   "v92_stale_english": "Dark Raider",
+   "v92_korean_npcdata": "어둠의 습격자",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 9,
+   "rename": false,
+   "marker_centroid": [
+    50796.3,
+    -66702.1
+   ],
+   "first_marker": [
+    51633.0,
+    -67265.0,
+    -5588.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "어둠의 습격자",
+   "markers": [
+    [
+     51633.0,
+     -67265.0,
+     -5588.0
+    ],
+    [
+     49882.0,
+     -66460.0,
+     -5524.0
+    ],
+    [
+     52661.0,
+     -65616.0,
+     -5455.0
+    ],
+    [
+     51375.0,
+     -68301.0,
+     -5664.0
+    ],
+    [
+     48719.0,
+     -66828.0,
+     -5432.0
+    ],
+    [
+     51639.0,
+     -66118.0,
+     -5492.0
+    ],
+    [
+     50940.0,
+     -66736.0,
+     -5552.0
+    ],
+    [
+     50470.0,
+     -65352.0,
+     -5378.0
+    ],
+    [
+     49848.0,
+     -67643.0,
+     -5626.0
+    ]
+   ],
+   "baseline_pos_agreement": 1927.0
+  },
+  {
+   "hz": "13",
+   "templateId": "300960",
+   "n_markers": 20,
+   "region_prefix": "13",
+   "v17_name": "Devoted Ebon Imp",
+   "v17_title": "",
+   "v31_english_name": "Devoted Ebon Imp",
+   "v31_english_title": "",
+   "v92_stale_english": "Devoted Ebon Imp",
+   "v92_korean_npcdata": "검은 약탈자",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 28,
+   "rename": false,
+   "marker_centroid": [
+    50292.7,
+    -66630.1
+   ],
+   "first_marker": [
+    51633.0,
+    -67265.0,
+    -5588.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": true,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "검은 약탈자",
+   "markers": [
+    [
+     51633.0,
+     -67265.0,
+     -5588.0
+    ],
+    [
+     49887.0,
+     -66517.0,
+     -5530.0
+    ],
+    [
+     49848.0,
+     -66524.0,
+     -5529.0
+    ],
+    [
+     49939.0,
+     -66526.0,
+     -5532.0
+    ],
+    [
+     49806.0,
+     -66532.0,
+     -5528.0
+    ],
+    [
+     49987.0,
+     -66538.0,
+     -5534.0
+    ],
+    [
+     49768.0,
+     -66574.0,
+     -5530.0
+    ],
+    [
+     49815.0,
+     -66588.0,
+     -5533.0
+    ],
+    [
+     49857.0,
+     -66565.0,
+     -5533.0
+    ],
+    [
+     49911.0,
+     -66572.0,
+     -5536.0
+    ],
+    [
+     49962.0,
+     -66586.0,
+     -5537.0
+    ],
+    [
+     50014.0,
+     -66598.0,
+     -5538.0
+    ],
+    [
+     49774.0,
+     -66623.0,
+     -5535.0
+    ],
+    [
+     52661.0,
+     -65616.0,
+     -5455.0
+    ],
+    [
+     51375.0,
+     -68301.0,
+     -5664.0
+    ],
+    [
+     48719.0,
+     -66828.0,
+     -5432.0
+    ],
+    [
+     51639.0,
+     -66118.0,
+     -5492.0
+    ],
+    [
+     50940.0,
+     -66736.0,
+     -5552.0
+    ],
+    [
+     50470.0,
+     -65352.0,
+     -5378.0
+    ],
+    [
+     49848.0,
+     -67643.0,
+     -5626.0
+    ]
+   ],
+   "baseline_pos_agreement": 1750.0
+  },
+  {
+   "hz": "13",
+   "templateId": "301191",
+   "n_markers": 14,
+   "region_prefix": "13",
+   "v17_name": "Stonebeak Raider",
+   "v17_title": "",
+   "v31_english_name": "Stonebeak Raider",
+   "v31_english_title": "",
+   "v92_stale_english": "Stonebeak Raider",
+   "v92_korean_npcdata": "덤퍼칸 습격자B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 14,
+   "rename": false,
+   "marker_centroid": [
+    71023.7,
+    -75115.1
+   ],
+   "first_marker": [
+    72340.0,
+    -75898.0,
+    -2725.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "덤퍼칸 습격자B",
+   "markers": [
+    [
+     72340.0,
+     -75898.0,
+     -2725.0
+    ],
+    [
+     68563.0,
+     -75535.0,
+     -2772.0
+    ],
+    [
+     71553.0,
+     -75070.0,
+     -2779.0
+    ],
+    [
+     71670.0,
+     -74164.0,
+     -2921.0
+    ],
+    [
+     70589.0,
+     -73220.0,
+     -3005.0
+    ],
+    [
+     70010.0,
+     -74012.0,
+     -2946.0
+    ],
+    [
+     68777.0,
+     -73520.0,
+     -3050.0
+    ],
+    [
+     73029.0,
+     -77748.0,
+     -2744.0
+    ],
+    [
+     72910.0,
+     -76684.0,
+     -2756.0
+    ],
+    [
+     73210.0,
+     -75343.0,
+     -2808.0
+    ],
+    [
+     73932.0,
+     -76370.0,
+     -2687.0
+    ],
+    [
+     69473.0,
+     -74995.0,
+     -2780.0
+    ],
+    [
+     70548.0,
+     -74897.0,
+     -2783.0
+    ],
+    [
+     67728.0,
+     -74156.0,
+     -3052.0
+    ]
+   ],
+   "baseline_pos_agreement": 104850.0
+  },
+  {
+   "hz": "13",
+   "templateId": "301193",
+   "n_markers": 14,
+   "region_prefix": "13",
+   "v17_name": "Stonebeak Brigand",
+   "v17_title": "",
+   "v31_english_name": "Stonebeak Brigand",
+   "v31_english_title": "",
+   "v92_stale_english": "Stonebeak Brigand",
+   "v92_korean_npcdata": "덤퍼칸 술사B",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 14,
+   "rename": false,
+   "marker_centroid": [
+    71023.7,
+    -75115.1
+   ],
+   "first_marker": [
+    72340.0,
+    -75898.0,
+    -2725.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "덤퍼칸 술사B",
+   "markers": [
+    [
+     72340.0,
+     -75898.0,
+     -2725.0
+    ],
+    [
+     68563.0,
+     -75535.0,
+     -2772.0
+    ],
+    [
+     71553.0,
+     -75070.0,
+     -2779.0
+    ],
+    [
+     71670.0,
+     -74164.0,
+     -2921.0
+    ],
+    [
+     70589.0,
+     -73220.0,
+     -3005.0
+    ],
+    [
+     70010.0,
+     -74012.0,
+     -2946.0
+    ],
+    [
+     68777.0,
+     -73520.0,
+     -3050.0
+    ],
+    [
+     73029.0,
+     -77748.0,
+     -2744.0
+    ],
+    [
+     72910.0,
+     -76684.0,
+     -2756.0
+    ],
+    [
+     73210.0,
+     -75343.0,
+     -2808.0
+    ],
+    [
+     73932.0,
+     -76370.0,
+     -2687.0
+    ],
+    [
+     69473.0,
+     -74995.0,
+     -2780.0
+    ],
+    [
+     70548.0,
+     -74897.0,
+     -2783.0
+    ],
+    [
+     67728.0,
+     -74156.0,
+     -3052.0
+    ]
+   ],
+   "baseline_pos_agreement": 104850.0
+  },
+  {
+   "hz": "13",
+   "templateId": "301194",
+   "n_markers": 14,
+   "region_prefix": "13",
+   "v17_name": "Stonebeak Highcrest",
+   "v17_title": "",
+   "v31_english_name": "Stonebeak Highcrest",
+   "v31_english_title": "",
+   "v92_stale_english": "Stonebeak Highcrest",
+   "v92_korean_npcdata": "덤퍼칸 습격자 대장",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 14,
+   "rename": false,
+   "marker_centroid": [
+    71023.7,
+    -75115.1
+   ],
+   "first_marker": [
+    72340.0,
+    -75898.0,
+    -2725.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "덤퍼칸 습격자 대장",
+   "markers": [
+    [
+     72340.0,
+     -75898.0,
+     -2725.0
+    ],
+    [
+     68563.0,
+     -75535.0,
+     -2772.0
+    ],
+    [
+     71553.0,
+     -75070.0,
+     -2779.0
+    ],
+    [
+     71670.0,
+     -74164.0,
+     -2921.0
+    ],
+    [
+     70589.0,
+     -73220.0,
+     -3005.0
+    ],
+    [
+     70010.0,
+     -74012.0,
+     -2946.0
+    ],
+    [
+     68777.0,
+     -73520.0,
+     -3050.0
+    ],
+    [
+     73029.0,
+     -77748.0,
+     -2744.0
+    ],
+    [
+     72910.0,
+     -76684.0,
+     -2756.0
+    ],
+    [
+     73210.0,
+     -75343.0,
+     -2808.0
+    ],
+    [
+     73932.0,
+     -76370.0,
+     -2687.0
+    ],
+    [
+     69473.0,
+     -74995.0,
+     -2780.0
+    ],
+    [
+     70548.0,
+     -74897.0,
+     -2783.0
+    ],
+    [
+     67728.0,
+     -74156.0,
+     -3052.0
+    ]
+   ],
+   "baseline_pos_agreement": 104850.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1001",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Adria",
+   "v17_title": "Tribune",
+   "v31_english_name": "Adria",
+   "v31_english_title": "Tribune",
+   "v92_stale_english": "Adria",
+   "v92_korean_npcdata": "율리아",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    69131.0,
+    -79323.0
+   ],
+   "first_marker": [
+    69131.0,
+    -79323.0,
+    -2580.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1328",
+     "giver",
+     "파견장교 율리아"
+    ],
+    [
+     "1335",
+     "giver",
+     "파견장교 율리아"
+    ]
+   ],
+   "v92_korean_romanized": "Yulia",
+   "markers": [
+    [
+     69131.0,
+     -79323.0,
+     -2580.0
+    ]
+   ],
+   "baseline_pos_agreement": 145.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1003",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Kerson",
+   "v17_title": "Banker",
+   "v31_english_name": "Kerson",
+   "v31_english_title": "Banker",
+   "v92_stale_english": "Kerson",
+   "v92_korean_npcdata": "케롱",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    66933.0,
+    -80063.0
+   ],
+   "first_marker": [
+    66933.0,
+    -80063.0,
+    -3002.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Kerong",
+   "markers": [
+    [
+     66933.0,
+     -80063.0,
+     -3002.0
+    ]
+   ],
+   "baseline_pos_agreement": 17.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1005",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Rutgar",
+   "v17_title": "Merchant",
+   "v31_english_name": "Rutgar",
+   "v31_english_title": "Merchant",
+   "v92_stale_english": "Rutgar",
+   "v92_korean_npcdata": "코헨",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    67560.0,
+    -80128.0
+   ],
+   "first_marker": [
+    67560.0,
+    -80128.0,
+    -3018.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Kohen",
+   "markers": [
+    [
+     67560.0,
+     -80128.0,
+     -3018.0
+    ]
+   ],
+   "baseline_pos_agreement": 87.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1006",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Jhon",
+   "v17_title": "Adjutant",
+   "v31_english_name": "Jorhon",
+   "v31_english_title": "Adjutant",
+   "v92_stale_english": "Jorhon",
+   "v92_korean_npcdata": "이안",
+   "rename_english": true,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": true,
+   "marker_centroid": [
+    69094.0,
+    -79230.0
+   ],
+   "first_marker": [
+    69094.0,
+    -79230.0,
+    -2569.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1345",
+     "giver",
+     "부관 이안"
+    ],
+    [
+     "1346",
+     "receiver",
+     "부관 이안"
+    ],
+    [
+     "1351",
+     "giver",
+     "부관 이안"
+    ],
+    [
+     "1352",
+     "giver",
+     "부관 이안"
+    ],
+    [
+     "1386",
+     "giver",
+     "부관 이안"
+    ],
+    [
+     "1386",
+     "receiver",
+     "부관 이안"
+    ]
+   ],
+   "v92_korean_romanized": "Ian",
+   "markers": [
+    [
+     69094.0,
+     -79230.0,
+     -2569.0
+    ]
+   ],
+   "baseline_pos_agreement": 148.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1007",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Gurney",
+   "v17_title": "Tactics Instructor",
+   "v31_english_name": "Gurney",
+   "v31_english_title": "Tactics Instructor",
+   "v92_stale_english": "Gurney",
+   "v92_korean_npcdata": "알리오스 렌더스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    66913.0,
+    -79107.0
+   ],
+   "first_marker": [
+    66913.0,
+    -79107.0,
+    -2965.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Alios Renders",
+   "markers": [
+    [
+     66913.0,
+     -79107.0,
+     -2965.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1008",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Charise",
+   "v17_title": "Magic Instructor",
+   "v31_english_name": "Charise",
+   "v31_english_title": "Magic Instructor",
+   "v92_stale_english": "Charise",
+   "v92_korean_npcdata": "에이어린 필루스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    66865.0,
+    -78758.0
+   ],
+   "first_marker": [
+    66865.0,
+    -78758.0,
+    -2960.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Eiyerin Pilus",
+   "markers": [
+    [
+     66865.0,
+     -78758.0,
+     -2960.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1009",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Teil",
+   "v17_title": "Councilor",
+   "v31_english_name": "Teil",
+   "v31_english_title": "Councilor",
+   "v92_stale_english": "Teil",
+   "v92_korean_npcdata": "프란츠 테일",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    69798.0,
+    -78429.0
+   ],
+   "first_marker": [
+    69798.0,
+    -78429.0,
+    -2312.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1310",
+     "receiver",
+     "파견 사무관 프란츠 테일"
+    ]
+   ],
+   "v92_korean_romanized": "Franz Teil",
+   "markers": [
+    [
+     69798.0,
+     -78429.0,
+     -2312.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1023",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Jirash",
+   "v17_title": "Guard",
+   "v31_english_name": "Jirash",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Jirash",
+   "v92_korean_npcdata": "미카엘",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    67066.0,
+    -80470.0
+   ],
+   "first_marker": [
+    67066.0,
+    -80470.0,
+    -3003.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1326",
+     "giver",
+     "경비병 미카엘"
+    ],
+    [
+     "1326",
+     "receiver",
+     "경비병 미카엘"
+    ]
+   ],
+   "v92_korean_romanized": "Michael",
+   "markers": [
+    [
+     67066.0,
+     -80470.0,
+     -3003.0
+    ]
+   ],
+   "baseline_pos_agreement": 1151.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1028",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Taras",
+   "v17_title": "Guard",
+   "v31_english_name": "Taras",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Taras",
+   "v92_korean_npcdata": "자키",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    67586.0,
+    -81234.0
+   ],
+   "first_marker": [
+    67586.0,
+    -81234.0,
+    -3123.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1330",
+     "giver",
+     "경비병 자키"
+    ],
+    [
+     "1330",
+     "receiver",
+     "경비병 자키"
+    ]
+   ],
+   "v92_korean_romanized": "Jaki",
+   "markers": [
+    [
+     67586.0,
+     -81234.0,
+     -3123.0
+    ]
+   ],
+   "baseline_pos_agreement": 622.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1029",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Kiriya",
+   "v17_title": "Guard",
+   "v31_english_name": "Kiriya",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Kiriya",
+   "v92_korean_npcdata": "리키아",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    67882.0,
+    -78792.0
+   ],
+   "first_marker": [
+    67882.0,
+    -78792.0,
+    -2781.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Rikia",
+   "markers": [
+    [
+     67882.0,
+     -78792.0,
+     -2781.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1033",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Bipi",
+   "v17_title": "Guard",
+   "v31_english_name": "Bipi",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Bipi",
+   "v92_korean_npcdata": "체르네",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    66979.0,
+    -75261.0
+   ],
+   "first_marker": [
+    66979.0,
+    -75261.0,
+    -2987.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Cherne",
+   "markers": [
+    [
+     66979.0,
+     -75261.0,
+     -2987.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1042",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Jairus",
+   "v17_title": "Researcher",
+   "v31_english_name": "Jairus",
+   "v31_english_title": "Researcher",
+   "v92_stale_english": "Jairus",
+   "v92_korean_npcdata": "제레미아",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    69321.0,
+    -79355.0
+   ],
+   "first_marker": [
+    69321.0,
+    -79355.0,
+    -2567.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1328",
+     "receiver",
+     "연구원 제레미아"
+    ]
+   ],
+   "v92_korean_romanized": "Jeremia",
+   "markers": [
+    [
+     69321.0,
+     -79355.0,
+     -2567.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1048",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Lilni",
+   "v17_title": "Gathering Guide",
+   "v31_english_name": "Lilni",
+   "v31_english_title": "Gathering Guide",
+   "v92_stale_english": "Lilni",
+   "v92_korean_npcdata": "릴리나",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    70388.0,
+    -81516.0
+   ],
+   "first_marker": [
+    70388.0,
+    -81516.0,
+    -3083.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1351",
+     "receiver",
+     "채집안내인 릴리나"
+    ],
+    [
+     "1352",
+     "receiver",
+     "채집안내인 릴리나"
+    ]
+   ],
+   "v92_korean_romanized": "Lilina",
+   "markers": [
+    [
+     70388.0,
+     -81516.0,
+     -3083.0
+    ]
+   ],
+   "baseline_pos_agreement": 5076.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1049",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Milene",
+   "v17_title": "Rest Guide",
+   "v31_english_name": "Milene",
+   "v31_english_title": "Rest Guide",
+   "v92_stale_english": "Milene",
+   "v92_korean_npcdata": "아르테미스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    68287.0,
+    -81659.0
+   ],
+   "first_marker": [
+    68287.0,
+    -81659.0,
+    -3138.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1385",
+     "giver",
+     "휴식 안내인 아르테미스"
+    ],
+    [
+     "1385",
+     "receiver",
+     "휴식 안내인 아르테미스"
+    ]
+   ],
+   "v92_korean_romanized": "Artemis",
+   "markers": [
+    [
+     68287.0,
+     -81659.0,
+     -3138.0
+    ]
+   ],
+   "baseline_pos_agreement": 1912.0
+  },
+  {
+   "hz": "64",
+   "templateId": "1050",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Hermaiorni",
+   "v17_title": "Teleport Master",
+   "v31_english_name": "Teleportal",
+   "v31_english_title": "",
+   "v92_stale_english": "Tainted Gorge Teleportal",
+   "v92_korean_npcdata": "사냥터 이동 마법석 허마이오니 엘린",
+   "rename_english": true,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": true,
+   "marker_centroid": [
+    67183.0,
+    -79444.0
+   ],
+   "first_marker": [
+    67183.0,
+    -79444.0,
+    -2967.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1345",
+     "receiver",
+     "사냥터 이동 관리인 하만"
+    ],
+    [
+     "1346",
+     "giver",
+     "사냥터 이동 관리인 하만"
+    ]
+   ],
+   "v92_korean_romanized": "Teleport Stone (Hermaione Elin)",
+   "markers": [
+    [
+     67183.0,
+     -79444.0,
+     -2967.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1001",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Taleb",
+   "v17_title": "Legate",
+   "v31_english_name": "Taleb",
+   "v31_english_title": "Legate",
+   "v92_stale_english": "Taleb",
+   "v92_korean_npcdata": "알버트",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    70732.0,
+    -70319.0
+   ],
+   "first_marker": [
+    70732.0,
+    -70319.0,
+    -3473.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Albert",
+   "markers": [
+    [
+     70732.0,
+     -70319.0,
+     -3473.0
+    ]
+   ],
+   "baseline_pos_agreement": 5905.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1003",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Kishale",
+   "v17_title": "Centurion",
+   "v31_english_name": "Kishale",
+   "v31_english_title": "Centurion",
+   "v92_stale_english": "Kishale",
+   "v92_korean_npcdata": "케이샤",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    86946.0,
+    -85114.0
+   ],
+   "first_marker": [
+    86946.0,
+    -85114.0,
+    -4610.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1321",
+     "receiver",
+     "하사관 케이샤"
+    ],
+    [
+     "1323",
+     "giver",
+     "하사관 케이샤"
+    ],
+    [
+     "1322",
+     "giver",
+     "하사관 케이샤"
+    ],
+    [
+     "1322",
+     "receiver",
+     "하사관 케이샤"
+    ]
+   ],
+   "v92_korean_romanized": "Keisha",
+   "markers": [
+    [
+     86946.0,
+     -85114.0,
+     -4610.0
+    ]
+   ],
+   "baseline_pos_agreement": 33.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1004",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Neziir",
+   "v17_title": "Centurion",
+   "v31_english_name": "Neziir",
+   "v31_english_title": "Centurion",
+   "v92_stale_english": "Neziir",
+   "v92_korean_npcdata": "조칸",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    73637.0,
+    -83127.0
+   ],
+   "first_marker": [
+    73637.0,
+    -83127.0,
+    -3532.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1318",
+     "receiver",
+     "하사관 조칸"
+    ]
+   ],
+   "v92_korean_romanized": "Jokan",
+   "markers": [
+    [
+     73637.0,
+     -83127.0,
+     -3532.0
+    ]
+   ],
+   "baseline_pos_agreement": 614.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1005",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Phaedra",
+   "v17_title": "Outrider",
+   "v31_english_name": "Phaedra",
+   "v31_english_title": "Outrider",
+   "v92_stale_english": "Phaedra",
+   "v92_korean_npcdata": "티아레스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "true",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    56203.0,
+    -67019.0
+   ],
+   "first_marker": [
+    56203.0,
+    -67019.0,
+    -5383.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Tiares",
+   "markers": [
+    [
+     56203.0,
+     -67019.0,
+     -5383.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1007",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Chione",
+   "v17_title": "Courier",
+   "v31_english_name": "Chione",
+   "v31_english_title": "Courier",
+   "v92_stale_english": "Chione",
+   "v92_korean_npcdata": "키오네",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    66001.0,
+    -70382.0
+   ],
+   "first_marker": [
+    66001.0,
+    -70382.0,
+    -3664.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1335",
+     "receiver",
+     "연락선 조종사 키오네"
+    ],
+    [
+     "1337",
+     "giver",
+     "연락선 조종사 키오네"
+    ],
+    [
+     "1337",
+     "receiver",
+     "연락선 조종사 키오네"
+    ],
+    [
+     "1338",
+     "giver",
+     "연락선 조종사 키오네"
+    ],
+    [
+     "1336",
+     "giver",
+     "연락선 조종사 키오네"
+    ],
+    [
+     "1336",
+     "receiver",
+     "연락선 조종사 키오네"
+    ]
+   ],
+   "v92_korean_romanized": "Kione",
+   "markers": [
+    [
+     66001.0,
+     -70382.0,
+     -3664.0
+    ]
+   ],
+   "baseline_pos_agreement": 76.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1008",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Leander",
+   "v17_title": "Magister",
+   "v31_english_name": "Leander",
+   "v31_english_title": "Magister",
+   "v92_stale_english": "Leander",
+   "v92_korean_npcdata": "리안 쿠벨",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    55450.0,
+    -82640.0
+   ],
+   "first_marker": [
+    55450.0,
+    -82640.0,
+    -4238.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1306",
+     "giver",
+     "리안 쿠벨"
+    ],
+    [
+     "1307",
+     "giver",
+     "리안 쿠벨"
+    ],
+    [
+     "1307",
+     "receiver",
+     "리안 쿠벨"
+    ],
+    [
+     "1308",
+     "receiver",
+     "리안 쿠벨"
+    ],
+    [
+     "1310",
+     "giver",
+     "리안 쿠벨"
+    ]
+   ],
+   "v92_korean_romanized": "Rian Kubel",
+   "markers": [
+    [
+     55450.0,
+     -82640.0,
+     -4238.0
+    ]
+   ],
+   "baseline_pos_agreement": 13975.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1009",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Kamarnu",
+   "v17_title": "Assistant Researcher",
+   "v31_english_name": "Kamarnu",
+   "v31_english_title": "Assistant Researcher",
+   "v92_stale_english": "Kamarnu",
+   "v92_korean_npcdata": "라브람",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    63756.0,
+    -84169.0
+   ],
+   "first_marker": [
+    63756.0,
+    -84169.0,
+    -3806.0
+   ],
+   "in_six_npc_plan": true,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1332",
+     "giver",
+     null
+    ],
+    [
+     "1332",
+     "missing_npc",
+     "Rabram"
+    ]
+   ],
+   "v92_korean_romanized": "Rabram",
+   "markers": [
+    [
+     63756.0,
+     -84169.0,
+     -3806.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1014",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Lam",
+   "v17_title": "Legate",
+   "v31_english_name": "Lam",
+   "v31_english_title": "Legate",
+   "v92_stale_english": "Lam",
+   "v92_korean_npcdata": "램버트",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    91992.0,
+    -88225.0
+   ],
+   "first_marker": [
+    91992.0,
+    -88225.0,
+    -4566.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1302",
+     "giver",
+     "연락장교 램버트"
+    ]
+   ],
+   "v92_korean_romanized": "Lambert",
+   "markers": [
+    [
+     91992.0,
+     -88225.0,
+     -4566.0
+    ]
+   ],
+   "baseline_pos_agreement": 2457.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1015",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Teleportal",
+   "v17_title": "",
+   "v31_english_name": "Karascha's Lair Teleportal",
+   "v31_english_title": "",
+   "v92_stale_english": "Karascha's Lair Teleportal",
+   "v92_korean_npcdata": "악마의 마법석",
+   "rename_english": true,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": true,
+   "marker_centroid": [
+    58986.0,
+    -75320.0
+   ],
+   "first_marker": [
+    58986.0,
+    -75320.0,
+    -5726.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Demon Magic Stone",
+   "markers": [
+    [
+     58986.0,
+     -75320.0,
+     -5726.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1016",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Leiyane",
+   "v17_title": "Flight Master",
+   "v31_english_name": "Leiyane",
+   "v31_english_title": "Flight Manager",
+   "v92_stale_english": "Leiyane",
+   "v92_korean_npcdata": "레니아",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    70922.0,
+    -69956.0
+   ],
+   "first_marker": [
+    70922.0,
+    -69956.0,
+    -3336.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Lenia",
+   "markers": [
+    [
+     70922.0,
+     -69956.0,
+     -3336.0
+    ]
+   ],
+   "baseline_pos_agreement": 8.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1017",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Dulari",
+   "v17_title": "Researcher",
+   "v31_english_name": "Dulari",
+   "v31_english_title": "Researcher",
+   "v92_stale_english": "Dulari",
+   "v92_korean_npcdata": "카이몬",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    80798.0,
+    -81159.0
+   ],
+   "first_marker": [
+    80798.0,
+    -81159.0,
+    -4409.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1318",
+     "giver",
+     "연구원 카이몬"
+    ],
+    [
+     "1323",
+     "receiver",
+     "연구원 카이몬"
+    ],
+    [
+     "1327",
+     "giver",
+     "연구원 카이몬"
+    ],
+    [
+     "1324",
+     "giver",
+     "연구원 카이몬"
+    ],
+    [
+     "1324",
+     "receiver",
+     "연구원 카이몬"
+    ]
+   ],
+   "v92_korean_romanized": "Kaimon",
+   "markers": [
+    [
+     80798.0,
+     -81159.0,
+     -4409.0
+    ]
+   ],
+   "baseline_pos_agreement": 248.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1018",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Riel",
+   "v17_title": "Prefect",
+   "v31_english_name": "Riel",
+   "v31_english_title": "Prefect",
+   "v92_stale_english": "Riel",
+   "v92_korean_npcdata": "코렌",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    64416.0,
+    -65444.0
+   ],
+   "first_marker": [
+    64416.0,
+    -65444.0,
+    -4220.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "NEW-CANDIDATE",
+   "quest_refs": [],
+   "v92_korean_romanized": "Koren",
+   "markers": [
+    [
+     64416.0,
+     -65444.0,
+     -4220.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1020",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Priscus",
+   "v17_title": "Engine of Mischief Guide",
+   "v31_english_name": "Priscus",
+   "v31_english_title": "Engine of Mischief Guide",
+   "v92_stale_english": "Priscus",
+   "v92_korean_npcdata": "테온",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    55207.0,
+    -82087.0
+   ],
+   "first_marker": [
+    55207.0,
+    -82087.0,
+    -4196.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": true,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1389",
+     "giver",
+     null
+    ],
+    [
+     "1389",
+     "receiver",
+     null
+    ],
+    [
+     "1389",
+     "missing_npc",
+     "Theon"
+    ]
+   ],
+   "v92_korean_romanized": "Theon",
+   "markers": [
+    [
+     55207.0,
+     -82087.0,
+     -4196.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1021",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Eria",
+   "v17_title": "Arcanist",
+   "v31_english_name": "Eria",
+   "v31_english_title": "Arcanist",
+   "v92_stale_english": "Eria",
+   "v92_korean_npcdata": "에리아 엘린",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    55608.0,
+    -82162.0
+   ],
+   "first_marker": [
+    55608.0,
+    -82162.0,
+    -4194.0
+   ],
+   "in_six_npc_plan": true,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1306",
+     "receiver",
+     null
+    ],
+    [
+     "1308",
+     "giver",
+     null
+    ],
+    [
+     "1308",
+     "missing_npc",
+     "Eria Elin"
+    ],
+    [
+     "1334",
+     "giver",
+     null
+    ],
+    [
+     "1334",
+     "receiver",
+     null
+    ],
+    [
+     "1334",
+     "missing_npc",
+     "Eria Elin"
+    ]
+   ],
+   "v92_korean_romanized": "Eria Elin",
+   "markers": [
+    [
+     55608.0,
+     -82162.0,
+     -4194.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1023",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Junia",
+   "v17_title": "Tactics Instructor",
+   "v31_english_name": "Junia",
+   "v31_english_title": "Tactics Instructor",
+   "v92_stale_english": "Junia",
+   "v92_korean_npcdata": "재스 파네스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    80974.0,
+    -80898.0
+   ],
+   "first_marker": [
+    80974.0,
+    -80898.0,
+    -4411.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Jas Fanes",
+   "markers": [
+    [
+     80974.0,
+     -80898.0,
+     -4411.0
+    ]
+   ],
+   "baseline_pos_agreement": 458.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1024",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Volis",
+   "v17_title": "Magic Instructor",
+   "v31_english_name": "Volis",
+   "v31_english_title": "Magic Instructor",
+   "v92_stale_english": "Volis",
+   "v92_korean_npcdata": "다리우스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    80967.0,
+    -80956.0
+   ],
+   "first_marker": [
+    80967.0,
+    -80956.0,
+    -4409.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Darius",
+   "markers": [
+    [
+     80967.0,
+     -80956.0,
+     -4409.0
+    ]
+   ],
+   "baseline_pos_agreement": 290.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1025",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Sersine",
+   "v17_title": "Arcanist",
+   "v31_english_name": "Sersine",
+   "v31_english_title": "Arcanist",
+   "v92_stale_english": "Sersine",
+   "v92_korean_npcdata": "키아나",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    53197.0,
+    -69889.0
+   ],
+   "first_marker": [
+    53197.0,
+    -69889.0,
+    -5662.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1312",
+     "receiver",
+     "마법사 키아나"
+    ],
+    [
+     "1339",
+     "giver",
+     "마법사 키아나"
+    ],
+    [
+     "1339",
+     "receiver",
+     "마법사 키아나"
+    ],
+    [
+     "1343",
+     "giver",
+     "마법사 키아나"
+    ],
+    [
+     "1343",
+     "receiver",
+     "마법사 키아나"
+    ]
+   ],
+   "v92_korean_romanized": "Kiana",
+   "markers": [
+    [
+     53197.0,
+     -69889.0,
+     -5662.0
+    ]
+   ],
+   "baseline_pos_agreement": 105.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1026",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Verus",
+   "v17_title": "Lancer",
+   "v31_english_name": "Verus",
+   "v31_english_title": "Lancer",
+   "v92_stale_english": "Verus",
+   "v92_korean_npcdata": "레스터",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    53128.0,
+    -69782.0
+   ],
+   "first_marker": [
+    53128.0,
+    -69782.0,
+    -5660.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Lester",
+   "markers": [
+    [
+     53128.0,
+     -69782.0,
+     -5660.0
+    ]
+   ],
+   "baseline_pos_agreement": 33.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1027",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Kirash",
+   "v17_title": "Outrider",
+   "v31_english_name": "Kirash",
+   "v31_english_title": "Outrider",
+   "v92_stale_english": "Kirash",
+   "v92_korean_npcdata": "펠라이니",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    49822.0,
+    -80760.0
+   ],
+   "first_marker": [
+    49822.0,
+    -80760.0,
+    -4527.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": true,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [],
+   "v92_korean_romanized": "Pelaeni",
+   "markers": [
+    [
+     49822.0,
+     -80760.0,
+     -4527.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1028",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Gregor",
+   "v17_title": "Outrider",
+   "v31_english_name": "Gregor",
+   "v31_english_title": "Outrider",
+   "v92_stale_english": "Gregor",
+   "v92_korean_npcdata": "케렌",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    53539.0,
+    -74275.0
+   ],
+   "first_marker": [
+    53539.0,
+    -74275.0,
+    -5138.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Keren",
+   "markers": [
+    [
+     53539.0,
+     -74275.0,
+     -5138.0
+    ]
+   ],
+   "baseline_pos_agreement": 3836.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1036",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Leander",
+   "v17_title": "Magister",
+   "v31_english_name": "Leander",
+   "v31_english_title": "Magister",
+   "v92_stale_english": "Leander",
+   "v92_korean_npcdata": "리안 쿠벨",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "true",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    52670.0,
+    -86711.0
+   ],
+   "first_marker": [
+    52670.0,
+    -86711.0,
+    -3370.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": true,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [],
+   "v92_korean_romanized": "Rian Kubel",
+   "markers": [
+    [
+     52670.0,
+     -86711.0,
+     -3370.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1037",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Leander",
+   "v17_title": "Magister",
+   "v31_english_name": "Leander",
+   "v31_english_title": "Magister",
+   "v92_stale_english": "Leander",
+   "v92_korean_npcdata": "리안 쿠벨",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "true",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    53312.0,
+    -69884.0
+   ],
+   "first_marker": [
+    53312.0,
+    -69884.0,
+    -5659.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Rian Kubel",
+   "markers": [
+    [
+     53312.0,
+     -69884.0,
+     -5659.0
+    ]
+   ],
+   "baseline_pos_agreement": 49.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1038",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Ramun",
+   "v17_title": "Herald",
+   "v31_english_name": "Ramun",
+   "v31_english_title": "Herald",
+   "v92_stale_english": "Ramun",
+   "v92_korean_npcdata": "라이몽",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "true",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    80731.0,
+    -81216.0
+   ],
+   "first_marker": [
+    80731.0,
+    -81216.0,
+    -4411.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Raimong",
+   "markers": [
+    [
+     80731.0,
+     -81216.0,
+     -4411.0
+    ]
+   ],
+   "baseline_pos_agreement": 529.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1053",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Detector Stone",
+   "v17_title": "",
+   "v31_english_name": "Obelisk",
+   "v31_english_title": "",
+   "v92_stale_english": "Obelisk",
+   "v92_korean_npcdata": "탐지 마법석",
+   "rename_english": true,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": true,
+   "marker_centroid": [
+    72926.0,
+    -72880.0
+   ],
+   "first_marker": [
+    72926.0,
+    -72880.0,
+    -2707.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Detection Magic Stone",
+   "markers": [
+    [
+     72926.0,
+     -72880.0,
+     -2707.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1105",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Axelle",
+   "v17_title": "Dock Manager",
+   "v31_english_name": "Axelle",
+   "v31_english_title": "Dock Manager",
+   "v92_stale_english": "Axelle",
+   "v92_korean_npcdata": "엘리카",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    92871.0,
+    -88185.0
+   ],
+   "first_marker": [
+    92871.0,
+    -88185.0,
+    -4555.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Elika",
+   "markers": [
+    [
+     92871.0,
+     -88185.0,
+     -4555.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1106",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Barsabba",
+   "v17_title": "Centurion",
+   "v31_english_name": "Barsabba",
+   "v31_english_title": "Centurion",
+   "v92_stale_english": "Barsabba",
+   "v92_korean_npcdata": "라브로스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    90543.0,
+    -87465.0
+   ],
+   "first_marker": [
+    90543.0,
+    -87465.0,
+    -4544.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1302",
+     "receiver",
+     "하사관 라브로스"
+    ],
+    [
+     "1321",
+     "giver",
+     "하사관 라브로스"
+    ]
+   ],
+   "v92_korean_romanized": "Labros",
+   "markers": [
+    [
+     90543.0,
+     -87465.0,
+     -4544.0
+    ]
+   ],
+   "baseline_pos_agreement": 1345.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1110",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Clovis",
+   "v17_title": "Patrol",
+   "v31_english_name": "Clovis",
+   "v31_english_title": "Patrol",
+   "v92_stale_english": "Clovis",
+   "v92_korean_npcdata": "무리엘",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    79293.0,
+    -82308.0
+   ],
+   "first_marker": [
+    79293.0,
+    -82308.0,
+    -4451.0
+   ],
+   "in_six_npc_plan": true,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1319",
+     "giver",
+     null
+    ],
+    [
+     "1319",
+     "receiver",
+     null
+    ],
+    [
+     "1319",
+     "missing_npc",
+     "Muriel"
+    ]
+   ],
+   "v92_korean_romanized": "Muriel",
+   "markers": [
+    [
+     79293.0,
+     -82308.0,
+     -4451.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1114",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Helier",
+   "v17_title": "Guard",
+   "v31_english_name": "Helier",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Helier",
+   "v92_korean_npcdata": "카리오스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    80804.0,
+    -81392.0
+   ],
+   "first_marker": [
+    80804.0,
+    -81392.0,
+    -4426.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Karios",
+   "markers": [
+    [
+     80804.0,
+     -81392.0,
+     -4426.0
+    ]
+   ],
+   "baseline_pos_agreement": 197.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1115",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Nivek",
+   "v17_title": "Centurion",
+   "v31_english_name": "Nivek",
+   "v31_english_title": "Centurion",
+   "v92_stale_english": "Nivek",
+   "v92_korean_npcdata": "마티",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    74127.0,
+    -83035.0
+   ],
+   "first_marker": [
+    74127.0,
+    -83035.0,
+    -3612.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Mati",
+   "markers": [
+    [
+     74127.0,
+     -83035.0,
+     -3612.0
+    ]
+   ],
+   "baseline_pos_agreement": 3241.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1119",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Ashak",
+   "v17_title": "Prefect",
+   "v31_english_name": "Ashak",
+   "v31_english_title": "Prefect",
+   "v92_stale_english": "Ashak",
+   "v92_korean_npcdata": "바고스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    73261.0,
+    -82438.0
+   ],
+   "first_marker": [
+    73261.0,
+    -82438.0,
+    -3465.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1327",
+     "receiver",
+     "수비대 장교 바고스"
+    ]
+   ],
+   "v92_korean_romanized": "Bagos",
+   "markers": [
+    [
+     73261.0,
+     -82438.0,
+     -3465.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1121",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Leolin",
+   "v17_title": "Guard",
+   "v31_english_name": "Leolin",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Leolin",
+   "v92_korean_npcdata": "라이언",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    72708.0,
+    -82855.0
+   ],
+   "first_marker": [
+    72708.0,
+    -82855.0,
+    -3482.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1325",
+     "giver",
+     "경비병 라이언"
+    ],
+    [
+     "1325",
+     "receiver",
+     "경비병 라이언"
+    ]
+   ],
+   "v92_korean_romanized": "Ryan",
+   "markers": [
+    [
+     72708.0,
+     -82855.0,
+     -3482.0
+    ]
+   ],
+   "baseline_pos_agreement": 875.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1126",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Ayrdoss",
+   "v17_title": "Guard",
+   "v31_english_name": "Ayrdoss",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Ayrdoss",
+   "v92_korean_npcdata": "에레도스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    49870.0,
+    -80830.0
+   ],
+   "first_marker": [
+    49870.0,
+    -80830.0,
+    -4521.0
+   ],
+   "in_six_npc_plan": true,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1349",
+     "giver",
+     null
+    ],
+    [
+     "1349",
+     "receiver",
+     null
+    ],
+    [
+     "1349",
+     "missing_npc",
+     "Eredos"
+    ]
+   ],
+   "v92_korean_romanized": "Eredos",
+   "markers": [
+    [
+     49870.0,
+     -80830.0,
+     -4521.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1128",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Lorin",
+   "v17_title": "Guard",
+   "v31_english_name": "Lorin",
+   "v31_english_title": "Guard",
+   "v92_stale_english": "Lorin",
+   "v92_korean_npcdata": "마이어",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    55392.0,
+    -81815.0
+   ],
+   "first_marker": [
+    55392.0,
+    -81815.0,
+    -4195.0
+   ],
+   "in_six_npc_plan": true,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1347",
+     "giver",
+     null
+    ],
+    [
+     "1347",
+     "receiver",
+     null
+    ],
+    [
+     "1347",
+     "missing_npc",
+     "Mayer"
+    ]
+   ],
+   "v92_korean_romanized": "Mayer",
+   "markers": [
+    [
+     55392.0,
+     -81815.0,
+     -4195.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1130",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Jehan",
+   "v17_title": "Researcher",
+   "v31_english_name": "Jehan",
+   "v31_english_title": "Researcher",
+   "v92_stale_english": "Jehan",
+   "v92_korean_npcdata": "베레스",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    55846.0,
+    -82512.0
+   ],
+   "first_marker": [
+    55846.0,
+    -82512.0,
+    -4206.0
+   ],
+   "in_six_npc_plan": true,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "PLANNED-NPC",
+   "quest_refs": [
+    [
+     "1332",
+     "receiver",
+     null
+    ],
+    [
+     "1333",
+     "giver",
+     null
+    ],
+    [
+     "1333",
+     "receiver",
+     null
+    ],
+    [
+     "1333",
+     "missing_npc",
+     "Beres"
+    ]
+   ],
+   "v92_korean_romanized": "Beres",
+   "markers": [
+    [
+     55846.0,
+     -82512.0,
+     -4206.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1134",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Edan",
+   "v17_title": "Centurion",
+   "v31_english_name": "Edan",
+   "v31_english_title": "Centurion",
+   "v92_stale_english": "Edan",
+   "v92_korean_npcdata": "로드릭",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    58947.0,
+    -67997.0
+   ],
+   "first_marker": [
+    58947.0,
+    -67997.0,
+    -5056.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1312",
+     "giver",
+     "하사관 로드릭"
+    ],
+    [
+     "1338",
+     "receiver",
+     "하사관 로드릭"
+    ]
+   ],
+   "v92_korean_romanized": "Rodrik",
+   "markers": [
+    [
+     58947.0,
+     -67997.0,
+     -5056.0
+    ]
+   ],
+   "baseline_pos_agreement": 3714.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1137",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Milun",
+   "v17_title": "Apprentice Priest",
+   "v31_english_name": "Milun",
+   "v31_english_title": "Apprentice Priest",
+   "v92_stale_english": "Milun",
+   "v92_korean_npcdata": "레마니엘",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 0,
+   "rename": false,
+   "marker_centroid": [
+    64860.0,
+    -65448.0
+   ],
+   "first_marker": [
+    64860.0,
+    -65448.0,
+    -4180.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "NEW-CANDIDATE",
+   "quest_refs": [],
+   "v92_korean_romanized": "Remaniel",
+   "markers": [
+    [
+     64860.0,
+     -65448.0,
+     -4180.0
+    ]
+   ],
+   "baseline_pos_agreement": null
+  },
+  {
+   "hz": "213",
+   "templateId": "1141",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Fili",
+   "v17_title": "Outrider",
+   "v31_english_name": "Fili",
+   "v31_english_title": "Outrider",
+   "v92_stale_english": "Fili",
+   "v92_korean_npcdata": "라사나",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    52748.0,
+    -69746.0
+   ],
+   "first_marker": [
+    52748.0,
+    -69746.0,
+    -5661.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1390",
+     "giver",
+     "정찰병 라사나"
+    ],
+    [
+     "1390",
+     "receiver",
+     "정찰병 라사나"
+    ],
+    [
+     "1341",
+     "giver",
+     "정찰병 라사나"
+    ],
+    [
+     "1341",
+     "receiver",
+     "정찰병 라사나"
+    ]
+   ],
+   "v92_korean_romanized": "Rasana",
+   "markers": [
+    [
+     52748.0,
+     -69746.0,
+     -5661.0
+    ]
+   ],
+   "baseline_pos_agreement": 543.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1143",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Perrin",
+   "v17_title": "Lancer",
+   "v31_english_name": "Perrin",
+   "v31_english_title": "Lancer",
+   "v92_stale_english": "Perrin",
+   "v92_korean_npcdata": "쥬콘",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    53225.0,
+    -69532.0
+   ],
+   "first_marker": [
+    53225.0,
+    -69532.0,
+    -5658.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1340",
+     "giver",
+     "기사  쥬콘"
+    ],
+    [
+     "1340",
+     "receiver",
+     "기사  쥬콘"
+    ],
+    [
+     "1344",
+     "giver",
+     "기사  쥬콘"
+    ],
+    [
+     "1344",
+     "receiver",
+     "기사  쥬콘"
+    ]
+   ],
+   "v92_korean_romanized": "Jukon",
+   "markers": [
+    [
+     53225.0,
+     -69532.0,
+     -5658.0
+    ]
+   ],
+   "baseline_pos_agreement": 579.0
+  },
+  {
+   "hz": "213",
+   "templateId": "1147",
+   "n_markers": 1,
+   "region_prefix": "13",
+   "v17_name": "Tanli",
+   "v17_title": "Centurion",
+   "v31_english_name": "Tanli",
+   "v31_english_title": "Centurion",
+   "v92_stale_english": "Tanli",
+   "v92_korean_npcdata": "리야",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": "false",
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    63671.0,
+    -84100.0
+   ],
+   "first_marker": [
+    63671.0,
+    -84100.0,
+    -3806.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [
+    [
+     "1348",
+     "giver",
+     "하사관 리야"
+    ],
+    [
+     "1348",
+     "receiver",
+     "하사관 리야"
+    ]
+   ],
+   "v92_korean_romanized": "Riya",
+   "markers": [
+    [
+     63671.0,
+     -84100.0,
+     -3806.0
+    ]
+   ],
+   "baseline_pos_agreement": 111.0
+  },
+  {
+   "hz": "436",
+   "templateId": "1002",
+   "n_markers": 1,
+   "region_prefix": "9036",
+   "v17_name": "Karascha",
+   "v17_title": "Dark Wing",
+   "v31_english_name": "Karascha",
+   "v31_english_title": "Dark Wing",
+   "v92_stale_english": "Karascha",
+   "v92_korean_npcdata": "어둠의 날개 카라스차",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": null,
+   "questVillager": null,
+   "is_npc": false,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    68513.0,
+    -5053.0
+   ],
+   "first_marker": [
+    68513.0,
+    -5053.0,
+    -290.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": false,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "어둠의 날개 카라스차",
+   "markers": [
+    [
+     68513.0,
+     -5053.0,
+     -290.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  },
+  {
+   "hz": "437",
+   "templateId": "1001",
+   "n_markers": 1,
+   "region_prefix": "9037",
+   "v17_name": "Sorcha",
+   "v17_title": "Researcher",
+   "v31_english_name": "Sorcha",
+   "v31_english_title": "Researcher",
+   "v92_stale_english": "Sorcha",
+   "v92_korean_npcdata": "견습 마녀",
+   "rename_english": false,
+   "exists_v92_npcdata": true,
+   "villager": "true",
+   "questVillager": null,
+   "is_npc": true,
+   "baseline_spawn_count": 1,
+   "rename": false,
+   "marker_centroid": [
+    59347.0,
+    -68002.0
+   ],
+   "first_marker": [
+    59347.0,
+    -68002.0,
+    -5063.0
+   ],
+   "in_six_npc_plan": false,
+   "in_story_bridge": false,
+   "in_planned_mob": false,
+   "quest_ref": true,
+   "classification": "SPAWNED",
+   "quest_refs": [],
+   "v92_korean_romanized": "Apprentice Witch",
+   "markers": [
+    [
+     59347.0,
+     -68002.0,
+     -5063.0
+    ]
+   ],
+   "baseline_pos_agreement": 1.0
+  }
+ ]
+}

@@ -1,0 +1,612 @@
+# ==============================================================================
+# Spec: 07 - IoD Villager Dialogs (speechConditions)
+# ==============================================================================
+# Carried over under the v31-primary classic-restoration doctrine
+# (docs/plans/classic-restoration/DOCTRINE.md) per the salvage-manifest CARRY-OVER
+# verdict for retired spec 11-iod-villager-dialogs
+# (docs/plans/classic-restoration/iod/data/salvage-manifest.md).
+#
+# Renumbered 11 -> 07. Op content is carried over verbatim, EXCEPT the op roster was
+# re-derived against the v31 spawn set as the manifest requires: the current v92
+# baseline TerritoryData is verified IDENTICAL to v31 (spawns-diff artifact), so each
+# op is kept only if its (huntingZone, templateId) has a standing spawn in the baseline
+# TerritoryData_13/64/213/313/364/436.xml (policy-territory Npcs included). Ops for
+# villagers with a v31 SpeechCondition but no spawn in scope (dormant/cut content) are
+# dropped. One documented exception is kept: 213/1036 (Leander shrine variant) is
+# engine-spawned and confirmed present per the spawns-diff artifact, so its dialog is
+# retained though it is correctly absent from TerritoryData.
+#
+# Original provenance (retired v17-reference spec):
+#   Roster/scope: docs/plans/iod-alpha-content-loop/data/v31-dialogs.json
+#     ("present" arrays = every IoD villager that carried a v31 SpeechCondition).
+#   Param attributes (type + value) read straight from the original v31 .condition
+#     source files. Generator: tools/dc-restore/gen_speech_specs.py (deterministic).
+#
+# Each upsert restores one villager's classic .condition file
+# (VillagerData/{HHHH}0000{TTTTTT}.condition): its Villager note plus the
+# ordered Normal Text slots with their Param type and value. Popup is empty
+# throughout (no gap villager carries a Popup slot). Upsert keeps it idempotent.
+#
+# Encoded decisions:
+#   * Zone 364 (villagers): the v31 files nest a malformed <Text type="random"/>
+#     instead of <Param type="random"/>. Read by position, they restore as
+#     paramType: random, matching every other single-slot IoD villager.
+#   * friendly slots carry their reputation thresholds from the v31 source:
+#     64/1001 #2=200 #3=800. (64/1002 carried #2=100 in v31 but is dropped here:
+#     no standing baseline spawn.)
+#   * 64/9000 (T-cat/Tikat): EXCLUDED per user decision 2026-07-20. The NPC is out of
+#     the baseline entirely: spec 12-iod-tcat-removal deletes his TerritoryData_64
+#     spawn, so the standing-spawn roster rule drops his dialog op with him. (His v31
+#     store 315 was already ruled unrecoverable: 33 of 37 items absent from v92.)
+#   * Excluded (no standing baseline spawn): 64/8000 Ellonia (verified 0 spawns).
+#     Other settled removals (213/1054,1150,1152,1153,1501) were never in the
+#     survey's dialog set.
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+speechConditions:
+  upsert:
+    # hunting zone 64
+    - huntingZoneId: 64
+      templateId: 1001
+      note: "파견장교 율리아"
+      normal:
+        - { id: 1, paramType: random }
+        - { id: 2, paramType: friendly, paramValue: "200" }
+        - { id: 3, paramType: friendly, paramValue: "800" }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1003
+      note: "창고지기 케롱 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1005
+      note: "보급관 코헨 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+        - { id: 2, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1006
+      note: "부관 이안 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1007
+      note: "전투술 교관 알리오스 렌더스 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1008
+      note: "법술 교관 에이어린 필루스 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1009
+      note: "프란츠 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1011
+      note: ""
+      normal:
+        - { id: 1, paramType: random }
+        - { id: 2, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1021
+      note: "호위병 텔라나"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1022
+      note: "호위병 츄론"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1023
+      note: "경비병 미카엘"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1024
+      note: "경비병 가브리엘"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1025
+      note: "경비병 레온"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1026
+      note: "경비병 에베리아 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1027
+      note: "경비병 코라나"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1028
+      note: "경비병 자키"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1029
+      note: "경비병 리키아 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1030
+      note: "경비원 아리카"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1031
+      note: "하사관 페드릭 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1032
+      note: "하사관 렌싱 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1033
+      note: "경비병 체르네"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1034
+      note: "경비병 메르다 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1042
+      note: "연구원 제레미아 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1045
+      note: "교환 안내인 마크"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1046
+      note: "창고 안내인 페롱"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1047
+      note: "친구목록 안내인 엘렌"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1048
+      note: "채집 안내인 릴리나"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1049
+      note: "휴식 안내인 아르테미스"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1050
+      note: "사냥터 이동 관리인 하만"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 64
+      templateId: 1601
+      note: "64 [탐험단 보급기지] - 1601 [베니스 케인]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    # 64/9000 (T-cat/Tikat) op REMOVED per user decision 2026-07-20: the NPC is excluded
+    # from the baseline (spawn deleted by spec 12-iod-tcat-removal); no standing spawn,
+    # so per the roster rule his dialog gap-fill drops with him.
+    # hunting zone 213
+    - huntingZoneId: 213
+      templateId: 1001
+      note: "연락장교 알버트 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1003
+      note: "하사관 케이샤"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1004
+      note: "하사관 조칸 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1005
+      note: "정찰병 티아레스 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1007
+      note: "보급관 키오네 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1008
+      note: "단장 리안 쿠벨 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1014
+      note: "연락장교 램버트 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1015
+      note: "오브젝트 악마의 마법석 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+        - { id: 2, paramType: dungeonEvent }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1016
+      note: "이동관리인 레니아 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1017
+      note: "연구원 카이몬 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+        - { id: 2, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1023
+      note: "재스 파네스"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1024
+      note: "다리우스"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1025
+      note: "마법사 키아나 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+        - { id: 2, paramType: dungeonEvent }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1026
+      note: "전사 레스터 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1028
+      note: "정찰자 케렌 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1036
+      note: ""
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1037
+      note: "리안 쿠벨"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1038
+      note: "라이몽 이동중"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1053
+      note: "213 [[사회]여명의 정원] - 1053 [탐지 마법석]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1101
+      note: "선착장 인부 파르몽 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1102
+      note: "선착장 인부 자크리 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1103
+      note: "서기 마이론 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1104
+      note: "보조 연구원 메사 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1105
+      note: "선착장 관리인 엘리카 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1106
+      note: "하사관 라브로스 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1107
+      note: "순찰병 안젤리나 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1108
+      note: "경비병 첼라 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1111
+      note: "메세"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1112
+      note: "벨렌"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1114
+      note: ""
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1115
+      note: "하사관 마티"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1117
+      note: "경비병 아르망 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1118
+      note: "경비병 메테르니히"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1119
+      note: "수비대 장교 바고스 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1120
+      note: "경비병 메리나 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1121
+      note: "경비병 라이언 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1122
+      note: "순찰병 에세리아"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1123
+      note: "순찰병 엘베레스 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1124
+      note: "경비병 라이몽 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1134
+      note: "하사관 로드릭 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1139
+      note: "순찰병 안티리스"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1141
+      note: "순찰병 라사나"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1142
+      note: "정찰병 아레니아 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1143
+      note: "창기사 쥬콘"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1145
+      note: "경비병 제리코"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1146
+      note: "경비병 마릭"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 213
+      templateId: 1147
+      note: "하사관 리야 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    # hunting zone 313
+    - huntingZoneId: 313
+      templateId: 1001
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1002
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1003
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1004
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1005
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1006
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1007
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 313
+      templateId: 1008
+      note: "63 [벨리카] - 1229 [게티]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    # hunting zone 364
+    - huntingZoneId: 364
+      templateId: 1001
+      note: "아이나 로헨"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 364
+      templateId: 1002
+      note: "아이나 로헨"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 364
+      templateId: 1101
+      note: "하이뉴"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 364
+      templateId: 1102
+      note: "하이뉴"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    # hunting zone 436
+    - huntingZoneId: 436
+      templateId: 1030
+      note: "마법사 키아나(특수공간) 일반대사"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 436
+      templateId: 1501
+      note: "436 [여명의 정원 Q7 특수공간1] - 1501 [차원의 마법석]"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []

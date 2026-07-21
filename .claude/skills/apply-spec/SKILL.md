@@ -10,6 +10,19 @@ argument-hint: [spec-path]
 
 Follow these steps when validating or applying a spec. Do not skip validation.
 
+**CRITICAL: never raw-apply a single patch spec.** When a `--source-ref` is
+configured (this project pins it to the server repo baseline HEAD), `dsl apply`
+REPLAYS the target files from that ref and applies only the specs given on the
+command line. A single-spec apply therefore RESETS every file it touches to
+baseline and silently wipes the changes every sibling spec made to those files
+(2026-07-19 incident: applying `03-iod-spawn-removals.yaml` alone reset
+`TerritoryData_13.xml` to HEAD and erased spec 02's 451 restored spawn ops; the
+regressed file was deployed three times before detection). For any spec that
+lives under `specs/patches/<patch>/`, apply THE WHOLE PATCH with the migrate
+tool: `python reforged/tools/migrate/migrate.py --patch <patch> [--skip-sync]`.
+Raw single-spec `dsl apply` is safe only for a spec whose target files no other
+spec touches, or against a scratch path with no shared-file siblings.
+
 ## 1. Resolve paths
 
 Read `.references` in the project root (`reforged/.references`). Parse as `key=value` lines. You need:
@@ -81,5 +94,14 @@ powershell -Command "Set-Location '<client_pack_dir>'; & '.\novadrop-dc_92.04\no
 | E535 | Exported variable not found | Package sub-file missing `exports: variables:` or index.yml missing `use: variables:` |
 | E536 | Imported variable not exported by source | Variable name not in source package's exports list |
 | E520 | Unknown variable reference | `$VAR_NAME` used but not imported — add to `use: variables:` in imports |
-| E103 | Invalid property | Check the DSL schema docs for the entity type |
-| E200 | Missing required field | Check required attributes in the entity schema |
+| E103 | Invalid property | Check the DSL schema docs for the entity type (see note below) |
+| E200 | Missing required field | Check required attributes in the entity schema (see note below) |
+
+**Schema docs location:** resolve `dsl_docs_enduser` from `.references`, then read `schemas/<category>/<entity>.mdx` for the entity type.
+
+## Lessons
+
+### Semantic-diff a NEW sync entity's output against client HEAD before accepting it
+- **Date/source:** 2026-07-19: `dsl sync -e NewWorldMapData` (entity newly added to sync-config for the Tower Base minimap fix); a Python semantic diff of the projection vs the client-dc git HEAD showed 37 curated client-only markers deleted game-wide (guild boards, dungeon entrances, brokers), on top of the intended addition.
+- **Why:** monolithic sync is a full-file replace of the client file with the XSD-filtered server projection. "Server is source of truth" does not hold at file granularity for families where the publisher curated the client copy (extra markers, patched attributes); the sync silently deletes that curation. A single XSD-invalid server row also aborts the whole entity sync with E650 (server section 9034 lacked height/left/top; fixed by a spec backfill op using the client's own values).
+- **Apply:** when adding a sync-config entity for a family never synced before, run the sync, then diff the written client file against git HEAD semantically (parse both, compare by id hierarchy), not just by eyeballing the textual diff. If client-only content would be deleted, set `merge: merge-by-id` (Monolithic strategy only) with `merge_key_attributes` on the entity: it preserves client-only siblings while server records win on match (delivered 2026-07-19; see tools/client-sync.mdx "Merge modes" in the end-user docs; NewWorldMapData is the live example in sync-config). Even with merge-by-id, review the "changed" entries of the semantic diff: server-wins overwrites can surface bad hand-edited server rows (e.g. section 9053 pointed at a MapDefine absent from the client; fixed by realigning the SERVER row to the client-proven values via a spec op, precedent in spec 13).

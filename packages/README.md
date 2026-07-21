@@ -14,6 +14,15 @@ All packages must be registered in `datasheetlang.yml` under `workspace.packages
 
 **Template packages** export parameterized DSL definition templates. They allow specs to express repetitive structures (like evolution paths) as a single parameterized entry instead of duplicating the full definition for each item.
 
+### Maintenance classes
+
+Orthogonal to the types above, every package is one of:
+
+- **Archetype (generated):** statistically derived from population analysis (tau >= 0.9 modal share), regenerable from a recorded tool, **do not hand-edit**. Re-derive when the source population changes. Currently: `npc-standard`, `ai-standard`, `spawn-restore-standard`, `area-section-standard`.
+- **Curated (hand-maintained):** ID registries and system definitions maintained by review, like any content change.
+
+Curation rules and the promotion path (patch-local definitions to packages, rule of two) live in the `spec-standardization` skill.
+
 ---
 
 ## All Packages
@@ -46,6 +55,10 @@ These four packages form a strict dependency chain. See `enchant-standard/README
 | Package | Type | Description | README |
 |---------|------|-------------|--------|
 | `evolution-base` | Template | Rune material IDs, evolution path definitions per rune tier, and the `EvolutionItem` parameterized template. Used by all gear evolution specs. | `evolution-base/README.md` |
+| `npc-standard` | Template (archetype, generated) | NPC template + territory-spawn archetypes derived from full-population analysis (MerchantVillager, QuestVillager, Normal/Elite/Boss monsters + their Spawn variants). Source tool: `tools/npc-standard/`. Do not hand-edit. | `npc-standard/README.md` |
+| `ai-standard` | Template (archetype, generated) | AI archetypes (MerchantVillagerAI etc.) derived from full-population analysis (tau=0.9). Source tool: `tools/npc-standard/`. Do not hand-edit. | `ai-standard/README.md` |
+| `spawn-restore-standard` | Template | Classic-zone spawn restoration archetypes: `RestoreSpawnBase`, `RestoreSpawnAggressive`, and `ClassicTerritory`. Statistically derived (tau=0.9) from the patch 001 IoD restoration. Used by the dc-restore spawn generator. | `spawn-restore-standard/README.md` |
+| `area-section-standard` | Template | Classic area-section archetype `ClassicSection` (shared town/camp/outpost attribute envelope). Used by the dc-restore section generator. | `area-section-standard/README.md` |
 
 ---
 

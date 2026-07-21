@@ -1,0 +1,44 @@
+spec:
+  version: "1.0"
+
+# Reusable archetype for classic area-section restoration (dc-restore pipeline).
+# Derived from the 9 restored ATW_Death_P sections in patch 001. Fields folded
+# here are present in every restored full section and represent the shape of a
+# classic town/camp/outpost section; each is annotated with its modal share.
+#
+# Zone-agnostic by design: identity and geometry fields (continentId, areaName,
+# parentSectionId, sectionId, nameId, desc, priority, addMaxZ, fences) are always
+# supplied per row. Continent-specific recall coordinates (recallReviveContinentId,
+# recallRevivePos, recallScrollContinentId, recallScrollPos) are also per row, so
+# the archetype stays reusable across areas.
+#
+# Consumer: tools/dc-restore/gen_section_specs.py emits each restored full section
+# as "$extends: area-section-standard.ClassicSection" plus only the fields that
+# deviate. Ring-only reverts (a section whose attributes must NOT change) do not
+# extend this archetype. Every field here is a scalar; fences (a list) is per row,
+# so the list-replace rule is never a hazard.
+
+definitions:
+  # 14 fields present in all 9 restored full sections. The seven booleans are
+  # constant (share=100%); the rest hold the dominant classic default and are
+  # overridden per row where a specific section differs (e.g. a vendor section
+  # sets vender: true).
+  ClassicSection:
+    huntingZoneId: -1  # share=100% n=9
+    floor: 1  # share=100% n=9
+    desTex: false  # share=100% n=9
+    protect: false  # share=100% n=9
+    guildWar: true  # share=100% n=9
+    ride: true  # share=100% n=9
+    trade: true  # share=100% n=9
+    duel: true  # share=89% n=9
+    vender: false  # share=67% n=9
+    pcMoveCylinder: false  # share=78% n=9
+    campId: 0  # share=89% n=9
+    worldMapSectionId: 0  # share=89% n=9
+    subtractMinZ: 4096.000000  # share=89% n=9
+    pk: "safe"  # share=78% n=9
+
+exports:
+  definitions:
+    - ClassicSection

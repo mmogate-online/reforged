@@ -1,0 +1,355 @@
+{
+  "generated_from": {
+    "v17": "D:\\dev\\tera\\tera-dc-17_11\\DataCenter_Final_USA",
+    "v31": "Z:\\tera pserver\\v31.04\\...\\Datasheet"
+  },
+  "reference_mechanism": {
+    "section_definition": "Area/AreaData <Section nameId=ID> = polygon geometry (Fence points) + StrSheet_Region <String id=ID> = display name",
+    "how_content_references": "By region-string id via @rgn:ID / @Rgn:ID$$name (teleport destinations, hunting-zone/town display names, quest-dialog inline region tokens) and by nameId on world-map / map-define UI sections. Quest tasks target regions through a SEPARATE hz,hz*100000+N region-id scheme (목표지역), NOT the section nameId.",
+    "quest_task_region_tag": "목표지역 (hz,region), 지역명 (@quest: string), 수행지역 (header). None reference the 12 deleted sub-section nameIds.",
+    "collisions_excluded": "pegasus path rot/loc floats, StrSheet_NpcLoc coord blobs, ItemData/Achievement/Skill id-space reuse"
+  },
+  "sections": {
+    "13002": {
+      "name": "Pegasus Platform",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13005": {
+      "name": "Northern Checkpoint",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13008": {
+      "name": "Orcan Bivouac",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13013": {
+      "name": "Terron Run",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 1,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {
+        "mapdefine_label": [
+          {
+            "family": "MapDefineData",
+            "file": "MapDefineData-00049.xml",
+            "context": "t2\" align=\"left\" /> <Text x=\"550\" y=\"450\" stringId=\"13013\" click=\"\" fontStyle=\"spot2\" a"
+          }
+        ]
+      }
+    },
+    "13015": {
+      "name": "Leander's Outpost",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13017": {
+      "name": "Dulari's Camp",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13018": {
+      "name": "Northern Overwatch",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13020": {
+      "name": "Southern Checkpoint",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13022": {
+      "name": "Tainted Gorge Garrison",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13027": {
+      "name": "Tainted Gorge Outpost",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "64001": {
+      "name": "Tower Base",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "teleport_dest": 1,
+        "questgroup_hz_name": 1,
+        "worldmap_section": 1,
+        "guard_town_name": 1,
+        "mapdefine_label": 3
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "teleport_dest": 1,
+        "questgroup_hz_name": 1,
+        "worldmap_section": 1,
+        "guard_town_name": 1
+      },
+      "v17_dependency_edges": 7,
+      "v31_dependency_edges": 4,
+      "dependency_detail": {
+        "teleport_dest": [
+          {
+            "family": "TeleportData",
+            "file": "TeleportData-00000.xml",
+            "context": "rtList> <Teleport uniqueId=\"4371002\" stringId=\"@rgn:64001\" /> </TeleportList> <"
+          }
+        ],
+        "questgroup_hz_name": [
+          {
+            "family": "QuestGroupList",
+            "file": "QuestGroupList-00000.xml",
+            "context": "lika}\" step=\"2\" /> <HuntingZone id=\"64\" name=\"{@Rgn:64001$$Elleon's Outpost}\" step=\"99\""
+          }
+        ],
+        "worldmap_section": [
+          {
+            "family": "NewWorldMapData",
+            "file": "NewWorldMapData-00000.xml",
+            "context": "> <Section id=\"6\" type=\"town\" floor=\"1\" nameId=\"64001\" height=\"9830.4\" left=\"-84480"
+          }
+        ],
+        "guard_town_name": [
+          {
+            "family": "GuardData",
+            "file": "GuardData-00000.xml",
+            "context": "ist> <TownList> <Town stringId=\"64001\" /> </TownList>"
+          }
+        ],
+        "mapdefine_label": [
+          {
+            "family": "MapDefineData",
+            "file": "MapDefineData-00049.xml",
+            "context": "layMapType=\"field\"> <Text x=\"470\" y=\"430\" stringId=\"64001\" click=\"WMap_ATW_Vill_01\" fon"
+          },
+          {
+            "family": "MapDefineData",
+            "file": "MapDefineData-00050.xml",
+            "context": "=\"80\" txtY=\"210\" /> <Text x=\"545\" y=\"405\" stringId=\"64001\" click=\"WMap_ATW_Vill_01\" fon"
+          },
+          {
+            "family": "MapDefineData",
+            "file": "MapDefineData-00051.xml",
+            "context": "MapDefine id=\"WMap_ATW_Vill_01\" height=\"768\" titleStringId=\"64001\" backgroundImage=\"WMap_ATW.WM"
+          }
+        ]
+      }
+    },
+    "64007": {
+      "name": "Researcher Quarters",
+      "status": "deleted_v92",
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v31_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1
+      },
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13032": {
+      "name": "Dulari's Camp (renum target)",
+      "status": "renumber_target_v92",
+      "v17_refs": {},
+      "v31_refs": {},
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13033": {
+      "name": "Southern Checkpoint (renum target)",
+      "status": "renumber_target_v92",
+      "v17_refs": {},
+      "v31_refs": {},
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    },
+    "13034": {
+      "name": "Tainted Gorge Outpost (renum target)",
+      "status": "renumber_target_v92",
+      "v17_refs": {},
+      "v31_refs": {},
+      "v17_dependency_edges": 0,
+      "v31_dependency_edges": 0,
+      "dependency_detail": {}
+    }
+  },
+  "survivors_baseline": {
+    "13001": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "questgroup_hz_name": 1,
+        "worldmap_section": 1,
+        "guard_town_name": 1,
+        "mapdefine_label": 2,
+        "quest_dialog_rgn": 1
+      },
+      "v17_dependency_edges": 6
+    },
+    "13003": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    },
+    "13004": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    },
+    "13006": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    },
+    "13007": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    },
+    "13024": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    },
+    "13028": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    },
+    "13030": {
+      "v17_refs": {
+        "region_string_def": 1,
+        "area_geometry_def": 1,
+        "mapdefine_label": 1
+      },
+      "v17_dependency_edges": 1
+    }
+  }
+}

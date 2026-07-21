@@ -1,0 +1,228 @@
+{
+  "doctrine": "v31-primary (DOCTRINE.md, ADOPTED 2026-07-20)",
+  "generated": "2026-07-20",
+  "source_specs_dir": "temp/patch-001-v17-reference/",
+  "verdict_counts": { "CARRY-OVER": 7, "REWORK": 9, "RETIRE": 3, "total": 19 },
+  "specs": [
+    {
+      "file": "00-iod-region-strings.yaml",
+      "verdict": "REWORK",
+      "family": "region-strings",
+      "survives": "concept: restore classic place names on continent 13",
+      "regenerate_from": "v31 RegionData 1:1 port, then v31-vs-v92 diff",
+      "reason": "The two entries (13015 Leander's Outpost, 13036 Terron Run) are a v17/v92 id-reconciliation artifact: 13036 is a NEW id invented because v31's row carried nameId 13013 which v92 keeps as 'Airship Approach'. Under v31-primary the whole continent-13 region-string set is ported from v31; the id-remap must be re-derived from the v31-vs-v92 diff, not hand-picked.",
+      "generator": "gen_section_specs.py (re-point to v31)"
+    },
+    {
+      "file": "01-iod-area-sections.yaml",
+      "verdict": "REWORK",
+      "family": "area-sections",
+      "survives": "generator gen_section_specs.py, area-section-standard package, the section-restore concept",
+      "regenerate_from": "v31 AreaData 1:1 (attrs AND geometry)",
+      "reason": "Header source rule is 'geometry: v31 ring by default; v17 client Area-00004.xml WINS on disagreement'. The v17-wins rule violates v31-primary. Regenerate with v31-only geometry; drop the v17 override. ids still reconcile against v92 live+commented templates.",
+      "generator": "gen_section_specs.py"
+    },
+    {
+      "file": "02-iod-spawn-restore.yaml",
+      "verdict": "RETIRE",
+      "family": "spawn-restore",
+      "survives": "nothing in this file's content; generator gen_spawn_specs.py + spawn-restore-standard package survive for the v31 spawn port",
+      "regenerate_from": "n/a (content is v17-only)",
+      "reason": "Restores 17 v17-ONLY territory groups in HZ 13 (absent from v31), using v17 client fences + v31-family donor attributes. These are exactly the padding candidates deferred to phase 7 by doctrine rule 4. Not part of the v31 baseline; they do not belong in patch 001.",
+      "generator": "gen_spawn_specs.py (reused for v31 wipe-and-replace, not this content)"
+    },
+    {
+      "file": "03-iod-spawn-removals.yaml",
+      "verdict": "RETIRE",
+      "family": "spawn-restore",
+      "survives": "the T-cat currency-absent divergence and politics dual-state findings survive as inputs to the v31-vs-v92 diff dispositions, not as this spec",
+      "regenerate_from": "v31 wipe-and-replace delete set (v92-only rows -> REMOVE)",
+      "reason": "Removals are driven by 'absent from the v17 roster' (deletes v31-only groups 1300140/1300141/21300004 which v31-primary must KEEP) and by v92 live-state dedup (politics dual-state, Sandom, T-cat). The v31 wipe-and-replace produces its own delete set from the v31-vs-v92 diff; this v17/v92-driven removal logic is superseded. Fold the genuine v92-only removals into phase-3 diff dispositions.",
+      "generator": "n/a"
+    },
+    {
+      "file": "04-iod-shops.yaml",
+      "verdict": "REWORK",
+      "family": "shops",
+      "survives": "generator gen_shop_specs.py, the shop-restore concept",
+      "regenerate_from": "full v31 BuyList/BuyMenuList/VillagerMenu for IoD (drop v17-registry scoping)",
+      "reason": "Content is a v17-registry-SCOPED v31 dump (only shops in the v17 roster). Under v31-primary port the full v31 IoD shop set. Re-evaluate removal/rewire decisions 20/21/22 and the T-cat non-gap-fill against the v31 diff.",
+      "generator": "gen_shop_specs.py"
+    },
+    {
+      "file": "05-iod-quest-rewards.yaml",
+      "verdict": "REWORK",
+      "family": "quest-rewards",
+      "survives": "generator gen_reward_specs.py; the new-class bag extension (engineer/fighter/assassin/glaiver) survives as mechanical-adaptation-whitelist item #2",
+      "regenerate_from": "v31 QuestCompensationData (lookup_quest_rewards)",
+      "reason": "Header states explicitly 'v31 rewards are NOT the value source' (only 10/63 match); exp/gold/items are v17 values verbatim. Under v31-primary the reward values MUST come from v31. Regenerate from v31 rewards; re-apply the new-class bag extension as a documented adaptation. v17 values retire.",
+      "generator": "gen_reward_specs.py (re-point to v31)"
+    },
+    {
+      "file": "06-iod-quest-tasks.yaml",
+      "verdict": "REWORK",
+      "family": "quest-tasks",
+      "survives": "generator gen_task_specs.py, the task-reconstruction concept",
+      "regenerate_from": "v31 .quest task trees 1:1",
+      "reason": "Task target is 'v17.11 client Quest shards'. Under v31-primary quest task trees are ported 1:1 from the v31 server. The v17 reconstruction retires; regenerate from v31. Note: v31 quest bodies may carry mechanics needing adaptation (e.g. 1384 task 3 = rest-to-max-condition / stamina), logged per mechanical-adaptation-whitelist #3.",
+      "generator": "gen_task_specs.py (re-point to v31)"
+    },
+    {
+      "file": "07-iod-story-groups.yaml",
+      "verdict": "REWORK",
+      "family": "story-groups",
+      "survives": "generator gen_storygroup_specs.py",
+      "regenerate_from": "v31 QuestGroupList.xml (membership + order)",
+      "reason": "Membership and in-group ORDER target are v17.11-authoritative (StoryGroupList section), with the group list as REPLACE-ALL. Under v31-primary port v31's QuestGroupList membership/order. v31 story group 1 differs from the v17 order used here (v31 group 1 includes 1382/1383/1384 and orders differently). English dec/name normalization is inert and can be re-applied.",
+      "generator": "gen_storygroup_specs.py (re-point to v31)"
+    },
+    {
+      "file": "08-legacy-strings-restore.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "item-string-repair",
+      "survives": "verbatim (renumber only)",
+      "regenerate_from": "n/a",
+      "reason": "Global item-economy string repair (207 materials + 873 designs), NOT IoD-scoped, orthogonal to the region-restoration pipeline. Verified still needed: v92 baseline still carries the deprecated tooltips (item 501 = 'This item is no longer usable. Sell it to a shop for gold.'). Content is already v31-sourced. No v31 region port supersedes it.",
+      "generator": "n/a"
+    },
+    {
+      "file": "09-iod-quest-enable.yaml",
+      "verdict": "REWORK",
+      "family": "quest-enable",
+      "survives": "generator gen_enable_specs.py",
+      "regenerate_from": "v31 quest headers (enable state, prerequisites, autoAccept)",
+      "reason": "v17 header/requirement alignment: v17-driven prereq clears, autoAccept restores (1305), NPC-accept override (1311). Under v31-primary the enable/disable state and header fields come from v31. The v17-specific ops retire; regenerate the enable-state diff from v31. IMPORTANT for the charm quest: v31 keeps 1385 sentinel-disabled (prereq 99,99); do NOT re-enable it (that re-enable is what created the double-teach the retired pilot needed spec 17 to fix).",
+      "generator": "gen_enable_specs.py (re-point to v31)"
+    },
+    {
+      "file": "10-iod-stepstone-disable.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "quest-enable",
+      "survives": "verbatim (renumber only)",
+      "regenerate_from": "n/a",
+      "reason": "Policy divergence. Quest 59901 (Stepstone chain head) verified v92-ONLY (present in v92 QuestData, absent from v31). It is post-classic content; disabling via prereq 9999 -> 99,99 sentinel is a deliberate policy REMOVE of a v92-only row. Belongs in the divergence log (category: policy).",
+      "generator": "gen_enable_specs.py"
+    },
+    {
+      "file": "11-iod-villager-dialogs.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "villager-dialogs",
+      "survives": "verbatim content (generator gen_speech_specs.py); re-derive the exclusion list per-op",
+      "regenerate_from": "n/a (already v31-sourced) - reconfirm roster against full v31 villager set",
+      "reason": "speechConditions read straight from v31 .condition source files (deterministic). Aligns with v31-primary. Per-op exception: the exclusion list ('settled IoD removals' 64/9000, 64/8000, 213/1054 etc.) was derived from v17/v92 dedup decisions being retired; re-derive exclusions from the v31 spawn set so no dropped villager is missing a dialog and no removed villager keeps one.",
+      "generator": "gen_speech_specs.py"
+    },
+    {
+      "file": "12-iod-spawn-script-fixes.yaml",
+      "verdict": "REWORK",
+      "family": "spawn-restore",
+      "survives": "the displacement CONCERN as a conditional live-validation checkpoint; NOT the hand-authored position value",
+      "regenerate_from": "v31 TerritoryData_213 Ramun spawn position",
+      "reason": "Moves Ramun (213/1300005/1300467, instance 21300005, template 1038) to pos [80672,-81177,-4409], a packet-capture-derived script endpoint. v31's native Ramun pos is [80798.73,-80691.16,-4433.67] (DIFFERENT; not v31 data). Under v31-primary the spawn position comes from the v31 port. The scriptfix value retires; the C_NPC_CONTACT displacement concern re-derives as a logged mechanical adaptation ONLY IF live validation of the v31-ported spawn reproduces it.",
+      "generator": "gen_scriptfix_specs.py (conditional)"
+    },
+    {
+      "file": "13-iod-worldmap-town.yaml",
+      "verdict": "REWORK",
+      "family": "worldmap",
+      "survives": "op 1 folds into the v31 worldmap port; ops 2-3 survive as salvaged sync-compat fixes (per-op)",
+      "regenerate_from": "v31 NewWorldMapData.xml",
+      "reason": "Op 1 (Tower Base town section restore, world 1 / guard 2 / section 6, nameId 64001, WMap_ATW_Vill_01) is COVERED by v31: v31 NewWorldMapData.xml line 96 has this section live (its Npc markers are commented out in v31, so the full v17 marker roster in the spec is a divergence to log). Op 2 (9034 backfill) and op 3 (9053 realign to WMap_EX_HEC_B_SD_02) are client-sync XSD (E650) compat fixes, not IoD content; v31's 9053 is commented out but uses the same WMap_EX_HEC_B_SD_02 mapId. Carry ops 2-3 as salvaged sync fixes only if the clean v92 baseline still exhibits the E650 failure.",
+      "generator": "n/a"
+    },
+    {
+      "file": "14-charm-abnormalities.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "charm-support",
+      "survives": "verbatim (renumber only)",
+      "regenerate_from": "n/a",
+      "reason": "Mechanical-adaptation-whitelist item #1 (charm system support). The classic spine (quest 1384 lineage) requires usable charms. User decision: charms stay in patch 001. Generator gen_charm_specs.py.",
+      "generator": "gen_charm_specs.py"
+    },
+    {
+      "file": "15-charm-items.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "charm-support",
+      "survives": "verbatim (renumber only); review the 70033 op per-op",
+      "regenerate_from": "n/a",
+      "reason": "Flips retired charm items back to usable (DISPOSAL) + restores tooltips. REQUIRED by the v31 1384 port: v31 1384 grants/uses item 7100 (Onslaught Charm I), which the clean v92 baseline carries as NO_COMBAT with tooltip 'This item is no longer usable.' This spec flips 7100 to usable. Per-op note: line 282 also handles 70033 (patch-000's charm swap); the v31 1384 port uses 7100, not 70033, so the 70033 op is extraneous but harmless - review for retention.",
+      "generator": "gen_charm_specs.py"
+    },
+    {
+      "file": "16-charm-skills.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "charm-support",
+      "survives": "verbatim (renumber only)",
+      "regenerate_from": "n/a",
+      "reason": "Injects the buff TargetingList into charm-linked skills (item 7100 -> linkSkillId 60240200) so using a charm applies the abnormality. Completes the charm chain (item -> skill -> abnormality) the v31 1384 port depends on.",
+      "generator": "gen_charm_specs.py"
+    },
+    {
+      "file": "17-iod-charm-quest-dedup.yaml",
+      "verdict": "RETIRE",
+      "family": "charm-quest",
+      "survives": "nothing",
+      "regenerate_from": "n/a",
+      "reason": "The double-teach it fixes was a pilot-created artifact: the retired 09-iod-quest-enable re-enabled 1385 (to v17 wiring prereq 13,84) while keeping the v31/v92 1384 that also has the charm step. Under strict v31 port there is no conflict: v31 1384 owns the charm-use step (task 5, use 7100) and v31 1385 stays sentinel-disabled (prereq 99,99). Retire; the v31 port produces the correct single-teach state natively. The 7103/Onslaught-Charm-IV retargeting was a v17-flavored escalation layered on the dedup and retires with it (v31 1384/1385 use 7100).",
+      "generator": "n/a"
+    },
+    {
+      "file": "18-iod-item-string-fixes.yaml",
+      "verdict": "CARRY-OVER",
+      "family": "item-string-repair",
+      "survives": "verbatim (renumber only)",
+      "regenerate_from": "n/a",
+      "reason": "Restores v31 strings for Campfire (98) and Masterwork Alkahest (21351). Verified still needed: v92 baseline item 98 tooltip = 'This item is no longer usable.' (though item is DISPOSAL/usable), item 21351 = '[Not Usable] ...'. Content is v31-sourced. Item 98 also directly supports the charm quest (v31 1384 task 2 grants campfire 98).",
+      "generator": "n/a"
+    }
+  ],
+  "charm_finding": {
+    "summary": "Under strict v31 port, spec 17 fully retires: v31 1384 owns the charm step and v31 1385 is sentinel-disabled, so no double-teach exists. The charm salvage specs (14/15/16) are the required dependency because v31 1384 uses item 7100.",
+    "v31_quest_1384": {
+      "title": "Getting to Know the Garrison",
+      "type": "mission",
+      "storyGroup": 1,
+      "minLevel": 4,
+      "prereq": "13,29 (quest 1329)",
+      "giver_NPC": "64,1029",
+      "tasks": "6 tasks: T1 visit 64,1005; T2 visit 64,1049 grants item 98 (Campfire); T3 condition rest-to-max-condition (stamina mechanic, may need adaptation); T4 visit 64,1049 grants item 7100 (Onslaught Charm I); T5 condition USE ITEM 7100 x1 (THE CHARM-USE STEP); T6 visit 64,1049 reward=1",
+      "absorbed_charm_step": true,
+      "charm_item_granted_and_used": 7100
+    },
+    "v31_quest_1385": {
+      "title": "Always After Me Lucky Charms",
+      "type": "normal",
+      "storyGroup": "none",
+      "minLevel": 3,
+      "prereq": "99,99 (never-satisfiable sentinel = DISABLED)",
+      "startItem": "7100 x1",
+      "tasks": "2 tasks: T1 condition USE ITEM 7100 x1; T2 visit 64,1049 reward=1",
+      "sentinel_disabled": true
+    },
+    "charm_item_id": {
+      "v31": 7100,
+      "v17": 7100,
+      "patch000_v92_swap": 70033,
+      "clean_v92_baseline_state": "item 7100 exists, combatItemType NO_COMBAT, tooltip 'This item is no longer usable.', linkSkillId 60240200",
+      "note": "v31 uses 7100 natively in both 1384 and 1385. Under v31 port, revert patch-000's 70033 swap on 1384 back to 7100."
+    },
+    "under_strict_v31_port": {
+      "1384_works_as_is": "YES, once charm salvage lands. v31 1384 is ported 1:1 (contains the charm-use step). Its charm item 7100 must be usable, which charm spec 15 provides (flips 7100 NO_COMBAT -> DISPOSAL) plus spec 16 (skill buff) + spec 14 (abnormality). Caveat: task 3 rest-to-max-condition may need a mechanical adaptation (stamina system gone on v92), logged separately.",
+      "1385_stays_disabled": "YES (prereq 99,99 ported from v31). Players never see it.",
+      "double_teach": "NONE. Only 1384 teaches the charm step; 1385 is invisible.",
+      "spec_17_fully_retires": true
+    }
+  },
+  "useful_generators": {
+    "note": "All gen_*.py that encoded v17-north-star logic survive but must be re-pointed at v31 sources. extract_v31_*.py are directly useful. See salvage-manifest.md for the full mapping.",
+    "re_point_to_v31": ["gen_section_specs.py", "gen_spawn_specs.py", "gen_shop_specs.py", "gen_reward_specs.py", "gen_task_specs.py", "gen_storygroup_specs.py", "gen_enable_specs.py"],
+    "already_v31_or_charm": ["gen_speech_specs.py", "gen_charm_specs.py"],
+    "conditional": ["gen_scriptfix_specs.py"],
+    "client_regen": ["gen_npcloc.py"],
+    "v31_extraction_core": ["extract_v31_econ.py", "extract_v31_quests.py", "extract_v31_spawns.py"],
+    "diff_and_disposition": ["classify.py", "stat_diff.py", "align_ids.py", "survey.py", "audit_quests.py"],
+    "libraries": ["dclib.py", "dcq.py"],
+    "v92_extraction_for_diff": ["extract_quests.py", "extract_npcs.py", "extract_shops.py"],
+    "legacy_restore_engines_partial": ["comp_restore.py", "quest_restore.py", "spawn_restore.py"]
+  }
+}

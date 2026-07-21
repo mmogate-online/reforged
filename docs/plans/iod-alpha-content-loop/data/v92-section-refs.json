@@ -1,0 +1,722 @@
+{
+ "13031": {
+  "name": "North Dock",
+  "kind": "v92 addition",
+  "section_state": "live (AreaData Section 57)",
+  "verdict": "HAS_DEPENDENTS_NOT_SAFE_TO_REMOVE",
+  "summary": "Live world-map town + teleport-menu node; 3 other camps teleport to it and it has its own teleport menu. Removing it breaks the IoD camp teleport network and the world-map town.",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "Area",
+    "file": "Area-00013.xml",
+    "line": 118,
+    "mechanism": [
+     "nameId"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "6\" /> </Section> <Section id=\"57\" priority=\"5\" huntingZoneId=\"-1\" nameId=\"13031\" pcMoveCylinder=\"false\" protect=\"false\" ride=\"true\" addMaxZ=\"4096\" subtractMinZ="
+   },
+   {
+    "source": "client-dc",
+    "family": "Area",
+    "file": "Area-00013.xml",
+    "line": 118,
+    "mechanism": [
+     "campId"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "veCylinder=\"false\" protect=\"false\" ride=\"true\" addMaxZ=\"4096\" subtractMinZ=\"4096\" campId=\"13031\" desTex=\"false\" disableItemId=\"\" floor=\"1\" ignoreObstacleShortTe"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00048.xml",
+    "line": 12,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "\"13028\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"330\" y=\"70\" stringId=\"13031\" click=\"WMap_ATW_Death_Vill\" align=\"center\" fontStyle=\"village\" /> </Map"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00049.xml",
+    "line": 12,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "\"13028\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"330\" y=\"70\" stringId=\"13031\" click=\"WMap_ATW_Death_Vill\" align=\"center\" fontStyle=\"village\" /> </Map"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00050.xml",
+    "line": 2,
+    "mechanism": [
+     "titleStringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "\"WMap_ATW_Death_Vill\" backgroundImage=\"WMap_ATW_Death.WMap_ATW_Death_Vill\" titleStringId=\"13031\" height=\"768\" width=\"1024\" leftMargin=\"0\" overlayMapId=\"img://__"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00053.xml",
+    "line": 4,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "ck=\"WMap_ATW_Death_Field\" txtX=\"45\" txtY=\"160\" /> <Text x=\"473\" y=\"235\" stringId=\"13031\" click=\"WMap_ATW_Death_Vill\" align=\"center\" fontStyle=\"village\" /> </Map"
+   },
+   {
+    "source": "client-dc",
+    "family": "NewWorldMapData",
+    "file": "NewWorldMapData-00000.xml",
+    "line": 79,
+    "mechanism": [
+     "nameId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "nameId=\"99,61\" /> </Section> <Section id=\"8\" type=\"town\" nameId=\"13031\" floor=\"1\" mapId=\"WMap_ATW_Death_Vill\" height=\"9830.4\" width=\"13107.2\" left=\"-95232\" top="
+   },
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 317,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "=\"Tainted Gorge Maw\" /> <String id=\"13030\" string=\"Timeless Woods\" /> <String id=\"13031\" string=\"North Dock\" /> <String id=\"13032\" string=\"Dulari's Camp\" /> <St"
+   },
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Teleport",
+    "file": "StrSheet_Teleport-00000.xml",
+    "line": 243,
+    "mechanism": [
+     "@rgn:",
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "<String string=\"Saravash's Ascent Entrance\" stringId=\"9979\" /> <String string=\"{@Rgn:13031}\" stringId=\"13031\" /> <String string=\"{@Rgn:13032}\" stringId=\"13032\" "
+   },
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Teleport",
+    "file": "StrSheet_Teleport-00000.xml",
+    "line": 243,
+    "mechanism": [
+     "@rgn:",
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "aravash's Ascent Entrance\" stringId=\"9979\" /> <String string=\"{@Rgn:13031}\" stringId=\"13031\" /> <String string=\"{@Rgn:13032}\" stringId=\"13032\" /> <String string"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 317,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "=\"Tainted Gorge Maw\" /> <String id=\"13030\" string=\"Timeless Woods\" /> <String id=\"13031\" string=\"North Dock\" /> <String id=\"13032\" string=\"Dulari's Camp\" /> <St"
+   },
+   {
+    "source": "server",
+    "family": "TeleportMenuList",
+    "file": "TeleportMenuList.xml",
+    "line": 617,
+    "mechanism": [
+     "menuId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "on campId=\"9735\" fee=\"24000 \"/> <!--RK-9 격납고--> </TeleportMenu> <TeleportMenu menuId=\"13031\"> <!--여명의 정원 선착장--> <Destination campId=\"13032\" fee=\"24000 \"/> <Dest"
+   },
+   {
+    "source": "server",
+    "family": "TeleportMenuList",
+    "file": "TeleportMenuList.xml",
+    "line": 623,
+    "mechanism": [
+     "campId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "</TeleportMenu> <TeleportMenu menuId=\"13032\"> <!--여명의 정원 북부 캠프--> <Destination campId=\"13031\" fee=\"24000 \"/> <Destination campId=\"13033\" fee=\"24000 \"/> <Destina"
+   },
+   {
+    "source": "server",
+    "family": "TeleportMenuList",
+    "file": "TeleportMenuList.xml",
+    "line": 628,
+    "mechanism": [
+     "campId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "</TeleportMenu> <TeleportMenu menuId=\"13033\"> <!--여명의 정원 중부 캠프--> <Destination campId=\"13031\" fee=\"24000 \"/> <Destination campId=\"13032\" fee=\"24000 \"/> <Destina"
+   },
+   {
+    "source": "server",
+    "family": "TeleportMenuList",
+    "file": "TeleportMenuList.xml",
+    "line": 633,
+    "mechanism": [
+     "campId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "</TeleportMenu> <TeleportMenu menuId=\"13034\"> <!--여명의 정원 남부 캠프--> <Destination campId=\"13031\" fee=\"24000 \"/> <Destination campId=\"13032\" fee=\"24000 \"/> <Destina"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 119,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "os=\"73871.73437500,-72781.60156250,-787.65270996\"/> </Section> <Section id=\"57\" desc=\"13031 여명의 정원 선착장\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"8\" nam"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 119,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "\"57\" desc=\"13031 여명의 정원 선착장\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"8\" nameId=\"13031\" huntingZoneId=\"-1\" duel=\"true\" pk=\"false\" guildWar=\"true\" trade"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 119,
+    "mechanism": [
+     "campId"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "=\"\" addMaxZ=\"4096.000000\" subtractMinZ=\"4096.000000\" protect=\"false\" priority=\"5\" campId=\"13031\" ride=\"true\" pcMoveCylinder=\"false\" enableItemId=\"\" floor=\"1\" re"
+   },
+   {
+    "source": "server",
+    "family": "NewWorldMapData",
+    "file": "NewWorldMapData.xml",
+    "line": 135,
+    "mechanism": [
+     "nameId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "ion id=\"8\" type=\"town\" desc=\"13 여명의 정원 선착장\" mapId=\"WMap_ATW_Death_Vill\" floor=\"1\" nameId=\"13031\" top=\"96768\" left=\"-95232\" width=\"13107.2\" height=\"9830.4\"> <Npc"
+   }
+  ],
+  "real_reference_count": 19
+ },
+ "13035": {
+  "name": "Ruined Temple",
+  "kind": "v92 addition",
+  "section_state": "live (AreaData Section 61, worldMapSectionId=0)",
+  "verdict": "SAFE_TO_REMOVE",
+  "summary": "Only inbound refs are 2 client minimap spot labels (UI). No worldmap, teleport, teleport-menu, guard, quest or spawn dependency.",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "Area",
+    "file": "Area-00013.xml",
+    "line": 159,
+    "mechanism": [
+     "nameId"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "9\" /> </Section> <Section id=\"61\" priority=\"2\" huntingZoneId=\"-1\" nameId=\"13035\" pcMoveCylinder=\"true\" protect=\"false\" ride=\"true\" addMaxZ=\"4096\" subtractMinZ=\""
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00048.xml",
+    "line": 6,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "\"13004\" click=\"\" align=\"left\" fontStyle=\"spot\" /> <Text x=\"420\" y=\"370\" stringId=\"13035\" click=\"\" align=\"left\" fontStyle=\"spot\" /> <Text x=\"520\" y=\"310\" stringI"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00049.xml",
+    "line": 6,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "\"13004\" click=\"\" align=\"left\" fontStyle=\"spot\" /> <Text x=\"420\" y=\"370\" stringId=\"13035\" click=\"\" align=\"left\" fontStyle=\"spot\" /> <Text x=\"520\" y=\"310\" stringI"
+   },
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 321,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "n Checkpoint\" /> <String id=\"13034\" string=\"Tainted Gorge Outpost\" /> <String id=\"13035\" string=\"Ruined Temple\" /> <String id=\"14001\" string=\"Newbaria\" /> <Stri"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 321,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "n Checkpoint\" /> <String id=\"13034\" string=\"Tainted Gorge Outpost\" /> <String id=\"13035\" string=\"Ruined Temple\" /> <String id=\"14001\" string=\"Newbaria\" /> <Stri"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 160,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "s=\"53346.97656250,-70436.84375000,-5681.06542969\"/> </Section> <Section id=\"61\" desc=\"13035 파괴된 신전터\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"0\" nameId"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 160,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "id=\"61\" desc=\"13035 파괴된 신전터\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"0\" nameId=\"13035\" huntingZoneId=\"-1\" duel=\"true\" pk=\"false\" guildWar=\"true\" trade"
+   }
+  ],
+  "real_reference_count": 7
+ },
+ "64001": {
+  "name": "Tower Base",
+  "kind": "deleted",
+  "section_state": "COMMENTED-OUT (AreaData Section 30 + NewWorldMapData Section 6)",
+  "verdict": "DANGLING_REFS_PRESENT",
+  "summary": "Section polygon and world-map town are commented out, but StrSheet_Region string, GuardData town, QuestGroupList HZ-64 name, TeleportData dest and minimap still point at 64001. String-based refs resolve; section/worldmap geometry is dangling. Teleport lands positionally via explicit pos but resolves to no section.",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "GuardData",
+    "file": "GuardData-00000.xml",
+    "line": 9,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "/> </HuntingZoneList> <TownList> <Town stringId=\"64001\" /> </TownList> </Guard> <Guard id=\"3\" type=\"Ballot\" name=\"AN"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00052.xml",
+    "line": 3,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "ld_01_Over\" overlayMapType=\"field\" topMargin=\"0\"> <Text x=\"470\" y=\"430\" stringId=\"64001\" click=\"WMap_ATW_Vill_01\" align=\"center\" fontStyle=\"village\" /> <Text x="
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00054.xml",
+    "line": 2,
+    "mechanism": [
+     "titleStringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "apDefine id=\"WMap_ATW_Vill_01\" backgroundImage=\"WMap_ATW.WMap_ATW_Vill_01\" titleStringId=\"64001\" height=\"768\" width=\"1024\" leftMargin=\"0\" overlayMapId=\"img://__"
+   },
+   {
+    "source": "client-dc",
+    "family": "QuestGroupList",
+    "file": "QuestGroupList-00000.xml",
+    "line": 65,
+    "mechanism": [
+     "@rgn:",
+     "@Rgn:$$"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "d=\"solo\" name=\"{@Rgn:63001$$Velika}\" step=\"2\" /> <HuntingZone id=\"64\" name=\"{@Rgn:64001$$Abandoned Camp}\" step=\"99\" /> <HuntingZone id=\"65\" name=\"{@Rgn:65001$$C"
+   },
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 858,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "he Super Quiz Bowl\" /> <String id=\"63028\" string=\"Super Quiz Bowl\" /> <String id=\"64001\" string=\"Tower Base\" /> <String id=\"64002\" string=\"Explorer Command Post"
+   },
+   {
+    "source": "client-dc",
+    "family": "TeleportData",
+    "file": "TeleportData-00000.xml",
+    "line": 348,
+    "mechanism": [
+     "@rgn:"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "</TeleportList> <TeleportList> <Teleport continentId=\"13\" stringId=\"@rgn:64001\" uniqueId=\"4371002\" /> </TeleportList> <TeleportList> <Teleport continent"
+   },
+   {
+    "source": "server",
+    "family": "GuardData",
+    "file": "GuardData.xml",
+    "line": 14,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "<HuntingZone stringId=\"13001\"/> </HuntingZoneList> <TownList> <Town stringId=\"64001\"/> </TownList> </Guard> <Guard id=\"3\" name=\"ANC\" stringId=\"@rgn:203\" type=\"B"
+   },
+   {
+    "source": "server",
+    "family": "QuestGroupList",
+    "file": "QuestGroupList.xml",
+    "line": 75,
+    "mechanism": [
+     "@rgn:",
+     "@Rgn:$$"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "63\" name=\"{@Rgn:63001$$貝利卡}\" step=\"2\" kind=\"solo\" /> <HuntingZone id=\"64\" name=\"{@Rgn:64001$$庫貝爾探險隊補給基地}\" step=\"99\" /> <HuntingZone id=\"65\" name=\"{@Rgn:65001$$仙"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 858,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "he Super Quiz Bowl\" /> <String id=\"63028\" string=\"Super Quiz Bowl\" /> <String id=\"64001\" string=\"Tower Base\" /> <String id=\"64002\" string=\"Explorer Command Post"
+   },
+   {
+    "source": "server",
+    "family": "TeleportData",
+    "file": "TeleportData.xml",
+    "line": 360,
+    "mechanism": [
+     "@rgn:"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "<TeleportList id=\"4371002\"> <Teleport uniqueId=\"4371002\" desc=\"원정대 보급기지\" stringId=\"@rgn:64001\" continentId=\"13\" pos=\"66615, -79814, -3003\" dir=\"\" distance=\"10\"/"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 3,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": true,
+    "role": "definition_commented_out",
+    "context": "ollPosC=\"\" protect=\"false\" ride=\"true\" pcMoveCylinder=\"true\"> <!--<Section id=\"30\" desc=\"64001 원정대 보급기지\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"6\" na"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 3,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": true,
+    "role": "definition_commented_out",
+    "context": "d=\"30\" desc=\"64001 원정대 보급기지\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"6\" nameId=\"64001\" huntingZoneId=\"-1\" duel=\"true\" pk=\"safe\" trade=\"true\" vender=\"t"
+   },
+   {
+    "source": "server",
+    "family": "NewWorldMapData",
+    "file": "NewWorldMapData.xml",
+    "line": 113,
+    "mechanism": [
+     "nameId"
+    ],
+    "commented_out": true,
+    "role": "definition_commented_out",
+    "context": "<Section id=\"6\" type=\"town\" desc=\"64 원정대 보급기지\" mapId=\"WMap_ATW_Vill_01\" floor=\"1\" nameId=\"64001\" top=\"73728\" left=\"-84480\" width=\"13107.2\" height=\"9830.4\"> <Npc"
+   }
+  ],
+  "real_reference_count": 13
+ },
+ "64007": {
+  "name": "Researcher Quarters",
+  "kind": "deleted",
+  "section_state": "COMMENTED-OUT (AreaData Section 40)",
+  "verdict": "NO_DANGLING_REFS",
+  "summary": "Orphaned StrSheet_Region string only; nothing points at it. (BGMList templateId=64007 is BGM id-space, not a region ref.)",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 864,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "dition Main Camp\" /> <String id=\"64006\" string=\"Eastern Overwatch\" /> <String id=\"64007\" string=\"Researcher Quarters\" /> <String id=\"64008\" string=\"Mysterious T"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 864,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "dition Main Camp\" /> <String id=\"64006\" string=\"Eastern Overwatch\" /> <String id=\"64007\" string=\"Researcher Quarters\" /> <String id=\"64008\" string=\"Mysterious T"
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 16,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": true,
+    "role": "definition_commented_out",
+    "context": "> <Fence pos=\"66866.62500000,-81207.52343750,-3230.83593750\"/> <Section id=\"40\" desc=\"64007 연구원 숙소\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"0\" nameId="
+   },
+   {
+    "source": "server",
+    "family": "AreaData",
+    "file": "AreaData_13_ATW_Death_P.xml",
+    "line": 16,
+    "mechanism": [
+     "nameId",
+     "desc_only"
+    ],
+    "commented_out": true,
+    "role": "definition_commented_out",
+    "context": "id=\"40\" desc=\"64007 연구원 숙소\" ignoreObstacleShortTel=\"false\" worldMapSectionId=\"0\" nameId=\"64007\" huntingZoneId=\"-1\" duel=\"true\" pk=\"safe\" trade=\"true\" vender=\"tr"
+   }
+  ],
+  "real_reference_count": 4
+ },
+ "13002": {
+  "name": "Pegasus Platform",
+  "kind": "deleted",
+  "section_state": "absent (no AreaData section)",
+  "verdict": "NO_DANGLING_REFS",
+  "summary": "Orphaned StrSheet_Region string only; no inbound region reference. Quest 목표지역 1300245/1300253 are hz-13 regions (coincidental substring).",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 288,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "\"Vindicator Outpost\" /> <String id=\"13001\" string=\"Island of Dawn\" /> <String id=\"13002\" string=\"Pegasus Platform\" /> <String id=\"13003\" string=\"Mysterious Ruin"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 288,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "\"Vindicator Outpost\" /> <String id=\"13001\" string=\"Island of Dawn\" /> <String id=\"13002\" string=\"Pegasus Platform\" /> <String id=\"13003\" string=\"Mysterious Ruin"
+   }
+  ],
+  "real_reference_count": 2
+ },
+ "13013": {
+  "name": "Airship Approach",
+  "kind": "id reused in v92",
+  "section_state": "no section; string + minimap",
+  "verdict": "NEW_MEANING_IN_USE",
+  "summary": "New meaning used by StrSheet_Region def + 3 client minimap labels. Restoration reverting to old meaning must migrate these 4 records.",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00048.xml",
+    "line": 8,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "13007\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"550\" y=\"450\" stringId=\"13013\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"320\" y=\"640\" string"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00049.xml",
+    "line": 8,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "13007\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"550\" y=\"450\" stringId=\"13013\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"320\" y=\"640\" string"
+   },
+   {
+    "source": "client-dc",
+    "family": "MapDefineData",
+    "file": "MapDefineData-00052.xml",
+    "line": 8,
+    "mechanism": [
+     "stringId"
+    ],
+    "commented_out": false,
+    "role": "dependent",
+    "context": "001\" click=\"\" align=\"left\" fontStyle=\"npcname\" /> <Text x=\"550\" y=\"450\" stringId=\"13013\" click=\"\" align=\"left\" fontStyle=\"spot2\" /> <Text x=\"470\" y=\"550\" string"
+   },
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 299,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "\"Karascha's Lair\" /> <String id=\"13012\" string=\"Mysterious Temple\" /> <String id=\"13013\" string=\"Airship Approach\" /> <String id=\"13014\" string=\"Tainted Gorge B"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 299,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "\"Karascha's Lair\" /> <String id=\"13012\" string=\"Mysterious Temple\" /> <String id=\"13013\" string=\"Airship Approach\" /> <String id=\"13014\" string=\"Tainted Gorge B"
+   }
+  ],
+  "real_reference_count": 5
+ },
+ "13015": {
+  "name": "Abandoned Camp",
+  "kind": "id reused in v92",
+  "section_state": "no section; string only",
+  "verdict": "NEW_MEANING_BARELY_USED",
+  "summary": "New meaning has only its StrSheet_Region definition as a live consumer; lowest-risk id to repurpose. (BGMList templateId=13015 is BGM id-space.)",
+  "references": [
+   {
+    "source": "client-dc",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region-00000.xml",
+    "line": 301,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "ship Approach\" /> <String id=\"13014\" string=\"Tainted Gorge Bridge\" /> <String id=\"13015\" string=\"Abandoned Camp\" /> <String id=\"13016\" string=\"Bridge of Dawn\" /"
+   },
+   {
+    "source": "server",
+    "family": "StrSheet_Region",
+    "file": "StrSheet_Region.xml",
+    "line": 301,
+    "mechanism": [
+     "String_def",
+     "id_attr"
+    ],
+    "commented_out": false,
+    "role": "definition",
+    "context": "ship Approach\" /> <String id=\"13014\" string=\"Tainted Gorge Bridge\" /> <String id=\"13015\" string=\"Abandoned Camp\" /> <String id=\"13016\" string=\"Bridge of Dawn\" /"
+   }
+  ],
+  "real_reference_count": 2
+ }
+}

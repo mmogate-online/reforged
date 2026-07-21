@@ -1,0 +1,42 @@
+# IoD T-cat Exchanger removal - Patch 001 (classic-restoration, v31-primary doctrine)
+# Removes the Tikat / T-cat Exchanger (HZ 64, npcTemplate 9000) world spawn from the
+# Island of Dawn baseline.
+#
+# Provenance / decision:
+#   USER DECISION 2026-07-20: Tikat is NOT included in the patch 001 baseline. His v31
+#   store (MedalStore 315, winter-event exchanger) is unrecoverable - 33 of its 37 item
+#   ids are absent from the v92 ItemTemplate (shops-diff missing-item list) - so the NPC
+#   has no functional shop to restore. Excluding the spawn keeps the zone clean.
+#   Divergence category: policy. Logged in the zone divergence log (store 315 row).
+#
+# Source of truth for the spawn identity (read from the live v92 file
+#   D:\dev\mmogate\tera92\server\Datasheet\TerritoryData_64.xml, 2026-07-20):
+#   TerritoryGroup 6400001 (10 territories) > Territory 6400024 (desc "Tcat", type normal)
+#     > single Npc instanceId 6400140, npcTemplateId 9000, spawnCount 1.
+#   Template 9000 has exactly ONE spawn in HZ 64 (verified). Op shapes follow the retired
+#   pilot spec temp/patch-001-v17-reference/03-iod-spawn-removals.yaml.
+#
+# Scope of removal:
+#   - Territory 6400024 holds ONLY Tikat's spawn (instance 6400140, his single placement),
+#     so a single territory delete removes both via parent-delete CASCADE (pilot-proven
+#     pattern: group 21300004 delete cascaded to its child territory and spawn). A separate
+#     territorySpawns.delete was deliberately dropped to avoid any intra-batch ordering
+#     assumption between the spawn and territory deletes.
+#   - TerritoryGroup 6400001 keeps its other 9 territories (6400001/2/3/8/12/13/21/22/23),
+#     so the GROUP is NOT deleted.
+#
+# Deliberately NOT touched (dead wiring stays, consistent with the zone-13 precedent):
+#   - Tikat's VillagerMenu binding (64,9000 -> MedalStore 315).
+#   - Any .condition file.
+#   - NpcData template row for 9000 (dormant template, retail-consistent).
+#   Tikat's VillagerDialog op is being removed from spec 07 by the orchestrator separately.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territories:
+  delete:
+    - huntingZoneId: 64
+      groupId: 6400001
+      territoryId: 6400024     # cascades to its only spawn 6400140 (Tikat 9000); group 6400001 retained

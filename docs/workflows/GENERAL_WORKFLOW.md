@@ -16,7 +16,7 @@ Data File  →  Generate  →  Apply  →  Sync  →  Pack  →  Deploy
 | **Apply** | Write specs into server datasheets | `dsl apply <spec> --path <datasheet>` |
 | **Sync** | Copy server changes to client DataCenter | `dsl sync --config reforged\config\sync-config.yaml -e <Entity>` |
 | **Pack** | Pack client DataCenter for distribution | `pack-client.bat` (project root) |
-| **Deploy** | Copy files to running server | Manual / server restart |
+| **Deploy** | Push changed datasheets to the dev game server over SSH, then restart the world server | See CLAUDE.md, Dev Game Server |
 
 ## Available Scripts
 
@@ -38,7 +38,7 @@ Data File  →  Generate  →  Apply  →  Sync  →  Pack  →  Deploy
 1. Edit your data file (xlsx or csv)
 2. Double-click `deploy.bat` in the tool folder — this generates, applies, and syncs
 3. Double-click `pack-client.bat` in the project root — this packs the client
-4. Deploy to server
+4. Deploy to the dev game server over SSH and restart the world server (see CLAUDE.md, Dev Game Server)
 
 ## Sync: Target Specific Entities
 

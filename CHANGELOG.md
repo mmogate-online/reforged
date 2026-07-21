@@ -6,6 +6,189 @@ Newest entries first.
 
 ---
 
+## 2026-07-21 (session 2)
+
+### Content
+- Sorcha's dungeon 9037 fixed and live-validated end to end (quest 1346 completed in-game): the 8 classic territory groups (63 territories: Sorcha's villager party, wave stages 1-3, rear-guard, finale) were comment-disabled in v92 `TerritoryData_437.xml`; uncommented and restored 1:1 to v31 (swallowed `</TerritoryGroup>` re-added, speculative `bossInstanceId` 0 edit reverted to 43700996). Baseline-lane commit `b2ae08fa`
+- `padding-sorcha-dungeon-investigation.md` corrected (banner + section 12): the "territory topology below the datasheet layer" conclusion refuted; report now records the comment-disable root cause and live-validated resolution
+- Established live: AreaData section containment does NOT gate territory spawning (42 restored wave territories outside the shrunken v92 section polygon spawn normally); the conditional AreaData polygon fix is unnecessary
+
+### Infrastructure
+- `dungeon_audit.py` added to dc-restore: read-only dungeon reference integrity gate resolving DungeonData territory/entity refs against parsed per-HZ content, flagging COMMENT-DISABLED vs MISSING; regression-verified against the pre-fix 9037 snapshot (27 refs flagged); wired into the `content-restoration` skill pipeline as a pre-deploy gate for dungeon restores
+- datasheet-domain: territory-system doc gained the "Comment-Disabled Territory Blocks" section (14-file / 18-group / 173-territory v92 census, swallowed-close-tag trap, parse-vs-grep audit rule) plus the section-containment negative result; `content-restoration` skill gained the parse-before-trusting lesson
+
+### Blockers resolved
+- `2026-07-21-workobject-entity.md` delivered (datasheetlang `3db84f4f`) and adopted: spec 19 now authors the Sorcha portal server legs via `workObjects`/`workObjectTerritories` upserts (5-file hand edit retired server-side); `WorkObjectData` sync entity added to sync-config + migrate `ENTITY_SYNC_MAP`, sync verified (tpl 134 normalized, 299 rows byte-stable)
+- `2026-07-21-dungeon-data-mapper.md` issue 3 delivered (datasheetlang `885dd4eb`: `restoreTargetQuests` full replace, `[]` clears) and adopted: spec 19 carries `restoreTargetQuests: []`, the replay-time hand-edit trap is RETIRED; all three issues in the request closed. Spec 19 re-applied + `dungeon_audit` gate PASS + deployed
+
+## 2026-07-21
+
+### Content
+- IoD padding Level 1 applied and deployed (patch 001 specs 14-20; batch 21 specs / 2148 ops / 0 failed; server push 44 files hash-verified; client dev.24 through dev.27): 34 of the 40 sentinel-disabled band quests enabled on recovered v17 wiring (25 no-world-edit incl. courier branch re-anchored on 1309 and 1343/1344 gated behind 1316; 9 world-dependent), 19 mob habitat groups restored (217 v17-fence territories + 2 bespoke NpcLoc-marker territories; Mysterious Ruins ecology back), 6 never-spawned quest givers placed at v17 NpcLoc markers (Eria Elin, Rabram, Beres, Mayer, Eredos, Muriel). NOT enabled: 1306/1307/1308/1310 (cut story subplots), 1389 (deferred), 1385 (superseded)
+- Level 1 analysis artifacts in `docs/plans/classic-restoration/iod/data/` (padding-quest-gates, padding-overlap-rewards, padding-habitat-gaps, padding-dormant-systems, padding-npc-locations, padding-npcloc-sweep, padding-level1-proposal): per-quest gate verdicts, narrative/reward screens, habitat gap map, EN/KR identity census
+- Dormant collect quests fixed on enable: v92 bodies pointed at unplaced collection ids (1334: 404, 1336: 403, 1341: 405); retargeted to the placed v31 ids 410/409/411 (tracker ruling 3 resolved)
+- Dialog internal-inconsistency fixes on enable (doctrine rule 1): 1322 LinkCreature 300932 -> 300931; 1327 13#304 -> 13#300921 in both carrier texts
+- Polish wave from first live test (spec 15 regen 509 ops, spec 18): Orcan camp rebuilt as Mini Orcan farm (2 -> 20 concurrent for the 48-kill quest 1349), bespoke 1348/1319 groups rebuilt one-territory-per-marker (1 -> 10 and 1 -> 17 concurrent), Herald Ramun 1038 moved onto his spawn-script endpoint (quest 1327 clickable), 5 inert dual-state politics NPC twins removed (Ashley/Jilva/Misrile 313, Ainah/Hyneu 364)
+- Sorcha's Reckless Challenge unlocked (spec 19): continent 9037 reclaimed with the v31 dungeon config (solo, level 8+, quest-1346-gated auto-entry, wave defense, fail-eject); non-classic level-65 Garden of Dawn line 21301-21307 sentinel-disabled; dungeon 437 added to the patch-001 scope doc; companion hand edit removes the un-modeled RestoreTargetQuest row (re-apply after every replay)
+- Quest reward class rows re-encoded to native per-class format (spec 04 regenerated, `gen_v31_reward_specs.py` semicolon workaround removed): the merged class lists were not an engine format and paid nothing; First Expedition armor (incl. Cuirass 15022) now actually pays from 1305 and the gear side quests
+- First Expedition open-world drop path restored (spec 20): v31 ECompensation_13 entry for Corrupted Theron Chief 300945 (9 armor + 9 weapon drop bags) reinstated 1:1
+- `migrate.py` maps `dungeonDatas` (server-only); `gen_habitat_specs.py` added (deterministic habitat-spec generator with QUEST_DENSITY overrides and same-family overlap guard)
+- ZONE-PORT-PLAYBOOK gained the "Phase 7 padding: era-client research surfaces" section (StrSheet_NpcLoc position recovery, EN-client vs KR-server identity census); `content-restoration` skill updated to match (its "clients never contain NPC positions" claim corrected)
+
+### Infrastructure
+- datasheetlang: questCompensation item identity now templateId+class+race so per-class rows survive apply, semicolon class lists rejected with E207 (d79aca90); DungeonData EventTask `npc` attribution field + invalid enums surfaced as E426 (363ed076)
+
+### Blockers resolved
+- `2026-07-21-compensation-class-row-collapse.md` delivered (d79aca90) and adopted; `2026-07-21-dungeon-data-mapper.md` issues 1-2 delivered (363ed076), issue 3 (RestoreTargetQuest modeling) still open with a documented hand edit
+
+## 2026-07-20 (session 3)
+
+### Content
+- v31-primary doctrine adopted (`docs/plans/classic-restoration/DOCTRINE.md`): v31 is the structural and content baseline ported 1:1 per zone; v17.11 demoted to padding-phase research index. Old pilot `docs/plans/iod-alpha-content-loop/` retired (data kept read-only); `content-restoration` skill rewritten; `client_dc_v31` added to `.references`
+- Patch 001 rebuilt from scratch under the new doctrine: 13 specs / 1573 ops (was 19 / 2178), applied via migrate batch, 8-check reconciliation gate PASS, story spine live-validated end to end (new character to level 10, quest 1317 reached with balanced pacing). Baseline-lane commits: server `c59c18ff`, client `43bedc3a`. Deployed: server push hash-verified, client dev.21 through dev.23
+- IoD reward sheet restored: v92 `QuestCompensationData_13` was 100% empty stubs; all 65 band rows ported from v31 plus fighter/assassin/glaiver adaptation rows on 15 class-scoped quests (`gen_v31_reward_specs.py`, one Item row per templateId with merged class lists)
+- Sections/worldmap to v31: Tower Base 64001/64007 re-enabled, 7 classic sections re-added, 3 realigned, 13035 Ruined Temple removed (+2 dangling client MapDefine labels hand-cleaned), 13001 field map reskin reverted; v92 camp-teleport cluster (13031-13034) kept as ruled divergence
+- Shared stores ported to v31 game-wide (user decision): store 250 incl. classic charm tab 2502 (33 charms), BuyLists 1601/1602 classic consumables; side effects enumerated in spec 03 header + divergence log. T-cat/Tikat 64,9000 removed from the baseline (spec 12 cascade territory delete)
+- `gen_npcloc.py` gained `--prune` (replace-by-zone) and fence-centroid positions for pos-0,0,0 spawns, fixing dead quest-link markers for party-pack mobs (Stonebeaks et al.); regenerated client NpcLoc covers 100% of the v31 client registry
+- `migrate.py` maps `newWorldMap` -> NewWorldMapData sync (was silently unsynced)
+- Retired patch 001 v17-era specs preserved read-only at `temp/patch-001-v17-reference/` (local)
+
+### Blockers resolved
+- None; 2 new low-priority requests filed (`2026-07-20-newworldmap-section-delete.md`, VillagerDialog client sync)
+
+## 2026-07-20 (session 2)
+
+### Content
+- Charm tutorial de-duplication live-confirmed (patch 001 spec `17-iod-charm-quest-dedup.yaml`, 5 ops; batch now 19 specs / 2178 ops, 0 warnings; server pushed + client dev.20): quest 1384 "Getting to Know the Garrison" task 2 rewired `2 -> 6` and stripped of its charm grant, reward bumped to Onslaught Charm IV x2; quest 1385 "Always After Me Lucky Charms" retargeted to Onslaught Charm IV (start item + task condition) with its obsolete Stamina journal text replaced. 1384 and 1385 each carried a use-a-charm step; no source version has two (v17 keeps the step in 1385, v31 moved it into 1384 and sentinel-disabled 1385), so the duplicate was an artifact of re-enabling 1385 to its v17 wiring on top of a v31-lineage 1384
+- Quest string edits now reach the client: sync-config gained a `StrSheet_Quest` entity (`merge: shard-routed`) and migrate maps `questStrings` to it; the previously server-only path had been silently swallowing edits since patch 000 (six stale 1384 strings shipped in this batch)
+- `deploy_client.py` `--sync` stage removed (637 -> 479 lines): it mapped one family (`QuestData/*.quest`) and reported every other dirty family as unmappable, which went stale as sync-config grew. Syncing is migrate's alone; deploy-client README, migrate README, `content-restoration` skill, CLAUDE.md, and STATUS.md updated to match. Tool's `.references` surface reduced from 7 keys to 3
+- `quest-live-test` skill added: derive live-test checkpoints from the spec diff, plus which QA shortcut skips which change (`/@jump_task` past an accept skips `startItems`; `/@start_quest` skips giver/prereq/level gating)
+
+### Infrastructure
+- datasheetlang: 10 previously declared-but-unconsumed quest header elements wired incl. `header.startItems` (84d5ded8); `merge: shard-routed` client-sync mode routing each record to the shard that already owns it (8a3d89ab). Also aligns `shareable`/`autoShare` to integer flags and retypes `questDialogue` to int, matching the on-disk format
+
+### Blockers resolved
+- `2026-07-20-quest-start-items.md` and `2026-07-20-strsheet-quest-shard-routing.md` both delivered, apply-verified, and closed (files deleted); the interim quest-string sync tool was deleted with the delivery rather than retained
+
+## 2026-07-20
+
+### Content
+- Charm system restored and live-validated (patch 001 specs 14/15/16, 2173-op batch, 0 warnings; server pushed + client dev.18/dev.19): 50 buff abnormalities (488000010-488000059) on the 1:1 deterministic model (buff name/icon match the granting item; named charms at classic tier-3 values, greater at tier-4; Onslaught/Ethereal/Sanguine I-IV as kind-scoped bundles at half the classic tier bonus; trios at classic full values); 57 charm items usable again (41 NO_COMBAT flips) with real tooltips; all 50 charm skills cast to user + nearby allies (BHS food-buff area pattern); classic burn-burst visuals via per-kind appearEffectId; 30-min duration, persist through death; spike abnormalities 488000003-488000006 and their hand-edited skill injections removed
+- `tools/dc-restore/gen_charm_specs.py` added: deterministic generator for the three charm specs + `docs/plans/charm-restoration/charm-design-map.md`; spec 16 definitions-factored (2781 to 321 lines, dsl-expand-proven equivalent)
+- Sync coverage extended: sync-config gained `AbnormalityIconData` and `StrSheet_Abnormality` (shard-aware) entities; migrate map covers abnormalityIconData/abnormalityStrings + inline abnormality strings
+- Stale `/deploy-patch` command removed (described the discontinued manual `.dat` distribution and hardcoded the DC encryption key); migrate and deploy-dev READMEs now document the real pipeline (migrate, then deploy-dev, then deploy-client pack/install/publish)
+
+### Infrastructure
+- datasheetlang: skill Area `type`/`maxCount`/`rangeAngle`/heights + Targeting header attrs modeled (a7cf8d11); XSD-required attribute fill on client sync, skill Effect `atk` modeled, shard-aware SourceMapped merge (42c8d67a). SkillData client sync of DSL-created elements now passes and StrSheet_Abnormality shard 0 stays duplicate-free
+
+### Blockers resolved
+- `2026-07-19-skill-area-type-attribute.md` and `2026-07-19-skilldata-sync-e650-and-strsheet-mirror.md` both delivered and closed (files deleted); charm skill authoring and full client sync unblocked
+
+## 2026-07-19 (session 2)
+
+### Content
+- Tower Base minimap restored and live-confirmed: `13-iod-worldmap-town.yaml` re-adds the NewWorldMapData town section 64001 (full v17 marker roster) + sync-compat fixes on sections 9034 (E650 geometry backfill) and 9053 (Kezzel's Gorge realigned to the client-proven MapDefine); client counterpart synced via the new merge-by-id mode; published dev.16
+- Quest link/ping/spawn-dot UI restored and live-confirmed: client `StrSheet_NpcLoc` regenerated for HZ 13/64/213/436 (134 entries from current server TerritoryData; the v92 rework had dropped HZ 64/213 wholesale); published dev.17
+- Politics dual-state NPC duplicates removed (decision 24, IoD-wide audit complete: policy territories exist only in HZ 313/364): spec 03 now deletes the OFF/vacationing variants at Tower Base (Ainah 1002, policy cleric 1101) and the garden (Ashley 1001, off-duty Jilva/Misrile); Harger pair left pending decision (two distinct classic services, both menu-less in v92)
+- Quest 1327 serum collection live-confirmed (closes the previous session's monster-target fix)
+- Incident recovered: single-spec `dsl apply` source-ref replay had wiped spec 02's 451 spawn ops from TerritoryData_13 (locally and on dev); full `migrate --patch 001` batch replay (15 specs / 1863 ops) restored the complete state, redeployed and live-validated; patch specs are now migrate-batch-only (rule encoded in the apply-spec skill)
+
+### Infrastructure
+- datasheetlang: merge-by-id client sync mode preserving client-only records (4b1c61b7); `NewWorldMapData` sync entity enabled in sync-config with `merge_key_attributes: [id, nameId]`, verified lossless + idempotent against the live EUR client
+- `tools/dc-restore/gen_npcloc.py` added: deterministic StrSheet_NpcLoc regeneration (replace-by-key merge; rerun whenever IoD spawns change; the family has no DSL schema)
+- datasheet-domain: new `world-map-system.md` (NewWorldMapData/MapDefineData/WorldMapMarkerStyle chain, blank-map diagnosis) and `quest-link-system.md` (link tokens, the three location registries, rework registry-loss failure mode) with index/sidebar/skill wiring
+- apply-spec skill: migrate-batch-only rule for patch specs + semantic-diff-before-enabling lesson for new sync entities
+
+### Blockers resolved
+- `2026-07-19-newworldmapdata-sync-lossy.md` filed and closed same day (merge-by-id delivery); NewWorldMapData client edits no longer manual
+
+## 2026-07-19
+
+### Content
+- Patch 001 fully applied and deployed: 14 specs / 1856 ops (server dev VM SHA256-verified; client published 0.1.0-dev.12 through dev.14). Live in-game validation covered the story spine and zone chains through Garrison in Distress with v17 rewards paying out
+- Live-test fixes shipped same-day: `12-iod-spawn-script-fixes.yaml` (Ramun spawn moved to his spawn-script endpoint; packet-capture-proven displacement pattern), 1303 gated on 1304 (v92 prereq clear had orphaned the logic operator, quest unofferable; interim gate matches journal order, decision 23), gather quests 1334/1336/1341 repaired to active collection nodes 409/410/411
+- `06-iod-quest-tasks.yaml` regenerated on the delivered DSL task surface: 13 verified reconstructions (class-training trims 1303/1371-1378, gather fixes, 1390 deliver target); fabricated-body classes staged behind ALLOW_FABRICATED pending a live-load canary (1382)
+- Client Area section topology now syncs (AreaData E650 fixed): restored camp sections reach the client from dev.14
+- Session decisions 20-23 settled: T-cat exchanger removed from IoD; shared shop lists scoped; Ashley binding restored; 1303 keeps the 1304 gate
+
+### Infrastructure
+- `tools/dc-restore/` gained gen_section/spawn/shop/reward/storygroup/enable/speech/scriptfix/task spec generators (all deterministic, baseline-pinned) + packages `spawn-restore-standard` and `area-section-standard` ($extends refactor: spec 02 12543 to 4992 lines, dsl-expand-proven equivalent)
+- Skills added: `dsl-definitions`, `spec-standardization`; packages README gained the archetype/curated maintenance classification
+- datasheet-domain: new `action-script-system.md` (S1ActionScripts family, spawnType wire contract, displacement trap) + quest-system empty-operator trap section
+- 9 DSL requests filed and 8 closed same-session after apply-level verification (SpeechCondition entity, quest header/requirements/triggers, faithful task rebuild + task-type/delete/hasReward/deliveryItems, AreaData sync XSD filtering, QuestGroupList entities, questCompensations docs, BOM headers); remaining open: 2 cosmetic clear-to-empty items
+
+### Blockers resolved
+- Quest re-enable, task reconstruction, villager speech, and client area sync all unblocked by DSL deliveries 52b57b8f / 2918a5c4 / 735abf92 (verified at apply level before adoption)
+
+## 2026-07-18 (session 2)
+
+### Content
+- Patch renumbered: 66 custom specs moved `specs/patches/001/` -> `specs/patches/002/` (git mv); 001 repurposed as the classic-restoration baseline (retains `08-legacy-strings-restore`, `18-iod-item-string-fixes`); scope docs split (`patch-001-scope.md` rewritten as five-layer IoD + 436, `patch-002-scope.md` added; CLAUDE.md zone-scope section updated)
+- Clean slate executed: server datasheet repo (113 tracked files), client-dc repo (47 files + 3 `nul` artifacts), and dev-server overlay all reverted to clean baselines
+- IoD restoration north star + classification shipped under `docs/plans/iod-alpha-content-loop/data/`: v17.11 inventories (218 NPCs, 63 quests, shops/gathering/territories), v31 gap-fill extractions (spawns, stats, shops, loot, dialogs, quest server data), 3-source ID alignment (zero id reuse), section mapping table (incl. Terron Run new id 13036, Ruined Temple 13035 removal), per-key MATCH/RESTORE/REMOVE/GAPFILL verdict tables
+- Decision queue closed: 19 settled decisions recorded in TRACKER.md (deep v17 task restoration for all 27 drifted quests with per-quest v31/v92 fallback; 1311 stays NPC-accept; 1379/1383 kept; soulless omitted from 001 reward bags; Sandom cluster, Ellonia store, and 3 v31-only spawn groups removed; 13030 v17 ring; 13015 reverts to Leander's Outpost; North Dock kept pending teleport-network phase)
+- `TRACKER.md` added as the living consolidation doc for the restoration (supersedes PLAN.md batch model)
+
+### Infrastructure
+- `tools/dc-restore/` gained 9 deterministic extraction/analysis tools: `extract_npcs/quests/shops.py`, `extract_v31_spawns/econ/quests.py`, `align_ids.py`, `classify.py` (all artifacts regenerable byte-identical)
+- `tools/migrate/` ENTITY_SYNC_MAP extended with quest/territory keys (`quests`->Quest, `questDialogs`->QuestDialog, `territory*`->TerritoryData; `questStrings`/`questCompensations`/`villagerDialogs` server-only)
+- 4 DSL requests filed: questStoryGroups (QuestGroupList), areaSections + regionStrings, quest requirements/trigger gaps (+4 repro specs; prereq silent no-op, minLevel E500, accept/giver unexposed), questCompensations docs page
+
+## 2026-07-18
+
+### Content
+- IoD story spine + side quests re-enabled end to end: Batch 2+4 re-enabled 33 quests with classic chain wiring (spine relinks 1305/1309/1311/1313/1316, story-group registrations), full v31 compensation fill (75 reward rows); Kishale pair 1322/1323 shipped with class-filtered rewards
+- Batch 3 spawn reconstruction applied: TerritoryData_13 gained 17 mob territory groups (client fences), TerritoryData_213 gained Leander's Outpost (territory 21300037) + 8 villager NPCs; Eria relocated to the authentic outpost spot (55422,-82484)
+- Quest 1311 "Redeployment" converted from auto-accept to NPC-accept (staged-restore robustness); Stepstone starter chain head 59901 "To Help by Gathering" disabled via 99,99 sentinel
+- Collection-ref regressions fixed: 1334/1341 (404/405 to 410/411), 1336 (403 to 409)
+- Duplicate service-less NPC twins disabled (voidSpawn): Harger 313,1004 / Ainah 364,1002 / Hyneu 364,1102
+- Client launcher dev channel published through 0.1.0-dev.11
+- **PIVOT (decided, not yet executed): IoD baseline restoration to be redone with old client v17.11 as north star, v31 gap-fill only, to remove content duplication; baseline must commit before patch 001. Handoff: docs/plans/iod-alpha-content-loop/RESUME-2026-07-18.md**
+
+### Infrastructure
+- `tools/dc-restore/` gained `dcq.py` (cross-source query), `audit_quests.py` (12-flag deterministic auditor), `spawn_restore.py` (territory/mob/villager reconstruction from client fences)
+- `content-restoration` skill added (restoration pipeline, v17.11 source precedence, staged-restore traps, two-commit-lane discipline)
+- datasheet-domain: territory-system.md gained "Client-Side TerritoryData Variant" section (client carries fences+descs only, never NPC spawns; archaeology source)
+
+## 2026-07-17 (session 2)
+
+### Content
+- IoD soft-disabled quests re-enabled (99,99 sentinel removal + wiring restored from client reference): 1334 + 1341 live-validated in-game (stale collection refs fixed 404/405 -> 410/411), 1336 re-enabled dormant (prereq 1335 still disabled; collection 403 -> 409 fixed), Kishale pair 1322/1323 re-enabled with v31 class-filtered rewards (boots/weapons), deployed, live validation pending
+- QuestCompensationData_13: v31 reward rows restored for 1334, 1336, 1341, 1322, 1323 (previously empty stubs)
+- Eria (213,1021) spawn authored in TerritoryData_213 (no historical spawn source exists); provisional Tainted Gorge camp placement, relocation to Leander's Outpost planned in Batch 3
+- Client DC synced (5 quest shards), DataCenter repacked, teratest install updated; dev channel published 0.1.0-dev.7 / dev.8 / dev.9 via patcher CLI (release records auto-appended from dev.9 on)
+- PLAN.md restructured to live-test iteration + batch model; user decisions recorded (v31 reward era with client fallback, 1311 keeps "Redeployment", Batches 1+3 approved); tension points, iteration-0 gap report, 65-quest audit, ruins archaeology, and legacy wiki location map added under docs/plans/iod-alpha-content-loop/
+
+### Infrastructure
+- `tools/dc-restore/` toolkit added (client-DC / v31 / v92 restoration): survey + gap report, quest_restore (sentinel re-enable, prereq relink, story-group registration), comp_restore (v31 comp merge), dcq cross-source query CLI, audit_quests deterministic 12-flag quest auditor; registered in CLAUDE.md workflows
+- `tools/deploy-client/` added: one-command client pipeline (DSL sync of dirty quest shards, novadrop pack, game-install update, CF patcher build/sign/dry-run/publish with version bump + rporigin/deployment-log recording); registered in CLAUDE.md workflows
+- `.references` keys added: `old_client_dc`, `v31_datasheet`, `game_client_install`, `patcher_origin` (+ example placeholders)
+- datasheet-domain: quest-system.md gained "Soft-Disable Sentinel (99,99)" section (84 quests corpus-wide, retire-in-place pattern); TRACKING updated
+
+---
+
+## 2026-07-17
+
+### Content
+- Dev server datasheet reverted from stale test overlay to payload HEAD; patch 001 re-applied fresh onto the clean baseline (65 specs, 0 failed, 10177 ops, includes IoD specs 16-22 and the one-shot balance multiply); client sync 16 entities / 52 files; delta deployed to dev server (52 files, SHA256-verified); world server restarted and loaded live
+- Balance docs corrected to actual IoD multipliers (maxHp x10 / atk x60, intentional): spec comment + STATUS.md
+- IoD alpha content loop plan authored: `docs/plans/iod-alpha-content-loop/PLAN.md` (old-client quest archaeology, feasibility gates passed, decisions settled, phased handoff)
+
+### Infrastructure
+- `tools/deploy-dev/` added: SSH delta deploy to the dev game server (sftp batch; `--dry-run`/`--verify`/`--status`/`--revert`); `/deploy-dev` command added; `/deploy-patch` step 3 switched to it
+- Server-share push retired: `server_share` key removed from `.references`; replaced by `deploy_repo`, `dev_server_ssh`, `dev_server_datasheet`; share instructions removed from migrate README, GENERAL_WORKFLOW, PROJECT_STRUCTURE
+- reforged-deploy: dev game VM sshd service restarted; `git` now resolves in non-interactive SSH sessions (stale service PATH)
+- Content framework wired in: `content_framework` key added; CLAUDE.md gained Content Framework, Dev Game Server, and public-repo credential-rule sections plus two-server MCP docs; `domain-research` routes design/balance questions to framework docs; framework repo back-points to this project
+- Skills: `skill-authoring` standard (+ frontmatter reference) and `/learn` lesson-capture/curation skill added
+- `docs/mcp-requests/` convention added; `2026-07-17-iod-alpha-research.md` filed (20 datasheet-mcp issues from IoD alpha research; fixes in progress)
+- Doc drift cleanup: hardcoded server datasheet paths replaced with `.references` placeholders (ENCHANT_MATERIALS, gear-infusion, infusion-loot READMEs), deprecated `dsl client-sync` corrected to `dsl sync -e`, `.references.example` gained missing `domain_data` key
+- datasheet-domain: QuestCompensation documented in `loot-system.md` (156-file scan; itemBag modes, class-gear encoding); TRACKING, index, and loot-system skill synced
+
+### Blockers resolved
+- `2026-07-17-iod-alpha-research.md`: 11 of 20 datasheet-mcp items fixed same day (v31 profile_item/gathering crashes, PointStore/BuffStore resolvers, NpcTemplate check_references, kill-target quest indexing, sentinel rendering, nested-block batch_lookup, Item display names, dead-bag markers); rebuilt exe validated 15/15 via stdio harness; deployment pending session restart
+
+---
+
 ## 2026-04-25 (session 2)
 
 ### Infrastructure

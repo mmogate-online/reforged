@@ -19,8 +19,10 @@ This tool creates loot tables that distribute infusion fodder based on content t
 python reforged/tools/infusion-loot/generate_infusion_loot.py --patch {NNN}
 
 # 4. Apply to server
-dsl apply "reforged\specs\patches\{NNN}\infusion-loot.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\infusion-loot.yaml" --path "<server_datasheet>"
 ```
+
+Replace `<server_datasheet>` with the `server_datasheet` value from `reforged\.references`.
 
 ## Input Files
 

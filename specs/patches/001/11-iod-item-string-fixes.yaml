@@ -1,0 +1,24 @@
+# ==============================================================================
+# Carried over verbatim under the v31-primary classic-restoration doctrine
+# (docs/plans/classic-restoration/DOCTRINE.md); CARRY-OVER verdict for retired
+# spec 18-iod-item-string-fixes.yaml in docs/plans/classic-restoration/iod/data/salvage-manifest.md.
+# Renumbered 18 -> 11. Op content unchanged; original provenance kept below.
+# ==============================================================================
+spec:
+  version: "1.0"
+  schema: v92
+
+# Restore tooltips deprecated by the v92 item economy overhaul.
+# Source: v31 strings confirmed via mcp__datasheet-v31__lookup.
+#   - Item 98  (Campfire)                  : v31 id=98,  tooltip functional in v31
+#   - Item 21351 (Masterwork Alkahest)     : v31 id=447, same icon/sortingNumber
+
+itemStrings:
+  upsert:
+    - id: 98
+      name: "Campfire"
+      toolTip: "Creates a campfire for you and others to rest around. Cannot be created near another campfire. [Right-click to use]."
+
+    - id: 21351
+      name: "Masterwork Alkahest (Enchanting)"
+      toolTip: "A universal solvent needed to enchant equipment."

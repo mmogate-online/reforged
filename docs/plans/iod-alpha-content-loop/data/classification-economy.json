@@ -1,0 +1,799 @@
+{
+ "shops": {
+  "meta": {
+   "target": "7 real v31 stores for v17-registry NPCs, diffed per store against the v92 baseline BuyMenuList/BuyList; 2 out-of-registry stores held as DECISION extras",
+   "registry_stores": 7,
+   "extras_stores": 2,
+   "service_only_npcs": 29,
+   "gaps": {
+    "not_in_villagermenu": []
+   }
+  },
+  "rows": [
+   {
+    "store": "64/1004",
+    "store_id": 100,
+    "npc": "Viator",
+    "menu_type": "Merchant",
+    "n_items": 18,
+    "verdict": "RESTORE",
+    "provenance": "v31-gapfill",
+    "note": "list 1001: v31 10 items vs v92 20; list 1002: v31 8 items vs v92 2"
+   },
+   {
+    "store": "64/1005",
+    "store_id": 16064,
+    "npc": "Rutgar",
+    "menu_type": "Merchant",
+    "n_items": 31,
+    "verdict": "RESTORE",
+    "provenance": "v31-gapfill",
+    "note": "list 1601: v31 12 items vs v92 7; list 1602: v31 16 items vs v92 9; list 16064: v31 3 items vs v92 2"
+   },
+   {
+    "store": "64/1052",
+    "store_id": 211,
+    "npc": "Ailesa",
+    "menu_type": "Merchant",
+    "n_items": 18,
+    "verdict": "RESTORE",
+    "provenance": "v31-gapfill",
+    "note": "list 2111: v31 8 items vs v92 10; list 2112: v31 10 items vs v92 12"
+   },
+   {
+    "store": "64/1053",
+    "store_id": 210,
+    "npc": "Mahadam",
+    "menu_type": "Merchant",
+    "n_items": 18,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "v92 BuyMenuList/BuyList already equals v31 store 210"
+   },
+   {
+    "store": "64/9000",
+    "store_id": 315,
+    "npc": "T-cat Exchanger",
+    "menu_type": "MedalStore",
+    "n_items": 37,
+    "verdict": "GAPFILL",
+    "provenance": "v31-gapfill",
+    "note": "store menu 315 absent from v92 BuyMenuList; wire 37 v31 items across 3 tab(s)"
+   },
+   {
+    "store": "313/1002",
+    "store_id": 250,
+    "npc": "Ashley",
+    "menu_type": "Merchant",
+    "n_items": 62,
+    "verdict": "RESTORE",
+    "provenance": "v31-gapfill",
+    "note": "tab set v31=['2501', '2502', '2505'] vs v92=['2501', '2505']; list 2501: v31 8 items vs v92 13; list 2502: v31 33 items vs v92 7; list 2505: v31 21 items vs v92 23"
+   },
+   {
+    "store": "364/1001",
+    "store_id": 250,
+    "npc": "Ainah",
+    "menu_type": "Merchant",
+    "n_items": 62,
+    "verdict": "RESTORE",
+    "provenance": "v31-gapfill",
+    "note": "tab set v31=['2501', '2502', '2505'] vs v92=['2501', '2505']; list 2501: v31 8 items vs v92 13; list 2502: v31 33 items vs v92 7; list 2505: v31 21 items vs v92 23"
+   },
+   {
+    "store": "213/1054",
+    "store_id": 16090,
+    "npc": "Sandom",
+    "menu_type": "Merchant",
+    "n_items": 29,
+    "verdict": "DECISION",
+    "provenance": "v31-gapfill",
+    "note": "Sandom (merchant, out of v17 registry): real store but NPC absent from v17 registry (store_id=16090, 29 items)"
+   },
+   {
+    "store": "64/8000",
+    "store_id": 331,
+    "npc": "Ellonia",
+    "menu_type": "MedalStore",
+    "n_items": 15,
+    "verdict": "DECISION",
+    "provenance": "v31-gapfill",
+    "note": "Ellonia medal store (out of v17 registry): real store but NPC absent from v17 registry (store_id=331, 15 items)"
+   }
+  ]
+ },
+ "loot": {
+  "meta": {
+   "target": "v31 zone-13 loot filtered to v17 roster (50 mobs)",
+   "baseline_ccompensation_templates": 50,
+   "v31_mobs_with_loot": 50
+  },
+  "rows": [
+   {
+    "templateId": 1,
+    "name": "Pigling",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 1 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 2,
+    "name": "Sporewalker",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 2 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 3,
+    "name": "Ponderous Sporewalker",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 3 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 4,
+    "name": "Dwarf Orcan",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 4 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 5,
+    "name": "Orcan Raider",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 5 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 6,
+    "name": "Kariagon",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 6 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 7,
+    "name": "Disc Reaper",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 7 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 8,
+    "name": "Runekeeper",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 8 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 9,
+    "name": "Destroyer",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 9 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 101,
+    "name": "",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 101 (7 bags); v31 port",
+    "n_dropbags_v31": 7
+   },
+   {
+    "templateId": 102,
+    "name": "Docile Terron",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 102 (7 bags); v31 port",
+    "n_dropbags_v31": 7
+   },
+   {
+    "templateId": 111,
+    "name": "Gentle Pigling",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 111 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 301,
+    "name": "Rockcrawler Tumbler",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 301 (7 bags); v31 port",
+    "n_dropbags_v31": 7
+   },
+   {
+    "templateId": 302,
+    "name": "Terron Ringleader",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 302 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 303,
+    "name": "Terron Thief",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 303 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 304,
+    "name": "Sickly Noruk",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 304 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 555,
+    "name": "Scion Scout",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 555 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 556,
+    "name": "Scion Scout",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 556 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 557,
+    "name": "Scion Scout",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 557 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 558,
+    "name": "Scion Scout",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 558 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 601,
+    "name": "Dark Marauder",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 601 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 888,
+    "name": "Training Dummy",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 888 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 901,
+    "name": "Orcan Guardian",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 901 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 902,
+    "name": "Dwarf Guardian",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 902 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 999,
+    "name": "",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 999 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 1001,
+    "name": "Vekas",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 1001 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 1002,
+    "name": "Acharak",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 1002 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 1003,
+    "name": "Acharak's Soldier",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 1003 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 1004,
+    "name": "Kugai",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 1004 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 1011,
+    "name": "Terron Saboteur",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 1011 (7 bags); v31 port",
+    "n_dropbags_v31": 7
+   },
+   {
+    "templateId": 300541,
+    "name": "Rockcrawler",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300541 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300542,
+    "name": "Rockcrawler Cleaver",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300542 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300910,
+    "name": "Prowling Cromos",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300910 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300911,
+    "name": "Cromos",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300911 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300920,
+    "name": "Shaggy Noruk",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300920 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300921,
+    "name": "Noruk",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300921 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300930,
+    "name": "Elder Ghilliedhu",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300930 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300931,
+    "name": "Ghilliedhu",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300931 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300932,
+    "name": "Horned Ghilliedhu",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300932 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300933,
+    "name": "Hardened Ghilliedhu",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300933 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300941,
+    "name": "Terron",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300941 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300942,
+    "name": "Terron Thrall",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300942 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300943,
+    "name": "Terron Saboteur",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300943 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300944,
+    "name": "Terron Chief",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300944 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300945,
+    "name": "Terron Lama",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300945 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300951,
+    "name": "Dark Raider",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300951 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 300960,
+    "name": "Devoted Ebon Imp",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 300960 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 301191,
+    "name": "Stonebeak Raider",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 301191 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 301193,
+    "name": "Stonebeak Brigand",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 301193 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   },
+   {
+    "templateId": 301194,
+    "name": "Stonebeak Highcrest",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "baseline CCompensation has loot for 301194 (10 bags); v31 port",
+    "n_dropbags_v31": 10
+   }
+  ]
+ },
+ "gathering": {
+  "meta": {
+   "target": "v31 gathering placement landed in LIVE CollectionTerritory_13_ATW_Death_P.xml",
+   "inert_file_removed": "CollectionTerritory_13_ATW_P.xml",
+   "patch000_note": "Account for patch-000 gathering fixes in the LIVE file; do not remove them blindly. Any LIVE spawn count exceeding the v31 target may be a patch-000 fix -> flag, don't overwrite."
+  },
+  "rows": [
+   {
+    "territoryId": "1",
+    "collectionsId": "1",
+    "typeId": 1,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 46 spawns for (1,1)",
+    "target_spawns": 46,
+    "live_spawns": 46
+   },
+   {
+    "territoryId": "1",
+    "collectionsId": "2",
+    "typeId": 101,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 66 spawns for (1,2)",
+    "target_spawns": 66,
+    "live_spawns": 66
+   },
+   {
+    "territoryId": "1",
+    "collectionsId": "3",
+    "typeId": 301,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 45 spawns for (1,3)",
+    "target_spawns": 45,
+    "live_spawns": 45
+   },
+   {
+    "territoryId": "5",
+    "collectionsId": "4",
+    "typeId": 409,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 20 spawns for (5,4)",
+    "target_spawns": 20,
+    "live_spawns": 20
+   },
+   {
+    "territoryId": "5",
+    "collectionsId": "5",
+    "typeId": 410,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 24 spawns for (5,5)",
+    "target_spawns": 24,
+    "live_spawns": 24
+   },
+   {
+    "territoryId": "5",
+    "collectionsId": "6",
+    "typeId": 411,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 30 spawns for (5,6)",
+    "target_spawns": 30,
+    "live_spawns": 30
+   },
+   {
+    "territoryId": "5",
+    "collectionsId": "7",
+    "typeId": 492,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 1 spawns for (5,7)",
+    "target_spawns": 1,
+    "live_spawns": 1
+   },
+   {
+    "territoryId": "5",
+    "collectionsId": "8",
+    "typeId": 496,
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "LIVE _ATW_Death_P already has 5 spawns for (5,8)",
+    "target_spawns": 5,
+    "live_spawns": 5
+   },
+   {
+    "territoryId": "*",
+    "collectionsId": "*",
+    "typeId": null,
+    "verdict": "REMOVE",
+    "provenance": "v92-keep",
+    "note": "inert baseline file CollectionTerritory_13_ATW_P.xml (8 collections) is superseded by _ATW_Death_P -> delete",
+    "target_spawns": null,
+    "live_spawns": null
+   }
+  ]
+ },
+ "dialogs": {
+  "meta": {
+   "target": "v31 .condition dialogs for rostered villagers; coverage gaps = GAPFILL-missing",
+   "coverage_gaps": [
+    {
+     "hz": 64,
+     "templateId": 1051,
+     "name": "Mission Board",
+     "title": ""
+    },
+    {
+     "hz": 64,
+     "templateId": 1700,
+     "name": "Guard",
+     "title": ""
+    },
+    {
+     "hz": 64,
+     "templateId": 9001,
+     "name": "",
+     "title": ""
+    },
+    {
+     "hz": 64,
+     "templateId": 9002,
+     "name": "",
+     "title": ""
+    },
+    {
+     "hz": 64,
+     "templateId": 9003,
+     "name": "",
+     "title": ""
+    },
+    {
+     "hz": 213,
+     "templateId": 1030,
+     "name": "Ferya",
+     "title": "Cleric of Blessing"
+    },
+    {
+     "hz": 213,
+     "templateId": 1050,
+     "name": "Tashia",
+     "title": "Cleric of Restoration"
+    },
+    {
+     "hz": 213,
+     "templateId": 1051,
+     "name": "Elinnia",
+     "title": "Cleric of Blessing"
+    },
+    {
+     "hz": 213,
+     "templateId": 1052,
+     "name": "Tuhar",
+     "title": "Cleric of Restoration"
+    },
+    {
+     "hz": 213,
+     "templateId": 1129,
+     "name": "Lucrece",
+     "title": "Cleric of Blessing"
+    },
+    {
+     "hz": 213,
+     "templateId": 1131,
+     "name": "Charun",
+     "title": "Cleric of Restoration"
+    },
+    {
+     "hz": 213,
+     "templateId": 1148,
+     "name": "Mission Board",
+     "title": ""
+    },
+    {
+     "hz": 213,
+     "templateId": 1149,
+     "name": "Mission Board",
+     "title": ""
+    },
+    {
+     "hz": 213,
+     "templateId": 1700,
+     "name": "Guard",
+     "title": ""
+    },
+    {
+     "hz": 436,
+     "templateId": 1011,
+     "name": "Leman",
+     "title": "Mercenary"
+    },
+    {
+     "hz": 436,
+     "templateId": 1012,
+     "name": "Feighion",
+     "title": "Mercenary"
+    }
+   ],
+   "coverage_gap_count": 16
+  },
+  "rows": [
+   {
+    "hz": 64,
+    "villagers_with_dialog": 45,
+    "villagers_missing_dialog": 5,
+    "verdict": "GAPFILL",
+    "provenance": "v31-gapfill",
+    "note": "restore v31 .condition dialogs for 45 rostered villagers; 5 coverage gaps (GAPFILL-missing)"
+   },
+   {
+    "hz": 213,
+    "villagers_with_dialog": 78,
+    "villagers_missing_dialog": 9,
+    "verdict": "GAPFILL",
+    "provenance": "v31-gapfill",
+    "note": "restore v31 .condition dialogs for 78 rostered villagers; 9 coverage gaps (GAPFILL-missing)"
+   },
+   {
+    "hz": 313,
+    "villagers_with_dialog": 8,
+    "villagers_missing_dialog": 0,
+    "verdict": "GAPFILL",
+    "provenance": "v31-gapfill",
+    "note": "restore v31 .condition dialogs for 8 rostered villagers; 0 coverage gaps (GAPFILL-missing)"
+   },
+   {
+    "hz": 364,
+    "villagers_with_dialog": 8,
+    "villagers_missing_dialog": 0,
+    "verdict": "GAPFILL",
+    "provenance": "v31-gapfill",
+    "note": "restore v31 .condition dialogs for 8 rostered villagers; 0 coverage gaps (GAPFILL-missing)"
+   },
+   {
+    "hz": 436,
+    "villagers_with_dialog": 3,
+    "villagers_missing_dialog": 2,
+    "verdict": "GAPFILL",
+    "provenance": "v31-gapfill",
+    "note": "restore v31 .condition dialogs for 3 rostered villagers; 2 coverage gaps (GAPFILL-missing)"
+   }
+  ]
+ },
+ "furniture": {
+  "meta": {
+   "target": "3 zone-13 campfires (v31 BonfireData)",
+   "baseline_bonfire_count": 3,
+   "v31_bonfire_count": 3
+  },
+  "rows": [
+   {
+    "id": "4",
+    "desc": "검은 틈 수비대 캠프",
+    "loc": "53308.2422,-69770.0625,-5579.3008",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "campfire at 53308.2422,-69770.0625,-5579.3008 already in baseline BonfireData_13"
+   },
+   {
+    "id": "4",
+    "desc": "북부 경계 초소",
+    "loc": "87055.3359,-84622.1406,-4528.3013",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "campfire at 87055.3359,-84622.1406,-4528.3013 already in baseline BonfireData_13"
+   },
+   {
+    "id": "4",
+    "desc": "쿠벨 야영지",
+    "loc": "55418.7578,-82242.0156,-4127.3003",
+    "verdict": "MATCH",
+    "provenance": "v31-gapfill",
+    "note": "campfire at 55418.7578,-82242.0156,-4127.3003 already in baseline BonfireData_13"
+   }
+  ]
+ },
+ "_counts": {
+  "RESTORE": 5,
+  "MATCH": 62,
+  "GAPFILL": 143,
+  "DECISION": 2,
+  "REMOVE": 1
+ }
+}

@@ -121,10 +121,16 @@ External paths are dev-specific. See `.references` (template: `.references.examp
 | `server_datasheet` | Server datasheet XMLs |
 | `client_datacenter` | Client DataCenter folder |
 | `client_pack_dir` | Client pack tool directory |
+| `deploy_repo` | reforged-deploy repo (private; dev server infra and access docs) |
+| `dev_server_ssh` | SSH alias for the dev game server (defined in the developer's ssh config) |
+| `dev_server_datasheet` | Remote datasheet path on the dev game server |
 | `dsl_cli` | DSL CLI binary |
 | `dsl_source` | DSL source code |
 | `dsl_docs_enduser` | DSL end-user documentation |
 | `dsl_docs_internal` | DSL internal documentation |
+| `domain_docs` | datasheet-domain Starlight docs root (entity schemas, ID ranges) |
+| `domain_data` | datasheet-domain public data files |
+| `content_framework` | reforged-content-framework repo (design source of truth for progression, economy, seasons) |
 
 ## Adding New Content Systems
 

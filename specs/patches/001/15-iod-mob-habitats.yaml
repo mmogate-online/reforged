@@ -1,0 +1,5642 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: spawn-restore-standard
+
+# IoD padding Wave B: mob-habitat restoration (patch 001, classic-restoration).
+#
+# Doctrine:
+#   rule 4 : fence geometry recovered from the v17.11 client TerritoryData.
+#   rule 5 : mob habitat replication from v17; MOBS ONLY. Every group is an
+#            APPROXIMATION (v17 geometry + v31 same-family donor attributes) and
+#            is divergence-logged; no v17 group carried per-territory spawn points,
+#            so template-per-territory placement is round-robin over the v17 roster.
+#
+# Generator : reforged/tools/dc-restore/gen_habitat_specs.py (deterministic).
+# Inputs    : docs/plans/classic-restoration/iod/data/padding-habitat-gaps.json
+#             docs/plans/classic-restoration/iod/data/padding-npcloc-sweep.json
+#             v31 TerritoryData_13 (donor populations), v92 NpcData_13 (family/name).
+#
+# Spawn-density fix (padding-density-fixes.md adjudication, 2026-07-21):
+#   Quest-served groups were too sparse for their quest kill targets. Two levers:
+#   1300036 (quest 1349 Mini Orcan, 48-kill tpl 4): roster forced to [4] on all 4
+#           territories, spawnCount 5  -> 20 concurrent tpl 4 (was 2).
+#   1300038 (quest 1349 tpl 5): roster kept, spawnCount 2 -> 8 concurrent tpl 5.
+#   Bespoke groups 1300060/1300061 now emit ONE small square territory (+/-150 u)
+#           per NpcLoc marker instead of one convex hull per template, using every
+#           marker; templates split by drop weight (302:303 = 6:4 over 10 markers;
+#           300944:300941 = 10:7 over 17 markers). spawnCount stays 1 per marker.
+#   Superseded prior bespoke territories are removed (see territories.delete below).
+#
+# Scope: 17 replicated v17 mob groups + 2 bespoke quest-target groups (one territory
+#   per NpcLoc marker), all HZ 13; 244 territories, 244 spawns total. Territories/
+#   spawns extend the spawn-restore-standard archetypes; each row carries only its
+#   deviations.
+#
+# Adjudicated DECISION defaults (no clean same-family v31 donor):
+#   1300033 Rockcrawler   : roster 300541/300542/300540; generic combat profile
+#                           (spawnCount 1, respawnTime 20000, randomPos true, ai 6).
+#   1300058 Stone Head    : roster 301; environment profile from donor 1300054.
+#   1300029 corrupt Terron: FIGHTABLE roster 300942/300943/300945; density copied
+#                           from Black Rift group 1300041.
+#   bespoke 1348 (302/303) and 1319 (300941/300944): generic combat profile,
+#                           per-marker territories (density fix).
+#
+# Group ids (v17 originals, verified free in both eras): 1300031, 1300032, 1300033, 1300034, 1300036, 1300037, 1300038, 1300057, 1300058, 1300022, 1300025, 1300028, 1300029, 1300030, 1300019, 1300020, 1300021
+# Bespoke group ids (adjacent-free, both eras): 1300060, 1300061
+# Territory ids from 13014260; instance ids from 13472950 (both above the live max in both eras).
+# Position sanity: every spawn position falls inside its fence (0 clamps).
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 13
+      groupId: 1300031
+      desc: "태고의 유적지(아르가스)"
+    - huntingZoneId: 13
+      groupId: 1300032
+      desc: "태고의 유적지(타락한 흙의 정령)"
+    - huntingZoneId: 13
+      groupId: 1300033
+      desc: "태고의 유적지(스톤 크라울러)"
+    - huntingZoneId: 13
+      groupId: 1300034
+      desc: "태고의 유적지(죽어가는 크로모스)"
+    - huntingZoneId: 13
+      groupId: 1300036
+      desc: "태고의 유적지(야영지 외곽 오칸 미니미)"
+    - huntingZoneId: 13
+      groupId: 1300037
+      desc: "태고의 유적지(야영지 내부 어둠의 약탈자)"
+    - huntingZoneId: 13
+      groupId: 1300038
+      desc: "태고의 유적지(오칸 순찰)"
+    - huntingZoneId: 13
+      groupId: 1300057
+      desc: "태고의 유적지_환경_자연의 정령"
+    - huntingZoneId: 13
+      groupId: 1300058
+      desc: "태고의 유적지_스톤 헤드"
+    - huntingZoneId: 13
+      groupId: 1300022
+      desc: "기지 인근(자연의 정령)"
+    - huntingZoneId: 13
+      groupId: 1300025
+      desc: "기지 인근(아르가스)"
+    - huntingZoneId: 13
+      groupId: 1300028
+      desc: "기지 인근(어둠의 약탈자)"
+    - huntingZoneId: 13
+      groupId: 1300029
+      desc: "기지 인근(타락한 자연의 정령)"
+    - huntingZoneId: 13
+      groupId: 1300030
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+    - huntingZoneId: 13
+      groupId: 1300019
+      desc: "태고의 숲_중반(자연의 정령)"
+    - huntingZoneId: 13
+      groupId: 1300020
+      desc: "태고의 숲_후반(길리두)"
+    - huntingZoneId: 13
+      groupId: 1300021
+      desc: "태고의 숲_후반(선공 길리두)"
+    - huntingZoneId: 13
+      groupId: 1300060
+      desc: "IoD quest 1348 target habitat (302/303)"
+    - huntingZoneId: 13
+      groupId: 1300061
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+
+territories:
+  upsert:
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014260
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [57967.1758, -85697.7734, -4257.832]
+        - [58196.4883, -85321.9766, -4322.2617]
+        - [57719.2617, -85341.3594, -4279.6875]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014270
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [60368.8203, -84243.5469, -4300.9922]
+        - [60598.1328, -83867.75, -4331.4414]
+        - [60120.9063, -83887.1328, -4362.7656]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014280
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [60556.4883, -83351.75, -4319.5664]
+        - [60785.8008, -82975.9531, -4318.793]
+        - [60308.5742, -82995.3359, -4327.3281]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014290
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [58803.957, -85597.0469, -4247.4336]
+        - [59033.2695, -85221.25, -4232.918]
+        - [58556.043, -85240.6328, -4290.6602]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014300
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [61193.6211, -82619.2656, -4297.3828]
+        - [61422.9336, -82243.4688, -4200.9375]
+        - [60945.707, -82262.8516, -4258.9648]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014310
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [61352.25, -83755.9453, -4255.918]
+        - [61581.5625, -83380.1484, -4227.4531]
+        - [61104.3359, -83399.5313, -4280.1641]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014320
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [61276.6406, -84624.4688, -4026.9453]
+        - [61505.9531, -84248.6719, -4165.457]
+        - [61028.7266, -84268.0547, -4233.2813]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014330
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [59775.7305, -84761.5078, -4220.8359]
+        - [60005.043, -84385.7109, -4292.7734]
+        - [59527.8164, -84405.0938, -4283.4023]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014340
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [62113.1289, -82673.4531, -4160.0938]
+        - [62342.4414, -82297.6563, -4010.5469]
+        - [61865.2148, -82317.0391, -4167.3125]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014350
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [62308.3086, -83788.9063, -4035.1875]
+        - [62537.6211, -83413.1094, -4007.9258]
+        - [62060.3945, -83432.4922, -4127.1172]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014360
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [59895.3008, -81671.2969, -4309.168]
+        - [60124.6133, -81295.5, -4306.9375]
+        - [59647.3867, -81314.8828, -4369.5859]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014370
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [60408.6445, -81318.4531, -4261.9375]
+        - [60637.957, -80942.6563, -4196.3633]
+        - [60160.7305, -80962.0391, -4292.2109]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014380
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [59508.625, -82283.5625, -4354.957]
+        - [59623.2813, -82095.6641, -4334.6094]
+        - [59737.9375, -81907.7656, -4311.2539]
+        - [59260.7109, -81927.1484, -4377.1523]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014390
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [53320.6563, -81771.1875, -4349.168]
+        - [53549.9688, -81395.3906, -4328.5078]
+        - [53072.7422, -81414.7734, -4438.4961]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014400
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [52751.2305, -83205.0938, -4472.3867]
+        - [52980.543, -82829.2969, -4459.0195]
+        - [52503.3164, -82848.6797, -4482.2539]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014410
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [54478.8008, -84829.4609, -4420.1133]
+        - [54708.1133, -84453.6641, -4426.4336]
+        - [54230.8867, -84473.0469, -4438.5273]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014420
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [53996.9805, -88121.2734, -3240.2852]
+        - [54226.293, -87745.4766, -3248.8164]
+        - [53749.0664, -87764.8594, -3203.4375]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014430
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [51290.5156, -84809.7969, -3661.1719]
+        - [51519.8281, -84434, -3683.8789]
+        - [51042.6016, -84453.3828, -3601.7852]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014440
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [56611.7266, -84882.6406, -4400.1367]
+        - [56841.0391, -84506.8438, -4453.1445]
+        - [56363.8125, -84526.2266, -4442.4336]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014450
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [60370.2461, -82262.0938, -4298.0039]
+        - [60599.5586, -81886.2969, -4250.832]
+        - [60122.332, -81905.6797, -4287.8477]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014460
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [55358.3672, -87875.5078, -4201.5664]
+        - [55587.6797, -87499.7109, -4210.3438]
+        - [55110.4531, -87519.0938, -4162.7969]
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014470
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(아르가스)"
+      fences:
+        - [54990.4883, -87055.4375, -4159.5117]
+        - [55219.8008, -86679.6406, -4194.207]
+        - [54742.5742, -86699.0234, -4130.6719]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014480
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [59060.2227, -80071.7734, -4309.3477]
+        - [59272.0195, -80250.7891, -4317.4531]
+        - [59442.875, -80150.3281, -4283.4063]
+        - [59442.4648, -79889.9375, -4233.1055]
+        - [59255.0273, -79845.4844, -4255.2578]
+        - [59157.625, -79958.6328, -4282.9844]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014490
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [56556.2031, -77526.6875, -4483.8672]
+        - [56768, -77705.7031, -4479.6445]
+        - [56938.8555, -77605.2422, -4438.3984]
+        - [56938.4453, -77344.8516, -4407.9258]
+        - [56751.0078, -77300.3984, -4430.2695]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014500
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [54031.4844, -77444.2109, -4564.832]
+        - [54243.2813, -77623.2266, -4585.3008]
+        - [54414.1367, -77522.7656, -4590.3945]
+        - [54413.7266, -77262.375, -4553.0391]
+        - [54226.2891, -77217.9219, -4538.2109]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014510
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [56327.7578, -78341.5781, -4499.5313]
+        - [56539.5547, -78520.5938, -4479.7813]
+        - [56710.4102, -78420.1328, -4466.7148]
+        - [56710, -78159.7422, -4482.4258]
+        - [56522.5625, -78115.2891, -4508.7539]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014520
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [54875.5977, -77330.3516, -4586.7266]
+        - [55087.3945, -77509.3672, -4598.0234]
+        - [55258.25, -77408.9063, -4570.9688]
+        - [55257.8398, -77148.5156, -4529.9766]
+        - [55070.4023, -77104.0625, -4536.668]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014530
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [58202.0469, -78576.9531, -4419.1133]
+        - [58413.8438, -78755.9688, -4373.4766]
+        - [58584.6992, -78655.5078, -4335.1445]
+        - [58584.2891, -78395.1172, -4372.457]
+        - [58396.8516, -78350.6641, -4413.4375]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014540
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [54717.043, -78168.9453, -4592.4258]
+        - [54928.8398, -78347.9609, -4576.9961]
+        - [55099.6953, -78247.5, -4597.1758]
+        - [55099.2852, -77987.1094, -4614.9844]
+        - [54911.8477, -77942.6563, -4618.7773]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014550
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [55506.5156, -78131.4453, -4582.7656]
+        - [55718.3125, -78310.4609, -4546.1484]
+        - [55889.168, -78210, -4540.5703]
+        - [55888.7578, -77949.6094, -4563.0625]
+        - [55701.3203, -77905.1563, -4575.1328]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014560
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [57547.4883, -78755.2578, -4409.1914]
+        - [57759.2852, -78934.2734, -4426.3086]
+        - [57930.1406, -78833.8125, -4428.3477]
+        - [57929.7305, -78573.4219, -4414.9492]
+        - [57742.293, -78528.9688, -4409.3125]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014570
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [58743.1406, -79106.5, -4325.3242]
+        - [58954.9375, -79285.5156, -4301.4727]
+        - [59125.793, -79185.0547, -4265.9023]
+        - [59125.3828, -78924.6641, -4251.1406]
+        - [58937.9453, -78880.2109, -4272.1563]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014580
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [55800.8164, -77484.3438, -4561.0273]
+        - [56012.6133, -77663.3594, -4566.3438]
+        - [56183.4688, -77562.8984, -4545.0547]
+        - [56183.0586, -77302.5078, -4519.0898]
+        - [55995.6211, -77258.0547, -4548.6758]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014590
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [57792.8086, -80031.0938, -4420.457]
+        - [58004.6055, -80210.1094, -4407.3516]
+        - [58175.4609, -80109.6484, -4406.793]
+        - [58175.0508, -79849.2578, -4424.4766]
+        - [57987.6133, -79804.8047, -4434.4766]
+        - [57890.2109, -79917.9531, -4427.4219]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014600
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [58444.1484, -79826.875, -4391.3984]
+        - [58655.9453, -80005.8906, -4362.3984]
+        - [58826.8008, -79905.4297, -4325.2461]
+        - [58826.3906, -79645.0391, -4337.9922]
+        - [58638.9531, -79600.5859, -4352.9141]
+        - [58541.5508, -79713.7344, -4369.3047]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014610
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [58522.1797, -80498.0313, -4381.4063]
+        - [58733.9766, -80677.0469, -4408.4492]
+        - [58904.832, -80576.5859, -4387.4922]
+        - [58904.4219, -80316.1953, -4353.6133]
+        - [58716.9844, -80271.7422, -4361.1992]
+        - [58619.582, -80384.8906, -4369.5664]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014620
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [57392.6992, -79498.7109, -4455.9102]
+        - [57604.4961, -79677.7266, -4442.5195]
+        - [57775.3516, -79577.2656, -4447.9375]
+        - [57774.9414, -79316.875, -4451.4336]
+        - [57587.5039, -79272.4219, -4448.2148]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014630
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [58043.7891, -79195.7266, -4440.9766]
+        - [58255.5859, -79374.7422, -4420.1953]
+        - [58426.4414, -79274.2813, -4386.2539]
+        - [58426.0313, -79013.8906, -4382.6797]
+        - [58238.5938, -78969.4375, -4423.9844]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014640
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [59612.6875, -80504.625, -4334.9063]
+        - [59824.4844, -80683.6406, -4325.668]
+        - [59995.3398, -80583.1797, -4284.0273]
+        - [59994.9297, -80322.7891, -4244.1563]
+        - [59807.4922, -80278.3359, -4272.3008]
+        - [59710.0898, -80391.4844, -4305.5547]
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014650
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(타락한 흙의 정령)"
+      fences:
+        - [56835.5195, -78872.9688, -4425.3594]
+        - [57047.3164, -79051.9844, -4422.1367]
+        - [57218.1719, -78951.5234, -4415.0781]
+        - [57217.7617, -78691.1328, -4409.3281]
+        - [57030.3242, -78646.6797, -4419.4102]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014660
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [55584.8906, -80028.8047, -4316.4727]
+        - [55906.6953, -79931.3438, -4340.9063]
+        - [55960, -79622.2109, -4392.9023]
+        - [55708.1406, -79519.6719, -4365.3945]
+        - [55494.5625, -79688.9766, -4334.8086]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014670
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [57322.1367, -81383.3906, -4337.3984]
+        - [57643.9414, -81285.9297, -4402.4023]
+        - [57697.2461, -80976.7969, -4413.5195]
+        - [57445.3867, -80874.2578, -4409.1016]
+        - [57231.8086, -81043.5625, -4347.9063]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014680
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [54542.3164, -80140.8047, -4286.793]
+        - [54703.2188, -80092.0703, -4301.6758]
+        - [54864.1211, -80043.3438, -4318.7695]
+        - [54917.4258, -79734.2109, -4402.0742]
+        - [54665.5664, -79631.6719, -4393.7031]
+        - [54451.9883, -79800.9766, -4354.7578]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014690
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [57900.8945, -80890.5781, -4403.8789]
+        - [58222.6992, -80793.1172, -4403.8047]
+        - [58276.0039, -80483.9844, -4384.6289]
+        - [58024.1445, -80381.4453, -4401.9375]
+        - [57810.5664, -80550.75, -4408.2617]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014700
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [53510.6875, -78170.9063, -4583.8516]
+        - [53832.4922, -78073.4453, -4581.7539]
+        - [53885.7969, -77764.3125, -4581.3555]
+        - [53633.9375, -77661.7734, -4586.4414]
+        - [53420.3594, -77831.0781, -4595.9492]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014710
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [54001.207, -78897.4688, -4553.4922]
+        - [54323.0117, -78800.0078, -4528.082]
+        - [54376.3164, -78490.875, -4572.375]
+        - [54124.457, -78388.3359, -4592.4727]
+        - [53910.8789, -78557.6406, -4573.3867]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014720
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [56336.2188, -79679.1406, -4418.7461]
+        - [56658.0234, -79581.6797, -4447.418]
+        - [56711.3281, -79272.5469, -4456.3594]
+        - [56459.4688, -79170.0078, -4458.0859]
+        - [56245.8906, -79339.3125, -4439.5]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014730
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [58274.4414, -81507.1875, -4410.4922]
+        - [58596.2461, -81409.7266, -4439.8984]
+        - [58649.5508, -81100.5938, -4443.6836]
+        - [58397.6914, -80998.0547, -4421.7344]
+        - [58184.1133, -81167.3594, -4407.6328]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014740
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [55831.0898, -79108.9453, -4426.082]
+        - [55911.543, -79084.5781, -4431.6836]
+        - [55991.9922, -79060.2109, -4436.6211]
+        - [56152.8945, -79011.4844, -4447.2344]
+        - [56206.1992, -78702.3516, -4475.6016]
+        - [55954.3398, -78599.8125, -4490.9492]
+        - [55740.7617, -78769.1172, -4477.832]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014750
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [57156.0039, -80490.3516, -4406.5039]
+        - [57477.8086, -80392.8906, -4422.5664]
+        - [57531.1133, -80083.7578, -4427.9961]
+        - [57279.2539, -79981.2188, -4436.4961]
+        - [57065.6758, -80150.5234, -4408.0156]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014760
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [54916.8672, -79294.1484, -4423.6055]
+        - [55077.7695, -79245.4141, -4417.5273]
+        - [55238.6719, -79196.6875, -4410.1602]
+        - [55291.9766, -78887.5547, -4463.8516]
+        - [55040.1172, -78785.0156, -4487.4648]
+        - [54826.5391, -78954.3203, -4466.0977]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014770
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [58670.9805, -82162.3672, -4416.2109]
+        - [58992.7852, -82064.9063, -4376.9023]
+        - [59046.0898, -81755.7734, -4413.1484]
+        - [58794.2305, -81653.2344, -4415.5781]
+        - [58580.6523, -81822.5391, -4418.8242]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014780
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [59009.7578, -81254.6328, -4439.0156]
+        - [59331.5625, -81157.1719, -4406.6055]
+        - [59384.8672, -80848.0391, -4382.2617]
+        - [59133.0078, -80745.5, -4395.7109]
+        - [58919.4297, -80914.8047, -4432.0078]
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014790
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(스톤 크라울러)"
+      fences:
+        - [57739.4805, -82064.8984, -4384.2813]
+        - [58061.2852, -81967.4375, -4433.332]
+        - [58114.5898, -81658.3047, -4423.168]
+        - [57862.7305, -81555.7656, -4416.1641]
+        - [57649.1523, -81725.0703, -4376.1563]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014800
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [52985.8672, -82455.5, -4410.6563]
+        - [53331.832, -82602, -4376.1406]
+        - [53476.1055, -82230.6641, -4321.4375]
+        - [53134.7031, -82113.125, -4370.3711]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014810
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [51738.2539, -82833.1797, -4468.4844]
+        - [52084.2188, -82979.6797, -4479.8164]
+        - [52228.4922, -82608.3438, -4492.3477]
+        - [51887.0898, -82490.8047, -4493.9102]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014820
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [52208.4023, -81665.2109, -4506.543]
+        - [52554.3672, -81811.7109, -4481.9961]
+        - [52698.6406, -81440.375, -4513.4492]
+        - [52357.2383, -81322.8359, -4543.7109]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014830
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [53288.4648, -81043.1016, -4425.8594]
+        - [53634.4297, -81189.6016, -4332.0938]
+        - [53778.7031, -80818.2656, -4333.7227]
+        - [53437.3008, -80700.7266, -4433.9961]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014840
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [55194.5742, -84531.0625, -4412.0742]
+        - [55540.5391, -84677.5625, -4417.0352]
+        - [55684.8125, -84306.2266, -4378.6094]
+        - [55343.4102, -84188.6875, -4368.6406]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014850
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [54113.5508, -85510.7422, -4301.2266]
+        - [54459.5156, -85657.2422, -4308.2148]
+        - [54603.7891, -85285.9063, -4383.168]
+        - [54262.3867, -85168.3672, -4391.2188]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014860
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [53712.5039, -84094.375, -4454.5391]
+        - [54058.4688, -84240.875, -4452.0547]
+        - [54202.7422, -83869.5391, -4398.8164]
+        - [53861.3398, -83752, -4445.0859]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014870
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [53258.8008, -79935.3516, -4521.0586]
+        - [53604.7656, -80081.8516, -4446.6406]
+        - [53749.0391, -79710.5156, -4445.8359]
+        - [53407.6367, -79592.9766, -4497.5156]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014880
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [53169.7773, -83199.9766, -4463.5664]
+        - [53515.7422, -83346.4766, -4441.8203]
+        - [53660.0156, -82975.1406, -4411.2031]
+        - [53318.6133, -82857.6016, -4414.4766]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014890
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [55670.4102, -85350.3672, -4347.1445]
+        - [56016.375, -85496.8672, -4244.8164]
+        - [56160.6484, -85125.5313, -4333.7305]
+        - [55819.2461, -85007.9922, -4359.1563]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014900
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [59372.6328, -83167.6406, -4312.8281]
+        - [59718.5977, -83314.1406, -4310.9688]
+        - [59862.8711, -82942.8047, -4323.6719]
+        - [59521.4688, -82825.2656, -4328.2773]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014910
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [57354.8594, -84210.0234, -4463.2383]
+        - [57700.8242, -84356.5234, -4453.1289]
+        - [57845.0977, -83985.1875, -4420.7383]
+        - [57503.6953, -83867.6484, -4438.0313]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014920
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [57053.2656, -84973.5078, -4389.0156]
+        - [57399.2305, -85120.0078, -4338.3008]
+        - [57543.5039, -84748.6719, -4428.8516]
+        - [57202.1016, -84631.1328, -4442.4844]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014930
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [58432.4531, -83043.2031, -4406.3281]
+        - [58778.418, -83189.7031, -4341.2227]
+        - [58850.5547, -83004.0391, -4330.1016]
+        - [58922.6914, -82818.3672, -4336.2852]
+        - [58581.2891, -82700.8281, -4402.3359]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014940
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [58472.4883, -83894.5391, -4343.3906]
+        - [58818.4531, -84041.0391, -4333.8945]
+        - [58962.7266, -83669.7031, -4355.957]
+        - [58621.3242, -83552.1641, -4353.9766]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014950
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [56622.0547, -83640.7734, -4324.1289]
+        - [56968.0195, -83787.2734, -4385.4805]
+        - [57112.293, -83415.9375, -4361.6484]
+        - [56770.8906, -83298.3984, -4306.7969]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014960
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [52406.582, -84057.6016, -4318.8164]
+        - [52752.5469, -84204.1016, -4361.8672]
+        - [52896.8203, -83832.7656, -4413.6055]
+        - [52555.418, -83715.2266, -4400.2539]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014970
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [51784.0078, -87520.9375, -3261.9609]
+        - [52129.9727, -87667.4375, -3245.7305]
+        - [52274.2461, -87296.1016, -3309.9023]
+        - [51932.8438, -87178.5625, -3330.5547]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014980
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [53291.9766, -86876.6484, -3378.2656]
+        - [53637.9414, -87023.1484, -3363.418]
+        - [53782.2148, -86651.8125, -3384.2852]
+        - [53440.8125, -86534.2734, -3381.5273]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014990
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [57994.7891, -84647.5469, -4416.6875]
+        - [58340.7539, -84794.0469, -4363.3789]
+        - [58485.0273, -84422.7109, -4351.8203]
+        - [58143.625, -84305.1719, -4393.7461]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015000
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [57648.3789, -82909.5781, -4426.332]
+        - [57994.3438, -83056.0781, -4441.1914]
+        - [58138.6172, -82684.7422, -4451.2852]
+        - [57797.2148, -82567.2031, -4414.9102]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015010
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [56888.8633, -82852.0391, -4278.793]
+        - [57234.8281, -82998.5391, -4356.0117]
+        - [57379.0977, -82627.2031, -4194.9927]
+        - [57037.6992, -82509.6641, -4297.7344]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015020
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [57762.0352, -83600.1641, -4428.4375]
+        - [58108, -83746.6641, -4387.7539]
+        - [58252.2734, -83375.3281, -4409.4141]
+        - [57910.8711, -83257.7891, -4430.0938]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015030
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [59241.1484, -83906.2969, -4359.8633]
+        - [59587.1133, -84052.7969, -4350.6563]
+        - [59731.3867, -83681.4609, -4365.7734]
+        - [59389.9844, -83563.9219, -4355.5664]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015040
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [53412.4727, -84858.8672, -4336.6055]
+        - [53758.4375, -85005.3672, -4395.7031]
+        - [53902.7109, -84634.0313, -4420.4688]
+        - [53561.3086, -84516.4922, -4422.9492]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015050
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [54875.4648, -85195.5078, -4391.8516]
+        - [55221.4297, -85342.0078, -4343.4844]
+        - [55365.7031, -84970.6719, -4417.7773]
+        - [55024.3008, -84853.1328, -4422.8711]
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015060
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(죽어가는 크로모스)"
+      fences:
+        - [54909.8086, -85982.8516, -4271.9844]
+        - [55255.7734, -86129.3516, -4246.3047]
+        - [55400.0469, -85758.0156, -4288.8242]
+        - [55058.6445, -85640.4766, -4313.3359]
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015070
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 외곽 오칸 미니미)"
+      fences:
+        - [50523.8359, -78463.4141, -4789.8711]
+        - [50628.8984, -78505.6172, -4792.7344]
+        - [50752.75, -78408.3203, -4790.6055]
+        - [50760.4414, -78300.8203, -4788.0391]
+        - [50636.2813, -78182.1094, -4787.1172]
+        - [50506.082, -78261.5313, -4786.2031]
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015080
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 외곽 오칸 미니미)"
+      fences:
+        - [50751.9492, -77626.8594, -4745.4063]
+        - [50857.0117, -77669.0625, -4746.5]
+        - [50980.8633, -77571.7656, -4733.5625]
+        - [50988.5547, -77464.2656, -4727.8047]
+        - [50864.3945, -77345.5547, -4717.793]
+        - [50734.1953, -77424.9766, -4719.8008]
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015090
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 외곽 오칸 미니미)"
+      fences:
+        - [49726.5781, -79442.6484, -4690.3945]
+        - [49831.6406, -79484.8516, -4688.5352]
+        - [49955.4922, -79387.5547, -4699.5508]
+        - [49963.1836, -79280.0547, -4708.0547]
+        - [49839.0234, -79161.3438, -4711.4961]
+        - [49708.8242, -79240.7656, -4706.4102]
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015100
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 외곽 오칸 미니미)"
+      fences:
+        - [50012.1563, -78859.2891, -4739.3359]
+        - [50117.2188, -78901.4922, -4733.7109]
+        - [50241.0703, -78804.1953, -4753.1563]
+        - [50248.7617, -78696.6953, -4764.9297]
+        - [50124.6016, -78577.9844, -4766.9414]
+        - [49994.4023, -78657.4063, -4759.5938]
+    - huntingZoneId: 13
+      groupId: 1300037
+      territoryId: 13015110
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 내부 어둠의 약탈자)"
+      fences:
+        - [50415.832, -77716.4375, -4745.0313]
+        - [50503.9961, -77729.1406, -4750.7617]
+        - [50638.168, -77563.9063, -4733.0703]
+        - [50551.4219, -77485.3125, -4718.043]
+        - [50433.9492, -77547.9531, -4724.8086]
+    - huntingZoneId: 13
+      groupId: 1300037
+      territoryId: 13015120
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 내부 어둠의 약탈자)"
+      fences:
+        - [49636.7422, -78189.3203, -4756.4453]
+        - [49724.9063, -78202.0234, -4764.2695]
+        - [49859.0781, -78036.7891, -4759.7695]
+        - [49772.332, -77958.1953, -4743.5156]
+        - [49654.8594, -78020.8359, -4735.8594]
+    - huntingZoneId: 13
+      groupId: 1300037
+      territoryId: 13015130
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(야영지 내부 어둠의 약탈자)"
+      fences:
+        - [49542.8125, -78837.5703, -4758.5781]
+        - [49630.9766, -78850.2734, -4756]
+        - [49765.1484, -78685.0391, -4767.7617]
+        - [49678.4023, -78606.4453, -4774.8594]
+        - [49560.9297, -78669.0859, -4772.5469]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015140
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [51825.8438, -79122.8516, -4643.2891]
+        - [52146.9648, -79008.6875, -4585.9609]
+        - [52064.293, -78708.0313, -4633.4688]
+        - [51802.2188, -78836.8203, -4664.0508]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015150
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [51392.9805, -78232.2344, -4759.4688]
+        - [51714.1016, -78118.0703, -4724.8203]
+        - [51631.4297, -77817.4141, -4721.9336]
+        - [51369.3555, -77946.2031, -4746.3711]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015160
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [50998.4844, -80089.0703, -4659.1992]
+        - [51319.6055, -79974.9063, -4679.9727]
+        - [51236.9336, -79674.25, -4686.0977]
+        - [50974.8594, -79803.0391, -4683.4023]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015170
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [50640.6992, -79214.9844, -4725.8164]
+        - [50961.8203, -79100.8203, -4745.0195]
+        - [50879.1484, -78800.1641, -4783.8398]
+        - [50617.0742, -78928.9531, -4761.4063]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015180
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [51265.8906, -80970.6719, -4555.2578]
+        - [51587.0117, -80856.5078, -4554.4961]
+        - [51504.3398, -80555.8516, -4601.4805]
+        - [51242.2656, -80684.6406, -4579.6953]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015190
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [52717.875, -78861.6016, -4541.0781]
+        - [53038.9961, -78747.4375, -4589.8438]
+        - [52956.3242, -78446.7813, -4625.6133]
+        - [52694.25, -78575.5703, -4593.7305]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015200
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [50483.293, -80493.4297, -4622.3359]
+        - [50804.4141, -80379.2656, -4613.7773]
+        - [50721.7422, -80078.6094, -4659.25]
+        - [50459.668, -80207.3984, -4650.5664]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015210
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [52349.6797, -80013.1719, -4598.0273]
+        - [52670.8008, -79899.0078, -4581.7305]
+        - [52588.1289, -79598.3516, -4567.1289]
+        - [52326.0547, -79727.1406, -4583.5938]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015220
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [51445.2031, -82071.7422, -4495.5117]
+        - [51766.3242, -81957.5781, -4506.4648]
+        - [51683.6523, -81656.9219, -4508.1445]
+        - [51421.5781, -81785.7109, -4505.0781]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015230
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [50348.8906, -81639.5391, -4466.1641]
+        - [50670.0117, -81525.375, -4499.2734]
+        - [50587.3398, -81224.7188, -4515.4102]
+        - [50325.2656, -81353.5078, -4509.0469]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015240
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [53057.3398, -79506.0781, -4520.1445]
+        - [53378.4609, -79391.9141, -4511.0898]
+        - [53295.7891, -79091.2578, -4556.3828]
+        - [53033.7148, -79220.0469, -4521.9844]
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015250
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지(오칸 순찰)"
+      fences:
+        - [51833.4766, -80797.0234, -4565.9688]
+        - [52154.5977, -80682.8594, -4605.2461]
+        - [52071.9258, -80382.2031, -4621.5]
+        - [51809.8516, -80510.9922, -4591.9648]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015260
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [58355.168, -85810.4609, -4268.918]
+        - [58392.1367, -85887.5156, -4258.6719]
+        - [58444.9805, -85745.2344, -4272.5586]
+        - [58383.4102, -85739.2344, -4275.25]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015270
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [55445.2109, -87226.9297, -4192.5]
+        - [55482.1797, -87303.9844, -4198.1836]
+        - [55535.0234, -87161.7031, -4181.9023]
+        - [55473.4531, -87155.7031, -4185.5117]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015280
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [60085.8203, -83060.9141, -4321.3398]
+        - [60122.7891, -83137.9688, -4317.0234]
+        - [60175.6328, -82995.6875, -4325.8672]
+        - [60114.0625, -82989.6875, -4325.1367]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015290
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [55797.4297, -84413.8359, -4402.75]
+        - [55834.3984, -84490.8906, -4418.1172]
+        - [55887.2422, -84348.6094, -4398.3594]
+        - [55825.6719, -84342.6094, -4394.9453]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015300
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [57521.5586, -83576.3281, -4429.5391]
+        - [57558.5273, -83653.3828, -4430.1016]
+        - [57611.3711, -83511.1016, -4426.5586]
+        - [57549.8008, -83505.1016, -4427.5977]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015310
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [53062.1563, -83609.0469, -4447.2188]
+        - [53099.125, -83686.1016, -4444.0508]
+        - [53151.9688, -83543.8203, -4446.8047]
+        - [53090.3984, -83537.8203, -4449.9805]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015320
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [54412.4297, -84072.0859, -4403.793]
+        - [54449.3984, -84149.1406, -4413.3359]
+        - [54502.2422, -84006.8594, -4379.75]
+        - [54440.6719, -84000.8594, -4387.3281]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015330
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [54331.9766, -82174.7891, -4262.1328]
+        - [54368.9453, -82251.8438, -4279.125]
+        - [54421.7891, -82109.5625, -4238.7266]
+        - [54360.2188, -82103.5625, -4241.4023]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015340
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [51321.4648, -86313.9844, -3414.6055]
+        - [51358.4336, -86391.0391, -3412.5547]
+        - [51411.2773, -86248.7578, -3439.8672]
+        - [51349.707, -86242.7578, -3430.8164]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015350
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [50298.0703, -80878.4531, -4540.3164]
+        - [50335.0391, -80955.5078, -4538.4805]
+        - [50387.8828, -80813.2266, -4544.2188]
+        - [50326.3125, -80807.2266, -4543.6133]
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015360
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_환경_자연의 정령"
+      fences:
+        - [52782.4961, -87903.25, -3211.6719]
+        - [52819.4648, -87980.3047, -3208.8242]
+        - [52872.3086, -87838.0234, -3205.5703]
+        - [52810.7383, -87832.0234, -3211.7891]
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015370
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_스톤 헤드"
+      fences:
+        - [59148.0156, -84195.4219, -4315.5625]
+        - [59272.8164, -84132.1328, -4325.1992]
+        - [59247.2305, -84097.9531, -4330.957]
+        - [59264.8867, -84041.2109, -4340.707]
+        - [59152.0742, -83995.5547, -4347.8633]
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015380
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_스톤 헤드"
+      fences:
+        - [60787.7148, -81839.3516, -4220.1094]
+        - [60912.5156, -81776.0625, -4186.75]
+        - [60886.9297, -81741.8828, -4187.7539]
+        - [60904.5859, -81685.1406, -4175.5508]
+        - [60791.7734, -81639.4844, -4194.7422]
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015390
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_스톤 헤드"
+      fences:
+        - [52566.2578, -85934.5469, -3464.6797]
+        - [52691.0586, -85871.2578, -3478.8945]
+        - [52665.4727, -85837.0781, -3494.0039]
+        - [52683.1289, -85780.3359, -3520.5039]
+        - [52570.3164, -85734.6797, -3549.2461]
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015400
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_스톤 헤드"
+      fences:
+        - [60920.1758, -83869.8594, -4303.4648]
+        - [61044.9766, -83806.5703, -4285.1484]
+        - [61019.3906, -83772.3906, -4291.6445]
+        - [61037.0469, -83715.6484, -4291.6523]
+        - [60924.2344, -83669.9922, -4310.3516]
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015410
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_스톤 헤드"
+      fences:
+        - [54163.0195, -81390.8906, -4256.3984]
+        - [54287.8203, -81327.6016, -4242.6094]
+        - [54262.2344, -81293.4219, -4245.9688]
+        - [54279.8906, -81236.6797, -4243.2539]
+        - [54167.0781, -81191.0234, -4264.1953]
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015420
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 유적지_스톤 헤드"
+      fences:
+        - [56541.7891, -81602.4453, -4218.1055]
+        - [56666.5898, -81539.1563, -4243.3359]
+        - [56641.0039, -81504.9766, -4242.2773]
+        - [56658.6602, -81448.2344, -4250.4336]
+        - [56545.8477, -81402.5781, -4234.8242]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015430
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [66288.9922, -83904.0313, -3665.125]
+        - [66610.7891, -83806.5703, -3637.8398]
+        - [66664.1016, -83497.4375, -3660.5352]
+        - [66412.2422, -83394.8984, -3676.4023]
+        - [66198.6641, -83564.2031, -3699.043]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015440
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [67478.1016, -85063.1172, -3691.5625]
+        - [67799.9063, -84965.6563, -3681.1641]
+        - [67853.2109, -84656.5234, -3687.5469]
+        - [67601.3516, -84553.9844, -3702.0977]
+        - [67387.7734, -84723.2891, -3696.8398]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015450
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [66808.4141, -85308.9922, -3611.8125]
+        - [67130.2266, -85211.5313, -3675.207]
+        - [67183.5234, -84902.3984, -3676.4688]
+        - [66931.6641, -84799.8594, -3642.668]
+        - [66718.0859, -84969.1641, -3662.25]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015460
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [66203.7266, -84916.0625, -3624.0039]
+        - [66525.5234, -84818.6016, -3651.2461]
+        - [66578.8359, -84509.4688, -3640.8711]
+        - [66326.9766, -84406.9297, -3641.9766]
+        - [66113.3984, -84576.2344, -3662.4414]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015470
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [65464.2227, -84754, -3662.7266]
+        - [65786.0234, -84656.5391, -3682.1211]
+        - [65839.3359, -84347.4063, -3702.5586]
+        - [65587.4688, -84244.8672, -3769.1602]
+        - [65373.8945, -84414.1719, -3755.8984]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015480
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [67011.9453, -84296.5781, -3629.9375]
+        - [67333.75, -84199.1172, -3660.793]
+        - [67387.0547, -83889.9844, -3612.5547]
+        - [67135.1953, -83787.4453, -3618.0703]
+        - [66921.6172, -83956.75, -3618.3672]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015490
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [64768.5, -84362.1641, -3809.8594]
+        - [65090.2969, -84264.7031, -3795.2266]
+        - [65143.6094, -83955.5703, -3809.6719]
+        - [64891.75, -83853.0313, -3802.5078]
+        - [64678.1719, -84022.3359, -3812.7188]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015500
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [65482.1055, -83788.0156, -3789.5078]
+        - [65803.8984, -83690.5547, -3755.4961]
+        - [65857.2109, -83381.4219, -3726.3242]
+        - [65605.3516, -83278.8828, -3747.0313]
+        - [65391.7773, -83448.1875, -3797.1836]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015510
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [63299.9219, -83804.5859, -3865.7617]
+        - [63621.7188, -83707.125, -3870.8711]
+        - [63675.0313, -83397.9922, -3907.0469]
+        - [63423.1719, -83295.4531, -3925.1523]
+        - [63209.5938, -83464.7578, -3915.5625]
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015520
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(자연의 정령)"
+      fences:
+        - [64182.9805, -83861.3828, -3865.0742]
+        - [64504.7773, -83763.9219, -3844.4922]
+        - [64558.0898, -83454.7891, -3855.2227]
+        - [64306.2305, -83352.25, -3889.6797]
+        - [64092.6523, -83521.5547, -3897.8398]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015530
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [77068.2891, -85541.9141, -4491.1094]
+        - [77368.5, -85572.2344, -4498.9844]
+        - [77266.9063, -85159.5156, -4532.2461]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015540
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [67995.7813, -84311.2188, -3636.5781]
+        - [68295.9922, -84341.5391, -3609.3828]
+        - [68194.3984, -83928.8203, -3561.8125]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015550
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [70536.5234, -84930.4766, -3646.8203]
+        - [70836.7344, -84960.7969, -3655.7227]
+        - [70735.1406, -84548.0781, -3575.4063]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015560
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [71768.5938, -86497.4141, -3714.875]
+        - [72068.8047, -86527.7344, -3732.3711]
+        - [71967.2109, -86115.0156, -3789.5781]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015570
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [69069.1719, -86513.6797, -3503.2773]
+        - [69369.3828, -86544, -3527.4844]
+        - [69267.7891, -86131.2813, -3615.1953]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015580
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [72717.7422, -84329.7344, -3749.5938]
+        - [73017.9531, -84360.0547, -3819.6133]
+        - [72916.3594, -83947.3359, -3604.1563]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015590
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [73148.9688, -86257.4688, -3940.9336]
+        - [73449.1797, -86287.7891, -3988.8438]
+        - [73347.5859, -85875.0703, -4000.4844]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015600
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [75189.2109, -86154.4844, -4299.6367]
+        - [75489.4219, -86184.8047, -4316.0703]
+        - [75387.8281, -85772.0859, -4348.9375]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015610
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [71166.875, -85406.0703, -3690.3438]
+        - [71467.0859, -85436.3906, -3710.3438]
+        - [71365.4922, -85023.6719, -3699.2969]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015620
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [74563.9922, -86266.6172, -4199.7305]
+        - [74864.2031, -86296.9375, -4119.3477]
+        - [74762.6094, -85884.2188, -4246.5781]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015630
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [76111.4375, -85127.6094, -4466.6797]
+        - [76411.6484, -85157.9297, -4494.4414]
+        - [76310.0547, -84745.2109, -4381.4556]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015640
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [72015.375, -84700.0156, -3701.5898]
+        - [72315.5859, -84730.3359, -3745.2109]
+        - [72213.9922, -84317.6172, -3665.8828]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015650
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [72099.5156, -86937.1953, -3668.3047]
+        - [72399.7266, -86967.5156, -3687.1523]
+        - [72298.1328, -86554.7969, -3760.1641]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015660
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [69904.9609, -86891.2031, -3497.0273]
+        - [70205.1719, -86921.5234, -3476.3945]
+        - [70103.5781, -86508.8047, -3538.4141]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015670
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [69479.0703, -86862.2109, -3513.918]
+        - [69779.2813, -86892.5313, -3503.1953]
+        - [69677.6875, -86479.8125, -3556.5938]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015680
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [73720.5313, -86270.9766, -4043.7383]
+        - [74020.7422, -86301.2969, -4100.2734]
+        - [73919.1484, -85888.5781, -4099.5781]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015690
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [73293.4375, -85384.1875, -4003.293]
+        - [73593.6484, -85414.5078, -4054.6484]
+        - [73492.0547, -85001.7891, -3983.8398]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015700
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [70730.6797, -86982.9453, -3538.1797]
+        - [71030.8906, -87013.2656, -3557.1602]
+        - [70929.2969, -86600.5469, -3631.0742]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015710
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [69773.4297, -85407.7188, -3660.4961]
+        - [70073.6406, -85438.0391, -3672.5273]
+        - [69972.0469, -85025.3203, -3638.6953]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015720
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [71011.6875, -84381.6953, -3553.3672]
+        - [71311.8984, -84412.0156, -3565.7422]
+        - [71210.3047, -83999.2969, -3527.9063]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015730
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [71970.9609, -85336.7578, -3782.8477]
+        - [72271.1719, -85367.0781, -3839.1445]
+        - [72169.5781, -84954.3594, -3752.5156]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015740
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [70026.3359, -84425.1719, -3575.3906]
+        - [70326.5469, -84455.4922, -3583.6758]
+        - [70224.9531, -84042.7734, -3494]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015750
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [71059.2813, -86118.3047, -3681.4766]
+        - [71359.4922, -86148.625, -3713.2227]
+        - [71257.8984, -85735.9063, -3715.1406]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015760
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [68892.2031, -85827.4063, -3602.5508]
+        - [69192.4141, -85857.7266, -3631.1875]
+        - [69090.8203, -85445.0078, -3663.5781]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015770
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [68441.8828, -86574.3281, -3451.4492]
+        - [68742.0938, -86604.6484, -3467.3711]
+        - [68640.5, -86191.9297, -3526.7305]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015780
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [67954.5, -85803.6875, -3668.4453]
+        - [68254.7109, -85834.0078, -3659.8477]
+        - [68153.1172, -85421.2891, -3660.8555]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015790
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [69288.4531, -84563.3984, -3571.1406]
+        - [69588.6641, -84593.7188, -3603.3047]
+        - [69487.0703, -84181, -3333.3296]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015800
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [65338.6563, -84143.4063, -3801.1406]
+        - [65638.8672, -84173.7266, -3760.8672]
+        - [65537.2734, -83761.0078, -3781.8203]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015810
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [66620.5313, -83466.5625, -3665.9414]
+        - [66920.7422, -83496.8828, -3624.6641]
+        - [66819.1484, -83084.1641, -3556.4219]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015820
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [67253.1641, -83995.2266, -3626.9844]
+        - [67553.375, -84025.5469, -3616.2266]
+        - [67451.7813, -83612.8281, -3596.207]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015830
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [68775.4688, -83893.1563, -3531.2773]
+        - [69075.6797, -83923.4766, -3540.3828]
+        - [68974.0859, -83510.7578, -3490.5547]
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015840
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(아르가스)"
+      fences:
+        - [66197.1094, -84369.2578, -3646.5234]
+        - [66497.3203, -84399.5781, -3638.9844]
+        - [66395.7266, -83986.8594, -3642.2148]
+    - huntingZoneId: 13
+      groupId: 1300028
+      territoryId: 13015850
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(어둠의 약탈자)"
+      fences:
+        - [64030.6484, -69284.6484, -3971.543]
+        - [64312.125, -69171.9297, -3910.3203]
+        - [64294.582, -68961.0625, -3917.7227]
+        - [64003.4883, -69053.4688, -3978.293]
+    - huntingZoneId: 13
+      groupId: 1300028
+      territoryId: 13015860
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(어둠의 약탈자)"
+      fences:
+        - [63376.1719, -69473.1875, -3997.1445]
+        - [63657.6484, -69360.4688, -4024.457]
+        - [63640.1055, -69149.6016, -4055.5]
+        - [63349.0117, -69242.0078, -4034.4492]
+    - huntingZoneId: 13
+      groupId: 1300028
+      territoryId: 13015870
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(어둠의 약탈자)"
+      fences:
+        - [63773.9102, -69966.5938, -3835.7227]
+        - [64055.3867, -69853.875, -3903.4727]
+        - [64037.8438, -69643.0078, -3942.582]
+        - [63746.75, -69735.4141, -3917.0625]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015880
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [65133.3516, -68092.8281, -4012.5273]
+        - [65455.1523, -67995.3672, -4021.0195]
+        - [65508.4648, -67686.2344, -4085.5664]
+        - [65256.5977, -67583.6953, -4079.375]
+        - [65043.0234, -67753, -4050.6172]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015890
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [66196.9453, -71544.1328, -3563.9219]
+        - [66518.7422, -71446.6719, -3554.9023]
+        - [66572.0547, -71137.5391, -3578.707]
+        - [66320.1875, -71035, -3613.0313]
+        - [66106.6172, -71204.3047, -3599.3555]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015900
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [65211.6602, -70115.9844, -3745.2578]
+        - [65533.4609, -70018.5234, -3747.0313]
+        - [65586.7734, -69709.3906, -3773.6484]
+        - [65334.9063, -69606.8516, -3814.1719]
+        - [65121.332, -69776.1563, -3800.7422]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015910
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [65061.3633, -69082.1797, -3920.2969]
+        - [65383.1641, -68984.7188, -3893.4805]
+        - [65436.4766, -68675.5859, -3951.9102]
+        - [65184.6094, -68573.0469, -3981.1797]
+        - [64971.0352, -68742.3516, -3959.6211]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015920
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [64078.5898, -68331.7656, -4075.9688]
+        - [64400.3906, -68234.3047, -4053.2734]
+        - [64453.7031, -67925.1719, -4094.2891]
+        - [64201.8359, -67822.6328, -4146.8789]
+        - [63988.2617, -67991.9375, -4133.8711]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015930
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [63995.1055, -70689.0469, -3683.7969]
+        - [64316.9063, -70591.5859, -3692.9297]
+        - [64370.2188, -70282.4531, -3801.1367]
+        - [64118.3516, -70179.9141, -3817.5898]
+        - [63904.7773, -70349.2188, -3743.2031]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015940
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [66606.6875, -72387.6953, -3479.3711]
+        - [66928.4844, -72290.2344, -3449.4023]
+        - [66981.7969, -71981.1016, -3450.4375]
+        - [66729.9375, -71878.5625, -3489.9023]
+        - [66516.3594, -72047.8672, -3512.7383]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015950
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [67154.9297, -72948.5938, -3370.1797]
+        - [67476.7266, -72851.1328, -3362.7148]
+        - [67530.0391, -72542, -3380.0742]
+        - [67278.1797, -72439.4609, -3408.5703]
+        - [67064.6016, -72608.7656, -3417.4688]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015960
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [64664.5469, -71383.125, -3565.3711]
+        - [64986.3477, -71285.6641, -3587.9844]
+        - [65039.6602, -70976.5313, -3619.8398]
+        - [64787.793, -70873.9922, -3621.582]
+        - [64574.2188, -71043.2969, -3624.8398]
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015970
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(타락한 자연의 정령)"
+      fences:
+        - [67797.9766, -72481.3984, -3352.875]
+        - [68119.7734, -72383.9375, -3301.9102]
+        - [68173.0859, -72074.8047, -3287.2773]
+        - [67921.2266, -71972.2656, -3324.1289]
+        - [67707.6484, -72141.5703, -3347.8008]
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13015980
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+      fences:
+        - [64675.1563, -76009.1875, -2898.9023]
+        - [64886.9531, -76188.2031, -2941.6328]
+        - [65057.8125, -76087.7422, -2953.6719]
+        - [65057.3984, -75827.3516, -2937.1992]
+        - [64869.9609, -75782.8984, -2912.9297]
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13015990
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+      fences:
+        - [66477.3125, -73263.6563, -3328.1797]
+        - [66689.1094, -73442.6719, -3289.8906]
+        - [66859.9688, -73342.2109, -3310.75]
+        - [66859.5625, -73081.8203, -3351.9336]
+        - [66672.125, -73037.3672, -3371.2891]
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016000
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+      fences:
+        - [65015.957, -71981.9688, -3505.4883]
+        - [65227.75, -72160.9844, -3473.6875]
+        - [65398.6094, -72060.5234, -3483.0742]
+        - [65398.2031, -71800.1328, -3521.7969]
+        - [65210.7656, -71755.6797, -3528.0117]
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016010
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+      fences:
+        - [65357.9063, -72651.7734, -3388.9727]
+        - [65569.7031, -72830.7891, -3370.5039]
+        - [65740.5625, -72730.3281, -3390.3594]
+        - [65740.1484, -72469.9375, -3427.9531]
+        - [65552.7109, -72425.4844, -3421.3164]
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016020
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+      fences:
+        - [65480.5703, -74278.8984, -3000.3242]
+        - [65692.375, -74457.9141, -3052.5625]
+        - [65863.2266, -74357.4531, -3106.8594]
+        - [65862.8047, -74097.0625, -3134.4844]
+        - [65675.375, -74052.6094, -3080.3906]
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016030
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "기지 인근(검은틈쪽 오염된 흙의 정령)"
+      fences:
+        - [65545.1484, -73410.9609, -3109.0469]
+        - [65756.9453, -73589.9766, -3158.4805]
+        - [65927.8047, -73489.5156, -3237.0391]
+        - [65927.3906, -73229.125, -3306.2891]
+        - [65739.9531, -73184.6719, -3294.9063]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016040
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79705.3047, -83665.1328, -4522.1875]
+        - [80027.1094, -83567.6719, -4502.6016]
+        - [80080.4141, -83258.5391, -4511.875]
+        - [79828.5547, -83156, -4492.2031]
+        - [79614.9766, -83325.3047, -4478.293]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016050
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79008.0859, -82975.3281, -4393.1172]
+        - [79329.8906, -82877.8672, -4435.7422]
+        - [79383.1953, -82568.7344, -4466.4922]
+        - [79131.3359, -82466.1953, -4441.2461]
+        - [78917.7578, -82635.5, -4420.3203]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016060
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [78337.9297, -83674.4453, -4414.4609]
+        - [78659.7344, -83576.9844, -4424.5117]
+        - [78713.0391, -83267.8516, -4364.4258]
+        - [78461.1797, -83165.3125, -4361.4609]
+        - [78247.6016, -83334.6172, -4378.5039]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016070
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [78136.625, -85783.8672, -4507.8789]
+        - [78458.4297, -85686.4063, -4572.4922]
+        - [78511.7344, -85377.2734, -4644.7109]
+        - [78259.875, -85274.7344, -4614.2773]
+        - [78046.2969, -85444.0391, -4562.7969]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016080
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79987.0703, -85443.625, -4738.4492]
+        - [80308.875, -85346.1641, -4741.0859]
+        - [80362.1797, -85037.0313, -4695.0547]
+        - [80110.3203, -84934.4922, -4695.582]
+        - [79896.7422, -85103.7969, -4729.3125]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016090
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79466.7813, -86310.8359, -4704.9453]
+        - [79788.5859, -86213.375, -4716.6406]
+        - [79841.8906, -85904.2422, -4694.5195]
+        - [79590.0313, -85801.7031, -4686.6602]
+        - [79376.4531, -85971.0078, -4679.1719]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016100
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [78991.0156, -85452.6875, -4674.4102]
+        - [79312.8203, -85355.2266, -4712.5234]
+        - [79366.125, -85046.0938, -4727.4492]
+        - [79114.2656, -84943.5547, -4703.8711]
+        - [78900.6875, -85112.8594, -4688.5859]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016110
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79574.3047, -84652.3125, -4686.0742]
+        - [79896.1094, -84554.8516, -4640.543]
+        - [79949.4141, -84245.7188, -4558.1289]
+        - [79697.5547, -84143.1797, -4567.3125]
+        - [79483.9766, -84312.4844, -4613.8516]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016120
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [77758.4063, -84962.125, -4551.125]
+        - [78080.2109, -84864.6641, -4565.3477]
+        - [78133.5156, -84555.5313, -4543.4648]
+        - [77881.6563, -84452.9922, -4505.6133]
+        - [77668.0781, -84622.2969, -4535.2227]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016130
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [80830.2578, -86265.8125, -4745.3984]
+        - [81152.0625, -86168.3516, -4749.7461]
+        - [81205.3672, -85859.2188, -4738.8906]
+        - [80953.5078, -85756.6797, -4729.0508]
+        - [80739.9297, -85925.9844, -4742.75]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016140
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [80068.1094, -86811.3281, -4725.4688]
+        - [80389.9141, -86713.8672, -4725.8086]
+        - [80443.2188, -86404.7344, -4732.2852]
+        - [80191.3594, -86302.1953, -4724.3008]
+        - [79977.7813, -86471.5, -4726.4922]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016150
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [78525.625, -84637.4375, -4606.4844]
+        - [78847.4297, -84539.9766, -4634.1094]
+        - [78900.7344, -84230.8438, -4586.9805]
+        - [78648.875, -84128.3047, -4543.9219]
+        - [78435.2969, -84297.6094, -4545.9023]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016160
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [80706.5547, -83104.2031, -4515.8828]
+        - [81028.3594, -83006.7422, -4526.9336]
+        - [81081.6641, -82697.6094, -4524.2148]
+        - [80829.8047, -82595.0703, -4505.5859]
+        - [80616.2266, -82764.375, -4507.2578]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016170
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79305.3281, -87062.3281, -4666.9023]
+        - [79627.1328, -86964.8672, -4721.5195]
+        - [79680.4375, -86655.7344, -4725.4688]
+        - [79428.5781, -86553.1953, -4718.5313]
+        - [79215, -86722.5, -4685.4258]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016180
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79935.1406, -82826.375, -4503.418]
+        - [80256.9453, -82728.9141, -4512.332]
+        - [80310.25, -82419.7813, -4503.8789]
+        - [80058.3906, -82317.2422, -4494.7344]
+        - [79844.8125, -82486.5469, -4499.7656]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016190
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [80220.625, -86077.6719, -4721.5273]
+        - [80542.4297, -85980.2109, -4741.9648]
+        - [80595.7344, -85671.0781, -4737.1523]
+        - [80343.875, -85568.5391, -4739.9648]
+        - [80130.2969, -85737.8438, -4731]
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016200
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_중반(자연의 정령)"
+      fences:
+        - [79676.9609, -87669.3047, -4620.4492]
+        - [79998.7656, -87571.8438, -4672.7461]
+        - [80052.0703, -87262.7109, -4718.8867]
+        - [79800.2109, -87160.1719, -4713.2617]
+        - [79586.6328, -87329.4766, -4649.6797]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016210
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [78347.9609, -80766.4453, -4378.7383]
+        - [78644.2188, -80856.4609, -4397.8633]
+        - [78833.0625, -80276.1719, -4353.6094]
+        - [78446.0703, -80187.6406, -4336.8789]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016220
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [79927.6094, -81883.9766, -4449.9453]
+        - [80223.8672, -81973.9922, -4499.1992]
+        - [80412.7109, -81393.7031, -4414.25]
+        - [80025.7188, -81305.1719, -4391.7188]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016230
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [77080.0938, -82594.5938, -4255.5]
+        - [77376.3516, -82684.6094, -4296.1328]
+        - [77565.1953, -82104.3203, -4322.1797]
+        - [77178.2031, -82015.7891, -4283.8008]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016240
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [78323.0703, -82743.3906, -4363.9297]
+        - [78619.3281, -82833.4063, -4371.4844]
+        - [78808.1719, -82253.1172, -4420.4805]
+        - [78421.1797, -82164.5859, -4390.8555]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016250
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [77412.7891, -81517.9531, -4296]
+        - [77709.0469, -81607.9688, -4332.707]
+        - [77897.8906, -81027.6797, -4349.8125]
+        - [77510.8984, -80939.1484, -4307.7344]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016260
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [76156.3984, -80056.4844, -4219.5508]
+        - [76452.6563, -80146.5, -4235.5273]
+        - [76641.5, -79566.2109, -4222.7383]
+        - [76254.5078, -79477.6797, -4216.8516]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016270
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [79901.7578, -80926.2813, -4359.6406]
+        - [80198.0156, -81016.2969, -4390.875]
+        - [80386.8594, -80436.0078, -4402.7656]
+        - [79999.8672, -80347.4766, -4330.168]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016280
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [77715.8828, -80646.5703, -4336.0391]
+        - [78012.1406, -80736.5859, -4366.4688]
+        - [78200.9844, -80156.2969, -4320.2109]
+        - [77813.9922, -80067.7656, -4287.7813]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016290
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [75063.4375, -80733.0781, -4043.2344]
+        - [75359.6953, -80823.0938, -4102.5078]
+        - [75548.5391, -80242.8047, -4179.2422]
+        - [75161.5469, -80154.2734, -4088.0391]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016300
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [79333.2031, -81106.3594, -4378.1133]
+        - [79629.4609, -81196.375, -4364.043]
+        - [79818.3047, -80616.0859, -4352.9453]
+        - [79431.3125, -80527.5547, -4381.4297]
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016310
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(길리두)"
+      fences:
+        - [78751.625, -81589.1016, -4411.3789]
+        - [79047.8828, -81679.1172, -4418.0938]
+        - [79236.7266, -81098.8281, -4383.9258]
+        - [78849.7344, -81010.2969, -4394.5313]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016320
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [77983.5234, -81532.2031, -4360.8438]
+        - [78432.5313, -81623.6953, -4395.9336]
+        - [78361.9766, -81388.4375, -4391.8281]
+        - [78573.9609, -81116.2734, -4403.4414]
+        - [78174.9297, -80975.7891, -4384.25]
+        - [78156.4844, -81244.2344, -4383.0781]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016330
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [78357.9531, -85314.9219, -4627.5469]
+        - [78806.9609, -85406.4141, -4668.6445]
+        - [78736.4063, -85171.1563, -4673.5703]
+        - [78948.3906, -84898.9922, -4685.043]
+        - [78549.3594, -84758.5078, -4625.7109]
+        - [78530.9141, -85026.9531, -4648.2969]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016340
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [78783.8672, -83480.9063, -4397.0117]
+        - [79232.875, -83572.3984, -4231.8242]
+        - [79162.3203, -83337.1406, -4391.6563]
+        - [79374.3047, -83064.9766, -4425.5313]
+        - [78975.2734, -82924.4922, -4395.8516]
+        - [78956.8281, -83192.9375, -4377.3438]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016350
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [77946.8594, -84204.6953, -4453.2773]
+        - [78395.8672, -84296.1875, -4538.6836]
+        - [78325.3125, -84060.9297, -4474.3555]
+        - [78537.2969, -83788.7656, -4461.7656]
+        - [78138.2656, -83648.2813, -4368.7031]
+        - [78119.8203, -83916.7266, -4418.3672]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016360
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [78885.3047, -80762.8906, -4393.668]
+        - [79334.3125, -80854.3828, -4388.6563]
+        - [79263.7578, -80619.125, -4396.7461]
+        - [79475.7422, -80346.9609, -4349.0625]
+        - [79076.7109, -80206.4766, -4336.2383]
+        - [79058.2656, -80474.9219, -4384.5664]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016370
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [77125.3438, -80505.75, -4252.1211]
+        - [77574.3516, -80597.2422, -4313.6797]
+        - [77503.7969, -80361.9844, -4277.7656]
+        - [77715.7813, -80089.8203, -4276.8945]
+        - [77316.75, -79949.3359, -4225.7813]
+        - [77298.3047, -80217.7813, -4242.2813]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016380
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [76194.7734, -82810.8516, -4058.9023]
+        - [76643.7813, -82902.3438, -4142.4023]
+        - [76573.2266, -82667.0859, -4172.9453]
+        - [76785.2109, -82394.9219, -4241.5664]
+        - [76386.1797, -82254.4375, -4140.1016]
+        - [76367.7344, -82522.8828, -4135.3906]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016390
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [76409.8359, -81782.1875, -4146.4648]
+        - [76858.8438, -81873.6797, -4233.3945]
+        - [76788.2891, -81638.4219, -4211.8516]
+        - [77000.2734, -81366.2578, -4237.8555]
+        - [76601.2422, -81225.7734, -4194.6563]
+        - [76582.7969, -81494.2188, -4183.918]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016400
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [75557.125, -83010.8125, -3872.7031]
+        - [76006.1328, -83102.3047, -3730.0071]
+        - [75935.5781, -82867.0469, -3982.8828]
+        - [76147.5625, -82594.8828, -4077.7461]
+        - [75748.5313, -82454.3984, -3982.7461]
+        - [75730.0859, -82722.8438, -3956.8281]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016410
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [77617.7578, -82541.7891, -4329.6484]
+        - [78066.7656, -82633.2813, -4367.5742]
+        - [77996.2109, -82398.0234, -4358.2656]
+        - [78208.1953, -82125.8594, -4373.4414]
+        - [77809.1641, -81985.375, -4344.2305]
+        - [77790.7188, -82253.8203, -4344.1133]
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016420
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "태고의 숲_후반(선공 길리두)"
+      fences:
+        - [79166.0078, -81882.625, -4429.0195]
+        - [79615.0156, -81974.1172, -4435.3555]
+        - [79544.4609, -81738.8594, -4402.5508]
+        - [79756.4453, -81466.6953, -4384.0586]
+        - [79357.4141, -81326.2109, -4382.8281]
+        - [79338.9688, -81594.6563, -4397.6641]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016430
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [66282, -83794, -3667]
+        - [66582, -83794, -3667]
+        - [66582, -83494, -3667]
+        - [66282, -83494, -3667]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016440
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [67471, -84953, -3691]
+        - [67771, -84953, -3691]
+        - [67771, -84653, -3691]
+        - [67471, -84653, -3691]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016450
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [66801, -85199, -3653]
+        - [67101, -85199, -3653]
+        - [67101, -84899, -3653]
+        - [66801, -84899, -3653]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016460
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [66196, -84806, -3644]
+        - [66496, -84806, -3644]
+        - [66496, -84506, -3644]
+        - [66196, -84506, -3644]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016470
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [65457, -84644, -3714]
+        - [65757, -84644, -3714]
+        - [65757, -84344, -3714]
+        - [65457, -84344, -3714]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016480
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [67005, -84187, -3627]
+        - [67305, -84187, -3627]
+        - [67305, -83887, -3627]
+        - [67005, -83887, -3627]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016490
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [64761, -84253, -3805]
+        - [65061, -84253, -3805]
+        - [65061, -83953, -3805]
+        - [64761, -83953, -3805]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016500
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [65475, -83678, -3763]
+        - [65775, -83678, -3763]
+        - [65775, -83378, -3763]
+        - [65475, -83378, -3763]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016510
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [63293, -83695, -3896]
+        - [63593, -83695, -3896]
+        - [63593, -83395, -3896]
+        - [63293, -83395, -3896]
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016520
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1348 target habitat (302/303)"
+      fences:
+        - [64176, -83752, -3870]
+        - [64476, -83752, -3870]
+        - [64476, -83452, -3870]
+        - [64176, -83452, -3870]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016530
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79698, -83555, -4501]
+        - [79998, -83555, -4501]
+        - [79998, -83255, -4501]
+        - [79698, -83255, -4501]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016540
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79001, -82866, -4431]
+        - [79301, -82866, -4431]
+        - [79301, -82566, -4431]
+        - [79001, -82566, -4431]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016550
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [78331, -83565, -4388]
+        - [78631, -83565, -4388]
+        - [78631, -83265, -4388]
+        - [78331, -83265, -4388]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016560
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [78129, -85674, -4580]
+        - [78429, -85674, -4580]
+        - [78429, -85374, -4580]
+        - [78129, -85374, -4580]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016570
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79980, -85334, -4719]
+        - [80280, -85334, -4719]
+        - [80280, -85034, -4719]
+        - [79980, -85034, -4719]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016580
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79460, -86201, -4696]
+        - [79760, -86201, -4696]
+        - [79760, -85901, -4696]
+        - [79460, -85901, -4696]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016590
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [78984, -85343, -4701]
+        - [79284, -85343, -4701]
+        - [79284, -85043, -4701]
+        - [78984, -85043, -4701]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016600
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79567, -84543, -4613]
+        - [79867, -84543, -4613]
+        - [79867, -84243, -4613]
+        - [79567, -84243, -4613]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016610
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [77751, -84852, -4540]
+        - [78051, -84852, -4540]
+        - [78051, -84552, -4540]
+        - [77751, -84552, -4540]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016620
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [80823, -86156, -4741]
+        - [81123, -86156, -4741]
+        - [81123, -85856, -4741]
+        - [80823, -85856, -4741]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016630
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [80061, -86702, -4726]
+        - [80361, -86702, -4726]
+        - [80361, -86402, -4726]
+        - [80061, -86402, -4726]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016640
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [78518, -84528, -4583]
+        - [78818, -84528, -4583]
+        - [78818, -84228, -4583]
+        - [78518, -84228, -4583]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016650
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [80699, -82995, -4515]
+        - [80999, -82995, -4515]
+        - [80999, -82695, -4515]
+        - [80699, -82695, -4515]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016660
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79298, -86953, -4703]
+        - [79598, -86953, -4703]
+        - [79598, -86653, -4703]
+        - [79298, -86653, -4703]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016670
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79928, -82717, -4502]
+        - [80228, -82717, -4502]
+        - [80228, -82417, -4502]
+        - [79928, -82417, -4502]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016680
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [80213, -85968, -4734]
+        - [80513, -85968, -4734]
+        - [80513, -85668, -4734]
+        - [80213, -85668, -4734]
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016690
+      $extends: spawn-restore-standard.ClassicTerritory
+      desc: "IoD quest 1319 target habitat (300944/300941)"
+      fences:
+        - [79670, -87560, -4675]
+        - [79970, -87560, -4675]
+        - [79970, -87260, -4675]
+        - [79670, -87260, -4675]
+
+  # Density fix (2026-07-21): remove prior bespoke territories the per-marker
+  # regeneration supersedes (composite key not reproduced above). Cascade to
+  # their child spawn. Absent-delete warnings on re-replay are expected.
+  delete:
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016450     # prior tpl 300941 spawn 13475140, cascades
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016460     # prior tpl 300944 spawn 13475150, cascades
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014260
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13472950
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [57960.9753, -85453.7031, -4286.5937]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014270
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13472960
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [60362.6198, -83999.4766, -4331.7331]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014280
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13472970
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [60550.2878, -83107.6797, -4321.8958]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014290
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13472980
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [58797.7565, -85352.9766, -4257.0039]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014300
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13472990
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [61187.4206, -82375.1953, -4252.4284]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014310
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473000
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [61346.0495, -83511.875, -4254.5117]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014320
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473010
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [61270.4401, -84380.3985, -4141.8945]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014330
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473020
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [59769.53, -84517.4375, -4265.6705]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014340
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473030
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [62106.9284, -82429.3828, -4112.6511]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014350
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473040
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [62302.1081, -83544.836, -4056.7435]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014360
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473050
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [59889.1003, -81427.2266, -4328.5638]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014370
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473060
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [60402.444, -81074.3828, -4250.1706]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014380
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473070
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [59532.6387, -82053.5351, -4344.4932]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014390
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473080
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [53314.4558, -81527.1172, -4372.0573]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014400
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473090
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [52745.03, -82961.0235, -4471.22]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014410
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473100
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [54472.6003, -84585.3906, -4428.3581]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014420
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473110
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [53990.78, -87877.2031, -3230.8464]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014430
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473120
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [51284.3151, -84565.7266, -3648.9453]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014440
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473130
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [56605.5261, -84638.5703, -4431.9049]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014450
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473140
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [60364.0456, -82018.0235, -4278.8945]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014460
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473150
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [55352.1667, -87631.4375, -4191.569]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300031
+      territoryId: 13014470
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473160
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [54984.2878, -86811.3672, -4161.4635]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014480
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473170
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [59271.7057, -80027.8242, -4280.2591]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014490
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473180
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [56790.5023, -77496.5766, -4448.0211]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014500
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473190
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [54265.7836, -77414.1, -4566.3555]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014510
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473200
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [56562.057, -78311.4672, -4487.4414]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014520
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473210
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [55109.8969, -77300.2406, -4564.4727]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014530
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473220
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [58436.3461, -78546.8422, -4382.7258]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014540
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473230
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [54951.3422, -78138.8344, -4600.0719]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014550
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473240
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [55740.8148, -78101.3344, -4561.5359]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014560
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473250
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [57781.7875, -78725.1469, -4417.6219]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014570
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473260
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [58977.4398, -79076.3891, -4283.1992]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014580
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473270
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [56035.1156, -77454.2328, -4548.0383]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014590
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473280
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [58004.2917, -79987.1445, -4420.1628]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014600
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473290
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [58655.6315, -79782.9258, -4356.5423]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014610
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473300
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [58733.6628, -80454.082, -4376.9544]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014620
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473310
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [57626.9984, -79468.6, -4449.2031]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014630
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473320
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [58278.0883, -79165.6156, -4410.818]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014640
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473330
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [59824.1706, -80460.6758, -4294.4356]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300032
+      territoryId: 13014650
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473340
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [57069.8187, -78842.8578, -4418.2625]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014660
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473350
+      npcTemplateId: 300541
+      memberId: 0
+      desc: "스톤크라울러B"
+      pos: [55730.8578, -79758.2016, -4350.0969]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014670
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473360
+      npcTemplateId: 300542
+      memberId: 0
+      desc: "스톤 크라울러 대장"
+      pos: [57468.1039, -81112.7875, -4382.0656]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014680
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473370
+      npcTemplateId: 300540
+      memberId: 0
+      desc: "(페어런츠용 몬스터)스톤 크라울러A"
+      pos: [54690.7728, -79907.1797, -4342.9622]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014690
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473380
+      npcTemplateId: 300541
+      memberId: 0
+      desc: "스톤크라울러B"
+      pos: [58046.8617, -80619.975, -4400.5023]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014700
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473390
+      npcTemplateId: 300542
+      memberId: 0
+      desc: "스톤 크라울러 대장"
+      pos: [53656.6547, -77900.3031, -4585.8703]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014710
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473400
+      npcTemplateId: 300540
+      memberId: 0
+      desc: "(페어런츠용 몬스터)스톤 크라울러A"
+      pos: [54147.1742, -78626.8656, -4563.9617]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014720
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473410
+      npcTemplateId: 300541
+      memberId: 0
+      desc: "스톤크라울러B"
+      pos: [56482.1859, -79408.5375, -4444.0219]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014730
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473420
+      npcTemplateId: 300542
+      memberId: 0
+      desc: "스톤 크라울러 대장"
+      pos: [58420.4086, -81236.5844, -4424.6883]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014740
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473430
+      npcTemplateId: 300540
+      memberId: 0
+      desc: "(페어런츠용 몬스터)스톤 크라울러A"
+      pos: [55969.8315, -78905.2143, -4455.1434]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014750
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473440
+      npcTemplateId: 300541
+      memberId: 0
+      desc: "스톤크라울러B"
+      pos: [57301.9711, -80219.7484, -4420.3156]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014760
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473450
+      npcTemplateId: 300542
+      memberId: 0
+      desc: "스톤 크라울러 대장"
+      pos: [55065.3236, -79060.5234, -4444.7845]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014770
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473460
+      npcTemplateId: 300540
+      memberId: 0
+      desc: "(페어런츠용 몬스터)스톤 크라울러A"
+      pos: [58816.9477, -81891.7641, -4408.1328]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014780
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473470
+      npcTemplateId: 300541
+      memberId: 0
+      desc: "스톤크라울러B"
+      pos: [59155.725, -80984.0297, -4411.1203]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300033
+      territoryId: 13014790
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473480
+      npcTemplateId: 300542
+      memberId: 0
+      desc: "스톤 크라울러 대장"
+      pos: [57885.4477, -81794.2953, -4406.6203]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014800
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473490
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [53232.1269, -82350.3223, -4369.6514]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014810
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473500
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [51984.5137, -82728.002, -4483.6397]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014820
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473510
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [52454.6621, -81560.0332, -4511.4248]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014830
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473520
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [53534.7246, -80937.9238, -4381.418]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014840
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473530
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [55440.834, -84425.8848, -4394.0899]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014850
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473540
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [54359.8106, -85405.5645, -4345.957]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014860
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473550
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [53958.7637, -83989.1973, -4437.624]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014870
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473560
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [53505.0606, -79830.1738, -4477.7627]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014880
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473570
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [53416.0371, -83094.7988, -4432.7666]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014890
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473580
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [55916.6699, -85245.1895, -4321.2119]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014900
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473590
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [59618.8926, -83062.4629, -4318.9365]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014910
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473600
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [57601.1191, -84104.8457, -4443.7842]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014920
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473610
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [57299.5254, -84868.3301, -4399.6631]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014930
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473620
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [58713.0813, -82951.2281, -4363.2547]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014940
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473630
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [58718.7481, -83789.3613, -4346.8047]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014950
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473640
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [56868.3144, -83535.5957, -4344.5137]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014960
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473650
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [52652.8418, -83952.4238, -4373.6357]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014970
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473660
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [52030.2676, -87415.7598, -3287.0371]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014980
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473670
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [53538.2363, -86771.4707, -3376.874]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13014990
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473680
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [58241.0488, -84542.3691, -4381.4082]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015000
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473690
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [57894.6387, -82804.4004, -4433.4297]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015010
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473700
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [57135.1221, -82746.8613, -4281.883]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015020
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473710
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [58008.2949, -83494.9863, -4413.9248]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015030
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473720
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [59487.4082, -83801.1191, -4357.9649]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015040
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473730
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [53658.7324, -84753.6895, -4393.9316]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015050
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473740
+      npcTemplateId: 300911
+      memberId: 0
+      desc: "죽어가는 크로모스B"
+      pos: [55121.7246, -85090.3301, -4393.9961]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300034
+      territoryId: 13015060
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473750
+      npcTemplateId: 300910
+      memberId: 0
+      desc: "죽어가는 크로모스A"
+      pos: [55156.0684, -85877.6738, -4280.1123]
+      spawnCount: 1
+      ai: 1
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015070
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473760
+      npcTemplateId: 4
+      memberId: 1
+      desc: "미니 오칸"
+      pos: [50634.7148, -78353.6354, -4789.0951]
+      dir: 318
+      spawnCount: 5
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015080
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473770
+      npcTemplateId: 4
+      memberId: 1
+      desc: "미니 오칸"
+      pos: [50862.8281, -77517.0807, -4731.8112]
+      dir: 318
+      spawnCount: 5
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015090
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473780
+      npcTemplateId: 4
+      memberId: 1
+      desc: "미니 오칸"
+      pos: [49837.457, -79332.8698, -4700.7402]
+      dir: 318
+      spawnCount: 5
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300036
+      territoryId: 13015100
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473790
+      npcTemplateId: 4
+      memberId: 1
+      desc: "미니 오칸"
+      pos: [50123.0352, -78749.5104, -4752.9447]
+      dir: 318
+      spawnCount: 5
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300037
+      territoryId: 13015110
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473800
+      npcTemplateId: 601
+      memberId: 0
+      desc: "어둠의 약탈자"
+      pos: [50508.6734, -77608.55, -4734.343]
+      spawnCount: 1
+      ai: 19
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300037
+      territoryId: 13015120
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473810
+      npcTemplateId: 300951
+      memberId: 0
+      desc: "어둠의 습격자"
+      pos: [49729.5836, -78081.4328, -4751.9719]
+      spawnCount: 1
+      ai: 19
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300037
+      territoryId: 13015130
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473820
+      npcTemplateId: 300960
+      memberId: 0
+      desc: "검은 약탈자"
+      pos: [49635.6539, -78729.6828, -4765.9492]
+      spawnCount: 1
+      ai: 19
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015140
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473830
+      npcTemplateId: 5
+      memberId: 1
+      desc: "오칸 습격자"
+      pos: [51959.8301, -78919.0977, -4631.6924]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015150
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473840
+      npcTemplateId: 901
+      memberId: 1
+      desc: "오칸"
+      pos: [51526.9668, -78028.4805, -4738.1485]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015160
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473850
+      npcTemplateId: 1002
+      memberId: 1
+      desc: "오칸"
+      pos: [51132.4707, -79885.3164, -4677.168]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015170
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473860
+      npcTemplateId: 5
+      memberId: 1
+      desc: "오칸 습격자"
+      pos: [50774.6855, -79011.2305, -4754.0205]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015180
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473870
+      npcTemplateId: 901
+      memberId: 1
+      desc: "오칸"
+      pos: [51399.8769, -80766.918, -4572.7324]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015190
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473880
+      npcTemplateId: 1002
+      memberId: 1
+      desc: "오칸"
+      pos: [52851.8613, -78657.8477, -4587.5664]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015200
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473890
+      npcTemplateId: 5
+      memberId: 1
+      desc: "오칸 습격자"
+      pos: [50617.2793, -80289.6758, -4636.4824]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015210
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473900
+      npcTemplateId: 901
+      memberId: 1
+      desc: "오칸"
+      pos: [52483.666, -79809.418, -4582.6201]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015220
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473910
+      npcTemplateId: 1002
+      memberId: 1
+      desc: "오칸"
+      pos: [51579.1894, -81867.9883, -4503.7998]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015230
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473920
+      npcTemplateId: 5
+      memberId: 1
+      desc: "오칸 습격자"
+      pos: [50482.8769, -81435.7852, -4497.4736]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015240
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473930
+      npcTemplateId: 901
+      memberId: 1
+      desc: "오칸"
+      pos: [53191.3262, -79302.3242, -4527.4004]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015250
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473940
+      npcTemplateId: 1002
+      memberId: 1
+      desc: "오칸"
+      pos: [51967.4629, -80593.2695, -4596.1699]
+      dir: 318
+      spawnCount: 2
+      ai: 31
+      aggroSendToPartyDistance: 1000
+      aggroSendToClanDistance: 100
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015260
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473950
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [58393.9238, -85795.6113, -4268.8496]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015270
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473960
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [55483.9668, -87212.0801, -4189.5244]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015280
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473970
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [60124.5762, -83046.0645, -4322.3418]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015290
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473980
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [55836.1856, -84398.9863, -4403.543]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015300
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13473990
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [57560.3144, -83561.4785, -4428.4492]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015310
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474000
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [53100.9121, -83594.1973, -4447.0137]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015320
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474010
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [54451.1856, -84057.2363, -4396.0517]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015330
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474020
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [54370.7325, -82159.9395, -4255.3467]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015340
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474030
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [51360.2207, -86299.1348, -3424.461]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015350
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474040
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [50336.8262, -80863.6035, -4541.6573]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300057
+      territoryId: 13015360
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474050
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [52821.2519, -87888.4004, -3209.4639]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015370
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474060
+      npcTemplateId: 301
+      memberId: 2
+      desc: "(환경몬스터)스톤헤드"
+      pos: [59217.0047, -84092.4547, -4332.0578]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015380
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474070
+      npcTemplateId: 301
+      memberId: 2
+      desc: "(환경몬스터)스톤헤드"
+      pos: [60856.7039, -81736.3844, -4192.9813]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015390
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474080
+      npcTemplateId: 301
+      memberId: 2
+      desc: "(환경몬스터)스톤헤드"
+      pos: [52635.2469, -85831.5797, -3501.4656]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015400
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474090
+      npcTemplateId: 301
+      memberId: 2
+      desc: "(환경몬스터)스톤헤드"
+      pos: [60989.1649, -83766.8922, -4296.4523]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015410
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474100
+      npcTemplateId: 301
+      memberId: 2
+      desc: "(환경몬스터)스톤헤드"
+      pos: [54232.0086, -81287.9234, -4250.4852]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300058
+      territoryId: 13015420
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474110
+      npcTemplateId: 301
+      memberId: 2
+      desc: "(환경몬스터)스톤헤드"
+      pos: [56610.7781, -81499.4781, -4237.7953]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015430
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474120
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [66434.9578, -83633.4281, -3667.7891]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015440
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474130
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [67624.0688, -84792.5141, -3691.8422]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015450
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474140
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [66954.3828, -85038.3891, -3653.6813]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015460
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474150
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [66349.6922, -84645.4594, -3644.1078]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015470
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474160
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [65610.1891, -84483.3969, -3714.493]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015480
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474170
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [67157.9125, -84025.975, -3627.9445]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015490
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474180
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [64914.4656, -84091.5609, -3805.9969]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015500
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474190
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [65628.0687, -83517.4125, -3763.1086]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015510
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474200
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [63445.8875, -83533.9828, -3896.8789]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015520
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474210
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [64328.9461, -83590.7797, -3870.4617]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015530
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474220
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [77234.5651, -85424.5547, -4507.4466]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015540
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474230
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [68162.0573, -84193.8594, -3602.5911]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015550
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474240
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [70702.7995, -84813.1172, -3625.9831]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015560
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474250
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [71934.8698, -86380.0547, -3745.6081]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015570
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474260
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [69235.4479, -86396.3203, -3548.6523]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015580
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474270
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [72884.0182, -84212.375, -3724.4545]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015590
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474280
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [73315.2448, -86140.1094, -3976.7539]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015600
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474290
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [75355.487, -86037.125, -4321.5482]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015610
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474300
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [71333.151, -85288.7109, -3699.9948]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015620
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474310
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [74730.2682, -86149.2578, -4188.5521]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015630
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474320
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [76277.7135, -85010.25, -4447.5256]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015640
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474330
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [72181.651, -84582.6562, -3704.2278]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015650
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474340
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [72265.7917, -86819.8359, -3705.207]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015660
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474350
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [70071.237, -86773.8437, -3503.9453]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015670
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474360
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [69645.3464, -86744.8516, -3524.569]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015680
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474370
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [73886.8073, -86153.6172, -4081.1966]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015690
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474380
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [73459.7135, -85266.8281, -4013.9271]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015700
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474390
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [70896.9557, -86865.5859, -3575.4714]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015710
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474400
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [69939.7057, -85290.3594, -3657.2396]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015720
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474410
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [71177.9635, -84264.3359, -3549.0052]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015730
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474420
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [72137.237, -85219.3984, -3791.5026]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015740
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474430
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [70192.612, -84307.8125, -3551.0221]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015750
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474440
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [71225.5573, -86000.9453, -3703.28]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015760
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474450
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [69058.4792, -85710.0469, -3632.4388]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015770
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474460
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [68608.1589, -86456.9687, -3481.8503]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015780
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474470
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [68120.776, -85686.3281, -3663.0495]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015790
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474480
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [69454.7292, -84446.0391, -3502.5916]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015800
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474490
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [65504.9323, -84026.0469, -3781.276]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015810
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474500
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [66786.8073, -83349.2031, -3615.6758]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015820
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474510
+      npcTemplateId: 300921
+      memberId: 0
+      desc: "죽어가는 아르가스B"
+      pos: [67419.4401, -83877.8672, -3613.1393]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015830
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474520
+      npcTemplateId: 304
+      memberId: 0
+      desc: "죽어가는 아르가스"
+      pos: [68941.7448, -83775.7969, -3520.7383]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300025
+      territoryId: 13015840
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474530
+      npcTemplateId: 300920
+      memberId: 0
+      desc: "죽어가는 아르가스A"
+      pos: [66363.3854, -84251.8984, -3642.5742]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300028
+      territoryId: 13015850
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474540
+      npcTemplateId: 601
+      memberId: 0
+      desc: "어둠의 약탈자"
+      pos: [64160.2109, -69117.7774, -3944.4698]
+      spawnCount: 1
+      ai: 19
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300028
+      territoryId: 13015860
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474550
+      npcTemplateId: 300951
+      memberId: 0
+      desc: "어둠의 습격자"
+      pos: [63505.7344, -69306.3164, -4027.8877]
+      spawnCount: 1
+      ai: 19
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300028
+      territoryId: 13015870
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474560
+      npcTemplateId: 300960
+      memberId: 0
+      desc: "검은 약탈자"
+      pos: [63903.4727, -69799.7227, -3899.71]
+      spawnCount: 1
+      ai: 19
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015880
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474570
+      npcTemplateId: 300942
+      memberId: 0
+      desc: "타락한 자연의 정령 테론A"
+      pos: [65279.318, -67822.225, -4049.8211]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015890
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474580
+      npcTemplateId: 300943
+      memberId: 0
+      desc: "타락한 자연의 정령 테론B"
+      pos: [66342.9094, -71273.5297, -3581.9836]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015900
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474590
+      npcTemplateId: 300945
+      memberId: 0
+      desc: "타락한 자연의 정령 테론 대장"
+      pos: [65357.6266, -69845.3813, -3776.1703]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015910
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474600
+      npcTemplateId: 300942
+      memberId: 0
+      desc: "타락한 자연의 정령 테론A"
+      pos: [65207.3297, -68811.5766, -3941.2977]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015920
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474610
+      npcTemplateId: 300943
+      memberId: 0
+      desc: "타락한 자연의 정령 테론B"
+      pos: [64224.5562, -68061.1625, -4100.8563]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015930
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474620
+      npcTemplateId: 300945
+      memberId: 0
+      desc: "타락한 자연의 정령 테론 대장"
+      pos: [64141.0719, -70418.4438, -3747.7312]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015940
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474630
+      npcTemplateId: 300942
+      memberId: 0
+      desc: "타락한 자연의 정령 테론A"
+      pos: [66752.6531, -72117.0922, -3476.3703]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015950
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474640
+      npcTemplateId: 300943
+      memberId: 0
+      desc: "타락한 자연의 정령 테론B"
+      pos: [67300.8953, -72677.9906, -3387.8016]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015960
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474650
+      npcTemplateId: 300945
+      memberId: 0
+      desc: "타락한 자연의 정령 테론 대장"
+      pos: [64810.5133, -71112.5219, -3603.9234]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300029
+      territoryId: 13015970
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474660
+      npcTemplateId: 300942
+      memberId: 0
+      desc: "타락한 자연의 정령 테론A"
+      pos: [67943.9422, -72210.7953, -3322.7984]
+      spawnCount: 1
+      ai: 11
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13015980
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474670
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [64909.4562, -75979.0766, -2928.8672]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13015990
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474680
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [66711.6156, -73233.5453, -3330.4086]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016000
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474690
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [65250.257, -71951.8578, -3502.4117]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016010
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474700
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [65592.2062, -72621.6625, -3399.8211]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016020
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474710
+      npcTemplateId: 2
+      memberId: 0
+      desc: "오염된 흙의 정령B"
+      pos: [65714.8703, -74248.7875, -3074.9242]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300030
+      territoryId: 13016030
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474720
+      npcTemplateId: 3
+      memberId: 0
+      desc: "타락한 흙의 정령A"
+      pos: [65779.4484, -73380.85, -3221.1524]
+      spawnCount: 1
+      ai: 29
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016040
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474730
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79851.2719, -83394.5297, -4501.432]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016050
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474740
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79154.0531, -82704.725, -4431.3836]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016060
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474750
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [78483.8969, -83403.8422, -4388.6726]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016070
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474760
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [78282.5922, -85513.2641, -4580.4312]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016080
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474770
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [80133.0375, -85173.0219, -4719.8969]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016090
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474780
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79612.7484, -86040.2328, -4696.3875]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016100
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474790
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79136.9828, -85182.0844, -4701.368]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016110
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474800
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79720.2719, -84381.7094, -4613.182]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016120
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474810
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [77904.3734, -84691.5219, -4540.1547]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016130
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474820
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [80976.225, -85995.2094, -4741.1672]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016140
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474830
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [80214.0766, -86540.725, -4726.8711]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016150
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474840
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [78671.5922, -84366.8344, -4583.4797]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016160
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474850
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [80852.5219, -82833.6, -4515.975]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016170
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474860
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79451.2953, -86791.725, -4703.5695]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016180
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474870
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [80081.1078, -82555.7719, -4502.8258]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016190
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474880
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [80366.5922, -85807.0688, -4734.3218]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016200
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474890
+      npcTemplateId: 102
+      memberId: 2
+      desc: "(환경몬스터)자연의 정령"
+      pos: [79822.9281, -87398.7016, -4675.0047]
+      spawnCount: 3
+      ai: 108
+      isReturn: true
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016210
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474900
+      npcTemplateId: 300930
+      memberId: 0
+      desc: "죽어가는 길리두A"
+      pos: [78567.8281, -80521.6797, -4366.7725]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016220
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474910
+      npcTemplateId: 300931
+      memberId: 0
+      desc: "죽어가는 길리두B"
+      pos: [80147.4766, -81639.2109, -4438.7783]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016230
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474920
+      npcTemplateId: 300930
+      memberId: 0
+      desc: "죽어가는 길리두A"
+      pos: [77299.961, -82349.8282, -4289.4033]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016240
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474930
+      npcTemplateId: 300931
+      memberId: 0
+      desc: "죽어가는 길리두B"
+      pos: [78542.9375, -82498.625, -4386.6875]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016250
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474940
+      npcTemplateId: 300930
+      memberId: 0
+      desc: "죽어가는 길리두A"
+      pos: [77632.6562, -81273.1875, -4321.5635]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016260
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474950
+      npcTemplateId: 300931
+      memberId: 0
+      desc: "죽어가는 길리두B"
+      pos: [76376.2656, -79811.7188, -4223.667]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016270
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474960
+      npcTemplateId: 300930
+      memberId: 0
+      desc: "죽어가는 길리두A"
+      pos: [80121.625, -80681.5157, -4370.8623]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016280
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474970
+      npcTemplateId: 300931
+      memberId: 0
+      desc: "죽어가는 길리두B"
+      pos: [77935.75, -80401.8047, -4327.625]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016290
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474980
+      npcTemplateId: 300930
+      memberId: 0
+      desc: "죽어가는 길리두A"
+      pos: [75283.3047, -80488.3125, -4103.2559]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016300
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13474990
+      npcTemplateId: 300931
+      memberId: 0
+      desc: "죽어가는 길리두B"
+      pos: [79553.0703, -80861.5938, -4369.1328]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300020
+      territoryId: 13016310
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475000
+      npcTemplateId: 300930
+      memberId: 0
+      desc: "죽어가는 길리두A"
+      pos: [78971.4922, -81344.3359, -4401.9824]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016320
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475010
+      npcTemplateId: 300932
+      memberId: 0
+      desc: "썩어가는 길리두A"
+      pos: [78280.5677, -81313.4388, -4386.5625]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016330
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475020
+      npcTemplateId: 300933
+      memberId: 0
+      desc: "썩어가는 길리두B"
+      pos: [78654.9974, -85096.1576, -4654.8021]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016340
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475030
+      npcTemplateId: 300932
+      memberId: 0
+      desc: "썩어가는 길리두A"
+      pos: [79080.9114, -83262.1419, -4369.8698]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016350
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475040
+      npcTemplateId: 300933
+      memberId: 0
+      desc: "썩어가는 길리두B"
+      pos: [78243.9037, -83985.931, -4452.5254]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016360
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475050
+      npcTemplateId: 300932
+      memberId: 0
+      desc: "썩어가는 길리두A"
+      pos: [79182.3489, -80544.1263, -4374.8229]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016370
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475060
+      npcTemplateId: 300933
+      memberId: 0
+      desc: "썩어가는 길리두B"
+      pos: [77422.388, -80286.9857, -4264.7539]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016380
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475070
+      npcTemplateId: 300932
+      memberId: 0
+      desc: "썩어가는 길리두A"
+      pos: [76491.8177, -82592.0872, -4148.5514]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016390
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475080
+      npcTemplateId: 300933
+      memberId: 0
+      desc: "썩어가는 길리두B"
+      pos: [76706.8802, -81563.4232, -4201.3568]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016400
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475090
+      npcTemplateId: 300932
+      memberId: 0
+      desc: "썩어가는 길리두A"
+      pos: [75854.1693, -82792.0482, -3933.8189]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016410
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475100
+      npcTemplateId: 300933
+      memberId: 0
+      desc: "썩어가는 길리두B"
+      pos: [77914.8021, -82323.0247, -4352.8789]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300021
+      territoryId: 13016420
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475110
+      npcTemplateId: 300932
+      memberId: 0
+      desc: "썩어가는 길리두A"
+      pos: [79463.0521, -81663.8607, -4405.2461]
+      spawnCount: 1
+      ai: 8
+      aggroSendToPartyDistance: 500
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016430
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475120
+      npcTemplateId: 302
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [66432, -83644, -3667]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016440
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475130
+      npcTemplateId: 302
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [67621, -84803, -3691]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016450
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475140
+      npcTemplateId: 302
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [66951, -85049, -3653]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016460
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475150
+      npcTemplateId: 302
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [66346, -84656, -3644]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016470
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475160
+      npcTemplateId: 302
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [65607, -84494, -3714]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016480
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475170
+      npcTemplateId: 302
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [67155, -84037, -3627]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016490
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475180
+      npcTemplateId: 303
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [64911, -84103, -3805]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016500
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475190
+      npcTemplateId: 303
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [65625, -83528, -3763]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016510
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475200
+      npcTemplateId: 303
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [63443, -83545, -3896]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300060
+      territoryId: 13016520
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475210
+      npcTemplateId: 303
+      memberId: 0
+      desc: "자연의 정령"
+      pos: [64326, -83602, -3870]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016530
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475220
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [79848, -83405, -4501]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016540
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475230
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [79151, -82716, -4431]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016550
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475240
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [78481, -83415, -4388]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016560
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475250
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [78279, -85524, -4580]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016570
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475260
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [80130, -85184, -4719]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016580
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475270
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [79610, -86051, -4696]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016590
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475280
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [79134, -85193, -4701]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016600
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475290
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [79717, -84393, -4613]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016610
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475300
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [77901, -84702, -4540]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016620
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475310
+      npcTemplateId: 300944
+      memberId: 0
+      desc: "자연의 정령 테론 대장"
+      pos: [80973, -86006, -4741]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016630
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475320
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [80211, -86552, -4726]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016640
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475330
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [78668, -84378, -4583]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016650
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475340
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [80849, -82845, -4515]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016660
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475350
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [79448, -86803, -4703]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016670
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475360
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [80078, -82567, -4502]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016680
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475370
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [80363, -85818, -4734]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000
+    - huntingZoneId: 13
+      groupId: 1300061
+      territoryId: 13016690
+      $extends: spawn-restore-standard.RestoreSpawnBase
+      npcInstanceId: 13475380
+      npcTemplateId: 300941
+      memberId: 0
+      desc: "자연의 정령 테론B"
+      pos: [79820, -87410, -4675]
+      spawnCount: 1
+      ai: 6
+      aggroSendToPartyDistance: 2000

@@ -1,0 +1,1325 @@
+{
+  "meta": {
+    "axis": "v31-vs-v92 quest diff (Island of Dawn, band 1300-1399)",
+    "v31": "Z:\\tera pserver\\v31.04\\TERAServer\\Executable\\Bin\\Datasheet",
+    "v92": "D:\\dev\\mmogate\\tera92\\server\\Datasheet",
+    "quest_count": 65
+  },
+  "axis_summary": {
+    "quest_count": 65,
+    "existence": "IDENTICAL - all 65 band quest files present in both v31 and v92",
+    "sentinel_disabled": {
+      "v31_count": 40,
+      "v92_count": 40,
+      "identical_set": true,
+      "verdict": "MATCH"
+    },
+    "story_groups": {
+      "verdict": "MATCH",
+      "detail": "StoryGroup 1 (18 band quests) and StoryGroup 2 (7 band quests) have identical membership AND order in v31 and v92.",
+      "v31": {
+        "1": [
+          1301,
+          1304,
+          1371,
+          1372,
+          1373,
+          1374,
+          1375,
+          1376,
+          1377,
+          1378,
+          1379,
+          1303,
+          1329,
+          1384,
+          1382,
+          1383,
+          1331,
+          1305
+        ],
+        "2": [
+          1311,
+          1309,
+          1313,
+          1350,
+          1315,
+          1316,
+          1317
+        ]
+      },
+      "v92": {
+        "1": [
+          1301,
+          1304,
+          1371,
+          1372,
+          1373,
+          1374,
+          1375,
+          1376,
+          1377,
+          1378,
+          1379,
+          1303,
+          1329,
+          1384,
+          1382,
+          1383,
+          1331,
+          1305
+        ],
+        "2": [
+          1311,
+          1309,
+          1313,
+          1350,
+          1315,
+          1316,
+          1317
+        ]
+      }
+    },
+    "quest_file_verdicts": {
+      "MATCH": 56,
+      "PORT": 3,
+      "KEEP": 6
+    },
+    "rewards": {
+      "verdict": "PORT ALL 65",
+      "detail": "v92 QuestCompensationData_13.xml is entirely empty self-closed stubs (0 CompensationType, 0 Item, 0 class rows) for every band questId; v31 carries the full reward rows. Port every band reward row from v31.",
+      "new_class_reward_gap": {
+        "quests_with_class_scoped_v31_rewards": [
+          1303,
+          1304,
+          1305,
+          1310,
+          1315,
+          1316,
+          1317,
+          1319,
+          1322,
+          1323,
+          1325,
+          1326,
+          1330,
+          1331,
+          1347
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless (Reaper) - omitted per doctrine (no base low-level gear)",
+        "namespace_note": "QuestCompensationData uses INTERNAL class names; client CCompensation uses CLIENT names - never cross them."
+      }
+    },
+    "dialog_internal_inconsistencies": [
+      {
+        "gid": 1322,
+        "sentinel_v31": true,
+        "task_kill_targets": [
+          "13,300931"
+        ],
+        "dialog_linkcreature": [
+          "13#300932"
+        ]
+      },
+      {
+        "gid": 1327,
+        "sentinel_v31": true,
+        "task_kill_targets": [
+          "13,300921"
+        ],
+        "dialog_linkcreature": [
+          "13#304"
+        ]
+      }
+    ],
+    "charm_1384": {
+      "v31_charm_item": "7100 (category=charm, combatItemType=DISPOSAL, name=combat_item_31)",
+      "v31_uses_item_98": "granted task-2, magical/DISPOSAL",
+      "v31_task_structure": "1 visit 64,1005 -> 2 visit 64,1049 grant item 98 -> 3 condition 휴식후컨디션MAX -> 4 visit 64,1049 grant charm 7100 -> 5 condition use charm 7100 -> 6 visit 64,1049 reward",
+      "v92_patch000_charm": "70033 (charm, DISPOSAL, name=lord_merchant_44)",
+      "7100_exists_in_v92": "YES but combatItemType=NO_COMBAT (unusable for use-condition)",
+      "70033_exists_in_v92": "YES (charm, DISPOSAL)",
+      "70033_exists_in_v31": "YES (charm, DISPOSAL)",
+      "verdict": "KEEP v92 patch-000 rework (charm 70033 + item-use mechanic)"
+    }
+  },
+  "quests": [
+    {
+      "gid": 1301,
+      "title": "Dawn's Early Light",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1302,
+      "title": "Another Fine Mess",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1303,
+      "title": "The Secret Life of Trees",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1304,
+      "title": "Making the Rounds",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1305,
+      "title": "Elleon's Fate",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1306,
+      "title": "Traces of Darkness",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1307,
+      "title": "Live by the Sword...",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1308,
+      "title": "Essence of Foreboding",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1309,
+      "title": "Acharak Attacks",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1310,
+      "title": "A Clue In the Dark",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1311,
+      "title": "Clearing the Gorge",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1312,
+      "title": "The Dark Patrol",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1313,
+      "title": "Into the Gorge",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1315,
+      "title": "Putting the Pieces Together",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1316,
+      "title": "Dark Revelations",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1317,
+      "title": "Ride Off Into the Sunset",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1318,
+      "title": "Hunting the Beasts",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1319,
+      "title": "Dwellers of the Island",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1321,
+      "title": "A Bridge Pretty Near",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1322,
+      "title": "Unrest in the Forest",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [
+        "INTERNAL-INCONSISTENCY (v31, carried identically into v92): task kills ['13,300931'] but dialog LinkCreature points at ['13#300932']. Dormant (disabled in both). Doctrine rule 1: fix to internal consistency when the padding phase makes it live; log then."
+      ],
+      "internal_inconsistency": {
+        "task_kill_targets": [
+          "13,300931"
+        ],
+        "dialog_linkcreature": [
+          "13#300932"
+        ],
+        "dormant": true
+      },
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1323,
+      "title": "Getting Some Answers",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1324,
+      "title": "Essence and Sensibility",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1325,
+      "title": "The Perfect Cut",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1326,
+      "title": "Mana out of Mudmen",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1327,
+      "title": "Garrison in Distress",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [
+        "INTERNAL-INCONSISTENCY (v31, carried identically into v92): task kills ['13,300921'] but dialog LinkCreature points at ['13#304']. Dormant (disabled in both). Doctrine rule 1: fix to internal consistency when the padding phase makes it live; log then."
+      ],
+      "internal_inconsistency": {
+        "task_kill_targets": [
+          "13,300921"
+        ],
+        "dialog_linkcreature": [
+          "13#304"
+        ],
+        "dormant": true
+      }
+    },
+    {
+      "gid": 1328,
+      "title": "Academic Theft",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1329,
+      "title": "Going Above and Beyond",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1330,
+      "title": "Horned Horrors",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1331,
+      "title": "I'll Take the High Road",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1332,
+      "title": "They'll Eat Anything",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1333,
+      "title": "Twice the Bark, Twice the Bite",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1334,
+      "title": "Investigating the Relics <Repeatable>",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": false,
+      "file_verdict": "PORT",
+      "file_ops": [
+        "set task-1 collection 콜렉션Id 404 -> 410 (v31 value); dormant (disabled in both); depends on the collections-family port using the v31 scheme"
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1335,
+      "title": "One of Our Couriers is Missing",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1336,
+      "title": "Chione's Missing Cargo",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": false,
+      "file_verdict": "PORT",
+      "file_ops": [
+        "set task-1 collection 콜렉션Id 403 -> 409 (v31 value); dormant (disabled in both); depends on the collections-family port using the v31 scheme"
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1337,
+      "title": "Searching for the Stolen Stones",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1338,
+      "title": "Chione's Report",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1339,
+      "title": "Sersine, She Seeks Shackles",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1340,
+      "title": "Painful Disc-overies",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1341,
+      "title": "Bequest of the Dead <Repeatable>",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": false,
+      "file_verdict": "PORT",
+      "file_ops": [
+        "set task-1 collection 콜렉션Id 405 -> 411 (v31 value); dormant (disabled in both); depends on the collections-family port using the v31 scheme"
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1343,
+      "title": "Answers Lead to More Questions",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1344,
+      "title": "Destroy All Destroyers!",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1345,
+      "title": "Desperately Seeking Sorscha",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1346,
+      "title": "Sorcha's Reckless Challenge",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1347,
+      "title": "It Was a Rock...Crawler!",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": [],
+      "reward_new_class_adaptation": {
+        "v31_classes_present": [
+          "archer",
+          "berserker",
+          "elementalist",
+          "engineer",
+          "lancer",
+          "priest",
+          "slayer",
+          "sorcerer",
+          "warrior"
+        ],
+        "append_rows_for": [
+          "Fighter",
+          "Assassin",
+          "Glaiver"
+        ],
+        "omit": "Soulless"
+      }
+    },
+    {
+      "gid": 1348,
+      "title": "Ferocious Flowering Felons",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1349,
+      "title": "Gotta Kill 'em All",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1350,
+      "title": "Strange Attractors",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1351,
+      "title": "Supply and Demand",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1352,
+      "title": "Supply and Demand",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1371,
+      "title": "Initial Warrior Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": false,
+      "file_verdict": "KEEP",
+      "file_ops": [
+        "KEEP v92 학습-condition 스킬Id 180100 (v31 had 40100); v92 skill-table numbering for Warrior; porting v31 id would reference the wrong/absent skill on v92 (adaptation whitelist item 3). Recommend a live-test checkpoint that the id resolves to Warrior's first skill on v92 SkillData."
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1372,
+      "title": "Initial Lancer Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1373,
+      "title": "Initial Slayer Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": false,
+      "file_verdict": "KEEP",
+      "file_ops": [
+        "KEEP v92 학습-condition 스킬Id 120100 (v31 had 30100); v92 skill-table numbering for Slayer; porting v31 id would reference the wrong/absent skill on v92 (adaptation whitelist item 3). Recommend a live-test checkpoint that the id resolves to Slayer's first skill on v92 SkillData."
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1374,
+      "title": "Initial Berserker Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": false,
+      "file_verdict": "KEEP",
+      "file_ops": [
+        "KEEP v92 학습-condition 스킬Id 30100 (v31 had 100100); v92 skill-table numbering for Berserker; porting v31 id would reference the wrong/absent skill on v92 (adaptation whitelist item 3). Recommend a live-test checkpoint that the id resolves to Berserker's first skill on v92 SkillData."
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1375,
+      "title": "Initial Archer Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": false,
+      "file_verdict": "KEEP",
+      "file_ops": [
+        "KEEP v92 학습-condition 스킬Id 30100 (v31 had 20100); v92 skill-table numbering for Archer; porting v31 id would reference the wrong/absent skill on v92 (adaptation whitelist item 3). Recommend a live-test checkpoint that the id resolves to Archer's first skill on v92 SkillData."
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1376,
+      "title": "Initial Sorcerer Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1377,
+      "title": "Initial Priest Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1378,
+      "title": "Initial Mystic Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1379,
+      "title": "Gunner Training",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": false,
+      "file_verdict": "KEEP",
+      "file_ops": [
+        "KEEP v92 학습-condition 스킬Id 70100 (v31 had 30100); v92 skill-table numbering for Engineer/Gunner; porting v31 id would reference the wrong/absent skill on v92 (adaptation whitelist item 3). Recommend a live-test checkpoint that the id resolves to Engineer/Gunner's first skill on v92 SkillData."
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1382,
+      "title": "Introduction to Gathering",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1383,
+      "title": "Gathering Your Strength",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1384,
+      "title": "Recharge It",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": false,
+      "v92_sentinel_disabled": false,
+      "file_identical": false,
+      "file_verdict": "KEEP",
+      "file_ops": [
+        "KEEP v92 patch-000 charm rework: charm item 7100 -> 70033 in task-4 grant and task-5 use-condition. v31 charm 7100 EXISTS in v92 ItemTemplate but is NO_COMBAT there (unusable for the item-use condition); 70033 is charm/DISPOSAL/usable (adaptation whitelist item 1).",
+        "KEEP v92 mechanic swap: task-3 완료조건 휴식후컨디션MAX (rest-to-full-stamina) -> 아이템사용 98; the full-stamina mechanic does not function on v92 (adaptation whitelist item 3).",
+        "KEEP v92 task rewiring: task-2 다음Task 3 -> 5 and task-2 extra grant of item 70033, so the flow becomes 1->2(grant 98+70033)->5(use 70033)->6; v31 flow is 1->2(grant 98)->3(rest)->4(grant 7100)->5(use 7100)->6."
+      ],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1385,
+      "title": "Always After Me Lucky Charms",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1386,
+      "title": "Bombs Away!",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1389,
+      "title": "판도라 상자 사용 안내",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    },
+    {
+      "gid": 1390,
+      "title": "Special Delivery",
+      "v31_present": true,
+      "v92_present": true,
+      "v31_sentinel_disabled": true,
+      "v92_sentinel_disabled": true,
+      "file_identical": true,
+      "file_verdict": "MATCH",
+      "file_ops": [],
+      "reward_port": true,
+      "notes": []
+    }
+  ]
+}

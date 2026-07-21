@@ -147,6 +147,22 @@ The tool detects top-level YAML keys and maps them to sync-config entities:
 | `exchanges` | — | No (server-only) |
 | `villagerMenuItems` | — | No (server-only) |
 | `buyLists` | — | No (server-only) |
+| `quests` | Quest | Yes |
+| `questDialogs` | QuestDialog | Yes |
+| `questStrings` | n/a | No (StrSheet_Quest; sync-config has no entity yet) |
+| `questCompensations` | n/a | No (server-only) |
+| `territorySpawns` | TerritoryData | Yes |
+| `territoryGroups` | TerritoryData | Yes |
+| `territories` | TerritoryData | Yes |
+| `territoryParties` | TerritoryData | Yes |
+| `villagerDialogs` | n/a | No (server-only) |
+| `areaSections` | AreaData | Yes |
+| `regionStrings` | StrSheet_Region | Yes |
+| `villagerMenus` | VillagerMenu | Yes |
+| `speechConditions` | n/a | No (server-only .condition files) |
+| `questStoryGroups` | n/a | No (QuestGroupList; client copy pending validation) |
+| `questHuntingZones` | n/a | No (QuestGroupList co-tenant) |
+| `newWorldMap` | NewWorldMapData | Yes (monolithic merge-by-id) |
 
 Server-only schemas are reported in the summary but excluded from client sync.
 
@@ -197,31 +213,23 @@ Before applying any spec the tool walks the server datasheet tree and warns if a
 
 ## Full Deploy Pipeline
 
-After running the migration tool, two additional steps push changes to the live server:
+After running the migration tool (specs applied from the repo ref + client DC synced), finish the deploy with the two dedicated tools:
 
-**Pack client DataCenter:**
+**Server leg** (SSH delta push to the dev game server):
 ```bash
-# Run enc_EUR.bat from client_pack_dir (from .references)
-D:\dev\mmogate\tera92\client-dc\enc_EUR.bat
+python reforged/tools/deploy-dev/deploy_dev.py --verify
 ```
+Then restart the dev world server manually; datasheets load at startup only.
 
-Or using novadrop-dc directly (PowerShell):
-```powershell
-Set-Location '<client_pack_dir>'
-.\novadrop-dc_92.04\novadrop-dc pack `
-  --encryption-key 7533835567F31B7C8BF9321CF7C67A07 `
-  --encryption-iv 1A2DE14F51A8AD426FEAEB4AC3CB705C `
-  DataCenter_Final_EUR DataCenter_Final_EUR.dat
-```
-
-**Push to server share:**
+**Client leg** (repack the DataCenter, install the `.dat` into the local game client, publish a dev-channel release to R2 via the patcher):
 ```bash
-robocopy "<server_datasheet>" "\\tera-dev.mmogate.local\Datasheet" /MIR /IS /NFL /NDL
+python reforged/tools/deploy-client/deploy_client.py --pack --install --note "<summary>"
+# review the dry-run publish delta, then commit the upload:
+python reforged/tools/deploy-client/deploy_client.py --publish --note "<summary>"
 ```
+The encryption key/IV are read at runtime from `enc_EUR.bat`; nothing is hardcoded. See `tools/deploy-client/README.md` for stages, rules, and credential setup. `deploy_client.py` does not sync: migrate owns that, and its manifest-narrowed sync has already covered the client DC by this point.
 
-Replace `<server_datasheet>` and `<client_pack_dir>` with values from `.references`.
-
-Use `/deploy-patch` to run the full pipeline as a slash command.
+There is no combined slash command; `/deploy-dev` covers the server leg. The old `/deploy-patch` wrapper (manual `.dat` distribution model) was removed 2026-07-19.
 
 ## Clean Re-migration
 

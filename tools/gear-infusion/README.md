@@ -33,9 +33,11 @@ Total: **50 unique passives × 3 tiers = 150 passivities and items**
 python reforged/tools/gear-infusion/generate_infusion.py --patch {NNN}
 
 # 3. Apply to server datasheet
-dsl apply "reforged\specs\patches\{NNN}\gear-infusion-passivities.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
-dsl apply "reforged\specs\patches\{NNN}\gear-infusion-items.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-passivities.yaml" --path "<server_datasheet>"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-items.yaml" --path "<server_datasheet>"
 ```
+
+Replace `<server_datasheet>` with the `server_datasheet` value from `reforged\.references`.
 
 ## File Structure
 
@@ -233,14 +235,14 @@ python reforged/tools/gear-infusion/generate_infusion.py --patch {NNN}
 ### 4. Apply to Server
 
 ```bash
-dsl apply "reforged\specs\patches\{NNN}\gear-infusion-passivities.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
-dsl apply "reforged\specs\patches\{NNN}\gear-infusion-items.yaml" --path "D:\dev\mmogate\tera92\server\Datasheet"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-passivities.yaml" --path "<server_datasheet>"
+dsl apply "reforged\specs\patches\{NNN}\gear-infusion-items.yaml" --path "<server_datasheet>"
 ```
 
 ### 5. Sync to Client (if needed)
 
 ```bash
-dsl client-sync --config reforged\config\sync-config.yaml
+dsl sync --config reforged\config\sync-config.yaml -e Passivity -e StrSheet_Passivity -e ItemData -e StrSheet_Item
 ```
 
 ## Design Documentation
