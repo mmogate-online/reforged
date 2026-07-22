@@ -1,0 +1,91 @@
+# ==============================================================================
+# Spec: 22 - IoD Consumable + Recipe-Design Usability Restore (classic restoration)
+# ==============================================================================
+# RESTORATION (not authored). Two v31-primary string restores that make the
+# Berlon crafting chain (spec 21) function:
+#   A) Reverts the ItemString tooltip on five base-tier consumables from the v92
+#      disable text "This item is no longer usable." back to the v31 functional
+#      text. These are the products the chain has the player brew.
+#   B) Restores the three recipe DESIGN items (91213/91221/91282) from the v92
+#      deprecated junk (name "Worn Recipe", tooltip "An old and relatively useless
+#      recipe. Sell it to a shop for money.") back to their v31 identity
+#      (name "Recipe: <product>", tooltip "Use this design to learn the
+#      corresponding crafting skill."). Only the STRING was gutted on v92; the item
+#      template is byte-identical to v31 (combatItemType RECIPE, recipeItemId link
+#      in ItemProduceRecipe, same as the working reference item 1465), so this is a
+#      pure string restore like spec 05's 19400-range designs. The chain grants
+#      these designs (spec 21 gather-quest rewards) so the player learns the recipe
+#      before the craft step. v31 names confirmed via datasheet-v31 profile_item.
+#      CAVEAT: whether USING the design unlocks the recipe (vs base recipes being
+#      auto-available with Alchemy proficiency) is a v92-server behavior to confirm
+#      in-game; giving the restored design is correct and safe either way.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md (v31-primary; v31 ported
+#   1:1). Crafting-restoration workstream: docs/plans/classic-restoration/
+#   crafting-restoration/README.md (Axis A, deprecated-item usability).
+# Proposal: docs/plans/classic-restoration/iod/data/padding-level2-berlon-proposal.md
+#   ("Crafting-restoration dependency" section).
+#
+# Finding (v31 vs v92, MCP profile_item both servers): the ONLY item-level
+#   difference from v31 is the ItemString tooltip. Every mechanical attribute
+#   (linkSkillId 60220100/60220150/60220200/60220250/60225200, combatItemType
+#   DISPOSAL, coolTime/coolTimeGroup, requiredLevel 1) is already byte-identical
+#   to v31 on v92. So this restore is a tooltip-only revert; economy prices
+#   (buy/sell, v92-retuned) are intentionally left at v92 values (separate call).
+#
+# v31 functional tooltips (exact, from datasheet-v31 profile_item):
+#   6000 Healing Potion I           : Immediately recovers $hpDiff HP.
+#   6001 Major Healing Potion I      : Immediately recovers $hpDiff HP.
+#   6016 Mana Potion I              : Immediately replenishes $mpDiff MP.
+#   6017 Major Mana Potion I         : Immediately replenishes $mpDiff MP.
+#   6197 Onslaught Scroll: Crit Power I : Increases Crit Power by $value for
+#        $time. This item's effect does not stack with that of the other
+#        onslaught scrolls.
+#   (6001/6017 included for completeness though the chain crafts base tier only.)
+#
+# CRITICAL VERIFY-IN-GAME CAVEAT: the use-binding (linkSkillId) is already intact
+#   on v92 yet the item still read disabled, so the real mechanical gate may live
+#   in the linked SkillData sheet (60220100 etc.), which the MCP servers do NOT
+#   expose. A tooltip-only restore may make an item READ usable without FUNCTION.
+#   Live-test MUST confirm 6000/6016/6197 actually fire their effect; if they do
+#   not, the linked skill/effect also needs restoring (out of this spec's scope).
+#
+# Client sync: ItemString syncs to the client (StrSheet_Item) via migrate.
+# Idempotent: itemStrings update only. Applied via migrate --patch 001 batch
+#   replay ONLY. Validated with dsl validate.
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    - id: 6000
+      changes:
+        toolTip: "Immediately recovers $hpDiff HP."
+    - id: 6001
+      changes:
+        toolTip: "Immediately recovers $hpDiff HP."
+    - id: 6016
+      changes:
+        toolTip: "Immediately replenishes $mpDiff MP."
+    - id: 6017
+      changes:
+        toolTip: "Immediately replenishes $mpDiff MP."
+    - id: 6197
+      changes:
+        toolTip: "Increases Crit Power by $value for $time. This item's effect does not stack with that of the other onslaught scrolls."
+    # -- B) Recipe designs: restore v31 identity (name + tooltip) ----------------
+    - id: 91213
+      changes:
+        name: "Recipe: Healing Potion I"
+        toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 91221
+      changes:
+        name: "Recipe: Mana Potion I"
+        toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 91282
+      changes:
+        name: "Recipe: Onslaught Scroll: Crit Power I"
+        toolTip: "Use this design to learn the corresponding crafting skill."

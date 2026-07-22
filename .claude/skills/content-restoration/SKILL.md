@@ -80,6 +80,11 @@ destructive reconcile.
 
 ## Lessons
 
+### Gather-node map markers come from StrSheet_CollectionLoc; regenerate it with gen_collectionloc.py
+- **Date/source:** 2026-07-21: an IoD gather quest tracked correctly but clicking its journal objective marked nothing on the map; `lookup_gathering_spawns 301` reported 90 world spawns yet `StrSheet_CollectionLoc waypoints (templateId=301): (none)`. The tier-1 IoD collections (Verdra Plant 1, Krymetal Ore 101, Sun Essence 301) had no entry in v31 OR v92.
+- **Why:** the map marker for a CollectTask reads the client family `StrSheet_CollectionLoc`, the collection analog of `StrSheet_NpcLoc`: one String per collection (templateId = collection id) whose value is `continentId#x,y,z|...` node waypoints. It is not in the migrate sync-config, so it is tool-managed. Base tier-1 collections shipped without waypoints in both eras (a gap, not a regression).
+- **Apply:** run `python reforged/tools/dc-restore/gen_collectionloc.py` after any IoD collection/spawn change. It projects `CollectionTerritory_13_*` node positions into `13#x,y,z` waypoints and ADDS entries only for continent-13 collections that lack one, leaving live-validated existing entries and multi-zone `7001#` waypoints untouched; writes both the server copy and client shard; idempotent. The prefix is the continentId (IoD = 13), confirmed against a working mainland collection (304 = continent 7001). This is the collection sibling of the `gen_npcloc.py --prune` client-registry step.
+
 ### Parse the XML before trusting that spawn data "exists"; BHS disables legacy content by commenting it out
 - **Date/source:** 2026-07-21: dungeon 9037 (Sorcha, quest 1346) investigation. A prior
   session verified TerritoryData_437 as "byte-identical v31/v92" via grep/text-diff and

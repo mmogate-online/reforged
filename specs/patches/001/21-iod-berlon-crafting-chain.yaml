@@ -1,0 +1,752 @@
+# ==============================================================================
+# Spec: 21 - IoD Berlon Crafting-Intro Chain (padding Level 2, AUTHORED)
+# ==============================================================================
+# Six one-time linear quests (1353-1358) authored for Island of Dawn's early
+# progression: Berlon (64,1011, Baraka scholar at the Tower Base) recruits the
+# player into a garrison-self-sufficiency crafting loop, gather -> brew per
+# material cycle (heal / mana / focus). AUTHORED contextual content per DOCTRINE
+# rule 4 Level 2, NOT a restoration; each quest is logged in the divergence log
+# as category "authored".
+#
+# Design source of record (all decisions pre-made and validated GO):
+#   docs/plans/classic-restoration/iod/data/padding-level2-berlon-proposal.md
+#   docs/plans/classic-restoration/iod/PADDING-BRIEF.md (approved design seed 1)
+#   Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (Level 2),
+#     mechanical-adaptation whitelist entry 2 (new-class rows) does NOT apply here
+#     (rewards are universal allpay bags, no class-scoped rows).
+#
+# Chain (giver = Berlon 64,1011 for every quest; pure NPC-accept, no autoAccept):
+#   1353 First Gather (Verdra Fibers)   -> 1354 First Brew (Healing Potion I)
+#   1355 Mana Gather (Sun Essence)      -> 1356 Mana Brew  (Mana Potion I)
+#   1357 Scroll Gather (Krymetal Ore)   -> 1358 Scroll Craft (Crit Power Scroll)
+#   Gate: 1353 requires early story quest 1301 (First Rays of Sunlight, the
+#   universal IoD opener) + minLevel 3; each later quest requires the prior +
+#   its level band (3/3/5/5/7/7). Levels pinned per the proposal's XP table.
+#
+# Gather objectives (CollectTask) verified against live IoD collection nodes
+# (CollectionGiftTable primary drop, area 13_ATW_Death_P):
+#   collection 1  Verdra Plant (Herb)   -> item 1001 Verdra Fibers
+#   collection 301 Sun Essence (Energy) -> item 1003 Sun Essence
+#   collection 101 Krymetal Ore (Mine)  -> item 1002 Krymetal Ore
+# SEQUENCING (revised after live test, 2026-07-21): the craft step must not force
+# a re-gather. So each GATHER quest turn-in has Berlon RETURN the gathered material
+# plus the kit AND grant the recipe DESIGN, so the CRAFT quest is pure crafting (the
+# player already holds one full batch of inputs + the recipe). The craft quest
+# REQUIRES the full batch (clear objective), and Berlon RETURNS part of it as the
+# reward (keep-2 handled in the reward, not the objective text):
+#   1353 gather 10 fibers  -> reward: Recipe 91213 + 10 Verdra Fibers + 2 kits
+#   1354 craft: brew + deliver 5 Healing Potion I (recipe 91213); reward returns 2
+#   1355 gather 8 essence  -> reward: Recipe 91221 + 8 Sun Essence + 2 kits
+#   1356 craft: brew + deliver 5 Mana Potion I (recipe 91221); reward returns 2
+#   1357 gather 20 ore     -> reward: Recipe 91282 + 20 Krymetal Ore + 1 Scroll Kit
+#   1358 craft: brew + deliver 2 Crit Power Scroll (recipe 91282); reward returns 1
+# Berlon's completion line says to keep the returned portion (minimal, in character).
+# The recipe designs (91213/91221/91282) are restored to their v31 identity by
+# spec 22 (they are deprecated "Worn Recipe" junk on v92); the player USES the
+# design to learn the recipe before crafting. The crafted products (6000/6016/6197)
+# are made usable by spec 22 as well. Craft objectives use DeliverItemTask (there is
+# no "craft item" task type); with inputs pre-supplied, "just crafting" is achieved
+# by pre-loading the batch, not by the task type.
+#
+# CRAFTING HINT (out of lore, per user): the mechanical "open My Character then
+# Craft" hint lives in the craft step's JOURNAL objective line (저널Text), separate
+# from Berlon's dialog. No keybind token exists in the engine (keys are hardcoded,
+# cf. quest 1382 "Press [F]"), so the keybind-safe menu path is used, not a key.
+#
+# Rewards (QuestCompensationData_13, allpay bags; XP/gold from the proposal's
+# anti-punishment calibration = combat base + 10x per-kill XP, gold = 10% XP;
+# XP/gold unchanged from the first cut, only the item bags changed):
+#   1353 2300/230 + Recipe 91213 + Verdra Fibers 1001 x10 + kit 1616 x2
+#   1354 2300/230 + Apprentice Alchemical Kit 1616 x5 ("pack")
+#   1355 3100/310 + Recipe 91221 + Sun Essence 1003 x8 + kit 1616 x2
+#   1356 3100/310 + Apprentice Alchemical Kit 1616 x5 ("pack")
+#   1357 4000/400 + Recipe 91282 + Krymetal Ore 1002 x20 + Scroll Kit 1611 x1
+#   1358 4000/400 + Apprentice Scroll Kit 1611 x5 ("pack")
+# ("pack" size 5, a bonus for the craft step; the exact craft inputs come from the
+# preceding gather quest, so no re-gather.) LIVE-CHECK: confirm the restored recipe
+# design actually unlocks crafting on the v92 server (vs base recipes being
+# auto-available with Alchemy proficiency); giving the design is safe either way.
+#
+# QUEST-LINK MARKUP CORRECTION (data-verified 2026-07-21): the token is
+#   {@LinkCreature:hz#tmpl#Name}, NOT {@LinkNpc} (0 occurrences of {@LinkNpc} in
+#   any QuestDialog/StrSheet_Quest; {@LinkCreature} is the universal NPC+mob token,
+#   e.g. the live NPC link {@LinkCreature:64#1029#Kiriya}, and it renders in
+#   StrSheet_Quest journal strings too, 860 uses). Tokens used here:
+#     {@LinkCreature:64#1011#Berlon}  turn-in locator in each journalText2
+#     {@LinkCreature:64#1030#Annukha}  scroll-cycle field-test foil (1357/1358)
+#   Both templates are spawned in TerritoryData_64 (Berlon 6400015, Annukha next
+#   to him), so gen_npcloc.py --prune emits an NpcLoc entry for each and both
+#   tokens resolve. Gather targets are collections (no creature token; named in
+#   plain text per the proposal). No dead links.
+#
+# STORY-GROUP REGISTRATION DELIBERATELY OMITTED. QuestGroupList.xml is server-only
+#   (no client sync entity), so a new StoryGroup id would be invisible to the
+#   client, and the only existing IoD groups (1 "World of TERA", 2 "Into the
+#   Tainted Gorge") are the story spine, semantically wrong for a crafting side
+#   arc. Every existing IoD side quest (1334, 1348, 1321, ...) is ungrouped and
+#   functions as a yellow quest; this chain follows that precedent. questHuntingZones
+#   also needs no op (HZ 13 row already present). If a grouped journal arc is later
+#   wanted, revisit with a client-side group definition. (User-flagged decision.)
+#
+# Client sync: quests + questStrings (StrSheet_Quest, shard-routed) + questDialogs
+#   (QuestDialog, IdSorted) all sync via migrate. QuestCompensationData is
+#   server-only. NpcLoc regen (gen_npcloc.py --prune) is the post-apply client leg.
+#
+# DeliverItemTask item element: the craft turn-in gates on holding the crafted items
+#   via the task's item requirement, which the DSL now writes to the correct <아이템지정>
+#   element natively (datasheetlang 30220450, adopted 2026-07-21). An earlier build
+#   emitted <전달아이템지정> (wrong for 아이템전달Task), which let the turn-in complete
+#   on talking to Berlon (premature completion caught in live test); the interim
+#   fixup for that is RETIRED and deleted. Filed+DELIVERED:
+#   docs/dsl-requests/2026-07-21-deliveritemtask-wrong-item-element.md.
+#
+# Task Header <JournalScript>: authored natively via the task `journalScript` field
+#   (journalScript: 2 = the briefing dialog id, the stock 1334 convention). The
+#   CLIENT Quest XSD requires this element (Quest_Tasks_Task_Header sequence), so a
+#   DSL-created quest without it fails `dsl sync -e Quest` with E650. The DSL added
+#   the field (datasheetlang cd080461, adopted 2026-07-21), retiring the former
+#   companion fixup (fix_berlon_journalscript.py, deleted). Filed+DELIVERED:
+#   docs/dsl-requests/2026-07-21-quest-journalscript-field.md.
+#
+# CLIENT SYNC NOTE: new low-id quests (1353-1358) insert into the client IdSorted
+#   Quest/QuestDialog layout, so a full sync renumbers every higher-id shard (~4900
+#   client files). Content-safe (verified: client quest set == server, 0 dropped,
+#   0 dupes) but a large client-dc diff. The manifest-narrowed sync in migrate
+#   cannot place new IdSorted shards (E680), so sync these entities with a full
+#   `dsl sync -e Quest -e QuestDialog -e StrSheet_Quest` after the batch apply.
+#
+# Idempotent: upsert only (quests/questStrings/questDialogs/questCompensations).
+#   Applied via migrate --patch 001 batch replay ONLY. Validated with dsl validate.
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# ---- 1. Quest bodies (6) ------------------------------------------------------
+quests:
+  upsert:
+    # -- 1353 First Gather: gather Verdra Fibers 1001 x10 --------------------
+    - id: 1353
+      header:
+        questNumber: 1353
+        questTitle: "@quest:1353001"
+        questType: General
+        repeatType: OneTime
+        cancellable: Allowed
+        startTaskId: 1
+        linkedQuest: 1354
+        giverNpc: "64,1011"
+        recommendedPartySize: 1
+        recommendedLevel: 3
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1353002"
+        endPopup: "@quest:1353003"
+      requirements:
+        minLevel: 3
+        prerequisites: [1301]
+      tasks:
+        - taskId: 1
+          type: CollectTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 2
+          journalText: "@quest:1353005"
+          journalText2: "@quest:1353006"
+          body:
+            itemId: 1
+            deliveryItems:
+              - itemId: 1001
+                quantity: 10
+            targetNpc: "64,1011"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:1353004"
+
+    # -- 1354 First Brew: craft + return Healing Potion I 6000 x5 ------------
+    - id: 1354
+      header:
+        questNumber: 1354
+        questTitle: "@quest:1354001"
+        questType: General
+        repeatType: OneTime
+        cancellable: Allowed
+        startTaskId: 1
+        linkedQuest: 1355
+        giverNpc: "64,1011"
+        recommendedPartySize: 1
+        recommendedLevel: 3
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1354002"
+        endPopup: "@quest:1354003"
+      requirements:
+        minLevel: 3
+        prerequisites: [1353]
+      tasks:
+        - taskId: 1
+          type: DeliverItemTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 2
+          journalText: "@quest:1354005"
+          journalText2: "@quest:1354006"
+          body:
+            itemId: 6000
+            itemCount: 5      # require the full batch (recipe 91213 yields 5); Berlon returns 2 as reward
+            targetNpc: "64,1011"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:1354004"
+
+    # -- 1355 Mana Gather: gather Sun Essence 1003 x8 -----------------------
+    - id: 1355
+      header:
+        questNumber: 1355
+        questTitle: "@quest:1355001"
+        questType: General
+        repeatType: OneTime
+        cancellable: Allowed
+        startTaskId: 1
+        linkedQuest: 1356
+        giverNpc: "64,1011"
+        recommendedPartySize: 1
+        recommendedLevel: 5
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1355002"
+        endPopup: "@quest:1355003"
+      requirements:
+        minLevel: 5
+        prerequisites: [1354]
+      tasks:
+        - taskId: 1
+          type: CollectTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 2
+          journalText: "@quest:1355005"
+          journalText2: "@quest:1355006"
+          body:
+            itemId: 301
+            deliveryItems:
+              - itemId: 1003
+                quantity: 8
+            targetNpc: "64,1011"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:1355004"
+
+    # -- 1356 Mana Brew: craft + return Mana Potion I 6016 x5 ---------------
+    - id: 1356
+      header:
+        questNumber: 1356
+        questTitle: "@quest:1356001"
+        questType: General
+        repeatType: OneTime
+        cancellable: Allowed
+        startTaskId: 1
+        linkedQuest: 1357
+        giverNpc: "64,1011"
+        recommendedPartySize: 1
+        recommendedLevel: 5
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1356002"
+        endPopup: "@quest:1356003"
+      requirements:
+        minLevel: 5
+        prerequisites: [1355]
+      tasks:
+        - taskId: 1
+          type: DeliverItemTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 2
+          journalText: "@quest:1356005"
+          journalText2: "@quest:1356006"
+          body:
+            itemId: 6016
+            itemCount: 5      # require the full batch (recipe 91221 yields 5); Berlon returns 2 as reward
+            targetNpc: "64,1011"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:1356004"
+
+    # -- 1357 Scroll Gather: gather Krymetal Ore 1002 x20 -------------------
+    - id: 1357
+      header:
+        questNumber: 1357
+        questTitle: "@quest:1357001"
+        questType: General
+        repeatType: OneTime
+        cancellable: Allowed
+        startTaskId: 1
+        linkedQuest: 1358
+        giverNpc: "64,1011"
+        recommendedPartySize: 1
+        recommendedLevel: 7
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1357002"
+        endPopup: "@quest:1357003"
+      requirements:
+        minLevel: 7
+        prerequisites: [1356]
+      tasks:
+        - taskId: 1
+          type: CollectTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 2
+          journalText: "@quest:1357005"
+          journalText2: "@quest:1357006"
+          body:
+            itemId: 101
+            deliveryItems:
+              - itemId: 1002
+                quantity: 20
+            targetNpc: "64,1011"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:1357004"
+
+    # -- 1358 Scroll Craft: craft + return Crit Power Scroll 6197 x2 --------
+    - id: 1358
+      header:
+        questNumber: 1358
+        questTitle: "@quest:1358001"
+        questType: General
+        repeatType: OneTime
+        cancellable: Allowed
+        startTaskId: 1
+        giverNpc: "64,1011"
+        recommendedPartySize: 1
+        recommendedLevel: 7
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1358002"
+        endPopup: "@quest:1358003"
+      requirements:
+        minLevel: 7
+        prerequisites: [1357]
+      tasks:
+        - taskId: 1
+          type: DeliverItemTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 2
+          journalText: "@quest:1358005"
+          journalText2: "@quest:1358006"
+          body:
+            itemId: 6197
+            itemCount: 2      # require the full batch (recipe 91282 yields 2); Berlon returns 1 as reward
+            targetNpc: "64,1011"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:1358004"
+
+# ---- 2. Quest strings (36: 6 per quest; title/start/end/button/journal x2) -----
+# Voice: Berlon the Baraka scholar, measured and mission-first; player addressed
+# as <PCCLASS:lcase>/<PCNAME>/"recruit"; button "For the federation!" (literal
+# quotes, per the IoD convention); one light pun per title; real material names.
+questStrings:
+  upsert:
+    # 1353 -----------------------------------------------------------------
+    - id: 1353001
+      string: "A Fiber of Their Being"
+    - id: 1353002
+      string: "The island grows what the federation cannot ship. Gather Verdra Fibers from the plants near the Tower Base."
+    - id: 1353003
+      string: "Raw fiber, but the making of a cure lies folded within it."
+    - id: 1353004
+      string: '"For the federation!"'
+    - id: 1353005
+      string: "Gather 10 Verdra Fibers from the Verdra Plants near the Tower Base."
+    - id: 1353006
+      string: "Bring the fibers to {@LinkCreature:64#1011#Berlon} at the Tower Base."
+    # 1354 -----------------------------------------------------------------
+    - id: 1354001
+      string: "An Ounce of Prevention"
+    - id: 1354002
+      string: "You have the recipe now. Brew five Healing Potions and bring them to me."
+    - id: 1354003
+      string: "Drawn from island soil, and welcome. The garrison stands a little longer for them."
+    - id: 1354004
+      string: '"For the federation!"'
+    - id: 1354005
+      string: "Craft Healing Potion I: open My Character, then Craft."
+    - id: 1354006
+      string: "Deliver 5 Healing Potion I to {@LinkCreature:64#1011#Berlon} at the Tower Base."
+    # 1355 -----------------------------------------------------------------
+    - id: 1355001
+      string: "Essence of the Matter"
+    - id: 1355002
+      string: "A blade needs mana as much as blood. Gather Sun Essence where the light pools near the Tower Base."
+    - id: 1355003
+      string: "Captured light. Crude, but it will answer when we call it."
+    - id: 1355004
+      string: '"For the federation!"'
+    - id: 1355005
+      string: "Gather 8 Sun Essence from the Energy nodes near the Tower Base."
+    - id: 1355006
+      string: "Bring the essence to {@LinkCreature:64#1011#Berlon} at the Tower Base."
+    # 1356 -----------------------------------------------------------------
+    - id: 1356001
+      string: "Mana from Heaven"
+    - id: 1356002
+      string: "You have the recipe. Refine the Sun Essence into five Mana Potions and bring them to me."
+    - id: 1356003
+      string: "Borrowed daylight, bottled. Our casters need never run dry on this island."
+    - id: 1356004
+      string: '"For the federation!"'
+    - id: 1356005
+      string: "Craft Mana Potion I: open My Character, then Craft."
+    - id: 1356006
+      string: "Deliver 5 Mana Potion I to {@LinkCreature:64#1011#Berlon} at the Tower Base."
+    # 1357 -----------------------------------------------------------------
+    - id: 1357001
+      string: "The Ore the Merrier"
+    - id: 1357002
+      string: "Focus favors the sharp of mind. Mine Krymetal Ore from the seams near the Tower Base."
+    - id: 1357003
+      string: "Good ore, and enough of it. Annukha will be pleased to see it put to use."
+    - id: 1357004
+      string: '"For the federation!"'
+    - id: 1357005
+      string: "Mine 20 Krymetal Ore from the seams near the Tower Base."
+    - id: 1357006
+      string: "Bring the ore to {@LinkCreature:64#1011#Berlon} at the Tower Base."
+    # 1358 -----------------------------------------------------------------
+    - id: 1358001
+      string: "Scroll With It"
+    - id: 1358002
+      string: "You have the recipe. Scribe the ore into two Crit Power Scrolls and bring them to me."
+    - id: 1358003
+      string: "Island-made, and sharp. The island arms its own now."
+    - id: 1358004
+      string: '"For the federation!"'
+    - id: 1358005
+      string: "Scribe Onslaught Scroll: Crit Power I: open My Character, then Craft."
+    - id: 1358006
+      string: "Deliver 2 Crit Power Scrolls to {@LinkCreature:64#1011#Berlon} at the Tower Base."
+
+# ---- 3. Quest dialogs (6) ------------------------------------------------------
+# Per quest: Text 1 (system placeholder), Text 100 (summary, empty page, ref
+# summaryInfo=100), Text 2 (briefing, ref questDialogue=2, social 4), Text 3
+# (completion, ref completionDialogue=3), Text 4 (incomplete/retry, ref
+# incompleteDialogue=4). Speaker = Berlon (villagerId 1011, npcZoneId 64) except
+# the system Text 1. <BR><BR> splits; briefings end by naming the next stop.
+questDialogs:
+  upsert:
+    # 1353 (huntingZone 13, dialog id 53) ----------------------------------
+    - huntingZoneId: 13
+      id: 53
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Our garrison bleeds through field supplies faster than the federation can ship them, <PCCLASS:lcase>. If this island is to keep us, we must first learn to let it.<BR><BR>Begin with the Verdra Plants that grow around the Tower Base. Bring me ten measures of their fiber, and Oriyn willing, we will draw our own healing from this soil."
+        - id: 3
+          npcZoneId: 64
+          prevId: 2
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Good, and more than clean. Keep the fibers, recruit: as thread they feed no one, but as Healing Potions they are worth their weight. Take this recipe with them, and we begin."
+        - id: 4
+          npcZoneId: 64
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "The Verdra Plants will not empty themselves, recruit. Ten measures of fiber, no fewer."
+    # 1354 (dialog id 54) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 54
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "You have the fiber, the kit, and the recipe now, <PCNAME>. Brew five Healing Potions and bring the batch to me for the garrison stores."
+        - id: 3
+          npcZoneId: 64
+          prevId: 2
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Five, and well brewed. Keep two for your own belt, recruit; the rest strengthen the garrison."
+        - id: 4
+          npcZoneId: 64
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "Five Healing Potions, recruit. The station is patient; I am rather less so."
+    # 1355 (dialog id 55) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 55
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Healing keeps a soldier standing, <PCCLASS:lcase>, but mana keeps them fighting. The island offers that too, if we stoop to gather it.<BR><BR>Sun Essence settles where the light pools near the Tower Base. Bring me eight measures, and we will teach this ground to refill a caster's reserves."
+        - id: 3
+          npcZoneId: 64
+          prevId: 2
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Light, caught and kept. Take it back, recruit, and the recipe with it. Mana Potions will not brew themselves, but you have the makings now."
+        - id: 4
+          npcZoneId: 64
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "The Sun Essence waits on no one, recruit. Eight measures, gathered whole."
+    # 1356 (dialog id 56) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 56
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "The essence is caught and yours again, <PCNAME>. Bind it into five Mana Potions with the kit and the recipe, and bring the batch to me."
+        - id: 3
+          npcZoneId: 64
+          prevId: 2
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Five, and elegantly done. Keep two for yourself, recruit; the rest go to the casters."
+        - id: 4
+          npcZoneId: 64
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "Five Mana Potions, recruit, or the casters go thirsty. Back to the station."
+    # 1357 (dialog id 57) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 57
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Potions keep a body whole, <PCCLASS:lcase>, but a war is won by focus. {@LinkCreature:64#1030#Annukha} has been pacing this post for days, itching to test her edge in the gorge.<BR><BR>Bring me twenty Krymetal Ore from the seams near the Tower Base, and we will grind it into something worth her while."
+        - id: 3
+          npcZoneId: 64
+          prevId: 2
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Twenty, and clean. Keep the ore, recruit, and take the scribing method with it: {@LinkCreature:64#1030#Annukha} will have her scrolls soon enough."
+        - id: 4
+          npcZoneId: 64
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "Twenty Krymetal Ore, recruit. The seams run deep; keep at them."
+    # 1358 (dialog id 58) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 58
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "The last art, <PCNAME>. With the Scroll Kit and the recipe, grind the ore and scribe two Crit Power Scrolls. Bring them to me when the ink is dry."
+        - id: 3
+          npcZoneId: 64
+          prevId: 2
+          villagerId: 1011
+          pages:
+            - social: 4
+              content: "Self-healing, self-supplied, self-sharpened. Keep one scroll to test your own edge in the gorge, recruit; the other goes to {@LinkCreature:64#1030#Annukha}. The federation may yet make a home of this island, and you helped lay the first stone. For the federation."
+        - id: 4
+          npcZoneId: 64
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "Two scrolls, recruit, no fewer. {@LinkCreature:64#1030#Annukha} grows no more patient."
+
+# ---- 4. Quest rewards (QuestCompensationData_13, server-only) -------------------
+questCompensations:
+  upsert:
+    - questId: 1353
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2300
+          gold: 230
+          itemBag: "allpay"
+          items:
+            - templateId: 91213    # Recipe: Healing Potion I (learn the recipe)
+              quantity: 1
+            - templateId: 1001     # Verdra Fibers returned (craft input, recipe 91213 needs 10)
+              quantity: 10
+            - templateId: 1616     # Apprentice Alchemical Kit (recipe 91213 needs 2)
+              quantity: 2
+    - questId: 1354
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2300
+          gold: 230
+          itemBag: "allpay"
+          items:
+            - templateId: 6000    # 2 of the 5 brewed potions returned to the player
+              quantity: 2
+            - templateId: 1616
+              quantity: 5
+    - questId: 1355
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3100
+          gold: 310
+          itemBag: "allpay"
+          items:
+            - templateId: 91221    # Recipe: Mana Potion I (learn the recipe)
+              quantity: 1
+            - templateId: 1003     # Sun Essence returned (recipe 91221 needs 8)
+              quantity: 8
+            - templateId: 1616     # Apprentice Alchemical Kit (recipe 91221 needs 2)
+              quantity: 2
+    - questId: 1356
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3100
+          gold: 310
+          itemBag: "allpay"
+          items:
+            - templateId: 6016    # 2 of the 5 brewed mana potions returned to the player
+              quantity: 2
+            - templateId: 1616
+              quantity: 5
+    - questId: 1357
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4000
+          gold: 400
+          itemBag: "allpay"
+          items:
+            - templateId: 91282    # Recipe: Onslaught Scroll: Crit Power I (learn the recipe)
+              quantity: 1
+            - templateId: 1002     # Krymetal Ore returned (recipe 91282 needs 20)
+              quantity: 20
+            - templateId: 1611     # Apprentice Scroll Kit (recipe 91282 needs 1)
+              quantity: 1
+    - questId: 1358
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4000
+          gold: 400
+          itemBag: "allpay"
+          items:
+            - templateId: 6197    # 1 of the 2 scribed scrolls returned to the player
+              quantity: 1
+            - templateId: 1611
+              quantity: 5

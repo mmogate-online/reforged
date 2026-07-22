@@ -6,6 +6,24 @@ Newest entries first.
 
 ---
 
+## 2026-07-21 (session 3)
+
+### Content
+- IoD Level 2 Berlon crafting-intro chain live-validated end to end and PATCH 001 CLOSED (committed locally on server datasheet, client-dc, and specs repos, not pushed; client published 0.1.0-dev.28 through dev.33). Spec 21: 6 one-time linear quests 1353-1358 (gather Verdra Fibers/Sun Essence/Krymetal Ore then craft Healing Potion I/Mana Potion I/Crit Power Scroll via recipes 91213/91221/91282; Berlon 64,1011 giver; gated behind story 1301)
+- Material give-back reward model: each gather turn-in returns the gathered material plus the kit plus the recipe design, so the craft step is pure crafting; the craft turn-in requires the full crafted batch and Berlon returns 2 potions (1 scroll) as the reward
+- Recipe designs 91213/91221/91282 restored to v31 identity ("Recipe: <product>" name, "Use this design to learn the corresponding crafting skill." tooltip) from the v92 "Worn Recipe" deprecation (spec 22)
+- Consumables 6000/6001/6016/6017/6197 tooltip restored to v31 functional text (spec 22); verified usable in-game
+- Gather-node map markers authored: StrSheet_CollectionLoc waypoints added for tier-1 collections 1/101/301 (absent in both v31 and v92) so the gather-quest journal markers resolve
+
+### Infrastructure
+- reforged-server: `gen_collectionloc.py` added to dc-restore (projects `CollectionTerritory_13_*` nodes into `StrSheet_CollectionLoc` 13# waypoints; add-only, idempotent, writes server + client)
+- reforged-server: Patch Application Discipline rule encoded in root `CLAUDE.md` (apply and sync a patch only as a whole; `--no-narrow` when a patch adds new IdSorted quests; never commit the server/client datasheet repos mid-patch)
+- datasheet-domain: `quest-link-system` doc gained the `StrSheet_CollectionLoc` gather-node registry and corrected the `{@LinkNpc}` claim (0 in data; `{@LinkCreature}` is the universal NPC and monster token); `quest-task-reference` gained the DeliverItem `아이템지정` element inventory gate
+
+### Blockers resolved
+- `2026-07-21-quest-journalscript-field.md` delivered (datasheetlang `cd080461`: task `journalScript` field) and adopted natively; interim JournalScript fixup retired
+- `2026-07-21-deliveritemtask-wrong-item-element.md` delivered (datasheetlang `30220450`: DeliverItemTask body element corrected to `아이템지정`) and adopted natively; interim element fixup retired
+
 ## 2026-07-21 (session 2)
 
 ### Content

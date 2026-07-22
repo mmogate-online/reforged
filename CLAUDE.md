@@ -163,6 +163,14 @@ When migrating client DC files and a schema error or incompatibility is encounte
 
 **Specs must be idempotent by default.** Always use `upsert` for create-style operations. Never use `create` unless explicitly instructed — `create` fails on re-runs, breaks manifest generation for the affected spec, and causes files to be silently omitted from server pushes.
 
+## Patch Application Discipline (binding)
+
+These rules keep the pipeline simple and make every apply a full-patch regression check.
+
+1. **Apply and sync a patch only as a whole.** Always run `python reforged/tools/migrate/migrate.py --patch NNN` (full apply plus full sync). Never hand-pick a subset of specs or entities to apply/sync. A patch that adds new quests (or any new `IdSorted` client entity: `Quest`, `QuestDialog`) must sync with `--no-narrow`, because the default manifest-narrowed sync cannot insert a new shard into the sorted layout (E680); the broad sync renumbers the downstream shards correctly. `gen_npcloc.py --prune` remains a separate post-apply step whenever spawns change.
+2. **Never commit the server or client datasheet repos (`server_datasheet`, `client_datacenter`) mid-patch.** The working tree holds the in-progress patch. Land exactly one "close patch NNN" commit per repo, only when the patch is fully applied, synced, and live-validated. That commit becomes the source-ref baseline the next patch develops against. Committing mid-patch shifts the baseline, defeats the from-baseline regression check, and forces error-prone segmented applies.
+3. **Each new patch develops against the previous patch's closed (committed) baseline.** Patch specs are the reproducible source of truth; the committed repo state is the baseline they layer on.
+
 ## DSL Issues & Feature Requests
 
 Agents in this project are end users of the DSL tool. Do not attempt to fix DSL bugs or implement missing features. Instead, log them in `docs/dsl-requests/` as individual files named `YYYY-MM-DD-<topic>.md`. Multiple issues discovered during the same task can share a single file. Each entry should include:
