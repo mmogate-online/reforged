@@ -90,7 +90,7 @@ the framework, do not improvise silently.
 
 | Phase | Content |
 |-------|---------|
-| 0 | Zone folder under `docs/plans/classic-restoration/<zone>/` (TRACKER.md, data/, divergence-log.md) |
+| 0 | Plan folder under `docs/plans/classic-restoration/<target>/` (TRACKER.md, data/, divergence-log.md). A target is usually a zone (`iod`), but may be a cross-zone theme (`crafting-restoration`); themes follow the same pipeline and skip the per-zone diff artifacts of phase 3. Prime a session on one with `/prime-classic-restoration <target>` |
 | 1 | Salvage/disposition pass over any prior work for the zone |
 | 2 | Clean-slate revert of affected surfaces (server repo, client-dc repo, dev overlay) |
 | 3 | Per-family v31-vs-v92 diff artifacts with per-row dispositions |

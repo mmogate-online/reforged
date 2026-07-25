@@ -71,6 +71,37 @@ user-invocable: true
 8. Never write the em-dash family anywhere (a PreToolUse hook blocks it); use
    colons, commas, or parentheses.
 
+## Priming skills (`prime-*`)
+
+A priming skill opens a session on a workstream: it loads the reference set, injects
+current state, restates the working agreements, and hands off. It is orientation,
+never method. Current members: `prime-spec-standardization`, `prime-classic-restoration`.
+
+Rules specific to them:
+
+- **`disable-model-invocation: true`.** This is the one sanctioned exception to the
+  frontmatter contract above. Priming is an explicit user act; auto-firing it
+  mid-conversation dumps a large orientation payload nobody asked for.
+- **Point, never copy.** A priming skill must not restate doctrine, method, or
+  reference content that lives in a doc or another skill. It names the file and says
+  read it. If a rule ends up in two places, the source of truth wins and the priming
+  copy is a bug. The only prose it owns is the session protocol, meaning how to work
+  in this area, which lives nowhere else.
+- **Delegate the method.** Invoke the owning skill (`content-restoration`,
+  `spec-standardization`) rather than summarizing it, and include a routing table
+  for the neighbouring skills so the agent does not reimplement one.
+- **Be target-agnostic.** Never hardcode a zone, folder, or spec family name. Take
+  the target as `argument-hint` plus `$1`, discover the valid targets at load time,
+  and ask when the argument is missing.
+- **Inject state, do not describe it.** Prefer a dynamic-context command over prose
+  about where things stand: which patch is open, what is dirty, what shipped last.
+  Put anything needing quoting or path resolution in a sibling script
+  (`state.sh`) invoked as `` !`bash "${CLAUDE_SKILL_DIR}/state.sh"` ``, so escaping
+  happens once in a file instead of through nested shell layers. Keep it read-only
+  and fast, and resolve external paths from `.references` inside the script.
+- **End with a handshake.** Summarize the understanding, present a scoped proposal,
+  change nothing until the user approves.
+
 ## Lesson-entry template
 
 Lessons captured into any skill (via `/learn` or manually) use this exact shape,
@@ -90,7 +121,7 @@ this standard.
 
 - [ ] Directory name = intended command, kebab-case
 - [ ] `description` third person, "Use when" triggers present, under 1024 chars
-- [ ] `disable-model-invocation: false` and `user-invocable: true` present
+- [ ] `disable-model-invocation: false` and `user-invocable: true` present (a `prime-*` skill sets `disable-model-invocation: true`; see Priming skills)
 - [ ] Body under 500 lines, references one level deep, forward-slash paths
 - [ ] External paths resolved via `.references`, no hardcoded machine paths
 - [ ] No em-dash family characters anywhere in the file
