@@ -12,11 +12,11 @@ Restoration draws on three sources, each resolved from `reforged/.references`:
 | Easy-restore source | `v31_datasheet` | v31.04 server datasheet, flat per-zone files (`NpcData_13.xml`). Same server schema as v92, so restores are near copy-paste. Lives on a network drive (`Z:`). |
 | Current truth | `server_datasheet` | v92 server datasheet, the restoration target and validation baseline. |
 
-The modules are **survey.py** (per-zone gap report), **quest_restore.py** (restore quest header wiring from the client reference), **comp_restore.py** (restore quest compensation blocks from v31), **spawn_restore.py** (reconstruct deleted TerritoryData spawns from the client shard), **dcq.py** (cross-source content query CLI), **audit_quests.py** (deterministic quest-difference flagger), and **dungeon_audit.py** (dungeon reference integrity gate). `dclib.py` is the shared library every module builds on.
+The modules are **survey.py** (per-zone gap report), **quest_restore.py** (restore quest header wiring from the client reference), **comp_restore.py** (restore quest compensation blocks from v31), **spawn_restore.py** (reconstruct deleted TerritoryData spawns from the client shard), **dcq.py** (cross-source content query CLI), **audit_quests.py** (deterministic quest-difference flagger), **dungeon_audit.py** (dungeon reference integrity gate), and **audit_class_gates.py** (class-gate coverage gate). `dclib.py` is the shared library every module builds on.
 
 ### Read-only vs restore modules
 
-`survey.py`, `dcq.py`, `audit_quests.py`, and `dungeon_audit.py` are **read-only analysis** tools: they never write to a datasheet. `quest_restore.py` and `comp_restore.py` are **restore** tools (dry-run by default, `--apply` writes). The analysis tools that judge current v92 state differ in which lane they read: `survey.py` diffs the clean git HEAD baseline (patch overlays are annotated, not counted as loss), while `dcq.py` and `audit_quests.py` read the **working tree** (so authored spawns and restored comp/prereq show up as the current truth), noting dirty files for context.
+`survey.py`, `dcq.py`, `audit_quests.py`, `dungeon_audit.py`, and `audit_class_gates.py` are **read-only analysis** tools: they never write to a datasheet. `quest_restore.py` and `comp_restore.py` are **restore** tools (dry-run by default, `--apply` writes). The analysis tools that judge current v92 state differ in which lane they read: `survey.py` diffs the clean git HEAD baseline (patch overlays are annotated, not counted as loss), while `dcq.py` and `audit_quests.py` read the **working tree** (so authored spawns and restored comp/prereq show up as the current truth), noting dirty files for context.
 
 ### Dry-run by default
 
@@ -228,6 +228,30 @@ Checks per dungeon continent:
 5. Per-HZ file-set presence (`NpcData`, `TerritoryData`, `AIData`, `NpcSkillData`) and a comment-disabled census per file (warning): commented groups/territories/templates counted, plus inert commented DungeonData refs noted.
 
 Regression-verified: run with `--datasheet` against a pre-fix snapshot of the 9037 files, it reports exactly the 27 wave-spawn references as `COMMENT-DISABLED`.
+
+## audit_class_gates.py (class-gate coverage gate)
+
+Checks that every class on the **current** roster is offered some member of each class-gated quest group. Read-only; reads the working tree; exit code 1 if any offerable group excludes an audited class. Born from the 2026-07-25 incident: a Ninja completed 1384 and the story spine dead-ended, because 1382 admits Warrior/Lancer/Slayer/Berserker/Archer/Engineer and its sibling 1383 admits Sorcerer/Priest/Elementalist, so Milene offered neither and 1331 never unlocked.
+
+```bash
+# Gate any quest restore before deploying (run after apply, before deploy-dev)
+python reforged/tools/dc-restore/audit_class_gates.py --zones 13,64,213,313,364
+
+# Whole corpus, or a zone set with Reaper included
+python reforged/tools/dc-restore/audit_class_gates.py --all-zones
+python reforged/tools/dc-restore/audit_class_gates.py --zones 63 --classes Assassin,Fighter,Glaiver,Soulless
+```
+
+Why a source diff cannot replace this: classic content lists exactly the classes that existed when it shipped, and **v31 carries the identical lists**, so a faithful restore agrees with its source while still excluding every later class. The defect exists only relative to today's roster, produces no load warning and no crash, and hides from any live test that happens to use a classic class.
+
+How it judges coverage:
+
+1. Quests carrying `<수행조건><클래스>` are grouped by (zone, giver, story group), because the giver is the real grouping mechanism: one NPC hands each player the variant matching their class. Known groups this resolves correctly: 1351/1352 (Kiriya), 1382/1383 (Milene), 6302/6306 (63,1007), and the twelve per-class training quests 1371-1379 + 1380/1381/1387 (Dulari).
+2. A group passes when the union of its members' gates covers the audited roster, so a caster-only quest is never flagged while its physical sibling covers the class.
+3. Groups whose members are all sentinel-disabled (prereq `99,99`) are reported `DISABLED`, not failed: widening an unofferable quest is dead data. A single quest gated to exactly one class is reported `SINGLE` (per-class training quests are meant to be one per class).
+4. A group whose members disagree on prerequisites is tagged `MIXED`, the one case where the giver key can over-merge unrelated chains and hide a gap. Per-member prerequisites are always printed.
+
+Default roster is the full 13 classes minus `Soulless`: Reaper starts in a different zone at a higher level and never walks these chains (decision 2026-07-25). Override with `--classes`.
 
 ## Notes and gotchas
 

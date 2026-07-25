@@ -63,7 +63,14 @@ server-side. See the StrSheet_NpcLoc lesson below.
    before deploy. It resolves every DungeonData territory/entity reference
    against PARSED per-HZ content and fails on comment-disabled or missing
    targets (the dungeon 9037 failure class). Exit 0 required.
-4. **Deploy**: `deploy-dev/deploy_dev.py --verify` (server, SSH), then
+4. **Gate (any restored quests)**: run
+   `python reforged/tools/dc-restore/audit_class_gates.py --zones <zones>`
+   before deploy. Exit 0 required. It checks that every class on the CURRENT
+   roster is offered some member of each class-gated variant group. A faithful
+   restore reproduces the era's class list exactly, so classes added after that
+   era match no variant and the content is offered to nobody; anything gated
+   behind it is then unreachable. See the class-gate lesson below.
+5. **Deploy**: `deploy-dev/deploy_dev.py --verify` (server, SSH), then
    `deploy-client/deploy_client.py --all --note "..."` to pack, install, and
    dry-run the publish, and `--publish --note "..."` to commit the upload.
    The client DC is already synced by migrate; `deploy_client.py` does not
@@ -79,6 +86,16 @@ working tree already intermingles both (a mess to avoid), snapshot before any
 destructive reconcile.
 
 ## Lessons
+
+### A faithful restore inherits the era's class roster; audit gates against the CURRENT roster
+- **Date/source:** 2026-07-25: a Ninja completed 1384 (Getting to Know the Garrison) and the story spine dead-ended. Quest 1382 "Gathering Your Strength" admits Warrior/Lancer/Slayer/Berserker/Archer/Engineer and its sibling 1383 admits Sorcerer/Priest/Elementalist, so Milene offered neither to a Ninja and 1331 "Climbing through the Ranks" never unlocked. A Berserker progressed normally. Fixed by `specs/patches/002/19-newclass-quest-gates.yaml`; the same sweep also found Gunner excluded from the 1351/1352 and 6302/6306 groups.
+- **Why:** classic content gates class-split variants with `<수행조건><클래스>`, listing exactly the classes that existed then. **v31 carries the identical lists**, so the restoration was correct and no diff-against-source gate can ever catch this: both sides agree. The defect only exists relative to the current 13-class roster. It is also invisible in every single-class live test that happens to use a classic class, and invisible at load time (no warning, no crash): the quest simply is not offered, which reads as "nothing happened".
+- **Apply:** after restoring or enabling any class-gated quest, run `audit_class_gates.py --zones <zones>` and require exit 0. It evaluates coverage per variant GROUP (grouped by zone + giver + story group, since one NPC hands each class its matching variant), so a caster-only quest is not flagged when its physical sibling covers the class. Fix a gap by adding the classes to the variant whose content fits them (physical vs caster), keeping the group mutually exclusive so every class matches exactly one member. Never widen a sentinel-disabled quest (prereq `99,99`): that is dead data. Reaper/Soulless is excluded by decision (starts elsewhere at a higher level), so it is not in the default roster.
+
+### Removing an op from a spec does not revert the file it already wrote
+- **Date/source:** 2026-07-25: spec 19 first widened quest 6307's class gate, then the op was dropped after 6307 turned out to be sentinel-disabled. The next full apply left 6307 still carrying the widened gate: no spec touched the file, so nothing rewrote it, and the stale value stayed in the working tree and synced to the client.
+- **Why:** an apply only writes files its ops target. The datasheet trees are generated output, but "generated" means "written when a spec touches it", not "reconciled to what the specs currently say". A removed or narrowed op therefore leaves drift that no later apply cleans up.
+- **Apply:** when you delete or narrow an op, `git checkout --` the files it used to write, then re-run the full apply and sync so both trees are re-derived. Verify with `git status` that only files the current specs produce are dirty. This is the same failure shape as `deploy_dev.py` mirroring only git-dirty files, which leaves a reverted file stale on the dev box.
 
 ### Gather-node map markers come from StrSheet_CollectionLoc; regenerate it with gen_collectionloc.py
 - **Date/source:** 2026-07-21: an IoD gather quest tracked correctly but clicking its journal objective marked nothing on the map; `lookup_gathering_spawns 301` reported 90 world spawns yet `StrSheet_CollectionLoc waypoints (templateId=301): (none)`. The tier-1 IoD collections (Verdra Plant 1, Krymetal Ore 101, Sun Essence 301) had no entry in v31 OR v92.
