@@ -1,5 +1,48 @@
 # Datasheet MCP Improvement Requests: Berlon Crafting-Chain Planning (2026-07-21)
 
+## Resolution log (2026-07-25): CLOSED
+
+datasheet-mcp commits `e9af2bd` (skills) and `8d8c6de` (quest bodies). 391 tests green; Release AOT
+publish validated over a direct stdio harness against v92 and v31.
+
+**Root cause of item 1 (and part of the general "nothing is exposed" impression): a stale deployed
+binary.** `.mcp/datasheet-mcp.exe` was a May 8 build and `.mcp/entity_config.json` an April 25 copy,
+while the repo had moved on. That staleness is invisible from inside a session, because tools answer
+from the old binary. A `deploy-mcp.ps1` script and a `files` column on `list_entity_types` now make
+it detectable and one command to fix.
+
+- **Item 1 (ItemProduceRecipe): rejected, already working.** `ItemProduceRecipe` has been a
+  configured entity since April, is listed by `list_entity_types`, and carries `obtainable`,
+  `needSkillId`, `needGrade` plus `Materials` and `Result` child sections. Both reverse directions
+  already work through `trace_item_dependencies`: item 200999 reports "Craft Recipes as result:
+  Recipe 1466", item 206817 reports 8 recipes "as material". The consumables in the report
+  (6000/6001/6016/6017/6197) genuinely have no recipe, which is why the trace looked empty.
+- **Item 2 (Skill / linkSkillId): done.** New `Skill` entity over the Common skill family
+  (`UserSkillData_Common.xml` plus `_Guild`, `_Vehicle`, `_EventSeed`), and a new `linkSkillId`
+  reference on `Item` so `check_references` validates it. `check_references Item 6000` now reports
+  `linkSkillId = 60220100 -> Skill FOUND`, and `lookup Skill 60220100` returns
+  `Item_HP_Recovery_LV_1` with its `Precondition` cooldown block. 2,940 of the 2,957 items carrying
+  a `linkSkillId` resolve; the 17 that do not point at region-specific vehicle skills.
+  The 119 per-class `UserSkillData_{Class}_{Race}_{Gender}` shards are deliberately excluded: they
+  total ~375 MB and `Skill.id` is unique only per `templateId`, so a flat index would collide.
+  Class-skill browsing needs a dedicated indexed reader, which no request has asked for yet.
+- **Item 3 (quest bodies): done.** New `lookup_quest(questId, includeTaskBodies?)` renders the
+  header (category, story group, connected quest, repeatability), the `발생조건` giver trigger with
+  the NPC name resolved, the `수행조건` acceptance gates (level, class, race, reputation, guild),
+  prerequisite quests with their titles, start items, the task table, and a generic per-task body
+  dump that walks the tree rather than hard-coding element paths, so no authored value is hidden.
+  `find_free_ids` now accepts `entityType: "Quest"` and scans the `QuestData` id space
+  (`Quest` is not an entity_config table, so the tool routes internally).
+- **Item 4 (per-task dialog pool): open, not reproduced yet.** Carried forward; it needs a v31
+  `QuestDialog_{zone}_{chain}.xml` binding investigation that is out of scope for this pass.
+- **Item 5 (task types): done.** Task types are now surfaced in three places, each pairing the
+  Korean element value with an English name (all 34 v92 types mapped, covering the 25 in v31):
+  `lookup_quest` per task (`id|type|typeKo|target|nextTask|failReturnTask|isRewardTask`),
+  `search_quests` as a per-quest `taskTypes` summary column, and `lookup_quest_rewards` as a
+  `taskTypes:` line so reward values can be calibrated against the actual objective. Quest category
+  is now translated too. Example: quest 1313 reads
+  `Collect x1, GroupHunt x1, Hunt x1, MoveToPC x1, Visit x1` instead of requiring a title guess.
+
 Gaps surfaced during the IoD Level 2 "Berlon crafting-intro chain" planning pass (validating items,
 recipes, gathering nodes, quest rewards, and quest/dialog text across v31 and v92). Tool names given
 without the `mcp__datasheet-vNN__` prefix; server noted per item. Several agents had to fall back to

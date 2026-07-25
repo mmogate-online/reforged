@@ -1,5 +1,51 @@
 # Datasheet MCP: no read support for the Field Event system (FieldData / FieldEvent) (2026-07-22)
 
+## Resolution log (2026-07-25): CLOSED, all three requests implemented
+
+datasheet-mcp commit `2135eaf`. 378 tests green; Release AOT publish validated over a direct stdio
+harness against v92, v31 and a client DataCenter dump.
+
+- **Request 1 (minimum useful): done.** Three new entity types in `entity_config.json`:
+  - `FieldEvent` (`FieldData_{continentId}.xml`, zone-partitioned by continent). `FieldEvent.id`
+    is unique only within its file, so the continent is the partition key: pass it as
+    `huntingZoneId` to `lookup`/`search`, or as `continentId` to the dedicated tools.
+  - `FieldActionScript` (`S1ActionScripts_Field.xml` **plus** `S1ActionScripts_Spawn.xml`; 8 of the
+    17 `doActionScript` ids referenced by field events live in the Field sheet, the other 9 in the
+    Spawn sheet, and the id ranges do not overlap).
+  - `FieldEventClearReward` (the `FieldEvent.xml` clear-reward tiers, keyed by `ClearReward.id`).
+  - New tool `list_field_events`: all 16 events across the 12 continent files, with EventGroup /
+    EventTask / Guide-task counts and rotation schedule per event.
+  - New tool `lookup_field_event(continentId, eventId, eventGroupType?, eventTaskType?, maxResults?)`:
+    header, conditions, clear condition, progress, `AutoEventBalance` tiers with resolved
+    abnormality names, scoring rules, guide objectives with resolved NPC display names, spawn areas,
+    clear-reward pool, aero territories, and the full EventGroup/EventTask tree with type filters.
+- **Request 2 (higher value): done.** New tool `audit_field_event_references(continentId, eventId)`.
+  Reference semantics were established empirically over all 12 FieldData files rather than assumed:
+  - `EventTask spawn/despawn` (`huntingZoneId` + `territoryId`) to `Territory`: 2,044 of 2,075
+    resolve; the audit surfaces the 31 genuinely dangling ones (e.g. 7011/1 despawns `622,62200003`,
+    which `TerritoryData_622.xml` does not define).
+  - `EventTask.targetNpcId` and `Guide/Task.target` (`@creature:hz#id`) to `NpcTemplate`: 2,051/2,051.
+  - `EventTask abnormality` and `BasicAbnormality.abnormalityId` to `Abnormality`: 211/211,
+    including the reserved 77770001-77770030 scaling range.
+  - `EventGroup.uniqueId` is **type-dependent**, not uniformly an NPC ref: the `npc*` triggers
+    resolve 11/11 against `NpcTemplate`, `enterTerritory` / `userCountInTerritory` resolve 22/22
+    against `TerritoryData`. Probing one table for both would have reported about two thirds of
+    them as dangling.
+  - Rotation `Event(continentId, eventId)` entries pointing at undefined events are flagged by
+    `list_field_events`; per-event rotation membership is reported by the audit.
+  - **Correction to the request:** `EventGroup.targetInstanceId` and
+    `EventTask[dynamicSpawn].targetInstanceId` do **not** map to `NpcTemplate` (0 of 1,014 resolve).
+    They are placed-instance handles (321/321 match `TerritoryData` `Npc.instanceId`) and runtime
+    DynamicSpawn ids. They are reported in an explicit `[Unchecked]` section with the reason, rather
+    than as false positives.
+- **Request 3 (nice to have): done** via the `FieldActionScript` entity plus the
+  `EventTask[doActionScript].actionScriptId` check in the audit.
+- **Not exposed:** the `FieldEvent.xml` AFK (`FieldEventBanTime`), world-map UI, size, state and
+  font-colour sections. They carry no integer key and are irrelevant to authoring correctness;
+  the rotation, reward and clear-reward data they sit beside is covered above.
+- **v31:** the whole family is absent there. All three tools return an explicit "field event system
+  is v92-only" message instead of an empty result.
+
 Investigating feasibility of authoring new Guardian Legion (open-world field) events. The
 server datasheet carries the full system, but the MCP cannot see any of it.
 

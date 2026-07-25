@@ -4,6 +4,27 @@ Findings from a four-agent research pass over zones 13 (Island of Dawn) and 436
 (Karascha's Lair) on both servers. Grouped by severity. Tool names are given
 without the `mcp__datasheet-vNN__` prefix; server noted per item.
 
+## Deployment follow-up (2026-07-25)
+
+The 2026-07-17 fixes below were committed but **never deployed**: `.mcp/datasheet-mcp.exe` was still
+the May 8 build and `.mcp/entity_config.json` the April 25 copy, so every "Fixed" item was still
+broken in practice for a week (v31 `profile_item` still errored; `search_quests` for hz 13 still
+returned 14 quests instead of 99). That failure mode is invisible from inside a session because the
+tools answer from the old binary.
+
+Addressed at the root: `deploy-mcp.ps1` now publishes and copies **both** the exe and
+`entity_config.json` into `.mcp/` in one command, `list_entity_types` gained a `files` column, and
+startup logs `Mounted N of M configured entity types`. See the 2026-07-17 client-DataCenter request
+for the full mount-diagnostics change.
+
+Also closed in this pass:
+
+- **Item 18 (no raw escape hatch for quest data): done.** New `lookup_quest` tool plus
+  `find_free_ids` support for `entityType: "Quest"`. See the 2026-07-21 Berlon request, item 3.
+- **Item 19 (index-empty vs data-absent): done for entity tables.** Empty results now say whether
+  the backing file exists and where it was looked for.
+- Items 11, 13, 14, 15, 16, 20 and the `batch_lookup` typed-error nit remain deferred.
+
 ## Resolution log (2026-07-17)
 
 Triaged and implemented in datasheet-mcp the same day; dotnet test green (342),
