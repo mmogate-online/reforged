@@ -49,6 +49,7 @@ these destinations in order:
 | Design intent, balance, economy, framework invariants | The content framework repo owns it; use that repo's own authoring skills, do not duplicate design decisions here |
 | Spec YAML structure, operations, imports, idempotency | `new-spec` |
 | Validate, apply, sync, pack, deploy pipeline behavior | `apply-spec` (or the deploy workflow doc the lesson concerns) |
+| World server boot or load failure, crash artifacts, loader file invariants | `server-load-diagnosis` |
 | Package structure, exports, registration | `create-package` |
 | Research routing, source selection, MCP tool usage patterns | `domain-research` |
 | Progress logging thresholds and format | `log-progress` |

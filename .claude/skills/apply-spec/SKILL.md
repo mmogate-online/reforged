@@ -101,6 +101,11 @@ powershell -Command "Set-Location '<client_pack_dir>'; & '.\novadrop-dc_92.04\no
 
 ## Lessons
 
+### `git checkout` does not un-deploy: deploy_dev mirrors only git-dirty files, so push reverted files explicitly
+- **Date/source:** 2026-07-24: while bisecting a world-server load crash, `git checkout -- Datasheet/QuestData/001303.quest` followed by `deploy_dev.py --verify` reported "59 copied, Verify OK" instead of the expected 60. The reverted file was never pushed, so the dev box still ran the modified copy and the isolation boot would have tested nothing.
+- **Why:** `deploy_dev.py` computes its delta from `git status` in the datasheet repo. A reverted file is no longer dirty, so it drops out of the delta entirely; the tool has no notion of "the remote has something the local no longer does". The overlay on the dev box is working-tree state, not a mirror.
+- **Apply:** when a test depends on a file being reverted, push it explicitly (`scp` to `<dev_server_datasheet>`) and verify remotely (hash it, or parse the value you reverted) before asking for the restart. Treat the deploy summary's file COUNT as a checksum: if it does not match the number of files you expect to have changed, find out why before restarting. Same trap applies to any revert-and-retest cycle, and it compounds with the fact that restarts are the user's manual step.
+
 ### New quests (any new IdSorted client entity) need a full quest sync, not migrate's narrowed default
 - **Date/source:** 2026-07-21: `migrate --patch 001` on the IoD Berlon chain (6 new quests 1353-1358) failed the client sync with `[E680] Position conflict ... expected quest 1358 but found quest 1376` on `Quest-0037x`, plus `[W600] 36 StrSheet_Quest records owned by no shard appended to fallback primary 00000`.
 - **Why:** `Quest`/`QuestDialog` use the `IdSorted` client strategy (shard N = the Nth server file by sorted id). Inserting a new low-id quest shifts every later quest's shard position, which the manifest-narrowed sync cannot do: it rewrites only the changed files, so it writes the new quest onto a shard that still holds another quest. New `StrSheet_Quest` strings have no owning shard and land in the fallback primary shard (harmless).

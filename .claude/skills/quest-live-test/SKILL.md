@@ -83,7 +83,9 @@ Pass only the single-id form. The command is documented as
 - **Server restart.** Datasheets load at world-server startup only. Verify the
   restart happened before trusting any result. Restarts are the user's manual
   step. The `/@reload_*` command family exists in the vanilla reference but is
-  UNVERIFIED on this build; do not assume it applies changes.
+  UNVERIFIED on this build; do not assume it applies changes. If the restart did
+  not bring the world up at all, switch to the `server-load-diagnosis` skill: a
+  deployed datasheet can crash the loader silently.
 - **Inventory baseline.** Before testing an item grant, zero out the item on the
   character. Leftovers from earlier attempts make a grant unobservable, and a
   wrong-item grant (Charm I vs Charm IV) indistinguishable from a right one.
