@@ -80,7 +80,9 @@ The tool skips the sync phase in several cases. Each prints a clear message and 
 
 The last case is common when re-running a patch against already-applied server state — specs find all items/entities already in the correct state, write nothing, and the manifest has an empty `modified_files` list. Use `--no-narrow` to force the broad sync anyway.
 
-On failure, the batch transaction rolls back automatically — the working tree is left unchanged. Use `git checkout .` in the server datasheet repo only if you made manual edits that need reverting.
+On failure, the batch transaction rolls back automatically: the working tree is left unchanged. `git checkout .` in the server datasheet repo is always safe to run before a re-apply, because everything a patch produces is regenerated from its specs.
+
+Manual edits in the datasheet trees are never a reason to hold back an apply. They are temporary probes for proving a DSL gap, they are expected to be overwritten, and a full apply is exactly what proves the specs reproduce them. Copy a file aside first if you need it for a diff, then let the apply run. See the Patch Application Discipline in the project `CLAUDE.md`.
 
 ## Spec Ordering
 
