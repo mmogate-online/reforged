@@ -19,6 +19,99 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
+import xml.etree.ElementTree as ET
+
+# v31 server ECompensation source for the classic gold + item drops we merge in.
+V31_ECOMP = Path(
+    "Z:/tera pserver/v31.04/TERAServer/Executable/Bin/Datasheet/CompensationData/ECompensation_13.xml"
+)
+# Reforged item bags are renumbered into a disjoint id range so they never collide
+# with the verbatim v31 ItemBag ids (all <= 20) when both are merged into one entry.
+REFORGED_BAG_ID_OFFSET = 100
+
+
+def _q(s):
+    return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def load_v31_comps():
+    """npcTemplateId -> Compensation element from the v31 ECompensation_13 table."""
+    root = ET.parse(str(V31_ECOMP)).getroot()
+    return {int(c.get("npcTemplateId")): c for c in root.findall("Compensation")}
+
+
+def v31_gold_lines(comp):
+    """YAML lines for the v31 GoldBags of a Compensation (verbatim), under goldBags:."""
+    out = []
+    for gb in comp.findall("GoldBag"):
+        out.append(f"        - bagName: {_q(gb.get('bagName', ''))}")
+        out.append(f"          probability: {gb.get('probability')}")
+        if gb.get("wValue") is not None:
+            out.append(f"          wValue: {gb.get('wValue')}")
+        out.append(f"          min: {gb.get('min')}")
+        out.append(f"          max: {gb.get('max')}")
+        if gb.get("t"):
+            out.append(f"          t: {_q(gb.get('t'))}")
+    return out
+
+
+def build_id_resolver():
+    """item templateId -> (package, CONSTANT), preferring item-ids, never npc-ids.
+
+    npc template ids and item template ids are separate id spaces, so an item drop must
+    resolve to an ITEM constant even when npc-ids also names that number.
+    """
+    sys.path.insert(0, str(Path(__file__).parents[1] / "spec-standardize"))
+    from analyze_ids import load_registry
+    reg = load_registry(str(Path(__file__).parents[1].parent / "packages"))
+    idmap = {}
+    for val, lst in reg.items():
+        cands = [(pkg, name) for (pkg, name, exp, kind) in lst
+                 if exp and kind == "scalar" and pkg != "npc-ids"]
+        if not cands:
+            continue
+        cands.sort(key=lambda pn: (0 if pn[0] == "item-ids" else 1, pn[0], pn[1]))
+        idmap[val] = cands[0]
+    return idmap
+
+
+def _tid(raw, idmap, used):
+    """Render a templateId value as a $CONSTANT when a package names it, else raw."""
+    try:
+        iid = int(raw)
+    except (TypeError, ValueError):
+        return str(raw)
+    r = idmap.get(iid)
+    if r:
+        pkg, const = r
+        used.setdefault(pkg, set()).add(const)
+        return f"${const}"
+    return str(iid)
+
+
+def v31_item_lines(comp, idmap, used):
+    """YAML lines for the v31 ItemBags of a Compensation (verbatim), under itemBags:.
+
+    Item templateIds are emitted as $CONSTANT where an item package names them.
+    """
+    out = []
+    for ib in comp.findall("ItemBag"):
+        out.append(f"        - id: {ib.get('id')}")
+        out.append(f"          bagName: {_q(ib.get('bagName', ''))}")
+        out.append(f"          probability: {ib.get('probability')}")
+        if ib.get("wValue") is not None:
+            out.append(f"          wValue: {_q(ib.get('wValue'))}")
+        if ib.get("t"):
+            out.append(f"          t: {_q(ib.get('t'))}")
+        out.append(f"          items:")
+        for it in ib.findall("Item"):
+            out.append(f"            - templateId: {_tid(it.get('templateId'), idmap, used)}")
+            out.append(f"              name: {_q(it.get('name', ''))}")
+            out.append(f"              min: {it.get('min', '1')}")
+            out.append(f"              max: {it.get('max', '1')}")
+            out.append(f"              probability: {it.get('probability')}")
+    return out
+
 # ── Enchant data (MaterialEnchant 20001) ──────────────────────────────────────
 STEPS = [
     (0,  1.00,  2,  4),
@@ -193,134 +286,99 @@ def print_yield(prob, qty_alka, qty_feed):
     print(f"  Cost to +3 on one piece: {a3:.0f} alka + {f3:.0f} feed")
 
 
-def generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit):
-    lines = [
-        "# Island of Dawn (zone 13) — difficulty-weighted loot table",
-        "#",
-        f"# Difficulty scoring: sqrt(maxHp * atk) per mob, scaled to base_prob={BASE_PROB} at mean.",
-        f"# Environmental mobs (creature playStyle, HP<50): floored at {MIN_PROB}.",
-        f"# Probability range: [{MIN_PROB}, {MAX_PROB}].",
-        f"# Drop qty also scales by ceil(base_qty * sqrt(score_ratio)) — bosses drop more per trigger.",
-        "#",
-        "# To adjust rates edit the constants in generate_iod_loot.py and re-run.",
-        "# Idempotency: upsert — safe to re-apply against any baseline.",
-        "",
-        "spec:",
-        '  version: "1.0"',
-        "  schema: v92",
-        "",
-        "eCompensations:",
-        "  upsert:",
-    ]
+REFORGED_DEFS = ["AlkahestBag", "FeedstockBag", "DyadStructureBag",
+                 "SmartDyadStructureBag", "CrystalBoxesBag", "InfusionBoxUncommonBag"]
 
+
+def generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit, v31, idmap):
+    off = REFORGED_BAG_ID_OFFSET
+    used = {}   # package -> set of item-id constants referenced by this spec
+
+    body = []
     for nid, name, hp, atk, lvl, env in NPCS:
         p, cp, dp, sdp, ip = prob[nid], cry[nid], dyad[nid], sdyad[nid], inf[nid]
         qa, qf, qu = qty_alka[nid], qty_feed[nid], qty_unit[nid]
-        lines += [
+        comp = v31.get(nid)
+
+        body += [
             f"    - huntingZoneId: 13",
             f"      npcTemplateId: {nid}",
             f'      npcName: "{name}"',
-            f"      itemBags:",
-            f"        - id: 1",
-            f'          bagName: "Alkahest"',
-            f"          probability: {p}",
-            f"          items:",
-            f"            - templateId: 21351",
-            f'              name: "Masterwork Alkahest"',
-            f"              min: {qa}",
-            f"              max: {qa}",
-            f"              probability: 1.0",
-            f"        - id: 9",
-            f'          bagName: "Feedstock"',
-            f"          probability: {p}",
-            f"          items:",
-            f"            - templateId: 94101",
-            f'              name: "Tier 1 Feedstock"',
-            f"              min: {qf}",
-            f"              max: {qf}",
-            f"              probability: 1.0",
-            f"        - id: 2",
-            f'          bagName: "CrystalBoxes"',
-            f"          probability: {cp}",
-            f"          equalProbability: true",
-            f"          items:",
-            f"            - templateId: 602176",
-            f'              name: "Weapon Crystal Box (Rhomb)"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"            - templateId: 602177",
-            f'              name: "Armor Crystal Box (Rhomb)"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"        - id: 3",
-            f'          bagName: "DyadStructure"',
-            f"          probability: {dp}",
-            f"          items:",
-            f"            - templateId: 96108",
-            f'              name: "Dyad Rhomb Structure"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"              probability: 1.0",
-            f"        - id: 4",
-            f'          bagName: "SmartDyadStructure"',
-            f"          probability: {sdp}",
-            f"          items:",
-            f"            - templateId: 96114",
-            f'              name: "Smart Dyad Rhomb Structure"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"              probability: 1.0",
-            f"        - id: 5",
-            f'          bagName: "InfusionBoxUncommon"',
-            f"          probability: {ip}",
-            f"          equalProbability: true",
-            f"          items:",
-            f"            - templateId: 602190",
-            f'              name: "Infusion Weapon Box (Uncommon)"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"            - templateId: 602193",
-            f'              name: "Infusion Chest Box (Uncommon)"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"            - templateId: 602196",
-            f'              name: "Infusion Gloves Box (Uncommon)"',
-            f"              min: {qu}",
-            f"              max: {qu}",
-            f"            - templateId: 602199",
-            f'              name: "Infusion Boots Box (Uncommon)"',
-            f"              min: {qu}",
-            f"              max: {qu}",
         ]
 
-        if nid == KUGAI_NPC_ID:
-            for bag_id, qty in KUGAI_TOKEN_BAGS:
-                lines += [
-                    f"        - id: {bag_id}",
-                    f'          bagName: "KugaiToken_{qty}"',
-                    f"          probability: 1.0",
-                    f"          items:",
-                    f"            - templateId: {KUGAI_TOKEN_ID}",
-                    f'              name: "Kugai\'s Crest"',
-                    f"              min: {qty}",
-                    f"              max: {qty}",
-                    f"              probability: 1.0",
-                ]
-        elif nid in ELITE_TOKEN_DROPS:
-            qty = ELITE_TOKEN_DROPS[nid]
-            lines += [
-                f"        - id: 6",
+        # 1. v31 gold (priority) + v31 item bags, verbatim (item ids -> $CONSTANT)
+        gold = v31_gold_lines(comp) if comp is not None else []
+        if gold:
+            body.append("      goldBags:")
+            body += gold
+        body.append("      itemBags:")
+        if comp is not None:
+            body += v31_item_lines(comp, idmap, used)
+
+        # 2. reforged item bags via the reforged-loot-bags package templates.
+        # Emission order (Alkahest, Feedstock, Crystal, Dyad, SmartDyad, Infusion)
+        # is preserved so the expanded itemBags list matches the pre-refactor spec.
+        body += [
+            f"        - $extends: AlkahestBag",
+            f"          $with: {{ PROB: {p}, QTY: {qa} }}",
+            f"        - $extends: FeedstockBag",
+            f"          $with: {{ PROB: {p}, QTY: {qf} }}",
+            f"        - $extends: CrystalBoxesBag",
+            f"          $with: {{ PROB: {cp}, QTY: {qu} }}",
+            f"        - $extends: DyadStructureBag",
+            f"          $with: {{ PROB: {dp}, QTY: {qu} }}",
+            f"        - $extends: SmartDyadStructureBag",
+            f"          $with: {{ PROB: {sdp}, QTY: {qu} }}",
+            f"        - $extends: InfusionBoxUncommonBag",
+            f"          $with: {{ PROB: {ip}, QTY: {qu} }}",
+        ]
+
+        token_bags = (KUGAI_TOKEN_BAGS if nid == KUGAI_NPC_ID
+                      else [(6, ELITE_TOKEN_DROPS[nid])] if nid in ELITE_TOKEN_DROPS else [])
+        for bag_id, qty in token_bags:
+            body += [
+                f"        - id: {bag_id + off}",
                 f'          bagName: "KugaiToken_{qty}"',
                 f"          probability: 1.0",
                 f"          items:",
-                f"            - templateId: {KUGAI_TOKEN_ID}",
+                f"            - templateId: {_tid(KUGAI_TOKEN_ID, idmap, used)}",
                 f'              name: "Kugai\'s Crest"',
                 f"              min: {qty}",
                 f"              max: {qty}",
                 f"              probability: 1.0",
             ]
 
-    return "\n".join(lines) + "\n"
+    header = [
+        "# Island of Dawn (zone 13) - merged loot table (v31 restore + reforged economy)",
+        "#",
+        "# Generated by tools/iod-loot/generate_iod_loot.py (do not hand-edit).",
+        "#",
+        "# Each mob entry is the UNION of two sources:",
+        "#   1. v31 GoldBags + v31 ItemBags, ported verbatim from the v31 server",
+        "#      ECompensation_13.xml. Item ids are emitted as item-ids package constants.",
+        f"#   2. Reforged ItemBags via the reforged-loot-bags package, difficulty-weighted by",
+        f"#      sqrt(maxHp*atk); bag ids offset by +{off} so they never collide with v31 ids.",
+        "#",
+        f"# Difficulty scoring: sqrt(maxHp * atk) per mob, scaled to base_prob={BASE_PROB} at mean.",
+        f"# Environmental mobs (creature playStyle, HP<50): floored at {MIN_PROB}.",
+        "# Idempotency: upsert - safe to re-apply against any baseline.",
+        "",
+        "spec:",
+        '  version: "1.0"',
+        "  schema: v92",
+        "",
+        "imports:",
+        "  - from: reforged-loot-bags",
+        "    use:",
+        "      definitions:",
+    ]
+    header += [f"        - {d}" for d in REFORGED_DEFS]
+    for pkg in sorted(used):
+        header += [f"  - from: {pkg}", "    use:", "      variables:"]
+        header += [f"        - {c}" for c in sorted(used[pkg])]
+    header += ["", "eCompensations:", "  upsert:"]
+
+    return "\n".join(header + body) + "\n"
 
 
 def main():
@@ -332,9 +390,12 @@ def main():
     print_ranking(mean, prob, cry, dyad, sdyad, inf)
     print_yield(prob, qty_alka, qty_feed)
 
+    v31 = load_v31_comps()
+    idmap = build_id_resolver()
     out = Path(__file__).parents[2] / "specs" / "patches" / args.patch / "17-iod-loot.yaml"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit), encoding="utf-8")
+    out.write_text(generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit, v31, idmap),
+                   encoding="utf-8")
     print(f"\nSpec written → {out}")
 
 
