@@ -14,6 +14,7 @@ Follow this structure when creating a new spec file.
 
 - Use `mcp__datasheet-v92__find_free_ids` to pick IDs for new entities.
 - Use `mcp__datasheet-v92__describe_entity` or `mcp__datasheet-v92__profile_item` to inspect existing entities before writing operations.
+- **Reference existing items by a package constant, not a raw id.** Import the `item-ids` constant (e.g. `$SPEED_MOTE_649`) instead of hardcoding a templateId. If an item you reference is not named yet, generate it demand-driven: `python tools/item-ids/gen_item_ids.py names --datasheet "<server_datasheet>" --from-spec <spec>` (see the `spec-standardization` skill). Before minting a NEW id, confirm it is free: `gen_item_ids.py check --ids <id>`.
 - For attributes not covered by the tables in this skill, consult the schema docs at the `dsl_docs_enduser` path from `.references`, under `schemas/`.
 - For content affecting balance, rewards, or currencies, check the content framework docs (`content_framework` in `.references`) first.
 
@@ -22,12 +23,12 @@ Follow this structure when creating a new spec file.
 Specs are organized by patch and concern:
 
 ```
-specs/patches/<patch>/               — main specs (numbered for execution order)
-specs/patches/<patch>/evolutions/    — evolution path specs
-specs/patches/<patch>/loot/          — loot table specs
-  loot/c-compensation/               — class-branched drops (CCompensation)
-  loot/e-compensation/               — environment/PvE drops (ECompensation)
-specs/backlog/                       — future/pending specs
+specs/patches/<patch>/              : main specs (numbered for execution order)
+specs/patches/<patch>/evolutions/   : evolution path specs
+specs/patches/<patch>/loot/         : loot table specs
+  loot/c-compensation/              : class-branched drops (CCompensation)
+  loot/e-compensation/              : environment/PvE drops (ECompensation)
+specs/backlog/                      : future/pending specs
 ```
 
 **Naming convention:** `<NN>-<descriptive-name>.yaml` where NN is a two-digit execution order number. Zone loot files use `zone-<id>-<name>.yaml`.
@@ -37,7 +38,7 @@ specs/backlog/                       — future/pending specs
 Every spec starts with a descriptive comment and the spec block:
 
 ```yaml
-# <Title> — Patch <NNN>
+# <Title>: Patch <NNN>
 # <One-line description of what this spec does>
 
 spec:
@@ -54,7 +55,7 @@ imports:
   - from: weapons
 ```
 
-Definitions are available immediately — no `use:` clause needed.
+Definitions are available immediately: no `use:` clause needed.
 
 ### Importing variables (explicit opt-in required)
 
@@ -105,7 +106,7 @@ Use the appropriate top-level entity block with an operation:
 | Operation | When to use |
 |-----------|-------------|
 | `create` | New entities that must not already exist |
-| `upsert` | Create or update — safe default for most cases |
+| `upsert` | Create or update: safe default for most cases |
 | `update` | Modify existing entities only |
 | `updateWhere` | Bulk update matching a filter |
 | `delete` | Remove entities |
@@ -146,10 +147,12 @@ After writing the spec, validate it immediately:
 
 Resolve paths from `.references` (keys: `project_root`, `server_datasheet`).
 
+For a generated spec, also run the standardization analyzers before shipping: `analyze.py` for repeated blocks and `analyze_ids.py` for hardcoded ids that should be package constants. See the `spec-standardization` skill.
+
 ## Complete example
 
 ```yaml
-# Starter Weapons — Patch 001
+# Starter Weapons: Patch 001
 # Creates level 1 training weapons for new characters.
 
 spec:
@@ -189,6 +192,11 @@ items:
 
 
 ## Lessons
+
+### Clone a donor record the server already loads; never synthesize a new one from the schema
+- **Date/source:** 2026-07-24: three DSL-created quests (1380/1381/1387, spec 002/18) crashed the world server during datasheet validation with a bare `access violation ... Write to 0x0` and no file name; the symbolized crash stack named `QuestTemplate::Validate`. Six deploy/restart cycles. The DSL side is fixed as of the 2026-07-25 binary (`1.0.0+5f90181c`): quest entry children are now scaffolded from a mechanically derived structure contract, so this exact trap is closed for Quest. The lesson stands for every other entity the server validates, and the request that documented it was closed and deleted.
+- **Why:** DSL emits only what the spec author supplied, but the server dereferences nodes that appear in 100% of the corpus for that task type without null-checking them. The missing nodes sat at several nesting depths (`보상` and `진행조건` at body level; `연출Id` inside `방문그룹/방문그룹`; `조우시대사`/`사망시대사`/`이상상태조건` inside `몬스터지정/몬스터지정`), so auditing corpus statistics one level at a time surfaced exactly one layer per boot and each "fix" looked complete until the next crash. `dsl validate` passes throughout, and the client packs fine, because only the server loader is strict.
+- **Apply:** when a spec CREATES a record for an entity the server validates (quests above all), pick a donor of the same shape that the live server already loads, and make the new record structurally identical to it: same elements, same nesting, same order, substituting values only. For quests the donors used were 001371 (quest `Header` plus `방문Task` bodies) and 001303 (`사냥Task` body). Verify with a RECURSIVE conformance check (every container path, not just top-level children) against the stock corpus of both eras, and match corpus element ORDER: the loader reads sequentially, so a value written before its container can be applied to a null pointer. Terminate task chains with an empty `<다음Task />` (5522 corpus instances) rather than `0` (7, all DSL-authored). If the server still crashes after two isolating boots, stop hypothesizing and clone; see the `server-load-diagnosis` skill for the crash-artifact forensics.
 
 ### Never invent an XML encoding; verify format precedent in the stock corpus first
 - **Date/source:** 2026-07-21: live run paid single-class reward rows but none of the semicolon-merged `class="warrior;slayer;..."` rows spec 04's generator emitted; `class="...;..."` had ZERO occurrences in stock v92 and v31 CompensationData (filed as `docs/dsl-requests/2026-07-21-compensation-class-row-collapse.md`, fixed in datasheetlang d79aca90 with an E207 guard).

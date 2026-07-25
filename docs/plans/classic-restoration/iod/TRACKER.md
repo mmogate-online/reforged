@@ -3,7 +3,222 @@
 Pilot zone under `../DOCTRINE.md`. Supersedes the retired `docs/plans/iod-alpha-content-loop/`
 pilot (its TRACKER and data artifacts remain readable as reference; its doctrine does not apply).
 
-Last updated: 2026-07-20 (kickoff).
+Last updated: 2026-07-24 (new-class story-spine training quests: LIVE-VALIDATED on a Ninja;
+quest files are hand-repaired working-tree state pending a DSL fix).
+
+## Session handoff (2026-07-24, second session): new-class spine LIVE
+
+The story-spine soft-lock for Ninja/Brawler/Valkyrie is **fixed and live-validated**: a Ninja
+advances Making the Rounds -> Ninja Training -> 1303. Brawler and Valkyrie are structurally
+identical (same donor clone, only class and string ids differ) but were not walked in game;
+the negative case (Dulari refusing a wrong-class offer) is also untested.
+
+### Root cause of the three-day block
+
+Not the DSL VisitTask completion-item gap (that message is a **warning**; it appears on every
+healthy boot for quests 1353-1358). The real fault: DSL-created quests omit nodes present in
+100% of the corpus for their task type, and `QuestTemplate::Validate` dereferences them, so the
+world server dies with a bare `access violation ... Write to 0x0` during datasheet validation:
+no message, no quest id, no file name. Missing nodes sat at several nesting depths
+(`보상`, `진행조건` at body level; `연출Id` in `방문그룹/방문그룹`; `조우시대사`/`사망시대사`/
+`이상상태조건` in `몬스터지정/몬스터지정`), so auditing one level at a time cost six
+deploy/restart cycles.
+
+**What worked:** rebuilding the quests as structural clones of files the server already loads
+(001371 for header + `방문Task` bodies, 001303 for the `사냥Task` body) with only values
+substituted. Clone known-good structure; do not synthesize and patch.
+
+### Settled facts (do not re-litigate)
+
+- Quest 1303 loads fine with **12** prerequisites (old corpus max was 9). There is no cap.
+- Class gates for Assassin/Fighter/Glaiver are fine server- and client-side; existing v92
+  quests 18353/118301/18352/118302 already ship them.
+- The server rejects any datasheet without a UTF-8 BOM (`UTF8 파일인지 확인`). DSL writes it
+  correctly; a repair script that drops it will hard-fail the load.
+- `deploy_dev.py` mirrors only files that differ from git HEAD, so reverting a file leaves the
+  stale copy on the dev box. Push reverted files explicitly.
+
+### Current state
+
+- Client `Quest/Quest.xsd` 3-class widening: **committed** (`09ea033f`, client repo). The
+  `git checkout .` hazard is gone.
+- **The DSL structural fix SHIPPED (2026-07-25) and the pause is over.** Verified against the
+  released binary `1.0.0+5f90181c` on a scratch datasheet, from a create-only probe spec: all
+  four proven entry children emit (`연출Id` on each visit target, `조우시대사` / `사망시대사` /
+  `이상상태조건` on each monster target), plus the quest and task header skeletons, the
+  VisitTask completion-item bags, the empty `<다음Task />` terminator, and the class gate. The
+  in-place visit-target update keeps its sibling nodes. E427 now refuses an element name the
+  client schema cannot carry.
+- **Patch 002 re-applied from the baseline and the acceptance diff PASSED (2026-07-25).**
+  `migrate --patch 002 --no-narrow`: 61 specs, 9071 ops, 0 failed, 0 warnings, reads pinned to
+  server HEAD `789fec28`. The hand-repaired files are gone, replaced by generated output, which is
+  the intended outcome: the datasheet trees are generated artifacts and the specs are authoritative.
+  Acceptance against the off-repo oracle copies: **14 missing nodes, 0 extra, identical on all three
+  quests**, exactly the documented exclusion set (`Header/위치` x3, `Body/보상`=0,
+  `진행조건/제한시간`, `반복횟수`, `수행지역`, `추가보상`, `특수가이드`, `DesignersNote`, and the four
+  XSD-invalid-if-empty body nodes). All four proven entry children present on every quest
+  (`연출Id` x2, `조우시대사`, `사망시대사`, `이상상태조건`), and every task chain ends `('3','')`,
+  the empty terminator. Client shards `Quest-00389/00390/00396` carry `Assassin` / `Fighter` /
+  `Glaiver` = `적용` and the same empty terminator.
+- **Deployed.** Server: 60 files to the dev box, all 60 hash-verified. Client: packed, installed,
+  and published to R2 as `0.1.0-dev.34` (15 new chunks, 57.12 MiB, 19,446 reused, `committed=True`),
+  so remote testers can pull it.
+- **No spec changes are pending.** Every identity value lives in
+  `specs/patches/002/18-iod-newclass-training.yaml`, and the structural nodes are scaffolded.
+- One residual DSL item, not blocking: `docs/dsl-requests/2026-07-25-created-quest-element-order.md`
+  (the create path writes three child sequences that occur zero times in the corpus). Normalizing
+  order did not by itself stop the original crash, so this is unproven fatal, and the next boot is
+  its test. Note the as-deployed 001303 that booted and passed the Ninja test on 2026-07-24 carried
+  the old operator-before-list order, which is evidence against that site being fatal.
+
+### Class-gate soft-lock (found live 2026-07-25, fixed, deployed, LIVE-VALIDATED)
+
+A Ninja completed 1384 (Getting to Know the Garrison) and the spine dead-ended. Cause: the
+spine continues `1384 -> 1382 OR 1383 "Gathering Your Strength" -> 1331 "Climbing through the
+Ranks"`, and the 1382/1383 pair is class-split (1382 physical: Warrior Lancer Slayer Berserker
+Archer Engineer; 1383 casters: Sorcerer Priest Elementalist). Assassin/Fighter/Glaiver are in
+neither, so Milene offers nothing and 1331 never unlocks. A Berserker progresses via 1382.
+
+**v31 carries the identical class lists**, so the restoration was faithful and no source diff
+could catch it: the defect exists only against today's 13-class roster.
+
+Fixed by `specs/patches/002/19-newclass-quest-gates.yaml` (applied, synced, and deployed
+2026-07-25: server 63 files hash-verified, client published `0.1.0-dev.35`):
+1382 and 1351 (IoD) and 6306 (Velika) gain the three classes on the physical variant only, so
+each class still matches exactly one variant. The same sweep found `Engineer`/Gunner missing
+from the 1351/1352 and 6302/6306 groups (vanilla added Gunner to 1382 but not its siblings), so
+Engineer was added there too. Quests 6304/6307 look like the same pattern but are
+sentinel-disabled in both eras and were deliberately left alone. Reaper/Soulless is out of
+scope (starts elsewhere at a higher level).
+
+Regression-checked: node-level diff against the committed baseline shows exactly the added class
+children (3 or 4 per quest) and zero removed nodes on all four files; client shards carry the
+widened gates; caster variants unchanged.
+
+New permanent gate: `python reforged/tools/dc-restore/audit_class_gates.py --zones <zones>`,
+exit 0 required before any deploy that touches restored quests. Both the IoD zone set and the
+patch-002 zone set now PASS. It is wired into the `content-restoration` pipeline as step 4.
+
+### Next
+
+1. Live-test Brawler + Valkyrie and the wrong-class negative case (Dulari refusing a wrong-class
+   training quest). Cheap, and the negative case is the only untested code path. Everything else
+   on the new-class spine is validated: a Ninja now walks 1304 -> class training -> 1303 and
+   1384 -> 1382 -> 1331 end to end.
+2. Then close patch 002 in one commit per repo, per the patch discipline.
+3. Continue quest polishing in a fresh session: open it with `/prime-classic-restoration iod`,
+   which loads the doctrine, this tracker, the divergence log, and the current state of the three
+   working trees, then hands off to `content-restoration`.
+
+### Proven by controlled experiment (2026-07-24), do not retest
+
+Removing only the four repeated-container entry children from 001380, with 001381/001387 left
+intact as controls, crashes the loader at the same address and site; restoring them boots. So
+children of `방문그룹/방문그룹` and `몬스터지정/몬스터지정` are hard dereferences, while
+body-level bags only warn. Corpus frequency does not classify a node: two nodes at exactly 100%
+presence behave differently by read site. The DSL request that carried the full write-up was
+closed and deleted on 2026-07-25 once the fix shipped; the finding survives here, in the
+`new-spec` skill lesson "Clone a donor record the server already loads", and in the DSL repo's
+derived contract (`schemas/Quest.structure-contract.json`).
+
+## Session handoff (2026-07-24 close, SUPERSEDED by the entry above)
+
+Fixes the story-spine soft-lock for Ninja/Brawler/Valkyrie. Those classes had no v31 IoD
+training quest, so they stalled right after 1304 (Making the Rounds): quest 1303 gates
+behind an OR of the nine class training quests 1371-1379, and the new classes matched none.
+Gunner is already covered (1379 = `Engineer`); Reaper (`Soulless`) excluded by doctrine.
+Full state also in memory `project_iod_newclass_spine_deploy_held`.
+
+### Spec (patch 002)
+- `specs/patches/002/18-iod-newclass-training.yaml`: three new class-gated training quests
+  1380 Ninja (`Assassin`), 1381 Brawler (`Fighter`), 1387 Valkyrie (`Glaiver`); 3-task
+  Visit -> Hunt -> Visit reusing the live cast Dulari 213,1017 / Junia 213,1023 / Nivek
+  213,1115 (no new spawns); extends 1303's OR-prereq to 12 quests; strings + dialogs
+  (`<PCCLASS:lcase>` token) + rewards (2100 xp / 150 gold) + StoryGroup-1 registration.
+  The v31 5-task "learn a skill" beat is dropped (DSL cannot author ConditionTask
+  learnSkill ids). Validates clean (37 ops); full patch-002 batch clean (61 specs / 0
+  failed / 0 warnings).
+
+### Status: DEPLOYED but the dev WORLD SERVER FAILS TO LOAD
+- `migrate --patch 002 --no-narrow` applied to both working trees; server pushed to dev
+  (60 files verified); client packed + installed. NOT committed (mid-patch-002; `--publish`
+  to R2 NOT run).
+
+### Three DSL gaps hit in sequence (all filed in docs/dsl-requests/)
+1. Class-gate APPLY field: DELIVERED (DSL commit 1c31ff16, `requirements.classes`).
+2. Class-gate CLIENT-SYNC (`2026-07-23-quest-class-gate.md` Issue 3): the XSD pre-filter
+   dropped the class children client-side. RESOLVED by adding Assassin/Fighter/Glaiver to
+   the client `Quest/Quest.xsd` complexType (it was only 10 classes wide). DSL also shipped
+   W602 (warn on XSD-dropped data, commit 8bd7aaba). *** The Quest.xsd edit is UNCOMMITTED
+   and a `git checkout .` reverts it: RE-APPLY after any revert, and COMMIT it as the first
+   action once live-validated (user directive). ***
+3. VisitTask completion-item nodes (`2026-07-24-visittask-completion-item-nodes.md`):
+   CURRENT BLOCKER. The DSL `TaskDecomposer` only writes `<완료시삽입아이템/>` /
+   `<완료시삭제아이템/>` when the item list Count>0, so a created `방문Task` omits them; the
+   SERVER loader requires them present even when empty (`조건Task` / `사냥Task` do not need
+   them). Server error: "Quest[1387]: ...완료시삽입아이템...노드를 찾을 수 없습니다". User
+   chose to WAIT for the DSL fix (no temp patch, no revert), so the dev server stays down
+   until it lands.
+
+### Next session (when the DSL VisitTask fix ships)
+1. `git checkout .` both repos, then RE-APPLY the `Quest.xsd` 3-class edit (checkout
+   reverts it).
+2. `migrate --patch 002 --no-narrow`; verify server `방문Task` bodies now carry the empty
+   completion-item nodes AND the client class gates stay populated.
+3. Deploy server + client; user restarts the dev world server.
+4. Live-test one Ninja + Brawler + Valkyrie: Making the Rounds -> Dulari offers the class
+   training quest (and NOT to wrong classes) -> complete -> 1303 unlocks -> 1329.
+5. FIRST commit the client `Quest.xsd`.
+
+## Session handoff (2026-07-22 close): IoD loot fix + patch-002 loot merge
+
+Live test of the patch-002 merged loot is POSTPONED to the next session. Current state below.
+
+### Done + committed (patch 001 drop fix)
+
+- **IoD drop bug CLOSED, live-validated by the user.** Root cause: v92 commented out the entire v31
+  ECompensation_13 natural table, and IoD's CCompensation bags are root ItemBags with no
+  ClassItemBag wrapper (they drop to no one, per loot-system rule 4); only ECompensation actually
+  drops. Old spec 20 had restored only 300945, so every other IoD mob dropped nothing in live tests.
+- **Fix:** new `tools/dc-restore/gen_ecomp_restore.py` regenerated
+  `specs/patches/001/20-iod-ecomp-drops.yaml` as the FULL v31 ECompensation_13 table (43 mobs = 49
+  minus 6 empty stubs; gold + mats + paverunes + designs + First Expedition, verbatim wValue/t; no
+  divergence). Confirmed working live via `/@drop_all_items`.
+- **Commits (LOCAL ONLY, not pushed):** server datasheet `789fec28`; specs `277f94a` (generator +
+  spec 20 + tracker) and `ff698da` (spec 22 removal).
+
+### Done, NOT committed (patch 002 loot merge, applied + deployed to dev for testing)
+
+- **Merged loot:** `specs/patches/002/17-iod-loot.yaml` regenerated as the UNION of v31 (gold as
+  priority + classic mats/paverunes/designs/First Expedition, native bag ids <= 20) and the reforged
+  item drops (Alkahest/Feedstock/crystal/dyad/infusion boxes, Kugai tokens; reforged bag ids offset
+  by +100 to avoid id collision). User design call: keep BOTH economies.
+  `tools/iod-loot/generate_iod_loot.py` now reads the v31 ECompensation_13 as a second source.
+- **Deleted patch-002 specs (audit outcomes):** `22-iod-disable-flight-manager` (voidSpawn on
+  Leiyane broke quest 1317 turn-in; flight already grounded by patch-001 spec 13), plus
+  `19-iod-strip-legacy-ecomp` and `21-iod-strip-ccomp` (disposed with the merge: stripping
+  CCompensation would remove the one working class-gated Mote drop, and the 7001-7009 / 9001 stubs
+  are harmless).
+- **Applied + deployed:** `migrate --patch 002` = 60 specs / 9034 ops / 0 failed / 0 warnings.
+  Server pushed to dev (50 files, hash-verified). Client repacked + installed to the local game
+  client. Verified applied: 300945 carries all 14 bags (v31 First Expedition + reforged); reforged
+  items (602176 / 96108 / 602190 / 95216) now exist in ItemTemplate.
+- **Working tree is UNCOMMITTED** (throwaway TEST deployment; per patch discipline patch 002 commits
+  only on close). `server_datasheet` + `client_datacenter` hold the full patch-002 diff; the specs
+  repo has the 19/21 deletions staged plus the spec 17 + generator edits.
+
+### Next session
+
+1. **Restart the dev world server** (manual; datasheets load at startup only).
+2. **Live-test the merged loot:** QA `/@drop_all_items on`, kill IoD mobs, confirm both economies drop:
+   - Terron Lama 300945: v31 First Expedition set + Wonder Ring + mats AND reforged
+     Alkahest/Feedstock/crystal/dyad/infusion, plus gold.
+   - Regular mobs (Pigling / Dwarf Orcan / Kariagon): v31 gold + classic mats AND reforged boxes.
+   - Kugai 1004: v31 gold/mats/designs + reforged + Kugai's Crest tokens.
+   - IoD mobs are balance-multiplied (x10 HP / x60 atk), so they are tankier; pair with GM damage.
+3. **After the test:** if good, decide on committing/closing patch 002 (still mid-audit for its other
+   systems); if not, `git checkout .` in `server_datasheet` + `client_datacenter` reverts the dev
+   test state back to the committed patch-001 baseline.
 
 ## Mission
 

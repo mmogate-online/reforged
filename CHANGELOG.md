@@ -6,6 +6,49 @@ Newest entries first.
 
 ---
 
+## 2026-07-25
+
+### Content
+- Patch 002 re-applied in full from the committed baseline `789fec28` (61 specs / 9071 ops / 0 failed / 0 warnings) with the fixed DSL, then full client sync (`--no-narrow`, 20 entities). The hand-repaired `QuestData/001303|001380|001381|001387.quest` are retired: those files are now generated output, and specs are again the sole authority over both datasheet trees
+- Acceptance diff of regenerated 1380/1381/1387 against the hand-repaired oracle: 14 missing nodes, 0 extra, identical on all three quests, every one a documented exclusion (`Header/위치` x3, `Body/보상`=0, `진행조건/제한시간`, `반복횟수`, `수행지역`, `추가보상`, `특수가이드`, `DesignersNote`, and the four body nodes that are XSD-invalid if scaffolded empty). All four loader-dereferenced entry children present on every quest; every task chain ends with the empty `<다음Task />`
+- Ninja live-validated on the generated files (offer, briefing, hunt, turn-in, 1303 unlock), so the DSL structural fix is closed end to end. Brawler, Valkyrie, and the wrong-class negative case remain unwalked
+- Deployed: server 60 files hash-verified to the dev box; client packed, installed, and published to R2 as `0.1.0-dev.34` (15 new chunks / 57.12 MiB / 19,446 reused, merkle `44d3373129`), the first dev release aimed at remote testers
+- Element order on created quests proven NOT fatal: the regenerated quests carry three child sequences absent from the whole corpus and the loader accepts them (`docs/dsl-requests/2026-07-25-created-quest-element-order.md`, downgraded to cosmetic)
+- Spec `002/18-iod-newclass-training.yaml` header corrected: the `BLOCKED ON DSL` banner removed, and the false claim that ConditionTask `learnSkill` ids cannot be authored replaced with the actual reason the 5-task v31 beat is dropped
+- **Second story-spine soft-lock found live and closed:** a Ninja cleared 1384 (Getting to Know the Garrison) and the spine still dead-ended at the class-split pair 1382/1383 "Gathering Your Strength" (both from Milene, gating 1331 "Climbing through the Ranks"), which admits only the classic nine classes. New spec `002/19-newclass-quest-gates.yaml` opens the physical variant of each affected group: 1382 and 1351 (IoD) and 6306 (Velika). Ninja live-validated end to end
+- Gunner (`Engineer`) was missing from the same groups and is added with them: vanilla itself put Engineer in 1382 but never in its sibling pair 1351/1352 nor in the Velika pair. Quests 6304/6307 match the pattern but are sentinel-disabled in both eras and were deliberately left untouched; Reaper (`Soulless`) is out of scope (starts elsewhere at a higher level)
+- Established: this class of defect **cannot** be caught by diffing against the restoration source. v31 carries byte-identical class lists, so the restore is faithful while still excluding every class added after that era; it emits no load warning, and it hides from any live test that uses a class of the original era
+- Deployed and published: server 63 files hash-verified; client `0.1.0-dev.35` (14 new chunks / 55.66 MiB / 19,448 reused, merkle `5e0ab434c0`)
+
+### Infrastructure
+- `tools/dc-restore/audit_class_gates.py` added: class-gate coverage gate, read-only, exit 1 on any gap. Judges coverage per variant GROUP (keyed on zone + giver + story group, since one NPC hands each class its matching variant), so caster-only quests are not flagged when their physical sibling covers the class; per-class training quests report `SINGLE` and sentinel-disabled groups report `DISABLED`. Wired into the `content-restoration` pipeline as step 4, exit 0 required before any deploy touching restored quests. Both the IoD and patch-002 zone sets PASS
+- `content-restoration` skill gained two lessons: the era-roster class-gate hazard, and that removing an op from a spec does not revert the file it already wrote (a narrowed spec leaves stale values that no later apply reconciles; `git checkout --` the affected files and re-derive)
+- datasheet-domain: `quest-system.md` gained a Class Gating section (allowlist `클래스` block, 13 PascalCase identifiers, variant-group pattern, era-roster hazard); `quest-task-reference.md` gained journal icon resolution (body-level `아이콘지정` is DeliverInjectedItem-only at 204/204 valued, every other task type derives the icon from the item template) and corrected the `스킬습득` trigger from "unused in dataset" to 11 task bodies in live use
+- datasheetlang: quest creation structural completeness shipped and adopted (`fd3f1d27` entry-child scaffolding on all 22 repeated-entry containers, `a59caf4e` mechanically derived structure contract + W504, `01823e2f` quest/task header skeletons, `2c306261` empty chain terminator, `2ab73e85` E427 apply-time element-name validation against the client schema, `b5372490` HuntAndCollect entry fields, `12e35c04` in-place prerequisite replace). Binary in use: `1.0.0+5f90181c`
+- Patch Application Discipline gained binding rule 4 in `reforged/CLAUDE.md`: the datasheet trees are generated output, hand-edits there are temporary probes that an apply is expected to destroy, and no apply/sync/deploy may be held back to protect them. `tools/migrate/README.md` restated accordingly (`git checkout .` is always safe before a re-apply)
+
+### Blockers resolved
+- 7 quest DSL requests closed and deleted after verification against the shipped binary: `2026-07-24-created-quest-structural-completeness.md` (the world-server crash blocker), `2026-07-24-visittask-completion-item-nodes.md`, `2026-07-23-quest-class-gate.md` (all 3 issues), `2026-04-16-conditiontask-learnskill-skillid.md`, `2026-04-17-visit-task-completion-button-text.md`, `2026-04-16-quest-task-visit-and-condition-body-issues.md`, `2026-04-17-visit-task-npcid-written-to-outer-container.md`
+- `2026-07-25-created-quest-element-order.md` filed as the one carry-forward from that set, then downgraded to cosmetic by the live boot
+
+## 2026-07-24
+
+### Content
+- IoD new-class story-spine soft-lock fixed and live-validated on a Ninja (Making the Rounds -> class training -> 1303): spec `002/18-iod-newclass-training.yaml` adds class-gated training quests 1380 (Assassin), 1381 (Fighter), 1387 (Glaiver) as 3-task Visit/Hunt/Visit chains on the live cast (Dulari 213,1017 / Junia 213,1023 / Nivek 213,1115; 2100 xp / 150 gold; StoryGroup 1), and extends quest 1303's OR-prerequisite from 9 to 12 entries. Brawler and Valkyrie untested in game
+- Client `Quest/Quest.xsd` widened from 10 to all 13 classes (`Quest_Header_수행조건_클래스` gained Assassin/Fighter/Glaiver element decls + type defs); committed client `09ea033f`
+- Server `QuestData/001303|001380|001381|001387.quest` are hand-repaired working-tree state (structural clones of 001371 and 001303, values substituted): patch 002 cannot be re-applied until the DSL structural-completeness fix lands, or the world server crashes on next restart
+- Established: quest 1303 loads with 12 prerequisites (previous corpus maximum was 9, held by 1303 in v31); no prerequisite cap exists
+
+### Infrastructure
+- `server-load-diagnosis` skill added: dev-box crash artifacts (UTF-16LE console log, `.crash`, dumps), reading the symbolized call stack past the crash reporter's own secondary fault, classifying loader lines against a known-good boot, the UTF-8 BOM invariant, and the one-variable-per-boot bisect protocol
+- `new-spec` skill gained the clone-a-donor-record rule for created records; `apply-spec` gained the `deploy_dev.py` git-dirty-delta revert trap; `learn` routing table gained a world-server-boot row; `quest-live-test` cross-references the new skill from its restart precondition
+- `.references` and `.references.example`: `dev_server_root` key added (console logs and crash dumps on the dev game server)
+- datasheetlang: `b437a532` (quest task body required-container scaffold) and `1c31ff16` (`requirements.classes` class-gate field) adopted; both in use by spec 18
+
+### Blockers resolved
+- `2026-07-24-visittask-completion-item-nodes.md` delivered (datasheetlang `b437a532`) and adopted; the request itself carries a correction: the `노드를 찾을 수 없습니다` lines it cited are warnings emitted on every healthy boot, not the load blocker
+- `2026-07-23-quest-class-gate.md` Issue 3 (client sync dropping `<클래스>` children) worked around permanently by the committed client Quest.xsd widening
+
 ## 2026-07-21 (session 3)
 
 ### Content
