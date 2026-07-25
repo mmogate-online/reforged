@@ -1,0 +1,119 @@
+# Reforged Loot Bags
+#
+# Parameterized ItemBag templates for the reforged drop economy that is merged
+# into every restored zone's loot table. Each bag ships the reforged item ids
+# verbatim (global, zone-agnostic) and exposes two `$with` parameters:
+#   PROB - the bag-level drop probability (difficulty-weighted per mob)
+#   QTY  - the per-drop quantity (min == max; scales by mob difficulty)
+#
+# Derived by tools/spec-standardize/analyze.py from 17-iod-loot.yaml (the 6 core
+# reforged bags appear structurally identical on all 47 IoD mobs, differing only
+# in PROB and QTY). Bag ids match the generator's REFORGED_BAG_ID_OFFSET layout
+# (v31 native ids <= 20; reforged ids offset by +100 to stay disjoint on merge).
+#
+# The IoD-specific Kugai token bag (token 95216) is intentionally NOT here: it is
+# zone-scoped and appears on only ~8 mobs, below the factoring threshold, so the
+# generator emits it per-row.
+
+spec:
+  version: "1.0"
+
+definitions:
+  # ── Single-item bags (probability 1.0 on the item) ──
+  AlkahestBag:
+    $params: [PROB, QTY]
+    id: 101
+    bagName: "Alkahest"
+    probability: $PROB
+    items:
+      - templateId: 21351
+        name: "Masterwork Alkahest"
+        min: $QTY
+        max: $QTY
+        probability: 1.0
+
+  FeedstockBag:
+    $params: [PROB, QTY]
+    id: 109
+    bagName: "Feedstock"
+    probability: $PROB
+    items:
+      - templateId: 94101
+        name: "Tier 1 Feedstock"
+        min: $QTY
+        max: $QTY
+        probability: 1.0
+
+  DyadStructureBag:
+    $params: [PROB, QTY]
+    id: 103
+    bagName: "DyadStructure"
+    probability: $PROB
+    items:
+      - templateId: 96108
+        name: "Dyad Rhomb Structure"
+        min: $QTY
+        max: $QTY
+        probability: 1.0
+
+  SmartDyadStructureBag:
+    $params: [PROB, QTY]
+    id: 104
+    bagName: "SmartDyadStructure"
+    probability: $PROB
+    items:
+      - templateId: 96114
+        name: "Smart Dyad Rhomb Structure"
+        min: $QTY
+        max: $QTY
+        probability: 1.0
+
+  # ── Multi-item boxes (equalProbability, no per-item probability) ──
+  CrystalBoxesBag:
+    $params: [PROB, QTY]
+    id: 102
+    bagName: "CrystalBoxes"
+    probability: $PROB
+    equalProbability: true
+    items:
+      - templateId: 602176
+        name: "Weapon Crystal Box (Rhomb)"
+        min: $QTY
+        max: $QTY
+      - templateId: 602177
+        name: "Armor Crystal Box (Rhomb)"
+        min: $QTY
+        max: $QTY
+
+  InfusionBoxUncommonBag:
+    $params: [PROB, QTY]
+    id: 105
+    bagName: "InfusionBoxUncommon"
+    probability: $PROB
+    equalProbability: true
+    items:
+      - templateId: 602190
+        name: "Infusion Weapon Box (Uncommon)"
+        min: $QTY
+        max: $QTY
+      - templateId: 602193
+        name: "Infusion Chest Box (Uncommon)"
+        min: $QTY
+        max: $QTY
+      - templateId: 602196
+        name: "Infusion Gloves Box (Uncommon)"
+        min: $QTY
+        max: $QTY
+      - templateId: 602199
+        name: "Infusion Boots Box (Uncommon)"
+        min: $QTY
+        max: $QTY
+
+exports:
+  definitions:
+    - AlkahestBag
+    - FeedstockBag
+    - DyadStructureBag
+    - SmartDyadStructureBag
+    - CrystalBoxesBag
+    - InfusionBoxUncommonBag
