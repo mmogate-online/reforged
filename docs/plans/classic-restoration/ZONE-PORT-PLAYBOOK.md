@@ -38,8 +38,17 @@ story groups, dialogs); shops (bindings AND store contents); sections + region s
 client-registry readiness. Verdicts per row: PORT / MATCH / KEEP (stated reason: patch-000, new
 class, engine-spawned, salvage) / REMOVE / DECISION. Method rules learned the hard way:
 
-- Parse RAW XML with python. MCP servers may be stale right after a revert: verify freshness
-  against a known marker before trusting, and trust raw files on any disagreement.
+- Query with the MCP first; parse raw XML only for what it cannot answer. The staleness
+  hazard that once forced raw-first is fixed (2026-07-25): cached indexes rebuild when their
+  files change, so a post-apply or post-revert read is current, and `datasheet_freshness`
+  reports per-family `current` / `stale` / `not-yet-built` on demand. Check it after a revert
+  instead of probing a known marker. Trust raw files on any disagreement, and treat a
+  disagreement as a bug report worth filing.
+- Run `audit_quest_gates --huntingZoneId <hz>` over every zone in scope before authoring.
+  It names the quests whose contact NPCs or kill/collect targets nothing spawns, which is the
+  "MATCH in the diff but unspawned in the world" miss that this phase exists to catch.
+  Run `find_dormant_blocks` on the spawn families too: commented-out content is invisible to
+  every other tool by design, and BHS ships whole territory groups that way.
 - Expect the baseline to be closer to v31 than assumed: IoD TerritoryData was 100% identical
   (whole family became a no-op) and the quest spine matched fully except rewards. Diff first,
   never assume work exists.
@@ -71,6 +80,12 @@ class, engine-spawned, salvage) / REMOVE / DECISION. Method rules learned the ha
   territories are missing.
 
 ## Phase 4: authoring rules
+
+The general spec-authoring and regression-diff discipline is NOT restated here: read the
+entity's capabilities before choosing an operation (`new-spec`, "Read the entity's
+capabilities before choosing the operation") and prove the applied footprint afterwards
+(`apply-spec`, "Prove the change is exactly what you intended"). Those apply to every spec in
+the project, restoration or not. What follows is only what is specific to a zone port.
 
 - Generators first (deterministic, re-runnable, live in `tools/dc-restore/`); definitions
   packages (`$extends`) where a repeated shape exists; rewards are known unfactorable.

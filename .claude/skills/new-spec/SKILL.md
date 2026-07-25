@@ -1,6 +1,13 @@
 ---
 name: new-spec
-description: Use when creating a new DSL spec file. Provides the correct YAML structure including schema version, imports with variable opt-in, definitions, and operation blocks.
+description: >
+  Author a new DSL spec file: correct YAML structure, schema version, imports with variable
+  opt-in, definitions, and operation blocks. Also covers reading an entity's capabilities
+  before choosing an operation, since which operations exist, which fields accept transforms,
+  and which collections are list-replace routinely change what you should build. Use when
+  creating a spec, when deciding which operation or entity block fits a change, when checking
+  whether the DSL can express something at all, or when an operation validates green but
+  appears to do nothing.
 disable-model-invocation: false
 user-invocable: true
 argument-hint: [spec-name]
@@ -17,6 +24,29 @@ Follow this structure when creating a new spec file.
 - **Reference existing items by a package constant, not a raw id.** Import the `item-ids` constant (e.g. `$SPEED_MOTE_649`) instead of hardcoding a templateId. If an item you reference is not named yet, generate it demand-driven: `python tools/item-ids/gen_item_ids.py names --datasheet "<server_datasheet>" --from-spec <spec>` (see the `spec-standardization` skill). Before minting a NEW id, confirm it is free: `gen_item_ids.py check --ids <id>`.
 - For attributes not covered by the tables in this skill, consult the schema docs at the `dsl_docs_enduser` path from `.references`, under `schemas/`.
 - For content affecting balance, rewards, or currencies, check the content framework docs (`content_framework` in `.references`) first.
+
+### Read the entity's capabilities before choosing the operation
+
+Open `schemas/<category>/<entity>.mdx` and read three things before deciding on an approach:
+the **`Operations:`** line, the **key attributes**, and any **field-level restriction table**
+(which fields accept transforms, which are list-replace, which are create-only).
+
+Do this even when you are confident the operation exists. The capability set is a design
+input, not a feasibility check: it routinely changes what you should build, and the failure
+mode when you skip it is silent. Evidence from one session (2026-07-25):
+
+- `stat.def` is not transform-capable (only `stat.maxHp`, `stat.atk`, `stat.level` and
+  `critical.res`, plus two `npcSkills` fields). A proposed NPC balance pass that scaled
+  defense was cut before any numbers were written, because expressing it would have meant
+  hardcoding absolutes per template.
+- `balanceProfiles` entries compound in declaration order when their cohorts overlap, which
+  forced three cohorts to be made provably disjoint rather than layered.
+- `dungeonDatas.update` accepts a nested collection under `changes` and decomposes to ZERO
+  commands. It reports `Valid: 1 operation(s)` with only a `W503` warning, so the spec would
+  have shipped as a no-op that passes an op-count reconciliation.
+
+When the doc leaves a semantic ambiguous and the blast radius is real, probe it rather than
+guess: see the scratch-datasheet technique in `apply-spec`.
 
 ## 1. Choose location
 

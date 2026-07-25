@@ -65,6 +65,26 @@ quest's start item, because the item is granted at accept, which the jump
 skipped. Caught only because the spec diff listed a start-item op with no
 matching observable.
 
+## Clear the data checks before spending a restart
+
+A live test costs a manual world-server restart and the user's time, so it is the most
+expensive verification in this project. Two MCP calls rule out the failures that no amount
+of in-game testing can diagnose, because they present in game as nothing happening at all.
+Run them against the deployed state first.
+
+- `audit_quest_gates --huntingZoneId <hz>` lists every quest whose contact NPCs or kill and
+  collect targets have no spawn. A blocked quest is authored correctly and silently
+  uncompletable: the checkpoint will fail and the spec will look wrong when the real cause is
+  a missing spawn. It reports the roster of unspawned templates alongside.
+- `profile_npc <hz> <templateId>` for any NPC in the checkpoint list. One call gives the
+  player-visible display name, a warning when it diverges from the internal `NpcData.name`,
+  the spawn footprint, and templates sharing the model. This resolves the twin-name trap
+  below without a separate `dcq name` pass, and tells you whether the NPC you plan to click
+  is even placed in the world.
+
+Neither replaces the live test. They stop you spending one on a quest that cannot pass.
+Tool catalog is in `domain-research`.
+
 ## Reset protocol
 
 ```

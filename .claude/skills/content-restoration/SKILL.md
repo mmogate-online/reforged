@@ -102,7 +102,7 @@ destructive reconcile.
 - **Why:** the map marker for a CollectTask reads the client family `StrSheet_CollectionLoc`, the collection analog of `StrSheet_NpcLoc`: one String per collection (templateId = collection id) whose value is `continentId#x,y,z|...` node waypoints. It is not in the migrate sync-config, so it is tool-managed. Base tier-1 collections shipped without waypoints in both eras (a gap, not a regression).
 - **Apply:** run `python reforged/tools/dc-restore/gen_collectionloc.py` after any IoD collection/spawn change. It projects `CollectionTerritory_13_*` node positions into `13#x,y,z` waypoints and ADDS entries only for continent-13 collections that lack one, leaving live-validated existing entries and multi-zone `7001#` waypoints untouched; writes both the server copy and client shard; idempotent. The prefix is the continentId (IoD = 13), confirmed against a working mainland collection (304 = continent 7001). This is the collection sibling of the `gen_npcloc.py --prune` client-registry step.
 
-### Parse the XML before trusting that spawn data "exists"; BHS disables legacy content by commenting it out
+### Run find_dormant_blocks before trusting that content "exists"; BHS disables legacy content by commenting it out
 - **Date/source:** 2026-07-21: dungeon 9037 (Sorcha, quest 1346) investigation. A prior
   session verified TerritoryData_437 as "byte-identical v31/v92" via grep/text-diff and
   concluded territory spawning was broken below the datasheet layer; an XML parse showed
@@ -114,12 +114,16 @@ destructive reconcile.
   parses. Disable-by-comment is a standard BHS practice when repurposing zones: a sweep found
   14 v92 TerritoryData files with comment-disabled groups (HZ 26: 76 territories, HZ 437: 63,
   also 473, 358, 243, 871, 872, 767, 980, 2050, 2052, 2054, 236, 58).
-- **Apply:** when auditing whether spawn/territory content exists in an era, load the file
-  with an XML parser (or check for `<!--` markers spanning the block) before concluding
-  anything from grep hits. Diagnostic signature: `/@spawnnpc <hz> <tpl> 1` works but load,
-  event, and `initialize` territory spawns all fail = the territory data is not loaded;
-  check for comment markers first, not topology. When uncommenting, verify tag balance:
-  the `-->` often swallows a closing tag.
+- **Apply:** call `find_dormant_blocks(entityType, huntingZoneId)` (delivered 2026-07-25 for
+  exactly this failure). It reports commented-out elements with their ids and descs, and its
+  `wellFormed=N` flag marks a block whose comment swallowed a closing tag, which is the 9037
+  case and the thing that makes a naive uncomment produce an unparseable file. Every OTHER
+  tool correctly ignores dormant content, so its absence from a normal query proves nothing.
+  Run it on the spawn families of any zone before concluding content was deleted, and use it
+  to enumerate re-enable candidates during a padding phase. Diagnostic signature in game:
+  `/@spawnnpc <hz> <tpl> 1` works but load, event, and `initialize` territory spawns all
+  fail = the territory data is not loaded; check for comment markers first, not topology.
+  When uncommenting, verify tag balance.
 - **Date/source:** 2026-07-18 duplication incident first led to v17-primary;
   the 2026-07-20 strategy review (`docs/plans/restoration-source-strategy.md`)
   reversed it: v17 is a client holding zero spawn positions, the 3-source

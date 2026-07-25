@@ -1,6 +1,15 @@
 ---
 name: apply-spec
-description: Use when validating or applying a DSL spec to server datasheets. Resolves paths from .references, runs validate-before-apply, and optionally syncs to client.
+description: >
+  Validate, apply and sync a DSL spec against the server datasheets, then prove the result.
+  Resolves paths from .references, runs validate-before-apply, reconciles reported op counts
+  against intended ops, and covers the regression-diff discipline: snapshotting the dirty set
+  to catch unintended footprint, node-level diffs against committed HEAD, value compares
+  against an oracle, and probing unproven or destructive DSL semantics on a scratch datasheet.
+  Use when validating or applying a spec, when syncing or packing the client, when checking
+  whether an apply changed exactly what it should and nothing else, when an apply seems to
+  have done nothing, or when a verification gate fails and it is unclear whether the gate or
+  the change is wrong.
 disable-model-invocation: false
 user-invocable: true
 argument-hint: [spec-path]
@@ -65,7 +74,54 @@ Only after validation passes:
 "<project_root>/dsl.exe" apply <spec-path> --path "<server_datasheet>"
 ```
 
-Report the number of operations applied.
+Report the number of operations applied. Reconcile that count against the ops you intended:
+`validate` reports success on operations that decompose to zero commands, so a matching count
+is the only cheap proof the edit actually landed.
+
+### Prove the change is exactly what you intended, and nothing else
+
+An apply writes files its ops target. It does NOT reconcile the tree to what the specs
+currently say, so the risk is always in two directions: the change you meant may be smaller
+than you think, and the footprint may be larger. Four techniques, cheapest first. The zone-port
+pipeline layers a per-family reconciliation gate on top of these; see
+`docs/plans/classic-restoration/ZONE-PORT-PLAYBOOK.md` phase 5.
+
+1. **Snapshot the dirty set, then diff it.** Before applying, `git status --porcelain > before.txt`
+   in the datasheet repo; after, capture `after.txt` and `diff` them. This is the only check that
+   shows files ENTERING the dirty set, which is where unintended footprint hides: a 4-op spec once
+   pulled 409 client shards into the patch because it was the first spec to touch that entity
+   family and triggered a full sync of it. Per-file diffs cannot catch this, because you have no
+   reason to look at files you did not touch.
+2. **Node-level diff against committed HEAD.** `git diff -U0 -- <file>` on each file the spec
+   targets, and account for EVERY changed line. Unexplained lines are the finding. Expect one
+   legitimate extra: DSL adds an XML declaration the first time it writes a file that lacked one,
+   while preserving the BOM the loader requires.
+3. **Value-level compare against an external oracle** when one exists (the v31 tree, a spec's own
+   stated targets, a pre-change copy). Key-level coverage is not enough: it once missed a
+   compensation class-row collapse that a value compare caught.
+4. **Probe unproven semantics on a scratch datasheet, never on the real tree.** Copy the target
+   file into a scratch directory, apply a throwaway probe spec against that path, and diff. Use
+   this whenever a doc leaves a destructive question open. It confirmed that `dungeonDatas.upsert`
+   naming only one nested collection preserves its siblings (41 EventTasks of scripting) and every
+   root attribute, which the docs' "nested collections are fully replaced" wording did not settle.
+
+**When a gate fails, first ask whether the gate or the change is wrong.** A verification that
+asserts something never true of the working precedent produces a false alarm: a post-apply check
+once failed on a client shard that is server-only by design, and the correct fix was to the gate.
+
+### Verifying the result with the MCP
+
+The MCP reads the same working tree you just wrote, so it is the fastest post-apply check, with
+two caveats worth one call each. See `domain-research` for the full tool catalog.
+
+- **Confirm you are reading post-apply state.** `datasheet_freshness` reports per family whether
+  the held index matches the files on disk. Indexes rebuild on file change, so this is normally
+  a formality, but it is the one call that distinguishes "the spec did nothing" from "I am
+  looking at pre-apply data". If a documented tool or entity seems missing entirely, suspect a
+  stale `.mcp/` binary instead (lesson in `domain-research`).
+- **Gate zones whose quests changed.** `audit_quest_gates --huntingZoneId <hz>` names any quest
+  whose contact NPCs or kill/collect targets nothing spawns. Those quests are authored correctly
+  and silently uncompletable, which no validate or apply step can catch.
 
 ## 5. Sync to client (if requested)
 
@@ -100,6 +156,11 @@ powershell -Command "Set-Location '<client_pack_dir>'; & '.\novadrop-dc_92.04\no
 **Schema docs location:** resolve `dsl_docs_enduser` from `.references`, then read `schemas/<category>/<entity>.mdx` for the entity type.
 
 ## Lessons
+
+### The `.references` datasheet paths are not the git repo roots, so a pathspec'd git command silently returns empty
+- **Date/source:** 2026-07-25: `git diff --stat -- Datasheet/TerritoryData_13.xml`, run from `<server_datasheet>` immediately after an apply that reported 4 ops against that file, printed NOTHING. The same happened on the client repo. Four calls lost, and worse, the empty output first read as "the apply changed nothing".
+- **Why:** `server_datasheet` resolves to the `Datasheet` subfolder while the repo root is its PARENT; `client_datacenter` resolves to `DataCenter_Final_EUR` while the root is one level up. `git status` prints paths relative to the repo ROOT, so copying a path out of `git status` output and passing it straight back as a pathspec from inside the subfolder resolves to `Datasheet/Datasheet/...` and matches nothing. Git raises no error for a `diff` pathspec that matches nothing, so the failure is silent and reads as a clean file.
+- **Apply:** run `git rev-parse --show-toplevel` once per repo before any pathspec'd git command, and give pathspecs relative to that root (or run from the root). Treat an empty `git diff` after an apply that reported ops as a pathspec bug until proven otherwise: re-check with a bare `git status --porcelain` (no pathspec) before concluding the apply was a no-op. Snapshot `git status --porcelain` before an apply and diff it after, so files ENTERING the dirty set are visible even when a pathspec is wrong.
 
 ### `git checkout` does not un-deploy: deploy_dev mirrors only git-dirty files, so push reverted files explicitly
 - **Date/source:** 2026-07-24: while bisecting a world-server load crash, `git checkout -- Datasheet/QuestData/001303.quest` followed by `deploy_dev.py --verify` reported "59 copied, Verify OK" instead of the expected 60. The reverted file was never pushed, so the dev box still ran the modified copy and the isolation boot would have tested nothing.

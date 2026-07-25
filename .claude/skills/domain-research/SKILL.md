@@ -1,6 +1,15 @@
 ---
 name: domain-research
-description: Use when researching game entities, datasheets, ID ranges, item stats, loot tables, enchant chains, or any TERA game system knowledge. Routes to the correct source. Also routes design intent, balance, economy, and season questions to the content framework docs.
+description: >
+  Routes any question about game data to the right source (domain docs, DSL docs, the two
+  datasheet MCP servers, or the content framework) and catalogs what the datasheet MCP can
+  answer: NPC profiles and name-vs-displayName divergence, spawn footprints, quest gates,
+  dormant commented-out content, coordinate-to-section, and index freshness. Use when
+  researching entities, ID ranges, item stats, loot tables or enchant chains; when deciding
+  which MCP tool answers a question or whether one exists at all; when an MCP query returns
+  nothing and you need to know whether that is real; when checking whether the MCP reflects
+  edits you just applied, or whether the .mcp binary is stale; or when the question is about
+  design intent, balance, currencies or seasons.
 disable-model-invocation: false
 user-invocable: true
 argument-hint: [topic]
@@ -106,6 +115,30 @@ When investigating an unfamiliar entity type:
 | `audit_zone_loot` | All NPCs + loot tables in a zone |
 | `scan_zones` | Search NPCs/compensation across ALL zones |
 
+### NPC, spawn, quest and position investigation
+
+Delivered 2026-07-25 in response to this project's own requests. Each one replaces a
+multi-call or hand-rolled-Python workflow, so reach for these BEFORE writing a script.
+
+| Tool | Answers | Replaces |
+|------|---------|----------|
+| `profile_npc` | Everything about one template in one call: identity (with a WARNING when `NpcData.name` and `StrSheet_Creature` displayName diverge), spawn footprint by habitat group and territory, quests referencing it with kill counts and enabled state, and templates sharing its `shapeId` | Four separate lookups plus raw XML parsing |
+| `audit_quest_gates` | Per quest in a zone, whether every contact NPC and every kill/collect target actually spawns. A blocked quest is authored correctly but silently uncompletable | The "MATCH but unspawned" class of audit miss |
+| `find_dormant_blocks` | Content commented out in a datasheet, which the server never loads and every other tool correctly ignores. `wellFormed=N` flags a comment that swallowed a closing tag | Manually scanning for `<!--` before trusting that content "exists" |
+| `resolve_position` | Which AreaData sections contain a world coordinate, nested broadest-first. The inverse of `resolve_region` | Hand-rolled point-in-polygon against section fences |
+| `datasheet_freshness` | Per cached family: files on disk, newest write time, index build time, and `current` / `stale` / `not-yet-built` | Probing a known marker to guess whether the server went stale |
+| `lookup_quest` | A quest body from QuestData: header, requirements, giver trigger, prerequisites, and every task with Korean type paired to its English name | Reading `.quest` files with Python |
+
+Two upgrades to tools you already know:
+
+- `audit_zone_spawns` takes `npcTemplateIds` and `territoryGroupIds`. Always filter: an
+  unfiltered zone call can exceed the token ceiling (zone 13 returns 742 rows), while the
+  same question filtered to one template returns tens. Output also gained a
+  `territoryGroupId` column and a `posSource` column reading `authored` or `fenceCentroid`,
+  the latter meaning the datasheet holds 0,0,0 and the engine picks a random point in the
+  fence.
+- `find_free_ids` allocates quest ids.
+
 ### ID allocation
 
 Use `find_free_ids` on `datasheet-v92` to find unused ID gaps. Always check `domain_docs` reference/id-registry.md first for documented ID range conventions before allocating.
@@ -120,6 +153,26 @@ Use `find_free_ids` on `datasheet-v92` to find unused ID gaps. Always check `dom
 6. **Cross-reference** — domain docs explain the "what", v31 shows the "original state", v92 shows the "current state", DSL docs show the "how to change"
 
 ## Lessons
+
+### A stale `.mcp/` is invisible from inside a session, and a half-updated one is fatal
+- **Date/source:** 2026-07-25: the datasheet-mcp team shipped 18 commits including 9 new tools, and documented in their own CLAUDE.md that the deployment step had previously "left the servers a build behind". Two distinct failure modes are recorded there.
+- **Why:** `.mcp.json` points both server instances at `reforged/.mcp/datasheet-mcp.exe`, and the exe reads `entity_config.json` from its own directory. (1) If only one of the pair is copied, `EntityConfigLoader.Validate` throws at startup before the stdio transport opens, so EVERY tool call fails rather than degrading. A config using a feature the deployed exe predates is fatal, not merely inconsistent. (2) If both are simply old, nothing errors at all: tools answer from the previous build, so delivered fixes look unshipped and new entity types look missing, and no amount of querying from inside the session reveals it.
+- **Apply:** when a documented MCP capability appears absent, suspect the deployment before the tool. Check `list_entity_types` (it reports a `files` column) and `datasheet_freshness`; the startup log line `Mounted N of M configured entity types` is the other tell. Deploy with the MCP repo's `deploy-mcp.ps1`, which publishes and copies BOTH artifacts, and run it with no Claude Code session open because the running servers hold a lock on the exe. Never hand-copy one file.
+
+### Set PYTHONIOENCODING=utf-8 before any Python that prints datasheet text
+- **Date/source:** 2026-07-25: a script scanning `TerritoryData_13.xml` for Acharak spawns died with `'charmap' codec can't encode characters in position 22-24` the instant it printed a territory `desc`. Two calls lost re-running it.
+- **Why:** every datasheet carries Korean in `desc` and `name` attributes, and the default console codepage on this box cannot encode them. The failure happens at PRINT time, not parse time, so a script can do all its work correctly and still die on its first output line, which reads like a data problem rather than a console problem.
+- **Apply:** invoke datasheet-parsing scripts as `PYTHONIOENCODING=utf-8 python <script>`. Read files with `encoding="utf-8-sig"` (the loader requires a BOM and it must not reach the parser). Write the script to a file rather than a bash heredoc: backslash and quote escaping through the heredoc layer is a second, independent source of syntax errors.
+
+### In a hand-written parser, an empty result is a bug hypothesis, not a finding
+- **Date/source:** 2026-07-25: a Python spawn scan returned zero hits from the correct files because it filtered on `templateId`; the attribute is `npcTemplateId`. The empty output initially read as a finding ("no Acharak spawns here") rather than as a bug.
+- **Why:** a wrong attribute name yields an EMPTY result, never an error, which is indistinguishable from a true negative and silently confirms whatever you hoped to prove. The MCP side of this was fixed the same day (it now explains why a child-attribute filter cannot match, and distinguishes an attribute that is unset in the searched scope from one that does not exist), so the trap now lives almost entirely in hand-written parsers.
+- **Apply:** prefer the MCP over a parser precisely because it explains its empty results. When you must parse raw XML, call `describe_entity(entityType)` first for attribute names and value distributions, then sanity-check the scan by asserting that a row you KNOW is present shows up. Known trap pairs: territory spawns use `npcTemplateId` (not `templateId`); `StrSheet_NpcLoc` rows key on `templateId` plus `huntingZoneId`, with no `id`; `NpcData` `Template` carries `name` (internal) while the player-visible name lives in `StrSheet_Creature`.
+
+### Filter every spawn audit; an unfiltered zone call still overflows
+- **Date/source:** 2026-07-25: `audit_zone_spawns(huntingZoneIds="[13]")` returned 742 entries across 97,483 characters, over the token ceiling and spilled to disk, to answer a question whose real answer was 8 rows. The `npcTemplateIds` / `territoryGroupIds` filters shipped the same day; the same call filtered to two templates returns 39 rows.
+- **Why:** the zone is the wrong unit for almost every real question. Scope creep in the query, not the tool, is what overflows: zone 13 alone exceeds the limit and larger zones are worse.
+- **Apply:** pass `npcTemplateIds` or `territoryGroupIds` whenever the question is about specific templates or one habitat group. For a single template prefer `profile_npc`, which returns the footprint already joined to quest links and shape siblings. Reserve the unfiltered call for genuine whole-zone inventory, and expect a spill file when you do it.
 
 ### Distinguish authored, applied, committed, and deployed before concluding content is missing
 - **Date/source:** 2026-07-17: IoD alpha research concluded specs 16-22 were unapplied; the local datasheet tree had been deliberately reset after a test

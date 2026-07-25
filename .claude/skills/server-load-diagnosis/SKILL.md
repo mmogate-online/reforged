@@ -65,6 +65,21 @@ to your deploy: the dev box may not share your timezone.
 A parse rejection is the good case: fix the named file. A validation crash gives you
 nothing but a fault address, and that is where the rest of this skill applies.
 
+**A fourth shape is not a server failure at all: the world came up clean and the change
+simply is not there.** Before diagnosing the game server, rule out the three cheaper
+explanations in this order, because each is invisible from in game and none produces an error:
+
+1. **The file never reached the box.** `deploy_dev.py` mirrors only files that differ from git
+   HEAD, so a reverted file is silently left stale on the dev server. Treat the deploy summary's
+   file COUNT as a checksum against the number of files you expect to have changed.
+2. **The apply never wrote it.** An operation that decomposes to zero commands still counts
+   toward the reported op total and only warns (W503). Reconcile counts, and check the working
+   tree with `git status` rather than assuming.
+3. **You are reading stale tooling, not stale data.** If a datasheet query disagrees with the
+   file on disk, check `datasheet_freshness`; if a documented MCP tool or entity type appears
+   to be missing outright, the `.mcp/` binary is a build behind, which fails silently from
+   inside a session. Both are covered in `domain-research`.
+
 ## 3. Read the symbolized stack, not the raw one
 
 Two traps in the `.crash` file:
