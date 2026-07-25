@@ -1,0 +1,84 @@
+# ==============================================================================
+# Spec: 19 - Open classic class-gated quest pairs to the post-classic classes
+# ==============================================================================
+# Classic TERA splits several tutorial quests into a PHYSICAL variant and a
+# CASTER variant, gated by <수행조건><클래스>. Each pair covers exactly the nine
+# classes that existed at the time, so Ninja (Assassin), Brawler (Fighter) and
+# Valkyrie (Glaiver) match NEITHER member and the quest is offered to nobody.
+#
+# This is not a migration defect: v31 carries the identical class lists. The
+# classic data simply predates these classes, so every restored class-gated pair
+# reproduces the hole faithfully.
+#
+# LIVE-CONFIRMED SOFT-LOCK (2026-07-25): a Ninja completes 1384 (Getting to Know
+# the Garrison) and the story spine dead-ends, because
+#
+#   1384  ->  1382 OR 1383  "Gathering Your Strength"  ->  1331 "Climbing through
+#                                                            the Ranks" (group 1)
+#
+#   1382 admits Warrior Lancer Slayer Berserker Archer Engineer  (Gurney 64,1007)
+#   1383 admits Sorcerer Priest Elementalist                     (Charise 64,1008)
+#
+# Milene (64,1049) offers neither to a Ninja, so 1331 never unlocks. A Berserker
+# progresses via 1382. Same root cause as the 1303 soft-lock closed by spec 18.
+#
+# FIX: add the three classes to the PHYSICAL member of each pair only, so the
+# pairs stay mutually exclusive and every class still sees exactly one variant.
+# Caster members (1352, 1383, 6302, 6304) are deliberately untouched.
+#
+# Reaper (Soulless) is OUT OF SCOPE by user decision (2026-07-25): it starts in a
+# different zone at a higher level and never walks these tutorial chains. The
+# quests below therefore stay Soulless-free, matching the doctrine call already
+# recorded for spec 18.
+#
+# SECOND FINDING, from the new `audit_class_gates.py` gate: Gunner (Engineer) is
+# missing from two groups as well. Vanilla itself added Engineer to 1382 but never
+# to its sibling pair 1351/1352, nor to the Velika pair, so a Gunner is offered
+# neither variant. v31 has the same inconsistency. Engineer is added here to the
+# physical member of both affected groups.
+#
+# Quests 6304 / 6307 ("Duel Purpose") look like the same kind of pair but are
+# sentinel-disabled (prereq 99,99) in both eras, so they are deliberately NOT
+# touched: widening a gate on an unofferable quest is dead data.
+#
+# Doctrine: mechanical-adaptation whitelist entry 2 (new-class support). Log in
+# the IoD divergence log as category "adaptation".
+#
+# `requirements.classes` is a REPLACE-all list (DSL list semantics), so each op
+# restates the complete gate. Names are case-sensitive and validated against the
+# client schema at apply time (E427).
+#
+# Idempotent: update only. Applied via migrate --patch 002 batch replay.
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    # ---- Island of Dawn ------------------------------------------------------
+    # 1382 "Gathering Your Strength" (story group 1, prereq 1384, Milene 64,1049)
+    # THE SPINE BLOCKER. Physical variant: sends the player to Gurney 64,1007.
+    - id: 1382
+      changes:
+        requirements:
+          classes: [Warrior, Lancer, Slayer, Berserker, Archer, Engineer, Assassin, Fighter, Glaiver]
+
+    # 1351 "Supply and Demand" (side quest, Kiriya 64,1006, prereq 1329).
+    # Physical variant of the 1351/1352 pair. Not a spine gate, same content hole.
+    # Engineer added too: vanilla left Gunner out of this pair while adding it to
+    # 1382, so a Gunner was offered neither variant.
+    - id: 1351
+      changes:
+        requirements:
+          classes: [Warrior, Lancer, Slayer, Berserker, Archer, Engineer, Assassin, Fighter, Glaiver]
+
+    # ---- Velika (zone 63, patch-002 hub-city scope) --------------------------
+    # 6306 "Legion of Arms", the physical variant paired with 6302 "Give It the Ol'
+    # Collegium Try" (casters); both gated behind 6301, both given by 63,1007.
+    # Same Gunner gap as 1351.
+    - id: 6306
+      changes:
+        requirements:
+          classes: [Lancer, Berserker, Slayer, Warrior, Archer, Engineer, Assassin, Fighter, Glaiver]
