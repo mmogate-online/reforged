@@ -1,0 +1,90 @@
+# Spec: 22 - Reopen the Tainted Gorge Bridge (9037) to a party of five
+#
+# Quest 1346 "Sorcha's Reckless Challenge" is a 7-minute guard on Sorcha inside
+# dungeon continent 9037. Patch 002 spec balance/zone-0437 raised the wave mobs
+# to island parity (v31 x10 HP / x60 atk), so the encounter now warrants group
+# play. This restores the v31 party configuration.
+#
+# THIS IS A REVERT TO v31, not new design. Patch 001 spec 19 restored the classic
+# dungeon but narrowed its conditions to solo, logged in the IoD divergence log
+# as "conditions adjusted to solo + maxMemberCount 1 (quest is solo by design)".
+# The v31 file reads exactly the set reproduced below, so that divergence-log row
+# is retired rather than amended.
+#
+#   v92 before:  solo, levelOver=8, maxMemberCount=1, progressQuest=1346 task 1,
+#                completeQuest=1346
+#   v31 target:  party=1, levelOver=8, progressQuest=1346 task 1,
+#                completeQuest=1346, maxMemberCount=5
+#
+# `party` DOES NOT BLOCK A SOLO PLAYER, which is what makes this safe. Evidence
+# from the 208-dungeon corpus (2026-07-25):
+#   - 5 dungeons carry `party` together with maxMemberCount=1 (continents 3012,
+#     9038, 9713, 9795, 9813). If `party` required two or more players those
+#     instances would be unenterable, so `party` is a MODE flag, not a headcount
+#     requirement. The domain KB's wording "Requires a formed party" is imprecise
+#     on this point; a correction is being pushed to entities/dungeon-system.md.
+#   - `notSolo` exists as a SEPARATE condition type (9 dungeons) and is the
+#     actual "may not enter alone" constraint. It is deliberately NOT set here.
+#   - `solo` and `party` never co-occur (0 of 208): mutually exclusive mode
+#     flags, so swapping one for the other is the correct edit.
+#   - The resulting shape is the dominant pattern for quest-auto-entry instances:
+#     25 dungeons pair `party` with maxMemberCount=5 behind a progressQuest gate.
+#
+# This matters because quest 1346 uses QUEST-TASK AUTO-ENTRY: task 1 is the start
+# task and carries 던전Id 9037, so the engine teleports the player in when the
+# quest reaches it, and admission is gated by the Condition set. A failed
+# condition produces NO client feedback, so a wrong `notSolo` here would present
+# as "the quest does nothing" (domain KB, entities/dungeon-system.md, Quest-task
+# auto-entry). The solo path was live-validated 2026-07-25 and must keep working;
+# that it still does is the first live checkpoint for this spec.
+#
+# Party members each need to satisfy `progressQuest=1346 taskId=1`, so a group
+# clears it by all being on the quest, which is the classic behaviour.
+#
+# NOT CHANGED: the quest header's 적정수행인원 (recommended party size) reads 1 in
+# BOTH eras, so v31 itself shipped this display mismatch against its own party
+# dungeon. Left alone as v31-faithful; raising it to 5 would be an authored
+# cosmetic change outside this revert.
+#
+# DSL NOTES. `upsert` is the required operation here, not `update`: nested
+# collections on dungeonDatas are create/upsert-only, and authoring `conditions`
+# under `update.changes` is refused with E209. Upsert naming only `continentId`
+# and `conditions` preserves every sibling, verified against committed HEAD after
+# apply: root attributes 6/6 unchanged (incl. startPos/exitPos) and the nested
+# scripting intact (EventGroup 3, Event 4, EventTaskGroup 4, EventTask 41). The
+# schema doc's "nested collections are fully replaced" means a collection you
+# PROVIDE is replaced wholesale rather than merged, not that omitted collections
+# are dropped. Conditions are restated in full because the list is replaced.
+#
+# Both DSL gaps this spec originally worked around were DELIVERED 2026-07-25
+# (`docs/dsl-requests/2026-07-25-dungeon-condition-order-and-update.md`, closed):
+# commit d5250b5b turned the silently-inert `update.changes.conditions` into a
+# hard E209, and commit 334f10fd keeps a replaced nested collection at its
+# original document position. Binary in use: `1.0.0+334f10fd`. The earlier
+# ordering artifact (conditions re-appended after the EventGroups, a shape found
+# in 0 of 203 corpus dungeons) is therefore GONE: the file now reads
+# `Condition > EventGroup` as it always did, and the whole-file diff against HEAD
+# is exactly the two intended value changes.
+#
+# Idempotent: upsert with a fully restated list. Applied via the migrate --patch
+# 002 batch replay.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9037
+      conditions:
+        - type: party
+          value: 1
+        - type: levelOver
+          value: 8
+        - type: progressQuest
+          value: 1346
+          taskId: 1
+        - type: completeQuest
+          value: 1346
+        - type: maxMemberCount
+          value: 5

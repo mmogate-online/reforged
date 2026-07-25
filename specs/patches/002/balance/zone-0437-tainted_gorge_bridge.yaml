@@ -1,0 +1,166 @@
+# Tainted Gorge Bridge (zone 437 / continent 9037): NPC stat balance
+#
+# The Sorcha escort dungeon behind classic quest 1346. Task 1 is a 7-minute
+# guard (수호Task) on Sorcha 437,1001 while three staged waves are aggro-injected
+# onto her every 3 seconds.
+#
+# ORIGINAL GAP. Patch 001 reclaimed this continent by uncommenting
+# TerritoryData_437; it never touched NpcData_437. So the zone carried v92 vanilla
+# stats, which BHS had already scaled off v31 by maxHp x3.98 / atk x31.86 (measured
+# over the 19 wave templates). Island of Dawn meanwhile was restored to v31 by
+# patch 001 and then scaled x10 / x60, so island mobs had 2.51x the HP and 1.88x
+# the attack of their dungeon counterparts off the same v31 base.
+#
+# TUNING PASS 1 (2026-07-25): island parity, maxHp x2.5 / atk x1.875. Deployed and
+# played. LIVE VERDICT: far too weak. Island parity is calibrated for a level-8
+# character in standard-issue starter gear, and the dungeon is being played by
+# Reforged-geared characters, so the encounter evaporated.
+#
+# TUNING PASS 2 (2026-07-25, user decision): multiply the pass-1 stat factors by
+# TEN, and double the wave population (see the companion spec
+# `24-sorcha-wave-density.yaml`, which sets the 84 wave spawn rows to 2x their
+# baseline count, 308 concurrent mobs to 616). The user reduced the population
+# factor from the proposed 3x to 2x to limit instance load: 924 simultaneous
+# aggro-injected AI in one instance was an unquantified risk, and 616 reads
+# almost identically to a player.
+#
+#   waves   maxHp x2.5    -> x25       (10x pass 1; v31 x99.5)
+#   waves   atk   x1.875  -> x18.75    (10x pass 1; v31 x597)
+#
+# CALIBRATION CAVEAT, recorded deliberately. Quest 1346 is 최소레벨 8 and this is
+# classic level-8 content. These numbers are set for the current test characters,
+# NOT for a level 8-10 player walking the quest normally, for whom the dungeon is
+# now unclearable. That is a knowing trade, not an oversight: if the zone should
+# instead be hard for geared players and fair for levelling ones, the correct
+# lever is a difficulty mode or level scaling, not the base stat block. Revisit
+# before this content is considered launch-ready.
+#
+# THE ESCORT CAST MUST SCALE WITH THE WAVES, or the quest becomes uncompletable.
+# Sorcha 1001 and her Guardians 1003 are villager=true, invincible=false and spawn
+# isAggressiveMonster=true, so they fight; Sorcha's death fails the guard task.
+# Before this pass, a single Bonecrusher Overseer would have carried an attack
+# stat roughly three times Sorcha's entire HP pool.
+#
+# Each defender stat scales on the axis that threatens it:
+#
+#   defender atk   x2.5 -> x25        offsets wave maxHp growth (x25 / x2.5 = 10),
+#                                     preserving their share of the clearing work.
+#   defender maxHp x4.6875 -> x93.75  offsets the INCOMING pressure, which rises by
+#                                     wave atk x10 TIMES attacker count x2 = x20.
+#                                     4.6875 x 20 = 93.75. Written as that product
+#                                     so a retune can see where it came from.
+#                                     (The 3x-population variant would have been
+#                                     x140; the population cut to 2x is why it is
+#                                     93.75.)
+#   defender def                      UNCHANGED. Redundant with maxHp for
+#                                     survivability, and `stat.def` is not a
+#                                     transform-capable field in the DSL (only
+#                                     stat.maxHp, stat.atk, stat.level and
+#                                     critical.res accept NumericChange).
+#
+# Resulting values: Sorcha 11,545 -> 1,082,343.75 hp and 125 -> 3,125 atk; each
+# Guardian 3,325 -> 311,718.75 hp and 40 -> 1,000 atk.
+#
+# SORCHA AND THE GUARDIANS KEEP SEPARATE PROFILES. Their risk profiles differ: the
+# Guardians carry respawnTime 60000 with isReturn=true so the line self-repairs
+# about a minute after a loss, while Sorcha's death fails the quest. Separate
+# profiles make each a one-line tuning knob.
+#
+# TUNING PASS 3 (2026-07-25, user decision, after TWO players cleared pass 2).
+# Three changes landed together and all pushed the same way:
+#   - Sorcha maxHp x93.75 -> x75 (a 20% cut): 1,082,344 -> 865,875.
+#   - Wave density: stages 1+2 factor 2 -> 4; stage 3 factor 2 -> 3
+#     (`24-sorcha-wave-density.yaml`, regenerated).
+#   - Stage 3's 15 dormant territories wired (`25-sorcha-rear-waves.yaml`), so
+#     stage 3 runs 25 spawn points instead of 10.
+# Effective wave population 314 -> 834. Stage 3 alone goes 104 -> 414, hitting the
+# requested x4 through SPAWN POINTS rather than stack size, because the pass-2
+# feedback was that the flanking spread ("we had to split our forces") is what made
+# the encounter interesting; four times the pile at the same ten spots would not
+# reproduce that. Wave STAT multipliers are unchanged from pass 2.
+#
+# PASS 3b (2026-07-25, user decision after playing pass 3): "the change was pretty
+# good, but we need to restore Sorcha HP before the nerf, the mob increase + hp
+# nerf was too much." So the ESCORT NERF IS REVERTED to x93.75 (865,875 ->
+# 1,082,344) while the entire population increase is KEPT. This is the outcome the
+# pass-3 header predicted: pressure had risen x2.66 while her pool fell 20%,
+# compounding to a survival window around 30% of pass 2, and the guidance written
+# then was to cut the wave count before cutting her HP further. Live play chose the
+# other half of that trade: keep the waves, restore the escort.
+#
+# Net effect of passes 3 + 3b together: population x2.66, escort HP unchanged from
+# pass 2, so her survival window sits at roughly 38% of pass 2 rather than 30%.
+#
+# NOTE ON PARTY SIZE: this was tuned against a TWO-player clear in a five-player
+# dungeon. More players means faster wave clears and less damage reaching Sorcha,
+# so a full group of five will find this easier than a duo does.
+#
+# LIVE-TUNING PROTOCOL. The escort multiplier is a first-order model: it assumes incoming damage
+# scales linearly with attacker count and per-hit damage, and that wave lifetime
+# does not change. With over-geared players lifetime barely moves, which is the
+# case this is aimed at. Run the full 7 minutes and watch Sorcha's HP floor:
+#   - never below ~80%  -> overtuned, cut TaintedGorgeEscortTarget toward x47
+#   - ~30% to 50% at the 7-minute mark -> correct, leave it
+#   - she dies -> cut wave atk before inflating her further
+#
+# SCOPE GUARDS.
+#   - Exit Teleportal 1002 excluded (invincible object, the quest's exit).
+#   - Territory group 43700016 (templates 4000, 8001-8013, level 32 to 65, up to
+#     13.7M HP) is leftover modern Garden of Dawn content from the sentinel-
+#     disabled 21301-21307 line and is NOT a balance target. Group 43700017
+#     (invisible cinematic NPCs 4001, 7000) likewise.
+#   - The three profiles target disjoint cohorts (19 waves / 1001 / 1003), so the
+#     declaration-order compounding documented for balanceProfiles does not apply.
+#
+# IDEMPOTENCY. `multiply` is a delta from the current file, not an absolute target.
+# Safe under `migrate --patch 002` because migrate pins reads to the server repo's
+# git HEAD, verified empirically across five separate applies on 2026-07-25 (all
+# 21 templates still at exactly one application of their multiplier). NOT safe
+# under a bare single-spec `dsl apply` without --source-ref.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - TGB_NORMAL_MONSTERS
+        - TGB_SORCHA
+        - TGB_SORCHAS_GUARDIAN
+
+balanceProfiles:
+  # The 19 staged wave templates across groups 43700009 to 43700015.
+  - name: TaintedGorgeWavesGearFormula
+    npcFilter:
+      huntingZoneId: 437
+      id: $TGB_NORMAL_MONSTERS
+    npc:
+      stat:
+        maxHp: { multiply: 25 }
+        atk:   { multiply: 18.75 }
+
+  # Sorcha: the guard target. Death here fails quest 1346 task 1.
+  # Pass 3 cut this to x75 (a 20% nerf) at the same time as the wave increase.
+  # PASS 3b REVERTED IT: live play showed the two changes compounded into too much,
+  # so the population increase is kept and the escort nerf is undone. x93.75 is the
+  # pass-2 value, derived as x4.6875 TIMES 20 (wave atk x10 by attacker count x2).
+  - name: TaintedGorgeEscortTarget
+    npcFilter:
+      huntingZoneId: 437
+      id: $TGB_SORCHA
+    npc:
+      stat:
+        maxHp: { multiply: 93.75 }
+        atk:   { multiply: 25 }
+
+  # Sorcha's Guardians: renewable defensive line (respawn 60s), tuned separately.
+  - name: TaintedGorgeGuardians
+    npcFilter:
+      huntingZoneId: 437
+      id: $TGB_SORCHAS_GUARDIAN
+    npc:
+      stat:
+        maxHp: { multiply: 93.75 }
+        atk:   { multiply: 25 }

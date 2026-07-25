@@ -1,0 +1,101 @@
+# ==============================================================================
+# Spec: 21 - Retarget the Mysterious Ruins "Orcan patrol" Acharak spawns
+# ==============================================================================
+# Quest 1309 "Acharak Attacks" (story group 2, giver 213,1007, turn-in Edan
+# 213,1134) is a kill-ONE task on the named boss 13,1002, and its journal string
+# @quest:1309006 names a single place:
+#
+#   "Clear out Acharak and his minions from the Tainted Gorge Garrison."
+#
+# v31 spawns 13,1002 in exactly one group: 1300047 (네임드 / "Named"), two party
+# packs in territories 1300995 and 1301440, both inside AreaData section 34
+# (nameId 13022 = Tainted Gorge Garrison).
+#
+# THE DEFECT. The patch-001 padding wave (spec 001/15, doctrine rule 5) replicated
+# v17 mob habitat group 1300038 "태고의 유적지(오칸 순찰)" using the v17 roster
+# recorded verbatim in padding-habitat-gaps.md as [5, 901, 1002], round-robined
+# over 12 fences. Four of those fences therefore drew template 1002 at spawnCount
+# 2, i.e. EIGHT extra Acharaks inside AreaData section 31 (nameId 13003 =
+# Mysterious Ruins), about 19,400 units from the garrison the quest names.
+#
+# It reads as an Orcan in the data (NpcData_13 calls template 1002 "오칸", and the
+# generated spawn desc says so too) but `desc` is an internal comment: the
+# player-visible name comes from StrSheet_Creature keyed by (huntingZone,
+# templateId), where 13/1002 is "Acharak". So all eight ruins mobs display as
+# Acharak AND satisfy the kill-1 task, letting 1309 complete in the wrong region.
+# The client StrSheet_NpcLoc marker set grew from the v31 client's 2 waypoints to
+# 6, so the quest map arrow actively pointed into the ruins.
+#
+# FIX (user decision 2026-07-25, option B). Retarget the four ruins spawns from
+# 1002 to template 901 rather than deleting them, preserving the live-tuned patrol
+# density from the spec 001/15 regen (padding-density-fixes.md). 901 is the
+# generic twin of the same creature:
+#
+#   tpl   shapeId  basicActionId  aiid  name  playStyle   level
+#   1002  300650   3006500        31    오칸  zarcoBoss   8
+#   901   300650   3006500        31    오칸  basic       7
+#
+# Same model, same AI, same internal name; 901 already occupies four territories
+# in this very group, the group is the "Orcan patrol", and the spawn rows already
+# carry ai=31 and desc "오칸". Nothing changes visually in the ruins. This also
+# removes a level-8 outlier from an otherwise level-7 patrol.
+#
+# Bounded side effect: template 901 goes from 33 to 37 territories game-wide. It
+# is a generic mob whose only quest reference is 1311 ("Thin the orcan ranks",
+# kill 5, location-neutral journal text), so the extra density is harmless.
+#
+# SCOPE GUARD. Group 1300047 is NOT touched: the two garrison party packs, their
+# 4x Acharak's Soldier (1003) members, Vekas (1001) and Kugai (1004) all stay
+# exactly as v31 has them. A sweep of every HZ-13 quest-target template confirmed
+# 1002 is the only named unique whose footprint diverged from v31; the other eight
+# templates that gained padding groups are generic kill-5-to-48 targets with
+# location-neutral journal text, which is what the density restore was for.
+#
+# CLIENT LEG. territorySpawns maps to TerritoryData in migrate's ENTITY_SYNC_MAP,
+# so the spawn change syncs. StrSheet_NpcLoc has no sync entity and is tool-owned:
+# run `python reforged/tools/dc-restore/gen_npcloc.py --prune` after applying, and
+# expect 13/1002 to fall back to exactly the two v31 garrison waypoints.
+#
+# Doctrine: departure from the v17 roster, logged in the IoD divergence log as
+# category "policy" (quest clarity). v31 itself never spawned 1002 outside the
+# named group, so this moves the zone TOWARD the v31-primary baseline.
+#
+# Idempotent: update only, composite key (huntingZoneId, groupId, territoryId,
+# npcInstanceId). Applied via the migrate --patch 002 batch replay.
+# ==============================================================================
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territorySpawns:
+  update:
+    # Group 1300038 "태고의 유적지(오칸 순찰)" / Mysterious Ruins, section 31.
+    # The four round-robin slots that drew the named boss template.
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015160
+      npcInstanceId: 13473850
+      changes:
+        npcTemplateId: 901
+
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015190
+      npcInstanceId: 13473880
+      changes:
+        npcTemplateId: 901
+
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015220
+      npcInstanceId: 13473910
+      changes:
+        npcTemplateId: 901
+
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015250
+      npcInstanceId: 13473940
+      changes:
+        npcTemplateId: 901

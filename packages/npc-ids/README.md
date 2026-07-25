@@ -58,6 +58,7 @@ Used as the prefix for every variable in a zone file.
 |---------|-----------|--------------|
 | 13 | Island of Dawn | `IOD` |
 | 436 | Karascha's Lair | `KL` |
+| 437 | Tainted Gorge Bridge | `TGB` |
 | 2 | Fey Forest | `FF` |
 | 3 | Oblivion Woods | `OW` |
 | 5 | Tuwangi Mire | `TM` |

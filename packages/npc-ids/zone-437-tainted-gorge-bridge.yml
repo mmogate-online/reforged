@@ -1,0 +1,138 @@
+# Tainted Gorge Bridge (Zone 437 / continent 9037): NPC Template IDs
+#
+# The Sorcha escort dungeon reclaimed for classic quest 1346 "Sorcha's Reckless
+# Challenge" by patch 001 spec 19. Quest task 1 is a 7-minute guard (수호Task)
+# on Sorcha while three staged waves are aggro-injected onto her.
+#
+# Classification sources (NpcData_437 + StrSheet_Creature, 2026-07-25):
+#   - Friendly NPCs:   villager=true
+#   - Objects:         isObjectNpc=true
+#   - Boss Monsters:   showAggroTarget=true
+#   - Elite Monsters:  elite=true
+#   - Normal Monsters: catch-all
+#
+# Scan results for the 22 templates that spawn in ACTIVE (non-commented)
+# territories:
+#   - 19 wave monsters, ALL elite=false and showAggroTarget=false, so all 19 are
+#     Normal Monsters by the ordered rules. Three carry playStyle=zarcoBoss
+#     (Kariagon, Orcan Brute, Dark Raider) but that is an AI profile, not the
+#     `elite` flag, so it does not promote them.
+#   - 2 friendly combatants: Sorcha and her Guardians. Both are villager=true AND
+#     invincible=false AND spawn with isAggressiveMonster=true, so they fight the
+#     waves; they share aggroShareGroupId 1.
+#   - 1 exit object: the Exit Teleportal.
+#
+# CATEGORIZATION DEVIATION (documented): the Exit Teleportal 1002 is
+# villager=true and isObjectNpc=false, so the ordered rules would file it under
+# Friendly NPCs. It is listed under TGB_OBJECTS instead, because it is
+# race=object, invincible=true, level 40, and is the quest's exit portal. This
+# matches the zone-436 precedent (KL_EXIT_TELEPORTAL in KL_OBJECTS). Keeping it
+# out of TGB_FRIENDLY_NPCS also keeps that group usable as a balance filter
+# without scaling an invincible portal.
+#
+# OUT OF SCOPE, deliberately not registered here: territory group 43700016
+# ("미션퀘스트01") holds templates 4000 and 8001-8013, level 32 to 65 with up to
+# 13.7M HP, left over from the modern Garden of Dawn line (quests 21301-21307)
+# that patch 001 sentinel-disabled when it reclaimed this continent. Group
+# 43700017 holds invisible cinematic NPCs 4001 and 7000. Neither set is part of
+# the classic encounter and neither is a balance target.
+
+spec:
+  version: "1.0"
+
+variables:
+
+  # --- Individual NPCs: wave monsters ---
+  # Stage 1 (groups 43700009 / 43700012)
+  TGB_PIGLING: 1                        # Pigling (lv3, zarco)
+  TGB_RELENTLESS_GHILLIEDHU: 10         # Relentless Ghilliedhu (lv5, basic)
+  TGB_LUMBERING_GHILLIEDHU: 300933      # Lumbering Ghilliedhu (lv1, basic)
+  TGB_TERRON: 300941                    # Terron (lv3, zarco)
+
+  # Stage 2 (groups 43700010 / 43700013)
+  TGB_SPOREWALKER: 2                    # Sporewalker (lv7, basic)
+  TGB_ORCAN_BRUTE: 11                   # Orcan Brute (lv7, zarcoBoss)
+  TGB_DWARF_ORCAN: 12                   # Dwarf Orcan (lv7, zarco)
+  TGB_ROCKCRAWLER: 300541               # Rockcrawler (lv3, zarco)
+  TGB_CROMOS: 300911                    # Cromos (lv5, basic)
+  TGB_NORUK: 300921                     # Noruk (lv5, basic)
+  TGB_STONEBEAK_RAIDER: 301191          # Stonebeak Raider (lv3, zarco)
+  TGB_STONEBEAK_BRIGAND: 301193         # Stonebeak Brigand (lv3, zarco)
+
+  # Stage 3 (groups 43700011 / 43700014) and the final set piece (43700015)
+  TGB_KARIAGON: 6                       # Kariagon (lv8, zarcoBoss)
+  TGB_DISC_REAPER: 7                    # Disc Reaper (lv9, basic)
+  TGB_RUNEKEEPER: 8                     # Runekeeper (lv9, basic)
+  TGB_BONECRUSHER_OVERSEER: 13          # Bonecrusher Overseer (lv10, basic)
+  TGB_TERRON_THRALL: 300942             # Terron Thrall (lv8, zarco)
+  TGB_DARK_RAIDER: 300951               # Dark Raider (lv8, zarcoBoss)
+  TGB_DEVOTED_EBON_IMP: 300960          # Devoted Ebon Imp (lv8, zarco)
+
+  # --- Individual NPCs: the escort cast ---
+  # Sorcha is THE FAIL CONDITION: quest 1346 task 1 guards her for 7 minutes.
+  TGB_SORCHA: 1001                      # Sorcha (lv8, elite, villager, zarcoBoss)
+  # Guardians spawn x2 with respawnTime 60000 and isReturn=true, so the
+  # defensive line self-repairs about a minute after a loss.
+  TGB_SORCHAS_GUARDIAN: 1003            # Sorcha's Guardian (lv8, elite, villager, zarco)
+  TGB_EXIT_TELEPORTAL: 1002             # Exit Teleportal (lv40, invincible object)
+
+  # --- Category groups ---
+
+  TGB_NORMAL_MONSTERS:
+    - $TGB_PIGLING
+    - $TGB_SPOREWALKER
+    - $TGB_KARIAGON
+    - $TGB_DISC_REAPER
+    - $TGB_RUNEKEEPER
+    - $TGB_RELENTLESS_GHILLIEDHU
+    - $TGB_ORCAN_BRUTE
+    - $TGB_DWARF_ORCAN
+    - $TGB_BONECRUSHER_OVERSEER
+    - $TGB_ROCKCRAWLER
+    - $TGB_CROMOS
+    - $TGB_NORUK
+    - $TGB_LUMBERING_GHILLIEDHU
+    - $TGB_TERRON
+    - $TGB_TERRON_THRALL
+    - $TGB_DARK_RAIDER
+    - $TGB_DEVOTED_EBON_IMP
+    - $TGB_STONEBEAK_RAIDER
+    - $TGB_STONEBEAK_BRIGAND
+
+  TGB_FRIENDLY_NPCS:
+    - $TGB_SORCHA
+    - $TGB_SORCHAS_GUARDIAN
+
+  TGB_OBJECTS:
+    - $TGB_EXIT_TELEPORTAL
+
+exports:
+  variables:
+    # Individuals: wave monsters
+    - TGB_PIGLING
+    - TGB_SPOREWALKER
+    - TGB_KARIAGON
+    - TGB_DISC_REAPER
+    - TGB_RUNEKEEPER
+    - TGB_RELENTLESS_GHILLIEDHU
+    - TGB_ORCAN_BRUTE
+    - TGB_DWARF_ORCAN
+    - TGB_BONECRUSHER_OVERSEER
+    - TGB_ROCKCRAWLER
+    - TGB_CROMOS
+    - TGB_NORUK
+    - TGB_LUMBERING_GHILLIEDHU
+    - TGB_TERRON
+    - TGB_TERRON_THRALL
+    - TGB_DARK_RAIDER
+    - TGB_DEVOTED_EBON_IMP
+    - TGB_STONEBEAK_RAIDER
+    - TGB_STONEBEAK_BRIGAND
+    # Individuals: escort cast
+    - TGB_SORCHA
+    - TGB_SORCHAS_GUARDIAN
+    - TGB_EXIT_TELEPORTAL
+    # Category groups
+    - TGB_NORMAL_MONSTERS
+    - TGB_FRIENDLY_NPCS
+    - TGB_OBJECTS

@@ -3,8 +3,75 @@
 Pilot zone under `../DOCTRINE.md`. Supersedes the retired `docs/plans/iod-alpha-content-loop/`
 pilot (its TRACKER and data artifacts remain readable as reference; its doctrine does not apply).
 
-Last updated: 2026-07-24 (new-class story-spine training quests: LIVE-VALIDATED on a Ninja;
-quest files are hand-repaired working-tree state pending a DSL fix).
+Last updated: 2026-07-25 (Sorcha dungeon rebuilt as a five-player encounter and live-tuned over
+three passes; Acharak spawn leak closed. Patch 002 still OPEN).
+
+## Session handoff (2026-07-25, third session): Sorcha dungeon + Acharak
+
+Specs repo COMMITTED (not pushed). Server and client-dc datasheet repos deliberately left
+UNCOMMITTED: patch 002 is still open and closes with one commit per repo, per the patch
+discipline. Working trees hold the full patch: server 68 dirty, client 4955 dirty.
+
+### Shipped and live-validated this session
+
+1. **Acharak no longer spawns in the Mysterious Ruins** (spec `002/21`). Quest 1309 is a kill-one
+   on named boss 13,1002, but the patch-001 padding wave drew that template from the v17 roster
+   `[5, 901, 1002]` into habitat group 1300038, putting 8 mobs that display as "Acharak" about
+   19,400 units from the Tainted Gorge Garrison the journal names. Retargeted to generic template
+   901 (same shapeId/basicActionId/aiid, so density and appearance hold). `gen_npcloc.py --prune`
+   returned the map marker to the two v31 garrison waypoints. Client published `0.1.0-dev.36`.
+2. **Sorcha dungeon 9037 opened to a party of five** (specs `002/22` and `002/23`). Two gates had
+   to fall: DungeonData conditions (`solo` + `maxMemberCount 1` -> the v31 `party=1` +
+   `maxMemberCount=5`, retiring a patch-001 divergence) and then, found live, the entrance portal
+   itself (`partyCantWork="true"` on WorkObject 134, inherited from cloning the level-65 donor 125).
+3. **Encounter rebuilt over three live-tuned passes** (spec `002/24` + generator, spec `002/25`,
+   `balance/zone-0437`). Final state: waves at v31 x100 HP / x600 atk, effective population
+   **834** across **50 spawn tasks**, stage 3 fully wired at 25 spawn points, Sorcha 1,082,344 hp,
+   Guardians 311,719 each.
+
+### Tuning history, so it is not rediscovered
+
+| Pass | Change | Live verdict |
+|---|---|---|
+| 1 | island parity (v31 x10 HP / x60 atk), 308 defined | far too weak for geared characters |
+| 2 | stats x10, population x2 (616 defined / 314 effective), rear groups 43700012+43700013 wired | cleared by TWO players, but the flanking spread was praised: "we had to split our forces" |
+| 3 | population to 834 effective (stage 3 fully wired, 25 points), Sorcha -20% | good, but the mob increase plus the HP nerf together were too much |
+| 3b | Sorcha nerf REVERTED to x93.75, population kept | current state |
+
+Standing guidance: the population is the expressive lever, not the escort's HP. x75 on Sorcha was
+tried and rejected; `startAggro` (70 flanking / 150 stage closers) and the cluster spacing in spec
+25 are the untried knobs.
+
+### Calibration caveat, recorded deliberately
+
+These numbers are tuned for geared test characters, NOT for a level 8-10 player walking quest 1346
+normally, for whom the dungeon is now unclearable. Quest 1346 is 최소레벨 8 and this is classic
+level-8 content. If it should be hard for geared players and fair for levelling ones, the lever is
+a difficulty mode or level scaling, not the base stat block. **Revisit before launch.**
+
+### Structural findings worth keeping
+
+- **Only 27 of 60 wave territories were ever wired.** The dungeon script spawns by territory and
+  the EventTasks carry no count of their own, so density flows through, but 33 territories were
+  activated by nothing. Our wiring matched v31 exactly, so this was BHS authoring more geometry
+  than the script used, not a restoration gap. Specs 25 wired 23 of them (both stage-1/2 rear
+  groups plus all of stage 3); the finale set piece 43700015 is deliberately still dark.
+- **`party` is a mode flag, not a headcount requirement** (5 corpus dungeons pair it with
+  `maxMemberCount=1`); `notSolo` is the actual solo block. Domain KB corrected.
+- **`partyCantWork` blocks the interaction outright**, it does not merely restrict outcome
+  distribution. Domain KB corrected.
+- **`NpcData.name` is an internal label, not the display name** (98.5% differ in kind). This is
+  what caused the Acharak defect. Domain KB corrected, and `npc-system.md` had actively wrong text.
+
+### Next
+
+1. **Live-test the current tuning** if not already done: a party of 2 to 5 entering together, stage
+   3 reading as pincers rather than a stream, and Sorcha's HP floor at the 7-minute mark.
+2. Continue IoD polishing (the stated purpose of the next session). Open with
+   `/prime-classic-restoration iod`.
+3. Still outstanding from earlier sessions: live-test Brawler + Valkyrie and the wrong-class
+   negative case on the new-class spine.
+4. Then close patch 002 with one commit per datasheet repo.
 
 ## Session handoff (2026-07-24, second session): new-class spine LIVE
 
@@ -99,12 +166,63 @@ New permanent gate: `python reforged/tools/dc-restore/audit_class_gates.py --zon
 exit 0 required before any deploy that touches restored quests. Both the IoD zone set and the
 patch-002 zone set now PASS. It is wired into the `content-restoration` pipeline as step 4.
 
+### Acharak spawn-clarity fix (2026-07-25, applied, deployed, LIVE-VALIDATED, published)
+
+Quest 1309 "Acharak Attacks" is a kill-ONE task on named boss 13,1002 whose journal string
+1309006 names one place: "Clear out Acharak and his minions from the Tainted Gorge Garrison."
+The patch-001 padding wave (spec 001/15) replicated v17 habitat group 1300038
+"태고의 유적지(오칸 순찰)" from the roster recorded in padding-habitat-gaps.md as [5, 901, 1002],
+so 4 of its 12 fences drew template 1002 at spawnCount 2: EIGHT extra Acharaks in AreaData
+section 31 (Mysterious Ruins), about 19,400 units from the garrison.
+
+The trap: `desc` is an internal comment, and NpcData_13 calls template 1002 "오칸" (Orcan). The
+player-visible name comes from StrSheet_Creature keyed by (hz, templateId), where 13/1002 is
+"Acharak". So all 8 ruins mobs displayed as Acharak AND satisfied the kill-1 task, and the
+client NpcLoc marker set had grown from the v31 client's 2 waypoints to 6.
+
+**Fix (spec `002/21-iod-acharak-ruins-cleanup.yaml`, user decision option B):** retarget the four
+spawns from 1002 to generic template 901 rather than deleting the territories, preserving the
+live-tuned patrol density from the spec 001/15 regen. 901 is the same creature generically:
+shapeId 300650, basicActionId 3006500, aiid 31, internal name 오칸, differing only in
+playStyle (basic vs zarcoBoss) and level (7 vs 8, which also removes a level outlier from an
+otherwise level-7 patrol). Bounded side effect: 901 goes 33 -> 37 territories; its only quest
+reference is 1311 ("Thin the orcan ranks", location-neutral).
+
+Verified: server diff is exactly 4 lines (`npcTemplateId` only, every other attribute
+byte-identical); the named-unique roster (1001/1002/1003/1004) now matches v31 exactly;
+`gen_npcloc.py --prune` brought 13/1002 back to exactly the 2 v31 garrison waypoints. Batch
+`migrate --patch 002 --no-narrow` = 63 specs / 9078 ops / 0 failed / 0 warnings. Both gates
+exit 0 (`dungeon_audit.py --dungeons 9037`, `audit_class_gates.py --zones 13,64,213,436`).
+
+A sweep of every HZ-13 quest-target template confirmed 1002 was the ONLY named unique whose
+footprint diverged from v31. Eight other templates gained padding groups but are generic
+kill-5-to-48 targets with location-neutral journal text, which is what the density restore was for.
+
+**Client-side collateral, accepted by user decision:** this was the first patch-002 spec to touch
+a territory entity, so it triggered the first full sync of the `TerritoryData` family. 409 client
+shards were rewritten: 368 are pure attribute reordering (net 0 lines, proving DSL had never
+written them), and 41 carry real content (+2031 net), led by HZ 1022 (+889), HZ 437 (+550),
+HZ 152 (+439), HZ 84 (+313). These are pre-existing server-to-client divergences the full sync is
+now closing, NOT anything spec 21 caused; HZ 437's 8 groups / 63 territories are exactly the block
+patch 001 uncommented by hand server-side, which never reached the client. Shipped rather than
+hand-reverted, per the rule that the datasheet trees are generated output. Packs clean, no W602.
+
+Deployed 2026-07-25: server 64 files hash-verified; client packed and installed. **LIVE-VALIDATED
+by the user**, then published to R2 as `0.1.0-dev.36` (14 new chunks, 57.16 MiB, 19,446 reused,
+`committed=True`), so remote testers can pull it. Note the fix needs BOTH legs: the spawn retarget
+is server-authoritative and rides the world restart, but the NpcLoc marker correction is
+client-only data and lands only with the new `.dat`.
+
 ### Next
 
 1. Live-test Brawler + Valkyrie and the wrong-class negative case (Dulari refusing a wrong-class
    training quest). Cheap, and the negative case is the only untested code path. Everything else
    on the new-class spine is validated: a Ninja now walks 1304 -> class training -> 1303 and
    1384 -> 1382 -> 1331 end to end.
+2. Spot-check dungeon 437 (Sorcha, quest 1346). Its client shard gained 8 groups / 63 territories
+   in the 2026-07-25 full TerritoryData sync, content that had only ever existed server-side. It
+   passes `dungeon_audit.py --dungeons 9037` and packs clean, but it has never been walked with
+   matching client data.
 2. Then close patch 002 in one commit per repo, per the patch discipline.
 3. Continue quest polishing in a fresh session: open it with `/prime-classic-restoration iod`,
    which loads the doctrine, this tracker, the divergence log, and the current state of the three

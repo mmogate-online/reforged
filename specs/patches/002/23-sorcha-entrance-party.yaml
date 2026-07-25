@@ -1,0 +1,67 @@
+# Spec: 23 - Let a party use the Tainted Gorge Bridge entrance portal
+#
+# LIVE BLOCKER (user report 2026-07-25): attempting to enter dungeon 9037 while
+# grouped produced "Black Rift Entrance can't be used while in a party". Spec 22
+# had already opened the DungeonData side (party=1, maxMemberCount=5, no
+# notSolo), so the remaining gate was the entrance portal itself.
+#
+# ROOT CAUSE. WorkObject template 134 is the authored entrance portal for quest
+# 1346 (divergence-log row 41: Black Rift portal, teleport 642501 to continent
+# 9037, gated isForQuestId=1346 firstTaskId=1). It carries partyCantWork="true",
+# which BLOCKS the interaction outright for a grouped player.
+#
+# The flag was inherited, not chosen. Row 41 records that 134 was authored by
+# cloning the existing Black Rift portal, template 125, whose isForQuestId is
+# 21307: the modern level-65 Garden of Dawn line that patch 001 sentinel-disabled.
+# partyCantWork="true" was correct for that solo level-65 portal and wrong for a
+# portal now fronting a five-player dungeon.
+#
+# CORPUS SUPPORT for clearing it (2026-07-25):
+#   - Of 300 WorkObject templates, 279 leave partyCantWork unset; only 10 set it
+#     true. It is an exception flag, not a default.
+#   - Of the 24 work objects carrying a teleport Work: 9 true, 8 unset, 7 false.
+#   - The three OTHER work objects sharing this portal's shapeId 200201 are
+#     200202 (unset), 200302 (unset) and 210304 (false). None blocks parties;
+#     template 134 was the only one that did.
+#
+# The rest of the entry chain was already clear: teleport 642501
+# ("검은틈 입구") targets 9037 at 58475,-67826,-5075, matching the dungeon
+# startPos, and carries no party or solo attribute; DungeonData 9037 admits a
+# party of five as of spec 22. So `interact -> teleport -> dungeon` had exactly
+# one remaining gate, and this is it.
+#
+# DOMAIN-KB CORRECTION pushed alongside this spec: entities/work-object-system.md
+# described partyCantWork as "only the interacting player receives the work
+# outcome; party members are excluded", i.e. an outcome-distribution flag. The
+# live message proves it blocks the interaction itself. Evidence is the in-game
+# report, not inference.
+#
+# `false` is written explicitly rather than removing the attribute: this is
+# authored content, so stating the intent beats relying on an unset default, and
+# it matches sibling 210304 which sets false on the same shape.
+#
+# CLIENT LEG: none required. `workObjects` maps to WorkObjectData in migrate's
+# ENTITY_SYNC_MAP, so the family does sync, but partyCantWork is SERVER-ONLY: the
+# client shard carries template 134 without it, the client WorkObjectData.xsd
+# declares no such attribute, and the string does not occur anywhere in the client
+# family. The sync therefore reproduces byte-identical client output and remote
+# testers stay on the current published build. A W602 (XSD-dropped data) on this
+# attribute would be expected and benign.
+#
+# This op also retires the hand-edit recorded in divergence-log row 41 ("hand edit
+# across 2 server + 3 client files, DSL has no workObject entity, request filed"):
+# `workObjects` is now a live DSL entity with create/update/delete/upsert.
+# partyCantWork is a scalar, so `update.changes` is correct here and the new E209
+# (create-only fields under update.changes) does not apply.
+#
+# Idempotent: scalar update. Applied via the migrate --patch 002 batch replay.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+workObjects:
+  update:
+    - templateId: 134
+      changes:
+        partyCantWork: false
