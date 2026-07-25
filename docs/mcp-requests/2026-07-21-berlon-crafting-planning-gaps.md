@@ -33,8 +33,17 @@ it detectable and one command to fix.
   dump that walks the tree rather than hard-coding element paths, so no authored value is hidden.
   `find_free_ids` now accepts `entityType: "Quest"` and scans the `QuestData` id space
   (`Quest` is not an entity_config table, so the tool routes internally).
-- **Item 4 (per-task dialog pool): open, not reproduced yet.** Carried forward; it needs a v31
-  `QuestDialog_{zone}_{chain}.xml` binding investigation that is out of scope for this pass.
+- **Item 4 (per-task dialog pool): done, it was a real binding bug.** Commit `8cd4eea`. v31 stores
+  one dialog file per quest as `QuestDialog_{huntingZoneId}_{questIndex}.xml`, where both halves come
+  from the quest header `Quest번호 = "{zone},{index}"`. The resolver was passing the *text-id
+  reference* as the chain id, so quest 1301 (`Quest번호 13,1`) read its intro from
+  `QuestDialog_13_2.xml` and its task dialog from `QuestDialog_13_3.xml`. Because every quest uses
+  small ref numbers, they all landed in the same handful of files, which is exactly the "same ~10
+  recurring IoD NPCs repeated across every quest" symptom. It also explains the "text 100
+  (not found)" sentinel from the 2026-07-17 report item 14: there is no `QuestDialog_13_100.xml`.
+  Now fixed to open the quest's own file and index Text nodes inside it. Quest 1301 intro is Axelle's
+  text 2 and its task dialog is Lam's text 3; quest 1303's five tasks bind to Nivek, Neziir and Adria
+  in their authored order instead of a shared pool. v92 (one file per quest) is unaffected.
 - **Item 5 (task types): done.** Task types are now surfaced in three places, each pairing the
   Korean element value with an English name (all 34 v92 types mapped, covering the 25 in v31):
   `lookup_quest` per task (`id|type|typeKo|target|nextTask|failReturnTask|isRewardTask`),

@@ -23,7 +23,11 @@ Also closed in this pass:
   `find_free_ids` support for `entityType: "Quest"`. See the 2026-07-21 Berlon request, item 3.
 - **Item 19 (index-empty vs data-absent): done for entity tables.** Empty results now say whether
   the backing file exists and where it was looked for.
-- Items 11, 13, 14, 15, 16, 20 and the `batch_lookup` typed-error nit remain deferred.
+- **Item 14, in part: done.** The v31 "orphan dialog texts with no task association" and the
+  "text 100 (not found)" sentinel were one bug: the dialog resolver used the text-id reference as
+  the dialog file's chain id, so every quest read other quests' files. See the 2026-07-21 Berlon
+  request, item 4. The `lookup_story_arc_dialogs` payload size and member filtering are still open.
+- Items 11, 13, 15, 16, 20 and the `batch_lookup` typed-error nit remain deferred.
 
 ## Resolution log (2026-07-17)
 
