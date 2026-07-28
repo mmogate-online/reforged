@@ -26,7 +26,8 @@ Doctrine rule 1 repair: v31 quest 1310's armor block is corrupted (its engineer
 row is a stray '15019' text token instead of an <Item/>). It is restored to the
 15019 body/arm/leg block's engineer row (mirroring quest 1305's identical block).
 
-QuestCompensationData is server-only (no client sync). Zone 13 (huntingZoneId=13).
+QuestCompensationData has a CLIENT leg (the quest log reward panel reads it); it is
+synced via the QuestCompensationData entity in sync-config.yaml. Zone 13 (huntingZoneId=13).
 Output: specs/patches/001/04-iod-quest-rewards.yaml (idempotent upsert).
 """
 
@@ -66,10 +67,23 @@ CLASS_SCOPED = {
 NEW_CLASSES = ["fighter", "assassin", "glaiver"]
 
 # Candidate weapon lines per post-classic class; re-verified against v92 below.
+#
+# MID-TIER TRAP (fixed 2026-07-27). These pools must span the whole low band or
+# nearest-requiredLevel silently picks a far-too-low item. The level 3/4 weapons for
+# these classes live in SEPARATE id ranges (823xx, 583xx/585xx, 593xx) rather than
+# continuing the base line, so the original pools jumped straight from level 2 to the
+# level 7 First Expedition item. Every lv3 and lv4 bag then resolved to the level-2
+# weapon, and Brawler/Ninja received the identical weapon from all three weapon quests
+# in Island of Dawn (1304, 1319, 1303) while never seeing a mid-tier upgrade at all.
+# Corrected by spec 002/28. When extending a pool, verify the level of each id against
+# ItemTemplate rather than assuming ids are contiguous by tier.
 NEW_WEAPON_CANDIDATES = {
-    "fighter": [82005, 82006, 82007, 82008],
-    "assassin": [58171, 58172, 58173, 58174],
-    "glaiver": [59054, 59353, 59354, 59055, 59056],
+    # id: level    82005:1  82006:2  82305:3  82271:4  82306:6  82007:7  82272:8  82008:12
+    "fighter": [82005, 82006, 82305, 82271, 82306, 82007, 82272, 82008],
+    # id: level    58171:1  58172:2  58374:3  58500:4  58375:6  58173:7  58523:8  58174:12
+    "assassin": [58171, 58172, 58374, 58500, 58375, 58173, 58523, 58174],
+    # id: level    59053:1  59054:2  59353:3  59319:4  59354:6  59055:7  59320:8  59056:12
+    "glaiver": [59053, 59054, 59353, 59319, 59354, 59055, 59320, 59056],
 }
 
 # Doctrine rule 1 repair for the corrupted v31 1310 engineer armor row.
@@ -226,7 +240,7 @@ def main():
     lines.append("#   workaround for the old collapse defect is removed; the writer now rejects them")
     lines.append("#   with E207).")
     lines.append("#")
-    lines.append("# QuestCompensationData is server-only (no client sync).")
+    lines.append("# QuestCompensationData has a CLIENT leg (quest log reward panel); synced via sync-config.")
     lines.append("")
     lines.append("spec:")
     lines.append('  version: "1.0"')
