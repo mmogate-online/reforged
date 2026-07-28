@@ -1,0 +1,300 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn level 1-4 reward cadence: anchor the first gear set on the level-4
+# set, move it off the story spine onto the zone quests, and retire the Noruk duplicate.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (padding is reversible
+#   policy) plus adaptation whitelist entry 2 (new-class support). This is forward
+#   design over restored content, so every reward change is divergence-logged.
+# Trigger: internal live testing reported the level 1-4 opening as repetitive with a
+#   confusing reward stream. Follows spec 002/27, which retired quest 1323.
+#
+# DESIGN PRINCIPLE (user, 2026-07-27): zone quests own POWER progression, story quests
+# own LORE progression. Gear is therefore granted by zone quests only. A player must
+# also be able to complete a full SET LOOK at each progression step, so pieces may be
+# split across quests but the set must be completable from the quests in the bracket.
+#
+# WHY THE LEVEL-4 SET IS THE ANCHOR. The zone was authored with body pieces on story
+# quests and the matching hands/feet mostly unassigned, so no low set was completable:
+#   look tier 003 (lv3): body granted by NOBODY, hands 1325, feet 1322
+#   look tier 005 (lv4): body 1303, hands and feet granted by NOBODY  <-- this set
+#   look tier 006 (lv5/6): body 1331, hands 1347, feet NOBODY
+#   look tier 007 (lv7): all three from 1305, with 1326/1330 granting DUPLICATES
+# The level-4 block is complete in the data (nine items, all requiredLevel 4, all one
+# visual tier: linkLookInfoId ends 005 on every piece, under the {type}{slot}{tier}
+# scheme where 3=mail 2=leather 4=robe and 11=body 12=hands 13=feet), and six of its
+# nine pieces are granted by no quest anywhere in the game. Verified by sweeping every
+# QuestCompensationData file in the corpus.
+#
+# THE LEVEL-4 SET
+#   slot   mail (LANCER BERSERKER ENGINEER FIGHTER)  leather (WARRIOR SLAYER ARCHER GLAIVER)  robe (SORCERER PRIEST ELEMENTALIST ASSASSIN)
+#   body   17404 Bark of Vekas                       17407 Treejack's Jacket                  17410 Tannen-tint Robes
+#   hands  17405 Treefelling Gauntlets               17408 Pruning Gloves                     17411 Canopy Sleeves
+#   feet   17406 Stump Thumpers                      17409 Logrolling Boots                   17412 Sappy Shoes
+#
+# DISTRIBUTION. Each armour quest keeps the slot it already owned, so only the tier
+# changes; Dulari's 1324 picks up the body piece that 1303 gives up. Three of the four
+# carriers have no prerequisite (1322, 1319, 1325); 1324 sits behind 1322.
+#   1322 Kishale  lv1  feet    (was the lv3 feet)
+#   1324 Dulari   lv2  body    (was no items at all)
+#   1319 Clovis   lv2  weapon  (was the lv3 weapon)
+#   1325 Leolin   lv3  hands   (was the lv3 hands)
+#   1303 Nivek    lv3  STRIPPED to exp/gold (was lv4 weapon + lv4 body)
+#   1304 Lam      lv1  STRIPPED to exp/gold (was the lv2 weapon)
+# The level-3 set (17701-17709) is consequently granted by nothing, as its body pieces
+# already were. The items stay in the data.
+#
+# NEW-CLASS WEAPON DEFECT, FIXED HERE. Brawler and Ninja were receiving the SAME level-2
+# weapon from every weapon quest in the zone (1304, 1319 and 1303 all handed 82006 and
+# 58172), and Valkyrie the same level-3 glaive twice. Root cause is in our own tooling:
+# the per-class weapon pools in tools/dc-restore/gen_v31_reward_specs.py and
+# gen_reward_specs.py skip the mid tier entirely (fighter had 82005 lv1, 82006 lv2,
+# 82007 lv7, 82008 lv12 and nothing between), because the lv3/lv4 items live in separate
+# id ranges (823xx, 583xx/585xx, 593xx). Nearest-match then fell back to the lv2 item.
+# The pools are corrected in the same change so a regeneration cannot reintroduce this.
+# Correct mid-tier items, confirmed against ItemTemplate:
+#   level 3: 55305 Graze Gun / 82305 Fists of Solitude / 58374 Idlestar / 59353 Orcharn
+#   level 4: 55271 Boomstick of Vekas / 82271 Twisted Rootfists / 58500 Leafblade /
+#            59319 Graft of Vekas   <- named for the same Vekas set every other class
+#                                      receives from this tier, which is the tell
+#
+# ACCEPTED CONSEQUENCES (user decisions 2026-07-27):
+#   1. Pieces require level 4 while the carriers start at levels 1-3, so they are earned
+#      slightly before they can be worn. Accepted as goal items; no minLevel changes.
+#   2. The story spine now grants no gear in this bracket. A story-only player wears
+#      starter gear until 1305 at level 5. That is the point of the principle, but it is
+#      a real difficulty change and is a live-test checkpoint.
+#   3. 1305 still grants the whole level-7 First Expedition set at level 5, so this set
+#      is worn levels 4 to 5 only. Closing that is the next pass over the L5-7 band
+#      (strip 1305, distribute tier 007 across 1326 feet / 1330 hands / a body carrier,
+#      which also removes the existing 1326 and 1330 duplicates). Deliberately NOT in
+#      this spec.
+#
+# NORUK DUPLICATE. Quest 1318 "Hunting the Beasts" (Dulari, collect 5 Noruk 13,300921,
+# deliver to Neziir) repeats task 3 of 1327 "Garrison in Distress" (same giver, same mob,
+# same count, delivered to 213,1119). 1327 is the richer quest (two visits and a
+# cutscene), so 1318 is the one retired. The reference sweep found ZERO inbound edges on
+# 1318: nothing lists it as a prerequisite, no successor points at it, and no non-quest
+# binding names it, so unlike 1323 it needs no re-anchor. v31 shipped it sentinel-disabled;
+# our spec 001/14 enabled it, so this restores the v31 live set.
+#
+# NOTE ON SEMANTICS. questCompensations upsert is REPLACE-ALL: each entry below restates
+# the complete compensation block, so every exp/gold/itemBag value and every row that
+# should survive is written out in full. Itemless blocks omit itemBag, matching the house
+# shape of the other itemless quests in this file (e.g. 1318 before this change).
+# Reaper/Soulless stays omitted from every row per doctrine, even though the leather
+# pieces admit SOULLESS.
+
+quests:
+  update:
+    # Retire the Noruk duplicate. Restores the v31 shipped state for this quest.
+    - id: 1318            # Hunting the Beasts -> sentinel (was 1322, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+questCompensations:
+  upsert:
+    # ---- story spine: lore only, gear stripped -------------------------------
+    - questId: 1303       # The Secret Life of Trees (was lv4 weapon + lv4 body)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2600
+          gold: 260
+
+    - questId: 1304       # Making the Rounds (was the lv2 weapon set)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 800
+          gold: 80
+
+    # ---- zone quests: the level-4 set, one piece each -------------------------
+    - questId: 1322       # Unrest in the Forest (Kishale) -> lv4 FEET
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 500
+          gold: 50
+          itemBag: "class"
+          items:
+            - templateId: 17406      # Stump Thumpers (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 17406
+              quantity: 1
+              class: "berserker"
+            - templateId: 17406
+              quantity: 1
+              class: "engineer"
+            - templateId: 17406
+              quantity: 1
+              class: "fighter"
+            - templateId: 17409      # Logrolling Boots (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 17409
+              quantity: 1
+              class: "slayer"
+            - templateId: 17409
+              quantity: 1
+              class: "archer"
+            - templateId: 17409
+              quantity: 1
+              class: "glaiver"
+            - templateId: 17412      # Sappy Shoes (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 17412
+              quantity: 1
+              class: "priest"
+            - templateId: 17412
+              quantity: 1
+              class: "elementalist"
+            - templateId: 17412
+              quantity: 1
+              class: "assassin"
+
+    - questId: 1324       # Essence and Sensibility (Dulari) -> lv4 BODY
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 90
+          itemBag: "class"
+          items:
+            - templateId: 17404      # Bark of Vekas (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 17404
+              quantity: 1
+              class: "berserker"
+            - templateId: 17404
+              quantity: 1
+              class: "engineer"
+            - templateId: 17404
+              quantity: 1
+              class: "fighter"
+            - templateId: 17407      # Treejack's Jacket (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 17407
+              quantity: 1
+              class: "slayer"
+            - templateId: 17407
+              quantity: 1
+              class: "archer"
+            - templateId: 17407
+              quantity: 1
+              class: "glaiver"
+            - templateId: 17410      # Tannen-tint Robes (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 17410
+              quantity: 1
+              class: "priest"
+            - templateId: 17410
+              quantity: 1
+              class: "elementalist"
+            - templateId: 17410
+              quantity: 1
+              class: "assassin"
+
+    - questId: 1325       # The Perfect Cut (Leolin) -> lv4 HANDS
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 500
+          gold: 50
+          itemBag: "class"
+          items:
+            - templateId: 17405      # Treefelling Gauntlets (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 17405
+              quantity: 1
+              class: "berserker"
+            - templateId: 17405
+              quantity: 1
+              class: "engineer"
+            - templateId: 17405
+              quantity: 1
+              class: "fighter"
+            - templateId: 17408      # Pruning Gloves (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 17408
+              quantity: 1
+              class: "slayer"
+            - templateId: 17408
+              quantity: 1
+              class: "archer"
+            - templateId: 17408
+              quantity: 1
+              class: "glaiver"
+            - templateId: 17411      # Canopy Sleeves (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 17411
+              quantity: 1
+              class: "priest"
+            - templateId: 17411
+              quantity: 1
+              class: "elementalist"
+            - templateId: 17411
+              quantity: 1
+              class: "assassin"
+
+    - questId: 1319       # Dwellers of the Island (Clovis) -> lv4 WEAPON
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 600
+          gold: 60
+          itemBag: "class"
+          items:
+            - templateId: 12129      # Thorn & Bloom
+              quantity: 1
+              class: "warrior"
+            - templateId: 12130      # Bole of Vekas
+              quantity: 1
+              class: "lancer"
+            - templateId: 12131      # Blade of Vekas
+              quantity: 1
+              class: "slayer"
+            - templateId: 12132      # Bane of Vekas
+              quantity: 1
+              class: "berserker"
+            - templateId: 12133      # Heart of Vekas
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 12134      # Bough of Vekas
+              quantity: 1
+              class: "archer"
+            - templateId: 12135      # Branch of Vekas
+              quantity: 1
+              class: "priest"
+            - templateId: 12136      # Taproot of Vekas
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55271      # Boomstick of Vekas
+              quantity: 1
+              class: "engineer"
+            - templateId: 82271      # Twisted Rootfists (was 82006, level 2)
+              quantity: 1
+              class: "fighter"
+            - templateId: 58500      # Leafblade (was 58172, level 2)
+              quantity: 1
+              class: "assassin"
+            - templateId: 59319      # Graft of Vekas (was 59353, level 3)
+              quantity: 1
+              class: "glaiver"

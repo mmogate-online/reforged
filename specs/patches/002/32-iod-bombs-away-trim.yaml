@@ -1,0 +1,65 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retire quest 1386 "Bombs Away", a near-exact duplicate of the story quest that gates it.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (padding is reversible policy).
+#   Like specs 002/27 and 002/28 this REMOVES scope from the Level 1 padding enable set
+#   rather than adding a divergence: v31 ships 1386 sentinel-disabled and spec 001/14
+#   enabled it.
+# Trigger: internal live testing, 2026-07-27.
+#
+# THE DUPLICATION. 1386 repeats story quest 1329 "Going Above and Beyond" almost verbatim,
+# and 1329 is its own prerequisite, so the player is sent through bomb training twice in a
+# row by the same NPC:
+#
+#   task            1329 (Mission, story group 1)          1386 (Normal)
+#   giver           Jorhon 64,1006                         Jorhon 64,1006
+#   1               Visit Kiriya 64,1029, dialog 3,        identical, including the same
+#                   grants item 5002                       injected item 5002
+#   2               Hunt 3x monster 13,888 training dummy  identical
+#   3               Visit Kiriya, dialog 4, deletes 5002   identical
+#   4               (none, task 3 pays)                    Visit Jorhon, pays
+#   minLevel        4                                      4
+#
+# So 1386 is 1329 plus one extra "report back" step. The reward duplicates too: 1329 pays
+# 400 exp / 10 gold with 3x Speed Potion and 10x Bomb I; 1386 pays 300 exp with the SAME
+# 10x Bomb I, so the second run is a straight repeat of the consumable.
+#
+# REFERENCE SWEEP (both encodings, "13,86" pair form and "1386" global form, across the
+# whole server datasheet and the client DC): quest 1328's prerequisite is the ONLY inbound
+# reference to 1386 anywhere. No successor link points at it, it belongs to no story group
+# and is absent from QuestGroupList, and no achievement, NPC appear gate, dungeon condition
+# or WorkObject names it.
+#
+# NOTHING IS ORPHANED. Every asset 1386 touches is shared with a quest that stays live:
+#   monster 13,888 (training dummy)  -> still used by 1329
+#   item 5002 (magma bomb, injected then deleted) -> still used by 1329
+#   NPC Kiriya 64,1029               -> still used by 1329 and by 1384 as its giver
+#   NPC Jorhon 64,1006               -> still gives 1329, 1345, 1351, 1352
+# Tasks, dialogs, strings and the compensation row all stay intact under the sentinel, which
+# is the publisher's own retire-in-place pattern.
+#
+# RE-ANCHOR. 1328 "Academic Theft" moves from 1386 to 1329. This preserves its gate position
+# exactly rather than loosening it: 1386 was itself gated on 1329, so anything behind 1386
+# was already behind 1329 plus one redundant step. Chain goes
+#   1303 -> 1329 -> 1386 -> 1328     becomes     1303 -> 1329 -> 1328
+# with 1329's other dependents (1351, 1352, 1384) untouched.
+#
+# Mechanism: requirements.prerequisites [9999] resolves to the ref 99,99, the
+#   never-satisfiable sentinel. Precedent: specs 001/06, 002/27, 002/28.
+
+quests:
+  update:
+    # Retire the duplicate. Restores the v31 shipped state for this quest.
+    - id: 1386            # Bombs Away -> sentinel (was 1329, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+    # Re-anchor the only dependent onto the story quest 1386 duplicated.
+    - id: 1328            # Academic Theft -> 1329 (was 1386, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [1329]

@@ -1,0 +1,71 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retire the post-arc pair 1343 "Answers Lead to More Questions" and 1344 "Destroy All
+# Destroyers", which are only offered after the Island of Dawn story arc is finished.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (padding is reversible policy).
+#   v31 ships both sentinel-disabled; spec 001/14 enabled them, so this REMOVES scope from
+#   the Level 1 padding enable set rather than adding a divergence.
+# Trigger: internal live testing, 2026-07-27. Both sit behind story climax 1316 "Dark
+#   Revelations" at minLevel 9, after the player has done essentially everything else.
+#
+# THE CHAIN. 1316 (story) -> 1343 -> 1344, and nothing else touches either:
+#   1343  Sersine 213,1025, minLevel 9, 3x DeliverInjectedItem, 800 exp / 80 gold, no items
+#         carry the codex to Gregor 213,1028, then Leander 213,1008, then back to Sersine
+#   1344  Perrin 213,1143, minLevel 9, Visit/Hunt/Visit/Visit, 3000 exp / 300 gold, no items
+#         via Gregor 213,1028, kill 5x destroyer 13,9, back through Gregor to Perrin
+#
+# REFERENCE SWEEP (both encodings, across the whole server datasheet and the client DC):
+# 1343's only inbound reference is 1344's prerequisite, and 1344 has NO inbound reference at
+# all. Neither carries a successor link, neither belongs to a story group, both are absent
+# from QuestGroupList, and no achievement, NPC appear gate, dungeon condition or WorkObject
+# names either. Retiring BOTH together therefore needs NO re-anchor: 1344 is the tail and
+# 1343's only dependent is 1344. After the trim the only live quest still gated on 1316 is
+# the story finale 1317, which is untouched.
+#
+# SHARED ASSETS, checked per NPC and per mob rather than assumed:
+#   Sersine 213,1025   -> still used by LIVE 1312, 1313, 1315, 1316, 1339, 1350
+#   Leander 213,1008   -> still used by LIVE 1305 (his other quests 1306/1307/1308/1310 are
+#                         sentinel-disabled in both eras)
+#   Perrin 213,1143    -> still gives LIVE 1340 "Painful Disc-overies"
+#   destroyer mob 13,9 -> still used by LIVE 1309, 1316, 1335
+#   Gregor 213,1028    -> referenced by NO other quest, live or disabled
+#
+# GREGOR, the one real consequence. He becomes the only NPC in the zone with no quest role
+# at all. He is NOT orphaned or broken: he keeps his spawn and his VillagerDialog_213 entry,
+# so he remains a talkable flavour NPC at the gorge outpost, he simply loses his quest
+# marker. He carries no VillagerMenu, so no service wiring dangles. Accepted deliberately;
+# re-enabling either quest restores his role.
+#
+# CONTENT LOST, stated plainly rather than buried. 1343 carries the island's Karascha reveal:
+# Leander translates Kugai's codex, names Karascha as the power behind the island's corruption,
+# raises Lok (a god thought dead since the Divine War) and ties Karascha to Elleon's fate. Its
+# journal summary is a full lore paragraph and the delivery to Leander plays cutscene 121310081.
+# That reveal exists nowhere else, so retiring 1343 removes it from the zone. 1344 is Gregor's
+# "earn your place among us" beat and carries no unique lore. The user's ruling is that
+# post-arc content adds no value here; the story arc itself ends at 1316 -> 1317 regardless.
+#
+# Two smaller notes: 1343 is `cancellable=불가능`, so a player who accepted it could never
+# abandon it, leaving it parked in the journal forever after the arc ended. And 1344's 3000 exp
+# is the second largest zone-quest payout on the island after 1346, so the level 9 band loses a
+# noticeable chunk of experience; the story spine's self-sufficiency to level 10 is unaffected
+# because it never depended on either quest.
+#
+# Mechanism: requirements.prerequisites [9999] resolves to the ref 99,99, the
+#   never-satisfiable sentinel. Precedent: specs 001/06, 002/27, 002/28, 002/32.
+
+quests:
+  update:
+    # Head of the pair. Its only dependent, 1344, is retired in the same spec.
+    - id: 1343            # Answers Lead to More Questions -> sentinel (was 1316, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+    # Tail of the pair. Nothing anywhere depends on it.
+    - id: 1344            # Destroy All Destroyers -> sentinel (was 1343, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]

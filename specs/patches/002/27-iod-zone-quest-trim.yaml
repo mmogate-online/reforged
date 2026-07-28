@@ -1,0 +1,72 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Trim redundant Island of Dawn zone quests: quest 1323 "Getting Some Answers".
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (padding is policy, and a
+#   padding enable is reversible policy, not restoration). This spec REMOVES scope from
+#   the Level 1 padding wave rather than adding a new divergence.
+# Source of truth for the retired state: v31 server, which ships 1323 sentinel-disabled.
+# Trigger: internal live testing reported the level 1 to 4 opening as repetitive.
+#
+# THE REDUNDANCY (measured against the live v92 tree, 2026-07-27).
+# Three quests target the same mob, 13,300931 Ghilliedhu (level 1):
+#   1304 "Making the Rounds"   story Mission, mandatory: Visit Kishale, then
+#                              HuntAndDeliver 5 drops (icon 87, 100% rate) to Dulari 213,1017
+#   1322 "Unrest in the Forest" Kishale: Hunt 5 kills, report back to Kishale
+#   1323 "Getting Some Answers" Kishale: HuntAndDeliver 5 drops (icon 87, 100% rate)
+#                              to Dulari 213,1017
+# Task 1 of 1323 is field-for-field identical to task 2 of the story quest 1304: same
+# monster, same count, same grant rate, same flag icon, same delivery NPC.
+#
+# The reward is duplicated too. Both quests pay 800 exp / 80 gold and the SAME 12-row
+# class weapon bag (10009-10016 Rise & Shine .. Sunbeam, 55006 Daybite, plus the three
+# new-class rows 82006 / 58172 / 59054 appended by spec 001/04). Since 1304 is a story
+# group 1 Mission that every character completes, 1323's copy is always a duplicate item.
+# Verified authentic to v31, not an artifact of our reward generator: datasheet-v31
+# reports the identical 9-class set at the identical 800/80 on both quests.
+#
+# PROVENANCE OF THE CHAIN. v31 carries all five quests of this cluster with the 99,99
+# sentinel. The wiring 1322 -> {1318, 1323} and 1323 -> 1324 -> 1327 was authored by our
+# own padding specs 001/14 and 001/17. Re-pointing 1324 therefore edits our wiring, not
+# v31 content, and disabling 1323 restores the v31 live set exactly.
+#
+# REFERENCE SWEEP (both encodings, "13,23" pair form and "1323" global form, over the
+# whole server datasheet and the client DC): quest 1324's prerequisite is the ONLY
+# inbound reference to 1323 in either tree. It carries no successor link (연결퀘스트 is
+# 1,1), belongs to no story group, is absent from QuestGroupList, and is named by no
+# achievement, NPC appear gate, dungeon condition or WorkObject window. So the whole
+# structural cost of the trim is the two ops below.
+#
+# USER RULING 2026-07-27, option A of three presented: sentinel 1323 and re-anchor 1324
+# to 1322, preserving the branch shape of the opening (Kishale roots the cluster, Dulari
+# keeps his three-quest arc). Option B (re-anchor to 1318) was rejected for converting a
+# branch into a linear grind; option C (retarget 1323's mob and strip its reward) was
+# rejected for keeping a quest that exists only as chain glue.
+#
+# EFFECT. Ghilliedhu-family kills in the level 1 to 4 opening drop from 20 to 15. The
+# chain becomes 1322 -> {1318, 1324 -> 1327}, every member still reachable.
+#
+# KNOWN COSMETIC RESIDUE, deliberately not fixed here. Kishale's 1322 completion line
+# ("...but it also spawns questions...") was the tease for 1323 and now dangles as
+# flavor. Closing it is a one-string edit, separable from this structural change.
+#
+# Mechanism: requirements.prerequisites [9999] resolves to the ref 99,99, the
+#   never-satisfiable sentinel used across IoD to retire a quest in place (tasks,
+#   dialogs, strings and the compensation row all stay intact). Precedent:
+#   specs/patches/001/06-iod-stepstone-disable.yaml.
+
+quests:
+  update:
+    # Retire the duplicate. Restores the v31 shipped state for this quest.
+    - id: 1323            # Getting Some Answers -> sentinel (was 1322, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+    # Re-anchor the orphaned dependent onto the surviving Kishale root.
+    - id: 1324            # Essence and Sensibility -> 1322 (was 1323, spec 001/17)
+      changes:
+        requirements:
+          prerequisites: [1322]

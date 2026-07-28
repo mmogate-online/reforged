@@ -1,0 +1,286 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn level 5-7 reward pass: move the First Expedition set off the story
+# spine onto zone quests, and correct the remaining stale new-class weapons.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (padding is reversible
+#   policy) plus adaptation whitelist entry 2 (new-class support).
+# Follows specs 002/27 (quest 1323 retired) and 002/28 (level-4 set distributed).
+#
+# DESIGN PRINCIPLE (user, 2026-07-27), unchanged from spec 002/28: zone quests own POWER
+# progression, story quests own LORE progression, and a full SET LOOK must be completable.
+#
+# WHAT WAS WRONG. Story quest 1305 "A Clue in the Dark" (minLevel 5) granted the ENTIRE
+# level-7 First Expedition set in a single payout: 48 rows, every one of them equipment,
+# being 3 armour pieces plus a weapon for each of the 12 classes. Zone quests 1326 and
+# 1330 then granted DUPLICATES of its feet and hands. So the level-7 step was handed over
+# in one story turn-in and the two zone quests paid nothing the player did not already have.
+#
+# DISTRIBUTION, as revised 2026-07-27 after live testing. Measured from the Tower Base
+# recall point 66600.87,-79855.52:
+#   1326 Jirash  (Tower Base)          FEET    already grants exactly this, unchanged
+#   1330 Taras   (Tower Base)          HANDS   already grants exactly this, unchanged
+#   1332 Kamarnu (Southern Checkpoint) BODY    delivered to Jehan in Mysterious Ruins
+#   1333 Jehan   (Mysterious Ruins)    WEAPON  Jehan's own follow-up quest
+#   1305 story quest                   STRIPPED to exp 4900 / gold 490
+#
+# WHY THE BODY AND WEAPON MOVED (user ruling 2026-07-27, carrot and stick). They were first
+# placed on 1348 Tanli (round trip 11,141) and 1349 Ayrdoss (35,240), chosen purely on
+# distance. Live testing showed the flaw: Ayrdoss stands 6,208 units PAST the Jehan/Lorin
+# camp, still inside Mysterious Ruins but well beyond the NPC cluster, so the weapon was
+# out of sight and players simply skipped it.
+#
+# 1332 already asks the player to carry Kamarnu's power gauges WEST and hand them to Jehan,
+# and Jehan's existing turn-in line already sets up the follow-up: "you will find no
+# shortage of work here in this camp. Perhaps it is best that you stay nearby. There are
+# other tasks needing attention." So the chest is paid exactly where the next reward is
+# visible, and 1333 (Jehan's own quest, a tight local loop to the Cromos 1,315 units away)
+# carries the weapon. The next reward stays in sight instead of needing exploration.
+#
+# Travel, for the record: the old pair cost 11,141 + 35,240 = 46,380 units as two separate
+# round trips. The new pair chains: base -> Kamarnu -> noruks -> Jehan is 13,320, the Jehan
+# loop is 2,620, Jehan -> base is 11,078, so 27,018 for both pieces. About 19,400 cheaper
+# AND the two rewards are adjacent rather than scattered.
+#
+# 1348 and 1349 consequently return to exp and gold only. NOTE for a later pass: 1349 asks
+# for 6 Orcan Raiders plus 48 Dwarf Orcans, the biggest kill count in the zone, and now pays
+# no items at all. It is the natural home for a non-set reward (tokens, per the
+# reward-vectors backlog) or its counts should come down.
+#
+# QUEST 1315 STRIPPED: the Kugai set is the token challenge reward (user ruling 2026-07-27).
+# 1315 "Putting the Pieces Together" granted the 12 Kugai weapons plus the 3 level-8 chest
+# pieces outright. The Kugai's Crest token shop (spec 002/20) already sells that entire set:
+# all 12 weapons at 30 tokens, chest 17413/17416/17419 at 30, gloves 17414/17417/17420 at 15,
+# boots 17415/17418/17421 at 15, with the token dropping 10 per kill from Kugai 13,1004. So the
+# quest was handing out the shop's whole weapons tab and its chest row for free, undercutting
+# the token grind. Stripped to exp 4500 / gold 450, like 1303, 1304, 1305 and 1331.
+#
+# STALE NEW-CLASS WEAPONS, the rest of the defect first corrected in spec 002/28. The
+# generator pools that skipped the mid tier also mis-picked outside the level 1-4 bracket:
+#   1315 (level 9, paid the level-8 Kugai weapons): Brawler/Ninja/Valkyrie were handed
+#        82007 / 58173 / 59055, the LEVEL-7 First Expedition weapons, which are the exact
+#        weapons 1305 already gave them four levels earlier. Now moot: the rows are gone
+#        entirely per the ruling above, and the token shop already sells the correct level-8
+#        items 82272 / 58523 / 59320, so the three classes are not left short.
+#   1316 (level 9, pays level-11 weapons): the three were handed level-12 items, an
+#        overshoot rather than a dead reward. Now 82079 Feather Dusters, 58245 Tattlebriar,
+#        59127 Reconglaive (all level 11, matching every other class). This correction stands.
+# Engineer/Gunner is correct at both quests already, because Engineer had native v31 rows
+# and never went through the broken pool.
+#
+# IN-PROGRESS GATE REMOVED (was blocked, unblocked 2026-07-27). Quests 1326 and 1330 carried
+# `수행조건/진행퀘스트` = `1305,1`, so they were only offerable while story quest 1305 was
+# ACTIVE. Since they carry the level-7 feet and hands, a player who completed 1305 without
+# visiting Jirash and Taras lost those pieces permanently and the set stopped being
+# completable. The gate could not be cleared when this spec was first written: `inProgress: 0`
+# wrote `<진행퀘스트>0,0</진행퀘스트>`, a shape with ZERO occurrences in the 2,710-file corpus
+# that reads as "quest 0,0 must be in progress" and would have made both quests permanently
+# unofferable, and `inProgress: null` was treated as omitted (W503, nothing written). Filed as
+# docs/dsl-requests/2026-07-27-quest-inprogress-clear.md and DELIVERED in DSL commit 94707de7
+# "Make the quest in-progress gate a clearable questId/taskId pair". `inProgress: []` now
+# removes the element, which is the canonical no-gate form (2,673 of 2,710 corpus quests carry
+# none), and is idempotent on re-apply. The same change made the field a [questId, taskId] pair
+# and rejects a lone id with E211, which was the secondary issue in the same request.
+#
+# This leg is SERVER-ONLY: the client Quest XSD does not carry `진행퀘스트` at all, so the
+# client shards for 1326 and 1330 have no gate to remove and no repack is needed for it.
+#
+# NOTE ON SEMANTICS. questCompensations upsert is REPLACE-ALL, so each entry restates the
+# complete block. 1315 and 1316 therefore list every row that survives, not just the three
+# corrected ones. 1326 and 1330 are absent from this spec entirely: their existing rows are
+# already exactly the pieces they should carry, and they stop being duplicates the moment
+# 1305 is stripped. Reaper/Soulless stays omitted per doctrine.
+
+quests:
+  update:
+    # Clear the in-progress gate so the two carriers stay offerable after 1305 completes,
+    # which is what makes the level-7 set completable. Server-only: the client XSD carries
+    # no 진행퀘스트 element.
+    - id: 1326            # Mana out of Mudmen (carries the lv7 feet)
+      changes:
+        requirements:
+          inProgress: []
+
+    - id: 1330            # Horned Horrors (carries the lv7 hands)
+      changes:
+        requirements:
+          inProgress: []
+
+questCompensations:
+  upsert:
+    # ---- story spine: lore only, the whole First Expedition set removed ---------
+    - questId: 1305       # A Clue in the Dark (was 48 rows: full lv7 set + weapon)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4900
+          gold: 490
+
+    # ---- zone quests: the level-7 set ------------------------------------------
+    - questId: 1332       # They'll Eat Anything (Kamarnu, delivered to Jehan) -> lv7 BODY
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 90
+          itemBag: "class"
+          items:
+            - templateId: 15019      # Hauberk of the First Expedition (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 15019
+              quantity: 1
+              class: "berserker"
+            - templateId: 15019
+              quantity: 1
+              class: "engineer"
+            - templateId: 15019
+              quantity: 1
+              class: "fighter"
+            - templateId: 15022      # Cuirass of the First Expedition (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 15022
+              quantity: 1
+              class: "slayer"
+            - templateId: 15022
+              quantity: 1
+              class: "archer"
+            - templateId: 15022
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15025      # Robe of the First Expedition (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15025
+              quantity: 1
+              class: "priest"
+            - templateId: 15025
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15025
+              quantity: 1
+              class: "assassin"
+
+    - questId: 1333       # Twice the Bark, Twice the Bite (Jehan) -> lv7 WEAPON
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1700
+          gold: 170
+          itemBag: "class"
+          items:
+            - templateId: 10017      # Twin Swords of the First Expedition
+              quantity: 1
+              class: "warrior"
+            - templateId: 10018      # Lance of the First Expedition
+              quantity: 1
+              class: "lancer"
+            - templateId: 10019      # Greatsword of the First Expedition
+              quantity: 1
+              class: "slayer"
+            - templateId: 10020      # Axe of the First Expedition
+              quantity: 1
+              class: "berserker"
+            - templateId: 10021      # Disc of the First Expedition
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 10022      # Bow of the First Expedition
+              quantity: 1
+              class: "archer"
+            - templateId: 10023      # Staff of the First Expedition
+              quantity: 1
+              class: "priest"
+            - templateId: 10024      # Scepter of the First Expedition
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55007      # Arcannon of the First Expedition
+              quantity: 1
+              class: "engineer"
+            - templateId: 82007      # Powerfists of the First Expedition
+              quantity: 1
+              class: "fighter"
+            - templateId: 58173      # Shuriken of the First Expedition
+              quantity: 1
+              class: "assassin"
+            - templateId: 59055      # Runeglaive of the First Expedition
+              quantity: 1
+              class: "glaiver"
+
+    # ---- former carriers, returned to exp and gold only -------------------------
+    - questId: 1348       # Ferocious Flowering Felons (was the lv7 body)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 90
+
+    - questId: 1349       # Gotta Kill 'Em All (was the lv7 weapon)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2300
+          gold: 230
+
+    # ---- Kugai tier: removed, the token shop owns it ---------------------------
+    - questId: 1315       # Putting the Pieces Together (was 12 Kugai weapons + lv8 chest)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4500
+          gold: 450
+
+    # ---- stale new-class weapon correction (replace-all: full block) ------------
+    - questId: 1316       # Dark Revelations: lv11 weapon tier
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 14600
+          gold: 1460
+          itemBag: "class"
+          items:
+            - templateId: 10593      # Disclose & Divulge
+              quantity: 1
+              class: "warrior"
+            - templateId: 10594      # Revelation Tree
+              quantity: 1
+              class: "lancer"
+            - templateId: 10595      # Incisive Greatsword
+              quantity: 1
+              class: "slayer"
+            - templateId: 10596      # Axe of Manifesto
+              quantity: 1
+              class: "berserker"
+            - templateId: 10597      # Darkseeing Lens
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 10598      # Revealing Arc
+              quantity: 1
+              class: "archer"
+            - templateId: 10599      # Praesto Staff
+              quantity: 1
+              class: "priest"
+            - templateId: 10600      # Rod of Revelation
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55079      # See Shooter
+              quantity: 1
+              class: "engineer"
+            - templateId: 82079      # Feather Dusters (was 82008, level 12)
+              quantity: 1
+              class: "fighter"
+            - templateId: 58245      # Tattlebriar (was 58174, level 12)
+              quantity: 1
+              class: "assassin"
+            - templateId: 59127      # Reconglaive (was 59056, level 12)
+              quantity: 1
+              class: "glaiver"

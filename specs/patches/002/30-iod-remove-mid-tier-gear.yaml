@@ -1,0 +1,58 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Remove the level 5/6 gear step from Island of Dawn, so the gear ladder reads
+# level-4 set -> level-7 set -> Kugai set, with nothing in between.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 4 (padding is reversible policy).
+# Follows specs 002/27, 002/28 and 002/29.
+#
+# USER RULING 2026-07-27: "Any quest that still grants levels 5/6 should have their rewards
+# removed. With this new approach we now have the level 4 set given by the initial level 1-4
+# band, then the level 5-7 band hands out the expedition set, we shouldn't have any set given
+# in between."
+#
+# THE RESULTING LADDER
+#   levels 1-4   level-4 set (look tier 005)  zone quests 1322 / 1324 / 1325 / 1319   spec 002/28
+#   levels 5-7   level-7 First Expedition     zone quests 1326 / 1330 / 1348 / 1349   spec 002/29
+#   level 8      Kugai set                    Kugai's Crest token shop                spec 002/20
+#   (nothing in between)
+#
+# WHAT IS REMOVED. A sweep of the whole zone-13 reward table for equipment at level 5 or 6
+# returns exactly two quests, and both lose their item rows here:
+#   1331 "Climbing through the Ranks" (story Mission, minLevel 5): the level-5 Family Ties
+#        body pieces 17710 / 17713 / 17716. Keeps exp 2300 / gold 230.
+#   1347 "It Was a Rock...Crawler" (zone, minLevel 6): the level-6 Rockhound hands
+#        17711 / 17714 / 17717. Keeps exp 900 / gold 90.
+# Every row on both quests is equipment, so nothing else is lost. The tier-006 look was never
+# completable anyway: its feet pieces (17712 / 17715 / 17718) are granted by no quest in the
+# corpus, so this removes a partial set rather than a working one.
+#
+# 1347 is a zone quest and zone quests own power progression, so it is left deliberately
+# itemless rather than re-pointed: the level 5-7 band's set is already fully distributed across
+# 1326 feet, 1330 hands, 1348 body and 1349 weapon, and 1347 sits 26,927 units from Tower Base,
+# which is why it was not chosen as a carrier in the first place. It is available if a later
+# pass wants a reward there.
+#
+# NOTE ON SEMANTICS. questCompensations upsert is REPLACE-ALL, so omitting `items` and
+# `itemBag` leaves exp and gold only. Itemless blocks carry no itemBag attribute, matching the
+# house shape of the other itemless quests in this file.
+
+questCompensations:
+  upsert:
+    - questId: 1331       # Climbing through the Ranks (was the lv5 Family Ties body)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2300
+          gold: 230
+
+    - questId: 1347       # It Was a Rock...Crawler (was the lv6 Rockhound hands)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 90

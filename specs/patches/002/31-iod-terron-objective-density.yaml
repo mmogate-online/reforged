@@ -1,0 +1,154 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Fix the starved terron collect objectives on quests 1319 and 1348 by converting a share
+# of the co-located AMBIENT terrons into their combat variants.
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 5 (habitat approximation is
+#   adaptation) and rule 4 (padding is reversible policy).
+# Trigger: internal live testing reported both terron collect quests as slow and starved.
+#
+# ROOT CAUSE, ours. Spec 001/15's padding wave authored the bespoke quest-target groups
+# 1300060 (quest 1348, templates 302/303) and 1300061 (quest 1319, templates 300944/300941)
+# from v17 NpcLoc marker clusters. Those markers sit on top of the pre-existing AMBIENT
+# Docile Terron territories, so the authored quest targets landed at the same coordinates,
+# offset by roughly 11 units. Every point therefore holds ONE mob that counts for the quest
+# and THREE that do not:
+#
+#   quest 1348, Southern Checkpoint
+#     credit: group 1300060, 302 Ringleader x6 @90% + 303 Thief x4 @17%  = 10 mobs
+#     ambient: group 1300022, template 102 x10 territories at spawnCount 3 = 30 mobs
+#     the quest asks for 8 items, from 10 mobs, on a 20 second respawn
+#   quest 1319, Ancient Forest
+#     credit: group 1300061, 300944 Chief x10 @85% + 300941 Terron x7 @12% = 17 mobs
+#     ambient: group 1300019, template 102 x17 territories at spawnCount 3 = 51 mobs
+#
+# WHY SPAWNS AND NOT THE QUEST. The only other terron standing at either spot is template
+# 102 "(환경몬스터)자연의 정령", the ambient variant. Adding it to the quest accept list was
+# the first choice and was BLOCKED at authoring time: the DSL modelled a hunt task target as
+# a single id with no list form and no 수여확률. That gap is now delivered
+# (docs/dsl-requests/2026-07-27-hunt-task-multi-target-and-grant-rate.md, DSL commit
+# 2a41fa95), but the user ruled for the spawn-side fix anyway (alternative A of two,
+# 2026-07-27), because it uses BHS's own combat templates rather than making an environment
+# mob a kill target, and because it also THINS the non-credit clutter standing on top of the
+# credit mobs instead of adding more bodies to the same spot. Precedent for the mechanism:
+# spec 002/21, which retargeted npcTemplateId on four Acharak spawns.
+#
+# TEMPLATE CHOICE. Each quest pairs a high-rate zarcoBoss variant with a low-rate zarco one,
+# so the conversions are split between the two rather than going wholly to either. Sending
+# them all to the zarco variant would barely help (17% and 12% grant rates), and sending them
+# all to the zarcoBoss variant would carpet the camp in mini-bosses. All four templates share
+# shapeId 300940 with template 102, so appearance is preserved and only playStyle changes.
+#
+# RESULTING MATH, expected items per full clear of the spot:
+#   1348 needs 8:  was 6x0.90 + 4x0.17 = 6.1   ->  now 12x0.90 + 10x0.17 = 12.5
+#   1319 needs 5:  was 10x0.85 + 7x0.12 = 9.3  ->  now 19x0.85 + 16x0.12 = 18.1
+# Ambient density drops from 30 to 18 at the 1348 spot and from 51 to 33 at the 1319 spot,
+# so the flavour population survives in both places.
+#
+# Each op retargets one territory whose single Npc entry carries spawnCount 3, so each op
+# converts three mobs. Positions, fences, respawn timers and every other attribute are
+# untouched.
+#
+# AI ALIGNMENT, second attribute per op. The ambient spawns carry a spawn-level ai="108"
+# (the environment behaviour), while every credit mob already in groups 1300060 and 1300061
+# carries ai="6", the generic combat profile our padding generator used. Retargeting the
+# template alone would leave the SAME template running two different AIs about 11 units
+# apart, so a converted Terron Ringleader would behave differently from its twin. Each op
+# therefore sets ai=6 as well, making a converted spawn behaviourally identical to the
+# sibling it now matches. Both are isAggressiveMonster="false", so nothing becomes hostile.
+#
+# The `desc` attribute is deliberately NOT touched and still reads "(환경몬스터)자연의 정령"
+# on converted spawns. desc is an internal authoring comment: the player-visible name comes
+# from StrSheet_Creature keyed by (huntingZoneId, templateId), so players correctly see
+# Terron Ringleader / Terron Thief / Terron Chief / Terron. This is the same lesson recorded
+# for the Acharak fix in spec 002/21, where desc read "오칸" on mobs displaying as Acharak.
+
+territorySpawns:
+  update:
+    # ================= quest 1348, group 1300022, 4 of 10 territories ==============
+    # -> 302 Terron Ringleader (zarcoBoss, 90% grant): 2 territories = 6 mobs
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015430          # 66434,-83633, centre of the cluster
+      npcInstanceId: 13474120
+      changes:
+        npcTemplateId: 302
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015470          # 65610,-84483, south-west edge
+      npcInstanceId: 13474160
+      changes:
+        npcTemplateId: 302
+        ai: 6
+
+    # -> 303 Terron Thief (zarco, 17% grant): 2 territories = 6 mobs
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015440          # 67624,-84792, eastern edge
+      npcInstanceId: 13474130
+      changes:
+        npcTemplateId: 303
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015490          # 64914,-84091, western edge
+      npcInstanceId: 13474180
+      changes:
+        npcTemplateId: 303
+        ai: 6
+
+    # ================= quest 1319, group 1300019, 6 of 17 territories ==============
+    # -> 300944 Terron Chief (zarcoBoss, 85% grant): 3 territories = 9 mobs
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016040          # 79851,-83394, northern cluster
+      npcInstanceId: 13474730
+      changes:
+        npcTemplateId: 300944
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016120          # 77904,-84691, western edge
+      npcInstanceId: 13474810
+      changes:
+        npcTemplateId: 300944
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016130          # 80976,-85995, southern edge
+      npcInstanceId: 13474820
+      changes:
+        npcTemplateId: 300944
+        ai: 6
+
+    # -> 300941 Terron (zarco, 12% grant): 3 territories = 9 mobs
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016070          # 78282,-85513, south-west
+      npcInstanceId: 13474760
+      changes:
+        npcTemplateId: 300941
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016160          # 80852,-82833, north-east
+      npcInstanceId: 13474850
+      changes:
+        npcTemplateId: 300941
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016190          # 80366,-85807, south
+      npcInstanceId: 13474880
+      changes:
+        npcTemplateId: 300941
+        ai: 6
