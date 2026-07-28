@@ -502,6 +502,39 @@ entities:
     source_mapping:
       "StrSheet_Quest.xml": "StrSheet_Quest-00000.xml"
 
+  # Quest reward tables. NOT server-only, despite the blanket claim about
+  # compensation families in the domain KB and in this project's family map:
+  # CCompensation/ECompensation/FCompensation/ICompensation have no client
+  # folder, but the client DOES ship 153 QuestCompensationData shards and the
+  # QUEST LOG reward panel reads them. The NPC accept dialog is server-fed
+  # (S_DIALOG.questRewards), which is why the two windows disagreed for as long
+  # as this family went unsynced: the log showed gold and exp (attributes, always
+  # present) but no item, because the class-filtered <Item> rows we added were
+  # server-side only. Root cause write-up: docs/plans/questcomp-client-sync.md.
+  #
+  # SourceMapped, not ZoneBased, for two reasons (both filed as DSL requests):
+  #   - server_path is IdSorted-only, so ZoneBased cannot reach CompensationData/
+  #   - ZoneBased auto sequence assignment misaligns here: 156 server zone files
+  #     against 153 client shards, with zones 620/622/628 having no client shard
+  #     and sitting mid-ordering, which shifts every zone after them
+  #   docs/dsl-requests/2026-07-26-zonebased-server-path.md
+  #   docs/dsl-requests/2026-07-26-zonebased-position-conflict-guard.md
+  #
+  # SCOPED TO ZONE 13 DELIBERATELY. Zone 13 is the only quest reward table this
+  # project has ever modified. Mapping only what we own keeps a game-wide reward
+  # rewrite out of the patch (same posture as the AreaData entry above). The
+  # content-verified full 153-pair mapping is recorded in
+  # docs/plans/questcomp-client-sync.md; add pairs from there when a new zone's
+  # rewards come into scope, or the sync will silently skip them.
+  QuestCompensationData:
+    strategy: SourceMapped
+    client_folder: "QuestCompensationData"
+    root_element: "QuestCompensationData"
+    id_attribute: "questId"
+    xsd_file: "QuestCompensationData/QuestCompensationData.xsd"
+    source_mapping:
+      "CompensationData/QuestCompensationData_13.xml": "QuestCompensationData-00012.xml"
+
   StrSheet_Item:
     strategy: SourceMapped
     client_folder: "StrSheet_Item"

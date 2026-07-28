@@ -152,7 +152,7 @@ The tool detects top-level YAML keys and maps them to sync-config entities:
 | `quests` | Quest | Yes |
 | `questDialogs` | QuestDialog | Yes |
 | `questStrings` | n/a | No (StrSheet_Quest; sync-config has no entity yet) |
-| `questCompensations` | n/a | No (server-only) |
+| `questCompensations` | QuestCompensationData | Yes (zone 13 mapped only; the quest log reward panel reads this client family) |
 | `territorySpawns` | TerritoryData | Yes |
 | `territoryGroups` | TerritoryData | Yes |
 | `territories` | TerritoryData | Yes |
