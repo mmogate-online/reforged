@@ -6,6 +6,31 @@ Newest entries first.
 
 ---
 
+## 2026-07-27
+
+### Content
+- **IoD recall network restored** (`specs/patches/002/26-iod-recall-points.yaml`, 12 ops). The Safe Haven Teleport Scroll (item 160, skill 60130100, type `MYSELF_VILLAGE`) carries no coordinate: its destination is the `recallScrollPos` of the AreaData section the player stands in, and death uses `recallRevivePos` the same way. v31 sends every continent-13 section's scroll to the Tower Base; v92 had repointed 12 of 21 to `93957,-89037,-4554` (North Dock), including the ROOT section 13001 that catches the whole island. All 21 sections now point at the Tower Base, and revive points are restored to their exact v31 mapping including v31's own northern exception (`87533.2031,-83932.6797,-4533.1616` on 13005/13030). Live-validated
+- The 4 kept v92-only camp sections (13031 North Dock, 13032/13033/13034) were repointed too rather than left: their `vender`/`restBonus` flags advertise a service layer that does not exist, since `audit_continent_merchants` reports all 9 merchants filed under the HZ-13 camp layer as PHANTOM while the real cast stands at the Tower Base. Their revive points were derived from the v31 section whose fence contains each camp, not chosen. Divergence-logged as policy
+- Item 133 (Tower Base Teleport Scroll, skill 60130101, `SER_POS`) was confirmed NOT at fault: byte-identical across the v31 server, v92 server and v92 client shard, resolving inside section 64001 in both eras. Patch 000's coordinate fix is intact
+- Patch 002 applied at 69 specs / 9161 ops / 0 failed / 0 warnings; server diff exactly 12 insertions and 12 deletions on one file with every changed attribute a `recall*` value; both gates exit 0. Deployed to dev, 71 files hash-verified. Server-only: the client `Area` family did not change, so `0.1.0-dev.37` stayed current and no republish was needed
+
+### Infrastructure
+- `ZONE-PORT-PLAYBOOK.md` phase 3 gained the section-attribute trap: a MATCH verdict must state which fields were compared, since the IoD sections diff compared fences vertex-exact and never compared attributes, and partial "realign" upserts merge only the attributes they name. Also records that a destination-carrying attribute may live on the section rather than the item or skill that appears to own the behaviour
+
+## 2026-07-26
+
+### Content
+- **Quest log reward panel now shows item rewards.** `QuestCompensationData` has a client leg (153 shards) that had never been synced, so every reward row written since the client DC was authored existed server-side only. `config/sync-config.yaml` gained a `QuestCompensationData` entity (`SourceMapped`, `id_attribute: questId`) and `migrate.py` maps `questCompensations` to it. Scoped to the single zone-13 pair, since zone 13 is the only quest reward table this project has ever modified; a new zone needs its pair added or the sync skips it silently. Zone 13 server-to-client reward parity went from 25 divergent quests to 0
+- Client shard `QuestCompensationData-00012.xml` 77 -> 84 quests: 15 quests regained their `assassin`/`fighter`/`glaiver` rows (64 item rows, plus the `engineer` row on 1310), 1353-1358 and 1387 gained their reward blocks outright, and 1380/1381 corrected from a stale 5 gold / 50 XP to the server's 150 / 2100. Zero rows lost on any pre-existing quest. Live-validated
+- Quests 1361-1368 lost their vestigial client-side 5 gold / 50 XP stubs, matching the server's empty stubs; none of the eight has a quest file in either era, so none can be accepted
+- Patch 002 replayed at 68 specs / 9149 ops / 0 failed / 0 warnings; `dungeon_audit.py --dungeons 9037` and `audit_class_gates.py --zones 13,64,213,436` both exit 0
+- Client published `0.1.0-dev.37` (16 new chunks / 57.16 MiB / 19,445 reused, merkle `7f58970177`). No server leg: the reward table was already correct and deployed, which is why the payout worked while the log did not
+- New `docs/plans/questcomp-client-sync.md` carries the content-verified full 153-pair server-file-to-client-shard mapping for when another zone's rewards come into scope
+
+### Infrastructure
+- datasheet-domain: `loot-system.md` and `entity-map.md` corrected. The blanket "all compensation entities are server-only" claim holds for CCompensation/ECompensation/FCompensation/ICompensation but was false for QuestCompensation, and it is what put `questCompensations` at `None` in the sync map. New `QuestCompensation has a client leg` section documents the two-source split: the accept dialog is fed by `S_DIALOG.questRewards`, the quest log reads the client shard, and `S_QUEST_INFO` carries no reward fields at all
+- `tools/migrate/README.md` sync table, `ZONE-PORT-PLAYBOOK.md` family map, both reward-spec generators (`gen_reward_specs.py`, `gen_v31_reward_specs.py`), and three spec headers corrected to drop the same claim
+
 ## 2026-07-25
 
 ### Content
