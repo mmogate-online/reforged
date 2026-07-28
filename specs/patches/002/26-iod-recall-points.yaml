@@ -1,0 +1,200 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Restore the Island of Dawn recall network (scroll destination + revive point).
+#
+# Doctrine: docs/plans/classic-restoration/DOCTRINE.md rule 1 (v31 wins on divergence
+#   for classic-scoped entities).
+# Source of truth: v31 server AreaData_13_ATW_P.xml section attributes.
+# Target file: AreaData_13_ATW_Death_P.xml (v92 continent 13 area).
+# Live report 2026-07-26: the "Safe Haven Teleport Scroll" sent players to North Dock
+#   instead of the Tower Base.
+#
+# ROOT CAUSE. The scroll item is NOT at fault. Item 133 (Tower Base Teleport Scroll,
+# skill 60130101, type SER_POS) carries an explicit destination that is byte-identical
+# across the v31 server, the v92 server and the v92 client shard, and resolves inside
+# section 64001 Tower Base in both eras. The scroll players actually carry is item 160
+# (Safe Haven Teleport Scroll, skill 60130100, type MYSELF_VILLAGE), which carries NO
+# coordinate: the destination is read from the AreaData section the player stands in,
+# via recallScrollPos. Same for death, via recallRevivePos.
+#
+# THE DIVERGENCE. v31 sets recallScrollPos to the Tower Base on all 20 continent-13
+# sections, uniformly. v92 repointed 12 of its 21 sections to 93957,-89037,-4554, which
+# resolve_position places in section 13031 North Dock. The critical one is the ROOT
+# section 4 (13001 Island of Dawn): it is the catch-all covering the whole island, so
+# every player not standing inside one of the 9 correct sub-sections fell through to it.
+#
+# WHY PATCH 001 MISSED IT. Spec 001/00 ported 12 sections and wrote these attributes
+# correctly on every section it authored in full, which is why 9 sections are already
+# right. The remainder were never written: the root section was not in the port list,
+# 13004/13007/13030 were partial "realign" upserts whose attribute list did not include
+# them, and 13003/13006/13024/13028 existed in both eras so the diff dispositioned them
+# MATCH on identity and fence geometry without comparing section attributes.
+#
+# SCOPE RULING (user, 2026-07-26), three parts:
+#   A. The 8 classic sections take their exact v31 values. No judgement involved.
+#   B. The 4 v92-only camp sections (13031 North Dock, 13032/13033/13034 garrison camps)
+#      are ALSO repointed, even though tracker ruling 1 keeps them as sections. Their
+#      vender/restBonus flags advertise a service layer that does not exist in the
+#      restored world: audit_continent_merchants reports all 9 merchants filed under the
+#      HZ-13 camp layer as PHANTOM (no NpcTemplate anywhere), while the real cast stands
+#      at the Tower Base (Rutgar store 16064, who sells items 133 and 160, plus Viator,
+#      Ailesa, Mahadam, Donush, and Ainah at 66605,-77933). Sending a recall to an empty
+#      dock is strictly worse than sending it to the only service hub, and a uniform
+#      destination removes the positional lottery where the answer depended on which
+#      invisible fence the player occupied. The camp TELEPORT network is untouched: that
+#      is TeleportMenuList/TeleportList keyed on campId, a different mechanism.
+#   C. recallRevivePos is restored too. Note v31 is NOT uniform here: it deliberately
+#      localizes three northern sections to 87533.2031,-83932.6797,-4533.1616 while the
+#      other 17 use the Tower Base. Porting it verbatim inherits that tuning rather than
+#      inventing a compromise.
+#
+# DERIVATION FOR THE 4 v92-ONLY CAMPS. They have no v31 counterpart, so each inherits
+# the revive point of the v31 section whose fence contains its position (checked with
+# resolve_position against the v31 area):
+#   13031 North Dock  (93957,-89037) -> inside v31 13030 Timeless Woods -> north point
+#   13032 North Camp  (81472,-80507) -> inside v31 13030 Timeless Woods -> north point
+#   13033 Mid Camp    (64121,-84576) -> root 13001 only                 -> Tower Base
+#   13034 South Camp  (53169,-70241) -> inside v31 13004 / 13027        -> Tower Base
+# Their recallScrollPos is the Tower Base like everything else, because v31's scroll
+# destination is uniform even where its revive point is not.
+#
+# UNTOUCHED (already correct, verified): sections 6 (13002), 9 (13005), 34 (13022),
+# 36 (13015), 43 (13018), 47 (13013), 30 (64001), 40 (64007).
+#
+# Divergence log: one row for part B (policy, v92-only sections given the v31 default).
+# Parts A and C are restoration, not divergence.
+#
+# Partial merge upserts: only the listed attributes are written, fences and every other
+# attribute are left untouched (same shape as spec 001/00 section B).
+
+areaSections:
+  upsert:
+
+    # ---- A. Classic sections: exact v31 values --------------------------------
+
+    # 13001 Island of Dawn (ROOT, catch-all for the whole island).
+    # scroll 93957,-89037,-4554 (North Dock) -> Tower Base
+    # revive 64121,-84576,-3779 (mid camp)   -> Tower Base
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 4
+      nameId: 13001
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13004 Tainted Gorge. revive was 53169,-70241,-5663 (south camp).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 8
+      nameId: 13004
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13003 Mysterious Ruins. revive was 64121,-84576,-3779 (mid camp).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 31
+      nameId: 13003
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13024 Temple of Terra ruins. revive was 64121,-84576,-3779 (mid camp).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 49
+      nameId: 13024
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13028 Arun's Hill. revive was 64121,-84576,-3779 (mid camp).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 52
+      nameId: 13028
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13030 Timeless Woods. v31 NORTHERN EXCEPTION: revive stays off the Tower Base.
+    # scroll 93957,-89037,-4554 -> Tower Base; revive 81472,-80507,-4452 -> 87533 north.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 53
+      nameId: 13030
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+
+    # 13006 Lok cultist base. revive was 53169,-70241,-5663 (south camp).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 54
+      nameId: 13006
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13007 Mathar Spire. revive was 64121,-84576,-3779 (mid camp).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 55
+      nameId: 13007
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # ---- B. v92-only camp sections: v31 default, derived per the header -------
+
+    # 13031 North Dock. Sat on its own coordinate for both. Inside v31 13030.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 57
+      nameId: 13031
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+
+    # 13032 Garrison North Camp. Inside v31 13030 Timeless Woods.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 58
+      nameId: 13032
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+
+    # 13033 Garrison Central Camp. Covered by the v31 root section only.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 59
+      nameId: 13033
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13034 Garrison South Camp. Inside v31 13004 Tainted Gorge / 13027 outpost.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 60
+      nameId: 13034
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
