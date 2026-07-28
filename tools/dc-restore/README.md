@@ -12,11 +12,11 @@ Restoration draws on three sources, each resolved from `reforged/.references`:
 | Easy-restore source | `v31_datasheet` | v31.04 server datasheet, flat per-zone files (`NpcData_13.xml`). Same server schema as v92, so restores are near copy-paste. Lives on a network drive (`Z:`). |
 | Current truth | `server_datasheet` | v92 server datasheet, the restoration target and validation baseline. |
 
-The modules are **survey.py** (per-zone gap report), **quest_restore.py** (restore quest header wiring from the client reference), **comp_restore.py** (restore quest compensation blocks from v31), **spawn_restore.py** (reconstruct deleted TerritoryData spawns from the client shard), **dcq.py** (cross-source content query CLI), **audit_quests.py** (deterministic quest-difference flagger), **dungeon_audit.py** (dungeon reference integrity gate), and **audit_class_gates.py** (class-gate coverage gate). `dclib.py` is the shared library every module builds on.
+The modules are **survey.py** (per-zone gap report), **quest_restore.py** (restore quest header wiring from the client reference), **comp_restore.py** (restore quest compensation blocks from v31), **spawn_restore.py** (reconstruct deleted TerritoryData spawns from the client shard), **dcq.py** (cross-source content query CLI), **audit_quests.py** (deterministic quest-difference flagger), **dungeon_audit.py** (dungeon reference integrity gate), **audit_class_gates.py** (class-gate coverage gate), and **audit_quest_design.py** (quest design review, advisory). `dclib.py` is the shared library every module builds on, and `auditlib.py` carries the shared model for the design review.
 
 ### Read-only vs restore modules
 
-`survey.py`, `dcq.py`, `audit_quests.py`, `dungeon_audit.py`, and `audit_class_gates.py` are **read-only analysis** tools: they never write to a datasheet. `quest_restore.py` and `comp_restore.py` are **restore** tools (dry-run by default, `--apply` writes). The analysis tools that judge current v92 state differ in which lane they read: `survey.py` diffs the clean git HEAD baseline (patch overlays are annotated, not counted as loss), while `dcq.py` and `audit_quests.py` read the **working tree** (so authored spawns and restored comp/prereq show up as the current truth), noting dirty files for context.
+`survey.py`, `dcq.py`, `audit_quests.py`, `dungeon_audit.py`, `audit_class_gates.py`, and `audit_quest_design.py` are **read-only analysis** tools: they never write to a datasheet. `quest_restore.py` and `comp_restore.py` are **restore** tools (dry-run by default, `--apply` writes). The analysis tools that judge current v92 state differ in which lane they read: `survey.py` diffs the clean git HEAD baseline (patch overlays are annotated, not counted as loss), while `dcq.py` and `audit_quests.py` read the **working tree** (so authored spawns and restored comp/prereq show up as the current truth), noting dirty files for context.
 
 ### Dry-run by default
 
@@ -253,6 +253,41 @@ How it judges coverage:
 
 Default roster is the full 13 classes minus `Soulless`: Reaper starts in a different zone at a higher level and never walks these chains (decision 2026-07-25). Override with `--classes`.
 
+## audit_quest_design.py (quest design review, ADVISORY)
+
+Deterministic checks over quest rewards, graph wiring and objective tuning. Read-only, **always exits 0**, and never prints the word PASS: a clean run means the deterministic checks found nothing, which is a much smaller claim than approval. Born from the 2026-07-27 Island of Dawn trimming and redistribution wave, which surfaced defects that are individually valid and wrong as a system: quests 1304 and 1323 granting the identical 12-row class weapon bag at the identical 800 exp and 80 gold (authentic v31 data, so no source diff could find it), no gear set below level 7 completable anywhere in the corpus, and quest 1348 asking for 8 items from a population expected to yield about 6.1.
+
+```bash
+# Review the quests a change touched (the usual form)
+python reforged/tools/dc-restore/audit_quest_design.py --zones 13,64,213,313,364 --since HEAD
+
+# Explicit findings scope, machine-readable output, current check inventory
+python reforged/tools/dc-restore/audit_quest_design.py --zones 13 --quests 1323,1324
+python reforged/tools/dc-restore/audit_quest_design.py --zones 13 --json
+python reforged/tools/dc-restore/audit_quest_design.py --list-checks
+
+# Descriptive tables (set placement, giver load, effort versus reward)
+python reforged/tools/dc-restore/audit_quest_design.py --zones 13 --report
+```
+
+Three scopes, never conflated. `--zones` is the SUBJECT scope (which quests findings are reported about) and is required. Evidence is ALWAYS corpus-wide regardless of `--zones`: set completeness must see every granting quest in the game, and no trim can be proven safe against a zone-scoped view of inbound references. `--quests` or `--since` is the FINDINGS scope, marking which findings are NEW; without it every pre-existing condition in the zone is reported as though you had just introduced it.
+
+Severity is CONFIDENCE that a finding is a defect, not importance. `high` means the signature marked a real defect every time it fired. Accepted findings go in `reforged/config/quest-design-waivers.yaml`, keyed by the stable finding key, and a waiver without a `reason` is ignored by the loader (a reasonless waiver is indistinguishable from nobody having looked).
+
+Unlike every other module here, this one reads the **working tree** by default, because the subject of a design review is the content you just changed. `--baseline-ref <sha>` opts into a historical read; the regression fixtures use it to pin `789fec28`.
+
+Run `--list-checks` for the current inventory rather than trusting any prose list, including this one. The registry is the single source of truth, and the `quest-design-review` skill defers to it for exactly that reason.
+
+## Tests
+
+The toolkit has a pytest suite under `tools/dc-restore/tests/` in two tiers: hermetic (synthetic fixtures, runs on any clone) and corpus (the real datasheet at the pinned commit `789fec28`, skipped with a stated reason when the private repo is absent). See `tests/README.md`.
+
+```bash
+python -m pip install -r reforged/requirements-dev.txt   # once
+python -m pytest                                          # from reforged/
+python -m pytest -m "not corpus"                          # hermetic tier only
+```
+
 ## Notes and gotchas
 
 ### The v92 HEAD baseline (most important)
@@ -299,6 +334,9 @@ v31 has no VillagerDialog directory (absent by design). Client and v92 villager 
 | `dcq.py` | Cross-source content query CLI (`quest` / `npc` / `name` / `collection`). |
 | `audit_quests.py` | Deterministic Island quest-difference flagger (markdown + JSON worklist). |
 | `dungeon_audit.py` | Dungeon reference integrity gate: DungeonData refs vs parsed per-HZ content; flags comment-disabled data. |
+| `audit_quest_design.py` | Quest design review (ADVISORY, always exit 0): reward duplication, gear-set completeness, class coverage, reference integrity, objective feasibility. |
+| `auditlib.py` | Shared model for the design review: findings, the three scopes, waivers, corpus evidence. |
+| `tests/` | pytest suite: hermetic fixtures plus corpus regressions pinned to `789fec28`. |
 | `README.md` | This file. |
 
 ## Roadmap (planned modules)
@@ -316,3 +354,5 @@ Shipped:
 - **dcq.py** - cross-source content query CLI (quest / npc / name / collection).
 - **audit_quests.py** - deterministic Island quest-difference flagger with a worklist and JSON mirror.
 - **dungeon_audit.py** - dungeon reference integrity gate (parsed-XML resolution of DungeonData territory/entity refs, comment-disabled detection).
+- **audit_class_gates.py** - class-gate coverage gate against the current roster.
+- **audit_quest_design.py** - quest design review (advisory): reward duplication, gear-set completeness, class matrix, reference integrity, objective feasibility, plus descriptive placement and effort reports.

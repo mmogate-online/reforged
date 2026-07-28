@@ -189,22 +189,52 @@ def index_client_shards(family_dir: Path, zone_extractor, zones: set[int]) -> di
 # ---------------------------------------------------------------------------
 
 class V92Baseline:
-    """Reads v92 datasheet content from git HEAD for dirty files.
+    """Reads v92 datasheet content from a git baseline for dirty files.
 
     Uncommitted working-tree edits are patch overlays (deliberate tuning), not
-    lost content. Baseline reads must therefore come from HEAD for any file that
-    is dirty per `git status --porcelain`; clean files are read from disk.
+    lost content. Baseline reads must therefore come from the baseline ref for
+    any file that differs from it; unchanged files are read from disk.
+
+    The default ref is HEAD, which is the moving restoration baseline. Pass an
+    explicit commit to pin a historical state (`V92Baseline(dir, ref="789fec28")`).
+    A pinned ref reads EVERY file from git, never from disk: a file that is
+    clean relative to HEAD can still differ from an older commit, so a disk read
+    would silently return post-baseline content. Regression fixtures depend on
+    this, since HEAD advances every time a patch closes.
     """
 
-    def __init__(self, datasheet_dir: Path):
+    def __init__(self, datasheet_dir: Path, ref: str = "HEAD"):
         self.datasheet_dir = datasheet_dir
+        self.ref = ref
+        self.pinned = ref != "HEAD"
         self.repo_root = self._repo_root(datasheet_dir)
         if self.repo_root is not None:
             self.prefix = datasheet_dir.resolve().relative_to(self.repo_root).as_posix()
-            self._dirty = self._porcelain()
+            self._dirty = self._diff_vs_ref() if self.pinned else self._porcelain()
         else:
             self.prefix = ""
             self._dirty = set()
+
+    def _diff_vs_ref(self) -> set[str]:
+        """Datasheet-relative paths differing between the pinned ref and the working tree.
+
+        `git diff --name-only <ref>` spans both directions of committed drift and
+        uncommitted overlays, but it cannot see UNTRACKED files. A patch that
+        adds new quest files leaves them untracked, and leaving them out of the
+        drift set means they get read off disk and counted as part of a baseline
+        they do not exist in. The porcelain scan supplies exactly those.
+        """
+        r = subprocess.run(
+            ["git", "-C", str(self.repo_root), "diff", "--name-only", self.ref, "--", self.prefix],
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+        )
+        marker = self.prefix + "/"
+        drift = {
+            line[len(marker):]
+            for line in (l.strip().strip('"') for l in r.stdout.splitlines())
+            if line.startswith(marker)
+        }
+        return drift | self._porcelain()
 
     @staticmethod
     def _repo_root(path: Path) -> Path | None:
@@ -244,23 +274,30 @@ class V92Baseline:
         return (self.datasheet_dir / relpath).exists()
 
     def head_exists(self, relpath: str) -> bool:
+        """Whether the file exists at the baseline ref (HEAD unless pinned)."""
         rel = relpath.replace("\\", "/")
         r = subprocess.run(
-            ["git", "-C", str(self.repo_root), "cat-file", "-e", f"HEAD:{self.prefix}/{rel}"],
+            ["git", "-C", str(self.repo_root), "cat-file", "-e", f"{self.ref}:{self.prefix}/{rel}"],
             capture_output=True,
         )
         return r.returncode == 0
 
     def read(self, relpath: str, baseline: bool = True) -> str | None:
-        """Return file text. When baseline and the file is dirty, read from HEAD.
+        """Return file text. Baseline reads come from the ref, not the working tree.
 
-        Returns None when the file is absent from the chosen source (missing in
-        HEAD, or missing in the working tree for a clean read).
+        Returns None when the file is absent from the chosen source (missing at
+        the ref, or missing in the working tree for a non-baseline read).
         """
         rel = relpath.replace("\\", "/")
+        # The drift set is computed against the WORKING TREE (git diff for a
+        # pinned ref, git status for HEAD), so a file it does not list is
+        # byte-identical on disk and needs no subprocess. Reading every file
+        # through git "to be safe" costs one process per file: 2,710 quests take
+        # minutes instead of under a second, which would put the migrate hook
+        # far past the point anyone would leave it enabled.
         if baseline and self.repo_root is not None and rel in self._dirty:
             r = subprocess.run(
-                ["git", "-C", str(self.repo_root), "show", f"HEAD:{self.prefix}/{rel}"],
+                ["git", "-C", str(self.repo_root), "show", f"{self.ref}:{self.prefix}/{rel}"],
                 capture_output=True,
             )
             if r.returncode != 0:
@@ -401,7 +438,35 @@ TK_VISIT_NPC = "NPCId"         # visit-group NPC ref ("hz,tid")
 TK_DUNGEON = "던전Id"          # dungeon id
 TK_FLAG_ITEM = "Flag아이템이름"  # given-item display ref (@quest:...)
 
-_SENTINEL_PREREQ = "99,99"
+TK_BAG = "아이템작성"          # hunt-deliver bag wrapper (count lives here, not per entry)
+TK_COLLECT_BAG = "전달아이템지정"  # collect-task deliver bag wrapper
+TK_MONSTER_WRAP = "몬스터지정"  # monster-entry wrapper
+TK_MONSTER_GROUP = "몬스터그룹"  # group-hunt wrapper (count lives on the GROUP)
+TK_GROUP_NAME = "그룹이름"      # group-hunt display name
+TK_VISIT_GROUP = "방문그룹"     # visit-target wrapper
+TK_ITEM_SPEC = "아이템지정"     # plain item-deliver wrapper
+TK_COLLECT_SPEC = "채집물지정"  # collect-node wrapper
+TK_AREA = "목표지역"            # move-to-area wrapper
+
+# A quest is disabled by pointing its prerequisite at a nonexistent quest. TWO
+# encodings are in use (60 files carry 99,99; 17 carry 99,9999), and treating
+# only the first as a sentinel reports 17 disabled quests as live.
+SENTINEL_PREREQS = frozenset({"99,99", "99,9999"})
+
+# Body container each task label promises, derived from the corpus rather than
+# assumed. A label whose body lacks its container is a parse finding: the task
+# does not do what its name says, and any check keying on the label is wrong
+# about it. Types absent from this map are unconstrained.
+TASK_BODY_EXPECT = {
+    "사냥Task": TK_MONSTER_WRAP,
+    "사냥전달Task": TK_BAG,
+    "그룹사냥Task": TK_MONSTER_GROUP,
+    "방문Task": TK_VISIT_GROUP,
+    "아이템전달Task": TK_ITEM_SPEC,
+    "찔러준아이템전달Task": TK_DELIVER_QTY,
+    "채집Task": TK_COLLECT_SPEC,
+    "PC이동Task": TK_AREA,
+}
 
 
 def _text(el) -> str:
@@ -422,6 +487,96 @@ def _parent_map(root):
     return {c: p for p in root.iter() for c in p}
 
 
+def _wrapped_entries(body, wrapper: str):
+    """Yield the entries of a container, in either shape the corpus uses.
+
+    Most containers repeat their own tag one level down (<X><X>..</X></X>), so
+    the outer element is the list and the inner ones are the rows. 반복Task
+    states its single bag FLAT instead, putting the fields straight on the outer
+    element. Assuming only the doubled shape drops all 317 repeat-task bags, and
+    a dropped bag reads as a task with no requirement at all.
+    """
+    for outer in body:
+        if strip_ns(outer.tag) != wrapper:
+            continue
+        inner = [c for c in outer if strip_ns(c.tag) == wrapper]
+        if inner:
+            yield from inner
+        else:
+            yield outer
+
+
+def _monster_entries(parent) -> list[tuple[str, str, str]]:
+    """(monsterId, killCount, grantChance) for each 몬스터지정 row under parent."""
+    rows: list[tuple[str, str, str]] = []
+    for entry in _wrapped_entries(parent, TK_MONSTER_WRAP):
+        mid = kill = chance = ""
+        for f in entry:
+            tag = strip_ns(f.tag)
+            if tag == TK_MONSTER_ID:
+                mid = _text(f)
+            elif tag == TK_KILL:
+                kill = _text(f)
+            elif tag == TK_CHANCE:
+                chance = _text(f)
+        if mid:
+            rows.append((mid, kill, chance))
+    return rows
+
+
+def _extract_bags(body) -> list[dict]:
+    """Deliver bags with their REQUIRED count and the entries that fill them.
+
+    The count of a hunt-deliver or collect task lives on the bag wrapper
+    (아이템작성 / 전달아이템지정), never on the monster entries, while the grant
+    rates live per entry. Feasibility is the ratio of the two, so they are kept
+    together rather than flattened into the task-wide monster list.
+    """
+    bags: list[dict] = []
+    for wrapper in (TK_BAG, TK_COLLECT_BAG):
+        for entry in _wrapped_entries(body, wrapper):
+            bag = {"kind": wrapper, "flag": "", "item": "", "qty": "", "monsters": []}
+            for f in entry:
+                tag = strip_ns(f.tag)
+                if tag == TK_FLAG_ITEM:
+                    bag["flag"] = _text(f)
+                elif tag == TK_ITEM_ID:
+                    bag["item"] = _text(f)
+                elif tag == TK_DELIVER_QTY:
+                    bag["qty"] = _text(f)
+            bag["monsters"] = _monster_entries(entry)
+            bags.append(bag)
+    return bags
+
+
+def _extract_groups(body) -> list[dict]:
+    """Group-hunt targets: the count lives on the GROUP, entries carry none."""
+    groups: list[dict] = []
+    for entry in _wrapped_entries(body, TK_MONSTER_GROUP):
+        grp = {"name": "", "kills": "", "monsters": _monster_entries(entry)}
+        for f in entry:
+            tag = strip_ns(f.tag)
+            if tag == TK_GROUP_NAME:
+                grp["name"] = _text(f)
+            elif tag == TK_KILL:
+                grp["kills"] = _text(f)
+        groups.append(grp)
+    return groups
+
+
+def task_body_mismatch(task: dict) -> str | None:
+    """The container a task's label promises but its body lacks, or None.
+
+    Never guess from a label: a 사냥Task with no 몬스터지정 is a data error, and
+    silently treating it as a hunt with zero targets hides the error inside a
+    feasibility verdict.
+    """
+    expected = TASK_BODY_EXPECT.get(task.get("type", ""))
+    if expected is None or expected in task.get("body_kinds", frozenset()):
+        return None
+    return expected
+
+
 def _extract_task(task_el) -> dict:
     """Normalize one <Task> into named gameplay fields (absent -> default)."""
     tid_raw = task_el.get("id")
@@ -430,6 +585,7 @@ def _extract_task(task_el) -> dict:
         "type": "",
         "monsters": [], "collections": [], "deliver_items": [],
         "deliver_direct": [], "visits": [], "target_npc": [], "dungeon": "",
+        "bags": [], "groups": [], "body_kinds": frozenset(),
     }
     body = None
     for child in task_el:
@@ -475,6 +631,12 @@ def _extract_task(task_el) -> dict:
             out["target_npc"].append(_text(el))
         elif tag == TK_DUNGEON and _text(el):
             out["dungeon"] = _text(el)
+
+    out["body_kinds"] = frozenset(
+        strip_ns(c.tag) for c in body if len(c) or (c.text or "").strip()
+    )
+    out["bags"] = _extract_bags(body)
+    out["groups"] = _extract_groups(body)
 
     # Direct deliver quantity (찔러준/사냥전달 tasks: a 전달수량 that is a direct
     # Body child, not inside a 전달아이템지정 wrapper with an 아이템Id).
@@ -549,7 +711,7 @@ def parse_quest(text: str) -> dict | None:
                 for q in prereq_wrap.iter():
                     if strip_ns(q.tag) == QT_QUESTID and _text(q):
                         m["prereqs"].append(_text(q))
-        m["sentinel"] = (len(m["prereqs"]) == 1 and m["prereqs"][0] == _SENTINEL_PREREQ)
+        m["sentinel"] = (len(m["prereqs"]) == 1 and m["prereqs"][0] in SENTINEL_PREREQS)
 
         trig = _find_local(header, QT_TRIGGER)
         if trig is not None:
@@ -874,4 +1036,307 @@ def load_island_quests(sources) -> dict[str, dict[int, dict]]:
             if model is not None:
                 models[gid] = model
         out[src] = models
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Item model (reward design review: levels, class gating, gear sets)
+# ---------------------------------------------------------------------------
+#
+# Three facts about ItemTemplate that a reward audit gets wrong by default, all
+# measured against the full corpus rather than assumed:
+#
+# 1. The regional shards are DISJOINT id spaces, not overrides of the base file.
+#    Measured at 789fec28: base ItemTemplate.xml holds 34,276 items and the
+#    shards add 75,864 more with zero id overlap. 171 of the 925 item ids quest
+#    rewards reference (19%) live only in a shard, so a base-only read silently
+#    loses class gating and level data for a fifth of every reward table. This
+#    is the opposite of the BuyList rule, where the _NAEU variant is a
+#    duplicate to be skipped.
+#
+# 2. linkLookInfoId carries the VISUAL TIER, and tier is not level: tier 005 is
+#    a level-4 item, tier 007 a level-7 one, tier 116 a level-58 one. Sets group
+#    by tier; anything grouping by level spans the whole game.
+#
+# 3. The look id has two layouts. 6,489 armour items encode
+#    armourType|slot|tier (2/3/4 by 11/12/13 by a 3-digit tier), 26 add a
+#    leading digit, and 31 leather items use a different layout entirely
+#    (slot 3/4/5, then a literal 10, then the tier). Only the TIER is read from
+#    the look id for that reason; family and slot come from combatItemSubType,
+#    which is consistent across all 6,546 armour items.
+
+EQUIPMENT_TYPES = frozenset({
+    "EQUIP_ARMOR_BODY", "EQUIP_ARMOR_ARM", "EQUIP_ARMOR_LEG",
+    "EQUIP_WEAPON", "EQUIP_ACCESSORY",
+})
+
+# combatItemSubType is the authority for both of these: it is a clean cross
+# product of slot prefix and family suffix over every armour item in the corpus.
+ARMOUR_SLOTS = ("body", "hand", "feet")
+ARMOUR_FAMILIES = ("leather", "mail", "robe")
+
+# Which armour family each class wears, verified against requiredClass across
+# the corpus rather than taken from lore.
+CLASS_ARMOUR = {
+    "mail": frozenset({"LANCER", "BERSERKER", "ENGINEER", "FIGHTER"}),
+    "leather": frozenset({"WARRIOR", "SLAYER", "ARCHER", "GLAIVER", "SOULLESS"}),
+    "robe": frozenset({"SORCERER", "PRIEST", "ELEMENTALIST", "ASSASSIN"}),
+}
+
+_ITEM_EL = re.compile(r"<Item ([^>]*?)/>")
+_ITEM_ATTR = re.compile(r'(\w+)="([^"]*)"')
+
+
+def _as_int(value: str | None) -> int | None:
+    if value is None or not value.strip().lstrip("-").isdigit():
+        return None
+    return int(value)
+
+
+class ItemInfo:
+    """The item attributes a reward review needs, and nothing else."""
+
+    __slots__ = ("id", "name", "level", "required_level", "required_class",
+                 "combat_type", "combat_subtype", "look_id", "source")
+
+    def __init__(self, attrs: dict[str, str], source: str = ""):
+        self.id = int(attrs["id"])
+        self.name = attrs.get("name", "")
+        self.level = _as_int(attrs.get("level"))
+        self.required_level = _as_int(attrs.get("requiredLevel"))
+        # ItemTemplate uses UPPERCASE class names, compensation rows lowercase
+        # internal ones. Normalize once here so no comparison site has to
+        # remember which side it is holding.
+        self.required_class = frozenset(
+            c.strip().upper() for c in attrs.get("requiredClass", "").split(";") if c.strip()
+        )
+        self.combat_type = attrs.get("combatItemType", "")
+        self.combat_subtype = attrs.get("combatItemSubType", "")
+        self.look_id = attrs.get("linkLookInfoId", "0")
+        self.source = source
+
+    @property
+    def is_equipment(self) -> bool:
+        """True for real gear only.
+
+        combat_type.startswith("EQUIP") also matches roughly 4,100 cosmetic,
+        underwear and inheritance items, which is why the allow-list exists.
+        """
+        return self.combat_type in EQUIPMENT_TYPES
+
+    @property
+    def slot(self) -> str:
+        """body / hand / feet for armour, empty for anything else."""
+        for prefix in ARMOUR_SLOTS:
+            if self.combat_subtype.startswith(prefix):
+                return prefix
+        return ""
+
+    @property
+    def family(self) -> str:
+        """leather / mail / robe for armour, empty for anything else."""
+        low = self.combat_subtype.lower()
+        for family in ARMOUR_FAMILIES:
+            if low.endswith(family):
+                return family
+        return ""
+
+    @property
+    def tier(self) -> str:
+        """Visual tier, the last three digits of the look id. NOT a level."""
+        if not self.look_id or self.look_id == "0" or not self.look_id.isdigit():
+            return ""
+        return self.look_id[-3:]
+
+    @property
+    def set_key(self) -> tuple[str, str] | None:
+        """(family, tier), the identity of a visual gear set, or None."""
+        if not self.family or not self.tier:
+            return None
+        return (self.family, self.tier)
+
+    def admits(self, class_name: str) -> bool:
+        """Whether requiredClass admits a class. Empty means unrestricted."""
+        return not self.required_class or class_name.upper() in self.required_class
+
+    def __repr__(self) -> str:
+        return f"ItemInfo({self.id}, {self.name!r}, lv{self.required_level})"
+
+
+def parse_item_template(text: str, source: str = "") -> dict[int, ItemInfo]:
+    """Parse one ItemTemplate shard. Every <Item> in the corpus is self-closing."""
+    out: dict[int, ItemInfo] = {}
+    for m in _ITEM_EL.finditer(text):
+        attrs = dict(_ITEM_ATTR.findall(m.group(1)))
+        if "id" not in attrs or not attrs["id"].isdigit():
+            continue
+        info = ItemInfo(attrs, source)
+        out[info.id] = info
+    return out
+
+
+class ItemModel:
+    """Every item across every ItemTemplate shard, indexed by id."""
+
+    def __init__(self, items: dict[int, ItemInfo]):
+        self.items = items
+
+    def __contains__(self, item_id: int) -> bool:
+        return item_id in self.items
+
+    def __len__(self) -> int:
+        return len(self.items)
+
+    def get(self, item_id: int) -> ItemInfo | None:
+        return self.items.get(item_id)
+
+    def equipment(self) -> dict[int, ItemInfo]:
+        return {i: it for i, it in self.items.items() if it.is_equipment}
+
+    def sets(self) -> dict[tuple[str, str], dict[str, list[int]]]:
+        """{(family, tier): {slot: [item ids]}} over all armour with a look id."""
+        out: dict[tuple[str, str], dict[str, list[int]]] = {}
+        for item in self.items.values():
+            key = item.set_key
+            if key is None or not item.is_equipment:
+                continue
+            out.setdefault(key, {}).setdefault(item.slot, []).append(item.id)
+        return out
+
+
+def item_template_files(datasheet_dir: Path) -> list[str]:
+    """Every ItemTemplate shard, base first. Disjoint id spaces, so read all."""
+    names = sorted(p.name for p in Path(datasheet_dir).glob("ItemTemplate*.xml"))
+    base = "ItemTemplate.xml"
+    return ([base] if base in names else []) + [n for n in names if n != base]
+
+
+def load_item_model(datasheet_dir: Path, read=None) -> ItemModel:
+    """Load every ItemTemplate shard into one model.
+
+    `read(relpath) -> str | None` injects the source, so a caller can pass
+    `V92Baseline.read` to load the model as it stood at a pinned commit.
+    """
+    datasheet_dir = Path(datasheet_dir)
+    if read is None:
+        def read(relpath: str) -> str | None:
+            path = datasheet_dir / relpath
+            return read_text(path) if path.exists() else None
+
+    items: dict[int, ItemInfo] = {}
+    for name in item_template_files(datasheet_dir):
+        text = read(name)
+        if text is None:
+            continue
+        items.update(parse_item_template(text, source=name))
+    return ItemModel(items)
+
+
+# ---------------------------------------------------------------------------
+# Item source universe (where an item can come from, other than one quest)
+# ---------------------------------------------------------------------------
+#
+# A reward is duplicated when the same item is reachable from more than one
+# place. Answering that needs every family that can hand an item to a player,
+# and the families disagree on which attribute holds the id, so the table is
+# declarative and each entry is proven to yield ids by a test.
+#
+# Two families named in the original survey are deliberately absent:
+# BuyMenuList holds no item ids at all (it maps menus to BuyList list ids, so it
+# answers "which NPC sells this list", not "which items exist"), and
+# ItemProduceRecipe's recipeItemId is the recipe scroll rather than its product.
+
+_REGIONAL = re.compile(
+    r"_(NAEU|NA|EU|KR|JP|RUS|THA|TW|CN|cn|Console|Dummy|ctf|Tool)(_Tool)?\.xml$"
+)
+
+
+def is_regional_variant(filename: str) -> bool:
+    """Whether a file is a regional twin of a base file.
+
+    Regional shops duplicate their base list, so counting both reports every
+    stocked item as sold in eight places. This is the opposite of the
+    ItemTemplate rule, where the shards are disjoint and must all be read.
+    """
+    return bool(_REGIONAL.search(filename))
+
+
+class ItemSource:
+    """One family of files that can put an item in a player's hands."""
+
+    __slots__ = ("family", "kind", "pattern", "attrs", "list_attrs")
+
+    def __init__(self, family: str, kind: str, pattern: str,
+                 attrs: tuple[str, ...] = (), list_attrs: tuple[str, ...] = ()):
+        self.family = family
+        self.kind = kind
+        self.pattern = pattern
+        self.attrs = attrs
+        self.list_attrs = list_attrs
+
+
+# kind: purchase = a player can buy or exchange for it; drop = it falls off a
+# monster or chest; craft = it is produced from other items; quest = a quest
+# grants it; world = a world object or dungeon hands it over.
+ITEM_SOURCES: tuple[ItemSource, ...] = (
+    ItemSource("QuestCompensation", "quest", "CompensationData/QuestCompensationData_*.xml", ("templateId",)),
+    ItemSource("ECompensation", "drop", "CompensationData/ECompensation_*.xml", ("templateId",)),
+    ItemSource("CCompensation", "drop", "CompensationData/CCompensation_*.xml", ("templateId",)),
+    ItemSource("ICompensation", "drop", "CompensationData/ICompensation_*.xml", ("templateId",)),
+    ItemSource("FCompensation", "drop", "CompensationData/FCompensation_*.xml", ("templateId",)),
+    ItemSource("WorldDrop", "drop", "CompensationData/WorldDrop*MonsterData.xml", ("templateId",)),
+    ItemSource("BuyList", "purchase", "BuyList*.xml", ("itemId", "NeedMedalItemId")),
+    ItemSource("ItemMedalExchange", "purchase", "ItemMedalExchange*.xml", ("itemId", "medalItemId")),
+    ItemSource("TokenExchange", "purchase", "TokenExchange*.xml", ("itemTemplateId",)),
+    ItemSource("Gacha", "purchase", "Gacha*.xml", ("itemTemplateId", "lockboxTemplateId")),
+    ItemSource("ItemConversion", "craft", "ItemConversion*.xml", ("templateId", "itemTemplateId")),
+    ItemSource("ItemMixData", "craft", "ItemMixData*.xml", ("itemId", "successItemId", "failedItemId")),
+    ItemSource("EquipmentEvolution", "craft", "EquipmentEvolutionData*.xml", ("resultTemplateId", "targetTemplateId")),
+    ItemSource("MythicCraft", "craft", "MythicCraftData*.xml", ("resultTemplateId", "targetTemplateId", "materialTemplateId")),
+    ItemSource("ItemProduceRecipe", "craft", "ItemProduceRecipe*.xml", ("criticalItemId",)),
+    ItemSource("GiveParcelItem", "world", "GiveParcelItem*.xml", ("giveItemTemplateId",)),
+    ItemSource("WorkObject", "world", "WorkObjectData*.xml", ("itemId", "keyItemId")),
+    ItemSource("DungeonDrop", "world", "DungeonData_*.xml", (), ("itemIdList",)),
+)
+
+SOURCE_KINDS = {s.family: s.kind for s in ITEM_SOURCES}
+
+
+def _attr_ids(text: str, attr: str) -> set[int]:
+    return {int(v) for v in re.findall(rf'\b{attr}="(\d+)"', text)}
+
+
+def _list_ids(text: str, attr: str) -> set[int]:
+    out: set[int] = set()
+    for raw in re.findall(rf'\b{attr}="([^"]*)"', text):
+        out |= {int(p) for p in raw.split(",") if p.strip().isdigit()}
+    return out
+
+
+def scan_item_sources(datasheet_dir: Path, read=None,
+                      families: set[str] | None = None) -> dict[int, set[str]]:
+    """{item id: {family names that can grant it}} across the source universe."""
+    datasheet_dir = Path(datasheet_dir)
+    if read is None:
+        def read(relpath: str) -> str | None:
+            path = datasheet_dir / relpath
+            return read_text(path) if path.exists() else None
+
+    out: dict[int, set[str]] = {}
+    for source in ITEM_SOURCES:
+        if families is not None and source.family not in families:
+            continue
+        for path in sorted(datasheet_dir.glob(source.pattern)):
+            if is_regional_variant(path.name):
+                continue
+            text = read(path.relative_to(datasheet_dir).as_posix())
+            if text is None:
+                continue
+            ids: set[int] = set()
+            for attr in source.attrs:
+                ids |= _attr_ids(text, attr)
+            for attr in source.list_attrs:
+                ids |= _list_ids(text, attr)
+            for item_id in ids:
+                out.setdefault(item_id, set()).add(source.family)
     return out

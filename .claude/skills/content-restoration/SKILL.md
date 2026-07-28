@@ -70,7 +70,14 @@ server-side. See the StrSheet_NpcLoc lesson below.
    restore reproduces the era's class list exactly, so classes added after that
    era match no variant and the content is offered to nobody; anything gated
    behind it is then unreachable. See the class-gate lesson below.
-5. **Deploy**: `deploy-dev/deploy_dev.py --verify` (server, SSH), then
+5. **Review (any restored or changed quests, ADVISORY)**: run
+   `python reforged/tools/dc-restore/audit_quest_design.py --zones <zones> --since HEAD`.
+   Always exits 0 and is not a gate: it reports design defects that are
+   individually valid and wrong as a system (duplicate rewards, uncompletable
+   gear sets, objectives the zone cannot supply, references into disabled
+   quests). A NEW finding needs a fix or a waiver entry with a reason. See the
+   `quest-design-review` skill.
+6. **Deploy**: `deploy-dev/deploy_dev.py --verify` (server, SSH), then
    `deploy-client/deploy_client.py --all --note "..."` to pack, install, and
    dry-run the publish, and `--publish --note "..."` to commit the upload.
    The client DC is already synced by migrate; `deploy_client.py` does not

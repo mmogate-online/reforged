@@ -1,0 +1,40 @@
+# Accepted findings from audit_quest_design.py.
+#
+# This file is the durable record of deliberate design decisions. A finding that
+# is waived without a reason records nothing, so entries missing a `reason` are
+# ignored by the loader and the finding keeps reporting.
+#
+# Each entry:
+#   key     stable finding key, `check:subject[:detail]`, copied from the tool
+#           output or from `--json`. It never contains counts or positions, so
+#           it survives unrelated content changes.
+#   reason  why this is correct as designed. Write it for someone who will read
+#           it in a year with none of today's context.
+#   date    when the ruling was made (YYYY-MM-DD).
+#
+# Example:
+#   waivers:
+#     - key: duplication:item-160:1301+buylist
+#       reason: >
+#         The recall scroll is a deliberate starter gift AND stocked by the
+#         camp merchant, so a new character is never stranded without one.
+#       date: 2026-07-20
+
+waivers:
+  - key: "duplication:item-160 (recall_scroll2):1390:BuyList"
+    reason: >
+      Deliberate: the recall scroll is a starter gift AND stocked by the camp
+      merchant, so a character who used theirs is never stranded. Measured
+      calibration for Island of Dawn: this is the ONLY item where zone-13 quest
+      rewards intersect the shops at all, which is what makes keeping shops in
+      evidence scope cheap.
+    date: 2026-07-27
+
+  - key: "duplication:item-6048 (combat_Item_49):1351+1352"
+    reason: >
+      Deliberate: 1351 and 1352 are the physical and caster variants of one
+      Kiriya quest (Supply and Demand), class-gated so each player is offered
+      exactly one. Granting the same item at the same payout is correct by
+      construction here, and is the shape audit_class_gates.py exists to keep
+      intact. Any variant pair produces this signature.
+    date: 2026-07-27

@@ -52,6 +52,20 @@ class, engine-spawned, salvage) / REMOVE / DECISION. Method rules learned the ha
 - Expect the baseline to be closer to v31 than assumed: IoD TerritoryData was 100% identical
   (whole family became a no-op) and the quest spine matched fully except rewards. Diff first,
   never assume work exists.
+- SECTION-ATTRIBUTE TRAP: a MATCH verdict must state WHICH fields were compared. The IoD
+  sections diff compared fences vertex-exact and dispositioned same-id sections MATCH, but
+  never compared their attributes, so `recallScrollPos` / `recallRevivePos` silently kept
+  v92 values on 12 of 21 sections. v31 sent every section's recall scroll to the Tower Base;
+  v92 sent 12 of them to North Dock, including the ROOT section that catches the whole
+  island, so the zone's teleport scroll and death-revive both landed players in the wrong
+  place for a year of sessions (found live 2026-07-26, fixed by spec 002/26). Geometry
+  equality is not section equality. Diff the attribute set explicitly, and give any
+  behaviour-bearing attribute (`recall*`, `campId`, `vender`, `restBonus`, `priority`,
+  `disableItemId`) its own row. The same caution applies to partial "realign" upserts: they
+  merge ONLY the attributes listed, so a realigned section keeps every v92 value you did not
+  name. Note the destination-carrying attribute may live on the SECTION rather than the item
+  or skill that appears to own the behaviour: `MYSELF_VILLAGE` recall skills carry no
+  coordinate at all.
 - SHOPS TRAP: diff a merchant's EXCLUSIVE tabs and its SHARED lists separately. Shared lists
   (game-wide BuyLists) have blast radius: measure the consumer count and make it a DECISION.
   IoD precedent: user ruled shared stores port to v31 game-wide WITH documented side effects
@@ -98,6 +112,11 @@ the project, restoration or not. What follows is only what is specific to a zone
   `newWorldMap` key was silently unmapped and would have skipped client sync).
 - Parent-delete CASCADE is real (territory delete removes child spawns): prefer one cascade
   delete over ordered child+parent deletes.
+- Quest work gets a DESIGN review as well as a correctness one:
+  `python tools/dc-restore/audit_quest_design.py --zones <zones> --since HEAD` (advisory,
+  always exit 0). Duplicate rewards, gear sets nothing completes, objectives the zone cannot
+  supply, and references into disabled quests are all invisible in a spec diff. See the
+  `quest-design-review` skill.
 
 ## Phase 5: apply, verify, deploy
 
@@ -126,12 +145,16 @@ the project, restoration or not. What follows is only what is specific to a zone
 
 ## Family map (where things live)
 
+Measured at server datasheet `789fec28` over all 2,707 quests present there: 1,969 carry the
+`보상` flag on exactly the last task, 729 carry it on several tasks, and 9 carry exactly one
+that is NOT the last. Treating "reward on the final task" as a rule is wrong for 738 quests.
+
 | Family | Server | Client | Sync |
 |--------|--------|--------|------|
-| Quest bodies | `QuestData/00NNNN.quest` (sentinel disable = prereq `99,99`; reward flag on final task) | per-quest shards | Quest entity |
+| Quest bodies | `QuestData/00NNNN.quest` (sentinel disable = prereq `99,99` OR `99,9999`; the `보상` reward flag is NOT an invariant) | per-quest shards | Quest entity |
 | Quest strings | monolithic `StrSheet_Quest.xml` (rows NNNN001+) | 2879 opaque shards | shard-routed |
 | Quest dialogs | `QuestDialog/QuestDialog_<gid>.xml` (one PER QUEST) | shards | QuestDialog entity |
-| Rewards | `CompensationData/QuestCompensationData_<hz>.xml` | none | server-only |
+| Rewards | `CompensationData/QuestCompensationData_<hz>.xml` | `QuestCompensationData` shards (153) | QuestCompensationData entity; **zone 13 only** is mapped, add a pair per new zone or the sync skips it silently (`docs/plans/questcomp-client-sync.md`) |
 | Spawns | `TerritoryData_<hz>.xml` (groups > territories > Npc/Party; pos 0,0,0 = random-in-fence) | none | TerritoryData |
 | Villager menus | `VillagerData/VillagerMenu.xml` (`hz,tpl` -> Menu entries) | synced | VillagerMenu |
 | Ambient NPC lines | `VillagerDialog/VillagerDialog_<hz>.xml` | per-villager shards | NONE (hand edits; DSL entity broken, request filed) |

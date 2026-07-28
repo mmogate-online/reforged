@@ -24,6 +24,7 @@ Follow this structure when creating a new spec file.
 - **Reference existing items by a package constant, not a raw id.** Import the `item-ids` constant (e.g. `$SPEED_MOTE_649`) instead of hardcoding a templateId. If an item you reference is not named yet, generate it demand-driven: `python tools/item-ids/gen_item_ids.py names --datasheet "<server_datasheet>" --from-spec <spec>` (see the `spec-standardization` skill). Before minting a NEW id, confirm it is free: `gen_item_ids.py check --ids <id>`.
 - For attributes not covered by the tables in this skill, consult the schema docs at the `dsl_docs_enduser` path from `.references`, under `schemas/`.
 - For content affecting balance, rewards, or currencies, check the content framework docs (`content_framework` in `.references`) first.
+- **If the spec touches `quests` or `questCompensations`, invoke `quest-design-review` first.** Quests fail review as a system, not one at a time: duplicate rewards, gear sets nothing completes, objectives the zone cannot supply, and references into disabled quests are all invisible in a spec diff and none are caught by `dsl validate`.
 
 ### Read the entity's capabilities before choosing the operation
 

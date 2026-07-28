@@ -61,7 +61,10 @@ ENTITY_SYNC_MAP = {
     # Wired via `merge: shard-routed` (datasheetlang 8a3d89ab), which rewrites each
     # record in the shard that already owns it. See the entity note in sync-config.yaml.
     "questStrings": "StrSheet_Quest",
-    "questCompensations": None, # QuestCompensationData: server-only
+    # QuestCompensationData has a CLIENT leg (153 shards) that the quest log
+    # reward panel reads; only C/E/F/ICompensation are truly server-only.
+    # See docs/plans/questcomp-client-sync.md.
+    "questCompensations": "QuestCompensationData",
     "territorySpawns": "TerritoryData",
     "territoryGroups": "TerritoryData",
     "territories": "TerritoryData",
@@ -234,6 +237,57 @@ def load_manifest_modified_count(manifest_path: Path) -> int:
         return 0
 
 
+# Entity keys whose changes a quest design review has anything to say about.
+QUEST_DESIGN_KEYS = {
+    "quests", "questCompensations", "questDialogs", "questStrings",
+    "questStoryGroups", "questHuntingZones",
+}
+
+
+def quest_design_advisory(project_root: Path, server_datasheet: str,
+                          source_ref: str | None, entity_keys: set[str]) -> None:
+    """Print ONE advisory line for the quests this patch touched.
+
+    Never the full report: a patch apply is not the place to read 60 findings,
+    and a wall of pre-existing conditions trains people to scroll past it. The
+    number printed is NEW findings only, derived from the datasheet diff against
+    the ref the apply already pinned reads to, which is what makes it meaningful.
+
+    Advisory means advisory: this never changes migrate's exit code, and any
+    failure inside it is reported and stepped over rather than failing a patch
+    that applied correctly.
+    """
+    if not (entity_keys & QUEST_DESIGN_KEYS):
+        return
+
+    tool = project_root / "reforged" / "tools" / "dc-restore" / "audit_quest_design.py"
+    if not tool.is_file():
+        return
+
+    cmd = [sys.executable, str(tool), "--all-zones", "--json",
+           "--datasheet", server_datasheet]
+    if source_ref:
+        cmd += ["--since", source_ref]
+
+    print()
+    print("── Quest Design Review ──")
+    try:
+        env = dict(os.environ, PYTHONIOENCODING="utf-8")
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
+                              errors="replace", timeout=300, env=env)
+        payload = json.loads(proc.stdout.rsplit("ADVISORY", 1)[0])
+        summary = payload["summary"]
+    except Exception as exc:
+        print(f"  (advisory unavailable: {type(exc).__name__}: {exc})")
+        return
+
+    print(f"  ADVISORY: {summary['new']} new findings "
+          f"({summary['total']} total, {summary['waived']} waived)")
+    if summary["new"]:
+        print(f"  Full report: python reforged/tools/dc-restore/audit_quest_design.py "
+              f"--all-zones --since {source_ref or 'HEAD'}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Apply all specs from a patch and sync affected entities.")
     parser.add_argument("--patch", required=True, help="Patch folder name under reforged/specs/patches/")
@@ -351,6 +405,8 @@ def main() -> int:
         summary_parts.append(f"{len(server_only_keys)} server-only skipped")
     summary_parts.append(f"{apply_secs:.0f}s")
     print("  |  ".join(summary_parts))
+
+    quest_design_advisory(project_root, server_datasheet, source_ref, all_entity_keys)
 
     # Client sync
     if args.skip_sync:
