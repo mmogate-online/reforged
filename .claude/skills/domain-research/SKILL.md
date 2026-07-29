@@ -37,8 +37,8 @@ This project has three research sources. Use the right one for the question.
 **Path:** Resolve `domain_docs` from `.references` file.
 
 **Structure:**
-- `entities/` — System documentation (item, equipment, enchant, passivity, evolution, loot, NPC, quest, crystal, gacha, etc.)
-- `reference/` — Lookup tables (ID ranges, type codes, class data, grade tiers, abnormality/passivity compatibility)
+- `entities/`: System documentation (item, equipment, enchant, passivity, evolution, loot, NPC, quest, crystal, gacha, etc.)
+- `reference/`: Lookup tables (ID ranges, type codes, class data, grade tiers, abnormality/passivity compatibility)
 
 **Navigation:** Read the knowledge base index first: `D:\dev\github-vperim\datasheet-domain\.claude\CLAUDE.md` (the repo root of `domain_docs` from `.references`). It is a curated flat table mapping every documented topic to its exact file path. Use it to find the right file to read directly rather than globbing or navigating from `index.md`.
 
@@ -51,19 +51,19 @@ This project has three research sources. Use the right one for the question.
 **Path:** Resolve `dsl_docs_enduser` from `.references` file.
 
 **Structure:**
-- `guides/` — Quickstart, definitions, packages, recipes (bulk-updates, equipment-sets, quest-chains)
-- `reference/` — CLI, syntax, operations, filters, imports, variables, error codes, common pitfalls
-- `schemas/` — Per-entity attribute reference (one file per entity type)
+- `guides/`: Quickstart, definitions, packages, recipes (bulk-updates, equipment-sets, quest-chains)
+- `reference/`: CLI, syntax, operations, filters, imports, variables, error codes, common pitfalls
+- `schemas/`: Per-entity attribute reference (one file per entity type)
 
 **Navigation:** For schema questions, go directly to `schemas/<category>/<entity>.mdx`. For syntax/feature questions, check `reference/`. For how-to questions, check `guides/` and `guides/recipes/`.
 
-**Format:** MDX files — ignore JSX component tags, read the markdown content.
+**Format:** MDX files, ignore JSX component tags, read the markdown content.
 
 ## 3. MCP datasheet tools
 
 Two MCP servers are configured. Selecting the wrong one produces incorrect results.
 
-### Server selection — mandatory rule
+### Server selection: mandatory rule
 
 | Query intent | Server |
 |---|---|
@@ -87,15 +87,15 @@ When restoring original content to the v92 server:
 1. Use `datasheet-v31` tools to understand the original structure (items, quests, NPCs, loot, rewards, dialogs)
 2. Use domain docs to understand how those systems are modeled in v92 schema
 3. Use `datasheet-v92` tools to check what already exists and find appropriate ID ranges
-4. Write DSL specs targeting v92 based on findings from steps 1–3
+4. Write DSL specs targeting v92 based on findings from steps 1 to 3
 
 ### Discovery pattern
 
 When investigating an unfamiliar entity type:
-1. `describe_entity` — discover XML structure, attribute names, value distributions
-2. `search` or `search_text` — find entities matching criteria
-3. `lookup` or `batch_lookup` — get specific entities by ID
-4. `profile_item` — complete item profile (equipment stats, enchant chain, passivities, display name)
+1. `describe_entity`: discover XML structure, attribute names, value distributions
+2. `search` or `search_text`: find entities matching criteria
+3. `lookup` or `batch_lookup`: get specific entities by ID
+4. `profile_item`: complete item profile (equipment stats, enchant chain, passivities, display name)
 
 ### Relationship tracing
 
@@ -146,13 +146,29 @@ Use `find_free_ids` on `datasheet-v92` to find unused ID gaps. Always check `dom
 ## Research workflow
 
 1. **Identify the question type** using the source selection table above
-2. **Select the correct MCP server** — v31 for original game knowledge, v92 for current server state
-3. **Check domain docs first** for conceptual understanding — don't jump to MCP queries without context
-4. **Use MCP tools for specific data** — entity lookups, ID searches, relationship tracing
-5. **Check DSL docs for implementation** — how to express findings as YAML specs
-6. **Cross-reference** — domain docs explain the "what", v31 shows the "original state", v92 shows the "current state", DSL docs show the "how to change"
+2. **Select the correct MCP server**: v31 for original game knowledge, v92 for current server state
+3. **Check domain docs first** for conceptual understanding, and do not't jump to MCP queries without context
+4. **Use MCP tools for specific data**: entity lookups, ID searches, relationship tracing
+5. **Check DSL docs for implementation**: how to express findings as YAML specs
+6. **Cross-reference**: domain docs explain the "what", v31 shows the "original state", v92 shows the "current state", DSL docs show the "how to change"
 
 ## Lessons
+
+### An MCP miss is evidence only once you know the mechanism that would have produced a hit
+- **Date/source:** 2026-07-28: `reverse_lookup_shop_npcs` returned no NPCs for token shop menus 9999008, 9999004 and 9999006, and that was written up as "all three patch-002 token shops are unreachable", a defect claim that reached three documents before it was caught. The shops are fine. They are item-opened `MEDAL_USEABLE` right-click shops, where `VillagerMenuItem` binds the ITEM to the menu and no NPC is ever bound. The KB already said so: `entities/merchant-system.md` maps `MEDAL_USEABLE` to "Right-click opens shop UI from inventory" with the exact `VillagerMenuItem + BuyMenuList + BuyList` chain, and `packages/dungeon-tokens/index.yml` repeats it in its header.
+- **Why:** a query that returns nothing answers the question you asked, not the question you meant. `reverse_lookup_shop_npcs` asks "which NPC opens this menu", and for a shop type where the answer is legitimately "none", the miss is the CORRECT result. An absence looks identical whether the wiring is broken, the wiring is a different shape, or the query was the wrong one, and unlike a hand-written parser's empty result there is no bug to find, so nothing prompts a second look.
+- **Apply:** before turning any negative result into a defect claim, state the mechanism that would have produced a positive one and confirm the subject uses it. For shops specifically: read `combatItemType` on the item first. `MEDAL_USEABLE` plus `itemUseCount` means the item opens the shop and no NPC binding exists or should. Check the KB's primary doc for the system before filing, which is the same discipline as the entry below, and check git log for the commit that established the wiring (here, `a57c65b`, which built that chain deliberately).
+
+### Classify id hits attribute-level before sizing a migration; adjacent id bands are usually different families
+- **Date/source:** 2026-07-28: a raw-count pass reported `QuestCompensationData` carrying 3,053 feedstock references across 70 files, which would have made it the second largest surface in a corpus-wide flattening. An attribute-level pass found the real number is ZERO. All 3,053 hits were ids 94113 to 94118, Relic Fragment and Relic Shard, a `generalMaterial` bound family that merely sits next to feedstock (94101 to 94112) in the id space. The same pass also found 216 references to 94119 to 94122, which are not items at all.
+- **Why:** a bare integer in XML carries no type. The same digits appear as an item id, a quantity, a coordinate, an unrelated entity id and a string id, and a family boundary inside a contiguous id run is invisible to grep. Sizing work from raw counts inflates scope in one direction and hides the real surface in the other, and the error survives review because the number is genuinely present in the file.
+- **Apply:** for any census that will size work, parse with ElementTree and emit the (file family, element, attribute) triple for every hit, then classify each triple as an item reference or a false positive BEFORE totalling. Confirm family boundaries with `batch_lookup` or `profile_item` on the edge ids rather than assuming a contiguous range is one family. Report per-id counts, never a single total: it is the per-id breakdown that exposes a foreign family.
+
+### Before calling a setting undocumented, grep the raw file for `<!--` and read the system's PRIMARY doc end to end
+- **Date/source:** 2026-07-28: a two-restart investigation into why a field event would not start was already answered in two places. `ContinentData.xml` documents in a comment block at the top of the file (the very file being edited) that its `field` channel type is the attribute that must be set to use the field event system, and the domain KB's field event doc says the same thing in its "What Starts an Event" section. Every inspection of the file went through Python `ElementTree`, which DISCARDS comments: 162 comments in that file, zero in the parse. The doc search read the zone-hierarchy doc and the DSL schema page instead of the field event doc itself.
+- **Why:** the datasheet corpus carries its own inline documentation, and every structural reader (ElementTree, the MCP, the server loader) drops it, so a file can look undocumented while explaining itself in plain text a few lines above the row you are editing. Reading AROUND a system has the same shape: adjacent docs describe the entity, not what triggers it, so they read as complete while omitting the answer.
+- **Apply:** when reasoning about an unfamiliar attribute, grep the raw file for `<!--` BEFORE parsing it structurally (or parse with `ET.XMLParser(target=ET.TreeBuilder(insert_comments=True))`). Before declaring anything undocumented, open the primary doc for that system from the KB index and read it end to end rather than sampling neighbours. Note this is the OTHER comment problem: `find_dormant_blocks` finds content commented OUT, and never surfaces explanatory comments.
+- **Also strip comments before any count that sizes work or claims content exists** (2026-07-28): a feedstock census read 35 references in `LimitedDrop.xml` and 0 after stripping, because the entire file body is commented out and the system caps nothing; `EventMatching.xml` went 217 to 164 the same way. A raw count silently mixes live rows with retired ones, so "this content exists" and "this content is reachable" become the same number when they are not.
 
 ### A stale `.mcp/` is invisible from inside a session, and a half-updated one is fatal
 - **Date/source:** 2026-07-25: the datasheet-mcp team shipped 18 commits including 9 new tools, and documented in their own CLAUDE.md that the deployment step had previously "left the servers a build behind". Two distinct failure modes are recorded there.
