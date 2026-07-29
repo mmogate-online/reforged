@@ -3,9 +3,135 @@
 Pilot zone under `../DOCTRINE.md`. Supersedes the retired `docs/plans/iod-alpha-content-loop/`
 pilot (its TRACKER and data artifacts remain readable as reference; its doctrine does not apply).
 
-Last updated: 2026-07-27 (quest log reward panel fixed and live-validated; IoD recall network
-restored and live-validated; zone-quest trimming and reward-cadence wave applied, gated and
-DEPLOYED to dev, awaiting live validation. Patch 002 still OPEN).
+> **Sub-plan: Guardian Legion field events moved to PATCH 003.** The authoring wave for the
+> three-phase Orcan field event has its own folder, `guardian-legion/`, with `PLAN.md` (phases and
+> acceptance gates), `BACKLOG.md` (every test, failure and decision) and `TRACKER.md` (current
+> state). `/prime-classic-restoration iod` does not enumerate nested folders, so start there for
+> any field event or new-monster work. It is BLOCKED until patch 002 is closed.
+
+Last updated: 2026-07-28 (Guardian Legion field event v0 LIVE-VALIDATED on Island of Dawn:
+the first field event this project has ever authored, and the first outside the shipped
+level-65 set. Quest log reward panel and recall network live-validated earlier; zone-quest
+trimming and reward-cadence wave still awaiting live validation. Patch 002 still OPEN).
+
+## Session handoff (2026-07-28, sixth session): Guardian Legion field events
+
+First field event authored by this project. v0 was a deliberate lifecycle probe, not
+content: one npc spawns, the progress bar is bound to its HP, killing it completes the
+mission. It is LIVE-VALIDATED and the approach is proven.
+
+### The blocker, and what it cost
+
+The event was structurally perfect and did nothing for two restarts. Cause: a field event
+will not run on a continent that is not declared `channelType="field"`. Continent 13 was
+`channelingZone`.
+
+This was documented in TWO places we already had, and both reads went around it:
+
+1. `ContinentData.xml`'s own header comment defines the value as the attribute that must
+   be set to use fieldEvent/fieldData, and says base behaviour is otherwise identical to
+   `none`/`channelingZone`. Missed because every inspection used Python ElementTree,
+   which DISCARDS comments; the file has 162 of them and the parse showed none.
+2. The domain KB's own `field-event-system.md`, under "What Starts an Event", already
+   listed the field channel type as a prerequisite. Missed because the search covered
+   `zone-hierarchy-system.md` and the DSL schema page instead of the system's primary doc.
+
+What actually isolated it was a CONTROL TEST: running a shipped event (`/@startfe 7014 2`)
+in the same session with the same commands. It started and teleported correctly while
+`13/1` did nothing, which proved the subsystem worked on the box and localised the fault
+to our continent in one step. Do this before changing any data next time.
+
+Both lessons are now in the skills (`domain-research`, `content-restoration`).
+
+### What is live and validated
+
+- Event fires, mission UI renders, npc spawns, killing it drives the bar to 100.
+- `channelType` flip is spec-driven on the server (spec `002/35`) and a HAND EDIT on the
+  client, deliberately. See the DSL bug below.
+- Field event families are fully plumbed: `Field`, `FieldEvent`, `StrSheet_Field`,
+  `EventDialog`, `StrSheet_EventDialog` registered in `sync-config.yaml` and mapped in
+  migrate's `ENTITY_SYNC_MAP`. `packages/fieldevent` installed (22 definitions).
+- Adding a `FieldData` file inserts a shard into an IdSorted layout: continent 13 sorts
+  FIRST (13 < 2000), so all 12 existing `Field` shards shift and the set goes to 13.
+  That patch MUST sync with `--no-narrow` or it fails E680.
+
+### Findings that contradicted our assumptions
+
+- **A dedicated mission hunting zone is NOT required.** Every shipped event uses one
+  (620-631 on ground continents). Ours runs its territories directly in live world HZ 13,
+  with `startTerritoryId` also pointing at a world territory, and it works.
+- **Event territories must be `type="quest"`.** All 647 HZ-13 territories are `normal` and
+  spawn at world start; a `normal` event territory would leak its mobs into the live world
+  permanently.
+- **The world server emits NO runtime logging for field events.** The only line in any
+  boot log is the template-loading line, so log silence proves nothing.
+
+### Known defects found and contained this session
+
+- **`ContinentData` client sync CORRUPTS the client.** The server writes
+  `isSpecificSpace="TRUE"` uppercase; the client XSD types it `xsd:boolean`; the cast
+  fails and the sync writes `false` for all 135 uppercase-TRUE continents, clearing the
+  instanced-space flag on every dungeon and battlefield continent. Exit 0, no warning.
+  `continentDatas` is mapped to `None` in `ENTITY_SYNC_MAP` as a QUARANTINE (not a
+  server-only claim). Filed: `docs/dsl-requests/2026-07-28-continentdata-sync-boolean-case.md`.
+  DSL team is working on it as of session end. When it lands: map the key, re-sync, and
+  verify with an ATTRIBUTE-level diff that only continent 13 changed.
+- **`IdSorted` silently plans 0 files without an explicit `server_path`.** Filed:
+  `docs/dsl-requests/2026-07-27-idsorted-server-path-required.md`.
+- **`AreaData` had never synced to the client**, its `source_mapping` key was missing the
+  subdirectory prefix. FIXED. Zero client diff resulted, because the client `Area.xsd`
+  declares neither `recallScrollPos` nor `recallRevivePos`, so spec `002/26`'s recall work
+  genuinely was server-only after all.
+
+### Reproducibility defect: FIXED
+
+`migrate` applies with `--source-ref <server HEAD>`, so an UNTRACKED server datasheet does
+not exist in the commit it reads and gets rewritten from scratch. This truncated
+`StrSheet_Field.xml` from 214 rows to 8 on two separate runs. Resolved by committing both
+imported baselines to the server datasheet repo (`7b5e4092`, canonical pre-change content:
+214 and 159 rows). Replay now yields 222 rows with zero canonical rows lost.
+
+Note this was a DELIBERATE exception to the never-commit-mid-patch rule, made by the user,
+precisely to move the source-ref baseline.
+
+### Next session: make the event engaging
+
+v0 is deliberately not content. The user's stated goals:
+
+1. **Dedicated event mobs.** Currently the boss is `13,902` Dwarf Guardian, chosen only
+   because it is the sole Orcan-family template with ZERO references anywhere. Every other
+   camp Orcan is load-bearing: `13,4`/`13,5` for quest 1349, `13,901` for 1311 and 1337,
+   `13,1002`/`1003` for 1309. Author dedicated templates, slightly more powerful.
+2. **Map markers and legibility.** Live feedback: there is no indicator of what belongs to
+   the event, and its mobs are visually mixed with ambient spawns. The mechanism that
+   fixes this is the world takeover shipped events use: despawn the underlying world
+   territories in `initialize`, restore them at `beforeDeleteEvent` with
+   `isEventNpc="false"`. v0 deliberately skipped it to keep blast radius small.
+3. **Progress calibration.** One kill currently fills the bar, because `progressType` is
+   bound to a single npc's HP. Move to kill-count or multi-stage progress.
+4. **Rewards.** Measured: the shipped small-event `dealing` coefficient 1.45 yields about
+   1 contribution point per 2 kills at level 8, against a participation bag requiring
+   100000 points. Unreachable. Recalibrate before wiring any reward.
+5. **Explore more field event features in practice**: waves on timers, `killCount` groups,
+   multi-phase flag gates, `changePos` to move the staging point, `AutoEventBalance`
+   (its abnormality ladder 77770001-77770030 is level-65 tuned and untested at level 8),
+   and `ClearRewardPool`.
+
+The endgoal remains the multi-phase moving event: start near Eria at `55608,-82162` and
+advance to the Orcan Bivouac at `49991,-78114`, roughly 6,900 units WNW, via Ayrdoss at
+`49870,-80830`. Donor architecture for that is the shipped escort mission, which uses
+`enterTerritory` per leg plus `changePos` on both `start` and `revive`.
+
+### Outstanding
+
+- Live-test the zone-quest trimming wave (specs `002/27` to `002/33`), still unvalidated.
+- Live-test Brawler and Valkyrie on the new-class spine, and the Dulari wrong-class case.
+- Quests 1316 and 1317 still grant level-11 gear from story quests.
+- **Patch 002 grew on 2026-07-28**: the reward-vector wave folds into it rather than a later patch.
+  Its scope, rulings and measured corpus figures are in `docs/plans/reward-vectors/IOD-BACKLOG.md`
+  and `docs/patch-002-scope.md`. That is forward design, not restoration, so nothing is duplicated
+  here; prime from the backlog before touching feedstock, tokens or zone-quest rewards.
+- Then close patch 002 with one commit per datasheet repo.
 
 ## Deployment status (2026-07-27)
 
@@ -268,7 +394,7 @@ quest in the corpus), so this removed a partial set rather than a working one.
 | Band | Set | Source |
 |---|---|---|
 | levels 1-4 | level-4 set, look tier 005 | zone quests 1322 feet / 1324 body / 1325 hands / 1319 weapon |
-| levels 5-7 | level-7 First Expedition, tier 007 | zone quests 1326 feet / 1330 hands / 1348 body / 1349 weapon |
+| levels 5-7 | level-7 First Expedition, tier 007 | zone quests 1326 feet / 1330 hands / 1332 body / 1333 weapon (body and weapon revised 2026-07-27, were 1348 / 1349) |
 | level 8 | Kugai set | Kugai's Crest token shop (spec 002/20), tokens drop from Kugai 13,1004 |
 | in between | nothing | by design |
 
@@ -356,7 +482,7 @@ Every remaining equipment grant in the zone-13 reward table:
 | Quest | Live? | Grants |
 |---|---|---|
 | 1322 / 1324 / 1325 / 1319 | yes | the level-4 set: feet / body / hands / weapon |
-| 1326 / 1330 / 1348 / 1349 | yes | the level-7 First Expedition set: feet / hands / body / weapon |
+| 1326 / 1330 / 1332 / 1333 | yes | the level-7 First Expedition set: feet / hands / body / weapon (body and weapon revised 2026-07-27, were 1348 / 1349) |
 | 1316 | yes | level-11 weapons (STORY quest, still granting gear) |
 | 1317 | yes | level-11 body (STORY quest, still granting gear) |
 | 1310 | NO, sentinel | a full level-7 set plus weapons, inert (cut subplot, disabled in both eras) |

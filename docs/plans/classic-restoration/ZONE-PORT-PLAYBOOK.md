@@ -161,9 +161,72 @@ that is NOT the last. Treating "reward on the final task" as a rule is wrong for
 | Speech selectors | `VillagerData/<hz><id>.condition` | n/a | speechConditions (server-only) |
 | Sections | `AreaData/AreaData_*` (commented-out blocks are re-enable candidates) | synced | AreaData |
 | Worldmap | `WorldMap/NewWorldMapData.xml` | monolithic client file | merge-by-id; NO section-level delete (request filed) |
-| Quest-link registry | none | `StrSheet_NpcLoc` | tool-managed: `gen_npcloc.py --prune` |
+| Creature names | `StrSheet_Creature.xml` | `StrSheet_Creature` shard | **StrSheet_Creature** (entity `creatureStrings`) |
+| Quest-link registry | `StrSheet_NpcLoc.xml` (imported 2026-07-28, committed `cdca4fb4`) | `StrSheet_NpcLoc` shard | **StrSheet_NpcLoc** (entity `npcLocStrings`, keyed on the PAIR `(huntingZoneId, templateId)`). `gen_npcloc.py --out <spec> --prune` emits a SPEC; it no longer writes any datasheet |
+| Gather-node registry | `StrSheet_CollectionLoc.xml` | `StrSheet_CollectionLoc` shard | **StrSheet_CollectionLoc** (entity `collectionLocStrings`) |
 | Minimap labels | none | `MapDefineData/*` | none; hand edits with dangling proof |
 | Shops | `BuyMenuList.xml` + `BuyList.xml` (shared tabs game-wide) | MenuList | buyMenuLists synced; buyLists server-only |
+
+## Client-only families: use `dsl import`, not a hand-written client edit (2026-07-28)
+
+The server datasheet is the source of truth and `sync` propagates it. A family that ships ONLY
+in the client used to be unauthorable, so this project wrote it directly into the client
+DataCenter with a bespoke tool. That is a workaround and it is now being retired.
+
+`dsl import` is the inverse of `sync`: it merges a client family's shards into one server-format
+file and drops the novadrop namespace. It reads the SAME `sync-config.yaml` descriptor that sync
+reads, inverted, so the two directions cannot drift. **A family must be registered in
+`sync-config.yaml` before it can be imported.** Per-family workflow: add the descriptor, run
+`dsl import --dry-run`, import, then **sync straight back and confirm the client tree is
+unchanged**. That round-trip is the only check that proves the import did not mangle the family.
+
+Why this matters beyond tidiness: a tool that writes the client directly puts its output in the
+tree that is NOT reproducible from specs. A patch replay cannot regenerate it, and a stash of the
+client tree silently discards it. That is exactly what happened on 2026-07-28, when a full patch
+002 revert-and-replay dropped the `StrSheet_NpcLoc` regeneration and the loss was invisible in
+the migrate output, which read 0 failed and 0 warnings.
+
+**Verify with an actual sync and a client diff, not a dry-run.** A dry-run reports the plan, not
+byte-stability. Registering `StrSheet_Creature` planned clean and then rewrote the client on the
+first real sync: three duplicate `<HuntingZone id="183">` wrappers merged (428 blocks to 426,
+all 17,755 rows preserved) and two `class="True"` values normalized to lowercase by the boolean
+fix in `3976613a`. Both correct, neither predictable from the plan. Expect a first-adoption
+rewrite when registering a family that was never synced, check it explicitly, and confirm a
+second sync writes 0 files.
+
+**Adopted, all three**: `StrSheet_Creature`, `StrSheet_CollectionLoc`, `StrSheet_NpcLoc`.
+
+NpcLoc was briefly blocked because it is keyed on the pair `(huntingZoneId, templateId)` and
+`composite_id_attributes` was silently ignored on `monolithic`, collapsing 4101 rows to 1018. The
+DSL team delivered the fix the same day (`48fefbae`, which also refuses a mass-collapse import,
+plus `530f0038` onboarding the `npcLocStrings` and `collectionLocStrings` entities). Imported at
+4101 of 4101 rows, round-tripped byte-stable, committed as `cdca4fb4`.
+
+**Read the dry-run's duplicate-collapse line every time.** It is what caught the wrong key, and
+it named the ids (all `1`, the giveaway). Without it, "imported 1018 record(s)" reads as success.
+
+**A generated registry belongs in a SPEC, not written into a datasheet.** `gen_npcloc.py` now
+takes `--out <spec path>` and emits `npcLocStrings: upsert` rows plus `delete` rows for stale
+keys in the covered zones; it writes no datasheet at all. Derivation from spawn geometry stays in
+the tool because that is a genuine batch operation; authoring goes through the DSL. This is what
+makes the registry survive a revert-and-replay, which is the failure that started all of this.
+
+**Author Loc waypoints in the TYPED form**, `continent` plus `markers` (bare `[x, y, z]` flow
+sequences, the same shape `fences` uses), not the packed `string`. Both are supported and the DSL
+docs call raw "what a generator emits", but a packed payload runs to thousands of characters, so a
+spawn change lands as one enormous changed line and a reviewer cannot see which waypoint moved.
+Typed markers diff one waypoint at a time. Adopting it on `gen_npcloc.py` was verified to be a
+pure no-op: the applied `StrSheet_NpcLoc.xml` came out byte-for-byte identical to the raw-string
+result, same SHA256. Semantics worth knowing: `markers` replaces the whole list and is
+sequence-exact (275 shipped rows repeat a waypoint, one of them 32 times), `addMarkers` appends
+and is idempotent, `removeMarkers` removes EVERY occurrence, removals apply before additions, and
+`continent` is required alongside any of them. Mixing `string` with the typed keys is E554, not a
+precedence rule. There is deliberately no index-addressed form, because these rows are regenerated
+from spawn geometry and any written-down position would go stale.
+
+**Do not forget `ENTITY_SYNC_MAP`.** A new entity key that is not mapped in
+`tools/migrate/migrate.py` syncs to nothing, silently. All three of `creatureStrings`,
+`npcLocStrings` and `collectionLocStrings` had to be added there as well as to `sync-config.yaml`.
 
 ## Standing constraints
 
