@@ -72,6 +72,17 @@ ENTITY_SYNC_MAP = {
     "villagerDialogs": None,    # VillagerDialog: server-only
     "areaSections": "AreaData", # sync filtering fixed in DSL commit 735abf92, apply-verified 2026-07-19
     "regionStrings": "StrSheet_Region",
+    # Creature display names. Registered in sync-config 2026-07-28: the entity
+    # existed but had no descriptor, so an authored name landed server-only and
+    # the client nameplate had nothing to draw.
+    "creatureStrings": "StrSheet_Creature",
+    # Quest-marker and gather-node registries. Both were client-only families
+    # written directly into the client DataCenter by gen_npcloc.py /
+    # gen_collectionloc.py, which put their output in the one tree a patch replay
+    # cannot reproduce. Imported to the server with `dsl import` 2026-07-28; the
+    # generators now emit specs and these mappings carry the result to the client.
+    "npcLocStrings": "StrSheet_NpcLoc",
+    "collectionLocStrings": "StrSheet_CollectionLoc",
     "villagerMenus": "VillagerMenu",
     "speechConditions": None,   # VillagerData .condition files: server-only (client strings resolve elsewhere)
     "questStoryGroups": None,   # QuestGroupList.xml: client copy handling pending Stage 5 validation item 7
@@ -80,6 +91,35 @@ ENTITY_SYNC_MAP = {
     "dungeonDatas": None,       # DungeonData: server-authoritative scripting, no client sync (spec 19 precedent)
     "workObjects": "WorkObjectData",  # client carries isForQuestId/task gating (spec 19 portal)
     "workObjectTerritories": None,    # WorkObjectTerritory_{hz}: server-only, no client family
+    # Field event (Guardian Legion) families. All five have real client legs, so
+    # none may be None here. A key absent from this map is worse than one mapped to
+    # None: ENTITY_KEY_PATTERN below is built from these keys, so detect_entities
+    # never even SEES the block and the client leg is dropped with no log line at
+    # all. See the entity notes in config/sync-config.yaml.
+    #
+    # Adding a FieldData file (a new mission continent) inserts a shard into an
+    # IdSorted layout, so that patch must sync with --no-narrow or it fails E680.
+    "fieldEvents": "Field",
+    "fieldEventConfig": "FieldEvent",
+    "fieldStrings": "StrSheet_Field",
+    "eventDialogs": "EventDialog",
+    "eventDialogStrings": "StrSheet_EventDialog",
+    # ContinentData genuinely HAS a client leg (one monolithic shard whose XSD declares
+    # channelType), so None here is NOT a claim that it is server-only. It is a
+    # deliberate quarantine: syncing this family CORRUPTS the client.
+    #
+    # Measured 2026-07-28 on a real sync. The server writes isSpecificSpace="TRUE" and
+    # "FALSE" in uppercase (135 TRUE, 27 FALSE, 87 absent). The client XSD types the
+    # attribute xsd:boolean, which accepts only true/false/1/0, so the cast fails and
+    # the sync writes false for ALL 135 uppercase-TRUE continents, silently stripping
+    # the instanced-space flag from every dungeon and battlefield continent. It also
+    # rewrites channelMax on continents 1, 2, 3 and 4 from the stale client values to
+    # the server's, which is defensible on its own but is not scope anyone asked for.
+    #
+    # Until docs/dsl-requests/2026-07-28-continentdata-sync-boolean-case.md is
+    # delivered, the client leg of any continent change is a documented hand edit.
+    # The SERVER leg is clean and stays spec-driven (spec 002/35).
+    "continentDatas": None,
 }
 
 # Entity keys whose inline blocks imply additional sync entities

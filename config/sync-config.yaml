@@ -354,6 +354,57 @@ entities:
     id_attribute: "id"
     xsd_file: "StrSheet_Region/StrSheet_Region.xsd"
 
+  # Creature display names, keyed (huntingZoneId, templateId) via <HuntingZone>
+  # wrappers. Registered 2026-07-28. The family was ALREADY authorable through the
+  # `creatureStrings` DSL entity and the server file already existed, but it had no
+  # sync descriptor at all, so an authored creature name landed server-only and the
+  # client nameplate had nothing to draw. Required by patch 003, the first patch to
+  # author new monster templates. No import needed: the server file is present and
+  # tracked.
+  StrSheet_Creature:
+    strategy: monolithic
+    server_file: "StrSheet_Creature.xml"
+    client_folder: "StrSheet_Creature"
+    client_file: "StrSheet_Creature-00000.xml"
+    root_element: "StrSheet_Creature"
+    id_attribute: "templateId"
+    xsd_file: "StrSheet_Creature/StrSheet_Creature.xsd"
+
+  # Quest-marker location registry, keyed (huntingZoneId, templateId). One marker
+  # world coordinate per quest-linked template; the client reads it to place the
+  # journal objective marker. Registered 2026-07-28 and IMPORTED with `dsl import`,
+  # because this family was client-only: `gen_npcloc.py` used to write the client
+  # shard DIRECTLY, bypassing the pipeline. That is why a patch replay could not
+  # reproduce it (the server tree is the reproducible one and NpcLoc was never in
+  # it) and why a stash of the client tree silently discarded a regeneration.
+  # The generator now writes the server file and this descriptor carries it across.
+  StrSheet_NpcLoc:
+    strategy: monolithic
+    server_file: "StrSheet_NpcLoc.xml"
+    client_folder: "StrSheet_NpcLoc"
+    client_file: "StrSheet_NpcLoc-00000.xml"
+    root_element: "StrSheet_NpcLoc"
+    id_attribute: "templateId"
+    composite_id_attributes: ["huntingZoneId", "templateId"]
+    xsd_file: "StrSheet_NpcLoc/StrSheet_NpcLoc.xsd"
+
+  # Gather-node marker registry, keyed templateId (= collection id). The collection
+  # sibling of StrSheet_NpcLoc. Registered 2026-07-28. No import was needed: the
+  # server file was already present and tracked. Only the sync leg was missing, so
+  # the client half used to be a hand-written side effect of `gen_collectionloc.py`
+  # rather than a synced result. That tool no longer writes any datasheet; it emits
+  # a spec (`collectionLocStrings`) and this descriptor carries the result across.
+  # Note templateId 496 spans continent 13 AND the mainland, the only such row of
+  # the 177 shipped, so it must never be re-derived from continent-13 data alone.
+  StrSheet_CollectionLoc:
+    strategy: monolithic
+    server_file: "StrSheet_CollectionLoc.xml"
+    client_folder: "StrSheet_CollectionLoc"
+    client_file: "StrSheet_CollectionLoc-00000.xml"
+    root_element: "StrSheet_CollectionLoc"
+    id_attribute: "templateId"
+    xsd_file: "StrSheet_CollectionLoc/StrSheet_CollectionLoc.xsd"
+
   # World area/section topology. Per the DSL team's sync-config template
   # (commit 75da0211): SourceMapped with an explicit server->client filename map;
   # server files rank 1:1 onto client Area-{seq:D5}.xml by alphabetical order
@@ -367,8 +418,18 @@ entities:
     root_element: "Area"
     id_attribute: "id"
     xsd_file: "Area/Area.xsd"
+    # FIXED 2026-07-27: the key was "AreaData_13_ATW_Death_P.xml" without the
+    # subdirectory prefix, but the server file lives at AreaData/. SourceMapped keys
+    # are server-root-relative paths, not bare filenames (QuestCompensationData below
+    # gets this right with "CompensationData/..."), so the entity planned 0 sources
+    # and 0 targets, printed nothing, and exited 0. Consequence: the client Area leg
+    # had NEVER synced, so every areaSections op in patches 001 and 002 was
+    # server-only in practice, including spec 002/26's recall-point restore. Expect a
+    # first-time client Area-00013 diff on the next sync. A zero-file plan being
+    # indistinguishable from success is filed as
+    # docs/dsl-requests/2026-07-27-idsorted-server-path-required.md.
     source_mapping:
-      "AreaData_13_ATW_Death_P.xml": "Area-00013.xml"
+      "AreaData/AreaData_13_ATW_Death_P.xml": "Area-00013.xml"
 
   # World map hierarchy (worlds > guards > sections > NPC markers). Drives the
   # client minimap/world-map bindings (section nameId -> MapDefine mapId).
@@ -534,6 +595,132 @@ entities:
     xsd_file: "QuestCompensationData/QuestCompensationData.xsd"
     source_mapping:
       "CompensationData/QuestCompensationData_13.xml": "QuestCompensationData-00012.xml"
+
+  # ===========================================================================
+  # FIELD EVENT (GUARDIAN LEGION) DATA
+  # ===========================================================================
+  # The five families that make up a Guardian Legion mission. All five have real
+  # client legs, so none of them may be mapped to None in migrate's
+  # ENTITY_SYNC_MAP (that is the QuestCompensationData mistake repeated).
+  #
+  # The server/client split is a compiled boundary, not a convention: client
+  # Field.xsd declares only 9 complex types and keeps just Guide, Marker,
+  # FieldEventCloud/Aero and Progress.dividerPercent off the mission element.
+  # The whole EventGroup/Event/EventTaskGroup/EventTask encounter script is
+  # SERVER-ONLY by schema, so a script-only change legitimately syncs nothing.
+  # Anything touching Guide, Marker, eventSize, dividerPercent, the aero dome, or
+  # ShowRewardList does need the client leg.
+
+  # Per-continent mission definitions. One server FieldData_{continentId}.xml
+  # against one client Field-{seq}.xml, and the shipped client set is ordered
+  # numerically by continentId (2000, 7001, 7003, 7005, 7011-7015, 7021, 7022,
+  # 7031 -> shards 00000-00011), so this is an IdSorted layout, not SourceMapped.
+  #
+  # CONSEQUENCE FOR ISLAND OF DAWN: continent 13 sorts FIRST (13 < 2000), so
+  # adding FieldData_13.xml shifts every existing shard by one and the client set
+  # goes 12 -> 13 files. That is the Quest precedent exactly: a manifest-narrowed
+  # sync cannot place a new shard in a sorted layout (E680), so any patch adding a
+  # FieldData file must sync with --no-narrow. Expect a 13-file client diff on the
+  # first run and treat a nonzero E680 as "you narrowed it", not as a real fault.
+  # server_path "." is REQUIRED, not cosmetic. The client-sync reference calls
+  # server_path optional for both ZoneBased and IdSorted ("without it the glob runs
+  # at the server root"), and that holds for ZoneBased (NpcData globs the root with
+  # no server_path) but NOT for IdSorted: omitting it, or setting it to "", plans
+  # 0 sources and 0 targets silently, with no error and a green exit. Measured
+  # 2026-07-27 against dsl.exe: server_path "." plans 12 sources to 12 targets,
+  # absent and "" both plan 0. Filed as a docs/behaviour mismatch.
+  Field:
+    strategy: IdSorted
+    server_path: "."
+    server_pattern: "FieldData_*.xml"
+    sorting: numeric
+    client_folder: "Field"
+    client_pattern: "Field-{seq:D5}.xml"
+    root_element: "Field"
+    id_attribute: "continentId"
+    xsd_file: "Field/Field.xsd"
+
+  # Global singleton: rotation schedule, contribution rates, reward bags, clear
+  # reward pools, world-map UI vocabulary. An event that is not listed in a
+  # FieldEventRotation group never fires at all (proven by 2000/2, whose rotation
+  # group is commented out), so this file is load-bearing for every new mission.
+  # Client FieldEvent.xsd is aggressive: FieldEventRotation and FieldEventPoint are
+  # absent entirely and FieldEventReward is an empty complexType, so the schedule
+  # and the real reward payload stay server-side while the client keeps only the
+  # world-map presentation and each ClearReward's ShowRewardList tooltip.
+  FieldEvent:
+    strategy: monolithic
+    server_file: "FieldEvent.xml"
+    client_folder: "FieldEvent"
+    client_file: "FieldEvent-00000.xml"
+    root_element: "FieldEvent"
+    id_attribute: "id"
+    xsd_file: "FieldEvent/FieldEvent.xsd"
+
+  # Mission strings: titles, descriptions, objective lines, banner and bubble text.
+  # One monolithic server file (214 rows) against 10 client shards whose boundaries
+  # follow the id convention {continent4}{eventIdx2}{seq3}: shard 00000 holds the
+  # shared low-id and title band, 00001-00009 hold one continent each.
+  #
+  # shard-routed, same reasoning as StrSheet_Quest: it rewrites each record in the
+  # shard that already owns it, so the existing layout is read from the client
+  # rather than inferred, and new ids land in the fallback primary below. Bucket
+  # would work too but would hard-code 10 ranges that the client already states.
+  # A new continent's strings therefore land in shard 00000 rather than creating an
+  # 11th shard, which is deliberate: it keeps the client file count stable.
+  StrSheet_Field:
+    strategy: SourceMapped
+    merge: shard-routed
+    client_folder: "StrSheet_Field"
+    root_element: "StrSheet_Field"
+    id_attribute: "id"
+    xsd_file: "StrSheet_Field/StrSheet_Field.xsd"
+    source_mapping:
+      "StrSheet_Field.xml": "StrSheet_Field-00000.xml"
+
+  # World topology: per-continent channel behaviour and hunting zone membership.
+  # The client ships this family as ONE monolithic shard of 249 Continent rows and its
+  # XSD genuinely declares channelType, so a continent flip is NOT server-only.
+  # Registered 2026-07-28 for the Island of Dawn field event: continent 13 has to move
+  # from channelingZone to field, and the client has to agree.
+  # Note the XSD keeps only id, channelMax, channelType, isSpecificSpace,
+  # inChannelingContinent, disableChannelListBtn and the HuntingZone children;
+  # initChannelCount, userMaxPerChannel and the abnormality lists stay server-side.
+  ContinentData:
+    strategy: monolithic
+    server_file: "ContinentData.xml"
+    client_folder: "ContinentData"
+    client_file: "ContinentData-00000.xml"
+    root_element: "ContinentData"
+    id_attribute: "id"
+    xsd_file: "ContinentData/ContinentData.xsd"
+
+  # Portrait cutin records (image path, duration, speaker, string id). Registered
+  # for completeness so a future eventDialogs: block is never silently skipped;
+  # v0 of the IoD event uses no cutins.
+  #
+  # NOTE: the server-side EventDialog.xml is an IMPORTED client family (via
+  # `dsl import`), is currently UNTRACKED in the server datasheet repo, and is the
+  # only non-StrSheet datasheet at the server root without a UTF-8 BOM. Reconcile
+  # its provenance before relying on it; see the field-event plumbing notes.
+  EventDialog:
+    strategy: monolithic
+    server_file: "EventDialog.xml"
+    client_folder: "EventDialog"
+    client_file: "EventDialog-00000.xml"
+    root_element: "EventDialog"
+    id_attribute: "id"
+    xsd_file: "EventDialog/EventDialog.xsd"
+
+  # Cutin body text. Already tracked server-side, unlike EventDialog.xml above.
+  StrSheet_EventDialog:
+    strategy: monolithic
+    server_file: "StrSheet_EventDialog.xml"
+    client_folder: "StrSheet_EventDialog"
+    client_file: "StrSheet_EventDialog-00000.xml"
+    root_element: "StrSheet_EventDialog"
+    id_attribute: "id"
+    xsd_file: "StrSheet_EventDialog/StrSheet_EventDialog.xsd"
 
   StrSheet_Item:
     strategy: SourceMapped
