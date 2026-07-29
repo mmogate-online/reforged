@@ -12,6 +12,18 @@ Restoration draws on three sources, each resolved from `reforged/.references`:
 | Easy-restore source | `v31_datasheet` | v31.04 server datasheet, flat per-zone files (`NpcData_13.xml`). Same server schema as v92, so restores are near copy-paste. Lives on a network drive (`Z:`). |
 | Current truth | `server_datasheet` | v92 server datasheet, the restoration target and validation baseline. |
 
+> **Standing rule (2026-07-28): no tool in this directory writes a datasheet, and none writes the
+> client DataCenter at all.** Generators derive content and emit a DSL **spec**; `migrate` applies
+> it and the normal server-to-client sync propagates it. A tool that writes the client directly
+> puts its output in the one tree that is not reproducible from specs, so a patch revert-and-replay
+> silently discards it: that is exactly how the `StrSheet_NpcLoc` registry was lost, with the
+> migrate run reporting 0 failed and 0 warnings while it happened. `gen_npcloc.py` and
+> `gen_collectionloc.py` were retargeted for this reason. Restore modules (`quest_restore.py`,
+> `comp_restore.py`, `spawn_restore.py`) emit reviewable plans, not edits. If a new family needs a
+> client leg, register it in `config/sync-config.yaml`, map its key in migrate's `ENTITY_SYNC_MAP`,
+> and if it is client-only bring it over with `dsl import` first. See `ZONE-PORT-PLAYBOOK.md`,
+> "Client-only families".
+
 The modules are **survey.py** (per-zone gap report), **quest_restore.py** (restore quest header wiring from the client reference), **comp_restore.py** (restore quest compensation blocks from v31), **spawn_restore.py** (reconstruct deleted TerritoryData spawns from the client shard), **dcq.py** (cross-source content query CLI), **audit_quests.py** (deterministic quest-difference flagger), **dungeon_audit.py** (dungeon reference integrity gate), **audit_class_gates.py** (class-gate coverage gate), and **audit_quest_design.py** (quest design review, advisory). `dclib.py` is the shared library every module builds on, and `auditlib.py` carries the shared model for the design review.
 
 ### Read-only vs restore modules
@@ -331,6 +343,8 @@ v31 has no VillagerDialog directory (absent by design). Client and v92 villager 
 | `quest_restore.py` | Restore quest header wiring (prerequisite, story group, QuestGroupList registration) from the client reference. |
 | `comp_restore.py` | Restore quest compensation blocks from v31. |
 | `spawn_restore.py` | Reconstruct deleted `TerritoryData` spawns (zone-13 mob groups, zone-213 villager placements + Eria relocation) from the client shard; emits a plan (markdown + JSON). |
+| `gen_npcloc.py` | Derive the `StrSheet_NpcLoc` quest-marker registry from server `TerritoryData` and **emit a spec** (`npcLocStrings`). `--out <spec path>` required; `--prune` also emits deletes for stale keys in the covered zones. Writes no datasheet. |
+| `gen_collectionloc.py` | Derive `StrSheet_CollectionLoc` gather-node waypoints from `CollectionTerritory_13_*` and **emit a spec** (`collectionLocStrings`). `--out <spec path>` required. ADD-ONLY. Writes no datasheet. |
 | `dcq.py` | Cross-source content query CLI (`quest` / `npc` / `name` / `collection`). |
 | `audit_quests.py` | Deterministic Island quest-difference flagger (markdown + JSON worklist). |
 | `dungeon_audit.py` | Dungeon reference integrity gate: DungeonData refs vs parsed per-HZ content; flags comment-disabled data. |
