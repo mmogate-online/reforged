@@ -6,6 +6,27 @@ Newest entries first.
 
 ---
 
+## 2026-07-28
+
+### Content
+- **First Guardian Legion field event authored and live-validated** (`specs/patches/002/34-iod-guardian-legion-v0.yaml`, 15 ops). New event `13/1` "Orcan Raiders" on Island of Dawn: `FieldData_13.xml`, territory group 1300062 with a mission boundary, staging pad and boss spawn (all `type="quest"`), one npc (`13,902` Dwarf Guardian), 8 `StrSheet_Field` strings, and a dedicated rotation group. v0 is a lifecycle probe, not shipped content: the progress bar is bound to the npc's HP so one kill completes the mission. Authored content under doctrine rule 4 Level 2, divergence-logged
+- **Continent 13 redeclared `channelType="field"`** (`specs/patches/002/35-iod-field-event-continent.yaml`). A field event will not run on a continent without it. Server leg is spec-driven; the client leg is a documented hand edit pending the sync bug below. All 162 comments in `ContinentData.xml` survive the apply, 249 continents and every hunting zone list unchanged, exactly one attribute modified
+- Field event families plumbed end to end: `Field`, `FieldEvent`, `StrSheet_Field`, `EventDialog` and `StrSheet_EventDialog` registered in `config/sync-config.yaml` and mapped in migrate's `ENTITY_SYNC_MAP`; `packages/fieldevent` installed with 22 task-type definitions and registered in `datasheetlang.yml`
+- `AreaData` client sync fixed: its `source_mapping` key was missing the `AreaData/` prefix so the entity planned 0 files and the client `Area` leg had never synced. Zero client diff resulted, since the client `Area.xsd` declares neither `recallScrollPos` nor `recallRevivePos`
+- Server datasheet repo commit `7b5e4092` adds the client-imported `StrSheet_Field.xml` (214 rows) and `EventDialog.xml` (159 rows) baselines, canonical pre-change content
+- Patch 002 applied at 78 specs / 9211 ops / 0 failed / 0 warnings; both gates exit 0; `audit_field_event_references` on `13/1` reports 6 checked, 0 unresolved. Deployed to dev, 82 files hash-verified, client repacked and installed
+
+### Infrastructure
+- `datasheet-domain`: `entities/field-event-system.md` expanded 532 to 841 lines. Adds that a dedicated mission hunting zone is convention rather than a requirement, that event-owned territories must be `type="quest"`, the field channel type prerequisite with its source and live validation, operator/GM control, the absence of any runtime logging, npc-HP progress binding, low-level scoring calibration, and world takeover and restore. 14 corrections applied against measured counts
+- Skills: `apply-spec` gained the `--source-ref` untracked-file hazard and the zero-source sync plan; its new-sync-entity lesson hardened to attribute-level diffs. `domain-research` gained the read-the-raw-comments rule. `content-restoration` gained the shipped-control-test method and installed-`.dat` verification
+
+### Blockers resolved
+- Patch 002 is reproducible again. `migrate` applies with `--source-ref <server HEAD>`, so untracked `StrSheet_Field.xml` did not exist in the commit it read and was rewritten from 214 rows to 8 on two runs. Committing the baselines fixes it: replay now yields 222 rows with zero canonical rows lost
+
+### Blockers outstanding
+- `docs/dsl-requests/2026-07-28-continentdata-sync-boolean-case.md`: the `ContinentData` client sync writes `false` for all 135 continents whose server value is uppercase `TRUE`, clearing `isSpecificSpace` on every dungeon and battlefield continent. `continentDatas` is mapped to `None` as a quarantine and the client leg is a hand edit until fixed. DSL team working on it
+- `docs/dsl-requests/2026-07-27-idsorted-server-path-required.md`: `IdSorted` plans 0 files and exits 0 when `server_path` is omitted
+
 ## 2026-07-27
 
 ### Content
