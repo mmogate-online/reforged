@@ -1,0 +1,511 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: spawn-restore-standard
+  - from: fieldevent
+
+# IoD Guardian Legion field event, ITERATION v0: plumbing validation only.
+#
+# THIS IS AUTHORED CONTENT, NOT RESTORATION. The field event subsystem is v92-only:
+# the v31 server has no FieldData_*, no FieldEvent.xml, no StrSheet_Field, and its
+# ContinentData declares zero channelType="field" continents. There is no classic
+# donor and no restoration precedent, so this lands in the IoD divergence log as an
+# `authored` row (doctrine rule 4, Level 2 padding) and needs user sign-off, which it
+# has (2026-07-27).
+#
+# PURPOSE OF v0. It is deliberately not an engaging encounter. It exists to answer
+# four questions that no amount of reading the corpus settles, at the smallest
+# possible blast radius:
+#   Q1 Does a field event fire on a channelType="channelingZone" continent, or is
+#      channelType="field" actually required? Continent 13 is left as channelingZone
+#      ON PURPOSE. Evidence for the requirement is a 12/12 correlation and nothing
+#      more: 15 field continents exist but only 12 carry a FieldData file, and no
+#      doc in the DSL or domain KB ties the two together. If v0 never fires, the
+#      next step is flipping continent 13 to field and booting again, which then
+#      PROVES the dependency instead of assuming it.
+#   Q2 Does a sub-65 event appear in the world-map "Guardian Legion missions" list
+#      once FieldEventWMapUI is widened? That gate is global, not per-event.
+#   Q3 Does the teleport-in and the revive anchor resolve on a world continent?
+#   Q4 Does teardown despawn the event's own territories cleanly?
+#
+# Encounter, in full: one NPC spawns, the progress bar is bound to its HP, killing it
+# completes the mission. That is the entire content. Balance, waves, the Eria staging
+# beat, guide markers along the corridor and the move toward the camp are v1 and v2.
+#
+# WHY TEMPLATE 902. NpcData_13 template 902 "Dwarf Guardian" is defined and has NEVER
+# been spawned, and nothing in either datasheet tree references it: zero quests, zero
+# achievements (checked against Condition templateId 4012, not 1020), zero territories.
+# It is therefore the only Orcan-family template that can carry an event without
+# bleeding into live content. Every other camp Orcan is load-bearing:
+#   13,4 and 13,5   quest 1349 "Gotta Kill 'Em All" (LIVE, Ayrdoss 213,1126)
+#   13,901          quests 1311 and 1337 (both LIVE)
+#   13,1002/1003    quest 1309 "Acharak Attacks" (LIVE), named group 1300047
+# Spawning any of those here would hand out free quest credit. 902 shares shapeId
+# 300710 with Dwarf Orcan so it still reads as an Orcan minion. It is level 7 zarco
+# trash, so the HP bar will empty in seconds; that is acceptable and in fact wanted
+# for a lifecycle test, and it is the first thing v1 replaces.
+#
+# TERRITORY TYPE IS THE ONE EASY WAY TO GET THIS WRONG. All 647 territories in HZ 13
+# are type="normal" and spawn at world start. Event-owned territories are type="quest":
+# resolving all 2,075 spawn/despawn tasks in the corpus gives 385 spawns against quest
+# territories (the event's own mobs) and 494 `isEventNpc="false"` spawns against normal
+# ones (the world-restore half of teardown). A normal-type event territory would put
+# these mobs in the live world permanently. Hence `type: quest` overriding
+# spawn-restore-standard.ClassicTerritory, whose type is normal by design.
+#
+# WORLD DESPAWN AND RESTORE IS DELIBERATELY ABSENT IN v0. Shipped events open with
+# `initialize` despawning the underlying world territories and close with
+# `beforeDeleteEvent` re-spawning them at `isEventNpc="false"`. Ours despawns nothing,
+# because the only world territories in this footprint are the quest-critical Orcan
+# groups 1300036 and 1300038, and clearing them would break quest 1349 for anyone in
+# the zone while the event runs. v0 therefore only tears down what it created. The
+# restore hook arrives in v1 once the footprint is final. Note the consequence: the
+# event mobs share ground with the live patrol, so expect visual crowding.
+#
+# PROVISIONAL COORDINATES, CONFIRM IN GAME BEFORE TRUSTING. The staging anchor
+# 51959,-78919,-4631 is a real proven spawn point (territory 13015140, Orcan Raider
+# patrol SE of the bivouac). The other two fences are interpolated from neighbouring
+# real fences and are NOT verified ground:
+#   13017010 staging pad centre  ~51960,-78920,-4632   (derived from 13015140)
+#   13017020 boss spawn centre   ~51400,-79300,-4660   (interpolated, sits in the gap
+#            between real spawns 13015160 at 51132,-79885 and 13015140 at 51959,-78919,
+#            about 640 and 680 units clear of each, chosen to avoid the co-location
+#            mistake spec 001/15 made with the terron groups)
+# subtractMinZ is set to 500 on all three so the engine's ground snap has slack. If the
+# boss spawns inside terrain or floating, the fix is the Z on 13017020, nothing else.
+#
+# SEQUENCING WARNING. Patch 002 is OPEN and specs 002/26 through 002/33 are deployed
+# and awaiting live validation. This spec is experimental and the survey is explicit
+# that structural validity is not loadability, so it can plausibly fail the world
+# server boot. Applying it before the trim wave is signed off couples the two: a boot
+# failure here blocks validation there. Recommended order is to live-validate the trim
+# wave first, then run this.
+#
+# APPLY NOTE. This spec adds FieldData_13.xml, a NEW shard in an IdSorted client
+# layout, and continent 13 sorts FIRST (13 < 2000), so every existing Field shard
+# shifts by one and the client set goes 12 to 13 files. Narrowed sync cannot place a
+# new shard (E680): run the patch with --no-narrow.
+#
+# Ids allocated (all verified free 2026-07-27):
+#   territory group 1300062; territories 13017000, 13017010, 13017020
+#   StrSheet_Field 1301, 13010, 1301001, 1301002, 1301003, 1301910, 1301920, 1301930
+#   FieldData_13.xml, FieldEvent id 1
+
+# ---------------------------------------------------------------------------
+# Territory group and territories (HZ 13, type quest so nothing spawns at boot)
+# ---------------------------------------------------------------------------
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 13
+      groupId: 1300062
+      desc: "IoD Guardian Legion: Orcan Raiders (field event v0)"
+
+territories:
+  upsert:
+    # Mission boundary. Bare fence, no spawns. This is `startTerritoryId` and the
+    # area the mission is considered to occupy. Modelled on the shipped boundary
+    # pattern (621,62100001 is a bare 7-vertex fence with no Npc child) and scaled to
+    # dungeon 437's boundary 43700003 (3273 x 2898) rather than the level-65 missions,
+    # which run 10143 x 7980. Covers the staging pad, the boss spawn and the approach
+    # to the Orcan Bivouac.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017000
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: mission boundary"
+      fences:
+        - [49500.0, -80200.0, -4700.0]
+        - [52500.0, -80200.0, -4650.0]
+        - [52500.0, -77500.0, -4700.0]
+        - [49500.0, -77500.0, -4780.0]
+
+    # Staging pad. Small "stand here to start" trigger, read by the
+    # userCountInTerritory group below. Sized on the shipped precedent 621,62100020
+    # (289 x 293), centred on the proven ground point from territory 13015140.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017010
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: staging pad (start trigger)"
+      fences:
+        - [51810.0, -79070.0, -4632.0]
+        - [52110.0, -79070.0, -4632.0]
+        - [52110.0, -78770.0, -4632.0]
+        - [51810.0, -78770.0, -4632.0]
+
+    # Boss spawn. Activated only by the event's spawn task, never at world start.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017020
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: boss spawn"
+      fences:
+        - [51250.0, -79450.0, -4660.0]
+        - [51550.0, -79450.0, -4660.0]
+        - [51550.0, -79150.0, -4660.0]
+        - [51250.0, -79150.0, -4660.0]
+
+# ---------------------------------------------------------------------------
+# The one event NPC
+# ---------------------------------------------------------------------------
+
+territorySpawns:
+  upsert:
+    # Template 902 Dwarf Guardian, the never-spawned free Orcan template. spawnCount 1
+    # so `progressType: npcHp` has exactly one instance to bind to. Aggressive so it
+    # engages on approach rather than needing to be pulled.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017020
+      npcInstanceId: 13017021
+      npcTemplateId: 902
+      $extends: spawn-restore-standard.RestoreSpawnAggressive
+      memberId: 1
+      desc: "GL Orcan Raiders: event boss (tpl 902 Dwarf Guardian)"
+      pos: [51400.0, -79300.0, -4660.0]
+      spawnCount: 1
+      ai: 31
+      aggroSendToPartyDistance: 1000
+
+# ---------------------------------------------------------------------------
+# Mission strings
+# ---------------------------------------------------------------------------
+# Guide step text is NOT authored here: the corpus ships shared generic steps and we
+# reuse them, which is what the sky-island missions do with 7014's strings.
+#   @field:100001 "Defeat {target}."   @field:111111 "Mission Complete"
+# Id convention is the corpus's own {continent4}{eventIdx2}{seq3}: continent 13 padded
+# to 0013 plus event index 01, so the title is 001301 (stored as 1301) and body lines
+# are 001301NNN (stored as 1301NNN). Verified against the 214 shipped rows: no collision.
+
+fieldStrings:
+  upsert:
+    - id: 1301
+      string: "<font color='#ffbb00'>Orcan Raiders</font>"
+    - id: 13010
+      string: "Orcan raiders are massing on the ruins east of the Orcan Bivouac. Break their advance."
+    - id: 1301001
+      string: "Orcan raiders are advancing. Defeat their champion."
+    - id: 1301002
+      string: "The Orcan advance is broken."
+    - id: 1301003
+      string: "The Orcan raiders hold the ruins. The Guardian Legion withdraws."
+    - id: 1301930
+      string: "Mission ends in 30 seconds."
+    - id: 1301920
+      string: "Mission ends in 20 seconds."
+    - id: 1301910
+      string: "Mission ends in 10 seconds."
+
+# ---------------------------------------------------------------------------
+# The mission
+# ---------------------------------------------------------------------------
+
+fieldEvents:
+  upsert:
+    - continentId: 13
+      id: 1
+      startTerritoryId:
+        zoneId: 13
+        territoryId: 13017000
+      startPos: [51959.0, -78919.0, -4631.0]
+      startDir: 318
+      revivePos: [51959.0, -78919.0, -4631.0]
+      # 7777 is the shipped "Guardian Legion Mission Zone" row in StrSheet_Region,
+      # used by all 16 missions. Reused rather than authoring an IoD-specific name.
+      reviveTownNameId: 7777
+      revivalRecoveryRate: 1
+
+      # Entry gates. Small-event headcounts (15/10) copied from the four shipped
+      # `small` missions. Level band brackets the target: quest 1349 in this same
+      # camp is minLevel 7 recLevel 8, so 7 is the floor; 15 is a generous ceiling
+      # for a level-8 event and keeps the band well clear of the 65-70 missions.
+      conditions:
+        - { type: maxMemberCount, value: 15 }
+        - { type: teleportMemberCount, value: 10 }
+        - { type: minLevel, value: 7 }
+        - { type: maxLevel, value: 15 }
+
+      # 330s is the shipped duration for every `small` mission, and the rotation
+      # group below uses the same 330 so the test event is effectively always live.
+      clearCondition:
+        progressTime: 330
+        endWhenProgressFull: false
+        endIntervalTime: 30
+
+      # maxValue 100000 and standardPlayerCount are corpus conventions. The bar is
+      # rebound to the boss's HP by the progressType task, so maxValue is not the
+      # thing being measured here. standardPlayerCount 5 rather than the shipped 30:
+      # this is a level-8 event for a handful of players.
+      progress:
+        maxValue: 100000
+        dividerPercent: [100]
+        isSharedChannel: false
+        syncNpcHpInterval: 3
+        standardPlayerCount: 5
+
+      # Contribution scoring. Value copied from the small mission 7014/2 (dealing
+      # 1.45). It is NOT calibrated for level 8 and v0 does not test rewards: the
+      # participation bag needs 100000 points, which a level-8 party will not reach.
+      # Recalibrating this against real level-8 damage is v1 work.
+      eventPoint:
+        points:
+          - { id: 1, type: dealing, value: 1.45 }
+
+      # Objective panel. Two steps, both reusing shared strings.
+      guide:
+        titleString: "@field:1301"
+        description: "@field:13010"
+        eventSize: small
+        tasks:
+          - id: 1
+            target: "@creature:13#902"
+            string: "@field:100001"
+            iconId: 3
+            markers:
+              - markerType: MARKER_FIELD_EVENT_AREA_03
+                markerPos: "51400,-79300,-4660"
+                markerScaleX: 0.5
+                markerScaleY: 0.5
+          - id: 2
+            target: ""
+            string: "@field:111111"
+            iconId: 1
+
+      # AutoEventBalance is deliberately OMITTED. Its abnormality ladder 77770001 to
+      # 77770030 is tuned for level-65 stat scales and there is no low-level
+      # equivalent anywhere in the corpus, so applying it here would be untested
+      # scaling on top of an untested event. 2 of the 16 shipped missions carry no
+      # AutoEventBalance either, so omission is a shipped shape, not an invention.
+
+      # ---------------------------------------------------------------------
+      # Encounter script. Keyless and REPLACED WHOLE on every apply: there is no
+      # way to edit one group or task in place, so this block is always the
+      # complete script. Structure follows 7014/2 "Crack the Crustacean", the
+      # smallest playable mission and the only one whose reference audit is clean
+      # (112 checked, 0 unresolved), minus its participant-buff and anti-idle
+      # loops (both drive level-65 abnormalities).
+      #
+      # Flag names are free text that the engine only compares, so English is used
+      # instead of the corpus's Korean. `name` on a flag group is a comma list
+      # meaning AND, which is how phase gates are built.
+      #
+      # progressTimer values are SECONDS REMAINING, counting down from
+      # progressTime 330, so the opening beats are large and the closing ones small.
+      # ---------------------------------------------------------------------
+      eventGroups:
+        # Set up. No world despawn in v0, see the header note.
+        - type: initialize
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: oneshot, VALUE: 1, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: add, NEXT: none } }
+
+        # Open. Banner at 10 seconds in.
+        - type: progressTimer
+          value: "320"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301001", NEXT: none }, style: combat }
+
+        # Arm. uniqueId on a userCountInTerritory group is a TERRITORY pair, not an
+        # npc pair; the two readings share the attribute and are told apart by group
+        # type. One player on the staging pad is enough.
+        - type: userCountInTerritory
+          uniqueId: "13,13017010"
+          value: "1"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: ready, VALUE: 1, NEXT: none } }
+
+        # Drive. progressType MUST be the first task in its group: that ordering is a
+        # real constraint, not convention, and it is how the bar learns what it
+        # measures. Here it binds to the boss's HP, which is why v0 needs no scoring
+        # calibration to be completable.
+        - type: flag
+          name: "ready"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - $extends: fieldevent.taskProgressType
+                      $with: { PROGRESS_TYPE: npcHp }
+                      targetNpcId: { huntingZone: 13, templateId: 902 }
+                    - { $extends: fieldevent.taskPoint, $with: { POINT_ID: 1, TURN: "on" } }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+
+        # Complete.
+        - type: progress
+          value: "100"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: success, VALUE: 1, NEXT: none } }
+
+        # Success branch. Latched on `oneshot`, which it clears first, so exactly one
+        # of success and timeout can ever run.
+        - type: flag
+          name: "success,oneshot"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: oneshot, VALUE: 0, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: complete, NEXT: none } }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301002", NEXT: none }, style: combat }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: remove, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "2", GUIDE_TYPE: add, NEXT: none } }
+
+        # Expiry.
+        - type: progressTimer
+          value: "0"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: timeout, VALUE: 1, NEXT: none } }
+
+        # Failure branch.
+        - type: flag
+          name: "timeout,oneshot"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: oneshot, VALUE: 0, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301003", NEXT: none }, style: combat }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: remove, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "2", GUIDE_TYPE: add, NEXT: none } }
+
+        # Close. Every shipped mission ends on this 30/20/10 ladder.
+        - type: progressTimer
+          value: "30"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301930", NEXT: none } }
+        - type: progressTimer
+          value: "20"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301920", NEXT: none } }
+        - type: progressTimer
+          value: "10"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301910", NEXT: none } }
+
+        - type: beforeEndEvent
+          events:
+            - eventTaskGroups:
+                - eventTasks: []
+
+        # Teardown. Despawns only what the event created. The world-restore half
+        # (`spawn isEventNpc: false` of the normal territories) has nothing to do
+        # here because v0 despawns no world territories.
+        - type: beforeDeleteEvent
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+
+# ---------------------------------------------------------------------------
+# Global field event config
+# ---------------------------------------------------------------------------
+# fieldEventConfig is a KEYLESS SINGLETON: sections sit directly under it with no
+# create/update wrapper and no `changes` block.
+#
+# `worldMapUi` is a SCALAR section and patches, so naming showMinLevel leaves
+# showMaxLevel and bottomUITitleStrId alone.
+#
+# `rotationGroups` is a LIST SECTION and REPLACES WHOLE. All five shipped groups are
+# therefore restated below verbatim; dropping any would silently unschedule the
+# missions in it. An event absent from every rotation group never fires at all, which
+# is proven by mission 2000/2, whose group is commented out in the shipped file.
+#
+# KNOWN LOSS, ACCEPTED: the shipped file carries a sixth group commented out and
+# labelled "off" (the Exodor royal parp, continent 2000 event 2, 14400s). Comments are
+# not authorable, so replacing this section deletes that commented block from
+# FieldData's sibling FieldEvent.xml permanently. It is already inactive so nothing
+# changes behaviourally, but the record of the intended cadence is lost. Preserved
+# here in the spec instead:
+#   RotationGroup serverOpenDelay=14400 startInterval=14400 randomRotation=false
+#     Event continentId=2000 eventId=2
+
+fieldEventConfig:
+  # Q2: the world-map mission list is gated globally at 65-70, so a level-8 event
+  # cannot appear without widening it. Widening lists the level-65 missions for
+  # low-level players too, but each mission's own Condition minLevel still blocks
+  # entry, so the cost is UI clutter and not an exploit. User approved 2026-07-27.
+  worldMapUi:
+    showMinLevel: 1
+
+  rotationGroups:
+    # Advanced (small) guardian missions. Shipped, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 990
+      randomRotation: true
+      events:
+        - { continentId: 7003, eventId: 1 }
+        - { continentId: 7014, eventId: 2 }
+        - { continentId: 7001, eventId: 2 }
+        - { continentId: 7012, eventId: 1 }
+    # Rare (medium). Shipped, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 660
+      randomRotation: true
+      events:
+        - { continentId: 7011, eventId: 1 }
+        - { continentId: 7015, eventId: 1 }
+    # Flying rare (medium). Shipped, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 440
+      randomRotation: true
+      events:
+        - { continentId: 7003, eventId: 2 }
+        - { continentId: 7021, eventId: 1 }
+    # Legendary. Shipped, restated verbatim.
+    - serverOpenDelay: 1800
+      startInterval: 3600
+      randomRotation: false
+      events:
+        - { continentId: 7005, eventId: 1 }
+    # Sky-island transit missions. Shipped, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 330
+      randomRotation: false
+      events:
+        - { continentId: 7022, eventId: 90 }
+        - { continentId: 7011, eventId: 91 }
+        - { continentId: 7013, eventId: 92 }
+        - { continentId: 7003, eventId: 93 }
+        - { continentId: 7001, eventId: 94 }
+        - { continentId: 7031, eventId: 95 }
+    # NEW: Island of Dawn Orcan Raiders, v0 test cadence. Its own group with a single
+    # member and randomRotation false, so the event is deterministic rather than
+    # competing with the level-65 wheel. startInterval equals progressTime (330), so
+    # instances run back to back and the mission is effectively always available.
+    # That cadence is a TEST setting: v1 should slow it to a real one.
+    - serverOpenDelay: 30
+      startInterval: 330
+      randomRotation: false
+      events:
+        - { continentId: 13, eventId: 1 }

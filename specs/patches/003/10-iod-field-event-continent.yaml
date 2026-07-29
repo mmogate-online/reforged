@@ -1,0 +1,76 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn: declare continent 13 a field-event host.
+#
+# WHY. The Guardian Legion (field event) system refuses to run on a continent that is
+# not declared with the field channel type. This is not an inference from the shipped
+# corpus, it is stated by ContinentData.xml's own header comment, which defines the
+# value as:
+#
+#   field : the new channel attribute that must be set in order to use
+#           fieldEvent/fieldData; base behaviour otherwise identical to
+#           none/channelingZone
+#
+# So the flip enables the field event subsystem and changes nothing else about how the
+# continent channels. Continent 13 keeps initChannelCount 3, channelMax 28,
+# userMaxPerChannel 180, isSpecificSpace FALSE, both abnormality lists, and all five
+# hunting zones (13, 64, 213, 313, 364).
+#
+# LIVE-VALIDATED 2026-07-27/28. Spec 002/34's event, byte-identical, produced nothing
+# at all on continent 13 while it was channelingZone: `startfe 13 1` did not create an
+# instance and `gotofe 13 1` had nothing to move to, while the shipped event 7014/2 on
+# a field continent started and teleported correctly in the same session with the same
+# commands. After this single attribute changed, with no other edit, the mission UI
+# rendered, the event npc spawned, and killing it drove the progress bar to 100.
+#
+# HOW THIS WAS FIRST PROVEN. The flip was run as a hand-edit probe on both legs, per
+# the rule that datasheet trees are generated output and hand edits are probes. This
+# spec promotes it to reproducible content and the probe edits were reverted so the
+# spec is the sole source. Do not re-apply the hand edit.
+#
+# COSMETIC SIDE EFFECT, MEASURED ON A SCRATCH COPY BEFORE APPLYING. Rewriting this file
+# reindents it whole, from 2 spaces to tabs, and adds an `<?xml version="1.0"
+# encoding="utf-8"?>` declaration the original lacked. That turns a one-attribute change
+# into a roughly 1150-line diff. It is semantically inert and it moves the file TOWARD
+# the corpus norm (FieldEvent, TerritoryData, AreaData and WorkObjectData are all
+# tab-indented; this file was the outlier). What matters is what was verified to
+# survive, checked against the pristine file rather than assumed:
+#   - all 162 XML comments intact, including the channelType documentation block that
+#     is the only place the field requirement is written down
+#   - 249 continents, order unchanged
+#   - exactly ONE changed attribute in the whole file
+#   - every continent's HuntingZone list byte-identical
+#   - UTF-8 BOM preserved (the loader rejects a datasheet without one)
+#
+# CLIENT LEG IS REQUIRED, AND IS A HAND EDIT ON PURPOSE. The client ships ContinentData
+# as one monolithic shard and its XSD genuinely declares channelType, so this is not
+# server-only. But the sync for this family CORRUPTS the client and must not be run:
+# the server writes isSpecificSpace in uppercase ("TRUE" on 135 continents) while the
+# client XSD types it xsd:boolean, so the cast fails and the sync writes false for all
+# 135, stripping the instanced-space flag from every dungeon and battlefield continent.
+# Measured on a real sync 2026-07-28, exit code 0, no warning; only an attribute-level
+# diff catches it. Filed as docs/dsl-requests/2026-07-28-continentdata-sync-boolean-case.md.
+#
+# Therefore `continentDatas` is mapped to None in migrate's ENTITY_SYNC_MAP as a
+# QUARANTINE (not a server-only claim, the comment there says so), and the client leg is
+# the single line below, applied by hand until the DSL is fixed:
+#
+#   ContinentData-00000.xml, continent 13: channelType="channelingZone" -> "field"
+#
+# When the fix lands: map continentDatas to ContinentData, re-run the sync, and verify
+# with an attribute-level diff that ONLY continent 13 changed.
+#
+# SCOPE. This is infrastructure for every IoD field event, not just the v0 encounter in
+# spec 002/34, which is why it is a separate spec: v0 will be replaced by later
+# iterations but the continent declaration outlives them.
+
+continentDatas:
+  update:
+    - continentId: 13
+      changes:
+        # ONLY channelType. huntingZones is deliberately NOT supplied: that property is
+        # clear-and-replace, so naming it would rewrite the zone list, and omitting it
+        # is how the DSL is told to leave it alone.
+        channelType: "field"

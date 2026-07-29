@@ -148,6 +148,8 @@ Patch 001 (classic-restoration baseline): scope is defined in `reforged/docs/pat
 
 Patch 002 (Reforged customizations): scope is defined in `reforged/docs/patch-002-scope.md`.
 
+Patch 003 (Guardian Legion field events and content customizations): scope is defined in `reforged/docs/patch-003-scope.md`. Its working plan, phases and acceptance gates are in `reforged/docs/plans/classic-restoration/iod/guardian-legion/PLAN.md`; the register of every test, failure and decision is `BACKLOG.md` in the same folder. Patch 003 is the first patch to author new monster templates, so it is the first use anywhere in this repo of the `npcs:`, `ai:` and `npcSkills:` DSL entities.
+
 When doing any research, loot work, merchant audits, or NPC queries scoped to patch 002, always include **all zones in its scope doc** (hunting zones, hub cities, and dungeons). Do not query hunting zones in isolation; hub cities are part of the content scope.
 
 ## Client DC Migration — Schema Error Handling
