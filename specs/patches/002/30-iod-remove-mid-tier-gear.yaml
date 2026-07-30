@@ -2,6 +2,12 @@ spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: iod-tokens
+    use:
+      variables:
+        - IOD_PROGRESSION_TOKEN
+
 # Remove the level 5/6 gear step from Island of Dawn, so the gear ladder reads
 # level-4 set -> level-7 set -> Kugai set, with nothing in between.
 #
@@ -38,6 +44,21 @@ spec:
 # NOTE ON SEMANTICS. questCompensations upsert is REPLACE-ALL, so omitting `items` and
 # `itemBag` leaves exp and gold only. Itemless blocks carry no itemBag attribute, matching the
 # house shape of the other itemless quests in this file.
+#
+# ---------------------------------------------------------------------------
+# AMENDED 2026-07-30 by the IoD reward-vector wave 1 (plan phase E2, RV-07 + RV-03).
+# ---------------------------------------------------------------------------
+# 1347 is a ZONE quest, so it takes the wave's progression-token row HERE rather than in
+# the new spec 002/40: `discover_specs` sorts on the relative path string and
+# `questCompensations: upsert` is replace-all, so a spec numbered 40- naming 1347 would be
+# the LAST writer and would undo the deliberate strip above. See 002/40 for the map.
+#
+# Its XP is UNCHANGED at 900: min level 6 puts it in bracket 5-6, whose cap is 900, so it
+# is already compliant (IOD-WAVE1-BATCH0-MEASUREMENTS.md section 3c). Gold is unchanged too.
+# It had no itemBag at all after the strip, so it gains `itemBag: "allpay"` plus one row.
+# That is a deliberate PARTIAL reversal of the "left deliberately itemless" note above: the
+# strip removed a GEAR SET step, and the token is a currency, not a set piece. 1331 is a
+# STORY mission and stays itemless and uncapped.
 
 questCompensations:
   upsert:
@@ -49,10 +70,14 @@ questCompensations:
           exp: 2300
           gold: 230
 
-    - questId: 1347       # It Was a Rock...Crawler (was the lv6 Rockhound hands)
+    - questId: 1347       # It Was a Rock...Crawler (was the lv6 Rockhound hands) -> token only
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 900
+          exp: 900          # already under the 5-6 cap of 900
           gold: 90
+          itemBag: "allpay"      # added by wave 1: the quest had no bag at all
+          items:
+            - templateId: $IOD_PROGRESSION_TOKEN      # Dawn Seal
+              quantity: 1

@@ -86,6 +86,37 @@ spec:
 # shape of the other itemless quests in this file (e.g. 1318 before this change).
 # Reaper/Soulless stays omitted from every row per doctrine, even though the leather
 # pieces admit SOULLESS.
+#
+# ---------------------------------------------------------------------------
+# AMENDED 2026-07-30 by the IoD reward-vector wave 1 (plan phase E2, RV-07 + RV-03).
+# ---------------------------------------------------------------------------
+# The four zone quests this spec owns (1319, 1322, 1324, 1325) take the wave's XP clamp
+# and its progression-token rows HERE, rather than in the new spec 002/40, because
+# `discover_specs` sorts on the relative path string and `questCompensations: upsert` is
+# replace-all: a spec numbered 40- naming these quests would be the LAST writer and would
+# silently destroy the whole level-4 set distribution above. The apply would succeed and
+# the op counts would look right. See 002/40's header for the full ownership map.
+#
+# XP, from IOD-WAVE1-BATCH0-MEASUREMENTS.md section 3c (25 percent of the bracket's
+# MEDIAN story quest, rounded to 10). The story spine values in this file (1303, 1304)
+# are NOT touched: the cap applies to zone quests only.
+#   1322  min 1, bracket 1-2, cap 200    500 -> 200
+#   1319  min 2, bracket 1-2, cap 200    600 -> 200
+#   1324  min 2, bracket 1-2, cap 200    900 -> 200
+#   1325  min 3, bracket 3-4, cap 220    500 -> 220
+# Gold is deliberately unchanged: RV-07's compensation is the token and only the token.
+#
+# THE TOKEN. All four are `class` bags, so each takes TWELVE duplicate token rows, one
+# per class, per ruling R22: there are zero occurrences anywhere in v92 server, v92
+# client or v31 of a classless row inside a `class` bag. Each bag therefore goes from 12
+# rows to 24; the in-file precedent for a 24-row bag is quest 1310 and the corpus ceiling
+# is 104. Rate is flat at 1 per quest (framework 03 3b-i: no level-band rate scaling).
+
+imports:
+  - from: iod-tokens
+    use:
+      variables:
+        - IOD_PROGRESSION_TOKEN
 
 quests:
   update:
@@ -115,12 +146,12 @@ questCompensations:
           gold: 80
 
     # ---- zone quests: the level-4 set, one piece each -------------------------
-    - questId: 1322       # Unrest in the Forest (Kishale) -> lv4 FEET
+    - questId: 1322       # Unrest in the Forest (Kishale) -> lv4 FEET + token
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 500
+          exp: 200          # was 500; bracket 1-2 cap
           gold: 50
           itemBag: "class"
           items:
@@ -160,13 +191,50 @@ questCompensations:
             - templateId: 17412
               quantity: 1
               class: "assassin"
+            # The token, 12 duplicate rows (R22).
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "lancer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "berserker"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "engineer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "fighter"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "warrior"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "slayer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "archer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "glaiver"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "sorcerer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "priest"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "elementalist"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "assassin"
 
-    - questId: 1324       # Essence and Sensibility (Dulari) -> lv4 BODY
+    - questId: 1324       # Essence and Sensibility (Dulari) -> lv4 BODY + token
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 900
+          exp: 200          # was 900; bracket 1-2 cap
           gold: 90
           itemBag: "class"
           items:
@@ -206,13 +274,50 @@ questCompensations:
             - templateId: 17410
               quantity: 1
               class: "assassin"
+            # The token, 12 duplicate rows (R22).
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "lancer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "berserker"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "engineer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "fighter"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "warrior"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "slayer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "archer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "glaiver"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "sorcerer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "priest"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "elementalist"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "assassin"
 
-    - questId: 1325       # The Perfect Cut (Leolin) -> lv4 HANDS
+    - questId: 1325       # The Perfect Cut (Leolin) -> lv4 HANDS + token
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 500
+          exp: 220          # was 500; bracket 3-4 cap
           gold: 50
           itemBag: "class"
           items:
@@ -252,13 +357,50 @@ questCompensations:
             - templateId: 17411
               quantity: 1
               class: "assassin"
+            # The token, 12 duplicate rows (R22).
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "lancer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "berserker"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "engineer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "fighter"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "warrior"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "slayer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "archer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "glaiver"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "sorcerer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "priest"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "elementalist"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "assassin"
 
-    - questId: 1319       # Dwellers of the Island (Clovis) -> lv4 WEAPON
+    - questId: 1319       # Dwellers of the Island (Clovis) -> lv4 WEAPON + token
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 600
+          exp: 200          # was 600; bracket 1-2 cap
           gold: 60
           itemBag: "class"
           items:
@@ -298,3 +440,40 @@ questCompensations:
             - templateId: 59319      # Graft of Vekas (was 59353, level 3)
               quantity: 1
               class: "glaiver"
+            # The token, 12 duplicate rows (R22).
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "lancer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "berserker"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "engineer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "fighter"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "warrior"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "slayer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "archer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "glaiver"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "sorcerer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "priest"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "elementalist"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "assassin"

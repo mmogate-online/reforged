@@ -2,6 +2,12 @@ spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: iod-tokens
+    use:
+      variables:
+        - IOD_PROGRESSION_TOKEN
+
 # Island of Dawn level 5-7 reward pass: move the First Expedition set off the story
 # spine onto zone quests, and correct the remaining stale new-class weapons.
 #
@@ -92,6 +98,30 @@ spec:
 # corrected ones. 1326 and 1330 are absent from this spec entirely: their existing rows are
 # already exactly the pieces they should carry, and they stop being duplicates the moment
 # 1305 is stripped. Reaper/Soulless stays omitted per doctrine.
+#
+# ---------------------------------------------------------------------------
+# AMENDED 2026-07-30 by the IoD reward-vector wave 1 (plan phase E2, RV-07 + RV-03).
+# ---------------------------------------------------------------------------
+# The four ZONE quests this spec owns take the wave's XP clamp and its progression-token
+# rows HERE, not in the new spec 002/40. `discover_specs` sorts on the relative path string
+# and `questCompensations: upsert` is replace-all, so a spec numbered 40- naming them would
+# be the LAST writer: it would overwrite the First Expedition body and weapon distribution
+# and undo the two deliberate strips below. See 002/40 for the full ownership map.
+#
+# XP, from IOD-WAVE1-BATCH0-MEASUREMENTS.md section 3c:
+#   1332  min 6, bracket 5-6, cap 900        900 ->   900, already compliant
+#   1333  min 6, bracket 5-6, cap 900      1,700 ->   900
+#   1348  min 5, bracket 5-6, cap 900        900 ->   900, already compliant
+#   1349  min 7, bracket 7-8, cap 1,300    2,300 -> 1,300
+# The three STORY missions in this file (1305, 1315, 1316) keep their XP: the cap is a zone
+# quest rule, and the story spine is the baseline the cap is measured against. Gold is
+# unchanged everywhere, because RV-07 pays the token and only the token.
+#
+# THE TOKEN, and the bag-mode split. 1332 and 1333 are `class` bags, so each takes TWELVE
+# duplicate token rows per R22, going from 12 rows to 24. 1348 and 1349 were stripped to
+# exp and gold with NO itemBag at all, so each gains `itemBag: "allpay"` plus one token row.
+# That makes them item-paying again, which the note above about 1349 being "the natural home
+# for a non-set reward (tokens, per the reward-vectors backlog)" anticipated exactly.
 
 quests:
   update:
@@ -165,13 +195,50 @@ questCompensations:
             - templateId: 15025
               quantity: 1
               class: "assassin"
+            # The token, 12 duplicate rows (R22).
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "lancer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "berserker"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "engineer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "fighter"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "warrior"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "slayer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "archer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "glaiver"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "sorcerer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "priest"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "elementalist"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "assassin"
 
-    - questId: 1333       # Twice the Bark, Twice the Bite (Jehan) -> lv7 WEAPON
+    - questId: 1333       # Twice the Bark, Twice the Bite (Jehan) -> lv7 WEAPON + token
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 1700
+          exp: 900          # was 1700; bracket 5-6 cap
           gold: 170
           itemBag: "class"
           items:
@@ -211,23 +278,68 @@ questCompensations:
             - templateId: 59055      # Runeglaive of the First Expedition
               quantity: 1
               class: "glaiver"
+            # The token, 12 duplicate rows (R22).
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "lancer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "berserker"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "engineer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "fighter"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "warrior"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "slayer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "archer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "glaiver"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "sorcerer"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "priest"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "elementalist"
+            - templateId: $IOD_PROGRESSION_TOKEN
+              quantity: 1
+              class: "assassin"
 
     # ---- former carriers, returned to exp and gold only -------------------------
-    - questId: 1348       # Ferocious Flowering Felons (was the lv7 body)
+    - questId: 1348       # Ferocious Flowering Felons (was the lv7 body) -> token only
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 900
+          exp: 900          # already under the 5-6 cap of 900
           gold: 90
+          itemBag: "allpay"      # added by wave 1: the quest had no bag at all
+          items:
+            - templateId: $IOD_PROGRESSION_TOKEN      # Dawn Seal
+              quantity: 1
 
-    - questId: 1349       # Gotta Kill 'Em All (was the lv7 weapon)
+    - questId: 1349       # Gotta Kill 'Em All (was the lv7 weapon) -> token only
       huntingZoneId: 13
       compensations:
         - compensationId: 1
           type: "normal"
-          exp: 2300
+          exp: 1300          # was 2300; bracket 7-8 cap
           gold: 230
+          itemBag: "allpay"      # added by wave 1: the quest had no bag at all
+          items:
+            - templateId: $IOD_PROGRESSION_TOKEN      # Dawn Seal
+              quantity: 1
 
     # ---- Kugai tier: removed, the token shop owns it ---------------------------
     - questId: 1315       # Putting the Pieces Together (was 12 Kugai weapons + lv8 chest)

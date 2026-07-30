@@ -1,0 +1,174 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn progression token (RV-01): the early-progression currency.
+#
+# Framework: reforged-content-framework 03-economy.md 3b-i (reward parity: the token
+#   compensates for XP removed) and 3c (power-spend registry).
+# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase E1.
+# Wave: IoD reward-vector wave 1, folded into the open patch 002.
+#
+# WHAT THIS IS. One region-wide currency paid by every reward vector on the island.
+# 002/40 and the amended 002/28, 002/29 and 002/30 thread it into all 35 live zone
+# quests in the same wave that clamps their XP; the two changes are one exchange, not
+# two independent ones.
+#
+# IT SHIPS WITH NO SINK, AND THAT IS DELIBERATE. RV-02, the vendor that spends it,
+# is wave 2. The E2 XP pass is what determines token income, so pricing a catalogue
+# before that lands would mean guessing the income rate and then guessing prices
+# against the guess. Shipping the currency first produces measured accumulation data.
+# The tooltip says so explicitly, because a currency with nothing to buy otherwise
+# reads as a bug.
+#
+# NOT A MEDAL_USEABLE RIGHT-CLICK SHOP TOKEN. Ruling R11 puts this token's shop on a
+# physical NPC vendor, so the item carries no VillagerMenuItem / BuyMenuList / BuyList
+# chain and no itemUseCount. That is the one thing deliberately NOT copied from
+# 002/14-dungeon-tokens.yaml and 002/20-kugai-token-shop.yaml, whose tokens are
+# item-opened MedalStore tokens.
+#
+# HOW THIS TOKEN IS RESTRICTED: `tradable` and the guild bank, NOT `boundType`.
+# USER RULING 2026-07-30, which SUPERSEDES ruling R21.
+#
+# R21 asked for `boundType: Loot` and untradable. That is the wrong instrument, and it
+# is also unshippable. Both halves matter, in that order.
+#
+# THE DESIGN REASON, which is the one that governs. `boundType` is for EQUIPMENT the
+# character wears, not for consumables or currency. A token is neither worn nor bound;
+# what it must not do is move between PLAYERS. So the levers are the two flags that
+# actually gate player-to-player movement:
+#
+#   tradable: false                stops direct trade and the broker
+#   guildWarehouseStorable: false  stops the guild bank, the other cross-player route
+#
+# `warehouseStorable: true` is kept deliberately. The personal bank is same-ACCOUNT
+# only, so it moves nothing between players; blocking it would only inconvenience the
+# owner. All four items in the project's reserved token band (95214, 95215, 95216 and
+# this one) carry exactly this pairing, so the rule is uniform and auditable.
+#
+# THE ENGINE REASON, which independently rules R21 out. The token was first authored
+# `boundType: Loot` per R21 and WorldServer.exe REFUSED THE FILE at startup:
+#
+#     last read[.\Datasheet\\.\ItemTemplate.xml]
+#     stackable item cannot specify boundType [ItemTID=95217][boundType=1]
+#     [ItemTemplate] Loading Error!
+#
+# The loader treats `maxStack > 1` and a non-None `boundType` as mutually exclusive,
+# and the corpus states the same rule without exception: of 112,393 item rows, all
+# 3,803 carrying `boundType: Loot` are `maxStack: 1`, and every one of the 25,074
+# stackable rows carries `boundType: None`. The pairing had ZERO corpus occurrences
+# before this spec introduced it, the same failure class as the `itemMixId="0"` and
+# `진행퀘스트 0,0` shapes this project has already been bitten by. A currency has to
+# stack, so `boundType` was never available here regardless of design intent.
+#
+# CONSEQUENCE TO CARRY INTO RV-02, stated plainly rather than buried. Seals can still
+# move between characters on ONE ACCOUNT through the personal bank. That is accepted
+# and intended: the restriction targets players, not alts. RV-02 should read its
+# accumulation data as per-ACCOUNT income, not per-character.
+#
+# `audit_item_references.py` enforces both flags across the whole token band, so a
+# future token cannot be added without them.
+
+imports:
+  - from: iod-tokens
+    use:
+      variables:
+        - IOD_PROGRESSION_TOKEN
+
+# ---------------------------------------------------------------------------
+# 1. The item.
+# ---------------------------------------------------------------------------
+# Attribute shape copied from _KugaiToken (002/20) so the project's tokens stay
+# recognisably one family, with three deliberate departures:
+#   combatItemType  NO_COMBAT  (not MEDAL_USEABLE: no right-click affordance)
+#   itemUseCount    0          (nothing to use; 1 would arm a dead use action)
+#   icon            drop_medal_01  (distinct from the mysterypaper5 the two
+#                                   MedalStore tokens share, so the currency does
+#                                   not read as another right-click token)
+# `boundType` is NOT a departure: it matches the token family, and the R21 note above
+# explains why binding is both the wrong instrument and an unshippable one.
+#
+# The first draft justified `boundType: Loot` from items 45375 and 45376, which do
+# carry NO_COMBAT + Loot + itemUseCount 0. That evidence was worthless for this item:
+# both are `maxStack: 1`, so neither tested the stackable case that the loader
+# actually rejects. Check maxStack alongside boundType, not boundType alone.
+
+definitions:
+  _IodProgressionToken:
+    name: token
+    combatItemType: NO_COMBAT
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 3
+    level: 1
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 2
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 10000
+    slotLimit: 0
+    coolTimeGroup: 0
+    itemUseCount: 0
+    maxDropUnit: 9999
+    enchantEnable: false
+    tradable: false
+    boundType: None      # correct for a currency, and the only value the loader
+                         # accepts on a stackable item. Restriction is carried by
+                         # tradable + guildWarehouseStorable, not by binding.
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    icon: Icon_Items.drop_medal_01_Tex
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
+    defaultValue: 0
+
+items:
+  upsert:
+    - id: $IOD_PROGRESSION_TOKEN
+      $extends: _IodProgressionToken
+
+# ---------------------------------------------------------------------------
+# 2. The strings. TOP-LEVEL block, not the inline `strings:` form.
+# ---------------------------------------------------------------------------
+# migrate.py matches ENTITY_KEY_PATTERN anchored at column 0, so an indented inline
+# `strings:` block does not register the `itemStrings` key and the family is never
+# added to the sync set. Patch 002 is covered today only by accident, because two
+# unrelated specs carry top-level blocks. A patch whose only string authoring was
+# inline would ship a nameless item to the client. Authoring it here makes this spec
+# self-sufficient rather than dependent on its neighbours.
+#
+# `upsert` because 95217 has no StrSheet_Item row yet and this spec must converge on
+# re-apply.
+
+itemStrings:
+  upsert:
+    - id: $IOD_PROGRESSION_TOKEN
+      name: "Dawn Seal"
+      toolTip: "Awarded for completing tasks across the Island of Dawn.$BR$BR<font color = '#2478FF'>[Save these.]</font> The quartermaster who accepts them has not yet set up on the island. Your seals are kept safe until then."
