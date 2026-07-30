@@ -27,6 +27,49 @@ ENTITY_SYNC_MAP = {
     "equipmentInheritance": "EquipmentInheritanceData",
     "itemProduceRecipes": "ItemProduceRecipeData",
     "materialEnchants": "MaterialEnchantData",
+    # -----------------------------------------------------------------------
+    # Feedstock-flattening families. Registered 2026-07-29 for the IoD
+    # reward-vector wave 1; see docs/plans/reward-vectors/IOD-WAVE1-PLAN.md.
+    #
+    # Each of the four keys below has a descriptor added to
+    # config/sync-config.yaml in the SAME change, and it must stay that way. A
+    # key mapped here with no descriptor there is FAIL-CLOSED, not silent:
+    # SyncOrchestrator.Plan() emits E603 and SyncCommand exits 2 BEFORE writing
+    # anything, so one bad key aborts the client leg for the entire patch.
+    # -----------------------------------------------------------------------
+    "decompositions": "DecompositionData",
+    "itemMixes": "ItemMixData",
+    "achievements": "AchievementList",
+    "eventMatchingEvents": "EventMatching",
+    # All nine eventMatching* sections write the SAME server file and client sync
+    # is file-scoped, so the mapping above already carries the whole file. The
+    # eight below are mapped to None purely to close the ENTITY_KEY_PATTERN blind
+    # spot: a key ABSENT from this dict is never seen by detect_entities, so a
+    # spec using one of them without also using eventMatchingEvents would lose
+    # its client leg with no log line at all.
+    "eventMatchingRewards": None,
+    "eventMatchingAchievements": None,
+    "eventMatchingTimeline": None,
+    "eventMatchingSettings": None,
+    "eventMatchingFilters": None,
+    "eventMatchingDefaultImages": None,
+    "eventMatchingContentBanner": None,
+    "eventMatchingPlayGuide": None,
+    # EnchantData is server-only for what this wave changes, and provably so:
+    # the client EnchantData.xsd declares baseCost, combatItemType, rank,
+    # rareGrade and resultItemAmount but NOT resultItemTemplateId, so repointing
+    # the dismantle output item cannot reach the client (measured 2026-07-29,
+    # same pattern as AreaData's undeclared recall attributes). If
+    # resultItemAmount is ever changed, this family needs a real descriptor.
+    "enchantDatas": None,
+    # ItemConversion is server-only for this wave: the client shards carry zero
+    # ids in 94100 to 94119 across 34,535 FixedItem and 4,720 ResultItem
+    # elements, so deleting the 80 server feedstock rows has no client
+    # counterpart to update (measured 2026-07-29).
+    "itemConversions": None,
+    # StackAttendanceEvent: server-only. The client StackAttendanceEvent folder
+    # holds UI chrome and has no SampleEventList at all.
+    "stackAttendanceEvent": None,
     "enchants": "EquipmentEnchantData",
     "enchantPassivityCategories": "EquipmentEnchantData",
     "itemStrings": "StrSheet_Item",

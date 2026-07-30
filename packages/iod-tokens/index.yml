@@ -1,10 +1,15 @@
 # IoD (Island of Dawn) Token IDs
 #
-# Token dropped by Kugai (npcTemplateId 1004) in hunting zone 13.
-# Opens a 3-tab MedalStore: Weapons / Armor / Materials.
+# Two tokens live here, with different roles:
+#
+# 1. KUGAI_TOKEN, dropped by Kugai (npcTemplateId 1004) in hunting zone 13.
+#    Opens a 3-tab MedalStore: Weapons / Armor / Materials.
+# 2. IOD_PROGRESSION_TOKEN, the region-wide early-progression currency paid by
+#    every reward vector on the island (RV-01/RV-03). NOT a MEDAL_USEABLE
+#    right-click shop token: ruling R11 says its shop is a physical NPC vendor.
 #
 # ID allocation from dungeon-tokens reserved ranges:
-#   Token item:   95216
+#   Token items:  95216 (Kugai), 95217 (early progression)
 #   Menu/VMI ID:  9999008
 #   BuyList IDs:  9999009 (Weapons), 9999010 (Armor), 9999011 (Materials)
 
@@ -12,6 +17,12 @@ spec:
   version: "1.0"
 
 variables:
+  # Early-progression token (RV-01), the cross-vector reward spine for the Island
+  # of Dawn: every reward vector pays some of it. Next free slot in the project's
+  # reserved token block 95214 to 95313. Ships as accumulating currency in wave 1;
+  # its vendor is RV-02 in wave 2, so it deliberately has no sink at first.
+  IOD_PROGRESSION_TOKEN: 95217
+
   KUGAI_TOKEN: 95216
 
   KUGAI_MENU: 9999008
@@ -22,6 +33,7 @@ variables:
 
 exports:
   variables:
+    - IOD_PROGRESSION_TOKEN
     - KUGAI_TOKEN
     - KUGAI_MENU
     - KUGAI_LIST_WEAPONS

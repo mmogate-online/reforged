@@ -116,6 +116,104 @@ entities:
     id_attribute: "materialEnchantId"
     xsd_file: "MaterialEnchantData/MaterialEnchantData.xsd"
 
+  # ---------------------------------------------------------------------------
+  # Registered 2026-07-29 for the IoD reward-vector wave 1 (feedstock flattening).
+  # All four carry feedstock item ids on the client, verified by id census before
+  # registration, so all four need a real descriptor rather than a None mapping in
+  # migrate's ENTITY_SYNC_MAP. Shapes were MEASURED per family, not templated: see
+  # docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase A.
+  #
+  # A key mapped in ENTITY_SYNC_MAP with no descriptor here is FAIL-CLOSED: plan
+  # emits E603 and dsl sync exits 2 BEFORE writing anything, aborting the client
+  # leg for the whole patch. Never add the key without the descriptor.
+  # ---------------------------------------------------------------------------
+
+  # Fodder and gear dismantle outputs. Server 343 rows vs client 334 at
+  # registration, so the first sync ADDS 9 server-only rows to the client.
+  DecompositionData:
+    strategy: monolithic
+    merge: replace
+    server_file: "DecompositionData.xml"
+    client_folder: "DecompositionData"
+    client_file: "DecompositionData-00000.xml"
+    root_element: "DecompositionData"
+    id_attribute: "id"
+    xsd_file: "DecompositionData/DecompositionData.xsd"
+
+  # Item combine recipes (the feedstock tier-up ladder lives here). Server 852
+  # rows vs client 848, so the first sync ADDS 4. Both roots also carry a single
+  # Common element, so a replace does not strand it.
+  ItemMixData:
+    strategy: monolithic
+    merge: replace
+    server_file: "ItemMixData.xml"
+    client_folder: "ItemMixData"
+    client_file: "ItemMixData-00000.xml"
+    root_element: "ItemMixData"
+    id_attribute: "itemMixId"
+    xsd_file: "ItemMixData/ItemMixData.xsd"
+
+  # Vanguard Request rewards. merge: replace is REFUSED here with E683, and that
+  # refusal is correct: the client shard carries a DailyCheckEvent root child the
+  # server file does not contain at all, so a replace would rebuild the file
+  # without it and write XSD-invalid output. preserve-required-elements is a
+  # replace in every other respect, carrying over an XSD-required root child the
+  # projection cannot supply and re-sorting it into schema order. Idempotent, and
+  # it grafts nothing when the client file is absent. DSL f3be560c.
+  EventMatching:
+    strategy: monolithic
+    merge: preserve-required-elements
+    server_file: "EventMatching.xml"
+    client_folder: "EventMatching"
+    client_file: "EventMatching-00000.xml"
+    root_element: "EventMatching"
+    id_attribute: "id"
+    xsd_file: "EventMatching/EventMatching.xsd"
+
+  # Achievement rows, including three that grant feedstock directly (9002, 9009,
+  # 9011). This is a SHARD family, not a monolith: the 7 regional server files map
+  # onto client shards 00001 to 00007, verified by row count and id range.
+  #
+  # DELIBERATELY MAPPED TO THE BASE FILE ONLY. Measured on the first real sync
+  # 2026-07-29, with the full 7-file mapping in place: the regional shards carry
+  # genuine server-vs-client divergence that has nothing to do with feedstock, and
+  # propagating it is a player-visible change well outside this wave's scope.
+  #
+  #   server AchievementList_NAEU.xml has active="False" on ALL 135 rows, while
+  #   client shard 00005 shipped 112 of them active="true". The sync deactivated
+  #   all 112, hid 30 more, and moved one grade. Shards 00003 (JP), 00004 (KR) and
+  #   00006 (RUS) flipped 10 further rows active.
+  #
+  # This is NOT the boolean-case defect (NormalizeBoolean matches
+  # case-insensitively per DSL 3976613a, and zero values sit outside the
+  # xsd:boolean lexical space). It is real data divergence, and which side is
+  # authoritative is unresolved: the v92 server's regional files may simply be
+  # stale relative to the NA/EU publisher client. Do not widen this mapping
+  # without settling that question first.
+  #
+  # All three feedstock achievements live in the BASE AchievementList.xml, so the
+  # base mapping alone carries everything this wave needs. Unmapped shards are
+  # left untouched by sync, verified: shard 00000 came out byte-identical.
+  #
+  # Shard AchievementList-00000.xml must stay excluded regardless. It holds a
+  # single CategoryInfo element and no Achievement rows, has no counterpart inside
+  # AchievementList.xml, and mapping it would overwrite publisher-side category
+  # curation with achievement rows.
+  #
+  # Expected W602 out-of-schema drops on this family (client XSD does not declare
+  # them): conditionCheckMethod, mailSender, serverUnique, notifyLevel, hasTitle,
+  # withoutMsgClasses, withoutRewardClasses, Condition/value2 to value6,
+  # ItemReward/desc, SpecialReward/targetType, targetId, value,
+  # TitleReward/directApply, and the AwakenReward element.
+  AchievementList:
+    strategy: SourceMapped
+    client_folder: "AchievementList"
+    root_element: "AchievementList"
+    id_attribute: "id"
+    xsd_file: "AchievementList/AchievementList.xsd"
+    source_mapping:
+      "AchievementList.xml": "AchievementList-00001.xml"
+
   # ===========================================================================
   # ABNORMALITY DATA
   # ===========================================================================
