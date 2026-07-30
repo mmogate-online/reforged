@@ -224,6 +224,11 @@ items:
 
 ## Lessons
 
+### Operations run grouped by KIND in a fixed order, so delete-then-create in one spec can never work
+- **Date/source:** 2026-07-30: a spec listed `itemMixes: delete` for id 216862 and `itemMixes: create` for the corrected record, in that order in the file. The create failed. DSL `d53dbfad` then made the reason explicit as a new `E429` naming the id, the file and the ordering rule.
+- **Why:** `SpecMapper` emits operations grouped by kind in the order create, update, delete, upsert, regardless of the order the keys appear in the YAML. The create is therefore always attempted while the id is still taken. Key position in the file buys no sequencing at all.
+- **Apply:** to rewrite a whole record, use `upsert`, never delete plus create. Never rely on YAML key order for sequencing inside one spec. When ordering genuinely matters, split across two specs: `discover_specs` sorts on the relative path string, so the later-sorting file is the last writer (note that a subdirectory like `loot/` sorts after every numbered file at the same level).
+
 ### Clone a donor record the server already loads; never synthesize a new one from the schema
 - **Date/source:** 2026-07-24: three DSL-created quests (1380/1381/1387, spec 002/18) crashed the world server during datasheet validation with a bare `access violation ... Write to 0x0` and no file name; the symbolized crash stack named `QuestTemplate::Validate`. Six deploy/restart cycles. The DSL side is fixed as of the 2026-07-25 binary (`1.0.0+5f90181c`): quest entry children are now scaffolded from a mechanically derived structure contract, so this exact trap is closed for Quest. The lesson stands for every other entity the server validates, and the request that documented it was closed and deleted.
 - **Why:** DSL emits only what the spec author supplied, but the server dereferences nodes that appear in 100% of the corpus for that task type without null-checking them. The missing nodes sat at several nesting depths (`보상` and `진행조건` at body level; `연출Id` inside `방문그룹/방문그룹`; `조우시대사`/`사망시대사`/`이상상태조건` inside `몬스터지정/몬스터지정`), so auditing corpus statistics one level at a time surfaced exactly one layer per boot and each "fix" looked complete until the next crash. `dsl validate` passes throughout, and the client packs fine, because only the server loader is strict.

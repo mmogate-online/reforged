@@ -41,17 +41,17 @@ Read `.references` in the project root (`reforged/.references`). Parse as `key=v
 | `project_root` | Where `dsl.exe` lives |
 | `server_datasheet` | Target datasheet XML directory |
 
-The DSL binary is at `<project_root>/dsl.exe`. Always use the full absolute path — never `./dsl` or relative paths.
+The DSL binary is at `<project_root>/dsl.exe`. Always use the full absolute path, never `./dsl` or relative paths.
 
 ## 2. Determine the spec path
 
 If the user provides a spec path, use it directly. If they mention a spec by name or number, find it under `specs/`. Spec files live in:
 
 ```
-specs/patches/<patch>/          — patch-specific specs (numbered for execution order)
-specs/patches/<patch>/loot/     — loot table specs (zone files)
-specs/patches/<patch>/evolutions/ — evolution path specs
-specs/backlog/                  — pending/future specs
+specs/patches/<patch>/            patch-specific specs (numbered for execution order)
+specs/patches/<patch>/loot/       loot table specs (zone files)
+specs/patches/<patch>/evolutions/ evolution path specs
+specs/backlog/                    pending/future specs
 ```
 
 ## 3. Validate first
@@ -149,13 +149,23 @@ powershell -Command "Set-Location '<client_pack_dir>'; & '.\novadrop-dc_92.04\no
 |-------|-------|-----|
 | E535 | Exported variable not found | Package sub-file missing `exports: variables:` or index.yml missing `use: variables:` |
 | E536 | Imported variable not exported by source | Variable name not in source package's exports list |
-| E520 | Unknown variable reference | `$VAR_NAME` used but not imported — add to `use: variables:` in imports |
+| E520 | Unknown variable reference | `$VAR_NAME` used but not imported; add to `use: variables:` in imports |
 | E103 | Invalid property | Check the DSL schema docs for the entity type (see note below) |
 | E200 | Missing required field | Check required attributes in the entity schema (see note below) |
 
 **Schema docs location:** resolve `dsl_docs_enduser` from `.references`, then read `schemas/<category>/<entity>.mdx` for the entity type.
 
 ## Lessons
+
+### Generate a spec from the COMMITTED baseline, never from the working tree
+- **Date/source:** 2026-07-30: a generated removal spec was regenerated against a server datasheet that already held an applied patch. It came back covering 190 rows where the baseline held 1,785, because the previous apply had already removed the other 1,595. `dsl validate` passed on both versions and the apply reported success on both.
+- **Why:** `migrate` applies with `--source-ref <server HEAD>`, so every spec is replayed against the committed baseline. A generator that walks the working tree is measuring post-apply state, and emits selectors, `expect` counts and row sets for a world the apply will never see. Nothing errors: the spec is simply smaller, which reads as "less to do". This is the same root cause as the untracked-baseline lesson below, in the opposite direction. There the working tree held MORE than the commit; here it held less.
+- **Apply:** `git checkout -- .` in `<server_datasheet>` before regenerating any spec derived from datasheet state, then regenerate, then apply. Better, build the guard into the tool: both `tools/feedstock-faucet/` generators refuse to run while their target family is dirty unless `--allow-dirty` is passed. About ten tool folders under `tools/` read the datasheet and most still have no such guard, so check before trusting one's output.
+
+### Granular row removal can empty a container the client XSD requires to be non-empty
+- **Date/source:** 2026-07-30: a patch 002 apply wrote the server tree cleanly, then died at client sync with `E650 XSD validation failed ... The element 'RandomReward' has incomplete content. List of possible elements expected: 'Reward'`. The spec had removed every `Reward` row from 11 gacha groups.
+- **Why:** the collection-membership ops remove rows, not their container. The server loader tolerates an empty `<RandomReward>`; the client `Gacha.xsd` declares `Reward` without `minOccurs="0"`, so the client rejects it and the sync refuses the entire file. `dsl validate` cannot catch this: every op is individually valid and the invalid state exists only after they all run.
+- **Apply:** before applying a removal that could take a container's last child, check that element's `minOccurs` in the client XSD under `<client_datacenter>/<Family>/<Family>.xsd`. Where the container must not be empty, remove the container instead (`removeRandomRewardGroups`, `removeResultItemSets`). Where an empty container is XSD-legal, still ask whether it is semantically dead: an emptied `<ResultItemSet>` is a roll slot that grants nothing and was removed, while an emptied `<FixedReward>` is inert and was left because no op removes it.
 
 ### `--source-ref` replays targets from a commit, so an UNTRACKED baseline file gets rewritten from scratch
 - **Date/source:** 2026-07-28: a `migrate.py --patch` run (migrate applies with `--source-ref <server HEAD>`) left `StrSheet_Field.xml` holding 8 rows where the working tree had 214. The apply reported success, no error and no warning.
