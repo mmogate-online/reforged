@@ -32,17 +32,12 @@ definitions:
         max: $QTY
         probability: 1.0
 
-  FeedstockBag:
-    $params: [PROB, QTY]
-    id: 109
-    bagName: "Feedstock"
-    probability: $PROB
-    items:
-      - templateId: 94101
-        name: "Tier 1 Feedstock"
-        min: $QTY
-        max: $QTY
-        probability: 1.0
+  # FeedstockBag (id 109, templateId 94101) was REMOVED 2026-07-29 by the IoD reward-vector
+  # wave 1. Framework 04 §5e is unambiguous: "There is no direct content drop of feedstock in
+  # this design, it is downstream of infusion fodder", restated as ruling R13. Fodder
+  # dismantling is the sole faucet (DecompositionData rows authored by specs/patches/002/35).
+  # Do not reintroduce a feedstock bag here; if a content drop is ever wanted again it is a
+  # framework change first.
 
   DyadStructureBag:
     $params: [PROB, QTY]
@@ -112,7 +107,6 @@ definitions:
 exports:
   definitions:
     - AlkahestBag
-    - FeedstockBag
     - DyadStructureBag
     - SmartDyadStructureBag
     - CrystalBoxesBag

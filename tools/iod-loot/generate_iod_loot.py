@@ -213,7 +213,6 @@ MIN_PROB             = 0.01
 MIN_PROB_SMART_DYAD  = 0.001
 MAX_PROB             = 0.80
 ALKA_QTY             = 2      # baseline at mean mob; scales by sqrt(score_ratio)
-FEED_QTY             = 4      # baseline at mean mob; 1:2 enchant ratio with alka
 KILL_BUDGET          = 50
 
 
@@ -236,7 +235,7 @@ def build_prob_maps():
     mean = sum(scores) / len(scores)
 
     prob, cry, dyad, sdyad, inf = {}, {}, {}, {}, {}
-    qty_alka, qty_feed, qty_unit = {}, {}, {}  # per-mob qty multipliers
+    qty_alka, qty_unit = {}, {}  # per-mob qty multipliers
     for nid, _, hp, atk, _, env in NPCS:
         if env:
             prob[nid]  = MIN_PROB
@@ -247,7 +246,6 @@ def build_prob_maps():
             # Env mobs: tiny score ratio → qty floors at 1
             s = score(hp, atk) / mean
             qty_alka[nid] = qty_scaled(ALKA_QTY, s)
-            qty_feed[nid] = qty_scaled(FEED_QTY, s)
             qty_unit[nid] = qty_scaled(1, s)
         else:
             s = score(hp, atk) / mean
@@ -257,9 +255,8 @@ def build_prob_maps():
             sdyad[nid] = round(min(MAX_PROB, max(MIN_PROB_SMART_DYAD, SMART_DYAD_BASE_PROB * s)), 4)
             inf[nid]   = round(min(MAX_PROB, max(MIN_PROB,   INFUSION_BASE_PROB * s)),            3)
             qty_alka[nid] = qty_scaled(ALKA_QTY, s)
-            qty_feed[nid] = qty_scaled(FEED_QTY, s)
             qty_unit[nid] = qty_scaled(1, s)
-    return mean, prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit
+    return mean, prob, cry, dyad, sdyad, inf, qty_alka, qty_unit
 
 
 def print_ranking(mean, prob, cry, dyad, sdyad, inf):
@@ -276,28 +273,30 @@ def print_ranking(mean, prob, cry, dyad, sdyad, inf):
     print(f"\n  Mean combat score: {mean:.0f}  →  base_prob {BASE_PROB} maps to mean mob")
 
 
-def print_yield(prob, qty_alka, qty_feed):
+def print_yield(prob, qty_alka):
     exp_alka = sum(prob[nid] * qty_alka[nid] for nid, *_ in NPCS) / len(NPCS) * KILL_BUDGET
-    exp_feed = sum(prob[nid] * qty_feed[nid] for nid, *_ in NPCS) / len(NPCS) * KILL_BUDGET
     print(f"\n=== Expected yield from {KILL_BUDGET} uniformly-sampled quest kills ===")
     print(f"  ~{exp_alka:.0f} Masterwork Alkahest")
-    print(f"  ~{exp_feed:.0f} Tier 1 Feedstock")
     a3, f3 = expected_cost_to(3)
     print(f"  Cost to +3 on one piece: {a3:.0f} alka + {f3:.0f} feed")
 
 
-REFORGED_DEFS = ["AlkahestBag", "FeedstockBag", "DyadStructureBag",
+# FeedstockBag is deliberately absent. Framework 04 §5e: "There is no direct content drop
+# of feedstock in this design, it is downstream of infusion fodder", restated as ruling R13.
+# Fodder dismantling (DecompositionData, see specs/patches/002/35) is the sole faucet, so the
+# bag definition was removed from packages/reforged-loot-bags as well.
+REFORGED_DEFS = ["AlkahestBag", "DyadStructureBag",
                  "SmartDyadStructureBag", "CrystalBoxesBag", "InfusionBoxUncommonBag"]
 
 
-def generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit, v31, idmap):
+def generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_unit, v31, idmap):
     off = REFORGED_BAG_ID_OFFSET
     used = {}   # package -> set of item-id constants referenced by this spec
 
     body = []
     for nid, name, hp, atk, lvl, env in NPCS:
         p, cp, dp, sdp, ip = prob[nid], cry[nid], dyad[nid], sdyad[nid], inf[nid]
-        qa, qf, qu = qty_alka[nid], qty_feed[nid], qty_unit[nid]
+        qa, qu = qty_alka[nid], qty_unit[nid]
         comp = v31.get(nid)
 
         body += [
@@ -316,13 +315,12 @@ def generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit, v31
             body += v31_item_lines(comp, idmap, used)
 
         # 2. reforged item bags via the reforged-loot-bags package templates.
-        # Emission order (Alkahest, Feedstock, Crystal, Dyad, SmartDyad, Infusion)
-        # is preserved so the expanded itemBags list matches the pre-refactor spec.
+        # Emission order (Alkahest, Crystal, Dyad, SmartDyad, Infusion) is preserved so the
+        # expanded itemBags list matches the pre-refactor spec. The Feedstock bag that used
+        # to sit second is GONE: no direct content drop of feedstock (framework 04 §5e, R13).
         body += [
             f"        - $extends: AlkahestBag",
             f"          $with: {{ PROB: {p}, QTY: {qa} }}",
-            f"        - $extends: FeedstockBag",
-            f"          $with: {{ PROB: {p}, QTY: {qf} }}",
             f"        - $extends: CrystalBoxesBag",
             f"          $with: {{ PROB: {cp}, QTY: {qu} }}",
             f"        - $extends: DyadStructureBag",
@@ -386,15 +384,15 @@ def main():
     parser.add_argument("--patch", required=True, help="Patch number, e.g. 001")
     args = parser.parse_args()
 
-    mean, prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit = build_prob_maps()
+    mean, prob, cry, dyad, sdyad, inf, qty_alka, qty_unit = build_prob_maps()
     print_ranking(mean, prob, cry, dyad, sdyad, inf)
-    print_yield(prob, qty_alka, qty_feed)
+    print_yield(prob, qty_alka)
 
     v31 = load_v31_comps()
     idmap = build_id_resolver()
     out = Path(__file__).parents[2] / "specs" / "patches" / args.patch / "17-iod-loot.yaml"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_feed, qty_unit, v31, idmap),
+    out.write_text(generate_yaml(prob, cry, dyad, sdyad, inf, qty_alka, qty_unit, v31, idmap),
                    encoding="utf-8")
     print(f"\nSpec written → {out}")
 

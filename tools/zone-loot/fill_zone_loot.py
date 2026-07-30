@@ -32,14 +32,11 @@ PATCH_ZONES = {
     "001": {2, 3, 5, 6, 7, 15, 16, 17, 487, 488},
 }
 
-# Tier → feedstock item ID mapping (Item.rank correlation)
-TIER_FEEDSTOCK = {
-    2: 94101,   # Tier 1 Feedstock — Starter 0/1 gear (rank 1, Lv 1-30)
-    3: 94102,   # Tier 2 Feedstock — Bastion gear (rank 2, Lv 31-50)
-    4: 94103,   # Tier 3 Feedstock — (rank 3, Lv 51-60)
-    5: 94104,   # Tier 4 Feedstock — (rank 4, Lv 61-64)
-    6: 94104,   # Tier 4 Feedstock — endgame shares T4 feedstock
-}
+# Feedstock is NOT a content drop. The tier-to-item table that used to live here is gone
+# along with the three bag emitters that consumed it: framework 04-power-systems.md 5e says
+# "There is no direct content drop of feedstock in this design, it is downstream of infusion
+# fodder", restated as ruling R13. Fodder dismantling is the only faucet. Removed 2026-07-29
+# by the IoD reward-vector wave 1; see docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C1.
 
 # Tier → drop item variable mapping
 TIER_DROPS = {
@@ -300,7 +297,7 @@ def append_infusion_bags(lines: list[str], zone_name: str, mob_label: str,
 # Definition generators (normal / elite / boss)
 # ---------------------------------------------------------------------------
 
-def generate_normal_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict, feedstock_id: int) -> tuple[list[str], int]:
+def generate_normal_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict) -> tuple[list[str], int]:
     """Generate normal mob definition. Returns (lines, next_bag_id)."""
     lines = []
     levels = sorted(set(n.level for n in npcs))
@@ -350,25 +347,13 @@ def generate_normal_definition(slug: str, zone_name: str, npcs: list[Npc], drops
     lines.append(f"            probability: {NORMAL_PROBS['structure']}")
     bag_id += 1
 
-    # Bag: Feedstock (2x alkahest ratio)
-    lines.append(f"      - id: {bag_id}")
-    lines.append(f'        bagName: "{zone_name} Normal Feedstock"')
-    lines.append("        probability: 1.0")
-    lines.append("        items:")
-    lines.append(f"          - templateId: {feedstock_id}")
-    lines.append(f'            name: "Feedstock"')
-    lines.append(f"            probability: {NORMAL_PROBS['alkahest']}")
-    lines.append("            min: 2")
-    lines.append("            max: 4")
-    bag_id += 1
-
     # Bags: Infusion boxes (3 grades, independent rolls)
     bag_id = append_infusion_bags(lines, zone_name, "Normal", INFUSION_PROBS_NORMAL, bag_id)
 
     return lines, bag_id
 
 
-def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict, feedstock_id: int) -> tuple[list[str], int]:
+def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict) -> tuple[list[str], int]:
     """Generate elite mob definition. Returns (lines, next_bag_id)."""
     lines = []
     levels = sorted(set(n.level for n in npcs))
@@ -422,25 +407,13 @@ def generate_elite_definition(slug: str, zone_name: str, npcs: list[Npc], drops:
     lines.append(f"            probability: {ELITE_PROBS['structure']}")
     bag_id += 1
 
-    # Bag: Feedstock (2x alkahest ratio)
-    lines.append(f"      - id: {bag_id}")
-    lines.append(f'        bagName: "{zone_name} Elite Feedstock"')
-    lines.append("        probability: 1.0")
-    lines.append("        items:")
-    lines.append(f"          - templateId: {feedstock_id}")
-    lines.append(f'            name: "Feedstock"')
-    lines.append(f"            probability: {ELITE_PROBS['alkahest']}")
-    lines.append("            min: 4")
-    lines.append("            max: 8")
-    bag_id += 1
-
     # Bags: Infusion boxes (3 grades, independent rolls)
     bag_id = append_infusion_bags(lines, zone_name, "Elite", INFUSION_PROBS_ELITE, bag_id)
 
     return lines, bag_id
 
 
-def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict, tier: int, feedstock_id: int, zone_type: str) -> list[str]:
+def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: dict, tier: int, zone_type: str) -> list[str]:
     """Generate boss mob definition. Returns lines."""
     lines = []
     levels = sorted(set(n.level for n in npcs))
@@ -536,18 +509,6 @@ def generate_boss_definition(slug: str, zone_name: str, npcs: list[Npc], drops: 
     lines.append("            max: 6")
     bag_id += 1
 
-    # Bag: Feedstock (guaranteed, 2x alkahest ratio)
-    lines.append(f"      - id: {bag_id}")
-    lines.append(f'        bagName: "{zone_name} Feedstock"')
-    lines.append("        probability: 1.0")
-    lines.append("        items:")
-    lines.append(f"          - templateId: {feedstock_id}")
-    lines.append(f'            name: "Feedstock"')
-    lines.append("            probability: 1.0")
-    lines.append("            min: 6")
-    lines.append("            max: 12")
-    bag_id += 1
-
     # Bags: Infusion boxes (3 grades, independent rolls)
     bag_id = append_infusion_bags(lines, zone_name, "Boss", INFUSION_PROBS_BOSS, bag_id)
 
@@ -588,13 +549,12 @@ def generate_e_compensation(zone: ZoneConfig, groups: ZoneNpcGroups,
 
     tier = zone.tier
     drops = TIER_DROPS[tier]
-    feedstock_id = TIER_FEEDSTOCK[tier]
     slug = slugify(zone.zone_name)
     crystal_vars, evo_vars = collect_imports(tier, bool(groups.bosses))
 
     lines = []
     lines.append(f"# {zone.zone_name} (Zone {zone.hunting_zone_id}) — Tier {tier} eCompensation")
-    lines.append(f"# All mob drops: crystal boxes, runes, fusion structures, alkahest, feedstock, infusion boxes, gold")
+    lines.append(f"# All mob drops: crystal boxes, runes, fusion structures, alkahest, infusion boxes, gold")
     lines.append("")
     lines.append("spec:")
     lines.append('  version: "1.0"')
@@ -619,17 +579,17 @@ def generate_e_compensation(zone: ZoneConfig, groups: ZoneNpcGroups,
     lines.append("definitions:")
 
     if groups.normals:
-        normal_lines, _ = generate_normal_definition(slug, zone.zone_name, groups.normals, drops, feedstock_id)
+        normal_lines, _ = generate_normal_definition(slug, zone.zone_name, groups.normals, drops)
         lines.extend(normal_lines)
         lines.append("")
 
     if groups.elites:
-        elite_lines, _ = generate_elite_definition(slug, zone.zone_name, groups.elites, drops, feedstock_id)
+        elite_lines, _ = generate_elite_definition(slug, zone.zone_name, groups.elites, drops)
         lines.extend(elite_lines)
         lines.append("")
 
     if groups.bosses:
-        boss_lines = generate_boss_definition(slug, zone.zone_name, groups.bosses, drops, tier, feedstock_id, zone.zone_type)
+        boss_lines = generate_boss_definition(slug, zone.zone_name, groups.bosses, drops, tier, zone.zone_type)
         lines.extend(boss_lines)
         lines.append("")
 

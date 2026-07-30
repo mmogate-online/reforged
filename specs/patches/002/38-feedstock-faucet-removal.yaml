@@ -1,0 +1,2162 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# GENERATED FILE. Do not hand edit.
+#   Regenerate: python reforged/tools/feedstock-faucet/gen_feedstock_faucet_removal.py \
+#       --out reforged/specs/patches/002/38-feedstock-faucet-removal.yaml
+#
+# Delete every remaining feedstock faucet outside field-zone loot.
+#
+# Framework: reforged-content-framework 04-power-systems.md 5e ("there is no direct
+#   content drop of feedstock in this design"). Ruling R13. Fodder dismantling is the
+#   only sanctioned source.
+# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C3.
+# Wave: IoD reward-vector wave 1, folded into the open patch 002.
+#
+# WHAT IT REMOVES
+#   gachaItems            311 reward rows across 114 gacha items
+#                         (31 fixed, 280 random)
+#   itemConversions       80 result rows across 50 seed items
+#   achievements          3 item rewards on 3 achievements
+#   eventMatchingEvents   164 Vanguard rows across 164 (event, group) pairs,
+#                         split 82 priority and 82 secondary
+#   buyLists              1 row from the dead Feedstock Exchange list 2933
+#   exchanges             1 dead ItemMedalExchange row
+#   stackAttendanceEvent  4 rows from the QA sample event
+#
+# WHAT IT DELIBERATELY KEEPS
+#   The Kugai token shop exchange 94101 / 95216. Framework 03 3b-i sanctions a token
+#   shop selling feedstock, so a family-wide sweep here would have been wrong.
+#   BuyList 2933's sibling item 138294.
+#
+# TWO FAMILIES ARE RESTATED, NOT EDITED IN PLACE. `buyLists.items` and
+# `stackAttendanceEvent.sampleEvents` are clear-and-replace and have no membership keys,
+# so every surviving row in those two is restated below and must be diffed against
+# committed HEAD after apply. Between them that is 1 BuyList item and
+# 16 attendance rewards, which is small enough to read.
+#
+# `eventMatchingEvents` USED to be the third and by far the largest: it restated 934
+# surviving rows to delete 164, 73% of this file. DSL 36de802c (2026-07-30) added
+# `removeRewards` keyed on templateId, so that leg now names only what it deletes. The
+# mail strings on each CompensationList were never at risk either way: they live on the
+# container and resolve independently.
+#
+# GROUP MAPPING: `priority` is isSpecialCompensation="true". The DSL docs page states
+# this backwards; EventMatchingEventDataMapper.MapGroup is the authority.
+
+
+gachaItems:
+  update:
+    - itemTemplateId: 19321
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94107
+                expect: 2
+            normalize: true
+    - itemTemplateId: 19322
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94107
+                expect: 2
+            normalize: true
+    - itemTemplateId: 19736
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94106
+                expect: 2
+            normalize: true
+    - itemTemplateId: 20910
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 8
+            normalize: true
+    - itemTemplateId: 20911
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 8
+            normalize: true
+    - itemTemplateId: 21210
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 8
+            normalize: true
+    - itemTemplateId: 21211
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 8
+            normalize: true
+    - itemTemplateId: 96813
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94106
+                expect: 8
+            normalize: true
+    - itemTemplateId: 96814
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94106
+                expect: 8
+            normalize: true
+    - itemTemplateId: 96970
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94107
+                expect: 1
+            normalize: true
+    - itemTemplateId: 96971
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94107
+                expect: 1
+            normalize: true
+    - itemTemplateId: 97106
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94106
+                expect: 1
+            normalize: true
+    - itemTemplateId: 97310
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94107
+                expect: 8
+            normalize: true
+    - itemTemplateId: 97311
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94107
+                expect: 8
+            normalize: true
+    - itemTemplateId: 97710
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 8
+            normalize: true
+    - itemTemplateId: 97711
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 8
+            normalize: true
+    - itemTemplateId: 950129
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94101
+            expect: 1
+    - itemTemplateId: 950130
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94102
+            expect: 1
+    - itemTemplateId: 950131
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94103
+            expect: 1
+    - itemTemplateId: 100373
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+              - itemTemplateId: 94112
+                expect: 1
+            normalize: true
+    - itemTemplateId: 101081
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94106
+                expect: 1
+            normalize: true
+    - itemTemplateId: 101102
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94106
+                expect: 1
+              - itemTemplateId: 94107
+                expect: 1
+            normalize: true
+    - itemTemplateId: 101354
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117313
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 1
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117315
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 1
+              - itemTemplateId: 94109
+                expect: 1
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117329
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 3
+            normalize: true
+    - itemTemplateId: 117429
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117483
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117492
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94111
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 117520
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117522
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117528
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 117562
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94112
+                expect: 1
+            normalize: true
+    - itemTemplateId: 101499
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 138309
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94106
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 148088
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94107
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 148197
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94108
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 148198
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94109
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 149848
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 1
+              - itemTemplateId: 94109
+                expect: 1
+            normalize: true
+    - itemTemplateId: 139806
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 3
+            normalize: true
+    - itemTemplateId: 139839
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 2
+            normalize: true
+    - itemTemplateId: 182487
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 1
+            normalize: true
+    - itemTemplateId: 182490
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 1
+            normalize: true
+    - itemTemplateId: 183740
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 1
+            normalize: true
+    - itemTemplateId: 183744
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 154174
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 2
+            normalize: true
+    - itemTemplateId: 154175
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 2
+            normalize: true
+    - itemTemplateId: 154518
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 2
+            normalize: true
+    - itemTemplateId: 186625
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 2
+            normalize: true
+    - itemTemplateId: 155060
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 155139
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94108
+                expect: 1
+              - itemTemplateId: 94109
+                expect: 1
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 155468
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 155469
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 2
+            normalize: true
+    - itemTemplateId: 155470
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 2
+            normalize: true
+    - itemTemplateId: 189042
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94101
+            expect: 1
+    - itemTemplateId: 189043
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94101
+            expect: 1
+    - itemTemplateId: 189044
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94101
+            expect: 1
+    - itemTemplateId: 189047
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94103
+            expect: 1
+    - itemTemplateId: 189048
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94103
+            expect: 1
+    - itemTemplateId: 189049
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94104
+            expect: 1
+    - itemTemplateId: 189056
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94109
+            expect: 1
+    - itemTemplateId: 189058
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94102
+            expect: 1
+    - itemTemplateId: 214419
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 2
+            normalize: true
+    - itemTemplateId: 214420
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 2
+            normalize: true
+    - itemTemplateId: 216581
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216582
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 2
+            normalize: true
+    - itemTemplateId: 216583
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94109
+                expect: 2
+            normalize: true
+    - itemTemplateId: 216594
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94109
+            expect: 1
+    - itemTemplateId: 216706
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216707
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216708
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216694
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216695
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216696
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 1
+            normalize: true
+    - itemTemplateId: 216727
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 2
+            normalize: true
+    - itemTemplateId: 240004
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94110
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 240005
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94110
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 240006
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94111
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 240007
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94111
+            expect: 1
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 240020
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240027
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240028
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240032
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240036
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240037
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240042
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240044
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 4
+            normalize: true
+    - itemTemplateId: 240049
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94111
+                expect: 4
+            normalize: true
+    - itemTemplateId: 241570
+      changes:
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 241571
+      changes:
+        removeRandomRewardGroups:
+          - expect: 1
+    - itemTemplateId: 243025
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243026
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243027
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243028
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243029
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243030
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243059
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243060
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243073
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243074
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243075
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243076
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243077
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 243078
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 94110
+                expect: 1
+            normalize: true
+    - itemTemplateId: 244754
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94102
+            expect: 1
+    - itemTemplateId: 244755
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94103
+            expect: 1
+    - itemTemplateId: 244756
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94104
+            expect: 1
+    - itemTemplateId: 244757
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94105
+            expect: 1
+    - itemTemplateId: 244758
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94106
+            expect: 1
+    - itemTemplateId: 244759
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94107
+            expect: 1
+    - itemTemplateId: 244760
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94107
+            expect: 1
+    - itemTemplateId: 244761
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94108
+            expect: 1
+    - itemTemplateId: 222683
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94112
+            expect: 1
+    - itemTemplateId: 222686
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 94112
+            expect: 1
+
+itemConversions:
+  update:
+    - itemTemplateId: 96463
+      changes:
+        removeResultItems:
+          - templateId: 94105
+            expect: 1
+    - itemTemplateId: 96468
+      changes:
+        removeResultItems:
+          - templateId: 94105
+            expect: 1
+    - itemTemplateId: 97009
+      changes:
+        removeResultItems:
+          - templateId: 94106
+            expect: 2
+          - templateId: 94107
+            expect: 2
+    - itemTemplateId: 71475
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94106
+                expect: 1
+          - id: 2
+            expect: 1
+            removeResultItems:
+              - templateId: 94106
+                expect: 1
+    - itemTemplateId: 71476
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94106
+                expect: 1
+          - id: 2
+            expect: 1
+            removeResultItems:
+              - templateId: 94106
+                expect: 1
+    - itemTemplateId: 71477
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94106
+                expect: 1
+    - itemTemplateId: 32119
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 32120
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 32121
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 32122
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 32123
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 5200
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94103
+                expect: 1
+    - itemTemplateId: 5201
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94104
+                expect: 1
+    - itemTemplateId: 5202
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94104
+                expect: 1
+    - itemTemplateId: 5203
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94104
+                expect: 1
+    - itemTemplateId: 21293
+      changes:
+        removeResultItems:
+          - templateId: 94110
+            expect: 3
+    - itemTemplateId: 21294
+      changes:
+        removeResultItems:
+          - templateId: 94111
+            expect: 2
+    - itemTemplateId: 21295
+      changes:
+        removeResultItems:
+          - templateId: 94111
+            expect: 3
+    - itemTemplateId: 21296
+      changes:
+        removeResultItems:
+          - templateId: 94111
+            expect: 2
+    - itemTemplateId: 21297
+      changes:
+        removeResultItems:
+          - templateId: 94111
+            expect: 2
+    - itemTemplateId: 98271
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94111
+                expect: 1
+    - itemTemplateId: 98272
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94111
+                expect: 1
+    - itemTemplateId: 98273
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94111
+                expect: 1
+    - itemTemplateId: 98274
+      changes:
+        updateResultItemSets:
+          - id: 1
+            expect: 1
+            removeResultItems:
+              - templateId: 94111
+                expect: 1
+    - itemTemplateId: 99175
+      changes:
+        removeResultItems:
+          - templateId: 94108
+            expect: 2
+          - templateId: 94109
+            expect: 2
+    - itemTemplateId: 100192
+      changes:
+        removeResultItemSets:
+          - expect: 1
+    - itemTemplateId: 101495
+      changes:
+        removeResultItems:
+          - templateId: 94110
+            expect: 1
+    - itemTemplateId: 138294
+      changes:
+        removeResultItemSets:
+          - expect: 1
+    - itemTemplateId: 182408
+      changes:
+        removeResultItemSets:
+          - expect: 1
+    - itemTemplateId: 150511
+      changes:
+        removeResultItemSets:
+          - expect: 1
+    - itemTemplateId: 160501
+      changes:
+        removeResultItems:
+          - templateId: 94108
+            expect: 5
+          - templateId: 94109
+            expect: 5
+          - templateId: 94110
+            expect: 5
+    - itemTemplateId: 155471
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94111
+                expect: 1
+    - itemTemplateId: 189070
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94101
+                expect: 1
+    - itemTemplateId: 189071
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94101
+                expect: 1
+    - itemTemplateId: 189072
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94102
+                expect: 1
+    - itemTemplateId: 189073
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94102
+                expect: 1
+    - itemTemplateId: 189074
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94102
+                expect: 1
+    - itemTemplateId: 189075
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94103
+                expect: 1
+    - itemTemplateId: 189076
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94103
+                expect: 1
+    - itemTemplateId: 189077
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94104
+                expect: 1
+    - itemTemplateId: 189078
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94110
+                expect: 1
+    - itemTemplateId: 213298
+      changes:
+        removeResultItems:
+          - templateId: 94109
+            expect: 1
+    - itemTemplateId: 213299
+      changes:
+        removeResultItems:
+          - templateId: 94109
+            expect: 1
+    - itemTemplateId: 213300
+      changes:
+        removeResultItems:
+          - templateId: 94108
+            expect: 1
+    - itemTemplateId: 213814
+      changes:
+        removeResultItemSets:
+          - expect: 1
+    - itemTemplateId: 215467
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94108
+                expect: 1
+    - itemTemplateId: 215998
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94107
+                expect: 1
+    - itemTemplateId: 216507
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 216584
+      changes:
+        updateResultItemSets:
+          - at: 0
+            removeResultItems:
+              - templateId: 94109
+                expect: 1
+    - itemTemplateId: 950000
+      changes:
+        removeResultItems:
+          - templateId: 94110
+            expect: 2
+
+achievements:
+  update:
+    - id: 9002
+      changes:
+        removeItemRewards:
+          - templateId: 94104
+    - id: 9009
+      changes:
+        removeItemRewards:
+          - templateId: 94105
+    - id: 9011
+      changes:
+        removeItemRewards:
+          - templateId: 94106
+
+eventMatchingEvents:
+  update:
+    - eventId: 800145
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800146
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800147
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800148
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800149
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800150
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800151
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800152
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800153
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800154
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800155
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800156
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800157
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800158
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800159
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800160
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800161
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800162
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800163
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800164
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800165
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800166
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800167
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800168
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800169
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800170
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800171
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800172
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800173
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800174
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800175
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800176
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800177
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800178
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 800179
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800180
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800181
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800182
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800183
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800184
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800185
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800186
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800187
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800188
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800189
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800190
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800191
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800192
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800193
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800194
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800195
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800196
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800197
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800198
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800199
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800200
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800201
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800202
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 800203
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800204
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800205
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800206
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800207
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800208
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800209
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800210
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800211
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800212
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800213
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800214
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800215
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800216
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800217
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800218
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800219
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800220
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800221
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800222
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800223
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800224
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800225
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 800226
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810145
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810146
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810147
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810148
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810149
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810150
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810151
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810152
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810153
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810154
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810155
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810156
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810157
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810158
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810159
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810160
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810161
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810162
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810163
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810164
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810165
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810166
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810167
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810168
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810169
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810170
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810171
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810172
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810173
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810174
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810175
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810176
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810177
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810178
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94101
+    - eventId: 810179
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810180
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810181
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810182
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810183
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810184
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810185
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810186
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810187
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810188
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810189
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810190
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810191
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810192
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810193
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810194
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810195
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810196
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810197
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810198
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810199
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810200
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810201
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810202
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94102
+    - eventId: 810203
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810204
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810205
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810206
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810207
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810208
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810209
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810210
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810211
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810212
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810213
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810214
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810215
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810216
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810217
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810218
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810219
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810220
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810221
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810222
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810223
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810224
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810225
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+    - eventId: 810226
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 94103
+
+buyLists:
+  update:
+    - id: 2933
+      changes:
+        items:
+          - itemId: 138294
+            priceRevision: 1
+
+exchanges:
+  delete:
+    - itemId: 94105
+      medalItemId: 91966
+
+stackAttendanceEvent:
+  sampleEvents:
+    - conditionType: "login"
+      resetHour: 7
+      startTime: "20230528 0000"
+      endTime: "20230616 0000"
+      rewards:
+        - day: 2
+          itemTemplateId: 94211
+          itemAmount: 50
+          highlight: false
+        - day: 3
+          itemTemplateId: 447
+          itemAmount: 20
+          highlight: false
+        - day: 4
+          itemTemplateId: 445
+          itemAmount: 20
+          highlight: false
+        - day: 5
+          itemTemplateId: 139710
+          itemAmount: 3
+          highlight: true
+        - day: 7
+          itemTemplateId: 94211
+          itemAmount: 50
+          highlight: false
+        - day: 8
+          itemTemplateId: 447
+          itemAmount: 20
+          highlight: false
+        - day: 9
+          itemTemplateId: 445
+          itemAmount: 20
+          highlight: false
+        - day: 10
+          itemTemplateId: 200797
+          itemAmount: 1
+          highlight: true
+        - day: 12
+          itemTemplateId: 94211
+          itemAmount: 50
+          highlight: false
+        - day: 13
+          itemTemplateId: 447
+          itemAmount: 20
+          highlight: false
+        - day: 14
+          itemTemplateId: 445
+          itemAmount: 20
+          highlight: false
+        - day: 15
+          itemTemplateId: 149059
+          itemAmount: 1
+          highlight: true
+        - day: 17
+          itemTemplateId: 94211
+          itemAmount: 50
+          highlight: false
+        - day: 18
+          itemTemplateId: 447
+          itemAmount: 20
+          highlight: false
+        - day: 19
+          itemTemplateId: 445
+          itemAmount: 20
+          highlight: false
+        - day: 20
+          itemTemplateId: 99123
+          itemAmount: 1
+          highlight: true
