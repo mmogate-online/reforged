@@ -9,6 +9,212 @@ Scope: backlog items **RV-01** (early-progression token item), **RV-03** (token 
 quest leg), **RV-07** (zone quest XP pass), **RV-26** (loot correction, feedstock slice) and
 **RV-28** (feedstock flattening).
 
+## 0a. Execution status and batching (opened 2026-07-29)
+
+Execution runs in four batches, agreed with the user 2026-07-29. Each batch ends in one full
+`migrate --patch 002` apply and its verification; **only batch 3 deploys**, so the wave still
+reaches live validation as one compound change exactly as section 7b ruled. Intermediate applies
+are not shipping.
+
+| Batch | Contents | Applies | State |
+|---|---|---|---|
+| 0 | Measure the two balance decisions the plan defers: the feedstock quantity ladders and the zone quest XP targets | none | **DONE 2026-07-29.** Results in `IOD-WAVE1-BATCH0-MEASUREMENTS.md`. Both decisions RULED: the consumption ladder is DEFERRED out of this wave, and the XP pass CLAMPS to the corrected caps |
+| 1 | Phase A alone (descriptors, `ENTITY_SYNC_MAP`, token constant) | direct `dsl sync`, no apply, no deploy | **DONE 2026-07-29, Gate A met.** Outcome in the Phase A section below |
+| 2 | Phases B, C1, **C2**, C3, C4, D: the whole feedstock economy | 2 (Phase D's `packages/item-ids/` rename forces the second) | **DONE AND VERIFIED 2026-07-30.** Apply 1: 82 specs, 11,069 ops, 0 failed, 0 warnings. Apply 2 (the `item-ids` rename): 82 specs, 11,069 ops, 0 failed, 0 warnings. The regeneration diff was exactly the rename and nothing else, in `packages/item-ids/{index,materials}.yml` and the two `002/17` carve-out rows |
+| 3 | Phase E, the divergence rows, all gates, deploy, user live validation | 1 | **DEPLOYED AND BOOTING 2026-07-30.** 84 specs, 11,097 ops, 0 failed, 0 warnings, client sync clean. All gates PASS. Deployed to dev, 184 files, verify OK. The world server REJECTED the datasheet TWICE before it booted, both times on invariants `dsl validate` does not check; both are fixed and both are now gated locally, see the boot-failure section below. **Only user live validation remains** |
+
+### Pick up here: THE WAVE IS BUILT AND THE SERVER BOOTS. Only live validation remains (2026-07-30)
+
+Everything in this plan is authored, applied, gated and deployed to dev. **Nothing is committed**:
+patch 002 is still open, so the spec repo and both datasheet trees are deliberately dirty, exactly
+as patch discipline requires.
+
+**The one remaining step is the user's live validation pass**, from the acceptance checkpoints in
+section 4. The dev world server loads datasheets at process startup only and its restart is manual,
+so it must be restarted before testing.
+
+Final apply: **84 specs, 11,097 operations, 0 failed, 0 warnings**, client sync clean, 184 files
+deployed and SHA-verified.
+
+| Phase | Delivered | Evidence |
+|---|---|---|
+| B | Feedstock identity flattened to 94101 | All 304 `EnchantDecomposition` rows on 94101 across all five `combatItemType` values; 1,413 `MaterialEnchantData` rows consume 94101 |
+| B3/B4 | Grade-scaled fodder ladder | Six live decomposition ids carrying 16/48/96 and 8/24/48; all 900 fodder items mapped by (slot group x grade) |
+| C | Every faucet removed but the sanctioned ones | 2 feedstock rows left in ALL zone loot, and both are the C4 carve-out bosses; 0 left in `Gacha`, `ItemConversion`, `AchievementList`, `EventMatching`, `StackAttendanceEvent`; `ItemMedalExchange` down to the Kugai `94101/95216` row |
+| D | Tiers retired, ladder deleted | 0 ladder `ItemMix` records, 0 `itemMixId` back-pointers, 0 live `ItemMixData` references to a retired tier, 94101 reads "Feedstock" |
+| E1 | Token item 95217 "Dawn Seal" | `NO_COMBAT`, `tradable: false`, `guildWarehouseStorable: false`, `boundType: None`, `maxStack` 10,000, `itemUseCount` 0, in base `ItemTemplate.xml` and `StrSheet_Item.xml`. R21 asked for `boundType: Loot`; it is OVERTURNED on both design and engine grounds, see the correction below |
+| E2 | XP clamp + token threading | 35 zone quests stated across four specs, 26 changed, pool 58,200 to 24,740 (33,460 removed, 57.5 percent), **123 token rows**, all reproducing the batch 0 prediction exactly |
+
+**The E2 ownership hazard did NOT fire, and it was checked rather than assumed.** A parser-based
+per-quest diff of `QuestCompensationData_13.xml` against committed server HEAD confirms 1326 and
+1330 still carry their full twelve level-7 gear rows (15021/15024/15027 and 15020/15023/15026),
+every quest's gold is byte-identical to baseline, and no quest outside the wave's own list moved.
+
+Gates, all run after the final apply:
+
+| Gate | Result |
+|---|---|
+| `dungeon_audit.py --dungeons 9037` | PASS, 0 failures, exit 0 |
+| `audit_class_gates.py --zones 13,64,213,436` | PASS, 0 gap groups, exit 0 |
+| **`audit_item_references.py --retired`** (new, see below) | PASS. 358,398 item references checked, 0 dangling; 0 REACHABLE references to a retired tier |
+| `audit_quest_design.py` (advisory) | 13 new findings, all MEDIUM or INFO, none a defect. See below |
+| Per-quest compensation diff vs committed HEAD | ALL CLEAR |
+| Consolidated value verification | ALL CLEAR, 25 checks |
+
+**The referential integrity gate is now a repo tool**: `tools/dc-restore/audit_item_references.py`,
+alongside the other `audit_*` gates. Re-run it after any wave that repoints item references. Three
+things it established that this plan got wrong or did not know:
+
+1. **The plan's claim that "the shipping corpus maintains perfect referential integrity on item ids"
+   is not true.** Item **207328** is referenced by `BuyList@NeedMedalItemId` (2) and
+   `ItemMedalExchange@medalItemId` (22) and has no `ItemTemplate` row in any variant. There are also
+   24 dangling `decompositionId` and 9 dangling `itemMixId` references. ALL of them were proved
+   pre-existing by resolving the same reference set against HEAD's row set and diffing, so this wave
+   introduced **zero** new dangling references. They are baselined in the tool, and anything new
+   fails. Phase D's conclusion is unaffected: it rests on the crash risk, not on a spotless corpus.
+2. **The retired-tier exception is bigger than the plan's note, and the note is still right.** 783
+   `MaterialEnchantData` rows still name a retired tier. 759 sit in records that NO live item links
+   to, so they are unreachable dormant data; the other 24 sit in records 10401 and 10402, which are
+   the plan's documented exception, and their 9 live items all still carry `enchantEnable="False"`.
+   The gate tests REACHABILITY, not presence, which is the only formulation under which phase B1's
+   claim is checkable. It also fails if any of items 163029 to 163037 ever becomes enchantable.
+3. Advisory findings: all 13 new ones are consequences of quests 1324, 1326, 1330, 1351 and 1352
+   now being STATED by patch 002 rather than only by the patch 001 baseline. The rows are unchanged.
+   Three are the standing Reaper/Soulless omission (doctrine), which the non-new siblings already
+   carry. Zero new findings at HIGH or CRITICAL.
+
+**One decision was made during execution that the plan did not rule: the token quantity.** Nothing
+in this plan, `IOD-BACKLOG.md` or the measurements document set a rate. Shipped as **one Dawn Seal
+per zone quest, flat, on every one of the 35**, because framework `03 §3b-i` rules the earn rate is
+"the same rate for all players in the content ... no level-band rate scaling", so any per-bracket
+ladder would contradict it; and because a flat rate makes wave-1 income trivially readable (seals
+earned = zone quests done), which is exactly the measured accumulation data RV-02 prices against.
+If wave 2 wants differentiation, it belongs in the PRICES, not the earn rate. Reopen only with that
+framework line in hand.
+
+Specs added this session: `002/39-iod-progression-token.yaml` (2 ops) and
+`002/40-iod-zone-quest-xp-and-token.yaml` (26 ops). Amended: `002/28`, `002/29`, `002/30`.
+Divergence log: five rows appended, covering the XP reduction, the token threading, the
+bind-behaviour row (R21, OVERTURNED; the row now records the overturn rather than a departure), the fodder yield ladder and the faucet removals.
+
+#### The two boot failures, and what they cost
+
+Recorded because both are generalisable and neither was catchable by anything this project ran
+before. In both cases `dsl validate` passed, `migrate` reported 0 failed and 0 warnings, the client
+sync was clean, and every standing gate was green. **A clean apply is not evidence that the server
+will load the result.**
+
+| # | Loader message | Cause | Fix |
+|---|---|---|---|
+| 1 | `stackable item cannot specify boundType [ItemTID=95217][boundType=1]` | Item 95217 was authored `maxStack: 10000` + `boundType: Loot` per the original ruling R21. The loader treats those as mutually exclusive | R21 overturned; the token is restricted by `tradable` and the guild bank instead. See the correction below |
+| 2 | `randomReward invalid probability prov [itemTemplateId=19321] [0.900000]` | Phase C3 deleted weighted `<Reward>` rows from `<RandomReward>` groups without redistributing their probability. `RandomReward` is a SUM-TO-1 bag, so 81 groups across 6 `Gacha*.xml` files were left short. The id in the message is the BOX, not a reward row, and the loader names only the first 8 then stops | The C3 generator now rebalances survivors PROPORTIONALLY (user-approved 2026-07-30): each keeps its relative odds and absorbs a share of the freed mass. Verified: box 19321 goes 0.826 to 0.9177779 while the 82.6x ratio against its 0.01 sibling is preserved exactly, and the group totals 1 |
+
+Failure 2 forced a spec shape change worth knowing about. `<Reward>` is a VALUE collection, so it has
+no `upsert*` that could edit a probability in place, and mixing the whole-list and incremental forms
+for one collection is `E570`. The 81 rebalanced groups therefore moved from incremental
+`updateRandomRewards` to the whole-list `randomRewards` form, which restates every surviving row with
+its `min`, `max`, `name` and `notifyLevel`. Every affected box carries exactly one classless group
+(measured over HEAD: 92 boxes, all single-group, all classless), so restating the collection restates
+only the group that was edited; the generator hard-fails if that ever stops being true.
+
+**Which collections this applies to, because the obvious generalisation is wrong.** Measured over
+server HEAD, sums within 1e-6:
+
+| Collection | Groups | Sum to 1 | Reading |
+|---|---|---|---|
+| `Gacha` / `RandomReward` / `Reward` | 3,597 | 3,597 | sum-to-1 bag |
+| `DecompositionData` / `RandomOutput` / `Output` | 139 | 139 | sum-to-1 bag |
+| `ECompensation` / `Compensation` / `ItemBag` | 704 | 30 | independent per-bag roll |
+| `ECompensation` / `ItemBag` / `Item` | 3,363 | 3,337 | independent, NOT a bag |
+
+That last row is the trap: 99.2 percent is not an invariant. It is also why spec `002/41` can delete
+1,785 whole `ItemBag`s without touching anything else, which had looked like luck and was not.
+Separately, "sums to 1" means within 1e-6 and not bit-exact: 12 shipped `Gacha` groups miss by up to
+1.47e-8 because the authors' own decimals do not add up, and the server boots on them, so an
+exact-equality check would fail on untouched vanilla data.
+
+**Both failures are now gated locally** in `tools/dc-restore/audit_item_references.py`, which has
+caught three distinct classes in this wave: dangling item references, the stackable/`boundType`
+loader rule, and sum-to-1 bags.
+
+**THE DEFINITIVE FIX FOR FAILURE 2 SHIPPED THE SAME DAY, DSL `01e9dbb3`.** A run that would leave a
+sum-to-1 bag off 1 is refused with **`E573`** before anything is written, and **`normalize: true`**
+on the `updateRandomRewards` selector rescales the survivors proportionally. `002/38` is regenerated
+on it: the generator's own rebalance arithmetic is deleted, the ~700 explicitly restated survivor
+rows collapsed to **81 `normalize: true` lines**, and the spec shed about 600 lines. Verified by
+probe that `E573` fires when `normalize` is removed, so the safety net is real and not merely
+assumed. Re-applied, re-gated, redeployed.
+
+The DSL team also settled the scoping question this plan could not. `ItemBag/Item` is genuinely NOT
+a bag: its non-1 sums are most commonly **exactly 2, on 594 groups**, in named per-dungeon rune
+families. 594 identical instances of one value is a design, so spec `002/41`'s 1,785 bag deletions
+were safe for a reason rather than by luck. They also adopted the 1e-6 tolerance, and parked five
+further 100%-uniform collections rather than enabling them, on the grounds that corpus uniformity is
+evidence and not proof of a server-enforced invariant.
+
+**CORRECTION 2026-07-30, after the first dev boot: RULING R21 IS OVERTURNED.** It was wrong on
+design and impossible on the engine, in that order.
+
+**The design correction (user ruling, and this is the one that governs).** `boundType` is for
+EQUIPMENT the character wears, not for consumables or currency. A token is neither worn nor bound;
+its only real requirement is that it must not move between PLAYERS. The two flags that gate that are:
+
+| Flag | Blocks | Value |
+|---|---|---|
+| `tradable` | direct trade and the broker | `false` |
+| `guildWarehouseStorable` | the guild bank, the other cross-player route | `false` |
+| `warehouseStorable` | nothing between players: the personal bank is same-ACCOUNT only | `true`, kept |
+
+Verified across the whole reserved token band 95214-95313: all four tokens (Bastion of Lok,
+Sinestral Manor, Kugai's Crest, Dawn Seal) already carried `tradable: false` and
+`guildWarehouseStorable: false`, so **no data change was needed** and the Dawn Seal was already in
+the correct shape once `boundType` came off. R21 is restated in `IOD-BACKLOG.md` and now applies to
+the whole band. Consequence to carry into RV-02: seals pool per ACCOUNT through the personal bank,
+so price against per-account income, not per-character.
+
+**The engine correction, which independently forced the same outcome.** The token was first authored
+`boundType: Loot` per the original R21 and `WorldServer.exe` REFUSED THE DATASHEET at startup:
+
+```
+last read[.\Datasheet\\.\ItemTemplate.xml]
+stackable item cannot specify boundType [ItemTID=95217][boundType=1]
+[ItemTemplate] Loading Error!
+```
+
+The loader treats `maxStack > 1` and a non-None `boundType` as mutually exclusive, and the corpus
+states the rule without exception: of 112,393 item rows, all 3,803 carrying `boundType: Loot` are
+`maxStack: 1`, and all 25,073 stackable rows are `boundType: None`. The pairing had **zero** corpus
+occurrences before this spec invented it, the same failure class as the `itemMixId="0"` and
+`진행퀘스트 0,0` shapes this project has already been bitten by. A currency has to stack, so
+`boundType` was never available here regardless of intent.
+
+**Three checks now live in `audit_item_references.py` so none of this can regress:** the loader
+invariant (no `boundType` on a stackable item), the token policy (`tradable` and
+`guildWarehouseStorable` both `false` across the reserved band), and the referential sweep. The
+generalisable lesson from the authoring mistake: **check `maxStack` alongside `boundType`, not
+`boundType` alone.** The first draft justified `Loot` from items 45375 and 45376, which do carry
+`NO_COMBAT` + `Loot` + `itemUseCount` 0, but both are `maxStack: 1`, so that evidence never tested
+the case the loader actually rejects.
+
+Both feedstock generators refuse to run against a dirty datasheet tree, by design. Before
+regenerating either spec, `git checkout -- .` in the server datasheet repo, because `migrate`
+replays from the COMMITTED baseline and a spec generated from an applied tree is wrong.
+
+**All five DSL defects filed this session are resolved and verified.** Nothing is blocked.
+
+**C2 JOINED THE WAVE 2026-07-30 (user ruling).** It was deferred for one reason only, a DSL capability
+that did not exist, and the DSL team shipped it. The user ruled: "C2 original decision for not shipping
+in wave 1 was a lack of DSL capability which is already solved, so you may proceed." The C2 section
+below is rewritten accordingly and its old justification is preserved there as superseded text.
+
+Why batch 1 stays separate from batch 2: registering a never-synced family can legitimately rewrite
+shipped client values, and batch 2 then rewrites rows in those same four families. Isolating Phase A
+keeps Gate A's attribute-level client diff attributable to one cause.
+
+**Batch 0 corrected nine statements in this plan.** The corrections are folded into the sections
+below and catalogued in section 4 of the measurements document. The one that changes authoring is
+C1: the 304 decomposition rows carry **five** `combatItemType` values, not four.
+
 ## 0. Why this is one wave and not five
 
 The six requested changes look independent and are not. The token cannot be threaded into zone
@@ -36,7 +242,9 @@ Design rulings live in `IOD-BACKLOG.md` section 1. The ones added by this sessio
 order below: fold into patch 002; family A keeps paying feedstock; surviving id is 94101 with tiers
 94102 to 94112 retired but resident; migrate the mechanic families and delete the faucet families;
 zone quest XP is capped against the **median** story quest of the same level bracket; the token is
-`boundType: Loot` and untradable; a token paid into a `class` bag is authored as 12 duplicate rows.
+restricted by `tradable: false` **and** `guildWarehouseStorable: false` (R21 as RESTATED 2026-07-30;
+it originally said `boundType: Loot` and untradable, which was overturned on both design and engine
+grounds, see section 0a); a token paid into a `class` bag is authored as 12 duplicate rows.
 
 ## 2. Mechanism map
 
@@ -109,6 +317,50 @@ ATTRIBUTE level against the pre-sync snapshot. Expect a first-adoption rewrite: 
 never-synced family can legitimately rewrite shipped client values, as `StrSheet_Creature` did when
 it merged duplicate wrappers and lowercased two booleans. Then confirm a second sync writes 0 files.
 
+### Phase A outcome, executed 2026-07-29 (batch 1). Gate A MET
+
+**Gate A cannot run inside a `migrate` replay, and that is now proven, not assumed.** `migrate.py`
+builds its `sync_set` from the entity keys found in the patch's specs, so a family no spec touches is
+never synced no matter what flags are passed, `--no-narrow` included. The first sync of these four was
+therefore run directly: `dsl sync -c config/sync-config.yaml -e DecompositionData -e ItemMixData -e
+EventMatching -e AchievementList`. That is a deliberate, documented use of a direct sync; the
+never-use-`dsl apply`-directly rule is about APPLY replaying source-ref, and does not extend to
+propagating existing server state to the client.
+
+Result: dry-run planned 4 entities and 10 targets with no E603 and no E683, then the real sync exited
+0 with 8 files written, 2 unchanged, 10 validated. A second run wrote **0 files**, so the family set
+is idempotent. Attribute-level diff against a pre-sync snapshot:
+
+| Family | Change | Verdict |
+|---|---|---|
+| `DecompositionData` | 334 to 343 rows, adding 99972 to 99974 and 202092 to 202097 | As predicted. Feedstock id census unchanged at 59 references |
+| `ItemMixData` | 848 to 852 rows, adding 300041 to 300044 | As predicted. Census unchanged at 32 references |
+| `EventMatching` | +26 `Compensation` rows; every other element count identical; all 12 root children present in the same order, `DailyCheckEvent` INCLUDED | `preserve-required-elements` works as documented. Census unchanged at 164 references |
+| `AchievementList` | See the narrowing below | Descriptor narrowed to the base file |
+
+**`AchievementList` was narrowed to the base file because the full mapping propagated unrelated
+divergence.** With all 7 regional files mapped, the first sync deactivated **112** NAEU achievements
+(server `AchievementList_NAEU.xml` carries `active="False"` on all 135 rows; client shard 00005
+shipped 112 as `true`), hid 30 more, moved one grade, and flipped 10 rows across the JP, KR and RUS
+shards. That is player-visible and has nothing to do with feedstock. The four regional shards were
+restored from client-repo HEAD and the descriptor now maps only `AchievementList.xml`, which is where
+all three feedstock achievements (9002, 9009, 9011) live. Do not widen it without first settling
+which side is authoritative; the v92 server's regional files may simply be stale against the NA/EU
+publisher client.
+
+What the base shard did legitimately change, and is kept: 6 rows, achievements 455 and 580 to 584 in
+categories 602 and 603, going from hidden and inactive to active and visible with 10/10/10/20/30
+points. The server is the source of truth for the file it reads, and the direction is enabling.
+
+**Two findings worth carrying forward.** First, the client shard ALREADY contained our fodder rows
+206861 to 206868 before any sync, even though the family had never been registered, so they reached
+the client by hand at some point: the same unreproducible-client-tree failure class as the
+`StrSheet_NpcLoc` loss. Registering the family plus B3 brings both sides under spec control. Second,
+W602 out-of-schema drops on this family set are extensive and expected: the client
+`DecompositionData.xsd` declares no `probability`, `min` or `max` on `RandomOutput/Output` (427
+records) and no `desc` (28), so the client carries dismantle OUTPUT IDENTITY but not its odds or
+quantities. That is another reason B3's yield ladder is server-only.
+
 **Boolean-case corruption was investigated and does NOT apply here.** `AchievementList` carries
 5,278 uppercase `True` / `False` values on boolean-typed client attributes, 3,468 of them on
 `use="required"` attributes, which looks exactly like the `ContinentData` incident. It is not:
@@ -169,20 +421,29 @@ deletes resolve without naming a region.
 |---|---|---|
 | B1 | `generate_enchant_materials.py`: replace the `94100 + rank` arithmetic with the constant 94101 and delete `FEEDSTOCK_BASE_ID` so it cannot be reintroduced. Regenerate `specs/patches/002/04-enchant-materials.yaml` | 1,656 refs collapse; `05-enchant-item-links.yaml` regenerates byte-identical |
 | B2 | New spec `002/34-feedstock-flatten-enchant-decomposition.yaml`, entity `enchantDatas`: all 304 `EnchantDecomposition` rows repointed to 94101, `resultItemAmount` untouched. `update` CAN target `decompositions` alone and leaves sibling collections untouched, and unlike create/upsert it does not require the three root attributes. **`decompositions` is upsert-by-key, NOT clear-and-replace**: restating all 304 rows works, but a row count after apply does not prove the repoint. Verify by asserting no row still carries a `resultItemTemplateId` outside 94101 | 1 op |
-| B3 | New spec `002/35-feedstock-flatten-decomposition.yaml`, entity `decompositions`: bring rows 206861 to 206868 under spec control and rebuild them as the six-row grade-scaled ladder decided below | 6 ops |
+| B3 | New spec `002/35-feedstock-flatten-decomposition.yaml`, entity `decompositions`: bring rows 206861 to 206868 under spec control and rebuild them as the six-row grade-scaled ladder decided below. Wire shape measured 2026-07-29: `FixedOutput` holding one `Output templateId amount`, NOT `RandomOutput` with min/max/probability | 6 ops |
 | B4 | `tools/gear-infusion/generate_infusion.py`: emit one decomposition id per (slot group x rareGrade) instead of per slot, and set `decompositionId` per item from grade as well as slot. Regenerate `002/06-gear-infusion-items.yaml`. **HARD PREREQUISITE: B3.** See below | 900 items retargeted |
 
 **B2: author `combatItemType` in UPPER_SNAKE. The value list this project has been reading was
 fictional.** The `enchant-data.mdx` page listed PascalCase members (`EquipWeapon`, `EquipArmorBody`,
 `EquipArmorHand`, `EquipArmorShoes`, ...) that the parser has never accepted. DSL `09192855` replaced
-the list with the real enum member names. The four the 304 decomposition rows use are:
+the list with the real enum member names.
 
-| Slot | Value |
-|---|---|
-| weapon | `EQUIP_WEAPON` |
-| body | `EQUIP_ARMOR_BODY` |
-| arm | `EQUIP_ARMOR_ARM` |
-| leg | `EQUIP_ARMOR_LEG` |
+**CORRECTED 2026-07-29 (batch 0): there are FIVE values, not four, and the rank coverage is not
+uniform.** Measured over the 304 rows in the working-tree `EnchantData.xml`:
+
+| Slot | Value | Rows | Ranks |
+|---|---|---|---|
+| weapon | `EQUIP_WEAPON` | 48 | 1 to 12 |
+| weapon component | `ENCHANT_COMPONENT_WEAPON` | 64 | 1 to 16 |
+| body | `EQUIP_ARMOR_BODY` | 64 | 1 to 16 |
+| arm | `EQUIP_ARMOR_ARM` | 64 | 1 to 16 |
+| leg | `EQUIP_ARMOR_LEG` | 64 | 1 to 16 |
+
+An earlier draft of this table named only the four `EQUIP_*` slots. Authoring from it would leave
+**64 of the 304 rows still pointing at a retired tier**, and the row-count check B2 already warns
+about would not catch it. `ENCHANT_COMPONENT_WEAPON` is a declared enum member (DSL docs
+`schemas/enchants/enchant-data.mdx`), so all five are authorable.
 
 Matching is case-insensitive but the underscores are required, and a value outside the list is
 rejected with an invalid-enum error naming the collection it appeared in. There is no
@@ -214,6 +475,10 @@ therefore moves more than feedstock:
 The 713 breaks down as weapon 354, body 205, arm 77, leg 77. An earlier figure of 559 in this
 plan was the weapon-plus-chest subtotal and dropped gloves and boots. **559 was wrong; use 713.**
 
+Re-verified 2026-07-29 (batch 0), independently and exactly: 713 item rows carry a
+`linkMaterialEnchantId` pointing at one of the 82 Relic-consuming records, 713 distinct ids, 575 of
+them in base `ItemTemplate.xml` and the rest in `_KR` (92), `_RUS` (32) and `_JP` (14).
+
 **RULED: let it collapse. All reachable enchanting consumes 94101.** Reasons, in order:
 
 1. It is the framework position. Feedstock is one untiered commodity and consumption scales by
@@ -238,10 +503,28 @@ questioned it. Do not reopen it: any future chase-tier differentiation ships as 
 material per `04 §4e`, never by restoring the `94100 + rank` arithmetic.
 
 **Quantity ladders are balance work, not a find-and-replace.** Every family carries tier-specific
-amounts (`EnchantData` 4 to 48, `MaterialEnchantData` 4 and 12, `ItemConversion` 120). Flattening
+amounts (`EnchantData` 4 to 48, `MaterialEnchantData` 4 to 60, `ItemConversion` 120). Flattening
 the id makes those numbers mean something different, so re-derive them from framework `04 §2c`
-(consumption by band) and `§4e` (yield by grade) rather than inheriting them by accident. Scope
+(consumption per attempt) and `§4e` (yield by grade) rather than inheriting them by accident. Scope
 this as its own reviewed step inside B, not as a side effect.
+
+**MEASURED 2026-07-29 (batch 0), and the recommendation is to DEFER this step out of wave 1.** Full
+tables in `IOD-WAVE1-BATCH0-MEASUREMENTS.md` section 2. Three corrections to the framing above:
+
+1. `MaterialEnchantData` does not carry "4 and 12". Our 100 records run 4 / 8 / 24 / 48 / 60
+   feedstock by enchant step on weapon and body, half that on arm and leg.
+2. `§2c` scales **materials by enchant step** and **gold by gear level band**, not materials by
+   gear band. Our ladder is band-flat across all four level ranges, which is compliant on the
+   material axis. That removes most of the re-derivation case.
+3. The largest actual gap is not a quantity at all: `requiredMoney` is `0` on all 1,350 of our
+   `MaterialItem` rows, so `§2c`'s per-attempt gold sink is unimplemented server-wide. That is a
+   framework-wide change, not an IoD one, and it is not in this plan.
+
+Deferring costs nothing, because flattening the identity changes no amount. Shipping the
+re-derivation here would change enchanting demand on every gear band inside the same apply that
+changes IoD supply three ways, which discards Phase B's own reason for anchoring the fodder ladder
+on rare. **RULED 2026-07-29 (user): deferred.** B2 keeps `resultItemAmount` untouched, the workbook
+keeps its amounts, and the `§2c` re-derivation plus the gold cost become their own backlog item.
 
 #### B3 and B4: the decided fodder dismantle yield
 
@@ -342,23 +625,87 @@ only 6 `templateId` rows emit 94102.
 commit, "Incluido loot v71". Vanilla v92 had **zero** feedstock in field-zone loot tables, so
 removing them moves the server toward its vanilla baseline rather than away from it.
 
-**C2 DOES NOT SHIP IN WAVE 1. Decided 2026-07-28 by the gate condition below, no probe needed.**
-The DSL docs settle it: bag collections are clear-and-replace, and "the DSL does not support
-granular add/remove for bags or items". Removing one `ItemBag` means restating that
-`Compensation` record's ENTIRE bag list, so C2 would make us the author of roughly 1,469 loot
-records across 85 zone tables we have never touched, inside a patch that is meant to close.
+**C2 SHIPS IN WAVE 1. Reversed 2026-07-30 by user ruling, after the blocking capability landed.**
 
-C2 becomes its own work item with its own generator (read the current table, re-emit it minus the
-feedstock bags). The removal is still right, it is just not wave 1 work.
+The 2026-07-28 deferral read: "The DSL docs settle it: bag collections are clear-and-replace, and
+'the DSL does not support granular add/remove for bags or items'. Removing one `ItemBag` means
+restating that `Compensation` record's ENTIRE bag list, so C2 would make us the author of roughly
+1,469 loot records across 85 zone tables we have never touched." That was true when written and is
+now false. DSL `d06400c2` (2026-07-30) added per-row collection membership to `eCompensations`,
+`gachaItems`, `itemConversions` and `achievements`, and `d04e4015` corrected the gacha key
+measurement the same day. The removal was never in doubt; only its cost was.
 
-**Precondition to carry into C2: `ItemMix 216862` breaks when its last 94105 source goes.** That
+**Measured surface, 2026-07-30, against the working-tree server datasheet** (the 11 patch-002 zones
+excluded, since C1 owns those):
+
+| Measure | Value |
+|---|---|
+| Feedstock `Item` rows | **1,595** (the earlier ~1,790 estimate was high) |
+| `ECompensation_*.xml` files | 85 |
+| `Compensation` records touched | 1,159 |
+| Feedstock items sharing a bag with other loot | **0 of 1,595.** Every one sits alone in its own `<ItemBag>` |
+| Compensations left with no bags after removal | **0** |
+
+So the op is `removeItemBags`, not a bag-content edit, and nothing surviving is restated. Blast
+radius drops from "we now own 1,469 complete loot tables" to "1,595 bags deleted, nothing else
+touched".
+
+**Selector rules the generator must follow.** `ItemBag` is an AMBIGUOUS collection: `bagName` is not
+a key and neither is `id`. Measured over the 1,595 target bags: 1,105 pin to exactly one row with a
+full-attribute selector, and the other 490 sit in groups of 3, 5, 7 or 10 attribute-identical
+siblings. **Every sibling in every one of those groups is itself a feedstock bag**, and zero
+selectors would reach a non-feedstock bag, so removing a whole group is correct. Therefore:
+
+- Emit ONE op per attribute-identical group with `expect: <group size>`, never one op per row. A
+  per-row spec makes the first op remove all N siblings and turns the rest into `W500` no-ops.
+- State the bag's FULL attribute set in the selector. A partial selector over-matches.
+
+**`eCompensations` is `None` in `ENTITY_SYNC_MAP`, so C2 is server-only and has no client leg.**
+
+**DONE 2026-07-30.** Generator `tools/feedstock-faucet/gen_feedstock_bag_removal.py`, spec
+`002/41-feedstock-faucet-removal-zones.yaml`. Numbered 41 because 37 to 40 are already claimed by
+phases D, C3 and E; the file ordering does not matter here because no other spec in the patch writes
+these 85 zone files. Generated output matches the measurement exactly: 85 files, 1,159 update
+records, 1,188 removal ops, 1,595 bags, 83 ops carrying `expect > 1`. **`dsl validate`: 1,159
+operations valid, zero warnings.**
+
+**A second DSL defect was found generating it, and it changed the selector.** The first attempt used
+`(bagName, id, probability)` and 3 ops failed with a bare `E500`. Cause: the matcher cannot match an
+attribute whose value is an integral decimal. `probability="1.0"` fails against `1.0`, `1` and
+`"1.0"` alike, while `0.1`, `0.5` and `0.0416` all match correctly. The selector is now
+`(bagName, id)`, which is sound because `bagName` alone was already measured to reach zero
+non-feedstock bags. Filed as section 3 of
+`docs/dsl-requests/2026-07-30-gacha-randomreward-classless-group-unaddressable.md`. **Do not add a
+numeric attribute to a generated selector in this wave without probing it first.**
+
+**Carried over from the deferral, still true: `ItemMix 216862` breaks when its last 94105 source
+goes.** See the precondition note below, which was written for a C2-plus-C3 interaction and now
+applies inside a single wave rather than across two.
+
+**Precondition, now due: `ItemMix 216862` breaks when its last 94105 source goes.** That
 recipe consumes `94204 x200` + **`94105 x500`** + `98505 x50`. Item 94105's grant paths are
 achievement 9009, `BuyList` 2933, the medal exchange on item 91966, npc drops in zones 711 and 750,
 a `Gacha_Tool.xml` box (244757, grants 25) and two `ItemConversion` seeds. **C3 deletes four of
-those and C2 deletes the zone drops**, which together leave the recipe uncompletable. Note the
-attribution carefully: this is a C2-plus-C3 interaction, not a C2-only one, and the last two paths
-were found by corpus sweep because `item_sources` does not scan `Gacha_Tool` or `ItemConversion`
-grants. Decide the recipe's fate when C2 is scoped, not by accident.
+those and C2 deletes the zone drops**, which together leave the recipe uncompletable. The last two
+paths were found by corpus sweep because `item_sources` does not scan `Gacha_Tool` or
+`ItemConversion` grants.
+
+The plan said "decide the recipe's fate when C2 is scoped, not by accident". C2 is now scoped, so:
+
+**RULING C2-a. APPROVED by the user 2026-07-30.** The two live non-ladder `ItemMix` records that
+reference retired tiers are REPOINTED to 94101 at unchanged amounts, rather than deleted or left to
+rot:
+
+| Record | Today | After | Why |
+|---|---|---|---|
+| `216862` | consumes `94105 x500` | consumes `94101 x500` | Keeps the recipe completable, which C2+C3 would otherwise silently end. A recipe that CONSUMES feedstock is a sink, not a faucet, so R13 does not touch it, and R15 puts the surviving identity on 94101 |
+| `534` | produces `94108 x5` | produces `94101 x5` | Phase D's "must not be broken" list protects it, but minting a RETIRED tier contradicts R18. Repointing preserves the recipe and stops the last live grant of a retired id |
+
+This is the minimum change that satisfies both rulings the plan already carries. It also removes the
+last two live references to 94102-94112 outside the resident `ItemTemplate` rows, which makes the
+Phase G referential gate a cleaner statement. Amounts are deliberately untouched: the consumption
+ladder is DEFERRED out of this wave (batch 0), so re-pricing 500 or 5 here would be exactly the
+out-of-scope tuning that ruling excluded.
 
 **C3, the small faucets.** One spec, `002/38-feedstock-faucet-removal.yaml`:
 
@@ -370,6 +717,71 @@ grants. Decide the recipe's fate when C2 is scoped, not by accident.
 | `AchievementList` 9002 / 9009 / 9011 | 3 | Large amounts (180 / 60 / 50), achievement-granted feedstock is a direct faucet |
 | `BuyList` 2933 + `ItemMedalExchange` (vanilla Feedstock Exchange Shop) | 2 | Doubly dead: no NPC opens it and its currency 91966 has zero sources anywhere |
 | `StackAttendanceEvent` | 4 | Now authorable, see below. Inert content, so this is hygiene rather than economy |
+
+#### C3 op shapes, settled 2026-07-30 against the new binary
+
+Every shape below was probe-validated with `dsl validate` against the live server datasheet before
+authoring. Nothing was applied.
+
+| Family | Rows | Op shape |
+|---|---|---|
+| `Gacha` `<FixedReward>` | 31 | `removeFixedRewards` with the row's full attributes plus `expect: 1` |
+| `Gacha` `<RandomReward>` | 280 in 92 groups | `updateRandomRewards` with a bare `expect: 1` group selector, then `removeRewards` with full attributes. **All 92 groups are classless and each affected item holds exactly one group**, so `expect: 1` is right in every case |
+| `ItemConversion` | 80 | 43 at `SeedItem/ResultItem` via `removeResultItems`; 37 at `ResultItemSet/ResultItem` via `updateResultItemSets` (selector matches exactly 1 in all 37) plus `removeResultItems` |
+| `AchievementList` | 3 | `removeItemRewards`, keyed on `templateId`. Cleanest of the four |
+| `EventMatching` | 164 | `removeRewards`, keyed on `templateId`. **Was the expensive leg and no longer is.** It originally restated 934 surviving rows to delete 164, 73% of the spec, because `rewards` was clear-and-replace. Filed as `docs/dsl-requests/2026-07-30-eventmatching-rewards-no-collection-membership.md` with the corpus measurement showing the collection qualifies as keyed (`templateId` on all 2,049 rows, zero repeats in any of the 457 containers), and DSL `36de802c` delivered it the same day. Spec went 4,715 lines to 2,081 |
+| `BuyList` 2933, `ItemMedalExchange` | 2 | UNCHANGED |
+| `StackAttendanceEvent` | 4 | UNCHANGED. Keyless singleton, restate `sampleEvents` whole |
+
+Row counts re-measured 2026-07-30: `Gacha` holds **311** feedstock reward rows, which is the plan's
+307 on tiers 2 to 12 plus 4 on 94101 itself.
+
+**DONE 2026-07-30.** Generator `tools/feedstock-faucet/gen_feedstock_faucet_removal.py`, spec
+`002/38-feedstock-faucet-removal.yaml`. **`dsl validate`: 334 operations valid, zero warnings.**
+Every count came out exactly as this section predicted: 311 gacha rows over 114 items (31 fixed, 280
+random), 80 itemConversion rows over 50 seeds, 3 achievement rows, 164 EventMatching rows over 164
+(event, group) pairs split 82 priority and 82 secondary, 1 BuyList row, 1 exchange, 4
+StackAttendanceEvent rows. The Kugai 94101 / 95216 exchange is kept, and the generator REFUSES to run
+if it ever meets a feedstock exchange row that is neither the Kugai row nor the dead one.
+
+**A fourth naming trap, not in the 2026-07-29 correction list.** `EventMatching` reward rows are
+`Compensation@templateId`, **not** `@itemTemplateId`. Scanning for the latter reports zero rows and
+reads as "nothing to do", which is exactly how the first traversal written for this leg failed. The
+2026-07-29 correction covered `Gacha`, `BuyList` and `ItemMedalExchange` naming but not this one.
+
+**Selector rule used throughout C3: the item id and `expect`, nothing else.** Every row a selector
+can match is feedstock by construction, so an over-match is still correct, and no numeric attribute
+is stated, which sidesteps the integral-decimal matcher defect that bit C2.
+
+#### C3 measured 2026-07-29 (batch 2), with three corrections
+
+Row counts confirmed exactly where the plan gave them: **164** EventMatching reward rows, **307**
+Gacha rows on tiers 2 to 12, **80** ItemConversion rows split base 40 / `_JP` 2 / `_KR` 1 / `_NAEU`
+27 / `_RUS` 8 / `_Tool` 2, **3** achievement rows (9002 pays 94104 x180, 9009 pays 94105 x60, 9011
+pays 94106 x50, and all three sit at `active="False"`), and **4** `StackAttendanceEvent` rows
+(94111 x50 on days 1, 6, 11 and 16).
+
+**1. DO NOT strip feedstock from `ItemMedalExchange` wholesale. It holds the Kugai shop row.** The
+file carries exactly two feedstock exchanges: `itemId="94105" medalItemId="91966"` (the dead
+vanilla Feedstock Exchange Shop, which C3 removes) and `itemId="94101" medalItemId="95216"`, which
+is the **Kugai token shop** row that phase F says stays regardless, because the framework sanctions
+a token shop selling feedstock (`03 §3b-i`). A family-wide sweep would have deleted it silently.
+
+**2. Element and attribute names, since the obvious guesses are all wrong.** `Gacha` rows are
+`GachaItem` / `FixedReward` or `RandomReward` / `Reward@itemTemplateId`, NOT `Item@templateId`;
+scanning for the latter reports zero rows and reads as "nothing to do". `BuyList.xml`'s root is
+`ItemSellList` with `List@id` and `Item@itemId`, so the target is the `94105` item inside
+`List id="2933" NeedMedalItemId="91966"` (its sibling item 138294 stays).
+`ItemMedalExchange` is `ExchangeList` / `Exchange@itemId` with `@medalItemId`.
+
+**3. `fill_zone_loot.py` needs `--vanilla-ids`, or regeneration silently drops content.** The C1
+regeneration was run first without it and the ten zone specs came back missing their whole
+`cCompensations: delete` sections (868 deletions instead of 219), because that block is only emitted
+when the flag is present. Correct invocation:
+`python tools/zone-loot/fill_zone_loot.py --patch 002 --zones 2,3,5,6,7,15,16,17,487,488
+--vanilla-ids data/zone_loot/vanilla_ccomp_ids.json`. Note also that `PATCH_ZONES` has no `002`
+entry, so omitting `--zones` filters nothing and would generate specs for all 123 tiered zones,
+silently widening the patch.
 
 **Watch the collisions.** 10 containers hold two or more different tiers as separate weighted
 entries (7 in `Gacha`, 3 in `ItemConversion`). Where a row is deleted rather than merged this does
@@ -391,6 +803,18 @@ not get resolved" caveat is withdrawn.
 wrong group does not error in a way that names the mistake: the two pools mirror each other by
 `categoryId`, so naming the wrong one either fails to find the event or edits the copy you did not
 mean. The corrected mapping:
+
+**RE-VERIFIED FROM SOURCE 2026-07-29, and the docs page is STILL inverted.** `event-matching.mdx`
+under "Common pitfalls" continues to read "`group: priority` (false) and `group: secondary` (true)",
+which is wrong. `DataSheetLang.Yaml/Mapping/EventMatchingEventDataMapper.cs`, `MapGroup`, is the
+authority: `"priority" => true`, `"secondary" => false`. The table below stands. Whatever landed in
+`da47c4e9`, the page did not get fixed, so filed again as
+`docs/dsl-requests/2026-07-29-eventmatching-group-doc-backwards-and-granular-removal.md`. Do not
+author this leg from the docs page.
+
+Measured group split of the 164 feedstock rows, so both legs are sized: **82 in the `true`
+(`priority`) group and 82 in the `false` (`secondary`) group**, across 232 and 225 events
+respectively.
 
 | DSL `group` | XML | Which pool |
 |---|---|---|
@@ -424,6 +848,9 @@ Keep the expectation honest: the sample event is QA scaffolding loadable only by
 and its window closed on 2023-06-16, so removing its 4 feedstock rows changes nothing a player can
 reach. It is included because it is cheap and it satisfies the corpus-wide ruling, not because it
 affects the economy.
+
+**C4 DONE 2026-07-30.** Row written to `docs/plans/classic-restoration/iod/divergence-log.md`, with
+its live-test checkpoint. Ruling C2-a got a row in the same file.
 
 **C4, the classic carve-out.** R13 contradicts itself on 4 rows: it says remove direct feedstock
 drops AND leave the classic v31 layer byte-untouched, but the v31 layer itself drops
@@ -537,7 +964,7 @@ any number chosen there is a design call.
 
 | Step | Spec | Content |
 |---|---|---|
-| E1 | `002/39-iod-progression-token.yaml` | Item **95217**, the next slot in the project's own reserved token block 95214 to 95313. `boundType: Loot`, `tradable: false`, `NO_COMBAT`, high `maxStack`. Copy the `definitions:` plus `items: upsert:` shape from `002/14-dungeon-tokens.yaml`, NOT its MEDAL_USEABLE wiring, which R11 rejects |
+| E1 | `002/39-iod-progression-token.yaml` | Item **95217**, the next slot in the project's own reserved token block 95214 to 95313. `NO_COMBAT`, high `maxStack`, and restricted by **`tradable: false` plus `guildWarehouseStorable: false`, NOT by the `boundType: Loot` R21 asks for**: binding is the wrong instrument for a currency and the loader refuses any `boundType` on a stackable item anyway (correction in section 0a). Copy the `definitions:` plus `items: upsert:` shape from `002/14-dungeon-tokens.yaml`, NOT its MEDAL_USEABLE wiring, which R11 rejects |
 | E2 | **AMEND `002/28`, `002/29`, `002/30`, plus one new spec `002/40`** | The XP pass and the token rows, together. NOT one new spec: see the ownership rule below |
 
 **Author the strings in a TOP-LEVEL `itemStrings:` block, not the inline `strings:` form.**
@@ -547,12 +974,27 @@ specs carry top-level blocks. A patch whose only string authoring was inline wou
 item to the client.
 
 **E2, the XP pass (RV-07).** Cap each live zone quest at 25 percent of the **median** story quest XP
-of its level bracket. Measured against that baseline, **29 of the 35 live zone quests are currently
-over the cap**, so this is a zone-wide reduction, not a touch-up. Two measurement distortions to
-correct for when computing the brackets: the 1-2 bracket median is inflated by the twelve
-class-training missions at 2,100 XP each, of which a character completes exactly ONE; and the 5-6
-bracket median is deflated by quests 1382 and 1383 at 100 XP, which are a paired gathering-intro
-variant rather than a real story payout.
+of its level bracket. Two measurement distortions to correct for when computing the brackets: the 1-2
+bracket median is inflated by the twelve class-training missions at 2,100 XP each, of which a
+character completes exactly ONE; and the 5-6 bracket median is deflated by quests 1382 and 1383 at
+100 XP, which are a paired gathering-intro variant rather than a real story payout.
+
+**MEASURED 2026-07-29 (batch 0). Author from `IOD-WAVE1-BATCH0-MEASUREMENTS.md` section 3, not from
+this paragraph.** The corrected caps are 200 (bracket 1-2), 225 (3-4), 900 (5-6), 1,305 (7-8) and
+1,125 (9-10, no live zone quest sits there). Both corrections bite hard and in OPPOSITE directions:
+bracket 1-2 falls from 525 to 200, bracket 5-6 rises from 300 to 900.
+
+Three figures in the earlier draft are superseded. **26 of the 35** quests change, not 29 (the raw
+uncorrected count is 28). The pass removes **33,460 XP, 57 percent of the zone-quest pool**, taking
+the zone share of all obtainable island XP from 50 to 30 percent while the story spine stays at
+57,740 and untouched. And bracket 3-4's cap rests on only three story quests, two of them small
+utility missions, so 225 is the least well-supported number in the table.
+
+**Shaping rule RULED 2026-07-29 (user): clamp.** A zone quest above its bracket cap drops to the cap;
+one already under it is untouched. The resulting flatness (seven quests at 220 in bracket 3-4, eight
+at 1,300 in 7-8) is accepted. The XP reduction itself is explicitly NOT a risk to manage: the story
+spine reaches level 10 without mob XP, and the cap is expected to tighten further as more zone quests
+are added. See the ruling in the measurements document section 3d.
 
 **Two caveats on the cap, both understated in an earlier draft of this plan.**
 
@@ -567,8 +1009,11 @@ variant rather than a real story payout.
    exchange is completed by wave 2, not abandoned. Do not quietly add gold or power items to E2 to
    "close" it, and do not describe reward parity as satisfied until the vendor ships.
 
-**E2, the token rows (RV-03).** 35 live zone quests, of which 3 are repeatables that belong to
-RV-08. Threading difficulty splits by bag mode:
+**E2, the token rows (RV-03).** 35 live zone quests, of which **2** are repeatables that belong to
+RV-08 (measured 2026-07-29: 1334 and 1341, both `반복`; the earlier count of 3 was wrong). Both stay
+in this wave, because 1334 is already under its cap and 1341 needs only -200; repeat-specific
+economics stay RV-08. The bag-mode split below was confirmed exactly by the batch 0 census.
+Threading difficulty splits by bag mode:
 
 | Bag mode | Quests | How |
 |---|---|---|
@@ -670,6 +1115,12 @@ Two consequences to hold:
    Phase D's entire argument for keeping the retired tier rows resident is the silent
    access-violation-at-startup failure mode that a dangling item id produces. A wave that repoints
    thousands of item references without a referential gate contradicts its own reasoning.
+   **One known-good exception the gate must not flag** (measured 2026-07-29): vanilla
+   `MaterialEnchantData` records 10401 and 10402 consume 94104 and are referenced by 9 live items,
+   163029 to 163037, level-60 superior armor in `ItemTemplate_NAEU.xml`. All 9 carry
+   `enchantEnable="False"`, so the link is inert and no player can reach it. This is why B1's claim
+   that all REACHABLE enchanting consumes 94101 still holds; 63 vanilla records consume a retired
+   tier and these two are the only ones any live item points at.
 4. Advisory review: `audit_quest_design.py --zones 13,64,213,313,364 --since HEAD`.
 5. Regression diffs, parser-based never regex: the compensation block contains self-closing
    children, so a lazy terminator truncates it. This project has already been burned by that.
@@ -678,9 +1129,79 @@ Two consequences to hold:
 6. **Divergence log rows, before the wave is called done.** Doctrine rule 6 and RV-07's own gate
    both require them, and an earlier draft of this plan scheduled a row only for the C4 carve-out.
    Rows needed: the XP reduction on every changed zone quest (category policy, R10 and R20), the
-   token threading (authored content), the token's `boundType: Loot` divergence from the three
+   token threading (authored content), the token's restriction policy against R21 and the three
    existing project tokens (R21), the fodder yield ladder change, and the feedstock faucet removals.
 7. Deploy, then USER live validation. Server restart is manual.
+
+## 3b. Batch 2 apply 1: what the first real apply taught us (2026-07-30)
+
+The specs all validated clean and the apply still failed twice before it was right. Every failure
+was invisible to `dsl validate`, which is the point worth carrying.
+
+**1. An emptied collection can be XSD-invalid on the client even when the server accepts it.**
+First apply died at the client sync with `E650`: `RandomReward has incomplete content`. C3 had
+removed every `Reward` row from 11 gacha groups, and the client `Gacha.xsd` declares
+`RandomReward/Reward` WITHOUT `minOccurs="0"`, so an emptied group fails validation and the sync
+refuses the whole file. Fixed by removing the whole group with `removeRandomRewardGroups` when it
+would be emptied. Checked the same question across every collection this wave touches:
+
+| Collection | Emptied by this wave | Client XSD | Action |
+|---|---|---|---|
+| `Gacha` `RandomReward` | 11 groups | `Reward` required | Remove the group |
+| `ItemConversion` `ResultItemSet` | 5 sets | `minOccurs="0"`, so valid | Remove anyway: an empty set is a dead roll slot |
+| `Gacha` `FixedReward` | 13 containers | `minOccurs="0"`, so valid | Leave. There is no op to remove the container and an empty one is inert |
+| `EventMatching` `CompensationList` | 0 | n/a | Nothing to do |
+
+**2. Not generating a row does not delete a row, and C1 rested on that confusion.** Phase C1
+neutered the loot generators and the plan reasoned that the rows "exist only in the dirty tree", so
+a replay would simply never write them. That is true of the 299 rows the generators had added. It is
+false of the **190 vanilla rows already in the committed baseline** for zones 2, 3, 5, 6, 7, 15, 16,
+17, 487 and 488. Caught only by verifying by VALUE after the apply: 192 feedstock rows survived, all
+of them inside the eleven zones this patch owns, while all 1,595 rows in the 85 zones it does not
+own were gone. R13 was being enforced everywhere except where we were working. C2's scope now covers
+95 zone files, 1,349 records, 1,378 ops, 1,785 bags; only zone 13 is excluded, for the C4 carve-out.
+
+**3. Generate against the COMMITTED baseline, never the working tree.** `migrate` applies with
+`--source-ref <server HEAD>`, so a spec replays against the baseline. Regenerating C2 from a tree
+that already held an applied patch produced a spec covering only the 190 rows the last apply had
+left behind. The generator now refuses to run on a dirty `CompensationData` unless `--allow-dirty`
+is passed.
+
+**4. `itemMixes` could not change a material, and then it could.** Half of ruling C2-a was dropped
+mid-execution: `materials` APPENDED instead of replacing (216862 came out with six materials, still
+demanding the 94105 the ruling exists to remove, with `count` lost from the first appended entry),
+`upsert` appended too, and `delete` plus `create` failed on the create. Filed as section 4 of
+`docs/dsl-requests/2026-07-30-gacha-randomreward-classless-group-unaddressable.md` and fixed the
+same day by DSL `d53dbfad`. The op is restored and applied. Two things from the fix worth carrying:
+
+- **`SpecMapper` emits operations grouped by kind in the fixed order create, update, delete,
+  upsert**, whatever order the YAML keys are written in. So delete-then-create can never work
+  within one spec: the create is always attempted while the id is still taken. Use `upsert` for a
+  whole-record rewrite. The bare `E500` on that path is now `E429`, naming the id, the file and the
+  ordering rule.
+- **`materials` is clear-and-replace on both `update.changes` and `upsert`.** A material left out is
+  deleted, so restate every row you intend to keep.
+
+**5. The EventMatching leg was rebuilt after the fact, and the diff obligation went away with it.**
+DSL `36de802c` (2026-07-30) added `removeRewards` keyed on `templateId` to `eventMatchingEvents`,
+which was the one family in this wave with no membership support. The C3 generator now names only
+the 164 rows it deletes instead of the 934 it wanted to keep. Re-applied and verified with a
+per-event diff against committed HEAD: all 457 `CompensationList` containers present, exactly 164
+rows removed, every surviving row byte-identical to baseline-minus-feedstock, zero mail strings
+touched. The two families still restated are `buyLists` (1 surviving item) and
+`stackAttendanceEvent` (16 surviving rewards), both small enough to read.
+
+### Final verification, apply 1
+
+`82 applied, 0 failed, 11,069 operations, 0 warnings`, client sync clean. Value checks, all pass:
+zone loot down to exactly the 2 carve-out rows on Vekas and Kugai; 0 feedstock rows left in `Gacha`,
+`ItemConversion`, `AchievementList`, `EventMatching`, `StackAttendanceEvent`; 0 emptied
+`RandomReward` groups or `ResultItemSet`s; `BuyList` down to the sanctioned Kugai list 9999011;
+`ItemMedalExchange` down to the sanctioned 94101/95216 row; all 10 ladder `ItemMix` records gone;
+`534` repointed to `94101 x5` with its single material intact; `216862` at exactly 3 materials with
+`94101 x500` replacing `94105 x500` and counts 200/500/50 intact; **zero live references to a
+retired tier 94102-94112 anywhere in `ItemMixData`**; 0 `itemMixId` back-pointers left; 94101 reads
+"Feedstock" and 94112 "Obsolete Feedstock (Tier 12)".
 
 ## 4. Acceptance checkpoints for live validation
 
@@ -711,10 +1232,56 @@ Derived from the change list, not from replaying content:
 |---|---|---|
 | `StackAttendanceEvent` has no DSL entity | `docs/dsl-requests/2026-07-28-stackattendanceevent-entity-missing.md` | **DELIVERED** same day, DSL `ef6f3900`. Entity `stackAttendanceEvent` |
 | Quest compensation doc states the wrong `maxOccurs` for `Compensation` | `docs/dsl-requests/2026-07-28-quest-compensation-doc-maxoccurs.md` | **DELIVERED** same day, DSL `e9e9e11e`. Also corrected fictional `type` values and reframed `[max N]` across all five compensation pages |
+| Sync reports no value-change summary, so a first adoption that rewrites behaviour-bearing attributes reads as a clean success. Plus: W602's "regenerate or extend the schema" advice is wrong for a Novadrop client DC | `docs/dsl-requests/2026-07-29-sync-first-adoption-change-visibility.md` | open, filed from batch 1. Blocks nothing: Gate A was met with an external snapshot-and-diff script |
 | `lookup` / `batch_lookup` return an opaque error for `entity: "Item"` | `docs/mcp-requests/2026-07-28-item-lookup-opaque-error.md` | open |
 
-Binary in use is now **`1.0.0+98f98032`**, verified against `dsl.exe --version` on 2026-07-29. That
-is the current HEAD of the `datasheetlang` repo.
+Binary in use is now the **`a70475f5` build** (2026-07-30 17:52). **The version string is stale
+AGAIN and by a different amount each time**, so it is not a usable identifier: this build prints
+`1.0.0+01e9dbb3`, one commit behind, exactly as the `d04e4015` build printed `1.0.0+e89cc53c`.
+Identify a binary by file mtime and by BEHAVIOUR. Confirmed behaviourally here by probing an emptied
+`<RandomReward>` group on a scratch datasheet and getting the `E573` wording only `a70475f5` emits
+("holds no `<Reward>` row, so its probabilities total 0, not 1").
+
+**`a70475f5` needed NO spec change, and the reason is worth keeping.** It refuses an emptied
+probability bag and points at the remedy each collection actually has. Checked against every spec in
+the patch, then proved by a full re-apply that left both trees byte-identical:
+
+| What it added | Our exposure | Why nothing moved |
+|---|---|---|
+| `E573` on an EMPTIED bag, not just one off 1 | `002/38` empties 11 fully-feedstock groups | It already removes the GROUP with `removeRandomRewardGroups` rather than emptying it, which is precisely the remedy the new error names. That shape was forced back in apply 1 by the client XSD (`E650`, `RandomReward/Reward` has no `minOccurs="0"`), so the client constraint had already driven us to the server-correct answer |
+| `DecompositionData/RandomOutput` added as a checked bag | `002/35` rewrites `Decomposition` rows 206861-206868 | It uses `fixedOutputs` only. **Caveat for any future spec: `randomOutputs` has NO `normalize`.** It is replace-all, so the author must state probabilities totalling 1, or set `equalProbability: true` |
+| `upsertRandomRewardGroups` stating only a key is refused, since it would create an empty group | none | No spec in the patch uses that op |
+
+The three specs that fail a STANDALONE `dsl validate` (`002/02-brawler-weapons`, `002/02-reaper-weapons`,
+`002/05-chest-missing-items`) are unrelated to any of this: they emit `E403 has compute block but
+stat-formulas.yaml is missing`, because `migrate` passes a `--formulas` path that a bare `validate`
+does not. Not a regression and not new.
+
+### Collection membership landed 2026-07-30, and it reopened C2
+
+| Commit | What it gives this wave |
+|---|---|
+| `d06400c2` | Per-row add/remove/upsert inside nested collections on `eCompensations`, `gachaItems`, `itemConversions` and `achievements`. Whole-list keys still mean replace-all; mixing the two forms for one collection is `E570` |
+| `eb09d8ee` | Gates the feature on corpus-measured identity kinds |
+| `d04e4015` | Measures key PRESENCE, not just uniqueness. Reclassifies `RandomReward` from keyed to value, so a classless group is selected by a bare `expect: <count>` |
+
+Filed by this project and resolved the same day:
+`docs/dsl-requests/2026-07-30-gacha-randomreward-classless-group-unaddressable.md`. That file's own
+diagnosis was wrong in an instructive way: it assumed `class` needed a null-meaning selector value,
+when the real fault was that `class` is not a key at all and the corpus measurement said it was.
+
+**Two things to hold while authoring against this feature.**
+
+1. **An `expect` mismatch reports a bare `E500`, not the documented `E571` with counts.** Reproduced
+   on both `gachaItems` and `eCompensations`. Filed as section 2 of the request above. It matters
+   because C2 and C3 emit roughly 1,200 generator-derived `expect` values, and any drift between our
+   parse and the DSL matcher lands as an error naming neither the collection nor the counts.
+2. **`class: ""` is not how you name a group that has no `class`.** Per datasheet convention an empty
+   value means present-and-empty, so it matches nothing. Use the bare `expect` form.
+
+What the feature does NOT cover, so these legs are unchanged: `EventMatching` rewards (still
+clear-and-replace restate), `StackAttendanceEvent`, `BuyList`, `ItemMedalExchange`, and Phase E's
+`questCompensations`, which remains replace-all with the ownership hazard that implies.
 
 ### Capability gaps found by the 2026-07-28 audit: ALL FIVE DELIVERED, verified 2026-07-29
 
@@ -786,7 +1353,7 @@ look.
 | # | Question | Blocks |
 |---|---|---|
 | PROBE-F1 | ~~Does `enchantDatas` update replace all 304 rows?~~ **RESOLVED from source, and the earlier doc-based answer was WRONG.** `update` targets one collection and leaves siblings alone, but `decompositions` is upsert-by-key, not clear-and-replace. The doc line this was first resolved from is itself defective and is now filed. Verify by value, never by row count | nothing |
-| PROBE-F2 | ~~Can `eCompensations` remove a single `ItemBag`?~~ **RESOLVED from the docs**: bag collections are clear-and-replace and "the DSL does not support granular add/remove for bags or items". This is what took C2 out of wave 1 | nothing |
+| PROBE-F2 | ~~Can `eCompensations` remove a single `ItemBag`?~~ **ANSWER CHANGED 2026-07-30: YES.** The 2026-07-28 answer ("clear-and-replace, no granular add/remove") was correct against that binary and is now obsolete. DSL `d06400c2` added `removeItemBags`. Probed with `dsl validate` against `ECompensation_457` npc 1001: a full-attribute selector with `expect: 10` validates, and an off-by-one `expect` refuses. This is what put C2 BACK into wave 1 | nothing |
 | PROBE-F3 | ~~Precedence between dismantle family A and family B~~ **RESOLVED without a probe**: family A pays 0 at every rank 8 to 16 and all fodder is rank 16, so the two cannot collide on these items. Re-open only if fodder is ever authored at rank 7 or below | nothing |
 | PROBE-F4 | Does the client render correctly after a first sync of the four newly registered families? Expect a first-adoption rewrite; verify with a real sync and an attribute-level diff | Gate A |
 

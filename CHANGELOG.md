@@ -6,6 +6,40 @@ Newest entries first.
 
 ---
 
+## 2026-07-30
+
+### Content
+- **IoD reward-vector wave 1 applied and deployed to dev** (plan `docs/plans/reward-vectors/IOD-WAVE1-PLAN.md`, backlog items RV-01, RV-03, RV-07, RV-26, RV-28). Patch 002 now applies 84 specs / 11,097 ops / 0 failed / 0 warnings; a full re-apply leaves both the server tree (19,324 files) and the client tree (23,887 files) byte-identical, so the wave is reproducible from specs alone. Live validation pending
+- **Feedstock collapsed to a single untiered commodity.** `generate_enchant_materials.py` lost `FEEDSTOCK_BASE_ID` and its `94100 + rank` arithmetic, so `04-enchant-materials.yaml` regenerates onto 94101; new `34-feedstock-flatten-enchant-decomposition.yaml` repoints all 304 `EnchantDecomposition` rows across five `combatItemType` values. 1,413 `MaterialEnchantData` rows now consume 94101. The collapse also moved 324 rows off the Relic ids 94113-94118, affecting 713 items
+- **Feedstock faucets removed corpus-wide.** New `41-feedstock-faucet-removal-zones.yaml` (1,349 ops) deletes 1,785 `ItemBag`s across 95 zone files; new `38-feedstock-faucet-removal.yaml` (334 ops) clears 311 `Gacha` rows, 80 `ItemConversion` rows, 3 achievement rewards, 164 Vanguard `EventMatching` rows, 1 `BuyList` row, 1 dead exchange and 4 `StackAttendanceEvent` rows. Two rows survive by named carve-out (Vekas and Kugai, classic v31 layer) plus the sanctioned Kugai token-shop row. New generators `tools/feedstock-faucet/gen_feedstock_bag_removal.py` and `gen_feedstock_faucet_removal.py`
+- **Tier items 94102-94112 retired but left resident** (new `37-feedstock-retire-tier-items.yaml`, 36 ops): strings rewritten, all 10 ladder `ItemMix` records deleted with their 12 `itemMixId` back-pointers cleared, `ItemMix` 534 and 216862 repointed to 94101 at unchanged amounts
+- **Infusion fodder dismantle is grade-scaled** (new `35-feedstock-flatten-decomposition.yaml`): six live `Decomposition` rows paying 16/48/96 (weapon and body) and 8/24/48 (arm and leg) replace two rows paying 48/24 flat. `generate_infusion.py` now derives `decompositionId` from slot group AND `rareGrade`, retargeting all 900 fodder items. Rows 206861-206868 were hand-committed and reproducible by no spec until now
+- **Early-progression token shipped** (new `39-iod-progression-token.yaml`): item 95217 "Dawn Seal", `NO_COMBAT`, `tradable: false`, `guildWarehouseStorable: false`, `maxStack` 10,000. Ships as accumulating currency; its vendor is RV-02 in wave 2
+- **Zone quest XP clamped and the token threaded** (new `40-iod-zone-quest-xp-and-token.yaml` plus amendments to `28-iod-reward-cadence.yaml`, `29-iod-expedition-set-distribution.yaml` and `30-iod-remove-mid-tier-gear.yaml`). All 35 live IoD zone quests capped at 25% of their bracket's median story quest: 26 changed, the pool falls 58,200 to 24,740 XP. 123 token rows written, 12 per class bag. The four owning specs were amended rather than layered, because `questCompensations` upsert is replace-all and a spec numbered 40 would have silently destroyed the trim wave
+- `packages/item-ids` regenerated: `TIER_1_FEEDSTOCK_94101` renamed `FEEDSTOCK_94101`, with `17-iod-loot.yaml` regenerated onto it
+- New gate `tools/dc-restore/audit_item_references.py`: 358,398 item references checked for resolution, plus structural cross-references, the `ItemTemplate` loader invariants, the token restriction policy across the reserved band, and sum-to-1 probability bags. Pre-existing corpus debt is baselined so only new breakage fails
+- Divergence log gained 5 rows (XP reduction, token threading, token restriction policy, fodder yield ladder, faucet removals); ruling R21 restated in `IOD-BACKLOG.md`
+
+### Infrastructure
+- `datasheetlang: d06400c2`, `eb09d8ee`, `d04e4015`: per-row collection membership on `eCompensations`, `gachaItems`, `itemConversions` and `achievements`, gated on corpus-measured identity kind. Put phase C2 back into wave 1 and made the 1,785-bag removal expressible
+- `datasheetlang: 36de802c`: granular `removeRewards` on `eventMatchingEvents`, cutting the Vanguard leg from restating 934 surviving rows to naming the 164 it deletes
+- `datasheetlang: d53dbfad`: `itemMixes` `materials` replaces instead of appending, which restored ruling C2-a
+- `datasheetlang: d1e77a43`: numeric row attributes compared by value, so an integral decimal is selectable
+- `datasheetlang: 01e9dbb3`: `E573` refuses a run leaving a probability bag off 1, and `normalize: true` rebalances survivors proportionally on `updateRandomRewards`
+- `datasheetlang: a70475f5`: `E573` extended to an emptied bag with a per-collection remedy, and `DecompositionData/RandomOutput` added as a checked bag
+- Binary version strings are unreliable: the `d04e4015` build printed `1.0.0+e89cc53c` and the `a70475f5` build prints `1.0.0+01e9dbb3`. Identify a build by mtime and behaviour
+
+### Blockers resolved
+- `docs/dsl-requests/2026-07-30-probability-bag-sum-not-validated.md`: resolved the same day by `01e9dbb3` and `a70475f5`. Spec `38` moved onto `normalize: true`, dropping roughly 700 generated survivor rows to 81 lines
+- `docs/dsl-requests/2026-07-30-gacha-randomreward-classless-group-unaddressable.md`: resolved by `d04e4015` (a classless group is selectable by a bare `expect`), with its `itemMixes` and `expect`-mismatch sections resolved by `d53dbfad` and `1c07ab36`
+
+### Blockers outstanding
+- **Live validation of the whole wave**, from `IOD-WAVE1-PLAN.md` section 4. Everything gated so far proves the data matches the specs, not that the design is right
+- The world server refused the datasheet twice before booting, both on invariants `dsl validate` did not check at the time: `stackable item cannot specify boundType` (item 95217 authored `boundType: Loot` per the original R21) and `randomReward invalid probability prov` (81 Gacha groups left off 1). Both are fixed and both are now gated locally by `audit_item_references.py`
+- `docs/mcp-requests/2026-07-28-item-lookup-opaque-error.md`: `lookup` and `batch_lookup` return an opaque error for `entity: "Item"`. Blocks nothing
+
+---
+
 ## 2026-07-28
 
 ### Content
