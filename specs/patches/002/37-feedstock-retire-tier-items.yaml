@@ -1,0 +1,210 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retire the feedstock tier items: identity, not existence.
+#
+# Framework: reforged-content-framework 04-power-systems.md 4e ("feedstock is a single
+#   untiered commodity"). Rulings R15 (flatten) and R18 (94101 survives; 94102 to 94112
+#   are retired but their ItemTemplate rows STAY RESIDENT).
+# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase D.
+# Wave: IoD reward-vector wave 1, folded into the open patch 002.
+#
+# WHY THE ITEM ROWS ARE NOT DELETED. Deleting 94102 to 94112 would create roughly 4,000
+# dangling item references, and WorldServer.exe carries explicit id-validation strings for
+# Gacha and LimitedGacha. The failure mode is a silent access violation during startup
+# validation naming no file, which this project has already lost days to. The rows stay;
+# only their identity changes.
+#
+# WHY THE ItemMix LADDER IS DELETED RATHER THAN MIGRATED. Its ten records read
+# "94101 x6 -> 94102" and so on. After the flattening in 002/34 and 002/35 every rung
+# would become "94101 xN -> 94101": a machine that destroys player items. Two of the
+# twelve back-pointers are already dangling today (94104 and 94112 name mix ids that do
+# not exist), and the ladder is already severed at the tier 4 to 5 rung.
+#
+# THE DELETES AND THE CLEARS SHIP TOGETHER, DELIBERATELY. Leaving the ladder live is worse
+# than a dangling pointer: a player could feed 6 feedstock into a rung and receive one
+# retired, useless tier item. `items: clear` was delivered as DSL da5f2567 for exactly this,
+# so there is no longer any reason to split the two halves. Clearing an attribute that is
+# already absent is a W500 no-op, so this spec converges on re-apply.
+#
+# ACCEPTANCE. Both halves are live-testable: the tier-up conversion must be gone AND the
+# right-click affordance itself must no longer appear on 94101.
+
+# ---------------------------------------------------------------------------
+# 1. Strings. Base file only.
+# ---------------------------------------------------------------------------
+# There is no `Local` leg. StrSheet_ItemLocal.xml is not addressable by `itemStrings`
+# (no underscore suffix, so it matches no regional variant), it is absent from
+# sync-config.yaml's source_mapping, and its 109,365 rows are Traditional Chinese.
+# All 22 ids from 94101 to 94118 have a row in StrSheet_Item.xml, which is the sheet the
+# English server and client read.
+
+itemStrings:
+  update:
+    # The survivor. Drops "Tier 1", the level 1-30 band claim, and the combine instruction.
+    - id: 94101
+      changes:
+        name: "Feedstock"
+        toolTip: "Material used to enchant gear. Obtained by dismantling infusion fodder."
+
+    # The eleven retired tiers. They remain in the corpus so old references resolve; they
+    # are not obtainable, not consumed by any recipe, and cannot be combined.
+    - id: 94102
+      changes:
+        name: "Obsolete Feedstock (Tier 2)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94103
+      changes:
+        name: "Obsolete Feedstock (Tier 3)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94104
+      changes:
+        name: "Obsolete Feedstock (Tier 4)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94105
+      changes:
+        name: "Obsolete Feedstock (Tier 5)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94106
+      changes:
+        name: "Obsolete Feedstock (Tier 6)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94107
+      changes:
+        name: "Obsolete Feedstock (Tier 7)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94108
+      changes:
+        name: "Obsolete Feedstock (Tier 8)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94109
+      changes:
+        name: "Obsolete Feedstock (Tier 9)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94110
+      changes:
+        name: "Obsolete Feedstock (Tier 10)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94111
+      changes:
+        name: "Obsolete Feedstock (Tier 11)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+    - id: 94112
+      changes:
+        name: "Obsolete Feedstock (Tier 12)"
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+
+# ---------------------------------------------------------------------------
+# 2. The tier-up ladder: delete all ten records.
+# ---------------------------------------------------------------------------
+# Measured 2026-07-30 in ItemMixData.xml. Note 94104 is absent: the ladder is already
+# severed at the tier 4 to 5 rung, which is why nine rungs read x6 or x2 but no record
+# converts tier 4 into tier 5.
+
+itemMixes:
+  delete:
+    - 94101
+    - 94102
+    - 94103
+    - 94105
+    - 94106
+    - 94107
+    - 94108
+    - 94109
+    - 94110
+    - 94111
+
+  # RULING C2-a (2026-07-30). The two live non-ladder recipes that reference retired
+  # tiers are repointed to 94101 at unchanged amounts. Recorded in the plan under
+  # phase C2 and in the IoD divergence log.
+  #
+  # HISTORY WORTH KEEPING: `materials` under `update` used to APPEND rather than replace,
+  # so 216862 came out with six materials, still demanding the 94105 this ruling exists to
+  # remove, and with `count` dropped from the first appended entry. `upsert` appended too,
+  # and `delete` plus `create` failed on the create. The change was dropped from the wave
+  # and filed as section 4 of
+  # docs/dsl-requests/2026-07-30-gacha-randomreward-classless-group-unaddressable.md.
+  # DSL d53dbfad fixed it the same day and the op below is restored. Stating `materials`
+  # now clears the list and writes exactly the rows given; omitting it leaves the shipped
+  # list alone. Verify after apply that 216862 holds exactly THREE materials.
+
+  update:
+    # 534 produced tier 8 from item 101374. Minting a RETIRED tier contradicts R18, and
+    # Phase D's own "must not be broken" list protects the recipe, so it is repointed
+    # rather than deleted. Its MATERIALS are correct as they stand, so this op touches
+    # `result` only and never goes near the append defect.
+    - itemMixId: 534
+      changes:
+        result:
+          successItemId: 94101
+          successCount: 5
+
+    # 216862 consumed tier 5. Phases C2 and C3 together delete every remaining source of
+    # 94105, and its only player-reachable one was the zone drops in hunting zones 711 and
+    # 750, so without this the recipe would ask for an unobtainable material. A recipe that
+    # CONSUMES feedstock is a sink, not a faucet, so R13 does not touch it and R15 puts the
+    # surviving identity on 94101.
+    #
+    # All three materials are restated because `materials` is clear-and-replace: a material
+    # left out here is deleted. Only 94105 changes; 94204 and 98505 are copied verbatim.
+    # The 500 count is deliberately unchanged, because the consumption ladder re-derivation
+    # is DEFERRED out of this wave by the batch 0 ruling.
+    - itemMixId: 216862
+      changes:
+        materials:
+          - itemId: 94204
+            count: 200
+          - itemId: 94101
+            count: 500
+          - itemId: 98505
+            count: 50
+
+# ---------------------------------------------------------------------------
+# 3. The twelve itemMixId back-pointers.
+# ---------------------------------------------------------------------------
+# `clear` removes the attribute from the <Item> element entirely, which is the canonical
+# unset form: 111,569 of 112,392 shipped items carry no itemMixId at all and not one
+# carries itemMixId="0". Setting 0 would be a zero-corpus shape.
+#
+# 94104 and 94112 are already dangling (they name mix ids that never existed), so their
+# clears are hygiene rather than repair.
+
+items:
+  update:
+    - id: 94101
+      changes:
+        clear: [itemMixId]
+    - id: 94102
+      changes:
+        clear: [itemMixId]
+    - id: 94103
+      changes:
+        clear: [itemMixId]
+    - id: 94104
+      changes:
+        clear: [itemMixId]
+    - id: 94105
+      changes:
+        clear: [itemMixId]
+    - id: 94106
+      changes:
+        clear: [itemMixId]
+    - id: 94107
+      changes:
+        clear: [itemMixId]
+    - id: 94108
+      changes:
+        clear: [itemMixId]
+    - id: 94109
+      changes:
+        clear: [itemMixId]
+    - id: 94110
+      changes:
+        clear: [itemMixId]
+    - id: 94111
+      changes:
+        clear: [itemMixId]
+    - id: 94112
+      changes:
+        clear: [itemMixId]

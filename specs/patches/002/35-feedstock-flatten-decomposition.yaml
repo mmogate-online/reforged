@@ -1,0 +1,112 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Infusion fodder dismantle: one flat feedstock item, yield scaled by fodder GRADE.
+#
+# Framework: reforged-content-framework 04-power-systems.md §4e (dismantle yield "scales
+#   with grade, uncommon least, superior most") and §5e (fodder dismantling is the sole
+#   feedstock source). Rulings R15 (flatten the identity, scale the quantity) and R13.
+# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase B, step B3.
+# Paired with: 002/06-gear-infusion-items.yaml, which points each of the 900 fodder items
+#   at one of these six rows by slot group AND rareGrade (step B4).
+#
+# WHAT WAS WRONG. The fodder faucet paid 48 (weapon and body) or 24 (arm and leg) flat,
+# with grade IGNORED, so an uncommon fodder and a superior fodder returned the same
+# feedstock. That is the vanilla SUPERIOR row applied to every grade, and it contradicts
+# R15, which puts all the tuning that feedstock tiers used to carry onto the quantity axis.
+#
+# THE LADDER (user ruling 2026-07-28, rare-anchored):
+#
+#   group           uncommon  rare  superior
+#   weapon + body         16    48        96
+#   arm + leg              8    24        48
+#
+# Vanilla's 1:3:6 shape across the three grades that exist, anchored so RARE keeps today's
+# value. Rare-anchored rather than superior-anchored on purpose: phase C of this wave also
+# deletes roughly 2,086 direct feedstock drop rows, and anchoring on superior would have
+# cut mean fodder output a further 44 percent on top of that, so a starved enchant economy
+# could not be attributed to either change. The rare anchor holds mean output roughly flat
+# (up about 11 percent) while introducing the grade axis, leaving the drop removal as the
+# single supply variable in this wave.
+#
+# Sanity check against §2c (10 to 30 feedstock per attempt while levelling, 50 to 150 at
+# the +9 to +12 endgame step): one superior weapon fodder covers roughly three to nine
+# levelling attempts, or most of one endgame attempt.
+#
+# WHY THIS SPEC EXISTS AT ALL, beyond the numbers. Rows 206861 to 206868 were committed
+# straight into the server datasheet by hand (2c0477c7) and were reproducible by no spec,
+# and the client shard turned out to hold them too, written directly into the client tree.
+# That is the same unreproducible-generated-tree failure class as the StrSheet_NpcLoc loss
+# of 2026-07-28. This spec plus the DecompositionData sync descriptor registered in
+# config/sync-config.yaml on 2026-07-29 bring both sides under spec control.
+#
+# SEMANTICS. upsert on decompositions REPLACES the record completely when it exists, so
+# each row below is the whole intended state. FixedOutput is authored WITHOUT enchantStep,
+# which is both the shape these rows already have and the majority convention in the
+# shipped file (312 of 508 FixedOutput elements carry no enchantStep). All fodder is rank
+# 16 and family A (EnchantData) pays resultItemAmount 0 at every rank 8 and above, so the
+# two dismantle systems cannot collide on these items; precedence would only become a live
+# question if fodder were ever authored at rank 7 or below.
+#
+# DELIBERATE ADDITION beyond the plan's six rows: 206867 and 206868 are also restated. The
+# plan reuses only 206863 to 206866 for the four new grade combinations, which would leave
+# 206867 and 206868 as the last rows in the corpus still emitting a retired tier (94104).
+# Nothing references them (0 of 25,853 items), so this is not a fix, it is removing a trap:
+# any future fodder item that lands on them cannot hand back a retired item.
+
+decompositions:
+  upsert:
+    # weapon and body group
+    - id: 206863
+      desc: "uncommon weapon and body infusion fodder"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 16
+    - id: 206861
+      desc: "rare weapon and body infusion fodder"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 48
+    - id: 206865
+      desc: "superior weapon and body infusion fodder"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 96
+
+    # arm and leg group, half the weapon and body yield
+    - id: 206864
+      desc: "uncommon arm and leg infusion fodder"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 8
+    - id: 206862
+      desc: "rare arm and leg infusion fodder"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 24
+    - id: 206866
+      desc: "superior arm and leg infusion fodder"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 48
+
+    # unreferenced spares, normalized off the retired tier 94104 (see header)
+    - id: 206867
+      desc: "spare weapon and body fodder row, unreferenced"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 48
+    - id: 206868
+      desc: "spare arm and leg fodder row, unreferenced"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 24

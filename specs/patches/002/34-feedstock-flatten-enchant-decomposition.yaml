@@ -1,0 +1,362 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Flatten the gear-dismantle refund onto a single untiered feedstock item.
+#
+# Framework: reforged-content-framework 04-power-systems.md §4e ("feedstock is a single
+#   untiered commodity ... the tuning that tiers used to provide lives in the quantity
+#   axis instead"). Rulings R15 (flatten) and R18 (94101 survives; 94102 to 94112 are
+#   retired but their ItemTemplate rows stay resident).
+# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase B, step B2.
+# Wave: IoD reward-vector wave 1, folded into the open patch 002.
+#
+# WHAT THIS CHANGES. Every EnchantDecomposition row in EnchantData.xml now returns 94101.
+# Before this spec the family spread across twelve ids: 94101 on 20 rows, 94102 to 94111
+# on 20 rows each, and 94112 on 84. resultItemAmount is NOT touched by design, so the
+# vanilla grade ladder (weapon 4/8/24/48, body 3/6/18/36, arm and leg 2/4/12/24 at grades
+# 0 to 3) and the zero payout at ranks 8 and above both survive exactly.
+#
+# WHY THE AMOUNTS ARE LEFT ALONE. The wave's ladder re-derivation against framework §2c
+# was measured and then deliberately DEFERRED (user ruling 2026-07-29, decision 1 in
+# docs/plans/reward-vectors/IOD-WAVE1-BATCH0-MEASUREMENTS.md). Flattening the identity
+# changes no amount, so nothing regresses; re-deriving demand in the same apply that
+# changes supply three ways would leave the next tuning pass uninterpretable. Family A's
+# 1:2:6:12 grade shape is also the reference the new fodder ladder in 002/35 was anchored
+# against, so moving both at once would remove the only baseline available.
+#
+# FIVE combatItemType VALUES, NOT FOUR. Measured 2026-07-29 over all 304 rows. An earlier
+# draft of the plan named only the four EQUIP_* slots; authoring from that list would have
+# left the 64 ENCHANT_COMPONENT_WEAPON rows still pointing at a retired tier. Note also
+# that EQUIP_WEAPON stops at rank 12 while the other four run to rank 16.
+#
+# SEMANTICS. decompositions merges by (combatItemType, rank, rareGrade); it is NOT
+# clear-and-replace, so every row is restated here rather than relying on a rebuild, and a
+# row count after apply proves nothing. The gate is a value check: no row anywhere in
+# EnchantData.xml may keep a resultItemTemplateId other than 94101. `update` requires none
+# of the three root attributes, and naming only this collection emits no command against
+# EnchantRate, SameItemEnchantRate, MaterialData, EnchantSuccessRating or AwakenData.
+#
+# CLIENT LEG. None, and provably so: the client EnchantData.xsd declares baseCost,
+# combatItemType, rank, rareGrade and resultItemAmount but NOT resultItemTemplateId, so
+# this change cannot reach the client. enchantDatas is mapped to None in migrate's
+# ENTITY_SYNC_MAP for exactly that reason. If resultItemAmount is ever changed, that
+# family needs a real sync descriptor first.
+
+enchantDatas:
+  update:
+    - changes:
+        decompositions:
+          # EQUIP_WEAPON: 48 rows, ranks 1 to 12 (28 paying, 20 at amount 0)
+          - { combatItemType: EQUIP_WEAPON, rank: 1, rareGrade: 0, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 1, rareGrade: 1, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 1, rareGrade: 2, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 1, rareGrade: 3, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 2, rareGrade: 0, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 2, rareGrade: 1, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 2, rareGrade: 2, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 2, rareGrade: 3, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 3, rareGrade: 0, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 3, rareGrade: 1, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 3, rareGrade: 2, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 3, rareGrade: 3, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 4, rareGrade: 0, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 4, rareGrade: 1, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 4, rareGrade: 2, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 4, rareGrade: 3, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 5, rareGrade: 0, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 5, rareGrade: 1, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 5, rareGrade: 2, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 5, rareGrade: 3, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 6, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 6, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 6, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 6, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 7, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_WEAPON, rank: 7, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: EQUIP_WEAPON, rank: 7, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_WEAPON, rank: 7, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: EQUIP_WEAPON, rank: 8, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 8, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 8, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 8, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 9, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 9, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 9, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 9, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 10, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 10, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 10, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 10, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 11, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 11, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 11, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 11, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 12, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 12, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 12, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_WEAPON, rank: 12, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+
+          # EQUIP_ARMOR_BODY: 64 rows, ranks 1 to 16 (28 paying, 36 at amount 0)
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 1, rareGrade: 0, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 1, rareGrade: 1, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 1, rareGrade: 2, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 1, rareGrade: 3, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 2, rareGrade: 0, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 2, rareGrade: 1, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 2, rareGrade: 2, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 2, rareGrade: 3, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 3, rareGrade: 0, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 3, rareGrade: 1, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 3, rareGrade: 2, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 3, rareGrade: 3, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 4, rareGrade: 0, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 4, rareGrade: 1, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 4, rareGrade: 2, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 4, rareGrade: 3, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 5, rareGrade: 0, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 5, rareGrade: 1, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 5, rareGrade: 2, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 5, rareGrade: 3, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 6, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 6, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 6, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 6, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 7, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 3 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 7, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 6 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 7, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 18 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 7, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 36 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 8, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 8, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 8, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 8, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 9, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 9, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 9, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 9, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 10, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 10, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 10, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 10, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 11, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 11, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 11, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 11, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 12, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 12, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 12, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 12, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 13, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 13, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 13, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 13, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 14, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 14, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 14, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 14, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 15, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 15, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 15, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 15, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 16, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 16, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 16, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_BODY, rank: 16, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+
+          # EQUIP_ARMOR_ARM: 64 rows, ranks 1 to 16 (28 paying, 36 at amount 0)
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 1, rareGrade: 0, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 1, rareGrade: 1, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 1, rareGrade: 2, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 1, rareGrade: 3, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 2, rareGrade: 0, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 2, rareGrade: 1, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 2, rareGrade: 2, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 2, rareGrade: 3, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 3, rareGrade: 0, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 3, rareGrade: 1, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 3, rareGrade: 2, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 3, rareGrade: 3, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 4, rareGrade: 0, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 4, rareGrade: 1, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 4, rareGrade: 2, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 4, rareGrade: 3, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 5, rareGrade: 0, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 5, rareGrade: 1, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 5, rareGrade: 2, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 5, rareGrade: 3, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 6, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 6, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 6, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 6, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 7, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 7, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 7, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 7, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 8, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 8, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 8, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 8, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 9, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 9, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 9, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 9, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 10, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 10, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 10, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 10, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 11, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 11, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 11, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 11, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 12, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 12, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 12, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 12, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 13, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 13, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 13, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 13, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 14, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 14, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 14, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 14, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 15, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 15, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 15, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 15, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 16, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 16, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 16, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_ARM, rank: 16, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+
+          # EQUIP_ARMOR_LEG: 64 rows, ranks 1 to 16 (28 paying, 36 at amount 0)
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 1, rareGrade: 0, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 1, rareGrade: 1, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 1, rareGrade: 2, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 1, rareGrade: 3, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 2, rareGrade: 0, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 2, rareGrade: 1, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 2, rareGrade: 2, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 2, rareGrade: 3, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 3, rareGrade: 0, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 3, rareGrade: 1, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 3, rareGrade: 2, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 3, rareGrade: 3, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 4, rareGrade: 0, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 4, rareGrade: 1, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 4, rareGrade: 2, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 4, rareGrade: 3, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 5, rareGrade: 0, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 5, rareGrade: 1, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 5, rareGrade: 2, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 5, rareGrade: 3, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 6, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 6, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 6, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 6, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 7, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 2 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 7, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 7, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 12 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 7, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 8, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 8, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 8, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 8, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 9, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 9, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 9, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 9, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 10, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 10, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 10, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 10, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 11, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 11, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 11, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 11, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 12, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 12, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 12, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 12, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 13, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 13, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 13, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 13, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 14, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 14, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 14, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 14, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 15, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 15, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 15, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 15, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 16, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 16, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 16, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: EQUIP_ARMOR_LEG, rank: 16, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+
+          # ENCHANT_COMPONENT_WEAPON: 64 rows, ranks 1 to 16 (28 paying, 36 at amount 0)
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 1, rareGrade: 0, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 1, rareGrade: 1, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 1, rareGrade: 2, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 1, rareGrade: 3, baseCost: 4, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 2, rareGrade: 0, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 2, rareGrade: 1, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 2, rareGrade: 2, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 2, rareGrade: 3, baseCost: 16, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 3, rareGrade: 0, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 3, rareGrade: 1, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 3, rareGrade: 2, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 3, rareGrade: 3, baseCost: 80, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 4, rareGrade: 0, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 4, rareGrade: 1, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 4, rareGrade: 2, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 4, rareGrade: 3, baseCost: 400, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 5, rareGrade: 0, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 5, rareGrade: 1, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 5, rareGrade: 2, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 5, rareGrade: 3, baseCost: 2000, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 6, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 6, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 6, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 6, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 7, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 4 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 7, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 8 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 7, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 24 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 7, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 48 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 8, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 8, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 8, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 8, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 9, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 9, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 9, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 9, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 10, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 10, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 10, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 10, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 11, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 11, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 11, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 11, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 12, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 12, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 12, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 12, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 13, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 13, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 13, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 13, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 14, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 14, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 14, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 14, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 15, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 15, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 15, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 15, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 16, rareGrade: 0, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 16, rareGrade: 1, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 16, rareGrade: 2, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }
+          - { combatItemType: ENCHANT_COMPONENT_WEAPON, rank: 16, rareGrade: 3, baseCost: 10000, resultItemTemplateId: 94101, resultItemAmount: 0 }

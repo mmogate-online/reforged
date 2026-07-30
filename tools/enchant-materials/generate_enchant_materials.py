@@ -32,7 +32,15 @@ except ImportError:
 
 # Configuration
 ALKAHEST_ID = 21351
-FEEDSTOCK_BASE_ID = 94100  # Feedstock ID = 94100 + rank
+# Feedstock is a SINGLE UNTIERED COMMODITY (framework 04 §4e, rulings R15 and R18).
+# This was `FEEDSTOCK_BASE_ID = 94100` with the id computed as 94100 + rank, which
+# emitted 94101 to 94122 across the rank domain 1..22: the feedstock tiers 94102 to
+# 94112 AND the Relic Fragment/Shard ids 94113 to 94118 (713 items) AND four ids with
+# no ItemTemplate row at all (94119 to 94122, 216 dangling refs). The base constant is
+# deliberately GONE rather than set to 94101, so the arithmetic cannot be reintroduced.
+# Any future chase-tier differentiation ships as a separate named material, never as
+# feedstock tiers.
+FEEDSTOCK_ID = 94101
 
 LEVEL_RANGES = [
     (0, "1..37", 1, 37),
@@ -301,9 +309,8 @@ def _emit_entries(lines: list, group: list, def_name: str) -> None:
         lines.append(f"    # \u2500\u2500 {first.slot_group_name}, Level {first.level_range_str}, {rank_desc} ({tier_label} {step_count}-step) \u2500\u2500")
 
     for config in group:
-        feedstock_id = FEEDSTOCK_BASE_ID + config.rank
         lines.append(f"    - $extends: {def_name}")
-        lines.append(f"      $with: {{ ENCHANT_ID: {config.material_enchant_id}, FEEDSTOCK_ID: {feedstock_id} }}")
+        lines.append(f"      $with: {{ ENCHANT_ID: {config.material_enchant_id}, FEEDSTOCK_ID: {FEEDSTOCK_ID} }}")
 
 
 def generate_material_enchants_yaml(configs: list) -> str:

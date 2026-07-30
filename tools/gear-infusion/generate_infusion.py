@@ -49,9 +49,27 @@ GRADES = [
 # Total gradient steps = len(GRADES) * ROLLS_PER_CATEGORY = 3
 GRADIENT_STEPS = len(GRADES) * ROLLS_PER_CATEGORY
 
-# Decomposition ID base (from DecompositionData.xml)
-# gear_group_offset: 0 = weapon/body (48 feedstock), 1 = arm/leg (24 feedstock)
-DECOMP_ID_BASE = 206861
+# Decomposition IDs (authored by specs/patches/002/35-feedstock-flatten-decomposition.yaml).
+#
+# The yield now scales with fodder GRADE as well as slot group (framework 04 §4e, ruling
+# R15), so there are six rows rather than two. This used to be DECOMP_ID_BASE = 206861 plus
+# a 0/1 slot-group offset, which paid the same feedstock at every grade.
+#
+#   group           uncommon  rare  superior     ids (uncommon / rare / superior)
+#   weapon + body         16    48        96      206863 / 206861 / 206865
+#   arm + leg              8    24        48      206864 / 206862 / 206866
+#
+# Rare keeps the ids that already held the rare-anchored values, so those two rows do not
+# move. 206867 and 206868 are unreferenced spares.
+DECOMP_IDS = {
+    # (gear_group_offset, rareGrade) -> decomposition id
+    (0, 1): 206863,
+    (0, 2): 206861,
+    (0, 3): 206865,
+    (1, 1): 206864,
+    (1, 2): 206862,
+    (1, 3): 206866,
+}
 
 # Gear groups for decomposition
 WEAPON_BODY_SLOTS = {"EQUIP_WEAPON", "EQUIP_ARMOR_BODY"}
@@ -364,10 +382,20 @@ def generate_passivity_name(definition: PassiveDefinition, grade: dict, roll: in
     return f"TIER{grade['id']}_{prefix}_{definition.passive_attribute}_R{roll}"
 
 
-def get_decomposition_id(combat_item_type: str) -> int:
-    """Calculate decompositionId from slot type."""
+def get_decomposition_id(combat_item_type: str, rare_grade: int) -> int:
+    """Calculate decompositionId from slot group AND item grade.
+
+    Grade is load-bearing: the six DecompositionData rows differ only by yield, so passing
+    the wrong grade silently pays the wrong amount of feedstock.
+    """
     gear_group_offset = 0 if combat_item_type in WEAPON_BODY_SLOTS else 1
-    return DECOMP_ID_BASE + gear_group_offset
+    key = (gear_group_offset, rare_grade)
+    if key not in DECOMP_IDS:
+        raise ValueError(
+            f"no decomposition row for slot group {gear_group_offset} at rareGrade "
+            f"{rare_grade}; DECOMP_IDS covers {sorted(DECOMP_IDS)}"
+        )
+    return DECOMP_IDS[key]
 
 
 def generate_categories_yaml(definitions: list[PassiveDefinition]) -> tuple[list[str], list[dict]]:
@@ -485,13 +513,16 @@ def generate_items_yaml(definitions: list[PassiveDefinition], passivity_data: li
     for definition in definitions:
         slot_config = SLOTS.get(definition.combat_item_type, {})
         subtypes = slot_config.get("subtypes", [])
-        decomposition_id = get_decomposition_id(definition.combat_item_type)
 
         for grade in GRADES:
             key = (definition.order, grade["id"])
             data = data_by_key.get(key)
             if not data:
                 continue
+
+            # Inside the grade loop on purpose: the decomposition row is chosen by slot
+            # group AND grade, so hoisting this back out would pay one grade's yield to all.
+            decomposition_id = get_decomposition_id(definition.combat_item_type, grade["id"])
 
             category_id = data["category_id"]
             grade_template = f"infusionItem{grade['name']}"
