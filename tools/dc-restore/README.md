@@ -254,6 +254,7 @@ python reforged/tools/dc-restore/audit_class_gates.py --all-zones
 python reforged/tools/dc-restore/audit_class_gates.py --zones 63 --classes Assassin,Fighter,Glaiver,Soulless
 ```
 
+
 Why a source diff cannot replace this: classic content lists exactly the classes that existed when it shipped, and **v31 carries the identical lists**, so a faithful restore agrees with its source while still excluding every later class. The defect exists only relative to today's roster, produces no load warning and no crash, and hides from any live test that happens to use a classic class.
 
 How it judges coverage:
@@ -264,6 +265,25 @@ How it judges coverage:
 4. A group whose members disagree on prerequisites is tagged `MIXED`, the one case where the giver key can over-merge unrelated chains and hide a gap. Per-member prerequisites are always printed.
 
 Default roster is the full 13 classes minus `Soulless`: Reaper starts in a different zone at a higher level and never walks these chains (decision 2026-07-25). Override with `--classes`.
+
+## audit_player_text.py (player-facing text gate)
+
+Enforces `DOCTRINE.md` rule 10: player-facing text describes the world, never our build order. Read-only; scans **spec YAML**, not the datasheet; exit code 1 on any hit. Born from the 2026-07-31 incident: item 95217 "Valkyon Commendation" shipped the tooltip line *"The quartermaster who accepts them has not yet set up"*, and it passed `dsl validate`, `migrate` with 0 warnings, a clean client sync, all three standing gates, a client publish and a world-server boot. A human reading it in game was the only thing that caught it.
+
+```bash
+# Gate a patch before deploying (run alongside dungeon_audit and audit_class_gates)
+python reforged/tools/dc-restore/audit_player_text.py --patch 002
+
+# Everything, or one file
+python reforged/tools/dc-restore/audit_player_text.py
+python reforged/tools/dc-restore/audit_player_text.py --specs path/to/spec.yaml
+```
+
+Why specs and not the datasheet: authoring time is the cheap place to fail, and a datasheet scan cannot separate our text from the publisher's 112,000 shipped strings, several of which legitimately say "no longer usable" or name a discontinued event. This gate owns only what our specs write.
+
+Comments are invisible to it by construction (the file is parsed as YAML), so spec headers may discuss wave order in as much detail as they like. What it scans is every string under a string-table entity (`itemStrings`, `questStrings`, `questDialogs`, ...) plus any `toolTip` anywhere. `name` is deliberately not scanned globally: under `items:` it is the internal datasheet name, not player-facing.
+
+*No longer usable*, *formerly* and *obsolete* are deliberately **not** banned. They describe a stable state of the world, and the publisher's own retirement convention uses them (item 447, and the baseline strings for 94111/94112).
 
 ## audit_quest_design.py (quest design review, ADVISORY)
 
@@ -348,6 +368,8 @@ v31 has no VillagerDialog directory (absent by design). Client and v92 villager 
 | `dcq.py` | Cross-source content query CLI (`quest` / `npc` / `name` / `collection`). |
 | `audit_quests.py` | Deterministic Island quest-difference flagger (markdown + JSON worklist). |
 | `dungeon_audit.py` | Dungeon reference integrity gate: DungeonData refs vs parsed per-HZ content; flags comment-disabled data. |
+| `audit_item_references.py` | Item-id referential integrity gate, plus the `ItemTemplate` loader invariants, the token restriction policy, and the sum-to-1 probability bags. |
+| `audit_player_text.py` | Player-facing text gate (DOCTRINE.md rule 10): fails the patch when a spec-authored string describes our build order rather than the world. |
 | `audit_quest_design.py` | Quest design review (ADVISORY, always exit 0): reward duplication, gear-set completeness, class coverage, reference integrity, objective feasibility. |
 | `auditlib.py` | Shared model for the design review: findings, the three scopes, waivers, corpus evidence. |
 | `tests/` | pytest suite: hermetic fixtures plus corpus regressions pinned to `789fec28`. |

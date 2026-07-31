@@ -77,6 +77,28 @@ datasheets.
    the KB holds how the game works. This rule exists because the Guardian Legion v0 blocker was
    already documented in the KB and was still missed, and because the same session then produced
    a large amount of field event knowledge the KB did not have.
+10. **Player-facing text describes the world, never our build order.** Item tooltips, quest
+    journals, dialogs and region strings state what is true in the game. They never state what
+    we have not built yet, what is coming in a later wave, or which patch a thing belongs to.
+    Banned in shipped text: "not yet", "coming soon", "will be added", "for now", "temporary",
+    "placeholder", "TBD", "work in progress", any wave or patch number, and any sentence whose
+    subject is us rather than the world.
+
+    This is a rule and not a preference because the failure mode is invisible. A restoration
+    of this size ships incomplete systems on purpose: a currency lands before its vendor, a
+    quest chain lands before its final leg. That is correct sequencing, and the temptation at
+    authoring time is to close the gap in prose so it does not read as a bug. Item 95217
+    "Valkyon Commendation" shipped with the tooltip line "The quartermaster who accepts them
+    has not yet set up", authored for exactly that reason and caught only by live testing.
+
+    **The remedy is never prose. It is the register.** An incomplete system is recorded in the
+    zone's plan folder and its backlog, where the next session reads it, not in a string the
+    player reads. If a shipped state genuinely cannot be described truthfully without naming
+    the gap, the content is not ready to ship.
+
+    Enforced by `tools/dc-restore/audit_player_text.py`, which scans every player-facing string
+    the patch's specs author and fails the patch on the phrase family. Run it with the other
+    pre-deploy gates; exit 0 required.
 
 ## Mechanical adaptation whitelist (living appendix)
 

@@ -6,20 +6,43 @@ spec:
 #
 # Framework: reforged-content-framework 03-economy.md 3b-i (reward parity: the token
 #   compensates for XP removed) and 3c (power-spend registry).
-# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase E1.
+# Backlog: RV-01 (the token item) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 # Wave: IoD reward-vector wave 1, folded into the open patch 002.
 #
-# WHAT THIS IS. One region-wide currency paid by every reward vector on the island.
-# 002/40 and the amended 002/28, 002/29 and 002/30 thread it into all 35 live zone
-# quests in the same wave that clamps their XP; the two changes are one exchange, not
-# two independent ones.
+# WHAT THIS IS. The BAND-WIDE early-progression currency for all sub-60 content, in
+# every zone, not just this island (ruling R25; framework 02 section 5 and 03 3b-i).
+# A second currency covers level cap and is allocated when that patch opens.
+# 002/40 and the amended 002/18, 002/28, 002/29 and 002/30 thread it into all 35 live
+# zone quests in the same wave that clamps their XP, and 002/42 threads it into the
+# story spine (R23); zone XP and the token are one exchange, not two changes.
 #
 # IT SHIPS WITH NO SINK, AND THAT IS DELIBERATE. RV-02, the vendor that spends it,
 # is wave 2. The E2 XP pass is what determines token income, so pricing a catalogue
 # before that lands would mean guessing the income rate and then guessing prices
 # against the guess. Shipping the currency first produces measured accumulation data.
-# The tooltip says so explicitly, because a currency with nothing to buy otherwise
-# reads as a bug.
+#
+# THE TOOLTIP MUST NOT SAY SO. It did, and that was a defect, corrected 2026-07-31
+# after live testing. The shipped line ended "The quartermaster who accepts them has
+# not yet set up", which is our build order printed in the game. The reasoning that
+# put it there is recorded because it is the trap, not the excuse: a currency with no
+# sink was thought to read as a bug, so the tooltip explained the gap. Explaining an
+# internal gap to the player is never the remedy. The line is gone; the gap itself is
+# tracked where gaps belong, as RV-02 in the backlog.
+#
+# Binding rule that came out of this: DOCTRINE.md rule 10, "player-facing text
+# describes the world, never our build order". Gated by
+# tools/dc-restore/audit_player_text.py, which fails the patch on the phrase family.
+#
+# WHAT REPLACED IT, and the accepted consequence (user ruling 2026-07-31). The tooltip
+# now carries a [Usage] line naming Valkyon quartermasters in major towns and outposts.
+# That is a statement about the WORLD, so rule 10 permits it and the gate passes it.
+# It is nonetheless a promise the game cannot keep until RV-02 places those vendors:
+# until then the line is aspirational, and the failure mode is a player hunting for an
+# NPC that is not there. Ruled acceptable because it is finite and self-correcting, and
+# because it is strictly better than the alternative it replaced: a player who cannot
+# find the vendor concludes the game is incomplete, which is true, rather than reading
+# a sentence about OUR schedule, which teaches them we ship unfinished systems. RV-02
+# closes it; nothing else needs to change here when it does.
 #
 # NOT A MEDAL_USEABLE RIGHT-CLICK SHOP TOKEN. Ruling R11 puts this token's shop on a
 # physical NPC vendor, so the item carries no VillagerMenuItem / BuyMenuList / BuyList
@@ -40,11 +63,21 @@ spec:
 #
 #   tradable: false                stops direct trade and the broker
 #   guildWarehouseStorable: false  stops the guild bank, the other cross-player route
+#   warehouseStorable: false       stops the personal bank (R24, added 2026-07-30)
 #
-# `warehouseStorable: true` is kept deliberately. The personal bank is same-ACCOUNT
-# only, so it moves nothing between players; blocking it would only inconvenience the
-# owner. All four items in the project's reserved token band (95214, 95215, 95216 and
-# this one) carry exactly this pairing, so the rule is uniform and auditable.
+# THE PERSONAL BANK IS CLOSED TOO, and that is a second user ruling (R24) overturning
+# the first restatement of R21. R21 kept the bank open because it read the threat as
+# player-to-player transfer, which the bank genuinely is not. The real leak is one
+# player running the same one-time content on several characters and pooling the
+# proceeds into a main. Closing the bank welds the token to the character that earned
+# it, so income is PER CHARACTER and the alt loophole never opens.
+#
+# This quartet is not an invention: vanilla item 72 `dungeon_coin` ("Challenge Receipt")
+# already ships exactly it (NO_COMBAT, tradable False, warehouseStorable False,
+# guildWarehouseStorable False, boundType None, stackable). Corpus support for the one
+# changed flag is broad: `warehouseStorable="False"` occurs 4,607 times, including
+# 1,653 stackable items and 642 NO_COMBAT items. Authored LOWERCASE deliberately;
+# uppercase booleans are what broke the ContinentData client sync in July.
 #
 # THE ENGINE REASON, which independently rules R21 out. The token was first authored
 # `boundType: Loot` per R21 and WorldServer.exe REFUSED THE FILE at startup:
@@ -61,19 +94,19 @@ spec:
 # `진행퀘스트 0,0` shapes this project has already been bitten by. A currency has to
 # stack, so `boundType` was never available here regardless of design intent.
 #
-# CONSEQUENCE TO CARRY INTO RV-02, stated plainly rather than buried. Seals can still
-# move between characters on ONE ACCOUNT through the personal bank. That is accepted
-# and intended: the restriction targets players, not alts. RV-02 should read its
-# accumulation data as per-ACCOUNT income, not per-character.
+# CONSEQUENCE TO CARRY INTO RV-02, stated plainly rather than buried. With the bank
+# closed (R24) the token cannot leave the character that earned it by ANY route, so
+# RV-02 prices against PER-CHARACTER income. This inverts the note the first
+# restatement of R21 left here, which said per-account.
 #
-# `audit_item_references.py` enforces both flags across the whole token band, so a
-# future token cannot be added without them.
+# `audit_item_references.py` enforces the restriction flags across the whole token
+# band, so a future token cannot be added without them.
 
 imports:
-  - from: iod-tokens
+  - from: progression-tokens
     use:
       variables:
-        - IOD_PROGRESSION_TOKEN
+        - EARLY_PROGRESSION_TOKEN
 
 # ---------------------------------------------------------------------------
 # 1. The item.
@@ -82,9 +115,19 @@ imports:
 # recognisably one family, with three deliberate departures:
 #   combatItemType  NO_COMBAT  (not MEDAL_USEABLE: no right-click affordance)
 #   itemUseCount    0          (nothing to use; 1 would arm a dead use action)
-#   icon            drop_medal_01  (distinct from the mysterypaper5 the two
-#                                   MedalStore tokens share, so the currency does
-#                                   not read as another right-click token)
+#   icon            mysterypaper6  (R27)
+#
+# ICON, SILHOUETTE AND DROP SOUND, all ruled in R27. The paper family is allocated so
+# the currencies are told apart at a glance: mysterypaper5 = the per-dungeon MedalStore
+# tokens (95214, 95215, 95216, plus vanilla 73 and 55672), mysterypaper6 = this one,
+# mysterypaper8 = the future endgame token (vanilla item 72 only). mysterypaper5 was
+# the first choice for this item and was rejected precisely because it would put four
+# visually identical currencies in one bag. The wave-1 value was drop_medal_01.
+#
+# The drop pair moves off the chest default to the paper pair: Recipe_SM (4,018 uses)
+# and Drop_ScrollCue (5,557 uses). Both are INERT today, because a quest reward renders
+# neither a drop silhouette nor a drop sound; they start mattering at RV-03's drop
+# vectors (dungeon clears, treasure chests). Set now only because the file is open.
 # `boundType` is NOT a departure: it matches the token family, and the R21 note above
 # explains why binding is both the wrong instrument and an unshippable one.
 #
@@ -122,7 +165,7 @@ definitions:
                          # tradable + guildWarehouseStorable, not by binding.
     destroyable: true
     dismantlable: false
-    warehouseStorable: true
+    warehouseStorable: false   # R24: no personal bank either, so alts cannot pool
     guildWarehouseStorable: false
     storeSellable: false
     obtainable: true
@@ -142,16 +185,16 @@ definitions:
     linkSkillId: 0
     linkPetAdultId: 0
     linkPetOrbId: 0
-    icon: Icon_Items.drop_medal_01_Tex
-    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
-    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    icon: Icon_Items.mysterypaper6_Tex
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
     usedSound: InterfaceSound.UseItem.UseItemCue
     equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
     defaultValue: 0
 
 items:
   upsert:
-    - id: $IOD_PROGRESSION_TOKEN
+    - id: $EARLY_PROGRESSION_TOKEN
       $extends: _IodProgressionToken
 
 # ---------------------------------------------------------------------------
@@ -166,9 +209,24 @@ items:
 #
 # `upsert` because 95217 has no StrSheet_Item row yet and this spec must converge on
 # re-apply.
+#
+# TOOLTIP STRUCTURE follows the publisher's own convention, measured over StrSheet_Item
+# rather than invented. `[Usage]` (96 occurrences) is the label for what a thing is spent
+# on and carries the GREEN `#41FF3A` when it lists a spend target (items 369, 98598,
+# 204050); yellow `#FFBB00` is the corpus colour for `[Source]`, so it is deliberately
+# not used here. The verb is "exchange" because that is the verb the shipped token
+# tooltips use for redeeming at a vendor (item 98523, Metamorphic Emblem).
+#
+# "Traded" is deliberately avoided in the [Usage] line. The red restriction line directly
+# above says "Cannot be traded", and reusing the word for vendor redemption two lines
+# later reads as a contradiction to a player who is not thinking about our flag names.
+#
+# "Quartermaster" is established in-world vocabulary, not a coinage: items 10001 to 10008
+# read "Standard quartermaster equipment issued to volunteers for the second expedition",
+# which is the same Valkyon expedition framing as this item's own first line.
 
 itemStrings:
   upsert:
-    - id: $IOD_PROGRESSION_TOKEN
-      name: "Dawn Seal"
-      toolTip: "Awarded for completing tasks across the Island of Dawn.$BR$BR<font color = '#2478FF'>[Save these.]</font> The quartermaster who accepts them has not yet set up on the island. Your seals are kept safe until then."
+    - id: $EARLY_PROGRESSION_TOKEN
+      name: "Valkyon Commendation"
+      toolTip: "A Valkyon Federation commendation, issued to those still making their name.$BR$BR<font color = '#2478FF'>Earned across the realm from content below level 60.</font>$BR<font color = '#FF0000'>Cannot be traded, banked, or stored in a guild bank.</font>$BR$BR<font color = '#41FF3A'>[Usage]</font>$BRExchange with Valkyon quartermasters in major towns and outposts."
