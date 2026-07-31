@@ -8,7 +8,7 @@ spec:
 #   untiered commodity ... the tuning that tiers used to provide lives in the quantity
 #   axis instead"). Rulings R15 (flatten) and R18 (94101 survives; 94102 to 94112 are
 #   retired but their ItemTemplate rows stay resident).
-# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase B, step B2.
+# Backlog: RV-28 (feedstock flattening) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 # Wave: IoD reward-vector wave 1, folded into the open patch 002.
 #
 # WHAT THIS CHANGES. Every EnchantDecomposition row in EnchantData.xml now returns 94101.
@@ -19,7 +19,7 @@ spec:
 #
 # WHY THE AMOUNTS ARE LEFT ALONE. The wave's ladder re-derivation against framework §2c
 # was measured and then deliberately DEFERRED (user ruling 2026-07-29, decision 1 in
-# docs/plans/reward-vectors/IOD-WAVE1-BATCH0-MEASUREMENTS.md). Flattening the identity
+# measured 2026-07-29, decision 1). Flattening the identity
 # changes no amount, so nothing regresses; re-deriving demand in the same apply that
 # changes supply three ways would leave the next tuning pass uninterpretable. Family A's
 # 1:2:6:12 grade shape is also the reference the new fodder ladder in 002/35 was anchored

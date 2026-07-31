@@ -29,7 +29,7 @@ ENTITY_SYNC_MAP = {
     "materialEnchants": "MaterialEnchantData",
     # -----------------------------------------------------------------------
     # Feedstock-flattening families. Registered 2026-07-29 for the IoD
-    # reward-vector wave 1; see docs/plans/reward-vectors/IOD-WAVE1-PLAN.md.
+    # reward-vector wave 1; see RV-28 in docs/plans/reward-vectors/IOD-BACKLOG.md.
     #
     # Each of the four keys below has a descriptor added to
     # config/sync-config.yaml in the SAME change, and it must stay that way. A

@@ -9,7 +9,65 @@ pilot (its TRACKER and data artifacts remain readable as reference; its doctrine
 > state). `/prime-classic-restoration iod` does not enumerate nested folders, so start there for
 > any field event or new-monster work. It is BLOCKED until patch 002 is closed.
 
-Last updated: 2026-07-28 (Guardian Legion field event v0 LIVE-VALIDATED on Island of Dawn:
+Last updated: 2026-07-31 (reward vector WAVE 1 CLOSED; wave 2 opened on the Valkyon Quartermaster, RV-02.
+Patch 002 still OPEN, both datasheet repos still dirty by design.)
+
+## Session handoff (2026-07-31, ninth session): wave 1 closed, wave 2 opened
+
+Live testing confirmed the Valkyon Commendation and the feedstock flattening both landed. Three text
+defects came out of it, all fixed in specs `002/37`, `002/39` and the new `002/43`: the token tooltip
+was printing OUR BUILD ORDER at the player ("the quartermaster who accepts them has not yet set up"),
+the retired feedstock tiers had been renamed on our own invention rather than using the publisher's
+`[Not Usable]` convention, and item 21351 Masterwork Alkahest carried a `decompositionId` paying 336
+Metamorphic Emblems, a level-65 v92 currency, off a material a level-3 player uses.
+
+**The tooltip defect produced a binding rule and a gate.** `DOCTRINE.md` rule 10: player-facing text
+describes the world, never our build order. Enforced by `tools/dc-restore/audit_player_text.py`, which
+parses spec YAML and fails the patch on the phrase family. Proved by probe: restoring the original
+sentence fails the gate on two independent patterns. Run it with the other pre-deploy gates.
+
+**Wave 1 was closed without its live-validation pass**, by user ruling: the remaining deltas were
+tooltip text. Its three planning documents (1,827 lines) were retired after a check found their content
+duplicated at the point of use, in spec headers, `config/sync-config.yaml` and the audit gates. The
+surviving document is `docs/plans/reward-vectors/IOD-BACKLOG.md`, which records where each piece went.
+The wave-1 narrative about DSL gaps was stale: every gap it described has since been delivered.
+
+**Specs `002/37`, `002/39` and `002/43` are authored, validated and NOT APPLIED.** They fold into
+wave 2's first `migrate --patch 002` run rather than spending a deploy cycle on text alone.
+
+## Session handoff (2026-07-30, eighth session): the dev box was missing patch 001 entirely
+
+**The most important thing in this file.** Testers reported IoD zone quests missing in game (Kishale
+offering nothing). It was not a spec fault: the dev box's datasheet clone sat at an APRIL commit
+(`9c7163fe`) while the local repo was **8 commits ahead**, holding the whole patch-001 restoration
+baseline. 127 of the 151 files those commits touch were stale or absent on the box, including 27 quest
+files and all six Berlon chain quests.
+
+Cause: `deploy_dev.py` pushes the **git-dirty set only**. While a patch is open its files are dirty and
+ship every deploy; the moment the patch closes and they are committed they drop out of the payload and
+reach the box only through the box's own clone. The box had been reset at some point, which discarded the
+overlay carrying them. Nothing detected it: `--verify` reported 184 of 184 files hash-verified on every
+run, because all 184 were exactly the dirty files it knew about.
+
+Fixed by moving the 8 commits with a `git bundle` (the box has no git credentials in a non-interactive SSH
+session), fast-forwarding its clone to `cdca4fb4`, then re-laying the overlay. All 151 files verified
+content-identical afterwards, EOL-normalised: the box runs `core.autocrlf=true`, so a raw hash compare
+shows 126 false mismatches. Lesson recorded in the `content-restoration` skill and
+`tools/deploy-dev/README.md`.
+
+**Still outstanding:** the box cannot fetch from GitLab on its own (no credential store over SSH; the fix
+is a read-only deploy token plus GCM's `dpapi` store), and nothing in the deploy loop checks the box's HEAD
+against origin.
+
+### Token architecture wave, same session
+
+Rulings R23 to R27 (`docs/plans/reward-vectors/IOD-BACKLOG.md`, which is now the only reward-vector
+document; the separate implementation record was retired 2026-07-31). Story quests now pay the token, the flat rate
+became an effort ladder (1,182 per character for a full island clear, against 35), tokens are no longer
+bankable, and the item is renamed Valkyon Commendation. Deployed, client `0.1.0-dev.42`, all gates exit 0,
+**not live-validated**. The content framework repo was brought in sync in the same session.
+
+## Earlier state (2026-07-28) (Guardian Legion field event v0 LIVE-VALIDATED on Island of Dawn:
 the first field event this project has ever authored, and the first outside the shipped
 level-65 set. Quest log reward panel and recall network live-validated earlier; zone-quest
 trimming and reward-cadence wave still awaiting live validation. Patch 002 still OPEN).
@@ -133,7 +191,7 @@ advance to the Orcan Bivouac at `49991,-78114`, roughly 6,900 units WNW, via Ayr
   here; prime from the backlog before touching feedstock, tokens or zone-quest rewards.
 - Then close patch 002 with one commit per datasheet repo.
 
-## Deployment status (2026-07-27)
+## Deployment status (2026-07-27, SUPERSEDED: current client is `0.1.0-dev.42`, see the 2026-07-30 handoff above)
 
 Specs `002/27` through `002/30` (with `29` amended) are applied, both gates exit 0, and both legs
 are on dev:

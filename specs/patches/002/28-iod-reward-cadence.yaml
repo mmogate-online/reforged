@@ -97,7 +97,7 @@ spec:
 # silently destroy the whole level-4 set distribution above. The apply would succeed and
 # the op counts would look right. See 002/40's header for the full ownership map.
 #
-# XP, from IOD-WAVE1-BATCH0-MEASUREMENTS.md section 3c (25 percent of the bracket's
+# XP, measured 2026-07-29 (25 percent of the bracket's
 # MEDIAN story quest, rounded to 10). The story spine values in this file (1303, 1304)
 # are NOT touched: the cap applies to zone quests only.
 #   1322  min 1, bracket 1-2, cap 200    500 -> 200
@@ -113,10 +113,10 @@ spec:
 # is 104. Rate is flat at 1 per quest (framework 03 3b-i: no level-band rate scaling).
 
 imports:
-  - from: iod-tokens
+  - from: progression-tokens
     use:
       variables:
-        - IOD_PROGRESSION_TOKEN
+        - EARLY_PROGRESSION_TOKEN
 
 quests:
   update:
@@ -136,6 +136,10 @@ questCompensations:
           type: "normal"
           exp: 2600
           gold: 260
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 60
 
     - questId: 1304       # Making the Rounds (was the lv2 weapon set)
       huntingZoneId: 13
@@ -146,6 +150,11 @@ questCompensations:
           gold: 80
 
     # ---- zone quests: the level-4 set, one piece each -------------------------
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 40
+
     - questId: 1322       # Unrest in the Forest (Kishale) -> lv4 FEET + token
       huntingZoneId: 13
       compensations:
@@ -192,41 +201,41 @@ questCompensations:
               quantity: 1
               class: "assassin"
             # The token, 12 duplicate rows (R22).
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "lancer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "berserker"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "engineer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "fighter"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "warrior"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "slayer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "archer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "glaiver"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "sorcerer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "priest"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "elementalist"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
               class: "assassin"
 
     - questId: 1324       # Essence and Sensibility (Dulari) -> lv4 BODY + token
@@ -275,41 +284,41 @@ questCompensations:
               quantity: 1
               class: "assassin"
             # The token, 12 duplicate rows (R22).
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "lancer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "berserker"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "engineer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "fighter"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "warrior"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "slayer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "archer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "glaiver"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "sorcerer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "priest"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "elementalist"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "assassin"
 
     - questId: 1325       # The Perfect Cut (Leolin) -> lv4 HANDS + token
@@ -358,41 +367,41 @@ questCompensations:
               quantity: 1
               class: "assassin"
             # The token, 12 duplicate rows (R22).
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "lancer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "berserker"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "engineer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "fighter"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "warrior"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "slayer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "archer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "glaiver"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "sorcerer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "priest"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "elementalist"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "assassin"
 
     - questId: 1319       # Dwellers of the Island (Clovis) -> lv4 WEAPON + token
@@ -441,39 +450,39 @@ questCompensations:
               quantity: 1
               class: "glaiver"
             # The token, 12 duplicate rows (R22).
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "lancer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "berserker"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "engineer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "fighter"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "warrior"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "slayer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "archer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "glaiver"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "sorcerer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "priest"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "elementalist"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "assassin"

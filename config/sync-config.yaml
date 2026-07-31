@@ -121,7 +121,7 @@ entities:
   # All four carry feedstock item ids on the client, verified by id census before
   # registration, so all four need a real descriptor rather than a None mapping in
   # migrate's ENTITY_SYNC_MAP. Shapes were MEASURED per family, not templated: see
-  # docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase A.
+  # RV-28 in docs/plans/reward-vectors/IOD-BACKLOG.md.
   #
   # A key mapped in ENTITY_SYNC_MAP with no descriptor here is FAIL-CLOSED: plan
   # emits E603 and dsl sync exits 2 BEFORE writing anything, aborting the client

@@ -3,10 +3,10 @@ spec:
   schema: v92
 
 imports:
-  - from: iod-tokens
+  - from: progression-tokens
     use:
       variables:
-        - IOD_PROGRESSION_TOKEN
+        - EARLY_PROGRESSION_TOKEN
 
 # Remove the level 5/6 gear step from Island of Dawn, so the gear ladder reads
 # level-4 set -> level-7 set -> Kugai set, with nothing in between.
@@ -54,7 +54,8 @@ imports:
 # the LAST writer and would undo the deliberate strip above. See 002/40 for the map.
 #
 # Its XP is UNCHANGED at 900: min level 6 puts it in bracket 5-6, whose cap is 900, so it
-# is already compliant (IOD-WAVE1-BATCH0-MEASUREMENTS.md section 3c). Gold is unchanged too.
+# is already compliant (measured 2026-07-29; see 002/40's header for every bracket cap).
+# Gold is unchanged too.
 # It had no itemBag at all after the strip, so it gains `itemBag: "allpay"` plus one row.
 # That is a deliberate PARTIAL reversal of the "left deliberately itemless" note above: the
 # strip removed a GEAR SET step, and the token is a currency, not a set piece. 1331 is a
@@ -69,6 +70,10 @@ questCompensations:
           type: "normal"
           exp: 2300
           gold: 230
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 60
 
     - questId: 1347       # It Was a Rock...Crawler (was the lv6 Rockhound hands) -> token only
       huntingZoneId: 13
@@ -79,5 +84,5 @@ questCompensations:
           gold: 90
           itemBag: "allpay"      # added by wave 1: the quest had no bag at all
           items:
-            - templateId: $IOD_PROGRESSION_TOKEN      # Dawn Seal
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8

@@ -3,10 +3,10 @@ spec:
   schema: v92
 
 imports:
-  - from: iod-tokens
+  - from: progression-tokens
     use:
       variables:
-        - IOD_PROGRESSION_TOKEN
+        - EARLY_PROGRESSION_TOKEN
 
 # Island of Dawn level 5-7 reward pass: move the First Expedition set off the story
 # spine onto zone quests, and correct the remaining stale new-class weapons.
@@ -108,7 +108,7 @@ imports:
 # be the LAST writer: it would overwrite the First Expedition body and weapon distribution
 # and undo the two deliberate strips below. See 002/40 for the full ownership map.
 #
-# XP, from IOD-WAVE1-BATCH0-MEASUREMENTS.md section 3c:
+# XP, measured 2026-07-29 (25 percent of the bracket's median story quest, rounded to 10):
 #   1332  min 6, bracket 5-6, cap 900        900 ->   900, already compliant
 #   1333  min 6, bracket 5-6, cap 900      1,700 ->   900
 #   1348  min 5, bracket 5-6, cap 900        900 ->   900, already compliant
@@ -150,6 +150,11 @@ questCompensations:
           gold: 490
 
     # ---- zone quests: the level-7 set ------------------------------------------
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 60
+
     - questId: 1332       # They'll Eat Anything (Kamarnu, delivered to Jehan) -> lv7 BODY
       huntingZoneId: 13
       compensations:
@@ -196,41 +201,41 @@ questCompensations:
               quantity: 1
               class: "assassin"
             # The token, 12 duplicate rows (R22).
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "lancer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "berserker"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "engineer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "fighter"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "warrior"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "slayer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "archer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "glaiver"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "sorcerer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "priest"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "elementalist"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "assassin"
 
     - questId: 1333       # Twice the Bark, Twice the Bite (Jehan) -> lv7 WEAPON + token
@@ -279,41 +284,41 @@ questCompensations:
               quantity: 1
               class: "glaiver"
             # The token, 12 duplicate rows (R22).
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "lancer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "berserker"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "engineer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "fighter"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "warrior"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "slayer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "archer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "glaiver"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "sorcerer"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "priest"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "elementalist"
-            - templateId: $IOD_PROGRESSION_TOKEN
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
               class: "assassin"
 
     # ---- former carriers, returned to exp and gold only -------------------------
@@ -326,8 +331,8 @@ questCompensations:
           gold: 90
           itemBag: "allpay"      # added by wave 1: the quest had no bag at all
           items:
-            - templateId: $IOD_PROGRESSION_TOKEN      # Dawn Seal
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
 
     - questId: 1349       # Gotta Kill 'Em All (was the lv7 weapon) -> token only
       huntingZoneId: 13
@@ -338,8 +343,8 @@ questCompensations:
           gold: 230
           itemBag: "allpay"      # added by wave 1: the quest had no bag at all
           items:
-            - templateId: $IOD_PROGRESSION_TOKEN      # Dawn Seal
-              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 12
 
     # ---- Kugai tier: removed, the token shop owns it ---------------------------
     - questId: 1315       # Putting the Pieces Together (was 12 Kugai weapons + lv8 chest)
@@ -351,6 +356,11 @@ questCompensations:
           gold: 450
 
     # ---- stale new-class weapon correction (replace-all: full block) ------------
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 40
+
     - questId: 1316       # Dark Revelations: lv11 weapon tier
       huntingZoneId: 13
       compensations:
@@ -396,3 +406,40 @@ questCompensations:
             - templateId: 59127      # Reconglaive (was 59056, level 12)
               quantity: 1
               class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "assassin"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "glaiver"
+

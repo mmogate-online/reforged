@@ -36,7 +36,7 @@ PATCH_ZONES = {
 # along with the three bag emitters that consumed it: framework 04-power-systems.md 5e says
 # "There is no direct content drop of feedstock in this design, it is downstream of infusion
 # fodder", restated as ruling R13. Fodder dismantling is the only faucet. Removed 2026-07-29
-# by the IoD reward-vector wave 1; see docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C1.
+# by the IoD reward-vector wave 1; see RV-26 in docs/plans/reward-vectors/IOD-BACKLOG.md.
 
 # Tier → drop item variable mapping
 TIER_DROPS = {

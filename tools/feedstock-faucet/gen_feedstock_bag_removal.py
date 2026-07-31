@@ -10,7 +10,7 @@ content drop of feedstock", restated as ruling R13. Vanilla v92 shipped ZERO
 feedstock in field-zone loot; these rows arrived in a single 2025-02 operator
 commit, so removing them moves the server toward its vanilla baseline.
 
-Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C2.
+Backlog: RV-26 and RV-28 (faucet removal, feedstock flattening) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 
 WHY THIS IS A GENERATOR AND NOT A HAND-WRITTEN SPEC. The removal spans 95 zone
 files and about 1,800 bags. The selector for each bag is derived from the bag's own
@@ -112,7 +112,7 @@ HEADER = """spec:
 #   content drop of feedstock in this design, it is downstream of infusion fodder").
 #   Ruling R13. Vanilla v92 shipped zero feedstock here; these rows came from a single
 #   2025-02 operator import, so this returns the tables to their vanilla shape.
-# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C2.
+# Backlog: RV-26 and RV-28 (faucet removal, feedstock flattening) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 # Wave: IoD reward-vector wave 1, folded into the open patch 002.
 #
 # WHY THIS SHIPS NOW. C2 was cut from the wave on 2026-07-28 for one reason: the DSL

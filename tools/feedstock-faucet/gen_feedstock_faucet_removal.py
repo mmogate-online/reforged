@@ -9,7 +9,7 @@ content drop of feedstock", restated as ruling R13. Fodder dismantling is the on
 sanctioned faucet, plus the Kugai token shop, which `03 3b-i` sanctions explicitly and
 which this tool must NOT touch.
 
-Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C3.
+Backlog: RV-26 and RV-28 (faucet removal, feedstock flattening) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 
 SEVEN FAMILIES, THREE OP STYLES:
 
@@ -423,7 +423,7 @@ HEADER = """spec:
 # Framework: reforged-content-framework 04-power-systems.md 5e ("there is no direct
 #   content drop of feedstock in this design"). Ruling R13. Fodder dismantling is the
 #   only sanctioned source.
-# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase C3.
+# Backlog: RV-26 and RV-28 (faucet removal, feedstock flattening) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 # Wave: IoD reward-vector wave 1, folded into the open patch 002.
 #
 # WHAT IT REMOVES
