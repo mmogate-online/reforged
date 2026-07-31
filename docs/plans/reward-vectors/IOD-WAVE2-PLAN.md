@@ -1,7 +1,7 @@
 # IoD Reward Vector Wave 2: the token sink
 
 _Opened 2026-07-31. Design rulings live in `IOD-BACKLOG.md`; this file holds the build order, the
-spikes, the acceptance gates and the open decisions. It is deliberately short. Wave 1's planning
+spikes, the acceptance gates and the decisions taken. It is deliberately short. Wave 1's planning
 documents ran to 1,827 lines and were retired because their content was duplicated at the point of
 use; this one records only what a spec header, a config comment or a gate cannot._
 
@@ -29,13 +29,16 @@ sink, holds again.
 - **The leveling-scroll conversion.** Deferred until level sync exists (`02 §5`).
 - **Re-pricing the token ladder.** The 150-ceiling effort ladder stays as shipped. Tuning it against
   a sink is the wave AFTER this one, once accumulation data exists.
+- **Quartermasters outside the Island of Dawn.** The network is real and the token is band-wide, but
+  this wave places one NPC, at Tower Base. Velika and every other sub-60 hub come later, zone by
+  zone. User decision 2026-07-31; see Decisions below.
 
 ## Files and interfaces
 
 | File | Role |
 |---|---|
 | `specs/patches/002/44-valkyon-quartermaster.yaml` | NEW. The NPC template, its spawn, strings, menu and catalogue |
-| `specs/patches/002/20-kugai-token-shop.yaml` | AMEND. Swap `villagerMenuItems` for `villagerMenus`, add the host NPC |
+| `specs/patches/002/20-kugai-token-shop.yaml` | AMEND. Swap `villagerMenuItems` for `villagerMenus`, author a DEDICATED host NPC, and drop 95216's right-click affordance |
 | `specs/patches/002/45-sorcha-reentry.yaml` | NEW. `DungeonData_9037` condition plus WorkObject 134 |
 | `packages/progression-tokens/index.yml` | Add the quartermaster's menu and BuyList ids |
 | `packages/iod-tokens/index.yml` | Kugai keeps its ids; the host NPC id joins them |
@@ -123,7 +126,8 @@ contradict R11 while pretending to satisfy it.
 **Changes.** `specs/patches/002/44-valkyon-quartermaster.yaml`:
 
 - `npcs: upsert` a villager template in hunting zone 64. Free ids: **1012 to 1020, 1035 to 1040, or
-  1057 upward** (HZ 64 currently holds 1001 to 1011, 1021 to 1034 and 1041 to 1056).
+  1057 upward** (HZ 64 currently holds 1001 to 1011, 1021 to 1034 and 1041 to 1056). **Reserve two
+  adjacent ids**, not one: Phase 3 authors a second villager for the Kugai shop.
 - `territoryGroups` / `territorySpawns` placing it in group **6400002** (Supply Base North), which
   already holds Jirash `64,1023` at `67089,-81620,-3255` and Taras `64,1028` at
   `67294,-81783,-3255`. Tower Base's recall point is `66600.87,-79855.52`, so this cluster is where
@@ -189,13 +193,19 @@ absorbs every token leaves nothing to measure.
   whole reason this phase is cheap.
 - Item 95216 drops `combatItemType: MEDAL_USEABLE` for `NO_COMBAT` and `itemUseCount: 1` for `0`, so
   the dead right-click affordance does not linger.
-- Author the host NPC, or bind to an existing one. **Open decision, below.**
+- **Author a dedicated host NPC** (user decision, see Decisions below). It is a second `npcs: upsert`
+  row, a second spawn and a second `creatureStrings` entry, taking the next free HZ id after the
+  quartermaster's. It does NOT share the quartermaster's villager row. Placement is editorial:
+  default is the Tower Base cluster, and a spot nearer Kugai's ground in hunting zone 13 is equally
+  defensible.
+- `packages/iod-tokens/index.yml` gains the host NPC id alongside Kugai's existing menu and list ids.
 
 **Acceptance criteria.**
 - A corpus sweep finds zero `VillagerMenuItem` rows referencing any Island of Dawn token.
 - `audit_item_references.py` exits 0 (item 95216 still resolves everywhere it is referenced).
-- Live: right-clicking Kugai's Crest does nothing; the shop opens at the NPC and still sells its
-  level-8 set at the shipped prices.
+- The host NPC is visible, named and talkable, on the same criteria as Phase 1's.
+- Live: right-clicking Kugai's Crest does nothing; the shop opens at the host NPC and still sells
+  its level-8 set at the shipped prices, distinct from the quartermaster's shop.
 
 ## Phase 4: Sorcha re-entry
 
@@ -234,23 +244,31 @@ deliberately left unapplied rather than spending a deploy cycle on tooltip text.
 - Client packed, installed and published; the installed `.dat` hashes identical to the packed one.
 - **Live validation is the user's**, and this wave earns it: it is content, not text.
 
-## Open decisions
+## Decisions
 
-Two, both wanted before Phase 2 starts.
+Both resolved by the user on 2026-07-31, before any authoring started.
 
-**1. Does the tooltip's promise need a second quartermaster?** Item 95217 now reads "Exchange with
-Valkyon quartermasters in major towns and outposts." This wave places exactly one, at Tower Base.
-Velika (HZ 63) is already inside patch 002's scope, and the token is band-wide by R25, so a second
-quartermaster there would make the plural true for the two hubs a sub-60 player actually uses. It
-costs one more NPC and one more `villagerMenus` row; the menu, lists and exchanges are shared. My
-recommendation is to add it, in Phase 2, sharing the catalogue.
+**1. The quartermaster network is real, but this wave scopes only the Island of Dawn.** There will be
+multiple Valkyon quartermasters; the token is band-wide by R25 and every sub-60 zone eventually
+carries one. Wave 2 places **exactly one, at Tower Base**, and does not touch Velika or any other hub.
 
-**2. Does Kugai's Crest get its own NPC or ride the quartermaster?** One NPC with two `MedalStore`
-menus is fewer moving parts, and `VillagerMenu` does allow multiple `Menu` children. But Kugai's
-Crest is a boss trophy and the quartermaster is a Valkyon institution, so sharing muddles both. My
-recommendation is a separate NPC near the Tower Base cluster, which also keeps the two shops
-independently testable. Whether two `MedalStore` menus on one villager even works is unproven and
-would become a fourth spike if we went that way.
+Consequence, stated so nobody mistakes it for an oversight: item 95217's tooltip reads "Exchange with
+Valkyon quartermasters in major towns and outposts", plural, and after this wave that plural is true
+of one location. It is aspirational until the network fills in, which is the same accepted trade-off
+recorded when the line was authored (see `002/39`'s header). It is not a doctrine rule 10 violation:
+the sentence describes the world, not our build order, and it needs no edit when the next
+quartermaster lands. Placing them zone by zone is the intended shape, not a compromise.
+
+**2. Kugai's Crest gets its own NPC.** Not a second `MedalStore` menu on the quartermaster. Kugai's
+Crest is a boss trophy currency and the quartermaster is a Valkyon institution; one NPC serving both
+muddles what each currency means. It also keeps the two shops independently testable, and it avoids
+an unproven shape: whether two `MedalStore` menus on one villager work at all has zero corpus
+evidence either way, and this project has been bitten three times now by shipping shapes with no
+corpus occurrences.
+
+Placement is a build-time editorial call inside Phase 3. Default is the Tower Base cluster, because
+that is where a returning player arrives, but a spot nearer Kugai's own ground in hunting zone 13
+is equally defensible and is the kind of choice best made with the map open.
 
 ## Risks
 
