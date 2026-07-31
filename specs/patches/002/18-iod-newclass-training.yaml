@@ -65,6 +65,15 @@ spec:
   version: "1.0"
   schema: v92
 
+# The three training quests authored here are story Missions, so they pay the
+# early-progression token like every other Mission (ruling R23, ladder R26: class
+# training tier, 20). Their nine classic siblings 1371-1379 are stated in 002/42.
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+
 # ---- 1. New training quest bodies (3) -----------------------------------------
 quests:
   upsert:
@@ -427,6 +436,11 @@ questCompensations:
           type: "normal"
           exp: 2100
           gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 20
+
     - questId: 1381
       huntingZoneId: 13
       compensations:
@@ -434,6 +448,11 @@ questCompensations:
           type: "normal"
           exp: 2100
           gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 20
+
     - questId: 1387
       huntingZoneId: 13
       compensations:
@@ -441,6 +460,10 @@ questCompensations:
           type: "normal"
           exp: 2100
           gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 20
 
 # ---- 6. Story-group registration (QuestGroupList, server-only) -----------------
 # Append the three quests to Story Group 1 ("World of TERA"), the classic training
@@ -456,3 +479,4 @@ questStoryGroups:
           dec: "Brawler Training"
         - id: 1387
           dec: "Valkyrie Training"
+

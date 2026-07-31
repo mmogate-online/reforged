@@ -1,0 +1,46 @@
+# Band-wide progression currency IDs (ruling R25).
+#
+# These are NOT per-region and NOT per-dungeon tokens. The architecture is two
+# band-wide currencies:
+#
+#   EARLY_PROGRESSION_TOKEN  every sub-60 vector, in every zone
+#   (endgame token)          level cap, allocated when that patch opens
+#
+# Framework: 02-progression-lanes.md section 5 and 03-currencies.md 3b-i, where the
+# token is earned across early content generally (quests, low-level dungeons, faction
+# dailies, BAMs, exploration caches, treasure chests) and the leveling-scroll
+# conversion is ONE spend path, not the currency's identity.
+#
+# WHY THIS PACKAGE EXISTS. The constant lived in `packages/iod-tokens` next to
+# KUGAI_TOKEN, which was correct while the token was scoped to the Island of Dawn.
+# R25 made it band-wide, so an `iod-` package is the wrong home: the same constant is
+# paid by Fey Forest, Velika and every other sub-60 zone. `iod-tokens` keeps Kugai's
+# per-region MedalStore wiring, which genuinely is island-scoped.
+#
+# ID allocation comes from the project's reserved token band 95214 to 95313, documented
+# in `packages/dungeon-tokens/index.yml`. Taken: 95214, 95215, 95216 (per-dungeon
+# MedalStore tokens), 95217 (this one).
+#
+# RESTRICTION POLICY (R21 as restated, then R24), enforced across the whole band by
+# `tools/dc-restore/audit_item_references.py`:
+#
+#   tradable: false                 no trade, no broker
+#   guildWarehouseStorable: false   no guild bank
+#   warehouseStorable: false        no personal bank, so no alt-to-main pooling (R24)
+#   boundType: None                 the loader refuses any boundType on a stackable
+#
+# That quartet is vanilla item 72 `dungeon_coin` exactly, so the shape is the base
+# game's own currency archetype rather than an invention of ours.
+
+spec:
+  version: "1.0"
+
+variables:
+  # The sub-60 early-progression currency. Item name "Valkyon Commendation" (R27).
+  # Paid by every vector below level 60: story quests (R23), zone quests, repeatables,
+  # faction dailies, dungeon clears, exploration caches and treasure chests.
+  EARLY_PROGRESSION_TOKEN: 95217
+
+exports:
+  variables:
+    - EARLY_PROGRESSION_TOKEN

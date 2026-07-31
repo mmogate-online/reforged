@@ -361,13 +361,18 @@ def main():
     print()
 
     # ---- check 1d: token restriction policy ---------------------------------------
-    # USER RULING 2026-07-30, which restates backlog R21. Tokens are restricted by
-    # `tradable: false` AND `guildWarehouseStorable: false`, never by `boundType`:
-    # boundType is for EQUIPMENT the character wears, while a token is a consumable
-    # currency whose only real requirement is that it not move between PLAYERS, and
-    # those two flags are exactly what gate that. `warehouseStorable` is deliberately
-    # NOT checked: the personal bank is same-account only, so it moves nothing between
-    # players and blocking it would only inconvenience the owner.
+    # USER RULINGS R21 (restated) and R24. Tokens are restricted by three flags and
+    # never by `boundType`: boundType is for EQUIPMENT the character wears, and the
+    # loader refuses it outright on a stackable item, which a currency must be.
+    #
+    #   tradable: false                no trade, no broker
+    #   guildWarehouseStorable: false  no guild bank
+    #   warehouseStorable: false       no personal bank (R24, 2026-07-30)
+    #
+    # The personal bank was deliberately left open under the first restatement of R21,
+    # on the reasoning that it moves nothing between PLAYERS. R24 closes it because the
+    # real leak is one player farming the same one-time content on several characters
+    # and pooling into a main. Vanilla item 72 `dungeon_coin` already ships all three.
     print("== Token restriction policy (reserved band "
           f"{TOKEN_BAND[0]}-{TOKEN_BAND[1]}) ==")
     tokens, offenders = [], []
@@ -379,17 +384,20 @@ def main():
                 if TOKEN_BAND[0] <= iid <= TOKEN_BAND[1]:
                     tr = (el.get("tradable") or "").lower()
                     gw = (el.get("guildWarehouseStorable") or "").lower()
-                    tokens.append((iid, tr, gw))
-                    if tr != "false" or gw != "false":
-                        offenders.append((iid, tr, gw, rel))
+                    wh = (el.get("warehouseStorable") or "").lower()
+                    tokens.append((iid, tr, gw, wh))
+                    if tr != "false" or gw != "false" or wh != "false":
+                        offenders.append((iid, tr, gw, wh, rel))
             el.clear()
     print(f"  tokens found: {sorted(t[0] for t in tokens)}")
     mark = "OK" if not offenders else f"POLICY VIOLATION {len(offenders)}"
-    print(f"  all carry tradable=false and guildWarehouseStorable=false  [{mark}]")
-    for iid, tr, gw, rel in offenders:
+    print("  all carry tradable=false, guildWarehouseStorable=false and "
+          f"warehouseStorable=false  [{mark}]")
+    for iid, tr, gw, wh, rel in offenders:
         failures.append(f"token {iid} in {rel} has tradable={tr or '<unset>'} "
-                        f"guildWarehouseStorable={gw or '<unset>'}; both must be false "
-                        f"(restated R21). Do NOT reach for boundType instead")
+                        f"guildWarehouseStorable={gw or '<unset>'} "
+                        f"warehouseStorable={wh or '<unset>'}; all three must be false "
+                        f"(R21 restated, R24). Do NOT reach for boundType instead")
     print()
 
     # ---- check 2: retired-tier sweep ----------------------------------------------

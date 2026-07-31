@@ -1,0 +1,368 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Story-spine progression token, the leg RV-03 never had (ruling R23).
+#
+# Framework: reforged-content-framework 02-progression-lanes.md section 1, whose
+#   Lane A row (story quests, side quests, NPC dailies) lists early-progression
+#   tokens as a Lane A reward; and 03-currencies.md 3b-i.
+# Backlog: RV-03 token threading, rulings R23 (story quests pay), R26 (the ladder),
+#   R27 (the item).
+#
+# WHY THIS EXISTS. Wave 1 threaded the token into all 35 zone quests and no story
+# quest, because RV-03's target list and the section 2 role table both omitted the
+# spine. That omission was never ruled and contradicted R1, "every vector pays some
+# of it". It also left the spine as the ONLY lane with no tangible reward: the
+# patch-002 trimming waves stripped 1303, 1304, 1305, 1315 and 1331 to exp and gold,
+# so a story-only player earned no item at all on the island.
+#
+# THE LADDER (R26) is priced by EFFORT, not by level band, and there is deliberately
+# no per-bracket curve. Framework 03 3b-i's "no level-band rate scaling" governs the
+# PLAYER (a synced-down vet earns what a native earns); it does not require every
+# piece of content to pay the same. A steep band curve would make high zones the only
+# worthwhile farm and hollow out the early zones this token exists to keep populated.
+#
+#   150  capstone, the island finale (1317)
+#   100  dungeon-gated climax (1316, stated in 002/29)
+#    60  Mission, 5+ tasks
+#    40  Mission, 2 to 4 tasks
+#    25  Mission, 1 task
+#    20  class training (a character completes exactly ONE of the twelve)
+#    10  the paired gathering intros 1382 and 1383 (a character completes one)
+#
+# OWNERSHIP. `questCompensations: upsert` is REPLACE-ALL and specs apply in sorted
+# filename order, so this spec is the last writer for every quest it names. It names
+# ONLY story quests no other patch-002 spec owns. The nine it must not touch are
+# stated in their owning specs: 1303 and 1304 in 002/28; 1305, 1315 and 1316 in
+# 002/29; 1331 in 002/30; 1380, 1381 and 1387 in 002/18.
+#
+# EVERY BLOCK RESTATES THE COMPLETE REWARD, exp, gold and every pre-existing item
+# row, because a partial restatement silently deletes the rest.
+#
+# XP IS UNTOUCHED HERE. R10 caps ZONE quests against the story median; the spine is
+# never nerfed and must stay self-sufficient to level 10.
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+
+questCompensations:
+  upsert:
+    - questId: 1301       # Whatever It Takes | story, 1 task -> 25
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 500
+          gold: 50
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 25
+
+    - questId: 1309       # Acharak Attacks | story, 2 tasks -> 40
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3200
+          gold: 320
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 40
+
+    - questId: 1311       # Where's Sersine? | story, 3 tasks -> 40
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3600
+          gold: 360
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 40
+
+    - questId: 1313       # The Ruins of Ayrdoss | story, 5 tasks -> 60
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 6840
+          gold: 470
+          itemBag: "allpay"
+          items:
+            - templateId: 7100
+              quantity: 1
+            - templateId: 7104
+              quantity: 1
+            - templateId: 7108
+              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 60
+
+    - questId: 1329       # Going Above and Beyond | story, 3 tasks -> 40
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 400
+          gold: 10
+          itemBag: "allpay"
+          items:
+            - templateId: 8007
+              quantity: 3
+            - templateId: 7200
+              quantity: 10
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 40
+
+    - questId: 1350       # A Hero's Welcome | story, 1 task -> 25
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 8400
+          gold: 840
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 25
+
+    - questId: 1384       # Garrison Duty | story, 6 tasks -> 60
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 80
+          itemBag: "allpay"
+          items:
+            - templateId: 6048
+              quantity: 3
+            - templateId: 7100
+              quantity: 2
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 60
+
+    - questId: 1371       # Warrior Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1372       # Lancer Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1373       # Slayer Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1374       # Berserker Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1375       # Archer Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1376       # Sorcerer Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1377       # Priest Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1378       # Mystic Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1379       # Gunner Training | class training -> 20
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    # 1382 carries NO gold attribute in the source file, so none is authored:
+    # writing gold: 0 would add an attribute the quest never had.
+    - questId: 1382       # Gathering Basics, physical variant | paired intro -> 10
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 100
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 10
+
+    # 1383 carries NO gold attribute in the source file, so none is authored:
+    # writing gold: 0 would add an attribute the quest never had.
+    - questId: 1383       # Gathering Basics, mystic variant | paired intro -> 10
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 100
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 10
+
+    # 1317 is the island finale and the ladder's 150 ceiling. It is a `class` bag,
+    # so the token is authored as 12 duplicate rows per R22, beside the 12 gear rows.
+    - questId: 1317       # Ending the Threat (Leiyane) | CAPSTONE -> 150
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2000
+          gold: 200
+          itemBag: "class"
+          items:
+            - templateId: 15667
+              quantity: 1
+              class: "lancer"
+            - templateId: 15667
+              quantity: 1
+              class: "berserker"
+            - templateId: 15670
+              quantity: 1
+              class: "warrior"
+            - templateId: 15670
+              quantity: 1
+              class: "slayer"
+            - templateId: 15670
+              quantity: 1
+              class: "archer"
+            - templateId: 15670
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15673
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15673
+              quantity: 1
+              class: "priest"
+            - templateId: 15673
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15673
+              quantity: 1
+              class: "assassin"
+            - templateId: 15667
+              quantity: 1
+              class: "engineer"
+            - templateId: 15667
+              quantity: 1
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "assassin"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 150
+              class: "glaiver"
