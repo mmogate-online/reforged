@@ -7,7 +7,7 @@ spec:
 # Framework: reforged-content-framework 04-power-systems.md 4e ("feedstock is a single
 #   untiered commodity"). Rulings R15 (flatten) and R18 (94101 survives; 94102 to 94112
 #   are retired but their ItemTemplate rows STAY RESIDENT).
-# Plan: docs/plans/reward-vectors/IOD-WAVE1-PLAN.md phase D.
+# Backlog: RV-28 (feedstock flattening) in docs/plans/reward-vectors/IOD-BACKLOG.md.
 # Wave: IoD reward-vector wave 1, folded into the open patch 002.
 #
 # WHY THE ITEM ROWS ARE NOT DELETED. Deleting 94102 to 94112 would create roughly 4,000
@@ -50,50 +50,54 @@ itemStrings:
 
     # The eleven retired tiers. They remain in the corpus so old references resolve; they
     # are not obtainable, not consumed by any recipe, and cannot be combined.
+    #
+    # DESCRIPTION ONLY, NAMES UNTOUCHED. User ruling 2026-07-31, after live testing.
+    # These first shipped renamed to "Obsolete Feedstock (Tier N)". That is our own
+    # invention, and the publisher already has a retirement convention sitting in this
+    # very id range: the BASELINE strings for 94111 and 94112 read
+    #   <font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. ...
+    # while keeping the names "Tier 11 Feedstock" and "Tier 12 Feedstock". Item 447
+    # "Depleted Masterwork Alkahest" is the same shape. So the retirement is stated the
+    # way the game already states it, and every name below reverts to baseline simply by
+    # not being authored. `update` touches only the attributes it names.
+    #
+    # The trailing sentence replaces the publisher's dangling "Right-click to combine..."
+    # (94111) and "Dismantles into Entropic Emblems" (94112), both of which are false
+    # after this spec deletes the ladder. It states a fact about the world, never about
+    # our build order; see DOCTRINE.md rule 10.
     - id: 94102
       changes:
-        name: "Obsolete Feedstock (Tier 2)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94103
       changes:
-        name: "Obsolete Feedstock (Tier 3)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94104
       changes:
-        name: "Obsolete Feedstock (Tier 4)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94105
       changes:
-        name: "Obsolete Feedstock (Tier 5)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94106
       changes:
-        name: "Obsolete Feedstock (Tier 6)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94107
       changes:
-        name: "Obsolete Feedstock (Tier 7)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94108
       changes:
-        name: "Obsolete Feedstock (Tier 8)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94109
       changes:
-        name: "Obsolete Feedstock (Tier 9)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94110
       changes:
-        name: "Obsolete Feedstock (Tier 10)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94111
       changes:
-        name: "Obsolete Feedstock (Tier 11)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
     - id: 94112
       changes:
-        name: "Obsolete Feedstock (Tier 12)"
-        toolTip: "<font color = '#2478FF'>[Not Usable]</font> Feedstock is now a single material. This tier is no longer used."
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
 
 # ---------------------------------------------------------------------------
 # 2. The tier-up ladder: delete all ten records.

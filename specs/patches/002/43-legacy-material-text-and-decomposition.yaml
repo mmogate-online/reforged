@@ -1,0 +1,123 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Legacy enchanting-material cleanup: honest tooltips, and one v92 endgame hook removed.
+#
+# Framework: reforged-content-framework 04-power-systems.md 4e (one untiered feedstock)
+#   and 02-progression.md (the sub-60 band does not touch level-cap currencies).
+# Doctrine: DOCTRINE.md rule 10, player-facing text describes the world, never our
+#   build order, and never a mechanic the server no longer runs.
+# Wave: IoD reward-vector follow-up, opened 2026-07-31 from live-test feedback on wave 1.
+#
+# WHY THIS SPEC EXISTS. Wave 1 flattened the feedstock economy and 002/37 retired the
+# tier ladder, but two neighbouring families kept describing the world as it was before
+# that wave, and one of them also carries a live link into v92 endgame content that has
+# no business hanging off a classic enchanting material.
+#
+# NAMES ARE NEVER TOUCHED IN THIS SPEC. Same user ruling as 002/37 (2026-07-31): state
+# the retirement with the publisher's own [Not Usable] convention and leave the item
+# names at baseline. `update` writes only the attributes it names, so an unlisted `name`
+# stays exactly as the committed baseline has it.
+
+# ---------------------------------------------------------------------------
+# 1. Item 21351 Masterwork Alkahest (Enchanting): the tooltip.
+# ---------------------------------------------------------------------------
+# THIS ITEM IS LOAD-BEARING, which is the whole reason its text has to be right.
+# Measured in the working-tree MaterialEnchantData.xml on 2026-07-31: 1,533 Material
+# rows consume 21351, and 100 of our own generated ItemEnchant records pair it with
+# feedstock 94101. It is the catalyst half of every enchant attempt this server runs.
+#
+# The baseline tooltip, "A universal solvent needed to enchant equipment", is not false
+# but it is pre-wave text: it predates the flattening and says nothing about the pairing
+# a player actually has to satisfy. Restated so the tooltip answers the only question
+# the player has when they open the enchant window, which is "what else do I need".
+#
+# NOTHING IN THIS LINE REFERS TO A TIER, because there are none left, and nothing in it
+# refers to dismantling, because section 2 removes that path.
+
+itemStrings:
+  update:
+    - id: 21351
+      changes:
+        toolTip: "A universal solvent used to enchant equipment. Consumed together with feedstock on every enchanting attempt."
+
+    # -----------------------------------------------------------------------
+    # 2. The tier alkahest ladder 94201 to 94204.
+    # -----------------------------------------------------------------------
+    # The catalyst-side twin of the feedstock tiers 002/37 retired, and it was missed
+    # because the wave was scoped by the word "feedstock".
+    #
+    # REACHABILITY MEASURED 2026-07-31, not assumed. Only two of the twelve are consumed
+    # at all: 94203 by MaterialEnchantData records 1 to 9, and 94204 by records 10 to 12.
+    # ZERO live ItemTemplate rows carry a `linkMaterialEnchantId` pointing at any of those
+    # twelve records, so every one of them is dormant vanilla data that no player can
+    # reach. That is the same reachability test `audit_item_references.py --retired`
+    # applies to the retired feedstock tiers, and these pass it for the same reason.
+    #
+    # So 94201 to 94204 currently advertise a mechanic the server does not run. Their
+    # baseline text still promises "a catalyst used to enchant gear meant for level 1-30
+    # content", by band, which is exactly the tiered model ruling R15 removed.
+    #
+    # 94205 to 94212 ARE DELIBERATELY NOT TOUCHED. They already carry the publisher's own
+    # "This item is no longer usable. Please sell it to a merchant for gold." Rewriting
+    # correct shipped text to match our phrasing would be churn, and it would put eight
+    # more rows under our ownership for no gain.
+    - id: 94201
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+    - id: 94202
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+    - id: 94203
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+    - id: 94204
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+
+# ---------------------------------------------------------------------------
+# 3. Sever 21351 from the Metamorphic Emblem economy.
+# ---------------------------------------------------------------------------
+# WHAT IS THERE TODAY. Item 21351 carries `decompositionId="21351"`, and
+# DecompositionData.xml holds the matching record:
+#
+#     <Decomposition id="21351">
+#       <FixedOutput><Output templateId="98523" amount="336" /></FixedOutput>
+#     </Decomposition>
+#
+# Item 98523 is the Metamorphic Emblem: a level-65 MEDAL_USEABLE token whose own tooltip
+# opens "the Metamorphic Emblem shop" for Guardian, Twistshard, Frostmetal and Stormcry
+# gear. That is the v92 level-cap gear treadmill, four eras past anything this project
+# ships, hanging off the material a level-3 player uses on their first enchant.
+#
+# WHY IT IS A REAL PROBLEM AND NOT COSMETIC DEBT. The item is `dismantlable="False"`
+# today so nothing fires, but the client tooltip panel renders the dismantle output from
+# the link regardless, which is what live testing surfaced. The player is shown a payout
+# in a currency that belongs to content we do not run.
+#
+# BOTH HALVES SHIP TOGETHER, AND THE ORDER MATTERS. Clearing the link alone would leave
+# an orphaned record; deleting the record alone would create a dangling `decompositionId`
+# and `audit_item_references.py` would fail the patch on it, correctly. Doing both leaves
+# neither.
+#
+# `clear` rather than 0: absence is the dominant unset form (86,540 of 112,393 item rows
+# carry no `decompositionId` at all), and it is the same instrument 002/37 used for the
+# twelve `itemMixId` back-pointers. Clearing an already-absent attribute is a W500 no-op,
+# so this spec converges on re-apply.
+#
+# 21351 IS THE ONLY REFERENT. Verified by sweep: `21351` occurs exactly twice in
+# ItemTemplate.xml, as the item's own id and as its own decompositionId, so no other item
+# loses a dismantle path here. The 336x payout is not preserved anywhere, deliberately:
+# there is no sink for Metamorphic Emblems in our content and R13's no-direct-faucet
+# position applies to endgame currency at least as strongly as it does to feedstock.
+
+items:
+  update:
+    - id: 21351
+      changes:
+        clear: [decompositionId]
+
+decompositions:
+  delete:
+    - 21351
