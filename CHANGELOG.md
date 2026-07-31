@@ -6,6 +6,26 @@ Newest entries first.
 
 ---
 
+## 2026-07-31
+
+### Content
+- **IoD reward-vector WAVE 1 CLOSED**, without its live-validation pass, by user ruling. Live testing confirmed the Valkyon Commendation and the feedstock flattening both landed; the deltas remaining after that were tooltip text, which does not justify a restart and test cycle. Backlog items RV-01, RV-03 (story, zone and repeatable legs), RV-07, RV-08, RV-26 (feedstock slice) and RV-28 are marked in `docs/plans/reward-vectors/IOD-BACKLOG.md`
+- **Three player-facing text defects fixed**, all found by live testing. Item 95217's tooltip was printing OUR BUILD ORDER at the player, ending "The quartermaster who accepts them has not yet set up"; it now carries a `[Usage]` line naming Valkyon quartermasters, in the publisher's own green `[Usage]` convention (spec `002/39`). The retired feedstock tiers 94102 to 94112 had been RENAMED on our own invention; they now keep their baseline names and state the retirement with the publisher's `[Not Usable]` pattern, which the baseline strings for 94111, 94112 and item 447 already use (spec `002/37`). New spec `002/43` rewrites item 21351 Masterwork Alkahest's tooltip and the four live tier alkahests 94201 to 94204
+- **Item 21351 severed from the v92 endgame economy** (spec `002/43`). It carried `decompositionId="21351"` paying **336 Metamorphic Emblems**, a level-65 token that opens the Guardian / Twistshard / Frostmetal / Stormcry shop, hanging off the material a level-3 player uses on their first enchant. Inert today because the item is `dismantlable="False"`, but the client tooltip panel renders the payout from the link, which is what live testing surfaced. The link is cleared and the `Decomposition` record deleted together, so nothing is orphaned and nothing dangles
+
+### Doctrine and tooling
+- **`DOCTRINE.md` rule 10, binding: player-facing text describes the world, never our build order.** A restoration of this size ships incomplete systems on purpose, and the authoring temptation is to close the gap in prose so the shipped state does not read as a bug. Spec `002/39`'s own header stated that reasoning explicitly, which makes it a pattern rather than a slip. The remedy is the plan folder and the backlog, never a string the player reads
+- **New pre-deploy gate `tools/dc-restore/audit_player_text.py`.** Parses spec YAML (so comments never reach it, and spec headers stay free to discuss wave order) and fails the patch on a banned phrase family: "not yet", "coming soon", "will be added", "for now", "placeholder", "TBD", any wave or patch number. Deliberately does NOT ban "no longer usable", "formerly" or "obsolete", which describe a stable world state and are the publisher's own retirement convention. Verified by probe: restoring the original sentence fails the gate on two independent patterns. Run it alongside `dungeon_audit`, `audit_class_gates` and `audit_item_references`
+- Lesson recorded in the `content-restoration` skill. The defect passed `dsl validate`, `migrate` with 0 warnings, a clean client sync, all three standing gates, a client publish and a world-server boot. Only a human reading it in game caught it
+
+### Documentation
+- **The three reward-vector wave documents were retired, 1,827 lines deleted.** `IOD-WAVE1-PLAN.md`, `IOD-WAVE1-BATCH0-MEASUREMENTS.md` and `IOD-WAVE2-TOKEN-ARCHITECTURE.md` (the last misnamed: it was a same-wave correction round, not a wave). Retired only after a check found their content duplicated at the point of use: the spec ownership map and both token ladders live in the `002/40` and `002/42` headers, the batch-0 XP figures are restated per quest in the `002/28`, `29`, `30`, `40` headers, and the `AchievementList` narrowing warning plus all four sync descriptor shapes live in `config/sync-config.yaml` more completely than the plan had them. The wave's narrative about DSL gaps was stale: every gap it described has since been delivered. What genuinely had no other home (two operator and database questions) moved into the backlog's section 7. `IOD-BACKLOG.md` is now the single reward-vector document and records where each piece went
+- 22 inbound pointers rewritten across 12 spec headers, 4 tools, `config/sync-config.yaml`, `STATUS.md` and the IoD tracker. Historical `CHANGELOG.md` entries keep their original paths, since the log is append-only
+- **Backlog correction:** RV-03 listed three IoD repeatables, "1334, 1341, 1390". Quest 1390's header is `1회성`, one-time; only 1334 and 1341 carry `반복`. Nothing shipped wrong, because the ladder priced 1390 as a one-time zone quest at 20 tokens
+- **Wave 2 planned**: `docs/plans/reward-vectors/IOD-WAVE2-PLAN.md`. RV-02 (the Valkyon Quartermaster at Tower Base, this project's first NPC token shop authored from scratch), RV-05a (Kugai's Crest off its right-click shop, which retires the last `MEDAL_USEABLE` shop on the island) and RV-13 (Sorcha re-entry). Three Phase-0 spikes, the first because no spec in this repo has ever used the `npcs` entity, the second because `migrate.py` maps `npcs` to `None` as server-only while the client DataCenter holds 426 `NpcData` shards and `sync-config.yaml` carries a full descriptor for them
+
+---
+
 ## 2026-07-30
 
 ### Content
