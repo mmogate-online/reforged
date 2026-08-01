@@ -384,10 +384,17 @@ entities:
   # NPC DATA
   # ===========================================================================
   # NPC templates (monsters, villagers, bosses) organized by hunting zone.
-  # Uses ZoneBased strategy with numeric sorting by huntingZoneId.
   #
   # Server files: NpcData_{huntingZoneId}.xml (424 files)
-  # Client files: NpcData-{sequence}.xml (425 files, numeric zone order)
+  # Client files: NpcData-{sequence}.xml (425 files)
+  #
+  # The counts differ because the client carries a shard for huntingZoneId 1000 that
+  # the server has no file for, at sequence 373. That is expected and needs no
+  # zone_mapping: `sorting` makes sync read each zone's sequence off the client shard
+  # that declares it, so the extra shard shifts nothing and is never a write target.
+  # Before dsl 2026-07-31 the sequence came from the zone's rank among the server
+  # files, which put every zone from 373 on onto its neighbour's shard; E681 refused
+  # those 51 writes, which is what made `--no-narrow` unusable.
 
   NpcData:
     strategy: ZoneBased
