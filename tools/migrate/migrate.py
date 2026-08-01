@@ -112,7 +112,17 @@ ENTITY_SYNC_MAP = {
     "territoryGroups": "TerritoryData",
     "territories": "TerritoryData",
     "territoryParties": "TerritoryData",
-    "villagerDialogs": None,    # VillagerDialog: server-only
+    # VillagerDialog has a REAL client leg. The old comment here claimed server-only
+    # and was wrong: the client holds 7,922 VillagerDialog shards, one per
+    # (huntingZoneId, id) pair. An NPC with no shard opens an EMPTY dialog window with
+    # no menu buttons, so every shop attached to it is unreachable. That is what
+    # stranded the three IoD token shops in patches 002/44, 002/46 and 002/48.
+    #
+    # The descriptor uses the RecordSharded strategy, added to datasheetlang alongside
+    # this mapping. Shard numbers are positional ranks, so inserting an NPC renumbers
+    # every shard after it and a narrowed run is refused with E680: sync this family
+    # with --no-narrow, same as the FieldData continent-13 case.
+    "villagerDialogs": "VillagerDialog",
     "areaSections": "AreaData", # sync filtering fixed in DSL commit 735abf92, apply-verified 2026-07-19
     "regionStrings": "StrSheet_Region",
     # Creature display names. Registered in sync-config 2026-07-28: the entity

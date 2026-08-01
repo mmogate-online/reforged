@@ -442,6 +442,33 @@ entities:
     id_attribute: "id"
     xsd_file: "VillagerMenu/VillagerMenu.xsd"
 
+  # Villager ambient dialog, and the container the shop menu is presented in. An NPC
+  # with no client VillagerDialog shard opens an EMPTY dialog window with no menu
+  # buttons, so every shop attached to it is unreachable in game. Measured over the
+  # corpus: all 201 MedalStore NPCs carrying a VillagerMenu and a real NpcTemplate
+  # also carry a VillagerDialog entry.
+  #
+  # RecordSharded, the only entity using it: 395 server files under VillagerDialog/,
+  # each a <VillagerDialogList huntingZoneId> holding many rows, against 7,922 client
+  # shards, one per row. A shard number is the row's RANK in ascending numeric
+  # (huntingZoneId, id) order, which is also what the client XSD declares as
+  # dc:keys="huntingZoneId id".
+  #
+  # Adding an NPC inserts shards and renumbers every shard after them, so a
+  # manifest-narrowed run hits the E680 position guard. Sync this entity with
+  # --no-narrow.
+  VillagerDialog:
+    strategy: RecordSharded
+    server_path: "VillagerDialog"
+    server_pattern: "VillagerDialog_*.xml"
+    client_folder: "VillagerDialog"
+    client_pattern: "VillagerDialog-{seq:D5}.xml"
+    root_element: "VillagerDialog"
+    partition_attribute: "huntingZoneId"
+    id_attribute: "id"
+    composite_id_attributes: ["huntingZoneId", "id"]
+    xsd_file: "VillagerDialog/VillagerDialog.xsd"
+
   # Region name strings (world map / zone banners). Single global file both sides.
   StrSheet_Region:
     strategy: monolithic
