@@ -1,0 +1,61 @@
+# Island of Dawn spawn polish: reposition Herald Ramun, and remove the inert
+# half of five dual-state NPC pairs.
+#
+# Ramun (template 1038, hunting zone 213) carries spawnScriptId 10023, an
+# entrance script that ends in a move. The interactable entity stays at the
+# spawn coordinate while only the client visual walks to the script endpoint, so
+# C_NPC_CONTACT fails the server range check and the quest visit never
+# completes. The fix is to put the server spawn on the script's move endpoint so
+# server and client agree.
+#
+# The dual-state (political) NPCs each ship as a working service NPC plus a
+# menu-less OFF twin. This build runs no policy gating and both rows carry
+# conditionalSpawn="false", so both stand there at once inside one layer. Which
+# half is the working one is NOT a blanket template rule (the merchant is
+# template 1002 in layer 313 but template 1001 in layer 364), so the removals
+# name exact instanceIds. They are territorySpawns.delete rather than a
+# territory cascade because the shared territories also hold NPCs that must
+# survive; the NpcData template rows stay in place as dormant templates. The
+# Harger pair (313, templates 1003/1004) is deliberately left alone: those are
+# two distinct services whose names a later build collapsed, not a twin.
+#
+# Absent-delete warnings on re-apply are expected.
+#
+# provenance: padding-level-1
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territorySpawns:
+  update:
+    # FIX 2 - move Herald Ramun (1038) onto the spawn-script move endpoint.
+    - huntingZoneId: 213
+      groupId: 1300005
+      territoryId: 1300467
+      npcInstanceId: 21300005
+      changes:
+        pos: [80672, -81177, -4409]
+
+  delete:
+    # FIX 3 - remove the inert dual-state twins; keep the working service NPC.
+    - huntingZoneId: 313          # Ashley twin (menu-less); keep 1002 Merchant
+      groupId: 31300002
+      territoryId: 31300005
+      npcInstanceId: 31300014
+    - huntingZoneId: 313          # Jilva twin (Off-Duty); keep 1007 Tactics Instructor
+      groupId: 31300002
+      territoryId: 31300009
+      npcInstanceId: 31300018
+    - huntingZoneId: 313          # Misrile twin (Off-Duty); keep 1008 Magic Instructor
+      groupId: 31300002
+      territoryId: 31300009
+      npcInstanceId: 31300019
+    - huntingZoneId: 364          # Ainah placeholder; keep 1001 Merchant
+      groupId: 36400001
+      territoryId: 36400002
+      npcInstanceId: 36400002
+    - huntingZoneId: 364          # Hyneu policy cleric (inert); keep 1102 Noble Cleric
+      groupId: 36400001
+      territoryId: 36400005
+      npcInstanceId: 36400007

@@ -1,0 +1,201 @@
+# Island of Dawn quest-giver spawns: six hunting-zone 213 villagers that have an
+# NpcData_213 template but no TerritoryData spawn at all, placed as single fixed
+# points at their classic quest-marker positions.
+#
+# EN client and KR server names differ for most island villagers (EN Kamarnu = KR
+# Rabram, Jehan = Beres, Lorin = Mayer, Ayrdoss = Eredos, Clovis = Muriel). That is a
+# localization split, not a rename, so identity is matched on (huntingZoneId,
+# templateId) and never on the name.
+#
+# Neither shared archetype fits. spawn-restore-standard is mob-tuned (randomPos,
+# aggressive and return defaults, mob view and respawn values), and the npc-standard
+# archetypes must not be extended by a restoration spawn, because the field overlap is
+# only partial and the unmatched defaults get injected into the row. The envelopes are
+# therefore spec-local definitions, mirrored field for field from the villager group
+# already living in this same file, with identity, position and fences per row.
+#
+# Headings are not carried by the marker source and these templates were never spawned
+# in the classic data, so no authored dir exists: every row uses 0 and is tuned in game.
+#
+# Ids are taken from free ranges adjacent to the existing villager block: group
+# 1300006, territories 1300468..1300473, npc instances 1305901..1305906.
+#
+# provenance: padding-level-1
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Villager quest-giver spawn envelope. Every field is the modal villager value
+  # read directly from group 1300005 NPCs in this same file. Per-row keys
+  # (npcInstanceId, npcTemplateId, desc, pos) are supplied at each upsert.
+  _questGiverSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    dir: 0                       # provisional; heading unrecoverable, tune in-game
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  # Small fixed-point quest-giver territory envelope. Fences and desc are per-row.
+  _questGiverTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 213
+      groupId: 1300006
+      desc: "Dawn Garden Restored Quest Givers"
+
+territories:
+  upsert:
+    - huntingZoneId: 213           # Eria Elin (1021), Leander's Outpost (13015)
+      groupId: 1300006
+      territoryId: 1300468
+      $extends: _questGiverTerritory
+      desc: "Arcanist Eria Elin"
+      fences:
+        - [55458, -82312, -4194]
+        - [55758, -82312, -4194]
+        - [55758, -82012, -4194]
+        - [55458, -82012, -4194]
+    - huntingZoneId: 213           # Rabram (1009), Southern Checkpoint (13033)
+      groupId: 1300006
+      territoryId: 1300469
+      $extends: _questGiverTerritory
+      desc: "Assistant Researcher Rabram"
+      fences:
+        - [63606, -84319, -3806]
+        - [63906, -84319, -3806]
+        - [63906, -84019, -3806]
+        - [63606, -84019, -3806]
+    - huntingZoneId: 213           # Beres (1130), Leander's Outpost (13015)
+      groupId: 1300006
+      territoryId: 1300470
+      $extends: _questGiverTerritory
+      desc: "Researcher Beres"
+      fences:
+        - [55696, -82662, -4206]
+        - [55996, -82662, -4206]
+        - [55996, -82362, -4206]
+        - [55696, -82362, -4206]
+    - huntingZoneId: 213           # Mayer (1128), Leander's Outpost (13015)
+      groupId: 1300006
+      territoryId: 1300471
+      $extends: _questGiverTerritory
+      desc: "Guard Mayer"
+      fences:
+        - [55242, -81965, -4195]
+        - [55542, -81965, -4195]
+        - [55542, -81665, -4195]
+        - [55242, -81665, -4195]
+    - huntingZoneId: 213           # Eredos (1126), Mysterious Ruins (13003)
+      groupId: 1300006
+      territoryId: 1300472
+      $extends: _questGiverTerritory
+      desc: "Guard Eredos"
+      fences:
+        - [49720, -80980, -4521]
+        - [50020, -80980, -4521]
+        - [50020, -80680, -4521]
+        - [49720, -80680, -4521]
+    - huntingZoneId: 213           # Muriel (1110), Timeless Woods approach (MEDIUM)
+      groupId: 1300006
+      territoryId: 1300473
+      $extends: _questGiverTerritory
+      desc: "Patrol Muriel"
+      fences:
+        - [79143, -82458, -4451]
+        - [79443, -82458, -4451]
+        - [79443, -82158, -4451]
+        - [79143, -82158, -4451]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 213
+      groupId: 1300006
+      territoryId: 1300468
+      npcInstanceId: 1305901
+      npcTemplateId: 1021          # Eria Elin (v17 Eria, Arcanist)
+      $extends: _questGiverSpawn
+      desc: "Arcanist Eria Elin"
+      pos: [55608, -82162, -4194]
+    - huntingZoneId: 213
+      groupId: 1300006
+      territoryId: 1300469
+      npcInstanceId: 1305902
+      npcTemplateId: 1009          # Rabram (v17 Kamarnu, Assistant Researcher)
+      $extends: _questGiverSpawn
+      desc: "Assistant Researcher Rabram"
+      pos: [63756, -84169, -3806]
+    - huntingZoneId: 213
+      groupId: 1300006
+      territoryId: 1300470
+      npcInstanceId: 1305903
+      npcTemplateId: 1130          # Beres (v17 Jehan, Researcher)
+      $extends: _questGiverSpawn
+      desc: "Researcher Beres"
+      pos: [55846, -82512, -4206]
+    - huntingZoneId: 213
+      groupId: 1300006
+      territoryId: 1300471
+      npcInstanceId: 1305904
+      npcTemplateId: 1128          # Mayer (v17 Lorin, Guard)
+      $extends: _questGiverSpawn
+      desc: "Guard Mayer"
+      pos: [55392, -81815, -4195]
+    - huntingZoneId: 213
+      groupId: 1300006
+      territoryId: 1300472
+      npcInstanceId: 1305905
+      npcTemplateId: 1126          # Eredos (v17 Ayrdoss, Guard)
+      $extends: _questGiverSpawn
+      desc: "Guard Eredos"
+      pos: [49870, -80830, -4521]
+    - huntingZoneId: 213
+      groupId: 1300006
+      territoryId: 1300473
+      npcInstanceId: 1305906
+      npcTemplateId: 1110          # Muriel (v17 Clovis, Patrol), MEDIUM confidence
+      $extends: _questGiverSpawn
+      desc: "Patrol Muriel"
+      pos: [79293, -82308, -4451]

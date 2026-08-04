@@ -1,0 +1,66 @@
+# Chest Top Roll System Materialization Spec
+# Creates class-specific passivity categories for chest armor top line rolls
+#
+# This spec creates:
+#   - Passivities (skill-specific bonuses per class)
+#   - Passivity Categories (links passivities to items via linkPassivityCategoryId)
+#
+# Must run BEFORE any spec that updates chest items to use these categories.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: chest-toproll-categories
+    use:
+      variables:
+        - CATEGORY_CHEST_WARRIOR
+        - CATEGORY_CHEST_LANCER
+        - CATEGORY_CHEST_BERSERKER
+        - CATEGORY_CHEST_SLAYER
+        - CATEGORY_CHEST_SORCERER
+        - CATEGORY_CHEST_ARCHER
+        - CATEGORY_CHEST_MYSTIC
+        - CATEGORY_CHEST_PRIEST
+        - CATEGORY_CHEST_REAPER
+        - CATEGORY_CHEST_GUNNER
+        - CATEGORY_CHEST_BRAWLER
+        - CATEGORY_CHEST_NINJA
+        - CATEGORY_CHEST_VALKYRIE
+      definitions:
+        - CategoryChestWarrior
+        - CategoryChestLancer
+        - CategoryChestBerserker
+        - CategoryChestSlayer
+        - CategoryChestSorcerer
+        - CategoryChestArcher
+        - CategoryChestMystic
+        - CategoryChestPriest
+        - CategoryChestReaper
+        - CategoryChestGunner
+        - CategoryChestBrawler
+        - CategoryChestNinja
+        - CategoryChestValkyrie
+
+# =============================================================================
+# PASSIVITY CATEGORIES
+# Upserts the class-specific passivity categories for chest top rolls
+# Each category definition includes nested passivity upserts
+# Uses enchantPassivityCategories as they share the same PassivityCategoryData
+# =============================================================================
+enchantPassivityCategories:
+  upsert:
+    - $extends: CategoryChestWarrior
+    - $extends: CategoryChestLancer
+    - $extends: CategoryChestBerserker
+    - $extends: CategoryChestSlayer
+    - $extends: CategoryChestSorcerer
+    - $extends: CategoryChestArcher
+    - $extends: CategoryChestMystic
+    - $extends: CategoryChestPriest
+    - $extends: CategoryChestReaper
+    - $extends: CategoryChestGunner
+    - $extends: CategoryChestBrawler
+    - $extends: CategoryChestNinja
+    - $extends: CategoryChestValkyrie

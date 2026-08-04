@@ -1,0 +1,70 @@
+# Tainted Gorge Bridge (zone 437 / continent 9037): NPC stat balance for the Sorcha
+# escort dungeon behind classic quest 1346, whose task 1 is a 7-minute guard on Sorcha
+# 437,1001 against staged waves. Wave POPULATION lives in 24-sorcha-wave-density.yaml.
+#
+# THE ESCORT CAST MUST SCALE WITH THE WAVES or the quest becomes uncompletable. Sorcha
+# 1001 and her Guardians 1003 are villager=true, invincible=false and spawn
+# isAggressiveMonster=true, so they fight, and Sorcha's death fails the guard task.
+# Their multipliers are written as products so a retune can see which axis each cancels:
+# atk offsets wave maxHp, maxHp offsets incoming pressure (wave atk x attacker count).
+# `stat.def` is deliberately untouched: redundant with maxHp, and not transform-capable
+# in the DSL (only stat.maxHp, stat.atk, stat.level and critical.res take NumericChange).
+#
+# These numbers target well-geared characters, not a level 8-10 player walking quest 1346
+# normally, for whom the dungeon is unclearable. The lever for that is a difficulty mode
+# or level scaling, not the base stat block.
+#
+# SCOPE GUARDS. Exit Teleportal 1002 is excluded (invincible object, the quest's exit),
+# and groups 43700016 / 43700017 are leftover modern Garden of Dawn content, not balance
+# targets. The three profiles hit disjoint cohorts, so declaration-order compounding of
+# balanceProfiles does not apply.
+#
+# IDEMPOTENCY. `multiply` is a delta from the file's current values, not an absolute
+# target. Safe under `migrate --patch 002`, which pins reads to the server repo's git
+# HEAD; NOT safe under a bare single-spec `dsl apply` without --source-ref.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - TGB_NORMAL_MONSTERS
+        - TGB_SORCHA
+        - TGB_SORCHAS_GUARDIAN
+
+balanceProfiles:
+  # The 19 staged wave templates across groups 43700009 to 43700015.
+  - name: TaintedGorgeWavesGearFormula
+    npcFilter:
+      huntingZoneId: 437
+      id: $TGB_NORMAL_MONSTERS
+    npc:
+      stat:
+        maxHp: { multiply: 25 }
+        atk:   { multiply: 18.75 }
+
+  # Sorcha: the guard target. Her death fails quest 1346 task 1, so she is the one NPC
+  # here that cannot be allowed to lose. x93.75 is x4.6875 TIMES 20, the incoming
+  # pressure increase (wave atk x10 by attacker count x2).
+  - name: TaintedGorgeEscortTarget
+    npcFilter:
+      huntingZoneId: 437
+      id: $TGB_SORCHA
+    npc:
+      stat:
+        maxHp: { multiply: 93.75 }
+        atk:   { multiply: 25 }
+
+  # Sorcha's Guardians: renewable defensive line (respawnTime 60000, isReturn=true), so
+  # their loss is recoverable where hers is not. Kept a separate profile for that reason.
+  - name: TaintedGorgeGuardians
+    npcFilter:
+      huntingZoneId: 437
+      id: $TGB_SORCHAS_GUARDIAN
+    npc:
+      stat:
+        maxHp: { multiply: 93.75 }
+        atk:   { multiply: 25 }

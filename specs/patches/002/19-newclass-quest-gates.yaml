@@ -1,0 +1,54 @@
+# Open the classic class-gated tutorial quest pairs to the classes that came after
+# them.
+#
+# Classic TERA splits several tutorial quests into a PHYSICAL variant and a CASTER
+# variant, gated by <수행조건><클래스>. Each pair lists exactly the nine classes that
+# existed at the time, so Ninja (Assassin), Brawler (Fighter) and Valkyrie (Glaiver)
+# match NEITHER member and the quest is offered to nobody. That is faithful classic
+# data, not a migration defect, and on the story spine it is a soft-lock: 1384 leads
+# only to 1382 OR 1383, and a character matching neither never unlocks 1331.
+#
+# THE THREE CLASSES GO ON THE PHYSICAL MEMBER ONLY, so the pairs stay mutually
+# exclusive and every class still sees exactly one variant. The caster members are
+# deliberately untouched. Gunner (Engineer) is added on the same principle: vanilla
+# added it to 1382 but never to the sibling pairs, leaving a Gunner offered neither.
+#
+# Reaper (Soulless) is out of scope: it starts in a different zone at a higher level
+# and never walks these chains. Quests 6304 / 6307 look like the same kind of pair
+# but are sentinel-disabled, and widening a gate on an unofferable quest is dead data.
+#
+# `requirements.classes` is a REPLACE-all list, so each op restates the complete gate.
+# The names are the internal class names, case-sensitive, validated against the client
+# schema at apply time (E427).
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    # ---- Island of Dawn ------------------------------------------------------
+    # 1382 "Gathering Your Strength" (story group 1, prereq 1384, Milene 64,1049)
+    # THE SPINE BLOCKER. Physical variant: sends the player to Gurney 64,1007.
+    - id: 1382
+      changes:
+        requirements:
+          classes: [Warrior, Lancer, Slayer, Berserker, Archer, Engineer, Assassin, Fighter, Glaiver]
+
+    # 1351 "Supply and Demand" (side quest, Kiriya 64,1006, prereq 1329).
+    # Physical variant of the 1351/1352 pair. Not a spine gate, same content hole.
+    # Engineer added too: vanilla left Gunner out of this pair while adding it to
+    # 1382, so a Gunner was offered neither variant.
+    - id: 1351
+      changes:
+        requirements:
+          classes: [Warrior, Lancer, Slayer, Berserker, Archer, Engineer, Assassin, Fighter, Glaiver]
+
+    # ---- Velika (zone 63, patch-002 hub-city scope) --------------------------
+    # 6306 "Legion of Arms", the physical variant paired with 6302 "Give It the Ol'
+    # Collegium Try" (casters); both gated behind 6301, both given by 63,1007.
+    # Same Gunner gap as 1351.
+    - id: 6306
+      changes:
+        requirements:
+          classes: [Lancer, Berserker, Slayer, Warrior, Archer, Engineer, Assassin, Fighter, Glaiver]

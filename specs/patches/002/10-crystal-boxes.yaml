@@ -1,0 +1,638 @@
+# Crystal Gacha Boxes — Patch 001
+# Fine-grade crystal boxes dropped from mob loot tables.
+# 14 boxes: 7 tiers x 2 categories (weapon/armor)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_RHOMB
+        - ARMOR_CRYSTAL_BOX_RHOMB
+        - FINE_POUNDING_RHOMB
+        - FINE_BITTER_RHOMB
+        - FINE_SLAYING_RHOMB
+        - FINE_FURIOUS_RHOMB
+        - FINE_FOCUSED_RHOMB
+        - FINE_VIRULENT_RHOMB
+        - FINE_BRUTAL_RHOMB
+        - FINE_CRUEL_RHOMB
+        - FINE_FORCEFUL_RHOMB
+        - FINE_SAVAGE_RHOMB
+        - FINE_CUNNING_RHOMB
+        - FINE_INFUSED_RHOMB
+        - FINE_GLISTENING_RHOMB
+        - FINE_SWIFT_RHOMB
+        - FINE_BRILLIANT_RHOMB
+        - FINE_CARVING_RHOMB
+        - FINE_SALIVATING_RHOMB
+        - FINE_THREATENING_RHOMB
+        - FINE_WRATHFUL_RHOMB
+        - FINE_SPITEFUL_RHOMB
+        - FINE_HARDY_RHOMB
+        - FINE_PROTECTIVE_RHOMB
+        - FINE_RESOLUTE_RHOMB
+        - FINE_POISED_RHOMB
+        - FINE_EMPYREAN_RHOMB
+        - FINE_WARDING_RHOMB
+        - FINE_INSPIRING_RHOMB
+        - FINE_RELENTLESS_RHOMB
+        - FINE_FLEETFOOT_RHOMB
+        - FINE_VIGOROUS_RHOMB
+        - FINE_GRIEVING_RHOMB
+        - WEAPON_CRYSTAL_BOX_CABOCHON
+        - ARMOR_CRYSTAL_BOX_CABOCHON
+        - FINE_POUNDING_CABOCHON
+        - FINE_BITTER_CABOCHON
+        - FINE_SLAYING_CABOCHON
+        - FINE_FURIOUS_CABOCHON
+        - FINE_FOCUSED_CABOCHON
+        - FINE_VIRULENT_CABOCHON
+        - FINE_BRUTAL_CABOCHON
+        - FINE_CRUEL_CABOCHON
+        - FINE_FORCEFUL_CABOCHON
+        - FINE_SAVAGE_CABOCHON
+        - FINE_CUNNING_CABOCHON
+        - FINE_INFUSED_CABOCHON
+        - FINE_GLISTENING_CABOCHON
+        - FINE_SWIFT_CABOCHON
+        - FINE_BRILLIANT_CABOCHON
+        - FINE_CARVING_CABOCHON
+        - FINE_SALIVATING_CABOCHON
+        - FINE_THREATENING_CABOCHON
+        - FINE_WRATHFUL_CABOCHON
+        - FINE_SPITEFUL_CABOCHON
+        - FINE_HARDY_CABOCHON
+        - FINE_PROTECTIVE_CABOCHON
+        - FINE_RESOLUTE_CABOCHON
+        - FINE_POISED_CABOCHON
+        - FINE_EMPYREAN_CABOCHON
+        - FINE_WARDING_CABOCHON
+        - FINE_INSPIRING_CABOCHON
+        - FINE_RELENTLESS_CABOCHON
+        - FINE_FLEETFOOT_CABOCHON
+        - FINE_VIGOROUS_CABOCHON
+        - FINE_GRIEVING_CABOCHON
+        - WEAPON_CRYSTAL_BOX_HEXAGE
+        - ARMOR_CRYSTAL_BOX_HEXAGE
+        - FINE_POUNDING_HEXAGE
+        - FINE_BITTER_HEXAGE
+        - FINE_SLAYING_HEXAGE
+        - FINE_FURIOUS_HEXAGE
+        - FINE_FOCUSED_HEXAGE
+        - FINE_VIRULENT_HEXAGE
+        - FINE_BRUTAL_HEXAGE
+        - FINE_CRUEL_HEXAGE
+        - FINE_FORCEFUL_HEXAGE
+        - FINE_SAVAGE_HEXAGE
+        - FINE_CUNNING_HEXAGE
+        - FINE_INFUSED_HEXAGE
+        - FINE_GLISTENING_HEXAGE
+        - FINE_SWIFT_HEXAGE
+        - FINE_BRILLIANT_HEXAGE
+        - FINE_CARVING_HEXAGE
+        - FINE_SALIVATING_HEXAGE
+        - FINE_THREATENING_HEXAGE
+        - FINE_WRATHFUL_HEXAGE
+        - FINE_SPITEFUL_HEXAGE
+        - FINE_HARDY_HEXAGE
+        - FINE_PROTECTIVE_HEXAGE
+        - FINE_RESOLUTE_HEXAGE
+        - FINE_POISED_HEXAGE
+        - FINE_EMPYREAN_HEXAGE
+        - FINE_WARDING_HEXAGE
+        - FINE_INSPIRING_HEXAGE
+        - FINE_RELENTLESS_HEXAGE
+        - FINE_FLEETFOOT_HEXAGE
+        - FINE_VIGOROUS_HEXAGE
+        - FINE_GRIEVING_HEXAGE
+        - WEAPON_CRYSTAL_BOX_PENTANT
+        - ARMOR_CRYSTAL_BOX_PENTANT
+        - FINE_POUNDING_PENTANT
+        - FINE_BITTER_PENTANT
+        - FINE_SLAYING_PENTANT
+        - FINE_FURIOUS_PENTANT
+        - FINE_FOCUSED_PENTANT
+        - FINE_VIRULENT_PENTANT
+        - FINE_BRUTAL_PENTANT
+        - FINE_CRUEL_PENTANT
+        - FINE_FORCEFUL_PENTANT
+        - FINE_SAVAGE_PENTANT
+        - FINE_CUNNING_PENTANT
+        - FINE_INFUSED_PENTANT
+        - FINE_GLISTENING_PENTANT
+        - FINE_SWIFT_PENTANT
+        - FINE_BRILLIANT_PENTANT
+        - FINE_CARVING_PENTANT
+        - FINE_SALIVATING_PENTANT
+        - FINE_THREATENING_PENTANT
+        - FINE_WRATHFUL_PENTANT
+        - FINE_SPITEFUL_PENTANT
+        - FINE_HARDY_PENTANT
+        - FINE_PROTECTIVE_PENTANT
+        - FINE_RESOLUTE_PENTANT
+        - FINE_POISED_PENTANT
+        - FINE_EMPYREAN_PENTANT
+        - FINE_WARDING_PENTANT
+        - FINE_INSPIRING_PENTANT
+        - FINE_RELENTLESS_PENTANT
+        - FINE_FLEETFOOT_PENTANT
+        - FINE_VIGOROUS_PENTANT
+        - FINE_GRIEVING_PENTANT
+        - WEAPON_CRYSTAL_BOX_CONCACH
+        - ARMOR_CRYSTAL_BOX_CONCACH
+        - FINE_POUNDING_CONCACH
+        - FINE_BITTER_CONCACH
+        - FINE_SLAYING_CONCACH
+        - FINE_FURIOUS_CONCACH
+        - FINE_FOCUSED_CONCACH
+        - FINE_VIRULENT_CONCACH
+        - FINE_BRUTAL_CONCACH
+        - FINE_CRUEL_CONCACH
+        - FINE_FORCEFUL_CONCACH
+        - FINE_SAVAGE_CONCACH
+        - FINE_CUNNING_CONCACH
+        - FINE_INFUSED_CONCACH
+        - FINE_GLISTENING_CONCACH
+        - FINE_SWIFT_CONCACH
+        - FINE_BRILLIANT_CONCACH
+        - FINE_CARVING_CONCACH
+        - FINE_SALIVATING_CONCACH
+        - FINE_THREATENING_CONCACH
+        - FINE_WRATHFUL_CONCACH
+        - FINE_SPITEFUL_CONCACH
+        - FINE_HARDY_CONCACH
+        - FINE_PROTECTIVE_CONCACH
+        - FINE_RESOLUTE_CONCACH
+        - FINE_POISED_CONCACH
+        - FINE_EMPYREAN_CONCACH
+        - FINE_WARDING_CONCACH
+        - FINE_INSPIRING_CONCACH
+        - FINE_RELENTLESS_CONCACH
+        - FINE_FLEETFOOT_CONCACH
+        - FINE_VIGOROUS_CONCACH
+        - FINE_GRIEVING_CONCACH
+        - WEAPON_CRYSTAL_BOX_CRUX
+        - ARMOR_CRYSTAL_BOX_CRUX
+        - FINE_POUNDING_CRUX
+        - FINE_BITTER_CRUX
+        - FINE_SLAYING_CRUX
+        - FINE_FURIOUS_CRUX
+        - FINE_FOCUSED_CRUX
+        - FINE_VIRULENT_CRUX
+        - FINE_BRUTAL_CRUX
+        - FINE_CRUEL_CRUX
+        - FINE_FORCEFUL_CRUX
+        - FINE_SAVAGE_CRUX
+        - FINE_CUNNING_CRUX
+        - FINE_INFUSED_CRUX
+        - FINE_GLISTENING_CRUX
+        - FINE_SWIFT_CRUX
+        - FINE_BRILLIANT_CRUX
+        - FINE_CARVING_CRUX
+        - FINE_SALIVATING_CRUX
+        - FINE_THREATENING_CRUX
+        - FINE_WRATHFUL_CRUX
+        - FINE_SPITEFUL_CRUX
+        - FINE_HARDY_CRUX
+        - FINE_PROTECTIVE_CRUX
+        - FINE_RESOLUTE_CRUX
+        - FINE_POISED_CRUX
+        - FINE_EMPYREAN_CRUX
+        - FINE_WARDING_CRUX
+        - FINE_INSPIRING_CRUX
+        - FINE_RELENTLESS_CRUX
+        - FINE_FLEETFOOT_CRUX
+        - FINE_VIGOROUS_CRUX
+        - FINE_GRIEVING_CRUX
+        - WEAPON_CRYSTAL_BOX_NIVEOT
+        - ARMOR_CRYSTAL_BOX_NIVEOT
+        - FINE_POUNDING_NIVEOT
+        - FINE_BITTER_NIVEOT
+        - FINE_SLAYING_NIVEOT
+        - FINE_FURIOUS_NIVEOT
+        - FINE_FOCUSED_NIVEOT
+        - FINE_VIRULENT_NIVEOT
+        - FINE_BRUTAL_NIVEOT
+        - FINE_CRUEL_NIVEOT
+        - FINE_FORCEFUL_NIVEOT
+        - FINE_SAVAGE_NIVEOT
+        - FINE_CUNNING_NIVEOT
+        - FINE_INFUSED_NIVEOT
+        - FINE_GLISTENING_NIVEOT
+        - FINE_SWIFT_NIVEOT
+        - FINE_BRILLIANT_NIVEOT
+        - FINE_CARVING_NIVEOT
+        - FINE_SALIVATING_NIVEOT
+        - FINE_THREATENING_NIVEOT
+        - FINE_WRATHFUL_NIVEOT
+        - FINE_SPITEFUL_NIVEOT
+        - FINE_HARDY_NIVEOT
+        - FINE_PROTECTIVE_NIVEOT
+        - FINE_RESOLUTE_NIVEOT
+        - FINE_POISED_NIVEOT
+        - FINE_EMPYREAN_NIVEOT
+        - FINE_WARDING_NIVEOT
+        - FINE_INSPIRING_NIVEOT
+        - FINE_RELENTLESS_NIVEOT
+        - FINE_FLEETFOOT_NIVEOT
+        - FINE_VIGOROUS_NIVEOT
+        - FINE_GRIEVING_NIVEOT
+
+definitions:
+  crystalBoxBase:
+    maxStack: 100
+    tradable: true
+    warehouseStorable: true
+    boundType: None
+
+gachaItems:
+  upsert:
+    # Weapon Crystal Box — Tier 1 (Rhomb) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_RHOMB
+      title: "Weapon Crystal Box (Rhomb)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 1"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_RHOMB
+            - itemTemplateId: $FINE_BITTER_RHOMB
+            - itemTemplateId: $FINE_SLAYING_RHOMB
+            - itemTemplateId: $FINE_FURIOUS_RHOMB
+            - itemTemplateId: $FINE_FOCUSED_RHOMB
+            - itemTemplateId: $FINE_VIRULENT_RHOMB
+            - itemTemplateId: $FINE_BRUTAL_RHOMB
+            - itemTemplateId: $FINE_CRUEL_RHOMB
+            - itemTemplateId: $FINE_FORCEFUL_RHOMB
+            - itemTemplateId: $FINE_SAVAGE_RHOMB
+            - itemTemplateId: $FINE_CUNNING_RHOMB
+            - itemTemplateId: $FINE_INFUSED_RHOMB
+            - itemTemplateId: $FINE_GLISTENING_RHOMB
+            - itemTemplateId: $FINE_SWIFT_RHOMB
+            - itemTemplateId: $FINE_BRILLIANT_RHOMB
+            - itemTemplateId: $FINE_CARVING_RHOMB
+            - itemTemplateId: $FINE_SALIVATING_RHOMB
+            - itemTemplateId: $FINE_THREATENING_RHOMB
+            - itemTemplateId: $FINE_WRATHFUL_RHOMB
+            - itemTemplateId: $FINE_SPITEFUL_RHOMB
+    # Armor Crystal Box — Tier 1 (Rhomb) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_RHOMB
+      title: "Armor Crystal Box (Rhomb)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 1"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_RHOMB
+            - itemTemplateId: $FINE_PROTECTIVE_RHOMB
+            - itemTemplateId: $FINE_RESOLUTE_RHOMB
+            - itemTemplateId: $FINE_POISED_RHOMB
+            - itemTemplateId: $FINE_EMPYREAN_RHOMB
+            - itemTemplateId: $FINE_WARDING_RHOMB
+            - itemTemplateId: $FINE_INSPIRING_RHOMB
+            - itemTemplateId: $FINE_RELENTLESS_RHOMB
+            - itemTemplateId: $FINE_FLEETFOOT_RHOMB
+            - itemTemplateId: $FINE_VIGOROUS_RHOMB
+            - itemTemplateId: $FINE_GRIEVING_RHOMB
+    # Weapon Crystal Box — Tier 2 (Cabochon) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_CABOCHON
+      title: "Weapon Crystal Box (Cabochon)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 2"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_CABOCHON
+            - itemTemplateId: $FINE_BITTER_CABOCHON
+            - itemTemplateId: $FINE_SLAYING_CABOCHON
+            - itemTemplateId: $FINE_FURIOUS_CABOCHON
+            - itemTemplateId: $FINE_FOCUSED_CABOCHON
+            - itemTemplateId: $FINE_VIRULENT_CABOCHON
+            - itemTemplateId: $FINE_BRUTAL_CABOCHON
+            - itemTemplateId: $FINE_CRUEL_CABOCHON
+            - itemTemplateId: $FINE_FORCEFUL_CABOCHON
+            - itemTemplateId: $FINE_SAVAGE_CABOCHON
+            - itemTemplateId: $FINE_CUNNING_CABOCHON
+            - itemTemplateId: $FINE_INFUSED_CABOCHON
+            - itemTemplateId: $FINE_GLISTENING_CABOCHON
+            - itemTemplateId: $FINE_SWIFT_CABOCHON
+            - itemTemplateId: $FINE_BRILLIANT_CABOCHON
+            - itemTemplateId: $FINE_CARVING_CABOCHON
+            - itemTemplateId: $FINE_SALIVATING_CABOCHON
+            - itemTemplateId: $FINE_THREATENING_CABOCHON
+            - itemTemplateId: $FINE_WRATHFUL_CABOCHON
+            - itemTemplateId: $FINE_SPITEFUL_CABOCHON
+    # Armor Crystal Box — Tier 2 (Cabochon) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_CABOCHON
+      title: "Armor Crystal Box (Cabochon)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 2"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_CABOCHON
+            - itemTemplateId: $FINE_PROTECTIVE_CABOCHON
+            - itemTemplateId: $FINE_RESOLUTE_CABOCHON
+            - itemTemplateId: $FINE_POISED_CABOCHON
+            - itemTemplateId: $FINE_EMPYREAN_CABOCHON
+            - itemTemplateId: $FINE_WARDING_CABOCHON
+            - itemTemplateId: $FINE_INSPIRING_CABOCHON
+            - itemTemplateId: $FINE_RELENTLESS_CABOCHON
+            - itemTemplateId: $FINE_FLEETFOOT_CABOCHON
+            - itemTemplateId: $FINE_VIGOROUS_CABOCHON
+            - itemTemplateId: $FINE_GRIEVING_CABOCHON
+    # Weapon Crystal Box — Tier 3 (Hexage) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+      title: "Weapon Crystal Box (Hexage)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 3"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_HEXAGE
+            - itemTemplateId: $FINE_BITTER_HEXAGE
+            - itemTemplateId: $FINE_SLAYING_HEXAGE
+            - itemTemplateId: $FINE_FURIOUS_HEXAGE
+            - itemTemplateId: $FINE_FOCUSED_HEXAGE
+            - itemTemplateId: $FINE_VIRULENT_HEXAGE
+            - itemTemplateId: $FINE_BRUTAL_HEXAGE
+            - itemTemplateId: $FINE_CRUEL_HEXAGE
+            - itemTemplateId: $FINE_FORCEFUL_HEXAGE
+            - itemTemplateId: $FINE_SAVAGE_HEXAGE
+            - itemTemplateId: $FINE_CUNNING_HEXAGE
+            - itemTemplateId: $FINE_INFUSED_HEXAGE
+            - itemTemplateId: $FINE_GLISTENING_HEXAGE
+            - itemTemplateId: $FINE_SWIFT_HEXAGE
+            - itemTemplateId: $FINE_BRILLIANT_HEXAGE
+            - itemTemplateId: $FINE_CARVING_HEXAGE
+            - itemTemplateId: $FINE_SALIVATING_HEXAGE
+            - itemTemplateId: $FINE_THREATENING_HEXAGE
+            - itemTemplateId: $FINE_WRATHFUL_HEXAGE
+            - itemTemplateId: $FINE_SPITEFUL_HEXAGE
+    # Armor Crystal Box — Tier 3 (Hexage) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+      title: "Armor Crystal Box (Hexage)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 3"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_HEXAGE
+            - itemTemplateId: $FINE_PROTECTIVE_HEXAGE
+            - itemTemplateId: $FINE_RESOLUTE_HEXAGE
+            - itemTemplateId: $FINE_POISED_HEXAGE
+            - itemTemplateId: $FINE_EMPYREAN_HEXAGE
+            - itemTemplateId: $FINE_WARDING_HEXAGE
+            - itemTemplateId: $FINE_INSPIRING_HEXAGE
+            - itemTemplateId: $FINE_RELENTLESS_HEXAGE
+            - itemTemplateId: $FINE_FLEETFOOT_HEXAGE
+            - itemTemplateId: $FINE_VIGOROUS_HEXAGE
+            - itemTemplateId: $FINE_GRIEVING_HEXAGE
+    # Weapon Crystal Box — Tier 4 (Pentant) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_PENTANT
+      title: "Weapon Crystal Box (Pentant)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 4"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_PENTANT
+            - itemTemplateId: $FINE_BITTER_PENTANT
+            - itemTemplateId: $FINE_SLAYING_PENTANT
+            - itemTemplateId: $FINE_FURIOUS_PENTANT
+            - itemTemplateId: $FINE_FOCUSED_PENTANT
+            - itemTemplateId: $FINE_VIRULENT_PENTANT
+            - itemTemplateId: $FINE_BRUTAL_PENTANT
+            - itemTemplateId: $FINE_CRUEL_PENTANT
+            - itemTemplateId: $FINE_FORCEFUL_PENTANT
+            - itemTemplateId: $FINE_SAVAGE_PENTANT
+            - itemTemplateId: $FINE_CUNNING_PENTANT
+            - itemTemplateId: $FINE_INFUSED_PENTANT
+            - itemTemplateId: $FINE_GLISTENING_PENTANT
+            - itemTemplateId: $FINE_SWIFT_PENTANT
+            - itemTemplateId: $FINE_BRILLIANT_PENTANT
+            - itemTemplateId: $FINE_CARVING_PENTANT
+            - itemTemplateId: $FINE_SALIVATING_PENTANT
+            - itemTemplateId: $FINE_THREATENING_PENTANT
+            - itemTemplateId: $FINE_WRATHFUL_PENTANT
+            - itemTemplateId: $FINE_SPITEFUL_PENTANT
+    # Armor Crystal Box — Tier 4 (Pentant) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_PENTANT
+      title: "Armor Crystal Box (Pentant)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 4"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_PENTANT
+            - itemTemplateId: $FINE_PROTECTIVE_PENTANT
+            - itemTemplateId: $FINE_RESOLUTE_PENTANT
+            - itemTemplateId: $FINE_POISED_PENTANT
+            - itemTemplateId: $FINE_EMPYREAN_PENTANT
+            - itemTemplateId: $FINE_WARDING_PENTANT
+            - itemTemplateId: $FINE_INSPIRING_PENTANT
+            - itemTemplateId: $FINE_RELENTLESS_PENTANT
+            - itemTemplateId: $FINE_FLEETFOOT_PENTANT
+            - itemTemplateId: $FINE_VIGOROUS_PENTANT
+            - itemTemplateId: $FINE_GRIEVING_PENTANT
+    # Weapon Crystal Box — Tier 5 (Concach) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_CONCACH
+      title: "Weapon Crystal Box (Concach)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 5"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_CONCACH
+            - itemTemplateId: $FINE_BITTER_CONCACH
+            - itemTemplateId: $FINE_SLAYING_CONCACH
+            - itemTemplateId: $FINE_FURIOUS_CONCACH
+            - itemTemplateId: $FINE_FOCUSED_CONCACH
+            - itemTemplateId: $FINE_VIRULENT_CONCACH
+            - itemTemplateId: $FINE_BRUTAL_CONCACH
+            - itemTemplateId: $FINE_CRUEL_CONCACH
+            - itemTemplateId: $FINE_FORCEFUL_CONCACH
+            - itemTemplateId: $FINE_SAVAGE_CONCACH
+            - itemTemplateId: $FINE_CUNNING_CONCACH
+            - itemTemplateId: $FINE_INFUSED_CONCACH
+            - itemTemplateId: $FINE_GLISTENING_CONCACH
+            - itemTemplateId: $FINE_SWIFT_CONCACH
+            - itemTemplateId: $FINE_BRILLIANT_CONCACH
+            - itemTemplateId: $FINE_CARVING_CONCACH
+            - itemTemplateId: $FINE_SALIVATING_CONCACH
+            - itemTemplateId: $FINE_THREATENING_CONCACH
+            - itemTemplateId: $FINE_WRATHFUL_CONCACH
+            - itemTemplateId: $FINE_SPITEFUL_CONCACH
+    # Armor Crystal Box — Tier 5 (Concach) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_CONCACH
+      title: "Armor Crystal Box (Concach)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 5"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_CONCACH
+            - itemTemplateId: $FINE_PROTECTIVE_CONCACH
+            - itemTemplateId: $FINE_RESOLUTE_CONCACH
+            - itemTemplateId: $FINE_POISED_CONCACH
+            - itemTemplateId: $FINE_EMPYREAN_CONCACH
+            - itemTemplateId: $FINE_WARDING_CONCACH
+            - itemTemplateId: $FINE_INSPIRING_CONCACH
+            - itemTemplateId: $FINE_RELENTLESS_CONCACH
+            - itemTemplateId: $FINE_FLEETFOOT_CONCACH
+            - itemTemplateId: $FINE_VIGOROUS_CONCACH
+            - itemTemplateId: $FINE_GRIEVING_CONCACH
+    # Weapon Crystal Box — Tier 6 (Crux) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_CRUX
+      title: "Weapon Crystal Box (Crux)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 6"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_CRUX
+            - itemTemplateId: $FINE_BITTER_CRUX
+            - itemTemplateId: $FINE_SLAYING_CRUX
+            - itemTemplateId: $FINE_FURIOUS_CRUX
+            - itemTemplateId: $FINE_FOCUSED_CRUX
+            - itemTemplateId: $FINE_VIRULENT_CRUX
+            - itemTemplateId: $FINE_BRUTAL_CRUX
+            - itemTemplateId: $FINE_CRUEL_CRUX
+            - itemTemplateId: $FINE_FORCEFUL_CRUX
+            - itemTemplateId: $FINE_SAVAGE_CRUX
+            - itemTemplateId: $FINE_CUNNING_CRUX
+            - itemTemplateId: $FINE_INFUSED_CRUX
+            - itemTemplateId: $FINE_GLISTENING_CRUX
+            - itemTemplateId: $FINE_SWIFT_CRUX
+            - itemTemplateId: $FINE_BRILLIANT_CRUX
+            - itemTemplateId: $FINE_CARVING_CRUX
+            - itemTemplateId: $FINE_SALIVATING_CRUX
+            - itemTemplateId: $FINE_THREATENING_CRUX
+            - itemTemplateId: $FINE_WRATHFUL_CRUX
+            - itemTemplateId: $FINE_SPITEFUL_CRUX
+    # Armor Crystal Box — Tier 6 (Crux) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_CRUX
+      title: "Armor Crystal Box (Crux)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 6"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_CRUX
+            - itemTemplateId: $FINE_PROTECTIVE_CRUX
+            - itemTemplateId: $FINE_RESOLUTE_CRUX
+            - itemTemplateId: $FINE_POISED_CRUX
+            - itemTemplateId: $FINE_EMPYREAN_CRUX
+            - itemTemplateId: $FINE_WARDING_CRUX
+            - itemTemplateId: $FINE_INSPIRING_CRUX
+            - itemTemplateId: $FINE_RELENTLESS_CRUX
+            - itemTemplateId: $FINE_FLEETFOOT_CRUX
+            - itemTemplateId: $FINE_VIGOROUS_CRUX
+            - itemTemplateId: $FINE_GRIEVING_CRUX
+    # Weapon Crystal Box — Tier 7 (Niveot) — 20 crystals
+    - itemTemplateId: $WEAPON_CRYSTAL_BOX_NIVEOT
+      title: "Weapon Crystal Box (Niveot)"
+      sender: "Crystal System"
+      memo: "Fine weapon crystals tier 7"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_POUNDING_NIVEOT
+            - itemTemplateId: $FINE_BITTER_NIVEOT
+            - itemTemplateId: $FINE_SLAYING_NIVEOT
+            - itemTemplateId: $FINE_FURIOUS_NIVEOT
+            - itemTemplateId: $FINE_FOCUSED_NIVEOT
+            - itemTemplateId: $FINE_VIRULENT_NIVEOT
+            - itemTemplateId: $FINE_BRUTAL_NIVEOT
+            - itemTemplateId: $FINE_CRUEL_NIVEOT
+            - itemTemplateId: $FINE_FORCEFUL_NIVEOT
+            - itemTemplateId: $FINE_SAVAGE_NIVEOT
+            - itemTemplateId: $FINE_CUNNING_NIVEOT
+            - itemTemplateId: $FINE_INFUSED_NIVEOT
+            - itemTemplateId: $FINE_GLISTENING_NIVEOT
+            - itemTemplateId: $FINE_SWIFT_NIVEOT
+            - itemTemplateId: $FINE_BRILLIANT_NIVEOT
+            - itemTemplateId: $FINE_CARVING_NIVEOT
+            - itemTemplateId: $FINE_SALIVATING_NIVEOT
+            - itemTemplateId: $FINE_THREATENING_NIVEOT
+            - itemTemplateId: $FINE_WRATHFUL_NIVEOT
+            - itemTemplateId: $FINE_SPITEFUL_NIVEOT
+    # Armor Crystal Box — Tier 7 (Niveot) — 11 crystals
+    - itemTemplateId: $ARMOR_CRYSTAL_BOX_NIVEOT
+      title: "Armor Crystal Box (Niveot)"
+      sender: "Crystal System"
+      memo: "Fine armor crystals tier 7"
+      item:
+        $extends: crystalBoxBase
+        icon: Icon_Items.Cash_Material_box_3_Tex
+        rareGrade: 1
+      randomRewards:
+        - equalProbability: true
+          rewards:
+            - itemTemplateId: $FINE_HARDY_NIVEOT
+            - itemTemplateId: $FINE_PROTECTIVE_NIVEOT
+            - itemTemplateId: $FINE_RESOLUTE_NIVEOT
+            - itemTemplateId: $FINE_POISED_NIVEOT
+            - itemTemplateId: $FINE_EMPYREAN_NIVEOT
+            - itemTemplateId: $FINE_WARDING_NIVEOT
+            - itemTemplateId: $FINE_INSPIRING_NIVEOT
+            - itemTemplateId: $FINE_RELENTLESS_NIVEOT
+            - itemTemplateId: $FINE_FLEETFOOT_NIVEOT
+            - itemTemplateId: $FINE_VIGOROUS_NIVEOT
+            - itemTemplateId: $FINE_GRIEVING_NIVEOT

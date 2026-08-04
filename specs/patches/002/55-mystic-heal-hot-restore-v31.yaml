@@ -1,0 +1,192 @@
+# Mystic Spirit of Life: restore the classic heal-over-time values.
+#
+# Generated from the classic server datasheet; regenerate rather than hand-edit.
+#
+# The Mystic's healing elemental is a summoned NPC (templates 1023200-1023212, one
+# per rank). Its burst heal lives in NpcSkillData_1023 and is identical in both eras;
+# what was flattened is the over-time component, abnormalities 701000-701012, which
+# grows 100 to 160 across the 13 ranks live where it grew 70 to 914 classically.
+# Ranks 1-3 come out slightly weaker after this spec, ranks 4-13 much stronger.
+#
+# Only `value` is restored. `max`, the lifetime cap, is already identical between the
+# eras, which is itself evidence the caps were sized for the classic per-tick amount.
+#
+# `effects` is clear-and-replace, so each block restates the whole effect rather than
+# the one changed field. Every abnormality here carries exactly one effect, so
+# nothing is lost by that.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+abnormalities:
+  update:
+    - id: 701000
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "70"   # v92 100
+            method: 2
+            variation: 0
+            min: 0
+            max: 420
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701001
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "88"   # v92 105
+            method: 2
+            variation: 0
+            min: 0
+            max: 528
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701002
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "109"   # v92 110
+            method: 2
+            variation: 0
+            min: 0
+            max: 654
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701003
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "135"   # v92 115
+            method: 2
+            variation: 0
+            min: 0
+            max: 810
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701004
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "168"   # v92 120
+            method: 2
+            variation: 0
+            min: 0
+            max: 1008
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701005
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "208"   # v92 125
+            method: 2
+            variation: 0
+            min: 0
+            max: 1248
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701006
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "258"   # v92 130
+            method: 2
+            variation: 0
+            min: 0
+            max: 1548
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701007
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "320"   # v92 135
+            method: 2
+            variation: 0
+            min: 0
+            max: 1920
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701008
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "397"   # v92 140
+            method: 2
+            variation: 0
+            min: 0
+            max: 2382
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701009
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "493"   # v92 145
+            method: 2
+            variation: 0
+            min: 0
+            max: 2958
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701010
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "614"   # v92 150
+            method: 2
+            variation: 0
+            min: 0
+            max: 3684
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701011
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "769"   # v92 155
+            method: 2
+            variation: 0
+            min: 0
+            max: 4614
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"
+    - id: 701012
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "914"   # v92 160
+            method: 2
+            variation: 0
+            min: 0
+            max: 5487
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom54"

@@ -1,0 +1,56 @@
+# Retarget four Mysterious Ruins spawns from the named boss template 13,1002 to its
+# generic twin 13,901.
+#
+# WHY IT MATTERS: a spawn's `desc` is an internal comment, but the PLAYER-VISIBLE name
+# comes from StrSheet_Creature keyed by (huntingZone, templateId). Template 1002 is
+# called "오칸" in NpcData_13, so a padding pass replicating an orcan-patrol roster
+# drew it as an ordinary patrol member, while in game every copy displayed as Acharak
+# and satisfied quest 1309's kill-one task about 19,400 units from the Tainted Gorge
+# Garrison its journal string names. The client waypoint set follows the spawns, so
+# the quest arrow pointed into the ruins as well.
+#
+# 901 is the same creature: same shapeId, same basicActionId, same aiid 31, same
+# internal name, differing only in playStyle and level. Nothing changes visually and
+# the patrol density survives, which deleting the spawns would have lost.
+#
+# SCOPE GUARD: group 1300047, the two garrison party packs that legitimately hold
+# 1002, is NOT touched.
+#
+# StrSheet_NpcLoc has no sync entity and is tool-owned: run gen_npcloc.py --prune
+# after applying, and expect 13/1002 to fall back to its two garrison waypoints.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territorySpawns:
+  update:
+    # Group 1300038 "태고의 유적지(오칸 순찰)" / Mysterious Ruins, section 31.
+    # The four round-robin slots that drew the named boss template.
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015160
+      npcInstanceId: 13473850
+      changes:
+        npcTemplateId: 901
+
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015190
+      npcInstanceId: 13473880
+      changes:
+        npcTemplateId: 901
+
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015220
+      npcInstanceId: 13473910
+      changes:
+        npcTemplateId: 901
+
+    - huntingZoneId: 13
+      groupId: 1300038
+      territoryId: 13015250
+      npcInstanceId: 13473940
+      changes:
+        npcTemplateId: 901

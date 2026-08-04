@@ -1,0 +1,41 @@
+# Reopen the Tainted Gorge dungeon (continent 9037) to a party of five.
+#
+# `party` is a MODE flag, not a headcount requirement: it does not block a solo
+# player, dungeons ship it alongside maxMemberCount=1, and it never co-occurs
+# with `solo`, so swapping one for the other is the correct edit. The condition
+# that actually forbids entering alone is `notSolo`, deliberately not set here.
+#
+# Getting that wrong is silent. Quest 1346 uses quest-task auto-entry (its start
+# task carries the dungeon id, so the engine teleports the player in) and a
+# failed admission condition produces NO client feedback, so a bad condition set
+# presents as "the quest does nothing" rather than as a refusal.
+#
+# The quest header's recommended party size stays 1, matching the classic data
+# even though it disagrees with the dungeon itself; raising it would be an
+# authored cosmetic change rather than part of this restore.
+#
+# `upsert` is required here, not `update`: nested collections on dungeonDatas
+# are create/upsert-only, and authoring `conditions` under `update.changes` is
+# refused with E209. A nested collection that is provided is replaced wholesale,
+# so the condition list is restated in full; naming only continentId and
+# conditions leaves every sibling attribute and the nested scripting untouched.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9037
+      conditions:
+        - type: party
+          value: 1
+        - type: levelOver
+          value: 8
+        - type: progressQuest
+          value: 1346
+          taskId: 1
+        - type: completeQuest
+          value: 1346
+        - type: maxMemberCount
+          value: 5

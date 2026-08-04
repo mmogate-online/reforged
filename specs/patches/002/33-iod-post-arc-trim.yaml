@@ -1,0 +1,31 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retire the two post-arc quests 1343 and 1344, which are only offered once the
+# Island of Dawn story arc is already finished.
+#
+# prerequisites [9999] resolves to the never-satisfiable sentinel reference
+# 99,99: the quest stays in the data and stops being offered.
+#
+# Retiring the pair together needs no re-anchor, because 1343's only inbound
+# reference is 1344's prerequisite and nothing anywhere points at 1344. Every
+# NPC and mob they used still serves a live quest except Gregor (213,1028), who
+# keeps his spawn and his villager dialog but loses his only quest role.
+#
+# What goes with them: 1343 carries the island's Karascha reveal, told nowhere
+# else in the zone. The story arc itself ends at 1316 -> 1317 and is unaffected.
+
+quests:
+  update:
+    # Head of the pair. Its only dependent, 1344, is retired in the same spec.
+    - id: 1343            # Answers Lead to More Questions -> sentinel (was 1316, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+    # Tail of the pair. Nothing anywhere depends on it.
+    - id: 1344            # Destroy All Destroyers -> sentinel (was 1343, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]

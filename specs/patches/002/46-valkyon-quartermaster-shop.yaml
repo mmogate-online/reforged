@@ -1,0 +1,116 @@
+# Valkyon Quartermaster shop: menu, tabs, catalogue, prices and strings for Deren
+# 64,1012, spending the Valkyon Commendation. The NPC himself is authored in spec 44.
+#
+# LIST IDS ARE menu*10 + k, NOT menu + k. Both shapes exist in the corpus and they
+# split by shop family: NPC-bound MedalStore shops take menu*10 + k, item-bound
+# right-click shops take menu + k. This one is NPC-bound.
+#
+# A MENU BELONGS TO A SHOP, NOT AN NPC, and one menu means one currency: almost every
+# NPC MedalStore menu carries all of its tabs on the same NeedMedalItemId, and many
+# serve several NPCs. Hence a menu of our own rather than a tab on an existing one.
+#
+# THE PRICE LIVES IN `exchanges`, NOT IN `priceRevision`. priceRevision is a revision
+# index that never exceeds 100 anywhere in the corpus, while buyPriceMedal runs to
+# tens of thousands; vanilla pairs priceRevision 1 with the real cost in
+# buyPriceMedal. Treating priceRevision as the price would cap every shop at 100.
+#
+# The Ascension Scroll row is guarded by PRICE, not by a level gate: an Island of
+# Dawn character could legitimately use it, so the cost is what keeps it far away.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+        - VALKYON_QM_MENU
+        - VALKYON_QM_LIST_MATERIALS
+        - VALKYON_QM_LIST_ASCENSION
+
+# Canon shape, copied from 59,1955: a Villager row keyed (huntingZoneId,
+# npcTemplateId) carrying one Menu of type MedalStore.
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 64
+      npcTemplateId: 1012          # Deren, Valkyon Quartermaster (spec 44)
+      menus:
+        - type: MedalStore
+          id: $VALKYON_QM_MENU
+
+buyMenuLists:
+  upsert:
+    - id: $VALKYON_QM_MENU
+      stringId: $VALKYON_QM_MENU
+      desc: "Valkyon Quartermaster"
+      itemLists:
+        - id: $VALKYON_QM_LIST_MATERIALS
+          stringed: $VALKYON_QM_LIST_MATERIALS
+        - id: $VALKYON_QM_LIST_ASCENSION
+          stringed: $VALKYON_QM_LIST_ASCENSION
+
+buyLists:
+  upsert:
+    - id: $VALKYON_QM_LIST_MATERIALS
+      desc: "Quartermaster Materials"
+      needMedalItemId: $EARLY_PROGRESSION_TOKEN
+      items:
+        - itemId: 94101            # Tier 1 Feedstock, the flattened untiered material
+          priceRevision: 1
+        - itemId: 21351            # Masterwork Alkahest
+          priceRevision: 1
+
+    - id: $VALKYON_QM_LIST_ASCENSION
+      desc: "Quartermaster Ascension"
+      needMedalItemId: $EARLY_PROGRESSION_TOKEN
+      items:
+        - itemId: 185735           # Level 60 Scroll (LEVEL_JUMPING_UP, combatItemArg1 60)
+          priceRevision: 1
+
+exchanges:
+  upsert:
+    - itemId: 94101
+      medalItemId: $EARLY_PROGRESSION_TOKEN
+      buyPriceMedal: 1
+    - itemId: 21351
+      medalItemId: $EARLY_PROGRESSION_TOKEN
+      buyPriceMedal: 2
+    - itemId: 185735
+      medalItemId: $EARLY_PROGRESSION_TOKEN
+      buyPriceMedal: 20000         # ~17 full island clears; see the header
+
+npcStrings:
+  upsert:
+    - id: $VALKYON_QM_MENU
+      string: "Valkyon Quartermaster"
+    - id: $VALKYON_QM_LIST_MATERIALS
+      string: "Materials"
+    - id: $VALKYON_QM_LIST_ASCENSION
+      string: "Ascension"
+
+# 185735 shipped with a twelve-class `requiredClass` missing SOULLESS (Reaper).
+# `update` resolves an item by id across the whole region-partitioned template set,
+# so no `--region` is needed: that flag only chooses where a CREATE writes. The
+# thirteen-class order below is the corpus majority shape, SOULLESS appended last.
+
+items:
+  update:
+    - id: 185735
+      changes:
+        requiredClass: ["BERSERKER", "LANCER", "SLAYER", "WARRIOR", "ARCHER",
+                        "SORCERER", "PRIEST", "ELEMENTALIST", "ENGINEER",
+                        "FIGHTER", "ASSASSIN", "GLAIVER", "SOULLESS"]
+
+# 185735 carries no name and no tooltip in any StrSheet_Item file, so without this it
+# renders as a blank shop row. This MUST be a TOP-LEVEL itemStrings block, never one
+# nested under `items:`: the entity detector anchors its key pattern at column 0, so
+# an inline strings block never registers the family and the client ships it nameless.
+
+itemStrings:
+  upsert:
+    - id: 185735
+      name: "Ascension Scroll"
+      toolTip: "Federation dispensation, countersigned by a quartermaster.$BR$BR<font color = '#2478FF'>Raises the bearer to level 60 at once, granting every skill due at that rank.</font>$BR<font color = '#FF0000'>All progress toward the next level is lost. Cannot be used at level 60 or above.</font>"

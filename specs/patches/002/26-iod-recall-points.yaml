@@ -1,0 +1,152 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Restore the Island of Dawn recall network: the Safe Haven scroll destination and
+# the revive point, on every continent-13 area section.
+#
+# THE SCROLL ITEM IS NOT WHERE THE DESTINATION LIVES. The scroll players carry is
+# item 160 (skill 60130100, type MYSELF_VILLAGE) and it holds NO coordinate: the
+# destination is read from `recallScrollPos` on the AreaData section the player is
+# standing in, and death reads `recallRevivePos` the same way. Section 4 (nameId
+# 13001) is the ROOT catch-all covering the whole island, so anyone not standing
+# inside one of the sub-sections falls through to it. An unwritten root is what makes
+# a recall land somewhere nobody chose.
+#
+# The scroll destination is uniform across all sections, so where a player ends up
+# never depends on which invisible fence they occupy. Revive is deliberately NOT
+# uniform: three northern sections keep their own point, and the v92-only camp
+# sections inherit the point of whichever classic section geometrically contains them.
+#
+# The camp TELEPORT network is a different mechanism (TeleportMenuList/TeleportList
+# keyed on campId) and is untouched here.
+#
+# These are PARTIAL MERGE upserts: only the attributes listed are written, so fences
+# and every other section attribute survive untouched.
+
+areaSections:
+  upsert:
+
+    # ---- A. Classic sections: exact v31 values --------------------------------
+
+    # 13001 Island of Dawn (ROOT, catch-all for the whole island).
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 4
+      nameId: 13001
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13004 Tainted Gorge.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 8
+      nameId: 13004
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13003 Mysterious Ruins.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 31
+      nameId: 13003
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13024 Temple of Terra ruins.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 49
+      nameId: 13024
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13028 Arun's Hill.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 52
+      nameId: 13028
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13030 Timeless Woods. NORTHERN EXCEPTION: revive stays off the Tower Base.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 53
+      nameId: 13030
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+
+    # 13006 Lok cultist base.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 54
+      nameId: 13006
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13007 Mathar Spire.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 55
+      nameId: 13007
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # ---- B. v92-only camp sections: v31 default, derived per the header -------
+
+    # 13031 North Dock. Inside classic 13030 Timeless Woods -> northern revive point.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 57
+      nameId: 13031
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+
+    # 13032 Garrison North Camp. Inside classic 13030 Timeless Woods.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 58
+      nameId: 13032
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "87533.2031,-83932.6797,-4533.1616"
+
+    # 13033 Garrison Central Camp. Covered by the classic root section only.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 59
+      nameId: 13033
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"
+
+    # 13034 Garrison South Camp. Inside classic 13004 Tainted Gorge.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 60
+      nameId: 13034
+      recallScrollContinentId: 13
+      recallScrollPos: "66600.8672,-79855.5234,-2993.1643"
+      recallReviveContinentId: 13
+      recallRevivePos: "66600.8672,-79855.5234,-2993.1643"

@@ -1,0 +1,205 @@
+# Priest heal-over-time: restore the classic abnormality values. Companion to
+# 51-priest-heal-restore-v31.yaml, which restores the direct HpDiff heals; the
+# over-time half lives in Abnormality.xml and is a different DSL entity, so it
+# needs its own spec. Generated, do not hand-edit.
+#
+# The healing tick is AbnormalityEffect type=51, where `value` is the per-tick
+# amount and `max` is the lifetime cap. The two track each other and MUST MOVE
+# TOGETHER: changing value alone silently clips the heal at the old cap.
+#
+# Effects are clear-and-replace on update, so each effect is restated in full
+# rather than patched attribute by attribute.
+#
+# Deliberately NOT restored: `group="skill"`, a structural attribute with no
+# classic analogue, and `level` on 801400/801401, which drives abnormality
+# stacking and override order rather than heal magnitude.
+#
+# WARNING: Restorative Burst (801100/801101) is a MECHANIC change, not a value
+# port. Classic heals proportionally (method 3) over 10 s where the current data
+# heals a flat amount (method 2) over 5 s, so the skill changes in kind and not
+# just in size. It is the last block in the file so it can be removed on its own.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+abnormalities:
+  update:
+
+    # ---------------- Regeneration Circle ----------------
+    - id: 800100
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "88"   # v92 123
+            method: 2
+            variation: 0
+            min: 0
+            max: 1584   # v92 2217.6
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800101
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "111"   # v92 155
+            method: 2
+            variation: 0
+            min: 0
+            max: 1998   # v92 2797.2
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800102
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "136"   # v92 190
+            method: 2
+            variation: 0
+            min: 0
+            max: 2448   # v92 3427.2
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800103
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "161"   # v92 225
+            method: 2
+            variation: 0
+            min: 0
+            max: 2898   # v92 4057.2
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800104
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "182"   # v92 255
+            method: 2
+            variation: 0
+            min: 0
+            max: 3276   # v92 4586.4
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800105
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "198"   # v92 277
+            method: 2
+            variation: 0
+            min: 0
+            max: 3564   # v92 4989.6
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800106
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "208"   # v92 291
+            method: 2
+            variation: 0
+            min: 0
+            max: 3744   # v92 5241.6
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800107
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "214"   # v92 300
+            method: 2
+            variation: 0
+            min: 0
+            max: 3852   # v92 5392.8
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+    - id: 800108
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 2
+            value: "220"   # v92 308
+            method: 2
+            variation: 0
+            min: 0
+            max: 3870   # v92 5418
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom58"
+
+    # ---------------- Sanctuary of Regeneration ----------------
+    - id: 801400
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 1
+            value: "136"   # v92 288
+            method: 2
+            variation: 0
+            min: 0
+            max: 2448   # v92 10350
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom62"
+    - id: 801401
+      changes:
+        effects:
+          - type: 51
+            tickInterval: 1
+            value: "181"   # v92 294
+            method: 2
+            variation: 0
+            min: 0
+            max: 3258   # v92 10386
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom62"
+
+    # ---------------- Restorative Burst ----------------
+    # MECHANIC CHANGE: method 2 (flat) -> 3 (proportional), duration 5s -> 10s
+    - id: 801100
+      changes:
+        time: 10000   # v92 5000
+        effects:
+          - type: 51
+            tickInterval: 1
+            value: "0.018"   # v92 681
+            method: 3   # v92 2
+            variation: 0
+            min: 0
+            max: 1000000
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom61"
+    - id: 801101
+      changes:
+        time: 10000   # v92 5000
+        effects:
+          - type: 51
+            tickInterval: 1
+            value: "0.02"   # v92 852
+            method: 3   # v92 2
+            variation: 0
+            min: 0
+            max: 1000000
+            defenceBonusRate: 1
+            effectId: 50015
+            effectPart: "FXBottom61"

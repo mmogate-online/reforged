@@ -1,0 +1,280 @@
+# Island of Dawn merchant shops restored to their classic (v31) catalogues:
+# Viator's crystal tabs, Rutgar's exclusive general-goods tab, Ashley's missing
+# Merchant binding, and the shared lists Rutgar, Sandom, Ashley and Ainah draw on.
+#
+# buyLists upsert is REPLACE-ALL, and a BuyList belongs to every menu that
+# references it, so the shared lists cannot be restored for this island alone:
+# list 1601 is referenced by 31 menus, 1602 by 34, and store 250's tabs
+# 2501/2502/2505 by 35 merchants outside the island. Restoring them hands the
+# classic set to all of those merchants too. That blast radius is accepted
+# deliberately, and it is why the rows below are the FULL classic catalogue for
+# each list rather than an island-only delta.
+#
+# Classic ids with no v92 ItemTemplate row are omitted rather than stubbed: list
+# 1601 drops 213307 and 219000 for that reason, and nothing else is missing.
+#
+# Store 315 (the seasonal T-cat exchanger) is not restored, because most of its
+# catalogue no longer exists; its spawn is removed by spec 12. Menu 210 (Mahadam)
+# already matches the classic data, so it carries no op.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyLists:
+  upsert:
+    # Viator (64,1004) Crystal Merchant, store 100. Clear-and-replace to the v31 catalog.
+    # Blast radius 1: lists 1001/1002 belong to menu 100 only; menu 100 also serves 60,1002.
+    - id: 1001   # v31: 10 crystals (v92 had 20; trimmed to v31 subset)
+      items:
+        - itemId: 8100   # Pounding Rhomb
+          priceRevision: 1
+        - itemId: 8114   # Bitter Rhomb
+          priceRevision: 1
+        - itemId: 8368   # Swift Rhomb
+          priceRevision: 1
+        - itemId: 8380   # Brilliant Rhomb
+          priceRevision: 1
+        - itemId: 8566   # Threatening Rhomb
+          priceRevision: 1
+        - itemId: 8101   # Pounding Cabochon
+          priceRevision: 1
+        - itemId: 8115   # Bitter Cabochon
+          priceRevision: 1
+        - itemId: 8369   # Swift Cabochon
+          priceRevision: 1
+        - itemId: 8381   # Brilliant Cabochon
+          priceRevision: 1
+        - itemId: 8567   # Threatening Cabochon
+          priceRevision: 1
+    - id: 1002   # v31: 8 crystals (v92 had 2; re-added 6 v31-only crystals)
+      items:
+        - itemId: 8128   # Hardy Rhomb
+          priceRevision: 1
+        - itemId: 8494   # Relentless Rhomb
+          priceRevision: 1
+        - itemId: 8506   # Fleetfoot Rhomb
+          priceRevision: 1
+        - itemId: 8518   # Vigorous Rhomb
+          priceRevision: 1
+        - itemId: 8129   # Hardy Cabochon
+          priceRevision: 1
+        - itemId: 8495   # Relentless Cabochon
+          priceRevision: 1
+        - itemId: 8507   # Fleetfoot Cabochon
+          priceRevision: 1
+        - itemId: 8519   # Vigorous Cabochon
+          priceRevision: 1
+    # Rutgar (64,1005) general goods, store 16064, IoD-exclusive tab 16064.
+    # Blast radius 0: list 16064 belongs to menu 16064 alone.
+    - id: 16064   # v31: [98032, 133, 160] (v92 had [133,160]; re-added 98032)
+      items:
+        - itemId: 98032  # Skycastle Teleport Scroll
+          priceRevision: 1
+        - itemId: 133    # Tower Base Teleport Scroll
+          priceRevision: 1
+        - itemId: 160    # Safe Haven Teleport Scroll
+          priceRevision: 1
+    # Shared general-goods list 1601 (Rutgar/Sandom + 29 non-IoD merchants). v31 classic set.
+    # Skips v31 ids 213307 (Pet Treat) and 219000 (Manual: Outlaw Declaration) - absent from v92.
+    - id: 1601
+      items:
+        - itemId: 94203  # Tier 3 Alkahest
+          priceRevision: 1
+        - itemId: 94204  # Tier 4 Alkahest
+          priceRevision: 1
+        - itemId: 94205  # Tier 5 Alkahest
+          priceRevision: 1
+        - itemId: 94206  # Tier 6 Alkahest
+          priceRevision: 1
+        - itemId: 200001 # Featherlight Potion
+          priceRevision: 1
+        - itemId: 98     # Campfire
+          priceRevision: 1
+        - itemId: 99     # Firewood
+          priceRevision: 1
+        - itemId: 91     # Common Identification Scroll
+          priceRevision: 1
+        - itemId: 92     # Intricate Identification Scroll
+          priceRevision: 1
+        - itemId: 93     # Common Enigmatic Scroll
+          priceRevision: 1
+    # Shared general-goods list 1602 (Rutgar/Sandom + 32 non-IoD merchants). v31 classic set.
+    - id: 1602
+      items:
+        - itemId: 125    # Keener's Bandage
+          priceRevision: 1
+        - itemId: 126    # Verdra Bandage
+          priceRevision: 1
+        - itemId: 127    # Sylva Bandage
+          priceRevision: 1
+        - itemId: 128    # Shetla Bandage
+          priceRevision: 1
+        - itemId: 7154   # Toira Bandage
+          priceRevision: 1
+        - itemId: 7155   # Luria Bandage
+          priceRevision: 1
+        - itemId: 6283   # Ranger's Nostrum I
+          priceRevision: 1
+        - itemId: 6284   # Ranger's Nostrum II
+          priceRevision: 1
+        - itemId: 6285   # Ranger's Nostrum III
+          priceRevision: 1
+        - itemId: 6286   # Ranger's Nostrum IV
+          priceRevision: 1
+        - itemId: 6287   # Ranger's Nostrum V
+          priceRevision: 1
+        - itemId: 6288   # Nostrum of Energy I
+          priceRevision: 1
+        - itemId: 6289   # Nostrum of Energy II
+          priceRevision: 1
+        - itemId: 6290   # Nostrum of Energy III
+          priceRevision: 1
+        - itemId: 6291   # Nostrum of Energy IV
+          priceRevision: 1
+        - itemId: 6292   # Nostrum of Energy V
+          priceRevision: 1
+    # Store 250 "luxury/charm store" tabs 2501/2502/2505 (Ashley/Ainah + 35 non-IoD merchants).
+    # Ported to v31 per user decision; side effects documented in the header block.
+    - id: 2501   # v31: bandages + panacea + rapid-res (v92 had newer nostrums)
+      items:
+        - itemId: 171    # Combat Panacea
+          priceRevision: 1
+        - itemId: 194    # Scroll of Rapid Resurrection
+          priceRevision: 1
+        - itemId: 172    # Keener's Medicated Bandage
+          priceRevision: 1
+        - itemId: 173    # Verdra Medicated Bandage
+          priceRevision: 1
+        - itemId: 174    # Sylva Medicated Bandage
+          priceRevision: 1
+        - itemId: 175    # Shetla Medicated Bandage
+          priceRevision: 1
+        - itemId: 176    # Toira Medicated Bandage
+          priceRevision: 1
+        - itemId: 177    # Luria Medicated Bandage
+          priceRevision: 1
+    - id: 2502   # v31 classic charm tab (empty in v92): Tier 6 Alkahest + 16 charms + 16 greater charms
+      items:
+        - itemId: 94206  # Tier 6 Alkahest
+          priceRevision: 1
+        - itemId: 178    # Power Charm
+          priceRevision: 1
+        - itemId: 179    # Keen Charm
+          priceRevision: 1
+        - itemId: 180    # Speed Charm
+          priceRevision: 1
+        - itemId: 181    # Strength Charm
+          priceRevision: 1
+        - itemId: 182    # Enduring Charm
+          priceRevision: 1
+        - itemId: 183    # Unyielding Charm
+          priceRevision: 1
+        - itemId: 184    # Rigid Charm
+          priceRevision: 1
+        - itemId: 185    # Robust Charm
+          priceRevision: 1
+        - itemId: 186    # Caduceus Charm
+          priceRevision: 1
+        - itemId: 187    # Tenacity Charm
+          priceRevision: 1
+        - itemId: 188    # Mirror Charm
+          priceRevision: 1
+        - itemId: 189    # Relentless Charm
+          priceRevision: 1
+        - itemId: 190    # Cunning Charm
+          priceRevision: 1
+        - itemId: 191    # Vigorous Charm
+          priceRevision: 1
+        - itemId: 192    # Infused Charm
+          priceRevision: 1
+        - itemId: 193    # Swift Charm
+          priceRevision: 1
+        - itemId: 70019  # Greater Power Charm
+          priceRevision: 1
+        - itemId: 70020  # Greater Keen Charm
+          priceRevision: 1
+        - itemId: 70021  # Greater Speed Charm
+          priceRevision: 1
+        - itemId: 70022  # Greater Strength Charm
+          priceRevision: 1
+        - itemId: 70023  # Greater Enduring Charm
+          priceRevision: 1
+        - itemId: 70024  # Greater Unyielding Charm
+          priceRevision: 1
+        - itemId: 70025  # Greater Rigid Charm
+          priceRevision: 1
+        - itemId: 70026  # Greater Robust Charm
+          priceRevision: 1
+        - itemId: 70027  # Greater Caduceus Charm
+          priceRevision: 1
+        - itemId: 70028  # Greater Tenacity Charm
+          priceRevision: 1
+        - itemId: 70029  # Greater Mirror Charm
+          priceRevision: 1
+        - itemId: 70030  # Greater Relentless Charm
+          priceRevision: 1
+        - itemId: 70031  # Greater Cunning Charm
+          priceRevision: 1
+        - itemId: 70032  # Greater Vigorous Charm
+          priceRevision: 1
+        - itemId: 70033  # Greater Infused Charm
+          priceRevision: 1
+        - itemId: 70034  # Greater Swift Charm
+          priceRevision: 1
+    - id: 2505   # v31: 21 dungeon teleport scrolls (v92 had 47)
+      items:
+        - itemId: 195    # Necromancer Tomb Teleport Scroll
+          priceRevision: 1
+        - itemId: 196    # Golden Labyrinth Teleport Scroll
+          priceRevision: 1
+        - itemId: 197    # Bastion of Lok Teleport Scroll
+          priceRevision: 1
+        - itemId: 198    # Sinestral Manor Teleport Scroll
+          priceRevision: 1
+        - itemId: 200521 # Saravash's Ascent Teleport Scroll
+          priceRevision: 1
+        - itemId: 199    # Cultists' Refuge Teleport Scroll
+          priceRevision: 1
+        - itemId: 200    # Akasha's Hideout Teleport Scroll
+          priceRevision: 1
+        - itemId: 326    # Saleron's Sky Garden Teleport Scroll
+          priceRevision: 1
+        - itemId: 327    # Labyrinth of Terror Teleport Scroll
+          priceRevision: 1
+        - itemId: 328    # Ebon Tower Teleport Scroll
+          priceRevision: 1
+        - itemId: 329    # Kelsaik's Nest Teleport Scroll
+          priceRevision: 1
+        - itemId: 442    # Balder's Temple Teleport Scroll
+          priceRevision: 1
+        - itemId: 500    # Argon Corpus/Manaya's Core Teleport Scroll
+          priceRevision: 1
+        - itemId: 72026  # Rift's Edge Teleport Scroll
+          priceRevision: 1
+        - itemId: 96071  # Sabex Armory Teleport Scroll
+          priceRevision: 1
+        - itemId: 96072  # Macellarius Catacombs Teleport Scroll
+          priceRevision: 1
+        - itemId: 80002  # Channelworks Teleport Scroll
+          priceRevision: 1
+        - itemId: 96073  # Ravenous Gorge Teleport Scroll
+          priceRevision: 1
+        - itemId: 96075  # Bathysmal Rise Teleport Scroll
+          priceRevision: 1
+        - itemId: 96076  # Sky Cruiser Endeavor Teleport Scroll
+          priceRevision: 1
+        - itemId: 96078  # Dreadspire Teleport Scroll
+          priceRevision: 1
+
+villagerMenus:
+  upsert:
+    # Ashley (313,1002) Lord Immediate Merchant. v92 has no villager entry for her; v31
+    # binds her to Merchant 250. Binding only - store 250 content is restored above.
+    - huntingZoneId: 313
+      npcTemplateId: 1002
+      menus:
+        - type: Merchant
+          id: 250

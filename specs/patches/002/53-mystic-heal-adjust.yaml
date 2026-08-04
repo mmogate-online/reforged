@@ -1,0 +1,18 @@
+# Mystic heal power coefficient.
+#
+# WorldData/HealAdjust is a per-class coefficient that MULTIPLIES a skill's healing,
+# and stock v92 ships elementalist at 0.001, which flattens every Mystic heal to
+# almost nothing. It scales heal-over-time abnormalities as well as direct HpDiff, so
+# this one row covers both Target Heal and the Spirit of Life ladder.
+#
+# 0.1 matches the Priest coefficient set in the companion spec. Mystic's healing leans
+# much harder on the summoned elemental, so the two are not required to stay equal.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+worldData:
+  classConfig:
+    healAdjust:
+      elementalist: 0.1

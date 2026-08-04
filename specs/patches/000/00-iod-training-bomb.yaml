@@ -1,0 +1,15 @@
+# Island of Dawn — Training Bomb fix
+# Item 5002 (Training Bomb) must have unlimited uses so players can
+# complete quest 1329 "Going Above and Beyond" (kill 3 scarecrows).
+# v92 changed itemUseCount from 0 (unlimited) to 1 (single use),
+# making the quest impossible to complete with the 1 bomb given by the NPC.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  update:
+    - id: 5002
+      changes:
+        itemUseCount: 0

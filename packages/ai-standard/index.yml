@@ -1,0 +1,83 @@
+spec:
+  version: "1.0"
+
+# AUTO-GENERATED AI archetypes from full-population statistical analysis of the live datasheet.
+# tau=0.9 modal-share acceptance; each value annotated share=modal-share, n=sample.
+# Source: tools/npc-standard/ (analyze_all.py -> codegen.py). Do not hand-edit.
+
+definitions:
+  # ===== AI archetypes =====
+  MerchantVillagerAI:
+    cautionState:
+      alertAngle: 360  # share=97% n=2577
+      checkInterval: 5000  # share=99% n=2577
+      probAvoid: 0  # share=95% n=2577
+    peaceState:
+      checkInterval: 5000  # share=95% n=2578
+      followNearUser: false  # share=94% n=1449
+      minLeaderDistance: 100  # share=96% n=2578
+  QuestVillagerAI:
+    cautionState:
+      alertAngle: 360  # share=100% n=51
+      checkInterval: 5000  # share=100% n=51
+      probActiveMove: 0  # share=92% n=51
+      probAvoid: 0  # share=96% n=51
+      rotateAngle: 45  # share=92% n=51
+    combatState:
+      playSocialWhenFirstAggro: false  # share=96% n=51
+    peaceState:
+      checkInterval: 5000  # share=92% n=51
+      followNearUser: false  # share=96% n=27
+      maxLeaderDistance: 150  # share=92% n=51
+      minLeaderDistance: 100  # share=96% n=51
+  NormalMonsterAI:
+    combatState:
+      enable: true  # share=90% n=2767
+    peaceState:
+      checkInterval: 5000  # share=93% n=4575
+      followNearUser: false  # share=91% n=3637
+      popupMsg: ""  # share=98% n=3284
+  EliteMonsterAI:
+    cautionState:
+      alertAngle: 360  # share=91% n=1535
+    combatState:
+      enable: true  # share=94% n=1104
+    peaceState:
+      checkInterval: 5000  # share=95% n=1535
+      followNearUser: false  # share=92% n=1413
+      popupMsg: ""  # share=98% n=1341
+  BossMonsterAI:
+    cautionState:
+      alertAngle: 360  # share=100% n=657
+      alertRadius: 250  # share=97% n=657
+    peaceState:
+      checkInterval: 5000  # share=96% n=657
+      followNearUser: false  # share=100% n=604
+      popupMsg: ""  # share=99% n=571
+  ObjectNpcAI:
+    cautionState:
+      alertAngle: 360  # share=100% n=1565
+      checkInterval: 5000  # share=100% n=1565
+      enable: false  # share=98% n=1553
+      probActiveMove: 0  # share=98% n=1565
+      probAvoid: 0  # share=100% n=1565
+      rotateAngle: 45  # share=96% n=1565
+      rotateTime: 10  # share=90% n=1565
+    combatState:
+      playSocialWhenFirstAggro: false  # share=99% n=1565
+      watchRotateAngle: 45  # share=96% n=1565
+    peaceState:
+      checkInterval: 5000  # share=98% n=1565
+      followNearUser: false  # share=99% n=1490
+      maxLeaderDistance: 150  # share=91% n=1565
+      minLeaderDistance: 100  # share=93% n=1565
+      popupMsg: ""  # share=97% n=879
+
+exports:
+  definitions:
+    - MerchantVillagerAI
+    - QuestVillagerAI
+    - NormalMonsterAI
+    - EliteMonsterAI
+    - BossMonsterAI
+    - ObjectNpcAI

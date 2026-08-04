@@ -1,0 +1,51 @@
+# IoD (Island of Dawn) Token IDs
+#
+# ONE token lives here: KUGAI_TOKEN, dropped by Kugai (npcTemplateId 1004) in hunting
+# zone 13, opening a 3-tab MedalStore (Weapons / Armor / Materials). It is genuinely
+# island-scoped, which is why it stays.
+#
+# The early-progression currency 95217 USED to live here as IOD_PROGRESSION_TOKEN. It is
+# band-wide (every sub-60 zone, not just the island), so it moved to
+# `packages/progression-tokens` as EARLY_PROGRESSION_TOKEN. Import it from there.
+#
+# ID allocation from dungeon-tokens reserved ranges:
+#   Token items:  95216 (Kugai)
+#   Menu ID:      9999008
+#   BuyList IDs:  99990081 (Weapons), 99990082 (Armor), 99990083 (Materials)
+#
+# RENUMBERED 2026-07-31 from 9999009/9999010/9999011 to the canon `menu*10+k`
+# shape, when the shop moved off its inventory right-click onto physical Bounty
+# Broker NPCs. Measured across all 1,122 BuyMenuList menus and 1,503 BuyLists:
+# NPC-bound MedalStore shops derive the BuyList id as menu*10+k (46.3%, the
+# plurality, and the shape of the canon donor 59,1955 -> menu 280 -> list 2801),
+# while item-bound right-click shops mostly do not. Moving families means moving
+# conventions. See `packages/dungeon-tokens/index.yml` for the full measurement.
+#
+# The renumber leaves no orphan rows: the committed server datasheet baseline
+# holds ZERO 9999xxx BuyList ids (verified 2026-07-31), and migrate applies with
+# --source-ref <server HEAD>, so every replay re-derives BuyList.xml from a file
+# that never contained the old ids.
+
+spec:
+  version: "1.0"
+
+variables:
+  # MOVED. The early-progression token is band-wide, not island-scoped, so it now
+  # lives in `packages/progression-tokens` as EARLY_PROGRESSION_TOKEN. This package
+  # keeps only Kugai's per-region wiring.
+
+  KUGAI_TOKEN: 95216
+
+  KUGAI_MENU: 9999008
+
+  KUGAI_LIST_WEAPONS: 99990081
+  KUGAI_LIST_ARMOR: 99990082
+  KUGAI_LIST_MATERIALS: 99990083
+
+exports:
+  variables:
+    - KUGAI_TOKEN
+    - KUGAI_MENU
+    - KUGAI_LIST_WEAPONS
+    - KUGAI_LIST_ARMOR
+    - KUGAI_LIST_MATERIALS

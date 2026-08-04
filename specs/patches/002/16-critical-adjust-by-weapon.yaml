@@ -1,0 +1,52 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: equipment-item-ids
+    use:
+      variables:
+        - HIGH_TIER_DPS_WEAPON_IDS
+        - HIGH_TIER_HEALER_WEAPON_IDS
+        - MID_TIER_DPS_WEAPON_IDS
+        - MID_TIER_HEALER_WEAPON_IDS
+        - LOW_TIER_DPS_WEAPON_IDS
+        - LOW_TIER_HEALER_WEAPON_IDS
+
+criticalAdjustByWeapon:
+  upsert:
+    - itemTemplateId: $HIGH_TIER_DPS_WEAPON_IDS
+      monsterTypeList: ALL
+      criRates:
+        - levelRange: 1..70
+          rate: 0.1
+
+    - itemTemplateId: $HIGH_TIER_HEALER_WEAPON_IDS
+      monsterTypeList: ALL
+      criRates:
+        - levelRange: 1..70
+          rate: 0.1
+
+    - itemTemplateId: $MID_TIER_DPS_WEAPON_IDS
+      monsterTypeList: ALL
+      criRates:
+        - levelRange: 1..70
+          rate: 0.1
+
+    - itemTemplateId: $MID_TIER_HEALER_WEAPON_IDS
+      monsterTypeList: ALL
+      criRates:
+        - levelRange: 1..70
+          rate: 0.1
+
+    - itemTemplateId: $LOW_TIER_DPS_WEAPON_IDS
+      monsterTypeList: ALL
+      criRates:
+        - levelRange: 1..70
+          rate: 0.1
+
+    - itemTemplateId: $LOW_TIER_HEALER_WEAPON_IDS
+      monsterTypeList: ALL
+      criRates:
+        - levelRange: 1..70
+          rate: 0.1

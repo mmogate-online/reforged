@@ -1,0 +1,22 @@
+#
+# provenance: carry-over
+spec:
+  version: "1.0"
+  schema: v92
+
+# Disables the Stepstone chain at its head, quest 59901. Stepstone is later content,
+# outside the classic-restoration scope, and gating the chain head blocks the chain.
+#
+# requirements.prerequisites = [9999] is the disable mechanic: a prerequisite id is
+# stored as the pair (id//100, id%100), so 9999 resolves to the reference 99,99, the
+# never-satisfiable sentinel the publisher itself uses to soft-disable a quest. The
+# quest, its dialogs and its rewards stay intact; it simply can never be offered.
+#
+# Generated; regenerate rather than hand-edit.
+
+quests:
+  update:
+    - id: 59901
+      changes:
+        requirements:
+          prerequisites: [9999]

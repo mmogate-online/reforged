@@ -1,0 +1,26 @@
+# Remove the T-cat Exchanger (hunting zone 64, npc template 9000) from the Island
+# of Dawn baseline. His store is a seasonal event exchanger whose catalogue no
+# longer exists here: 33 of its 37 item ids have no v92 ItemTemplate row, so there
+# is no functional shop left to restore behind the spawn.
+#
+# The op deletes the TERRITORY, not the spawn. Territory 6400024 holds his single
+# placement and nothing else, and a parent delete cascades to its children, so one
+# delete removes both without assuming any ordering between a spawn delete and a
+# territory delete inside the same batch. Group 6400001 keeps its nine other
+# territories, so the group itself must stay.
+#
+# The dead wiring is left in place on purpose: his VillagerMenu binding, any
+# .condition file, and the NpcData row for template 9000. A dormant template with
+# no spawn is the retail-consistent shape and matches the zone-13 precedent.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territories:
+  delete:
+    - huntingZoneId: 64
+      groupId: 6400001
+      territoryId: 6400024     # cascades to its only spawn 6400140 (Tikat 9000); group 6400001 retained

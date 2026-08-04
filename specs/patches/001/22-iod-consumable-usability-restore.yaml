@@ -1,0 +1,49 @@
+# Restore usability strings on the consumables and recipe designs that Berlon's
+# crafting chain (spec 21) produces: five base-tier potions and scrolls whose
+# tooltips were replaced with "This item is no longer usable.", and the three
+# recipe DESIGN items that were reduced to generic "Worn Recipe" junk.
+#
+# A string-only restore is enough because the strings are the only thing that
+# was gutted: the item templates still carry their original linkSkillId,
+# combatItemType, cooldown group and requiredLevel, and the recipe designs still
+# link through ItemProduceRecipe. Buy and sell prices are deliberately left at
+# their current retuned values rather than reverted along with the text.
+#
+# Trap: the use gate can also live in the linked skill rather than in the item,
+# so a tooltip-only restore can make an item READ usable without it firing. The
+# linked SkillData sheet is out of scope here.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    - id: 6000
+      changes:
+        toolTip: "Immediately recovers $hpDiff HP."
+    - id: 6001
+      changes:
+        toolTip: "Immediately recovers $hpDiff HP."
+    - id: 6016
+      changes:
+        toolTip: "Immediately replenishes $mpDiff MP."
+    - id: 6017
+      changes:
+        toolTip: "Immediately replenishes $mpDiff MP."
+    - id: 6197
+      changes:
+        toolTip: "Increases Crit Power by $value for $time. This item's effect does not stack with that of the other onslaught scrolls."
+    # -- B) Recipe designs: restore v31 identity (name + tooltip) ----------------
+    - id: 91213
+      changes:
+        name: "Recipe: Healing Potion I"
+        toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 91221
+      changes:
+        name: "Recipe: Mana Potion I"
+        toolTip: "Use this design to learn the corresponding crafting skill."
+    - id: 91282
+      changes:
+        name: "Recipe: Onslaught Scroll: Crit Power I"
+        toolTip: "Use this design to learn the corresponding crafting skill."

@@ -1,0 +1,656 @@
+# Chest Top Roll Item Updates - Level 65
+# Updates Level 65 chest pieces to use new class-specific passivity category IDs.
+# Fixes both items still using old categories (2440-2452) and items regressed to 120316.
+#
+# Sets updated:
+#   - Ambush (12 items)
+#   - Behemoth (13 items)
+#   - Deathwrack (13 items)
+#   - Discovery (13 items)
+#   - Generation (11 items)
+#   - Guile (13 items)
+#   - Imperator (12 items)
+#   - Lucid (10 items)
+#   - Misery (13 items)
+#   - Schisma (13 items)
+#   - Slaughter (13 items)
+#   - Starfall (11 items)
+#
+# Must run AFTER 02-chest-toproll-system.yaml (creates the categories)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: chest-toproll-categories
+    use:
+      variables:
+        - CATEGORY_CHEST_ARCHER
+        - CATEGORY_CHEST_NINJA
+        - CATEGORY_CHEST_BERSERKER
+        - CATEGORY_CHEST_MYSTIC
+        - CATEGORY_CHEST_GUNNER
+        - CATEGORY_CHEST_BRAWLER
+        - CATEGORY_CHEST_VALKYRIE
+        - CATEGORY_CHEST_LANCER
+        - CATEGORY_CHEST_PRIEST
+        - CATEGORY_CHEST_SLAYER
+        - CATEGORY_CHEST_SORCERER
+        - CATEGORY_CHEST_REAPER
+        - CATEGORY_CHEST_WARRIOR
+
+items:
+  update:
+
+    # Ambush (Level 65, 12 items)
+    - id: 88229  # Sleekclaw Cuirass (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 88224  # Leadgate Platemail (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 88226  # Swaychant Platemail (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 88225  # Spurtlure Platemail (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 88223  # Steermold Platemail (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 88232  # Frostgraze Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 88234  # Amourex Gown (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 88233  # Deificgraze Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 88230  # Seersting Cuirass (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 88228  # Beguilefang Cuirass (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 88231  # Flamegraze Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 88227  # Snaketongue Cuirass (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Behemoth (Level 65, 13 items)
+    - id: 88260  # Derangevest (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 88255  # Steelscale Mail (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 88257  # Mythicscale Mail (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 88256  # Titanscale Mail (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 88254  # Bronzescale Mail (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 88263  # Blightail Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 88265  # Shadowtail Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 88264  # Ashentail Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 88261  # Lupinevest (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 88259  # Feralvest (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 88262  # Flaretail Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 59596  # Vildevest (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 88258  # Savagevest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Deathwrack (Level 65, 13 items)
+    - id: 72284  # Huntwrack Vest (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 72279  # Whipsmil (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 72281  # Boksmil (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 72280  # Plugsmil (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 72278  # Stopsmil (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 72288  # Turncoat (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 72290  # Spurncoat (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 72289  # Yearncoat (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 72285  # Cullwrack Vest (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 72283  # Bandwrack Vest (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 72287  # Burncoat (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 72286  # Marewrack Vest (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 72282  # Dropwrack Vest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Discovery (Level 65, 13 items)
+    - id: 96288  # Snareway Vest (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 96282  # Turncut Hauberk (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 82564  # Proudblow Hauberk (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 55554  # Cutstob Hauberk (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 96281  # Stopturn Hauberk (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 96294  # Mindprey Unwrap (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 58636  # Mangleplay Unwrap (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 96295  # Mendpray Unwrap (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 96289  # Shadowway Vest (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 96287  # Scarway Vest (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 96293  # Mincepay Unwrap (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 59648  # Selvay Vest (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 96286  # Stalkway Vest (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Generation (Level 65, 11 items)
+    - id: 96242  # Sievage Jacket (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 96236  # Eternalwrath Hauberk (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 82567  # Everlast Hauberk (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 55557  # Everwatch Hauberk (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 96235  # Eternalwaite Hauberk (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 96248  # Soulkin Vestments (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 96249  # Mendkin Vestments (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 96243  # Scarage Jacket (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 96241  # Fazage Jacket (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 96247  # Firekin Vestments (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 96240  # Stavage Jacket (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Guile (Level 65, 13 items)
+    - id: 88199  # Hexrein Cuirass (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 88194  # Zealwrek Mail (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 88196  # Zealsubsume Mail (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 88195  # Zealgorge Mail (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 88193  # Zealheist Mail (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 88202  # Bloodeprive Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 88204  # Stiflebreath Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 88203  # Bloodrain Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 88200  # Hexrest Cuirass (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 88198  # Hexsust Cuirass (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 88201  # Bloodstain Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 59592  # Deathmaid Cuirass (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 88197  # Hexbest Cuirass (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Imperator (Level 65, 12 items)
+    - id: 88081  # Arkshriek Cuirass (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 88076  # Rushcrest Platemail (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 88078  # Crushfest Platemail (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 88077  # Brushfast Platemail (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 88075  # Hushcast Platemail (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 88084  # Titalox Gown (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 88086  # Covertox Gown (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 88085  # Deusvox Gown (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 88082  # Hartsneak Cuirass (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 88080  # Hellsrake Cuirass (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 88083  # Firepox Gown (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 88079  # Darksnake Cuirass (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Lucid (Level 65, 10 items)
+    - id: 96693  # Linekeep Jerkin (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 96686  # Deathwave Hauberk (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 96687  # Painwave Hauberk (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 96685  # Starcall Hauberk (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 96699  # Vultualweave Wrap (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 96700  # Thuralweave Wrap (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 96694  # Lostkeep Jerkin (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 96692  # Bloodkeep Jerkin (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 96698  # Tremefalweave Wrap (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 96691  # Truekeep Jerkin (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Misery (Level 65, 13 items)
+    - id: 72252  # Grifal Jact (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 72247  # Caufase Plate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 72249  # Vunase Plate (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 72248  # Skubase Plate (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 72246  # Ikidase Plate (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 72256  # Tivium Gown (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 72258  # Povium Gown (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 72257  # Diesium Gown (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 72253  # Mactal Jact (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 72251  # Guktal Jact (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 72255  # Elevium Gown (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 72254  # Cassal Jact (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 72250  # Sybgal Jact (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Schisma (Level 65, 13 items)
+    - id: 96604  # Lofty Arcoat (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 96597  # Bliz Jackplate (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 82589  # Shrap Jackplate (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 96598  # Flak Jackplate (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 96596  # Grav Jackplate (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 96610  # Schismark Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 58638  # Rendsum Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 96611  # Fissuretip Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 96605  # Whirled Peacoat (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 96603  # Slashed Seacoat (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 96609  # Splitfire Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 59659  # Chorded Veecoat (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 96602  # Gashed Encoat (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Slaughter (Level 65, 13 items)
+    - id: 88050  # Stemcarve Jerkin (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 88045  # Rendgore Mail (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 88047  # Clavigore Mail (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 88046  # Pumagore Mail (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 88044  # Steadgore Mail (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 88053  # Hixelmew Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 88055  # Bloomdew Robe (Ninja)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_NINJA"]
+        requiredClass: ["assassin"]
+    - id: 88054  # Kaiamew Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 88051  # Clewcarve Jerkin (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 88049  # Fluicarve Jerkin (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 88052  # Sizzimew Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 59586  # Twilcarve Jerkin (Valkyrie)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+        requiredClass: ["glaiver"]
+    - id: 88048  # Duacarve Jerkin (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]
+
+    # Starfall (Level 65, 11 items)
+    - id: 97280  # Starfall Cuirass (Archer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_ARCHER"]
+        requiredClass: ["archer"]
+    - id: 97275  # Redstar Hauberk (Berserker)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BERSERKER"]
+        requiredClass: ["berserker"]
+    - id: 97277  # Starburst Hauberk (Brawler)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+        requiredClass: ["fighter"]
+    - id: 97276  # Starduster Hauberk (Gunner)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+        requiredClass: ["engineer"]
+    - id: 97274  # Blackstar Hauberk (Lancer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_LANCER"]
+        requiredClass: ["lancer"]
+    - id: 97283  # Twilighter Robe (Mystic)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_MYSTIC"]
+        requiredClass: ["elementalist"]
+    - id: 97284  # Sunweaver Robe (Priest)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_PRIEST"]
+        requiredClass: ["priest"]
+    - id: 97281  # Coldlight Cuirass (Reaper)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+        requiredClass: ["soulless"]
+    - id: 97279  # Sunweaver Cuirass (Slayer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SLAYER"]
+        requiredClass: ["slayer"]
+    - id: 97282  # Sunflare Robe (Sorcerer)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_SORCERER"]
+        requiredClass: ["sorcerer"]
+    - id: 97278  # Stardancer Cuirass (Warrior)
+      changes:
+        linkPassivityCategoryId: ["$CATEGORY_CHEST_WARRIOR"]
+        requiredClass: ["warrior"]

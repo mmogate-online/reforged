@@ -1,0 +1,37 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retire the redundant Island of Dawn quest 1323 "Getting Some Answers" and re-anchor
+# its only dependent. The classic data ships 1323 disabled; it was our own padding wave
+# that turned it on, so this removes padding scope rather than diverging from the
+# classic set.
+#
+# THE REDUNDANCY. Task 1 of 1323 is field-for-field identical to task 2 of the mandatory
+# story quest 1304 "Making the Rounds": same monster (13,300931 Ghilliedhu), same count,
+# same grant rate, same flag icon, same delivery NPC. The reward is duplicated too, both
+# quests paying the same exp, gold and class weapon bag, so 1323's copy always lands on
+# a character who has already had one.
+#
+# Quest 1324's prerequisite is the ONLY inbound reference to 1323 anywhere in the server
+# tree or the client: 1323 carries no successor link, belongs to no story group, and is
+# named by no achievement, NPC appear gate, dungeon condition or WorkObject window. That
+# is why the whole structural cost of the trim is the two ops below.
+#
+# MECHANISM: requirements.prerequisites [9999] emits the ref 99,99, the never-satisfiable
+# sentinel used across IoD to retire a quest in place. Tasks, dialogs, strings and the
+# compensation row all stay intact, so the retirement is reversible.
+
+quests:
+  update:
+    # Retire the duplicate, restoring the classic shipped state for this quest.
+    - id: 1323            # Getting Some Answers -> sentinel
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+    # Re-anchor the orphaned dependent onto the surviving Kishale root.
+    - id: 1324            # Essence and Sensibility -> 1322 (was 1323)
+      changes:
+        requirements:
+          prerequisites: [1322]

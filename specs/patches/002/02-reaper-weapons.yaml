@@ -1,0 +1,314 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: equipment-item-standard
+    use:
+      definitions:
+        - MidTierChainWeapon
+        - HighTierChainWeapon
+
+definitions:
+  midTierReaperWeapon:
+    $extends: MidTierChainWeapon
+    name: "chain"
+    level: 60
+    rank: 4
+    divide: 0
+    buyPrice: 445360
+    sellPrice: 44536
+    extractRatio: 24
+    requiredLevel: 60
+    icon: "Icon_Equipments.Chain26_B_Tex"
+    defaultValue: 8907188
+    linkLookInfoId: 9101002
+    changeColorEnable: false
+    changeEnchantFxId: 1007
+    linkMaterialEnchantId: 23004
+
+  highTierReaperWeapon:
+    $extends: HighTierChainWeapon
+    name: "chain"
+    level: 60
+    rank: 4
+    divide: 0
+    buyPrice: 445360
+    sellPrice: 44536
+    extractRatio: 24
+    requiredLevel: 60
+    icon: "Icon_Equipments.Chain26_B_Tex"
+    defaultValue: 8907188
+    linkLookInfoId: 9101002
+    changeColorEnable: false
+    changeEnchantFxId: 1007
+    linkMaterialEnchantId: 33004
+
+items:
+  upsert:
+    # Thalnim
+    - $extends: midTierReaperWeapon
+      id: 71755
+      linkEquipmentId: 105095
+      itemLevelId: 10144
+      linkPassivityId:
+        - "210906"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Whisperfangs"
+        toolTip: "Thalnim weapon."
+      equipment:
+        computed: true
+
+    # Sardonal
+    - $extends: midTierReaperWeapon
+      id: 71756
+      linkEquipmentId: 105095
+      itemLevelId: 10139
+      linkPassivityId:
+        - "210906"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Echoing Scythes"
+        toolTip: "Sardonal weapon."
+      equipment:
+        computed: true
+
+    # Adroitsum
+    - $extends: midTierReaperWeapon
+      id: 71757
+      linkEquipmentId: 105096
+      itemLevelId: 10139
+      linkPassivityId:
+        - "210906"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Abyssweavers"
+        toolTip: "Adroitsum weapon."
+      equipment:
+        computed: true
+
+    # Frostfire Ice
+    - $extends: midTierReaperWeapon
+      id: 71768
+      linkEquipmentId: 105169
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317134"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Icefangs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Frostfire Fire
+    - $extends: midTierReaperWeapon
+      id: 71769
+      linkEquipmentId: 105169
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317144"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Blazearcs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Flawless Frostfire Fire
+    - $extends: highTierReaperWeapon
+      id: 71758
+      linkEquipmentId: 105097
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317144"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Flawless Blazearcs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Flawless Frostfire Ice
+    - $extends: highTierReaperWeapon
+      id: 71759
+      linkEquipmentId: 105098
+      itemLevelId: 10142
+      linkPassivityId:
+        - "210906"
+        - "317134"
+        - "310800"
+        - "310600"
+        - "310300"
+        - "310710"
+      strings:
+        name: "Flawless Icefangs"
+        toolTip: "Frostfire weapon."
+      equipment:
+        computed: true
+
+    # Dreamkeeper
+    - $extends: highTierReaperWeapon
+      id: 71760
+      linkEquipmentId: 105098
+      itemLevelId: 10148
+      linkPassivityId:
+        - "210906"
+        - "310300"
+        - "310800"
+        - "311000"
+        - "310600"
+        - "310200"
+      strings:
+        name: "Nightpiercers"
+        toolTip: "Dreamkeeper weapon."
+      equipment:
+        computed: true
+
+    # Agnitor
+    - $extends: midTierReaperWeapon
+      id: 71761
+      linkEquipmentId: 105099
+      itemLevelId: 10158
+      linkPassivityId:
+        - "210907"
+        - "310300"
+        - "310800"
+        - "311300"
+        - "310600"
+        - "313900"
+      strings:
+        name: "Ephemeral Truth"
+        toolTip: "Agnitor weapon."
+      equipment:
+        computed: true
+
+    # Discord
+    - $extends: midTierReaperWeapon
+      id: 71762
+      linkEquipmentId: 105099
+      itemLevelId: 10150
+      linkPassivityId:
+        - "210906"
+        - "310300"
+        - "310800"
+        - "311100"
+        - "310500"
+        - "310200"
+      strings:
+        name: "Fractured Arcs"
+        toolTip: "Discord weapon."
+      equipment:
+        computed: true
+
+    # Abyss
+    - $extends: midTierReaperWeapon
+      id: 71763
+      linkEquipmentId: 105100
+      itemLevelId: 10158
+      linkPassivityId:
+        - "210907"
+        - "310300"
+        - "310800"
+        - "311300"
+        - "310600"
+        - "311000"
+      strings:
+        name: "Abyssfangs"
+        toolTip: "Abyss weapon."
+      equipment:
+        computed: true
+
+    # Regent
+    - $extends: midTierReaperWeapon
+      id: 71764
+      linkEquipmentId: 105101
+      itemLevelId: 10165
+      linkPassivityId:
+        - "210907"
+        - "317274"
+        - "310300"
+        - "310800"
+        - "310200"
+        - "310600"
+        - "311100"
+      strings:
+        name: "Regal Scythes"
+        toolTip: "Regent weapon."
+      equipment:
+        computed: true
+
+    # Visionmaker
+    - $extends: highTierReaperWeapon
+      id: 71765
+      linkEquipmentId: 105102
+      itemLevelId: 10165
+      linkPassivityId:
+        - "210907"
+        - "317264"
+        - "310300"
+        - "310800"
+        - "310200"
+        - "311300"
+        - "311000"
+        - "3000020"
+      strings:
+        name: "Dreamscythes"
+        toolTip: "Visionmaker weapon."
+      equipment:
+        computed: true
+
+    # Steadfast
+    - $extends: midTierReaperWeapon
+      id: 71766
+      linkEquipmentId: 104911
+      itemLevelId: 10179
+      linkPassivityId:
+        - "210907"
+        - "510010"
+        - "510000"
+        - "510040"
+      strings:
+        name: "Bloodlash"
+        toolTip: "Steadfast weapon."
+      equipment:
+        computed: true
+
+    # Nightforge PVE
+    - $extends: highTierReaperWeapon
+      id: 71767
+      linkEquipmentId: 104895
+      itemLevelId: 10183
+      linkPassivityId:
+        - "210907"
+        - "317264"
+        - "510010"
+        - "510000"
+        - "510050"
+      strings:
+        name: "Shardfangs"
+        toolTip: "Nightforge PvE weapon."
+      equipment:
+        computed: true

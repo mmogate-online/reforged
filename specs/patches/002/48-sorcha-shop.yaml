@@ -1,0 +1,98 @@
+# Sorcha's shop: cosmetics bought with Sorcha's Sigil. The NPC is spec 44, the
+# token and her appear gate are spec 47, the quest grant is spec 002/40.
+#
+# COSMETICS ONLY, and that is a framework invariant rather than a taste call: only
+# the tokens on the power-spend registry may sell power items, and a per-content
+# dungeon token like this one is not on it. No gear, no crystals, no enchant
+# materials, no consumable that affects combat. The four items below are
+# EQUIP_STYLE_ACCESSORY pieces that nothing else in the corpus grants, all
+# `part: STYLE` with every stat at zero and requiredLevel 10, so the no-power
+# constraint holds by construction rather than by judgment.
+#
+# Pricing follows from quest 1346 being one-time: a player gets exactly one payout
+# of 30 Sigils, so a catalogue priced at 30 each makes the first clear a choice of
+# one of four, and leaves later repeatable quests something to reward.
+#
+# ID CONVENTION: NPC-bound MedalStore shops derive the list id from the menu id as
+# menu*10+k. A menu carries ONE currency (its tabs share needMedalItemId), which is
+# why Sorcha gets her own menu rather than a tab on someone else's.
+#
+# PRICES LIVE IN `exchanges`, NOT in `priceRevision`. priceRevision is a revision
+# index (it caps at 100 corpus-wide) while buyPriceMedal carries the real cost;
+# vanilla pairs priceRevision: 1 with the actual price.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: dungeon-tokens
+    use:
+      variables:
+        - SORCHA_TOKEN
+        - SORCHA_MENU
+        - SORCHA_LIST_COSMETICS
+
+# Bind the menu to Sorcha
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 64
+      npcTemplateId: 1014          # Sorcha at Tower Base (spec 44)
+      menus:
+        - type: MedalStore
+          id: $SORCHA_MENU
+
+# The menu and its single tab
+
+buyMenuLists:
+  upsert:
+    - id: $SORCHA_MENU
+      stringId: $SORCHA_MENU
+      desc: "Sorcha's Curios"
+      itemLists:
+        - id: $SORCHA_LIST_COSMETICS
+          stringed: $SORCHA_LIST_COSMETICS
+
+# The catalogue
+
+buyLists:
+  upsert:
+    - id: $SORCHA_LIST_COSMETICS
+      desc: "Sorcha Cosmetics"
+      needMedalItemId: $SORCHA_TOKEN
+      items:
+        - itemId: 50042            # Hat of Sweet Dreams
+          priceRevision: 1
+        - itemId: 50041            # Dapper Vampir's Hat
+          priceRevision: 1
+        - itemId: 50056            # Ghost Knight Helm
+          priceRevision: 1
+        - itemId: 50065            # Faerie Globe
+          priceRevision: 1
+
+# Prices
+
+exchanges:
+  upsert:
+    - itemId: 50042
+      medalItemId: $SORCHA_TOKEN
+      buyPriceMedal: 30
+    - itemId: 50041
+      medalItemId: $SORCHA_TOKEN
+      buyPriceMedal: 30
+    - itemId: 50056
+      medalItemId: $SORCHA_TOKEN
+      buyPriceMedal: 30
+    - itemId: 50065
+      medalItemId: $SORCHA_TOKEN
+      buyPriceMedal: 30
+
+# Shop title strings
+
+npcStrings:
+  upsert:
+    - id: $SORCHA_MENU
+      string: "Sorcha's Curios"
+    - id: $SORCHA_LIST_COSMETICS
+      string: "Curios"

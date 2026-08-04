@@ -1,0 +1,224 @@
+# Enchant System Materialization Spec
+# Applies the standard enchant system from enchant-standard package
+#
+# This spec creates:
+#   - Passivities (via enchant-categories definitions)
+#   - Enchant Passivity Categories (links passivities to enchant effects)
+#   - Enchant Data entries (the actual enchant configurations)
+#
+# Must run BEFORE gear-enchant-sync.yaml which references these enchant IDs.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: enchant-categories
+    use:
+      variables:
+        # Random Pool Category IDs
+        - CATEGORY_WEAPON_DPS_TANK_RANDOM
+        - CATEGORY_WEAPON_HEALER_RANDOM
+        - CATEGORY_CHEST_RANDOM
+        - CATEGORY_HAND_MAIL_RANDOM
+        - CATEGORY_HAND_LEATHER_RANDOM
+        - CATEGORY_HAND_ROBE_RANDOM
+        - CATEGORY_BOOTS_RANDOM
+        # Fixed Weapon DPS/Tank Category IDs (shared)
+        - CATEGORY_WEAPON_DPS_TANK_FIXED_10
+        - CATEGORY_WEAPON_DPS_TANK_FIXED_11
+        - CATEGORY_WEAPON_DPS_TANK_FIXED_12
+        # Fixed Weapon Healer Category IDs
+        - CATEGORY_WEAPON_HEALER_FIXED_10
+        - CATEGORY_WEAPON_HEALER_FIXED_11
+        - CATEGORY_WEAPON_HEALER_FIXED_12
+        # Fixed Armor Category IDs
+        - CATEGORY_ARMOR_FIXED_7
+        - CATEGORY_ARMOR_FIXED_8
+        - CATEGORY_ARMOR_FIXED_9
+      definitions:
+        # Random Pools
+        - CategoryWeaponDPSTankRandom
+        - CategoryWeaponHealerRandom
+        - CategoryChestRandom
+        - CategoryHandMailRandom
+        - CategoryHandLeatherRandom
+        - CategoryHandRobeRandom
+        - CategoryBootsRandom
+        # Fixed Weapon DPS/Tank (shared)
+        - CategoryWeaponDPSTankFixed10
+        - CategoryWeaponDPSTankFixed11
+        - CategoryWeaponDPSTankFixed12
+        # Fixed Weapon Healer
+        - CategoryWeaponHealerFixed10
+        - CategoryWeaponHealerFixed11
+        - CategoryWeaponHealerFixed12
+        # Fixed Armor
+        - CategoryArmorFixed7
+        - CategoryArmorFixed8
+        - CategoryArmorFixed9
+
+  - from: enchant-standard
+    use:
+      variables:
+        # Enchant IDs
+        - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+        - ENCHANT_HIGH_TIER_WEAPON_HEALER
+        - ENCHANT_HIGH_TIER_CHEST
+        - ENCHANT_HIGH_TIER_HAND_MAIL
+        - ENCHANT_HIGH_TIER_HAND_LEATHER
+        - ENCHANT_HIGH_TIER_HAND_ROBE
+        - ENCHANT_HIGH_TIER_BOOTS
+        - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+        - ENCHANT_MID_TIER_WEAPON_HEALER
+        - ENCHANT_MID_TIER_CHEST
+        - ENCHANT_MID_TIER_HAND_MAIL
+        - ENCHANT_MID_TIER_HAND_LEATHER
+        - ENCHANT_MID_TIER_HAND_ROBE
+        - ENCHANT_MID_TIER_BOOTS
+        - ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+        - ENCHANT_LOW_TIER_WEAPON_HEALER
+        - ENCHANT_LOW_TIER_CHEST
+        - ENCHANT_LOW_TIER_HAND_MAIL
+        - ENCHANT_LOW_TIER_HAND_LEATHER
+        - ENCHANT_LOW_TIER_HAND_ROBE
+        - ENCHANT_LOW_TIER_BOOTS
+        # Stat rate variables (used by definitions)
+        - WEAPON_ATTACK_RATE
+        - WEAPON_IMPACT_RATE
+        - ARMOR_DEFENCE_RATE
+        - ARMOR_BALANCE_RATE
+        - WEAPON_ATTACK_RATE_13
+        - WEAPON_ATTACK_RATE_14
+        - WEAPON_ATTACK_RATE_15
+        - ARMOR_DEFENCE_RATE_13
+        - ARMOR_DEFENCE_RATE_14
+        - ARMOR_DEFENCE_RATE_15
+      definitions:
+        # Top Tier
+        - HighTierWeaponDPSTank
+        - HighTierWeaponHealer
+        - HighTierChest
+        - HighTierHandMail
+        - HighTierHandLeather
+        - HighTierHandRobe
+        - HighTierBoots
+        # Mid Tier
+        - MidTierWeaponDPSTank
+        - MidTierWeaponHealer
+        - MidTierChest
+        - MidTierHandMail
+        - MidTierHandLeather
+        - MidTierHandRobe
+        - MidTierBoots
+        # Low Tier
+        - LowTierWeaponDPSTank
+        - LowTierWeaponHealer
+        - LowTierChest
+        - LowTierHandMail
+        - LowTierHandLeather
+        - LowTierHandRobe
+        - LowTierBoots
+
+# =============================================================================
+# PASSIVITY CATEGORIES
+# Upserts the passivity category entries that enchants reference
+# Each category definition includes nested passivity upserts
+# =============================================================================
+enchantPassivityCategories:
+  upsert:
+    # Random Pools
+    - $extends: CategoryWeaponDPSTankRandom
+    - $extends: CategoryWeaponHealerRandom
+    - $extends: CategoryChestRandom
+    - $extends: CategoryHandMailRandom
+    - $extends: CategoryHandLeatherRandom
+    - $extends: CategoryHandRobeRandom
+    - $extends: CategoryBootsRandom
+    # Fixed Weapon DPS/Tank (shared)
+    - $extends: CategoryWeaponDPSTankFixed10
+    - $extends: CategoryWeaponDPSTankFixed11
+    - $extends: CategoryWeaponDPSTankFixed12
+    # Fixed Weapon Healer
+    - $extends: CategoryWeaponHealerFixed10
+    - $extends: CategoryWeaponHealerFixed11
+    - $extends: CategoryWeaponHealerFixed12
+    # Fixed Armor
+    - $extends: CategoryArmorFixed7
+    - $extends: CategoryArmorFixed8
+    - $extends: CategoryArmorFixed9
+
+# =============================================================================
+# ENCHANT DATA
+# Upserts the standard enchant entries for each tier/slot/role combination
+# =============================================================================
+enchants:
+  upsert:
+    # Top Tier (Grade 4) - Weapons
+    - $extends: HighTierWeaponDPSTank
+      enchantId: $ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+
+    - $extends: HighTierWeaponHealer
+      enchantId: $ENCHANT_HIGH_TIER_WEAPON_HEALER
+
+    # Top Tier (Grade 4) - Armor
+    - $extends: HighTierChest
+      enchantId: $ENCHANT_HIGH_TIER_CHEST
+
+    - $extends: HighTierHandMail
+      enchantId: $ENCHANT_HIGH_TIER_HAND_MAIL
+
+    - $extends: HighTierHandLeather
+      enchantId: $ENCHANT_HIGH_TIER_HAND_LEATHER
+
+    - $extends: HighTierHandRobe
+      enchantId: $ENCHANT_HIGH_TIER_HAND_ROBE
+
+    - $extends: HighTierBoots
+      enchantId: $ENCHANT_HIGH_TIER_BOOTS
+
+    # Mid Tier (Grade 3) - Weapons
+    - $extends: MidTierWeaponDPSTank
+      enchantId: $ENCHANT_MID_TIER_WEAPON_DPS_TANK
+
+    - $extends: MidTierWeaponHealer
+      enchantId: $ENCHANT_MID_TIER_WEAPON_HEALER
+
+    # Mid Tier (Grade 3) - Armor
+    - $extends: MidTierChest
+      enchantId: $ENCHANT_MID_TIER_CHEST
+
+    - $extends: MidTierHandMail
+      enchantId: $ENCHANT_MID_TIER_HAND_MAIL
+
+    - $extends: MidTierHandLeather
+      enchantId: $ENCHANT_MID_TIER_HAND_LEATHER
+
+    - $extends: MidTierHandRobe
+      enchantId: $ENCHANT_MID_TIER_HAND_ROBE
+
+    - $extends: MidTierBoots
+      enchantId: $ENCHANT_MID_TIER_BOOTS
+
+    # Low Tier (Grade 1/2) - Weapons
+    - $extends: LowTierWeaponDPSTank
+      enchantId: $ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+
+    - $extends: LowTierWeaponHealer
+      enchantId: $ENCHANT_LOW_TIER_WEAPON_HEALER
+
+    # Low Tier (Grade 1/2) - Armor
+    - $extends: LowTierChest
+      enchantId: $ENCHANT_LOW_TIER_CHEST
+
+    - $extends: LowTierHandMail
+      enchantId: $ENCHANT_LOW_TIER_HAND_MAIL
+
+    - $extends: LowTierHandLeather
+      enchantId: $ENCHANT_LOW_TIER_HAND_LEATHER
+
+    - $extends: LowTierHandRobe
+      enchantId: $ENCHANT_LOW_TIER_HAND_ROBE
+
+    - $extends: LowTierBoots
+      enchantId: $ENCHANT_LOW_TIER_BOOTS

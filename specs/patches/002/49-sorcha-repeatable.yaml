@@ -1,0 +1,181 @@
+# Sorcha's repeatable challenge (quest 1391): a repeatable clear of dungeon 9037,
+# given and turned in by Sorcha 64,1014 at Tower Base, paying Sorcha's Sigils.
+# Authored content, not restoration: v31 has no quest 1391.
+#
+# THE TASK SHAPE IS FORCED. A DungeonEventTask names no NPC, so on its own it puts
+# no marker over the giver and offers no dialog option. The task before it is a
+# VisitTask on Sorcha 437,1001 inside the dungeon, which supplies both and, by
+# completing, activates the dungeon task. The dungeon side then hangs its waves, its
+# timer and its updateQuest off ONE questProgress EventGroup bound to (questId 1391,
+# taskId 2): split across two groups they are separately triggered and drift apart,
+# and a group left unbound matches every player and duplicates the dialog option.
+#
+# A GuardianTask, which quest 1346 uses, is not available here: its completion
+# condition is a `제한시간` element that no task type accepts from the DSL.
+#
+# An unbounded repeatable pays no early-progression token: it can be re-accepted
+# without limit, which would make a capped currency uncapped. The reward is exp,
+# gold and the content-scoped Sorcha's Sigil only.
+#
+# `questCompensations: upsert` is REPLACE-ALL, so the block below states quest
+# 1391's compensation in full.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: dungeon-tokens
+    use:
+      variables:
+        - SORCHA_TOKEN
+
+# Header mirrors repeatable 1341 field for field (반복 / 최소레벨 8 / 최대레벨 12 /
+# 취소가능여부 가능 / 퀘스트종류 일반 / 연결퀘스트 1,1), with this quest's own giver
+# and recommended level.
+quests:
+  upsert:
+    - id: 1391
+      header:
+        questNumber: 1391
+        questTitle: "@quest:1391001"
+        questType: General
+        repeatType: Repeatable
+        cancellable: Allowed
+        startTaskId: 1
+        linkedQuest: 101          # writes 연결퀘스트 1,1 = no successor
+        giverNpc: "64,1014"       # Sorcha, Tower Base
+        recommendedPartySize: 1
+        recommendedLevel: 10
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1391002"
+        endPopup: "@quest:1391003"
+      requirements:
+        minLevel: 8
+        maxLevel: 12              # R4: repeatables keep a hard cap
+        prerequisites: [1346]
+      tasks:
+        # Task 1: talk to Sorcha in the gorge. This is what puts the marker over
+        # her head and gives the player one unambiguous dialog option. Completing
+        # it activates task 2, which is what the dungeon's questProgress group
+        # watches for.
+        - taskId: 1
+          type: VisitTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:1391004"
+          body:
+            npcId: "437,1001"     # Sorcha, inside dungeon 9037
+            dialogueId: 3
+            completionButtonText: "@quest:1391005"
+        # Task 2: completed by the dungeon's questProgress event, not by the player.
+        - taskId: 2
+          type: DungeonEventTask
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:1391006"
+          body:
+            zoneId: 9037
+        # Task 3: report back to Sorcha at Tower Base, and collect.
+        - taskId: 3
+          type: VisitTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 4
+          journalText: "@quest:1391007"
+          body:
+            npcId: "64,1014"
+            dialogueId: 4
+            completionButtonText: "@quest:1391008"
+
+# Player-facing strings describe the world only: nothing here refers to the shop
+# catalogue, to prices, or to why the quest repeats.
+questStrings:
+  upsert:
+    - id: 1391001
+      string: "One More Reading"
+    - id: 1391002
+      string: "Sorcha is going back into the gorge."
+    - id: 1391003
+      string: "Another set of readings, safely taken."
+    - id: 1391004
+      string: "Take the {@LinkObject:134#teleportal} at the Tower Base to the Tainted Gorge Bridge, then speak with Sorcha to activate the magical device."
+    # Write the quote marks LITERALLY. Authoring `&quot;` here gets XML-escaped a
+    # second time on write and ships `&amp;quot;`, which renders as the entity
+    # text in game. Every canon button string (1346006, 1346008, 1341004) holds a
+    # single-escaped `&quot;` in the datasheet, which is what a literal produces.
+    - id: 1391005
+      string: '"Activate the magical device."'
+    - id: 1391006
+      string: "Protect Sorcha for 7 minutes while she takes her readings."
+    - id: 1391007
+      string: "Use the teleportal to return to the Tower Base and speak with Sorcha."
+    - id: 1391008
+      string: '"Any time."'
+
+# QuestDialog_1391.xml, huntingZone 13, dialog id 91 (the quest's own index).
+# Sorcha's voice is taken from quest 1346's own text.
+questDialogs:
+  upsert:
+    - huntingZoneId: 13
+      id: 91
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        # Text 100 is the quest-log summary panel (referenced by summaryInfo).
+        # It carries the entrance link, because the log is where a player who has
+        # forgotten the way will look.
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1014
+          pages:
+            - social: 0
+              content: "Sorcha is taking another set of readings in the Tainted Gorge. The {@LinkObject:134#teleportal} at the Tower Base leads there."
+        # Text 2: the accept dialog, at Sorcha 64,1014, Tower Base.
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "I know. I promised I'd be more careful, and here I am asking again.<BR><BR>But the readings I took in the gorge don't agree with each other, and one bad set of numbers is worse than none at all. I have to go back and take them properly.<BR><BR>The {@LinkObject:134#teleportal} here at the base will put us on the bridge. My dolls will come along. They're...enthusiastic. They are not soldiers. Will you stand with me while I work?"
+        # Text 3: Sorcha 437,1001, inside the dungeon. Task 1's dialog. Choosing
+        # its button completes task 1, which is what starts the waves.
+        - id: 3
+          npcZoneId: 437
+          prevId: 2
+          villagerId: 1001
+          pages:
+            - social: 4
+              content: "Good, you made it.<BR><BR>The device has to run undisturbed or the numbers come out as bad as last time. Once I start it, everything down here is going to notice.<BR><BR>Say when and I'll begin."
+        # Text 4: the turn-in, back at Sorcha 64,1014.
+        - id: 4
+          npcZoneId: 64
+          prevId: 3
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "There. Clean figures this time, and all of us walked back out.<BR><BR>Take these, please. The academy stamps them for field assistants and I have far more than I know what to do with.<BR><BR>Give me a little while to check the numbers against the last set. I expect I'll want to go back."
+
+# Every Island of Dawn quest reward lives in QuestCompensationData_13 regardless of
+# the giver's hunting zone, which is what `huntingZoneId: 13` below selects.
+questCompensations:
+  upsert:
+    - questId: 1391
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 200
+          itemBag: "allpay"
+          items:
+            - templateId: $SORCHA_TOKEN              # Sorcha's Sigil, the shop currency
+              quantity: 10

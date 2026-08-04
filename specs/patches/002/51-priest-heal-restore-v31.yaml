@@ -1,0 +1,550 @@
+# Priest heals: restore the v31 values and cooldowns. Every value here is ABSOLUTE,
+# so the result is the same whatever multipliers the datasheet currently carries.
+# Generated from the v31 datasheet; do not hand-edit, regenerate instead.
+#
+#   group 18  Heal Thyself       internal "Self Heal"         ranks 1-12
+#   group 19  Focus Heal         internal "Healing Light"     ranks 1-9 (+3 copies)
+#   group  3  Healing Circle     internal "Concentrate Heal"  ranks 1-7, 2 subs
+#   group 37  Healing Immersion  internal "Cure Wing"         ranks 1-2
+#
+# No new ranks and no new skill ids: v31 ranks that v92 does not carry are left out,
+# and they were not learnable in v31 either (absent from SkillGetConList). Priest also
+# heals through abnormalities, which are a separate DSL entity and a separate spec.
+#
+# FOCUS HEAL COOLDOWNS ARE DELIBERATELY NOT TOUCHED. v92 puts the 2500 ms gate on the
+# Shot sub (10); v31 puts the same magnitude on the LockOn sub (00). Porting v31 by
+# skill id would zero the Shot gate and move it onto a sub that v92's chain does not
+# gate on. Healing Circle's cooldown IS restored, on both of its subs.
+#
+# Two places have no v31 source and lean on v92: Healing Circle sub 30 is a v92-only
+# Short Cast split, derived from the v31 Long Cast by that rank's own v92 ratio; and
+# Focus Heal ranks 30/31/32 are internally Lv09 chain/crest copies of rank 9, set to
+# the v31 rank 9 value so they stay in step with the base skill.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# Two layers of definitions. `Heal*` describe only WHERE HpDiff sits in the XML;
+# `S<skillId>` carry the actual balance decision, one line each, so every value
+# appears exactly once in this file instead of once per race/gender variant.
+#
+# `category` cannot be a list (the DSL rejects it), so the 11 variants must be
+# listed individually. Those lines carry no data, only the variant name.
+definitions:
+  Heal:
+    targetingLists:
+      - targetings:
+          - areas:
+              - effect:
+                  hpDiff:
+                    value: $V
+  Heal_0_1_0:
+    targetingLists:
+      - targetings:
+          - {}
+          - areas:
+              - effect:
+                  hpDiff:
+                    value: $V
+
+  # ---- Healing Circle ----
+  S30100: { id: 30100, changes: { $extends: Heal, $with: { V: 2379 }, precondition: { coolTime: 5000 } } }  # rank 1: 3018 -> 2379
+  S30130: { id: 30130, changes: { $extends: Heal, $with: { V: 2974 }, precondition: { coolTime: 5000 } } }  # rank 1: 3773 -> 2974 (derived: v31 long cast x 1.25017 (v92 ratio))
+  S30200: { id: 30200, changes: { $extends: Heal, $with: { V: 2693 }, precondition: { coolTime: 5000 } } }  # rank 2: 3417 -> 2693
+  S30230: { id: 30230, changes: { $extends: Heal, $with: { V: 3366 }, precondition: { coolTime: 5000 } } }  # rank 2: 4271 -> 3366 (derived: v31 long cast x 1.24993 (v92 ratio))
+  S30300: { id: 30300, changes: { $extends: Heal, $with: { V: 3141 }, precondition: { coolTime: 5000 } } }  # rank 3: 3985 -> 3141
+  S30330: { id: 30330, changes: { $extends: Heal, $with: { V: 3927 }, precondition: { coolTime: 5000 } } }  # rank 3: 4982 -> 3927 (derived: v31 long cast x 1.25019 (v92 ratio))
+  S30400: { id: 30400, changes: { $extends: Heal, $with: { V: 3512 }, precondition: { coolTime: 5000 } } }  # rank 4: 4456 -> 3512
+  S30430: { id: 30430, changes: { $extends: Heal, $with: { V: 4390 }, precondition: { coolTime: 5000 } } }  # rank 4: 5570 -> 4390 (derived: v31 long cast x 1.25000 (v92 ratio))
+  S30500: { id: 30500, changes: { $extends: Heal, $with: { V: 3773 }, precondition: { coolTime: 5000 } } }  # rank 5: 4787 -> 3773
+  S30530: { id: 30530, changes: { $extends: Heal, $with: { V: 4716 }, precondition: { coolTime: 5000 } } }  # rank 5: 5984 -> 4716 (derived: v31 long cast x 1.25005 (v92 ratio))
+  S30600: { id: 30600, changes: { $extends: Heal, $with: { V: 3908 }, precondition: { coolTime: 5000 } } }  # rank 6: 4959 -> 3908
+  S30630: { id: 30630, changes: { $extends: Heal, $with: { V: 4885 }, precondition: { coolTime: 5000 } } }  # rank 6: 6199 -> 4885 (derived: v31 long cast x 1.25005 (v92 ratio))
+  S30700: { id: 30700, changes: { $extends: Heal, $with: { V: 3981 }, precondition: { coolTime: 5000 } } }  # rank 7: 5051 -> 3981
+  S30730: { id: 30730, changes: { $extends: Heal, $with: { V: 4976 }, precondition: { coolTime: 5000 } } }  # rank 7: 6314 -> 4976 (derived: v31 long cast x 1.25005 (v92 ratio))
+
+  # ---- Heal Thyself ----
+  S180100: { id: 180100, changes: { $extends: Heal, $with: { V: 325 } } }  # rank 1: 390 -> 325
+  S180200: { id: 180200, changes: { $extends: Heal, $with: { V: 414 } } }  # rank 2: 496 -> 414
+  S180300: { id: 180300, changes: { $extends: Heal, $with: { V: 546 } } }  # rank 3: 655 -> 546
+  S180400: { id: 180400, changes: { $extends: Heal, $with: { V: 745 } } }  # rank 4: 894 -> 745
+  S180500: { id: 180500, changes: { $extends: Heal, $with: { V: 1056 } } }  # rank 5: 1267 -> 1056
+  S180600: { id: 180600, changes: { $extends: Heal, $with: { V: 1328 } } }  # rank 6: 1593 -> 1328
+  S180700: { id: 180700, changes: { $extends: Heal, $with: { V: 1676 } } }  # rank 7: 2011 -> 1676
+  S180800: { id: 180800, changes: { $extends: Heal, $with: { V: 1983 } } }  # rank 8: 2379 -> 1983
+  S180900: { id: 180900, changes: { $extends: Heal, $with: { V: 2171 } } }  # rank 9: 2605 -> 2171
+  S181000: { id: 181000, changes: { $extends: Heal, $with: { V: 2278 } } }  # rank 10: 2733 -> 2278
+  S181100: { id: 181100, changes: { $extends: Heal, $with: { V: 2437 } } }  # rank 11: 2924 -> 2437
+  S181200: { id: 181200, changes: { $extends: Heal, $with: { V: 2447 } } }  # rank 12: 2936 -> 2447
+
+  # ---- Focus Heal ----
+  S190110: { id: 190110, changes: { $extends: Heal, $with: { V: 695 } } }  # rank 1: 1042 -> 695
+  S190210: { id: 190210, changes: { $extends: Heal, $with: { V: 992 } } }  # rank 2: 1488 -> 992
+  S190310: { id: 190310, changes: { $extends: Heal, $with: { V: 1258 } } }  # rank 3: 1887 -> 1258
+  S190410: { id: 190410, changes: { $extends: Heal, $with: { V: 1542 } } }  # rank 4: 2313 -> 1542
+  S190510: { id: 190510, changes: { $extends: Heal, $with: { V: 1821 } } }  # rank 5: 2731 -> 1821
+  S190610: { id: 190610, changes: { $extends: Heal, $with: { V: 2066 } } }  # rank 6: 3099 -> 2066
+  S190710: { id: 190710, changes: { $extends: Heal, $with: { V: 2250 } } }  # rank 7: 3375 -> 2250
+  S190810: { id: 190810, changes: { $extends: Heal, $with: { V: 2360 } } }  # rank 8: 3540 -> 2360
+  S190910: { id: 190910, changes: { $extends: Heal, $with: { V: 2438 } } }  # rank 9: 3657 -> 2438
+  S193010: { id: 193010, changes: { $extends: Heal, $with: { V: 2438 } } }  # rank 30: 1219 -> 2438 (derived: mirrors rank 9 (internally Lv09, not in SkillGetConList))
+  S193210: { id: 193210, changes: { $extends: Heal, $with: { V: 2438 } } }  # rank 32: 1219 -> 2438 (derived: mirrors rank 9 (internally Lv09, not in SkillGetConList))
+
+  # ---- Healing Immersion ----
+  S370110: { id: 370110, changes: { $extends: Heal_0_1_0, $with: { V: 3543 } } }  # rank 1: 3655 -> 3543
+  S370210: { id: 370210, changes: { $extends: Heal_0_1_0, $with: { V: 3937 } } }  # rank 2: 4062 -> 3937
+
+userSkills:
+  update:
+
+    # ---------------- Priest_Aman_F ----------------
+    - { category: Priest_Aman_F, $extends: S30100 }
+    - { category: Priest_Aman_F, $extends: S30130 }
+    - { category: Priest_Aman_F, $extends: S30200 }
+    - { category: Priest_Aman_F, $extends: S30230 }
+    - { category: Priest_Aman_F, $extends: S30300 }
+    - { category: Priest_Aman_F, $extends: S30330 }
+    - { category: Priest_Aman_F, $extends: S30400 }
+    - { category: Priest_Aman_F, $extends: S30430 }
+    - { category: Priest_Aman_F, $extends: S30500 }
+    - { category: Priest_Aman_F, $extends: S30530 }
+    - { category: Priest_Aman_F, $extends: S30600 }
+    - { category: Priest_Aman_F, $extends: S30630 }
+    - { category: Priest_Aman_F, $extends: S30700 }
+    - { category: Priest_Aman_F, $extends: S30730 }
+    - { category: Priest_Aman_F, $extends: S180100 }
+    - { category: Priest_Aman_F, $extends: S180200 }
+    - { category: Priest_Aman_F, $extends: S180300 }
+    - { category: Priest_Aman_F, $extends: S180400 }
+    - { category: Priest_Aman_F, $extends: S180500 }
+    - { category: Priest_Aman_F, $extends: S180600 }
+    - { category: Priest_Aman_F, $extends: S180700 }
+    - { category: Priest_Aman_F, $extends: S180800 }
+    - { category: Priest_Aman_F, $extends: S180900 }
+    - { category: Priest_Aman_F, $extends: S181000 }
+    - { category: Priest_Aman_F, $extends: S181100 }
+    - { category: Priest_Aman_F, $extends: S181200 }
+    - { category: Priest_Aman_F, $extends: S190110 }
+    - { category: Priest_Aman_F, $extends: S190210 }
+    - { category: Priest_Aman_F, $extends: S190310 }
+    - { category: Priest_Aman_F, $extends: S190410 }
+    - { category: Priest_Aman_F, $extends: S190510 }
+    - { category: Priest_Aman_F, $extends: S190610 }
+    - { category: Priest_Aman_F, $extends: S190710 }
+    - { category: Priest_Aman_F, $extends: S190810 }
+    - { category: Priest_Aman_F, $extends: S190910 }
+    - { category: Priest_Aman_F, $extends: S193010 }
+    - { category: Priest_Aman_F, $extends: S193210 }
+    - { category: Priest_Aman_F, $extends: S370110 }
+    - { category: Priest_Aman_F, $extends: S370210 }
+
+    # ---------------- Priest_Aman_M ----------------
+    - { category: Priest_Aman_M, $extends: S30100 }
+    - { category: Priest_Aman_M, $extends: S30130 }
+    - { category: Priest_Aman_M, $extends: S30200 }
+    - { category: Priest_Aman_M, $extends: S30230 }
+    - { category: Priest_Aman_M, $extends: S30300 }
+    - { category: Priest_Aman_M, $extends: S30330 }
+    - { category: Priest_Aman_M, $extends: S30400 }
+    - { category: Priest_Aman_M, $extends: S30430 }
+    - { category: Priest_Aman_M, $extends: S30500 }
+    - { category: Priest_Aman_M, $extends: S30530 }
+    - { category: Priest_Aman_M, $extends: S30600 }
+    - { category: Priest_Aman_M, $extends: S30630 }
+    - { category: Priest_Aman_M, $extends: S30700 }
+    - { category: Priest_Aman_M, $extends: S30730 }
+    - { category: Priest_Aman_M, $extends: S180100 }
+    - { category: Priest_Aman_M, $extends: S180200 }
+    - { category: Priest_Aman_M, $extends: S180300 }
+    - { category: Priest_Aman_M, $extends: S180400 }
+    - { category: Priest_Aman_M, $extends: S180500 }
+    - { category: Priest_Aman_M, $extends: S180600 }
+    - { category: Priest_Aman_M, $extends: S180700 }
+    - { category: Priest_Aman_M, $extends: S180800 }
+    - { category: Priest_Aman_M, $extends: S180900 }
+    - { category: Priest_Aman_M, $extends: S181000 }
+    - { category: Priest_Aman_M, $extends: S181100 }
+    - { category: Priest_Aman_M, $extends: S181200 }
+    - { category: Priest_Aman_M, $extends: S190110 }
+    - { category: Priest_Aman_M, $extends: S190210 }
+    - { category: Priest_Aman_M, $extends: S190310 }
+    - { category: Priest_Aman_M, $extends: S190410 }
+    - { category: Priest_Aman_M, $extends: S190510 }
+    - { category: Priest_Aman_M, $extends: S190610 }
+    - { category: Priest_Aman_M, $extends: S190710 }
+    - { category: Priest_Aman_M, $extends: S190810 }
+    - { category: Priest_Aman_M, $extends: S190910 }
+    - { category: Priest_Aman_M, $extends: S193010 }
+    - { category: Priest_Aman_M, $extends: S193210 }
+    - { category: Priest_Aman_M, $extends: S370110 }
+    - { category: Priest_Aman_M, $extends: S370210 }
+
+    # ---------------- Priest_Baraka_M ----------------
+    - { category: Priest_Baraka_M, $extends: S30100 }
+    - { category: Priest_Baraka_M, $extends: S30130 }
+    - { category: Priest_Baraka_M, $extends: S30200 }
+    - { category: Priest_Baraka_M, $extends: S30230 }
+    - { category: Priest_Baraka_M, $extends: S30300 }
+    - { category: Priest_Baraka_M, $extends: S30330 }
+    - { category: Priest_Baraka_M, $extends: S30400 }
+    - { category: Priest_Baraka_M, $extends: S30430 }
+    - { category: Priest_Baraka_M, $extends: S30500 }
+    - { category: Priest_Baraka_M, $extends: S30530 }
+    - { category: Priest_Baraka_M, $extends: S30600 }
+    - { category: Priest_Baraka_M, $extends: S30630 }
+    - { category: Priest_Baraka_M, $extends: S30700 }
+    - { category: Priest_Baraka_M, $extends: S30730 }
+    - { category: Priest_Baraka_M, $extends: S180100 }
+    - { category: Priest_Baraka_M, $extends: S180200 }
+    - { category: Priest_Baraka_M, $extends: S180300 }
+    - { category: Priest_Baraka_M, $extends: S180400 }
+    - { category: Priest_Baraka_M, $extends: S180500 }
+    - { category: Priest_Baraka_M, $extends: S180600 }
+    - { category: Priest_Baraka_M, $extends: S180700 }
+    - { category: Priest_Baraka_M, $extends: S180800 }
+    - { category: Priest_Baraka_M, $extends: S180900 }
+    - { category: Priest_Baraka_M, $extends: S181000 }
+    - { category: Priest_Baraka_M, $extends: S181100 }
+    - { category: Priest_Baraka_M, $extends: S181200 }
+    - { category: Priest_Baraka_M, $extends: S190110 }
+    - { category: Priest_Baraka_M, $extends: S190210 }
+    - { category: Priest_Baraka_M, $extends: S190310 }
+    - { category: Priest_Baraka_M, $extends: S190410 }
+    - { category: Priest_Baraka_M, $extends: S190510 }
+    - { category: Priest_Baraka_M, $extends: S190610 }
+    - { category: Priest_Baraka_M, $extends: S190710 }
+    - { category: Priest_Baraka_M, $extends: S190810 }
+    - { category: Priest_Baraka_M, $extends: S190910 }
+    - { category: Priest_Baraka_M, $extends: S193010 }
+    - { category: Priest_Baraka_M, $extends: S193210 }
+    - { category: Priest_Baraka_M, $extends: S370110 }
+    - { category: Priest_Baraka_M, $extends: S370210 }
+
+    # ---------------- Priest_Castanic_F ----------------
+    - { category: Priest_Castanic_F, $extends: S30100 }
+    - { category: Priest_Castanic_F, $extends: S30130 }
+    - { category: Priest_Castanic_F, $extends: S30200 }
+    - { category: Priest_Castanic_F, $extends: S30230 }
+    - { category: Priest_Castanic_F, $extends: S30300 }
+    - { category: Priest_Castanic_F, $extends: S30330 }
+    - { category: Priest_Castanic_F, $extends: S30400 }
+    - { category: Priest_Castanic_F, $extends: S30430 }
+    - { category: Priest_Castanic_F, $extends: S30500 }
+    - { category: Priest_Castanic_F, $extends: S30530 }
+    - { category: Priest_Castanic_F, $extends: S30600 }
+    - { category: Priest_Castanic_F, $extends: S30630 }
+    - { category: Priest_Castanic_F, $extends: S30700 }
+    - { category: Priest_Castanic_F, $extends: S30730 }
+    - { category: Priest_Castanic_F, $extends: S180100 }
+    - { category: Priest_Castanic_F, $extends: S180200 }
+    - { category: Priest_Castanic_F, $extends: S180300 }
+    - { category: Priest_Castanic_F, $extends: S180400 }
+    - { category: Priest_Castanic_F, $extends: S180500 }
+    - { category: Priest_Castanic_F, $extends: S180600 }
+    - { category: Priest_Castanic_F, $extends: S180700 }
+    - { category: Priest_Castanic_F, $extends: S180800 }
+    - { category: Priest_Castanic_F, $extends: S180900 }
+    - { category: Priest_Castanic_F, $extends: S181000 }
+    - { category: Priest_Castanic_F, $extends: S181100 }
+    - { category: Priest_Castanic_F, $extends: S181200 }
+    - { category: Priest_Castanic_F, $extends: S190110 }
+    - { category: Priest_Castanic_F, $extends: S190210 }
+    - { category: Priest_Castanic_F, $extends: S190310 }
+    - { category: Priest_Castanic_F, $extends: S190410 }
+    - { category: Priest_Castanic_F, $extends: S190510 }
+    - { category: Priest_Castanic_F, $extends: S190610 }
+    - { category: Priest_Castanic_F, $extends: S190710 }
+    - { category: Priest_Castanic_F, $extends: S190810 }
+    - { category: Priest_Castanic_F, $extends: S190910 }
+    - { category: Priest_Castanic_F, $extends: S193010 }
+    - { category: Priest_Castanic_F, $extends: S193210 }
+    - { category: Priest_Castanic_F, $extends: S370110 }
+    - { category: Priest_Castanic_F, $extends: S370210 }
+
+    # ---------------- Priest_Castanic_M ----------------
+    - { category: Priest_Castanic_M, $extends: S30100 }
+    - { category: Priest_Castanic_M, $extends: S30130 }
+    - { category: Priest_Castanic_M, $extends: S30200 }
+    - { category: Priest_Castanic_M, $extends: S30230 }
+    - { category: Priest_Castanic_M, $extends: S30300 }
+    - { category: Priest_Castanic_M, $extends: S30330 }
+    - { category: Priest_Castanic_M, $extends: S30400 }
+    - { category: Priest_Castanic_M, $extends: S30430 }
+    - { category: Priest_Castanic_M, $extends: S30500 }
+    - { category: Priest_Castanic_M, $extends: S30530 }
+    - { category: Priest_Castanic_M, $extends: S30600 }
+    - { category: Priest_Castanic_M, $extends: S30630 }
+    - { category: Priest_Castanic_M, $extends: S30700 }
+    - { category: Priest_Castanic_M, $extends: S30730 }
+    - { category: Priest_Castanic_M, $extends: S180100 }
+    - { category: Priest_Castanic_M, $extends: S180200 }
+    - { category: Priest_Castanic_M, $extends: S180300 }
+    - { category: Priest_Castanic_M, $extends: S180400 }
+    - { category: Priest_Castanic_M, $extends: S180500 }
+    - { category: Priest_Castanic_M, $extends: S180600 }
+    - { category: Priest_Castanic_M, $extends: S180700 }
+    - { category: Priest_Castanic_M, $extends: S180800 }
+    - { category: Priest_Castanic_M, $extends: S180900 }
+    - { category: Priest_Castanic_M, $extends: S181000 }
+    - { category: Priest_Castanic_M, $extends: S181100 }
+    - { category: Priest_Castanic_M, $extends: S181200 }
+    - { category: Priest_Castanic_M, $extends: S190110 }
+    - { category: Priest_Castanic_M, $extends: S190210 }
+    - { category: Priest_Castanic_M, $extends: S190310 }
+    - { category: Priest_Castanic_M, $extends: S190410 }
+    - { category: Priest_Castanic_M, $extends: S190510 }
+    - { category: Priest_Castanic_M, $extends: S190610 }
+    - { category: Priest_Castanic_M, $extends: S190710 }
+    - { category: Priest_Castanic_M, $extends: S190810 }
+    - { category: Priest_Castanic_M, $extends: S190910 }
+    - { category: Priest_Castanic_M, $extends: S193010 }
+    - { category: Priest_Castanic_M, $extends: S193210 }
+    - { category: Priest_Castanic_M, $extends: S370110 }
+    - { category: Priest_Castanic_M, $extends: S370210 }
+
+    # ---------------- Priest_HighElf_F ----------------
+    - { category: Priest_HighElf_F, $extends: S30100 }
+    - { category: Priest_HighElf_F, $extends: S30130 }
+    - { category: Priest_HighElf_F, $extends: S30200 }
+    - { category: Priest_HighElf_F, $extends: S30230 }
+    - { category: Priest_HighElf_F, $extends: S30300 }
+    - { category: Priest_HighElf_F, $extends: S30330 }
+    - { category: Priest_HighElf_F, $extends: S30400 }
+    - { category: Priest_HighElf_F, $extends: S30430 }
+    - { category: Priest_HighElf_F, $extends: S30500 }
+    - { category: Priest_HighElf_F, $extends: S30530 }
+    - { category: Priest_HighElf_F, $extends: S30600 }
+    - { category: Priest_HighElf_F, $extends: S30630 }
+    - { category: Priest_HighElf_F, $extends: S30700 }
+    - { category: Priest_HighElf_F, $extends: S30730 }
+    - { category: Priest_HighElf_F, $extends: S180100 }
+    - { category: Priest_HighElf_F, $extends: S180200 }
+    - { category: Priest_HighElf_F, $extends: S180300 }
+    - { category: Priest_HighElf_F, $extends: S180400 }
+    - { category: Priest_HighElf_F, $extends: S180500 }
+    - { category: Priest_HighElf_F, $extends: S180600 }
+    - { category: Priest_HighElf_F, $extends: S180700 }
+    - { category: Priest_HighElf_F, $extends: S180800 }
+    - { category: Priest_HighElf_F, $extends: S180900 }
+    - { category: Priest_HighElf_F, $extends: S181000 }
+    - { category: Priest_HighElf_F, $extends: S181100 }
+    - { category: Priest_HighElf_F, $extends: S181200 }
+    - { category: Priest_HighElf_F, $extends: S190110 }
+    - { category: Priest_HighElf_F, $extends: S190210 }
+    - { category: Priest_HighElf_F, $extends: S190310 }
+    - { category: Priest_HighElf_F, $extends: S190410 }
+    - { category: Priest_HighElf_F, $extends: S190510 }
+    - { category: Priest_HighElf_F, $extends: S190610 }
+    - { category: Priest_HighElf_F, $extends: S190710 }
+    - { category: Priest_HighElf_F, $extends: S190810 }
+    - { category: Priest_HighElf_F, $extends: S190910 }
+    - { category: Priest_HighElf_F, $extends: S193010 }
+    - { category: Priest_HighElf_F, $extends: S193210 }
+    - { category: Priest_HighElf_F, $extends: S370110 }
+    - { category: Priest_HighElf_F, $extends: S370210 }
+
+    # ---------------- Priest_HighElf_M ----------------
+    - { category: Priest_HighElf_M, $extends: S30100 }
+    - { category: Priest_HighElf_M, $extends: S30130 }
+    - { category: Priest_HighElf_M, $extends: S30200 }
+    - { category: Priest_HighElf_M, $extends: S30230 }
+    - { category: Priest_HighElf_M, $extends: S30300 }
+    - { category: Priest_HighElf_M, $extends: S30330 }
+    - { category: Priest_HighElf_M, $extends: S30400 }
+    - { category: Priest_HighElf_M, $extends: S30430 }
+    - { category: Priest_HighElf_M, $extends: S30500 }
+    - { category: Priest_HighElf_M, $extends: S30530 }
+    - { category: Priest_HighElf_M, $extends: S30600 }
+    - { category: Priest_HighElf_M, $extends: S30630 }
+    - { category: Priest_HighElf_M, $extends: S30700 }
+    - { category: Priest_HighElf_M, $extends: S30730 }
+    - { category: Priest_HighElf_M, $extends: S180100 }
+    - { category: Priest_HighElf_M, $extends: S180200 }
+    - { category: Priest_HighElf_M, $extends: S180300 }
+    - { category: Priest_HighElf_M, $extends: S180400 }
+    - { category: Priest_HighElf_M, $extends: S180500 }
+    - { category: Priest_HighElf_M, $extends: S180600 }
+    - { category: Priest_HighElf_M, $extends: S180700 }
+    - { category: Priest_HighElf_M, $extends: S180800 }
+    - { category: Priest_HighElf_M, $extends: S180900 }
+    - { category: Priest_HighElf_M, $extends: S181000 }
+    - { category: Priest_HighElf_M, $extends: S181100 }
+    - { category: Priest_HighElf_M, $extends: S181200 }
+    - { category: Priest_HighElf_M, $extends: S190110 }
+    - { category: Priest_HighElf_M, $extends: S190210 }
+    - { category: Priest_HighElf_M, $extends: S190310 }
+    - { category: Priest_HighElf_M, $extends: S190410 }
+    - { category: Priest_HighElf_M, $extends: S190510 }
+    - { category: Priest_HighElf_M, $extends: S190610 }
+    - { category: Priest_HighElf_M, $extends: S190710 }
+    - { category: Priest_HighElf_M, $extends: S190810 }
+    - { category: Priest_HighElf_M, $extends: S190910 }
+    - { category: Priest_HighElf_M, $extends: S193010 }
+    - { category: Priest_HighElf_M, $extends: S193210 }
+    - { category: Priest_HighElf_M, $extends: S370110 }
+    - { category: Priest_HighElf_M, $extends: S370210 }
+
+    # ---------------- Priest_Human_F ----------------
+    - { category: Priest_Human_F, $extends: S30100 }
+    - { category: Priest_Human_F, $extends: S30130 }
+    - { category: Priest_Human_F, $extends: S30200 }
+    - { category: Priest_Human_F, $extends: S30230 }
+    - { category: Priest_Human_F, $extends: S30300 }
+    - { category: Priest_Human_F, $extends: S30330 }
+    - { category: Priest_Human_F, $extends: S30400 }
+    - { category: Priest_Human_F, $extends: S30430 }
+    - { category: Priest_Human_F, $extends: S30500 }
+    - { category: Priest_Human_F, $extends: S30530 }
+    - { category: Priest_Human_F, $extends: S30600 }
+    - { category: Priest_Human_F, $extends: S30630 }
+    - { category: Priest_Human_F, $extends: S30700 }
+    - { category: Priest_Human_F, $extends: S30730 }
+    - { category: Priest_Human_F, $extends: S180100 }
+    - { category: Priest_Human_F, $extends: S180200 }
+    - { category: Priest_Human_F, $extends: S180300 }
+    - { category: Priest_Human_F, $extends: S180400 }
+    - { category: Priest_Human_F, $extends: S180500 }
+    - { category: Priest_Human_F, $extends: S180600 }
+    - { category: Priest_Human_F, $extends: S180700 }
+    - { category: Priest_Human_F, $extends: S180800 }
+    - { category: Priest_Human_F, $extends: S180900 }
+    - { category: Priest_Human_F, $extends: S181000 }
+    - { category: Priest_Human_F, $extends: S181100 }
+    - { category: Priest_Human_F, $extends: S181200 }
+    - { category: Priest_Human_F, $extends: S190110 }
+    - { category: Priest_Human_F, $extends: S190210 }
+    - { category: Priest_Human_F, $extends: S190310 }
+    - { category: Priest_Human_F, $extends: S190410 }
+    - { category: Priest_Human_F, $extends: S190510 }
+    - { category: Priest_Human_F, $extends: S190610 }
+    - { category: Priest_Human_F, $extends: S190710 }
+    - { category: Priest_Human_F, $extends: S190810 }
+    - { category: Priest_Human_F, $extends: S190910 }
+    - { category: Priest_Human_F, $extends: S193010 }
+    - { category: Priest_Human_F, $extends: S193210 }
+    - { category: Priest_Human_F, $extends: S370110 }
+    - { category: Priest_Human_F, $extends: S370210 }
+
+    # ---------------- Priest_Human_M ----------------
+    - { category: Priest_Human_M, $extends: S30100 }
+    - { category: Priest_Human_M, $extends: S30130 }
+    - { category: Priest_Human_M, $extends: S30200 }
+    - { category: Priest_Human_M, $extends: S30230 }
+    - { category: Priest_Human_M, $extends: S30300 }
+    - { category: Priest_Human_M, $extends: S30330 }
+    - { category: Priest_Human_M, $extends: S30400 }
+    - { category: Priest_Human_M, $extends: S30430 }
+    - { category: Priest_Human_M, $extends: S30500 }
+    - { category: Priest_Human_M, $extends: S30530 }
+    - { category: Priest_Human_M, $extends: S30600 }
+    - { category: Priest_Human_M, $extends: S30630 }
+    - { category: Priest_Human_M, $extends: S30700 }
+    - { category: Priest_Human_M, $extends: S30730 }
+    - { category: Priest_Human_M, $extends: S180100 }
+    - { category: Priest_Human_M, $extends: S180200 }
+    - { category: Priest_Human_M, $extends: S180300 }
+    - { category: Priest_Human_M, $extends: S180400 }
+    - { category: Priest_Human_M, $extends: S180500 }
+    - { category: Priest_Human_M, $extends: S180600 }
+    - { category: Priest_Human_M, $extends: S180700 }
+    - { category: Priest_Human_M, $extends: S180800 }
+    - { category: Priest_Human_M, $extends: S180900 }
+    - { category: Priest_Human_M, $extends: S181000 }
+    - { category: Priest_Human_M, $extends: S181100 }
+    - { category: Priest_Human_M, $extends: S181200 }
+    - { category: Priest_Human_M, $extends: S190110 }
+    - { category: Priest_Human_M, $extends: S190210 }
+    - { category: Priest_Human_M, $extends: S190310 }
+    - { category: Priest_Human_M, $extends: S190410 }
+    - { category: Priest_Human_M, $extends: S190510 }
+    - { category: Priest_Human_M, $extends: S190610 }
+    - { category: Priest_Human_M, $extends: S190710 }
+    - { category: Priest_Human_M, $extends: S190810 }
+    - { category: Priest_Human_M, $extends: S190910 }
+    - { category: Priest_Human_M, $extends: S193010 }
+    - { category: Priest_Human_M, $extends: S193210 }
+    - { category: Priest_Human_M, $extends: S370110 }
+    - { category: Priest_Human_M, $extends: S370210 }
+
+    # ---------------- Priest_Popori_F ----------------
+    - { category: Priest_Popori_F, $extends: S30100 }
+    - { category: Priest_Popori_F, $extends: S30130 }
+    - { category: Priest_Popori_F, $extends: S30200 }
+    - { category: Priest_Popori_F, $extends: S30230 }
+    - { category: Priest_Popori_F, $extends: S30300 }
+    - { category: Priest_Popori_F, $extends: S30330 }
+    - { category: Priest_Popori_F, $extends: S30400 }
+    - { category: Priest_Popori_F, $extends: S30430 }
+    - { category: Priest_Popori_F, $extends: S30500 }
+    - { category: Priest_Popori_F, $extends: S30530 }
+    - { category: Priest_Popori_F, $extends: S30600 }
+    - { category: Priest_Popori_F, $extends: S30630 }
+    - { category: Priest_Popori_F, $extends: S30700 }
+    - { category: Priest_Popori_F, $extends: S30730 }
+    - { category: Priest_Popori_F, $extends: S180100 }
+    - { category: Priest_Popori_F, $extends: S180200 }
+    - { category: Priest_Popori_F, $extends: S180300 }
+    - { category: Priest_Popori_F, $extends: S180400 }
+    - { category: Priest_Popori_F, $extends: S180500 }
+    - { category: Priest_Popori_F, $extends: S180600 }
+    - { category: Priest_Popori_F, $extends: S180700 }
+    - { category: Priest_Popori_F, $extends: S180800 }
+    - { category: Priest_Popori_F, $extends: S180900 }
+    - { category: Priest_Popori_F, $extends: S181000 }
+    - { category: Priest_Popori_F, $extends: S181100 }
+    - { category: Priest_Popori_F, $extends: S181200 }
+    - { category: Priest_Popori_F, $extends: S190110 }
+    - { category: Priest_Popori_F, $extends: S190210 }
+    - { category: Priest_Popori_F, $extends: S190310 }
+    - { category: Priest_Popori_F, $extends: S190410 }
+    - { category: Priest_Popori_F, $extends: S190510 }
+    - { category: Priest_Popori_F, $extends: S190610 }
+    - { category: Priest_Popori_F, $extends: S190710 }
+    - { category: Priest_Popori_F, $extends: S190810 }
+    - { category: Priest_Popori_F, $extends: S190910 }
+    - { category: Priest_Popori_F, $extends: S193010 }
+    - { category: Priest_Popori_F, $extends: S193210 }
+    - { category: Priest_Popori_F, $extends: S370110 }
+    - { category: Priest_Popori_F, $extends: S370210 }
+
+    # ---------------- Priest_Popori_M ----------------
+    - { category: Priest_Popori_M, $extends: S30100 }
+    - { category: Priest_Popori_M, $extends: S30130 }
+    - { category: Priest_Popori_M, $extends: S30200 }
+    - { category: Priest_Popori_M, $extends: S30230 }
+    - { category: Priest_Popori_M, $extends: S30300 }
+    - { category: Priest_Popori_M, $extends: S30330 }
+    - { category: Priest_Popori_M, $extends: S30400 }
+    - { category: Priest_Popori_M, $extends: S30430 }
+    - { category: Priest_Popori_M, $extends: S30500 }
+    - { category: Priest_Popori_M, $extends: S30530 }
+    - { category: Priest_Popori_M, $extends: S30600 }
+    - { category: Priest_Popori_M, $extends: S30630 }
+    - { category: Priest_Popori_M, $extends: S30700 }
+    - { category: Priest_Popori_M, $extends: S30730 }
+    - { category: Priest_Popori_M, $extends: S180100 }
+    - { category: Priest_Popori_M, $extends: S180200 }
+    - { category: Priest_Popori_M, $extends: S180300 }
+    - { category: Priest_Popori_M, $extends: S180400 }
+    - { category: Priest_Popori_M, $extends: S180500 }
+    - { category: Priest_Popori_M, $extends: S180600 }
+    - { category: Priest_Popori_M, $extends: S180700 }
+    - { category: Priest_Popori_M, $extends: S180800 }
+    - { category: Priest_Popori_M, $extends: S180900 }
+    - { category: Priest_Popori_M, $extends: S181000 }
+    - { category: Priest_Popori_M, $extends: S181100 }
+    - { category: Priest_Popori_M, $extends: S181200 }
+    - { category: Priest_Popori_M, $extends: S190110 }
+    - { category: Priest_Popori_M, $extends: S190210 }
+    - { category: Priest_Popori_M, $extends: S190310 }
+    - { category: Priest_Popori_M, $extends: S190410 }
+    - { category: Priest_Popori_M, $extends: S190510 }
+    - { category: Priest_Popori_M, $extends: S190610 }
+    - { category: Priest_Popori_M, $extends: S190710 }
+    - { category: Priest_Popori_M, $extends: S190810 }
+    - { category: Priest_Popori_M, $extends: S190910 }
+    - { category: Priest_Popori_M, $extends: S193010 }
+    - { category: Priest_Popori_M, $extends: S193210 }
+    - { category: Priest_Popori_M, $extends: S370110 }
+    - { category: Priest_Popori_M, $extends: S370210 }

@@ -1,0 +1,115 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+        - KEYRUNE_OF_ARUN
+        - KEYRUNE_OF_SHARA
+      definitions:
+        - EvolutionItem
+        - KeyruneOfArunPath
+        - KeyruneOfSharaPath
+
+variables:
+  # ── Source Gear ──
+  SOURCE_WEAPON_DUAL: 12793  # dual — Verdict & Appeal
+  SOURCE_WEAPON_LANCE: 12794  # lance — Lance of Sacrifice
+  SOURCE_WEAPON_TWOHAND: 12795  # twohand — Sword of Cold Reason
+  SOURCE_WEAPON_AXE: 12796  # axe — Pitiless Axe
+  SOURCE_WEAPON_CIRCLE: 12797  # circle — Eye of Justice
+  SOURCE_WEAPON_BOW: 12798  # bow — Executioner's Bow
+  SOURCE_WEAPON_STAFF: 12799  # staff — Staff of Enduring Journeys
+  SOURCE_WEAPON_ROD: 12800  # rod — Rod of Punishment
+  SOURCE_WEAPON_BLASTER: 55354  # blaster — Old Judge
+  SOURCE_WEAPON_SHURIKEN: 58464  # shuriken — Dilastar
+  SOURCE_WEAPON_GLAIVE: 59402  # glaive — Lastglaive
+  SOURCE_WEAPON_GAUNTLET: 82354  # gauntlet — Runechased Powerfists
+  SOURCE_FEETMAIL: 18179  # feetMail — Fringed Azure Greaves
+  SOURCE_FEETLEATHER: 18182  # feetLeather — Wanderer's Trackers
+  SOURCE_FEETROBE: 18185  # feetRobe — Magister's Slippers
+  SOURCE_BODYMAIL: 18177  # bodyMail — Fringed Azure Plate
+  SOURCE_BODYLEATHER: 18180  # bodyLeather — Wanderer's Jerkin
+  SOURCE_BODYROBE: 18183  # bodyRobe — Magister's Robes
+  SOURCE_HANDMAIL: 18178  # handMail — Fringed Azure Gauntlets
+  SOURCE_HANDLEATHER: 18181  # handLeather — Wanderer's Wraps
+  SOURCE_HANDROBE: 18184  # handRobe — Magister's Bindings
+
+  # ── Result Gear ──
+  TARGET_WEAPON_DUAL: 13158  # dual — Fassad & Fassouda
+  TARGET_WEAPON_LANCE: 13159  # lance — Lance of Gabir
+  TARGET_WEAPON_TWOHAND: 13160  # twohand — Saif-Olek
+  TARGET_WEAPON_AXE: 13161  # axe — Asvakar's Cleaver
+  TARGET_WEAPON_CIRCLE: 13162  # circle — Lens of Ilderim
+  TARGET_WEAPON_BOW: 13163  # bow — Warbow of Djonda
+  TARGET_WEAPON_STAFF: 13164  # staff — Staff of Kahin
+  TARGET_WEAPON_ROD: 13165  # rod — Yaghuth
+  TARGET_WEAPON_BLASTER: 55383  # blaster — Skwee Gun
+  TARGET_WEAPON_SHURIKEN: 58016  # shuriken — Fatewort Star
+  TARGET_WEAPON_GLAIVE: 59431  # glaive — Mosulspear
+  TARGET_WEAPON_GAUNTLET: 82206  # gauntlet — Fiendish Powerfists
+  TARGET_FEETMAIL: 18395  # feetMail — Nemesis Greaves
+  TARGET_FEETLEATHER: 18398  # feetLeather — Plagueborn Boots
+  TARGET_FEETROBE: 18401  # feetRobe — Frostwrath Leggings
+  TARGET_BODYMAIL: 18393  # bodyMail — Nemesis Plate
+  TARGET_BODYLEATHER: 18396  # bodyLeather — Scourge Jerkin
+  TARGET_BODYROBE: 18399  # bodyRobe — Frostwrath Robes
+  TARGET_HANDMAIL: 18394  # handMail — Nemesis Fists
+  TARGET_HANDLEATHER: 18397  # handLeather — Pestilence Grips
+  TARGET_HANDROBE: 18400  # handRobe — Frostwrath Sleeves
+
+# ===========================================================================
+# Counterglow Gear Set — Akasha's Hideout
+# ===========================================================================
+
+evolutionPaths:
+  upsert:
+    # ── Weapons: Keyrune of Shara x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: KeyruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: KeyruneOfSharaPath }
+    # ── Armor: Keyrune of Arun x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: KeyruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: KeyruneOfArunPath }
+

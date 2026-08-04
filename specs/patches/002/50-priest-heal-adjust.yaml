@@ -1,0 +1,28 @@
+# Priest heal power coefficient.
+#
+# WorldData/HealAdjust is a per-class coefficient that MULTIPLIES a skill's
+# HpDiff. Stock v92 ships priest=0.001, which leaves the delivered heal at about
+# 1.6x its HpDiff, so Priest heals barely scale and fall further behind as HP
+# pools grow. 0.1 was calibrated in game on a level 10 Priest.
+#
+# The coefficient is multiplicative, not additive: two skills of different base
+# land on the same factor at healAdjust 0.1 (HpDiff 414 -> 3394 delivered, and
+# 695 -> 5699, both 8.20x). Relative balance between skills is therefore
+# preserved, and per-skill HpDiff stays the correct lever for per-skill tuning.
+#
+# OPEN: whether HealAdjust also scales heal-over-time abnormalities, which carry
+# no HpDiff. If it does not, the restored HoTs sit at roughly one eighth the
+# effective weight of the direct heals.
+#
+# Only priest changes here; elementalist (Mystic) keeps its stock 0.001.
+# Companion spec 51-priest-heal-restore-v31.yaml lowers the per-skill HpDiff
+# values, so the two must be applied together.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+worldData:
+  classConfig:
+    healAdjust:
+      priest: 0.1

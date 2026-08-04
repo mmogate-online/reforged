@@ -1,0 +1,83 @@
+# Island of Dawn — "Getting to Know the Garrison" (quest 1384) fix
+#
+# v92 compatibility fixes:
+#   - Task 3: stamina condition (휴식후컨디션MAX) removed in v92; replaced with campfire useItem.
+#     Task 3 is orphaned (unreachable) in the new chain — kept valid for XML integrity.
+#   - Task 4: Onslaught Charm I (item 7100) disabled; replaced with Greater Infused Charm (70033).
+#     Task 4 is orphaned (unreachable) in the new chain — kept valid for XML integrity.
+#   - Task 5: charm check updated from item 7100 to 70033.
+#
+# Multiplayer redesign:
+#   - Removed hard campfire-placement requirement (campfire range conflict in crowded zones).
+#   - Tasks 2 and 4 merged: single Milene visit now gives both campfire and charm.
+#   - New chain: 1 → 2 → 5 → 6 (Tasks 3 and 4 orphaned).
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    - id: 1384
+      changes:
+        tasks:
+          # Task 2: Talk to Milene — gives campfire + charm, skips to Task 5
+          - taskId: 2
+            type: VisitTask
+            nextTaskId: 5
+            body:
+              npcId: "64,1049"
+              dialogueId: 4
+              completionButtonText: "@quest:1384005"
+              visitCinematicId: 0
+            completionItems:
+              - itemId: 98
+                quantity: 1
+              - itemId: 70033
+                quantity: 1
+          # Task 3: campfire use — orphaned (unreachable), kept valid for XML integrity
+          - taskId: 3
+            type: ConditionTask
+            body:
+              conditionType: useItem
+              conditionItemId: 98
+              conditionItemCount: 1
+          # Task 4: Milene visit — orphaned (unreachable), kept valid for XML integrity
+          - taskId: 4
+            type: VisitTask
+            body:
+              npcId: "64,1049"
+              dialogueId: 5
+              completionButtonText: "@quest:1384009"
+              visitCinematicId: 0
+            completionItems:
+              - itemId: 70033
+                quantity: 1
+          # Task 5: use infused charm — now directly follows Task 2
+          - taskId: 5
+            type: ConditionTask
+            body:
+              conditionType: useItem
+              conditionItemId: 70033
+              conditionItemCount: 1
+
+questStrings:
+  update:
+    - id: 1384006
+      changes:
+        string: "Learn about campfires and combat supplies from Milene."
+    - id: 1384007
+      changes:
+        string: "Set up a campfire."
+    - id: 1384008
+      changes:
+        string: "You set up a campfire!"
+    - id: 1384010
+      changes:
+        string: "Learn about campfires and combat supplies from Milene."
+    - id: 1384011
+      changes:
+        string: "Use the Greater Infused Charm."
+    - id: 1384012
+      changes:
+        string: "You have used a Greater Infused Charm!"

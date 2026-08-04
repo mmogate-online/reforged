@@ -1,0 +1,165 @@
+# Re-enable 25 sentinel-disabled Island of Dawn quests (the 1300-1399 band),
+# retarget two collect tasks, and fix one dialog token.
+#
+# A disabled quest is expressed as an unsatisfiable prerequisite on quest 9999
+# (written as the ref 99,99), not as a flag, so enabling one means rewriting that
+# gate:
+#   prerequisites: []       clears the prerequisite list AND its logic operator
+#                           together, the canonical "no prerequisites" shape
+#   prerequisites: [<qid>]  replaces the sentinel with a real anchor quest
+# Prerequisite ids are stored as huntingZone,offset pairs (qid//100, qid%100).
+# Both forms are idempotent.
+#
+# Every anchor must itself be live or enabled in this same spec, or a quest is
+# only re-gated behind another dead one. The chains closed here:
+#   1322 -> {1318, 1323};  1329 -> {1351, 1352, 1386 -> 1328};
+#   1345 -> 1346;  1335 -> 1337 -> 1338;  1343 -> 1344.
+#
+# The two collect tasks are retargeted because the v92 quest bodies carry remapped
+# collection ids (1336: 403, 1341: 405) that have NO placed nodes on the island,
+# while the classic ids they replaced are still placed in the CollectionTerritory
+# files for zone 13. Items, quantities and target NPCs already match, so only the
+# collection id moves.
+#
+# provenance: padding-level-1
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# ---- 1. Quest prerequisite rewrites (25) --------------------------------------
+quests:
+  update:
+    # -- v17-line roots: clear the sentinel, no anchor (10) --------------------
+    - id: 1302            # Another Fine Mess
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1321            # A Bridge Pretty Near
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1322            # Unrest in the Forest (dialog fix below)
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1325            # The Perfect Cut
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1326            # Mana out of Mudmen
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1330            # Horned Horrors
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1340            # Painful Disc-overies
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1341            # Bequest of the Dead (repeatable) + collection retarget
+      changes:
+        requirements:
+          prerequisites: []
+        tasks:
+          - taskId: 1
+            type: CollectTask
+            body:
+              itemId: 411   # v31 collection (expedition remains); v92 body said 405, unplaced in IoD
+    - id: 1345            # Desperately Seeking Sorcha
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1390            # Special Delivery
+      changes:
+        requirements:
+          prerequisites: []
+
+    # -- v17-parent anchors on live or co-enabled quests (12) ------------------
+    - id: 1312            # The Dark Patrol -> live 1311
+      changes:
+        requirements:
+          prerequisites: [1311]
+    - id: 1318            # Hunting the Beasts -> 1322
+      changes:
+        requirements:
+          prerequisites: [1322]
+    - id: 1323            # Getting Some Answers -> 1322
+      changes:
+        requirements:
+          prerequisites: [1322]
+    - id: 1328            # Academic Theft -> 1386
+      changes:
+        requirements:
+          prerequisites: [1386]
+    - id: 1336            # Chione's Missing Cargo -> 1335 + collection retarget
+      changes:
+        requirements:
+          prerequisites: [1335]
+        tasks:
+          - taskId: 1
+            type: CollectTask
+            body:
+              itemId: 409   # v31 collection (supply crates); v92 body said 403, unplaced in IoD
+    - id: 1337            # The Last One -> 1335
+      changes:
+        requirements:
+          prerequisites: [1335]
+    - id: 1338            # Chione's Report -> 1337
+      changes:
+        requirements:
+          prerequisites: [1337]
+    - id: 1339            # Sersine, She Seeks Shackles -> live 1313
+      changes:
+        requirements:
+          prerequisites: [1313]
+    - id: 1346            # Sorcha's Reckless Challenge -> 1345
+      changes:
+        requirements:
+          prerequisites: [1345]
+    - id: 1351            # Supply and Demand -> live 1329
+      changes:
+        requirements:
+          prerequisites: [1329]
+    - id: 1352            # Supply and Demand (class twin) -> live 1329
+      changes:
+        requirements:
+          prerequisites: [1329]
+    - id: 1386            # Bombs Away -> live 1329
+      changes:
+        requirements:
+          prerequisites: [1329]
+
+    # -- re-anchored onto a live quest instead of the classic parent (3) -------
+    - id: 1335            # One of Our Couriers Is Missing -> live 1309 (v17: 1310)
+      changes:
+        requirements:
+          prerequisites: [1309]
+    - id: 1343            # Answers Lead to More Questions -> live 1316 (v17: 1315)
+      changes:
+        requirements:
+          prerequisites: [1316]
+    - id: 1344            # Destroy All Destroyers -> 1343 (chains off re-anchor)
+      changes:
+        requirements:
+          prerequisites: [1343]
+
+# ---- 2. Dialog internal-consistency fix: quest 1322 (doctrine rule 1) ----------
+# QuestDialog hz13/id22, Text 2 LinkCreature points at 13#300932 (Rotting Ghillie
+# Dhu A) but the task hunts 13,300931 (Dying Ghillie Dhu B, spawns 59x). Task side
+# is authoritative; retarget the dialog token to 300931. Text 2 has one page, so
+# the page is reproduced verbatim except the token. The original long dash before
+# "it's best" is normalized to a colon (the long-dash family is banned from file
+# writes); punctuation-only change, meaning preserved.
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 22
+      texts:
+        update:
+          - id: 2
+            pages:
+              - social: 4
+                content: "A searching eye sees many {@LinkCreature:13#300931#ghilliedhus} between here and your duties. Demonstrate your combat skills so that we might know how best to use you.<BR><BR>Watch their limbs: it's best to block or dodge when they swoop downward. When exhausted or injured, rest here at the fire or speak to the clerics."

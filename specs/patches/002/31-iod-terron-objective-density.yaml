@@ -1,0 +1,118 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Fix the starved terron collect objectives on quests 1319 and 1348 by converting a share
+# of the co-located AMBIENT terrons into their combat variants.
+#
+# The quest-target spawns for these two objectives sit on top of the pre-existing ambient
+# Docile Terron territories, roughly 11 units apart, so each point holds one mob that
+# grants the collect item and three that do not. Converting some of the ambient spawns
+# both adds credit mobs and thins the non-credit clutter standing on the same ground;
+# adding the ambient template to the quest's accept list would only have done the first.
+#
+# Each quest pairs a high-rate zarcoBoss variant with a low-rate zarco one, so conversions
+# are split between the two: all-zarco would barely help at 17% and 12% grant rates, and
+# all-zarcoBoss would carpet the camp in mini-bosses. All four combat templates share
+# shapeId 300940 with the ambient template, so appearance is preserved and only playStyle
+# changes.
+#
+# EACH OP MUST SET ai TOO, not just npcTemplateId. Ambient spawns carry spawn-level
+# ai="108" (environment behaviour) while the existing credit mobs carry ai="6", so
+# retargeting the template alone would leave the same template running two different AIs
+# about 11 units apart. Both are isAggressiveMonster="false", so nothing becomes hostile.
+#
+# `desc` is deliberately NOT touched and still reads as the ambient name on converted
+# spawns. desc is an internal authoring label; the player-visible name comes from
+# StrSheet_Creature keyed by (huntingZoneId, templateId), so the display name is correct.
+#
+# Every targeted territory holds one Npc entry at spawnCount 3, so each op converts three
+# mobs. Positions, fences and respawn timers are untouched.
+
+territorySpawns:
+  update:
+    # quest 1348, ambient group 1300022: 4 of its 10 territories convert.
+    # -> 302 Terron Ringleader (zarcoBoss, 90% grant): 2 territories = 6 mobs
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015430          # 66434,-83633, centre of the cluster
+      npcInstanceId: 13474120
+      changes:
+        npcTemplateId: 302
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015470          # 65610,-84483, south-west edge
+      npcInstanceId: 13474160
+      changes:
+        npcTemplateId: 302
+        ai: 6
+
+    # -> 303 Terron Thief (zarco, 17% grant): 2 territories = 6 mobs
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015440          # 67624,-84792, eastern edge
+      npcInstanceId: 13474130
+      changes:
+        npcTemplateId: 303
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300022
+      territoryId: 13015490          # 64914,-84091, western edge
+      npcInstanceId: 13474180
+      changes:
+        npcTemplateId: 303
+        ai: 6
+
+    # quest 1319, ambient group 1300019: 6 of its 17 territories convert.
+    # -> 300944 Terron Chief (zarcoBoss, 85% grant): 3 territories = 9 mobs
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016040          # 79851,-83394, northern cluster
+      npcInstanceId: 13474730
+      changes:
+        npcTemplateId: 300944
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016120          # 77904,-84691, western edge
+      npcInstanceId: 13474810
+      changes:
+        npcTemplateId: 300944
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016130          # 80976,-85995, southern edge
+      npcInstanceId: 13474820
+      changes:
+        npcTemplateId: 300944
+        ai: 6
+
+    # -> 300941 Terron (zarco, 12% grant): 3 territories = 9 mobs
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016070          # 78282,-85513, south-west
+      npcInstanceId: 13474760
+      changes:
+        npcTemplateId: 300941
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016160          # 80852,-82833, north-east
+      npcInstanceId: 13474850
+      changes:
+        npcTemplateId: 300941
+        ai: 6
+
+    - huntingZoneId: 13
+      groupId: 1300019
+      territoryId: 13016190          # 80366,-85807, south
+      npcInstanceId: 13474880
+      changes:
+        npcTemplateId: 300941
+        ai: 6

@@ -1,0 +1,342 @@
+# Sinestral Manor (Zone 488) — Tier 3 eCompensation
+# All mob drops: crystal boxes, runes, fusion structures, alkahest, infusion boxes, gold
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - WEAPON_CRYSTAL_BOX_HEXAGE
+        - ARMOR_CRYSTAL_BOX_HEXAGE
+        - HEXAGE_STRUCTURE
+        - DYAD_HEXAGE_STRUCTURE
+        - SMART_DYAD_HEXAGE_STRUCTURE
+  - from: evolution-base
+    use:
+      variables:
+        - SILRUNE_OF_SHARA
+        - SILRUNE_OF_ARUN
+
+definitions:
+  # Normal mobs — 5 NPCs, Lv27-40
+  sinestral_manor_normal:
+    itemBags:
+      - id: 1
+        bagName: "Sinestral Manor Normal Crystal"
+        probability: 0.03
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Sinestral Manor Normal Rune"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+      - id: 3
+        bagName: "Sinestral Manor Normal Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.99
+            min: 1
+            max: 2
+          - templateId: $HEXAGE_STRUCTURE
+            name: "Fusion Structure"
+            probability: 0.01
+      - id: 4
+        bagName: "Sinestral Manor Normal Infusion (Uncommon)"
+        probability: 0.1
+        equalProbability: true
+        items:
+          - templateId: 602190
+            name: "Infusion Weapon Box (Uncommon)"
+          - templateId: 602193
+            name: "Infusion Chest Box (Uncommon)"
+          - templateId: 602196
+            name: "Infusion Gloves Box (Uncommon)"
+          - templateId: 602199
+            name: "Infusion Boots Box (Uncommon)"
+      - id: 5
+        bagName: "Sinestral Manor Normal Infusion (Rare)"
+        probability: 0.01
+        equalProbability: true
+        items:
+          - templateId: 602191
+            name: "Infusion Weapon Box (Rare)"
+          - templateId: 602194
+            name: "Infusion Chest Box (Rare)"
+          - templateId: 602197
+            name: "Infusion Gloves Box (Rare)"
+          - templateId: 602200
+            name: "Infusion Boots Box (Rare)"
+      - id: 6
+        bagName: "Sinestral Manor Normal Infusion (Superior)"
+        probability: 0.001
+        equalProbability: true
+        items:
+          - templateId: 602192
+            name: "Infusion Weapon Box (Superior)"
+          - templateId: 602195
+            name: "Infusion Chest Box (Superior)"
+          - templateId: 602198
+            name: "Infusion Gloves Box (Superior)"
+          - templateId: 602201
+            name: "Infusion Boots Box (Superior)"
+
+  # Elite mobs — 17 NPCs, Lv27-28
+  sinestral_manor_elite:
+    itemBags:
+      - id: 1
+        bagName: "Sinestral Manor Elite Crystal"
+        probability: 0.08
+        equalProbability: true
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+      - id: 2
+        bagName: "Sinestral Manor Elite Rune"
+        probability: 0.12
+        equalProbability: true
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            min: 1
+            max: 2
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            min: 1
+            max: 2
+      - id: 3
+        bagName: "Sinestral Manor Elite Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 0.97
+            min: 2
+            max: 4
+          - templateId: $HEXAGE_STRUCTURE
+            name: "Fusion Structure"
+            probability: 0.03
+      - id: 4
+        bagName: "Sinestral Manor Elite Infusion (Uncommon)"
+        probability: 0.25
+        equalProbability: true
+        items:
+          - templateId: 602190
+            name: "Infusion Weapon Box (Uncommon)"
+          - templateId: 602193
+            name: "Infusion Chest Box (Uncommon)"
+          - templateId: 602196
+            name: "Infusion Gloves Box (Uncommon)"
+          - templateId: 602199
+            name: "Infusion Boots Box (Uncommon)"
+      - id: 5
+        bagName: "Sinestral Manor Elite Infusion (Rare)"
+        probability: 0.05
+        equalProbability: true
+        items:
+          - templateId: 602191
+            name: "Infusion Weapon Box (Rare)"
+          - templateId: 602194
+            name: "Infusion Chest Box (Rare)"
+          - templateId: 602197
+            name: "Infusion Gloves Box (Rare)"
+          - templateId: 602200
+            name: "Infusion Boots Box (Rare)"
+      - id: 6
+        bagName: "Sinestral Manor Elite Infusion (Superior)"
+        probability: 0.005
+        equalProbability: true
+        items:
+          - templateId: 602192
+            name: "Infusion Weapon Box (Superior)"
+          - templateId: 602195
+            name: "Infusion Chest Box (Superior)"
+          - templateId: 602198
+            name: "Infusion Gloves Box (Superior)"
+          - templateId: 602201
+            name: "Infusion Boots Box (Superior)"
+
+  # Boss mobs — 1 NPCs, Lv28
+  sinestral_manor_boss:
+    itemBags:
+      - id: 1
+        bagName: "Sinestral Manor Weapon Crystal"
+        probability: 0.5
+        items:
+          - templateId: $WEAPON_CRYSTAL_BOX_HEXAGE
+            name: "Weapon Crystal Box"
+            probability: 1.0
+      - id: 2
+        bagName: "Sinestral Manor Armor Crystal"
+        probability: 0.5
+        items:
+          - templateId: $ARMOR_CRYSTAL_BOX_HEXAGE
+            name: "Armor Crystal Box"
+            probability: 1.0
+      - id: 3
+        bagName: "Sinestral Manor Weapon Rune"
+        probability: 1.0
+        items:
+          - templateId: $SILRUNE_OF_SHARA
+            name: "Weapon Evolution Rune"
+            probability: 1.0
+      - id: 4
+        bagName: "Sinestral Manor Armor Rune"
+        probability: 1.0
+        items:
+          - templateId: $SILRUNE_OF_ARUN
+            name: "Armor Evolution Rune"
+            probability: 1.0
+      - id: 5
+        bagName: "Sinestral Manor Fusion Structure"
+        probability: 0.15
+        items:
+          - templateId: $HEXAGE_STRUCTURE
+            name: "Fusion Structure"
+            probability: 1.0
+            min: 1
+            max: 2
+      - id: 6
+        bagName: "Sinestral Manor Dyad Structure"
+        probability: 0.2
+        items:
+          - templateId: $DYAD_HEXAGE_STRUCTURE
+            name: "Dyad Structure"
+            probability: 1.0
+      - id: 7
+        bagName: "Sinestral Manor Smart Dyad Structure"
+        probability: 0.02
+        items:
+          - templateId: $SMART_DYAD_HEXAGE_STRUCTURE
+            name: "Smart Dyad Structure"
+            probability: 1.0
+      - id: 8
+        bagName: "Sinestral Manor Alkahest"
+        probability: 1.0
+        items:
+          - templateId: 21351
+            name: "Alkahest"
+            probability: 1.0
+            min: 3
+            max: 6
+      - id: 9
+        bagName: "Sinestral Manor Boss Infusion (Uncommon)"
+        probability: 0.5
+        equalProbability: true
+        items:
+          - templateId: 602190
+            name: "Infusion Weapon Box (Uncommon)"
+          - templateId: 602193
+            name: "Infusion Chest Box (Uncommon)"
+          - templateId: 602196
+            name: "Infusion Gloves Box (Uncommon)"
+          - templateId: 602199
+            name: "Infusion Boots Box (Uncommon)"
+      - id: 10
+        bagName: "Sinestral Manor Boss Infusion (Rare)"
+        probability: 0.1
+        equalProbability: true
+        items:
+          - templateId: 602191
+            name: "Infusion Weapon Box (Rare)"
+          - templateId: 602194
+            name: "Infusion Chest Box (Rare)"
+          - templateId: 602197
+            name: "Infusion Gloves Box (Rare)"
+          - templateId: 602200
+            name: "Infusion Boots Box (Rare)"
+      - id: 11
+        bagName: "Sinestral Manor Boss Infusion (Superior)"
+        probability: 0.01
+        equalProbability: true
+        items:
+          - templateId: 602192
+            name: "Infusion Weapon Box (Superior)"
+          - templateId: 602195
+            name: "Infusion Chest Box (Superior)"
+          - templateId: 602198
+            name: "Infusion Gloves Box (Superior)"
+          - templateId: 602201
+            name: "Infusion Boots Box (Superior)"
+    goldBags:
+      - bagName: "Sinestral Manor Gold"
+        probability: 1.0
+        min: 15
+        max: 40
+
+eCompensations:
+  upsert:
+    # Normal (5 NPCs): 100=Voracious Dread Wraith Lv27-40, 101=Dire Disc Reaper Lv27-40, 1005=Jelena (Valkyon Ranger) Lv27-40, 1008=Priest of Darkness Akia (Atel Akaad) Lv27-40, 1010=Exit Teleportal Lv27-40
+    - huntingZoneId: 488
+      npcTemplateId: [100, 101, 1005, 1008, 1010]
+      npcName: ""
+      $extends: sinestral_manor_normal
+    # Elite (17 NPCs): 2=Dread Wraith Lv27-28, 3=Furious Wraith Lv27-28, 4=Lokian Defender Lv27-28, 7=Lokian Devastator Lv27-28, 8=Zealous Disc Reaper Lv27-28, 9=Ensorceled Blood Moppet Lv27-28, ... (+11 more)
+    - huntingZoneId: 488
+      npcTemplateId: [2, 3, 4, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20, 23, 102]
+      npcName: ""
+      $extends: sinestral_manor_elite
+    # Boss (1 NPCs): 18=Malgarios (Hungry, Angry, Insane) Lv28
+    - huntingZoneId: 488
+      npcTemplateId: [18]
+      npcName: ""
+      $extends: sinestral_manor_boss
+
+cCompensations:
+  # Delete 20 vanilla cCompensation entries
+  delete:
+    - huntingZoneId: 488
+      npcTemplateId: 2
+    - huntingZoneId: 488
+      npcTemplateId: 3
+    - huntingZoneId: 488
+      npcTemplateId: 4
+    - huntingZoneId: 488
+      npcTemplateId: 7
+    - huntingZoneId: 488
+      npcTemplateId: 8
+    - huntingZoneId: 488
+      npcTemplateId: 9
+    - huntingZoneId: 488
+      npcTemplateId: 11
+    - huntingZoneId: 488
+      npcTemplateId: 12
+    - huntingZoneId: 488
+      npcTemplateId: 14
+    - huntingZoneId: 488
+      npcTemplateId: 15
+    - huntingZoneId: 488
+      npcTemplateId: 16
+    - huntingZoneId: 488
+      npcTemplateId: 17
+    - huntingZoneId: 488
+      npcTemplateId: 19
+    - huntingZoneId: 488
+      npcTemplateId: 20
+    - huntingZoneId: 488
+      npcTemplateId: 21
+    - huntingZoneId: 488
+      npcTemplateId: 22
+    - huntingZoneId: 488
+      npcTemplateId: 100
+    - huntingZoneId: 488
+      npcTemplateId: 101
+    - huntingZoneId: 488
+      npcTemplateId: 102
+    - huntingZoneId: 488
+      npcTemplateId: 1007

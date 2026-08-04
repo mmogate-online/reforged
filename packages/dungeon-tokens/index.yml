@@ -1,0 +1,91 @@
+# Dungeon Token IDs
+#
+# Each dungeon gets a unique MEDAL_USEABLE token dropped by bosses.
+# Right-click opens a MedalStore shop (VillagerMenuItem → BuyMenuList → BuyList).
+#
+# Reserved ranges:
+#   Token items:   95214 to 95313 (100 IDs)
+#   Menu IDs:      9999004 to 9999099  (9999001 to 9999003 reserved by vanilla JP content)
+#   BuyList IDs:   derived from the menu id, by shop family (see below)
+#
+# ===========================================================================
+# BUYLIST ID CONVENTION, measured 2026-07-31, replaces an earlier false claim
+# ===========================================================================
+#
+# This block used to read "List = Menu id + 1 per vanilla pattern". THAT WAS
+# WRONG. It was never measured. The corpus was then swept in full: 1,122
+# BuyMenuList menus, 1,503 BuyLists, every VillagerMenu and VillagerMenuItem
+# binding, across every region-partitioned file.
+#
+# There is no single rule corpus-wide. The rule SPLITS BY SHOP FAMILY:
+#
+#   list = menu*10 + k      NPC-bound MedalStore   46.3%  (plurality)
+#                           item-bound right-click  1.8%
+#   list = menu + k         NPC-bound MedalStore    2.4%
+#                           item-bound right-click 28.9%
+#
+# So `menu + k` is a real pattern, but only for ITEM-bound right-click shops,
+# which is what the two dungeon token shops below still are. `menu*10 + k` is
+# the pattern for NPC-bound shops, and it is what the canon donor uses:
+# NPC 59,1955 "Major Milestone" -> menu 280 -> BuyList 2801. Further examples:
+# 140 -> 1401..1404, 143 -> 1431..1433, 151 -> 1511..1512, 270 -> 2701..2704.
+#
+# RULE FOR THIS PROJECT: allocate by the family the shop will live in.
+#   NPC-bound (a villagerMenus binding)      -> list = menu*10 + k
+#   item-bound (a villagerMenuItems binding) -> list = menu + k
+# A shop that MOVES families gets renumbered with it. Kugai did, on 2026-07-31.
+#
+# Two structural invariants also came out of that sweep, and both matter more
+# than the arithmetic:
+#   1. A menu belongs to a SHOP, not to an NPC. 17 of 41 NPC-bound MedalStore
+#      menus serve more than one NPC; one serves 30. There is no NPC-derived
+#      numbering anywhere, so binding one menu to several NPCs is canon.
+#   2. ONE MENU MEANS ONE CURRENCY. 39 of 41 NPC MedalStore menus have every
+#      tab requiring the same NeedMedalItemId. Give each token its own menu.
+#
+# Softer, followed but not a rule: ItemList `stringed` equals the list id in
+# 49 of 72 NPC MedalStore rows, and Menu `stringId` equals the menu id in 72%
+# of all menus.
+#
+# Eight-digit BuyList ids are corpus-proven (10000101 upward; corpus max is
+# 20732802), so menu*10+k on a 7-digit menu id is safe.
+#
+# ID layout:
+#   Bastion of Lok:   Menu=9999004, List=9999005   item-bound, menu+k
+#   Sinestral Manor:  Menu=9999006, List=9999007   item-bound, menu+k
+#   Kugai:            Menu=9999008, Lists=99990081..3   NPC-bound (iod-tokens)
+#   Valkyon QM:       Menu=9999012, Lists=99990121..2   NPC-bound (progression-tokens)
+#   Sorcha:           Menu=9999017, List=99990171       NPC-bound (below)
+
+spec:
+  version: "1.0"
+
+variables:
+  # Token item IDs
+  BASTION_OF_LOK_TOKEN: 95214
+  SINESTRAL_MANOR_TOKEN: 95215
+  SORCHA_TOKEN: 95218
+
+  # VillagerMenuItem + BuyMenuList menu IDs (must match)
+  BASTION_OF_LOK_MENU: 9999004
+  SINESTRAL_MANOR_MENU: 9999006
+
+  SORCHA_MENU: 9999017
+
+  # BuyList catalog IDs. The two item-bound shops keep menu+1; Sorcha is
+  # NPC-bound, so hers is menu*10+k.
+  BASTION_OF_LOK_LIST: 9999005
+  SINESTRAL_MANOR_LIST: 9999007
+  SORCHA_LIST_COSMETICS: 99990171
+
+exports:
+  variables:
+    - BASTION_OF_LOK_TOKEN
+    - SINESTRAL_MANOR_TOKEN
+    - BASTION_OF_LOK_MENU
+    - SINESTRAL_MANOR_MENU
+    - BASTION_OF_LOK_LIST
+    - SINESTRAL_MANOR_LIST
+    - SORCHA_TOKEN
+    - SORCHA_MENU
+    - SORCHA_LIST_COSMETICS

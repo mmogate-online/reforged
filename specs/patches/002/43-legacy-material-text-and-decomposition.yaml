@@ -1,0 +1,67 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Legacy enchanting-material cleanup: honest tooltips, and one v92 endgame hook removed.
+#
+# Item names are deliberately never touched. `update` writes only the attributes it
+# names, so leaving `name` out keeps the shipped name, and the retirement is stated
+# in the tooltip with the publisher's own [Not Usable] convention.
+
+# Item 21351 Masterwork Alkahest is the catalyst half of every enchant attempt this
+# server runs, so its tooltip has to answer the only question a player has at the
+# enchant window: what else do I need. The baseline text predates the flattening of
+# the feedstock tiers, so it names neither the pairing nor a tier, and it must not
+# mention dismantling, because the decomposition link is severed below.
+
+itemStrings:
+  update:
+    - id: 21351
+      changes:
+        toolTip: "A universal solvent used to enchant equipment. Consumed together with feedstock on every enchanting attempt."
+
+    # The tier alkahest ladder 94201 to 94204, the catalyst-side twin of the retired
+    # feedstock tiers. No live ItemTemplate row carries a `linkMaterialEnchantId`
+    # pointing at any of the records that consume them, so they are dormant vanilla
+    # data no player can reach, and their baseline text still promises a catalyst
+    # bound to a level band that the server no longer runs.
+    #
+    # 94205 to 94212 are DELIBERATELY NOT TOUCHED: they already carry the publisher's
+    # own "no longer usable" text, and rewriting correct shipped text would put eight
+    # more rows under our ownership for no gain.
+    - id: 94201
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+    - id: 94202
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+    - id: 94203
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+    - id: 94204
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Masterwork Alkahest."
+
+# Sever 21351 from the Metamorphic Emblem economy. Its decompositionId points at a
+# record paying 336 Metamorphic Emblems, a level-65 token for v92 level-cap gear,
+# hanging off the material a level-3 player uses on their first enchant. The item is
+# dismantlable="False" so nothing fires, but the client tooltip panel renders the
+# dismantle output from the link regardless, so the player is still shown a payout in
+# a currency this content does not use.
+#
+# BOTH HALVES SHIP TOGETHER. Clearing the link alone orphans the record; deleting the
+# record alone leaves a dangling decompositionId that the reference audit fails the
+# patch on, correctly.
+#
+# `clear` rather than 0: absence is the dominant unset form for decompositionId, and
+# clearing an already-absent attribute is a W500 no-op, so this converges on re-apply.
+
+items:
+  update:
+    - id: 21351
+      changes:
+        clear: [decompositionId]
+
+decompositions:
+  delete:
+    - 21351

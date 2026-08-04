@@ -1,0 +1,440 @@
+# Author the three missing class training quests (1380 Ninja, 1381 Brawler, 1387
+# Valkyrie) and admit them to the story spine.
+#
+# THE SOFT-LOCK THIS CLOSES. Quest 1303 is gated behind an OR of the nine class
+# training quests 1371-1379, each hard-gated to ONE class and offered by Dulari
+# (213,1017) after 1304. The classes added after the classic era have no training
+# quest, so they finish 1304, are offered nothing, and can never satisfy 1303's
+# OR-prereq: the whole spine behind it dies. Reaper (Soulless) is excluded on
+# purpose, since it starts elsewhere at a higher level and never walks this chain.
+#
+# STRUCTURE: 3 tasks, reusing the live NPC cast of the classic training quests, so
+# no new spawns and no NpcLoc regeneration are needed. Dialog is class-agnostic
+# through the <PCCLASS:lcase> token; only the quest TITLE names the class, and it
+# uses the game name, not the internal one. Class names in `requirements.classes`
+# are the internal ones, case-sensitive, validated at apply time (E427).
+#
+# 1303's prerequisites are a REPLACE-all list, so the full OR set is restated below
+# with prerequisiteLogic: OR. A character is one class, so completing any single
+# training quest unlocks it, unchanged for the nine classic classes.
+#
+# CLIENT SYNC TRAP: new low-id quests insert into the client's IdSorted Quest and
+# QuestDialog layout, which the manifest-narrowed sync cannot place (E680). Sync
+# these with --no-narrow. QuestCompensationData and QuestGroupList are server-only.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# These are story Missions, so they pay the early-progression token at the class
+# training tier, like their nine classic siblings 1371-1379.
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+
+# ---- 1. New training quest bodies (3) -----------------------------------------
+quests:
+  upsert:
+    # -- 1380 Ninja Training (Assassin) -------------------------------------
+    - id: 1380
+      header:
+        questNumber: 1380
+        storyGroupId: 1
+        questTitle: "@quest:1380001"
+        questType: Mission
+        repeatType: OneTime
+        cancellable: Forbidden
+        startTaskId: 1
+        linkedQuest: 101          # 1,1 end-of-chain sentinel (matches 1371-1379)
+        giverNpc: "213,1017"      # Dulari offers it (발생조건 NPC대화)
+        recommendedPartySize: 1
+        recommendedLevel: 2
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1380002"
+        endPopup: "@quest:1380003"
+      requirements:
+        minLevel: 2
+        prerequisites: [1304]
+        classes: [Assassin]       # gates the quest to Ninja
+      tasks:
+        - taskId: 1
+          type: VisitTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:1380004"
+          body:
+            npcId: "213,1023"     # Junia
+            dialogueId: 3
+            completionButtonText: "@quest:1380005"
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:1380006"
+          body:
+            huntingZoneId: 13
+            targetId: 300921      # noruks
+            targetCount: 5
+        - taskId: 3
+          type: VisitTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 4
+          journalText: "@quest:1380007"
+          body:
+            npcId: "213,1115"     # Nivek
+            dialogueId: 4
+            completionButtonText: "@quest:1380008"
+
+    # -- 1381 Brawler Training (Fighter) ------------------------------------
+    - id: 1381
+      header:
+        questNumber: 1381
+        storyGroupId: 1
+        questTitle: "@quest:1381001"
+        questType: Mission
+        repeatType: OneTime
+        cancellable: Forbidden
+        startTaskId: 1
+        linkedQuest: 101
+        giverNpc: "213,1017"
+        recommendedPartySize: 1
+        recommendedLevel: 2
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1381002"
+        endPopup: "@quest:1381003"
+      requirements:
+        minLevel: 2
+        prerequisites: [1304]
+        classes: [Fighter]        # gates the quest to Brawler
+      tasks:
+        - taskId: 1
+          type: VisitTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:1381004"
+          body:
+            npcId: "213,1023"
+            dialogueId: 3
+            completionButtonText: "@quest:1381005"
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:1381006"
+          body:
+            huntingZoneId: 13
+            targetId: 300921
+            targetCount: 5
+        - taskId: 3
+          type: VisitTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 4
+          journalText: "@quest:1381007"
+          body:
+            npcId: "213,1115"
+            dialogueId: 4
+            completionButtonText: "@quest:1381008"
+
+    # -- 1387 Valkyrie Training (Glaiver) -----------------------------------
+    - id: 1387
+      header:
+        questNumber: 1387
+        storyGroupId: 1
+        questTitle: "@quest:1387001"
+        questType: Mission
+        repeatType: OneTime
+        cancellable: Forbidden
+        startTaskId: 1
+        linkedQuest: 101
+        giverNpc: "213,1017"
+        recommendedPartySize: 1
+        recommendedLevel: 2
+        summaryInfo: 100
+        questDialogue: 2
+        startPopup: "@quest:1387002"
+        endPopup: "@quest:1387003"
+      requirements:
+        minLevel: 2
+        prerequisites: [1304]
+        classes: [Glaiver]        # gates the quest to Valkyrie
+      tasks:
+        - taskId: 1
+          type: VisitTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:1387004"
+          body:
+            npcId: "213,1023"
+            dialogueId: 3
+            completionButtonText: "@quest:1387005"
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:1387006"
+          body:
+            huntingZoneId: 13
+            targetId: 300921
+            targetCount: 5
+        - taskId: 3
+          type: VisitTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 4
+          journalText: "@quest:1387007"
+          body:
+            npcId: "213,1115"
+            dialogueId: 4
+            completionButtonText: "@quest:1387008"
+
+  # ---- 2. Extend 1303's OR-prereq to admit the three new training quests ------
+  update:
+    - id: 1303                    # The Secret Life of Trees
+      changes:
+        requirements:
+          prerequisites: [1371, 1372, 1373, 1374, 1375, 1376, 1377, 1378, 1379, 1380, 1381, 1387]
+          prerequisiteLogic: OR
+
+# ---- 3. Quest strings (24: 8 per quest) ---------------------------------------
+# Voice mirrors the classic training quests (Dulari/Junia/Nivek, "recruit"); the
+# class name is carried by the title only, the dialogs use <PCCLASS:lcase>.
+questStrings:
+  upsert:
+    # 1380 Ninja -----------------------------------------------------------
+    - id: 1380001
+      string: "Ninja Training"
+    - id: 1380002
+      string: "Time to sharpen your skills!"
+    - id: 1380003
+      string: "Well handled. You're ready for what lies ahead."
+    - id: 1380004
+      string: "Speak with Junia at Dulari's Camp to begin your training."
+    - id: 1380005
+      string: '"Understood."'
+    - id: 1380006
+      string: "Test your skills on the noruks nearby. Defeat 5."
+    - id: 1380007
+      string: "Report to Nivek at the base of the hill."
+    - id: 1380008
+      string: '"Understood."'
+    # 1381 Brawler ---------------------------------------------------------
+    - id: 1381001
+      string: "Brawler Training"
+    - id: 1381002
+      string: "Time to sharpen your skills!"
+    - id: 1381003
+      string: "Well handled. You're ready for what lies ahead."
+    - id: 1381004
+      string: "Speak with Junia at Dulari's Camp to begin your training."
+    - id: 1381005
+      string: '"Understood."'
+    - id: 1381006
+      string: "Test your skills on the noruks nearby. Defeat 5."
+    - id: 1381007
+      string: "Report to Nivek at the base of the hill."
+    - id: 1381008
+      string: '"Understood."'
+    # 1387 Valkyrie --------------------------------------------------------
+    - id: 1387001
+      string: "Valkyrie Training"
+    - id: 1387002
+      string: "Time to sharpen your skills!"
+    - id: 1387003
+      string: "Well handled. You're ready for what lies ahead."
+    - id: 1387004
+      string: "Speak with Junia at Dulari's Camp to begin your training."
+    - id: 1387005
+      string: '"Understood."'
+    - id: 1387006
+      string: "Test your skills on the noruks nearby. Defeat 5."
+    - id: 1387007
+      string: "Report to Nivek at the base of the hill."
+    - id: 1387008
+      string: '"Understood."'
+
+# ---- 4. Quest dialogs (3) -----------------------------------------------------
+# Per quest: Text 1 (system placeholder), Text 100 (summary, ref summaryInfo=100),
+# Text 2 (Dulari briefing, ref questDialogue=2), Text 3 (Junia, task 1 dialogueId=3),
+# Text 4 (Nivek turn-in, task 3 dialogueId=4). Dialog id = quest offset (80/81/87).
+questDialogs:
+  upsert:
+    # 1380 (huntingZone 13, dialog id 80) ----------------------------------
+    - huntingZoneId: 13
+      id: 80
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 213
+          prevId: 0
+          villagerId: 1017
+          pages:
+            - social: 0
+              content: "You trained under Junia and proved your skills against the noruks."
+        - id: 2
+          npcZoneId: 213
+          prevId: 0
+          villagerId: 1017
+          pages:
+            - social: 4
+              content: "You've made your rounds and seen what this island asks of a soldier. Before I send you any deeper, you'd best be ready for it.<BR><BR>Junia over there will make a proper <PCCLASS:lcase> of you. Go and learn what she has to teach."
+        - id: 3
+          npcZoneId: 213
+          prevId: 2
+          villagerId: 1023
+          pages:
+            - social: 4
+              content: "So Dulari sends me another recruit. Good: skills are earned, not handed out.<BR><BR>Put what you know to use on the {@LinkCreature:13#300921#noruks} to the south. When you've thinned a few, report to Nivek at the base of the hill."
+        - id: 4
+          npcZoneId: 213
+          prevId: 3
+          villagerId: 1115
+          pages:
+            - social: 4
+              content: "The noruks gave you no trouble, I see. You've the makings of a <PCCLASS:lcase> after all.<BR><BR>Good work, recruit."
+    # 1381 (dialog id 81) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 81
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 213
+          prevId: 0
+          villagerId: 1017
+          pages:
+            - social: 0
+              content: "You trained under Junia and proved your skills against the noruks."
+        - id: 2
+          npcZoneId: 213
+          prevId: 0
+          villagerId: 1017
+          pages:
+            - social: 4
+              content: "You've made your rounds and seen what this island asks of a soldier. Before I send you any deeper, you'd best be ready for it.<BR><BR>Junia over there will make a proper <PCCLASS:lcase> of you. Go and learn what she has to teach."
+        - id: 3
+          npcZoneId: 213
+          prevId: 2
+          villagerId: 1023
+          pages:
+            - social: 4
+              content: "So Dulari sends me another recruit. Good: skills are earned, not handed out.<BR><BR>Put what you know to use on the {@LinkCreature:13#300921#noruks} to the south. When you've thinned a few, report to Nivek at the base of the hill."
+        - id: 4
+          npcZoneId: 213
+          prevId: 3
+          villagerId: 1115
+          pages:
+            - social: 4
+              content: "The noruks gave you no trouble, I see. You've the makings of a <PCCLASS:lcase> after all.<BR><BR>Good work, recruit."
+    # 1387 (dialog id 87) --------------------------------------------------
+    - huntingZoneId: 13
+      id: 87
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 213
+          prevId: 0
+          villagerId: 1017
+          pages:
+            - social: 0
+              content: "You trained under Junia and proved your skills against the noruks."
+        - id: 2
+          npcZoneId: 213
+          prevId: 0
+          villagerId: 1017
+          pages:
+            - social: 4
+              content: "You've made your rounds and seen what this island asks of a soldier. Before I send you any deeper, you'd best be ready for it.<BR><BR>Junia over there will make a proper <PCCLASS:lcase> of you. Go and learn what she has to teach."
+        - id: 3
+          npcZoneId: 213
+          prevId: 2
+          villagerId: 1023
+          pages:
+            - social: 4
+              content: "So Dulari sends me another recruit. Good: skills are earned, not handed out.<BR><BR>Put what you know to use on the {@LinkCreature:13#300921#noruks} to the south. When you've thinned a few, report to Nivek at the base of the hill."
+        - id: 4
+          npcZoneId: 213
+          prevId: 3
+          villagerId: 1115
+          pages:
+            - social: 4
+              content: "The noruks gave you no trouble, I see. You've the makings of a <PCCLASS:lcase> after all.<BR><BR>Good work, recruit."
+
+# ---- 5. Quest rewards ---------------------------------------------------------
+# Mirrors the classic training quests 1371-1379: flat exp+gold, no class-scoped
+# item, so no per-class compensation-row split is needed.
+questCompensations:
+  upsert:
+    - questId: 1380
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1381
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    - questId: 1387
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2100
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+# ---- 6. Story-group registration ----------------------------------------------
+# Append the three quests to Story Group 1 ("World of TERA"), the classic training
+# block, so the server groups them with 1371-1379. `upsertQuests` appends without
+# rewriting the existing membership.
+questStoryGroups:
+  upsertQuests:
+    - storyGroupId: 1
+      quests:
+        - id: 1380
+          dec: "Ninja Training"
+        - id: 1381
+          dec: "Brawler Training"
+        - id: 1387
+          dec: "Valkyrie Training"
+

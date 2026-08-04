@@ -1,0 +1,351 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+
+# Island of Dawn level 5-7 reward pass: the level-7 First Expedition set moves off
+# the story spine onto four zone quests, the progression token is added, and three
+# stale new-class weapons are corrected.
+#
+# Design rule behind the distribution: zone quests own POWER progression, story
+# quests own LORE progression, and a full set look must stay completable. Quest
+# 1305 previously granted the entire set in one story turn-in while two zone
+# quests paid duplicates of pieces the player already had.
+#
+# questCompensations upsert is REPLACE-ALL, so each entry restates a quest's
+# complete reward block rather than a delta, and specs apply in sorted filename
+# order: a higher-numbered spec naming these quests would be the last writer and
+# would silently undo this distribution. That is why the XP values and the token
+# rows live here rather than in a later spec of their own. A `class` bag needs one
+# row per class, so the token appears twelve times in those blocks; an `allpay`
+# bag needs a single row.
+#
+# TRAP on the in-progress gate. Quests 1326 and 1330 were offerable only while
+# story quest 1305 was ACTIVE, so a player who completed 1305 without visiting
+# them lost the level-7 feet and hands permanently and the set stopped being
+# completable. `inProgress: []` REMOVES the element, which is the canonical
+# no-gate form; `inProgress: 0` instead writes "quest 0,0 must be in progress" and
+# makes the quest permanently unofferable. That leg is server-only: the client
+# Quest XSD carries no in-progress element, so it needs no repack.
+
+quests:
+  update:
+    # Clear the in-progress gate so the two carriers stay offerable after 1305 completes,
+    # which is what makes the level-7 set completable. Server-only: the client XSD carries
+    # no 진행퀘스트 element.
+    - id: 1326            # Mana out of Mudmen (carries the lv7 feet)
+      changes:
+        requirements:
+          inProgress: []
+
+    - id: 1330            # Horned Horrors (carries the lv7 hands)
+      changes:
+        requirements:
+          inProgress: []
+
+questCompensations:
+  upsert:
+    # ---- story spine: lore only, the whole First Expedition set removed ---------
+    - questId: 1305       # A Clue in the Dark (was 48 rows: full lv7 set + weapon)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4900
+          gold: 490
+
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 60
+
+    - questId: 1332       # They'll Eat Anything (Kamarnu, delivered to Jehan) -> lv7 BODY
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 90
+          itemBag: "class"
+          items:
+            - templateId: 15019      # Hauberk of the First Expedition (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 15019
+              quantity: 1
+              class: "berserker"
+            - templateId: 15019
+              quantity: 1
+              class: "engineer"
+            - templateId: 15019
+              quantity: 1
+              class: "fighter"
+            - templateId: 15022      # Cuirass of the First Expedition (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 15022
+              quantity: 1
+              class: "slayer"
+            - templateId: 15022
+              quantity: 1
+              class: "archer"
+            - templateId: 15022
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15025      # Robe of the First Expedition (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15025
+              quantity: 1
+              class: "priest"
+            - templateId: 15025
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15025
+              quantity: 1
+              class: "assassin"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "assassin"
+
+    - questId: 1333       # Twice the Bark, Twice the Bite (Jehan) -> lv7 WEAPON + token
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900          # was 1700; bracket 5-6 cap
+          gold: 170
+          itemBag: "class"
+          items:
+            - templateId: 10017      # Twin Swords of the First Expedition
+              quantity: 1
+              class: "warrior"
+            - templateId: 10018      # Lance of the First Expedition
+              quantity: 1
+              class: "lancer"
+            - templateId: 10019      # Greatsword of the First Expedition
+              quantity: 1
+              class: "slayer"
+            - templateId: 10020      # Axe of the First Expedition
+              quantity: 1
+              class: "berserker"
+            - templateId: 10021      # Disc of the First Expedition
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 10022      # Bow of the First Expedition
+              quantity: 1
+              class: "archer"
+            - templateId: 10023      # Staff of the First Expedition
+              quantity: 1
+              class: "priest"
+            - templateId: 10024      # Scepter of the First Expedition
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55007      # Arcannon of the First Expedition
+              quantity: 1
+              class: "engineer"
+            - templateId: 82007      # Powerfists of the First Expedition
+              quantity: 1
+              class: "fighter"
+            - templateId: 58173      # Shuriken of the First Expedition
+              quantity: 1
+              class: "assassin"
+            - templateId: 59055      # Runeglaive of the First Expedition
+              quantity: 1
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "assassin"
+
+    # ---- former carriers, returned to exp and gold only -------------------------
+    - questId: 1348       # Ferocious Flowering Felons (was the lv7 body) -> token only
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900          # already under the 5-6 cap of 900
+          gold: 90
+          itemBag: "allpay"      # added by wave 1: the quest had no bag at all
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    - questId: 1349       # Gotta Kill 'Em All (was the lv7 weapon) -> token only
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300          # was 2300; bracket 7-8 cap
+          gold: 230
+          itemBag: "allpay"      # added by wave 1: the quest had no bag at all
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 12
+
+    # ---- Kugai tier: removed, the token shop owns it ---------------------------
+    - questId: 1315       # Putting the Pieces Together (was 12 Kugai weapons + lv8 chest)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4500
+          gold: 450
+
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 40
+
+    - questId: 1316       # Dark Revelations: lv11 weapon tier
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 14600
+          gold: 1460
+          itemBag: "class"
+          items:
+            - templateId: 10593      # Disclose & Divulge
+              quantity: 1
+              class: "warrior"
+            - templateId: 10594      # Revelation Tree
+              quantity: 1
+              class: "lancer"
+            - templateId: 10595      # Incisive Greatsword
+              quantity: 1
+              class: "slayer"
+            - templateId: 10596      # Axe of Manifesto
+              quantity: 1
+              class: "berserker"
+            - templateId: 10597      # Darkseeing Lens
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 10598      # Revealing Arc
+              quantity: 1
+              class: "archer"
+            - templateId: 10599      # Praesto Staff
+              quantity: 1
+              class: "priest"
+            - templateId: 10600      # Rod of Revelation
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55079      # See Shooter
+              quantity: 1
+              class: "engineer"
+            - templateId: 82079      # Feather Dusters (was 82008, level 12)
+              quantity: 1
+              class: "fighter"
+            - templateId: 58245      # Tattlebriar (was 58174, level 12)
+              quantity: 1
+              class: "assassin"
+            - templateId: 59127      # Reconglaive (was 59056, level 12)
+              quantity: 1
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "assassin"
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 100
+              class: "glaiver"
+

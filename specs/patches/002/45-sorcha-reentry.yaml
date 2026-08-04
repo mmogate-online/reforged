@@ -1,0 +1,26 @@
+# Sorcha re-entry: ungate the portal so a character who has completed quest 1346 can
+# walk back into Sorcha's Reckless Challenge.
+#
+# WorkObject template 134 carried isForQuestId="1346" firstTaskId="1" lastTaskId="1".
+# A WorkObject quest window expresses an ACTIVE TASK BRACKET only, and the schema has
+# no completion-based form of it, so the portal went inert the moment 1346 advanced.
+# The window has to come OFF rather than be widened; zeroing all three attributes is
+# this file's own ungated shape (templates 1 and 2 already carry 0/0/0).
+#
+# No dungeonDatas op belongs here. DungeonData_9037 already carries both the
+# progressQuest and completeQuest conditions and keeps owning admission (solo,
+# levelOver 8, maxMemberCount 1). The portal is furniture; the dungeon decides entry.
+#
+# workObjects maps to WorkObjectData, which IS client synced, so this needs a repack.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+workObjects:
+  update:
+    - templateId: 134
+      changes:
+        isForQuestId: 0
+        firstTaskId: 0
+        lastTaskId: 0

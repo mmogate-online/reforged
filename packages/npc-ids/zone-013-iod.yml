@@ -1,0 +1,205 @@
+# Island of Dawn (Zone 13) — NPC Template IDs
+#
+# Classification sources (via mcp__datasheet-v92__audit_zone_spawns):
+#   - Friendly NPCs: villager=true
+#   - Boss Monsters: showAggroTarget=true
+#   - Elite Monsters: elite=true
+#   - Objects: isObjectNpc=true
+#   - World Boss: manual selection (none in IoD)
+#   - Normal Monsters: everything else (catch-all)
+#
+# Zone 13 scan results:
+#   - No villager=true templates
+#   - No showAggroTarget=true templates
+#   - No elite=true templates
+#   - 2 objects (888 Training Dummy, 999 Exploding Barrel)
+#   - Remainder are Normal Monsters
+#
+# Note: Parent-only formation templates (300540, 300940, 300950, 300952, 300953,
+# 301190, 301192) are excluded — they exist in NpcData but are never placed in
+# TerritoryData and therefore never spawned.
+
+spec:
+  version: "1.0"
+
+variables:
+
+  # --- Individual NPCs ---
+
+  IOD_PIGLING: 1                    # Pigling (lv3)
+  IOD_SPOREWALKER: 2                # Sporewalker (lv6)
+  IOD_PONDEROUS_SPOREWALKER: 3      # Ponderous Sporewalker (lv5)
+  IOD_DWARF_ORCAN: 4                # Dwarf Orcan (lv7)
+  IOD_ORCAN_RAIDER: 5               # Orcan Raider (lv7)
+  IOD_KARIAGON: 6                   # Kariagon (lv8)
+  IOD_DISC_REAPER: 7                # Disc Reaper (lv8)
+  IOD_RUNEKEEPER: 8                 # Runekeeper (lv9)
+  IOD_DESTROYER: 9                  # Destroyer (lv9)
+  IOD_GIANT_HONEYBEE: 101           # Giant Honeybee — environmental (playStyle=creature, HP~0.5)
+  IOD_DOCILE_TERRON: 102            # Docile Terron — environmental (playStyle=creature, HP~0.4)
+  IOD_GENTLE_PIGLING: 111           # Gentle Pigling — cinematic (non-aggressive staging NPC)
+  IOD_TERRON_RINGLEADER: 302        # Terron Ringleader (lv3)
+  IOD_TERRON_THIEF: 303             # Terron Thief (lv3)
+  IOD_SICKLY_NORUK: 304             # Sickly Noruk (lv3)
+  IOD_DARK_MARAUDER: 601            # Dark Marauder (lv7)
+  IOD_TRAINING_DUMMY: 888           # Training Dummy — Object
+  IOD_ORCAN_GUARDIAN: 901           # Orcan Guardian (lv7)
+  IOD_DWARF_GUARDIAN: 902           # Dwarf Guardian (lv7)
+  IOD_EXPLODING_BARREL: 999         # Exploding Barrel — Object
+  IOD_VEKAS: 1001                   # Vekas (lv4, aggressive named)
+  IOD_ACHARAK: 1002                 # Acharak (lv8, aggressive named)
+  IOD_ACHARAKS_SOLDIER: 1003        # Acharak's Soldier (lv8)
+  IOD_KUGAI: 1004                   # Kugai (lv10, aggressive named, short respawn)
+  IOD_TERRON_SABOTEUR_ENV: 1011     # Environmental Terron Saboteur (playStyle=creature, HP~0.8)
+  IOD_ROCKCRAWLER: 300541           # Rockcrawler (lv5)
+  IOD_ROCKCRAWLER_CLEAVER: 300542   # Rockcrawler Cleaver (lv5)
+  IOD_PROWLING_CROMOS: 300910       # Prowling Cromos (lv8)
+  IOD_CROMOS: 300911                # Cromos (lv7)
+  IOD_SHAGGY_NORUK: 300920          # Shaggy Noruk (lv7)
+  IOD_NORUK: 300921                 # Noruk (lv2)
+  IOD_ELDER_GHILLIEDHU: 300930      # Elder Ghilliedhu (lv2)
+  IOD_GHILLIEDHU: 300931            # Ghilliedhu (lv1)
+  IOD_HORNED_GHILLIEDHU: 300932     # Horned Ghilliedhu (lv6)
+  IOD_HARDENED_GHILLIEDHU: 300933   # Hardened Ghilliedhu (lv3)
+  IOD_TERRON: 300941                # Terron (lv1)
+  IOD_TERRON_THRALL: 300942         # Terron Thrall (lv8)
+  IOD_TERRON_SABOTEUR: 300943       # Terron Saboteur — combat variant (lv7)
+  IOD_TERRON_CHIEF: 300944          # Terron Chief (lv1)
+  IOD_TERRON_LAMA: 300945           # Terron Lama (lv7)
+  IOD_DARK_RAIDER: 300951           # Dark Raider (lv8)
+  IOD_DEVOTED_EBON_IMP: 300960      # Devoted Ebon Imp (lv8)
+  IOD_STONEBEAK_RAIDER: 301191      # Stonebeak Raider (lv4)
+  IOD_STONEBEAK_BRIGAND: 301193     # Stonebeak Brigand (lv3)
+  IOD_STONEBEAK_HIGHCREST: 301194   # Stonebeak Highcrest (lv4)
+
+  # 4 Scion Scout variants share the display name but use different AI IDs.
+  # Numeric suffix preserves the one-scalar-per-template rule.
+  IOD_SCION_SCOUT_1: 555            # Scion Scout (lv10, aiid=103)
+  IOD_SCION_SCOUT_2: 556            # Scion Scout (lv10, aiid=104)
+  IOD_SCION_SCOUT_3: 557            # Scion Scout (lv10, aiid=105)
+  IOD_SCION_SCOUT_4: 558            # Scion Scout (lv10, aiid=106)
+
+  # --- Category groups ---
+
+  IOD_FRIENDLY_NPCS: []
+
+  # Category group lists reference individual scalar variables so each ID has a
+  # single source of truth. DSL resolves the references at declaration time.
+  IOD_NORMAL_MONSTERS:
+    - $IOD_PIGLING
+    - $IOD_SPOREWALKER
+    - $IOD_PONDEROUS_SPOREWALKER
+    - $IOD_DWARF_ORCAN
+    - $IOD_ORCAN_RAIDER
+    - $IOD_KARIAGON
+    - $IOD_DISC_REAPER
+    - $IOD_RUNEKEEPER
+    - $IOD_DESTROYER
+    - $IOD_GIANT_HONEYBEE
+    - $IOD_DOCILE_TERRON
+    - $IOD_GENTLE_PIGLING
+    - $IOD_TERRON_RINGLEADER
+    - $IOD_TERRON_THIEF
+    - $IOD_SICKLY_NORUK
+    - $IOD_SCION_SCOUT_1
+    - $IOD_SCION_SCOUT_2
+    - $IOD_SCION_SCOUT_3
+    - $IOD_SCION_SCOUT_4
+    - $IOD_DARK_MARAUDER
+    - $IOD_ORCAN_GUARDIAN
+    - $IOD_DWARF_GUARDIAN
+    - $IOD_VEKAS
+    - $IOD_ACHARAK
+    - $IOD_ACHARAKS_SOLDIER
+    - $IOD_KUGAI
+    - $IOD_TERRON_SABOTEUR_ENV
+    - $IOD_ROCKCRAWLER
+    - $IOD_ROCKCRAWLER_CLEAVER
+    - $IOD_PROWLING_CROMOS
+    - $IOD_CROMOS
+    - $IOD_SHAGGY_NORUK
+    - $IOD_NORUK
+    - $IOD_ELDER_GHILLIEDHU
+    - $IOD_GHILLIEDHU
+    - $IOD_HORNED_GHILLIEDHU
+    - $IOD_HARDENED_GHILLIEDHU
+    - $IOD_TERRON
+    - $IOD_TERRON_THRALL
+    - $IOD_TERRON_SABOTEUR
+    - $IOD_TERRON_CHIEF
+    - $IOD_TERRON_LAMA
+    - $IOD_DARK_RAIDER
+    - $IOD_DEVOTED_EBON_IMP
+    - $IOD_STONEBEAK_RAIDER
+    - $IOD_STONEBEAK_BRIGAND
+    - $IOD_STONEBEAK_HIGHCREST
+
+  IOD_ELITE_MONSTERS: []
+
+  IOD_BOSS_MONSTERS: []
+
+  IOD_WORLD_BOSSES: []
+
+  IOD_OBJECTS:
+    - $IOD_TRAINING_DUMMY
+    - $IOD_EXPLODING_BARREL
+
+exports:
+  variables:
+    # Individuals
+    - IOD_PIGLING
+    - IOD_SPOREWALKER
+    - IOD_PONDEROUS_SPOREWALKER
+    - IOD_DWARF_ORCAN
+    - IOD_ORCAN_RAIDER
+    - IOD_KARIAGON
+    - IOD_DISC_REAPER
+    - IOD_RUNEKEEPER
+    - IOD_DESTROYER
+    - IOD_GIANT_HONEYBEE
+    - IOD_DOCILE_TERRON
+    - IOD_GENTLE_PIGLING
+    - IOD_TERRON_RINGLEADER
+    - IOD_TERRON_THIEF
+    - IOD_SICKLY_NORUK
+    - IOD_DARK_MARAUDER
+    - IOD_TRAINING_DUMMY
+    - IOD_ORCAN_GUARDIAN
+    - IOD_DWARF_GUARDIAN
+    - IOD_EXPLODING_BARREL
+    - IOD_VEKAS
+    - IOD_ACHARAK
+    - IOD_ACHARAKS_SOLDIER
+    - IOD_KUGAI
+    - IOD_TERRON_SABOTEUR_ENV
+    - IOD_ROCKCRAWLER
+    - IOD_ROCKCRAWLER_CLEAVER
+    - IOD_PROWLING_CROMOS
+    - IOD_CROMOS
+    - IOD_SHAGGY_NORUK
+    - IOD_NORUK
+    - IOD_ELDER_GHILLIEDHU
+    - IOD_GHILLIEDHU
+    - IOD_HORNED_GHILLIEDHU
+    - IOD_HARDENED_GHILLIEDHU
+    - IOD_TERRON
+    - IOD_TERRON_THRALL
+    - IOD_TERRON_SABOTEUR
+    - IOD_TERRON_CHIEF
+    - IOD_TERRON_LAMA
+    - IOD_DARK_RAIDER
+    - IOD_DEVOTED_EBON_IMP
+    - IOD_STONEBEAK_RAIDER
+    - IOD_STONEBEAK_BRIGAND
+    - IOD_STONEBEAK_HIGHCREST
+    - IOD_SCION_SCOUT_1
+    - IOD_SCION_SCOUT_2
+    - IOD_SCION_SCOUT_3
+    - IOD_SCION_SCOUT_4
+    # Category groups
+    - IOD_FRIENDLY_NPCS
+    - IOD_NORMAL_MONSTERS
+    - IOD_ELITE_MONSTERS
+    - IOD_BOSS_MONSTERS
+    - IOD_WORLD_BOSSES
+    - IOD_OBJECTS

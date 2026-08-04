@@ -1,0 +1,645 @@
+# Equipment Item Standard Package
+# Authoritative baseline for all equipment-gear standardization/normalization.
+#
+# This package owns every attribute that is tier-wide, slot-wide, or class-wide
+# standardized across the Reforged gear pipeline. Patch specs must `upsert` via
+# these definitions and set only per-item/per-patch data (id, name, icon, level,
+# prices, per-item passivities, linkLookInfoId, linkMaterialEnchantId, etc.).
+#
+# Tier semantics:
+#   HighTier (Mythic / Grade 4): boundType Loot, not tradable, not dismantlable,
+#     combineOptionValue 3
+#   MidTier  (Superior / Grade 3): boundType Equip, tradable, dismantlable,
+#     combineOptionValue 2
+#   LowTier  (Rare / Grade 2):     boundType Equip, tradable, dismantlable,
+#     combineOptionValue 1; reuses MidTier's enchant pool.
+#
+# Structure layers (outer → inner):
+#   _EquipmentBase → slot base → tier intermediary → exported item
+#   Class-specialized weapons and chests extend the exported items with
+#   subtype/category/requiredClass/linkPassivityCategoryId.
+
+imports:
+  - from: enchant-standard
+    use:
+      variables:
+        # High-tier enchant IDs
+        - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+        - ENCHANT_HIGH_TIER_WEAPON_HEALER
+        - ENCHANT_HIGH_TIER_CHEST
+        - ENCHANT_HIGH_TIER_HAND_MAIL
+        - ENCHANT_HIGH_TIER_HAND_LEATHER
+        - ENCHANT_HIGH_TIER_HAND_ROBE
+        - ENCHANT_HIGH_TIER_BOOTS
+        # Mid-tier enchant IDs
+        - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+        - ENCHANT_MID_TIER_WEAPON_HEALER
+        - ENCHANT_MID_TIER_CHEST
+        - ENCHANT_MID_TIER_HAND_MAIL
+        - ENCHANT_MID_TIER_HAND_LEATHER
+        - ENCHANT_MID_TIER_HAND_ROBE
+        - ENCHANT_MID_TIER_BOOTS
+        # Low-tier enchant IDs (aliased to Mid-tier values in enchant-standard)
+        - ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+        - ENCHANT_LOW_TIER_WEAPON_HEALER
+        - ENCHANT_LOW_TIER_CHEST
+        - ENCHANT_LOW_TIER_HAND_MAIL
+        - ENCHANT_LOW_TIER_HAND_LEATHER
+        - ENCHANT_LOW_TIER_HAND_ROBE
+        - ENCHANT_LOW_TIER_BOOTS
+
+  - from: chest-toproll-categories
+    use:
+      variables:
+        - CATEGORY_CHEST_WARRIOR
+        - CATEGORY_CHEST_LANCER
+        - CATEGORY_CHEST_BERSERKER
+        - CATEGORY_CHEST_SLAYER
+        - CATEGORY_CHEST_SORCERER
+        - CATEGORY_CHEST_ARCHER
+        - CATEGORY_CHEST_MYSTIC
+        - CATEGORY_CHEST_PRIEST
+        - CATEGORY_CHEST_REAPER
+        - CATEGORY_CHEST_GUNNER
+        - CATEGORY_CHEST_BRAWLER
+        - CATEGORY_CHEST_NINJA
+        - CATEGORY_CHEST_VALKYRIE
+
+definitions:
+  # ===========================================================================
+  # BASE TEMPLATES (internal)
+  # Universal properties shared across all equipment items regardless of tier.
+  # ===========================================================================
+
+  _EquipmentBase:
+    enchantEnable: true
+    storeSellable: false
+    unidentifiedItemGrade: 1
+    warehouseStorable: true
+    guildWarehouseStorable: false
+    dropType: 2
+    dropIdentify: false
+    masterpieceRate: 0
+
+  # Slot bases — add combatItemType and slot-specific defaults.
+
+  _WeaponBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_WEAPON
+    linkPassivityCategoryId: 120300
+
+  _ChestBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_ARMOR_BODY
+
+  _GlovesBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_ARMOR_ARM
+
+  _BootsBase:
+    $extends: _EquipmentBase
+    combatItemType: EQUIP_ARMOR_LEG
+
+  # ===========================================================================
+  # TIER INTERMEDIARIES (internal)
+  # Slot base → Tier intermediary → Exported definition.
+  # Each intermediary sets tier-wide bound/tradable/dismantlable/combineOption.
+  # ===========================================================================
+
+  _HighTierWeaponBase:
+    $extends: _WeaponBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierWeaponBase:
+    $extends: _WeaponBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _LowTierWeaponBase:
+    $extends: _WeaponBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 1
+
+  _HighTierChestBase:
+    $extends: _ChestBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierChestBase:
+    $extends: _ChestBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _LowTierChestBase:
+    $extends: _ChestBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 1
+
+  _HighTierGlovesBase:
+    $extends: _GlovesBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierGlovesBase:
+    $extends: _GlovesBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _LowTierGlovesBase:
+    $extends: _GlovesBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 1
+
+  _HighTierBootsBase:
+    $extends: _BootsBase
+    boundType: Loot
+    dismantlable: false
+    tradable: false
+    combineOptionValue: 3
+
+  _MidTierBootsBase:
+    $extends: _BootsBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 2
+
+  _LowTierBootsBase:
+    $extends: _BootsBase
+    boundType: Equip
+    dismantlable: true
+    tradable: true
+    combineOptionValue: 1
+
+  # ===========================================================================
+  # HIGH TIER (Grade 4 / Mythic) - WEAPONS
+  # ===========================================================================
+
+  # DPS and Tank classes share the same weapon enchant pool
+  HighTierWeaponDPSTankItem:
+    $extends: _HighTierWeaponBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+
+  HighTierWeaponHealerItem:
+    $extends: _HighTierWeaponBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_WEAPON_HEALER
+
+  # ===========================================================================
+  # HIGH TIER (Grade 4 / Mythic) - ARMOR
+  # Per-material linkPassivityCategoryId set directly on the exported item.
+  # ===========================================================================
+
+  HighTierChestItem:
+    $extends: _HighTierChestBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_CHEST
+    linkPassivityCategoryId: 120316
+
+  HighTierHandMailItem:
+    $extends: _HighTierGlovesBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_HAND_MAIL
+    linkPassivityCategoryId: 4150
+
+  HighTierHandLeatherItem:
+    $extends: _HighTierGlovesBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_HAND_LEATHER
+    linkPassivityCategoryId: 4152
+
+  HighTierHandRobeItem:
+    $extends: _HighTierGlovesBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_HAND_ROBE
+    linkPassivityCategoryId: 4151
+
+  HighTierBootsItem:
+    $extends: _HighTierBootsBase
+    rareGrade: Mythic
+    linkEnchantId: $ENCHANT_HIGH_TIER_BOOTS
+    linkPassivityCategoryId: 4250
+
+  # ===========================================================================
+  # MID TIER (Grade 3 / Superior) - WEAPONS
+  # ===========================================================================
+
+  MidTierWeaponDPSTankItem:
+    $extends: _MidTierWeaponBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_WEAPON_DPS_TANK
+
+  MidTierWeaponHealerItem:
+    $extends: _MidTierWeaponBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_WEAPON_HEALER
+
+  # ===========================================================================
+  # MID TIER (Grade 3 / Superior) - ARMOR
+  # ===========================================================================
+
+  MidTierChestItem:
+    $extends: _MidTierChestBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_CHEST
+    linkPassivityCategoryId: 120316
+
+  MidTierHandMailItem:
+    $extends: _MidTierGlovesBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_HAND_MAIL
+    linkPassivityCategoryId: 4150
+
+  MidTierHandLeatherItem:
+    $extends: _MidTierGlovesBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_HAND_LEATHER
+    linkPassivityCategoryId: 4152
+
+  MidTierHandRobeItem:
+    $extends: _MidTierGlovesBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_HAND_ROBE
+    linkPassivityCategoryId: 4151
+
+  MidTierBootsItem:
+    $extends: _MidTierBootsBase
+    rareGrade: Superior
+    linkEnchantId: $ENCHANT_MID_TIER_BOOTS
+    linkPassivityCategoryId: 4250
+
+  # ===========================================================================
+  # LOW TIER (Grade 2 / Rare) - WEAPONS
+  # ENCHANT_LOW_TIER_* values alias ENCHANT_MID_TIER_* in enchant-standard, so
+  # Low Tier items end up with the same linkEnchantId values as Mid Tier.
+  # ===========================================================================
+
+  LowTierWeaponDPSTankItem:
+    $extends: _LowTierWeaponBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+
+  LowTierWeaponHealerItem:
+    $extends: _LowTierWeaponBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_WEAPON_HEALER
+
+  # ===========================================================================
+  # LOW TIER (Grade 2 / Rare) - ARMOR
+  # ===========================================================================
+
+  LowTierChestItem:
+    $extends: _LowTierChestBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_CHEST
+    linkPassivityCategoryId: 120316
+
+  LowTierHandMailItem:
+    $extends: _LowTierGlovesBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_HAND_MAIL
+    linkPassivityCategoryId: 4150
+
+  LowTierHandLeatherItem:
+    $extends: _LowTierGlovesBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_HAND_LEATHER
+    linkPassivityCategoryId: 4152
+
+  LowTierHandRobeItem:
+    $extends: _LowTierGlovesBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_HAND_ROBE
+    linkPassivityCategoryId: 4151
+
+  LowTierBootsItem:
+    $extends: _LowTierBootsBase
+    rareGrade: Rare
+    linkEnchantId: $ENCHANT_LOW_TIER_BOOTS
+    linkPassivityCategoryId: 4250
+
+  # ===========================================================================
+  # CLASS-SPECIFIC WEAPON DERIVATIONS
+  # Each extends the tier weapon and adds subtype/category/requiredClass.
+  # dropType inherits 2 from _EquipmentBase — these weapons DO drop like others.
+  # ===========================================================================
+
+  # Chain — Soulless (Reaper)
+  MidTierChainWeapon:
+    $extends: MidTierWeaponDPSTankItem
+    combatItemSubType: chain
+    category: chain
+    requiredClass:
+      - SOULLESS
+
+  HighTierChainWeapon:
+    $extends: HighTierWeaponDPSTankItem
+    combatItemSubType: chain
+    category: chain
+    requiredClass:
+      - SOULLESS
+
+  # Gauntlet — Fighter (Brawler)
+  MidTierGauntletWeapon:
+    $extends: MidTierWeaponDPSTankItem
+    combatItemSubType: gauntlet
+    category: gauntlet
+    requiredClass:
+      - FIGHTER
+
+  HighTierGauntletWeapon:
+    $extends: HighTierWeaponDPSTankItem
+    combatItemSubType: gauntlet
+    category: gauntlet
+    requiredClass:
+      - FIGHTER
+
+  # Low-tier class-restricted variants (Rare). Chain has no LOW-tier items in
+  # content today but is defined for symmetry.
+  LowTierChainWeapon:
+    $extends: LowTierWeaponDPSTankItem
+    combatItemSubType: chain
+    category: chain
+    requiredClass:
+      - SOULLESS
+
+  LowTierGauntletWeapon:
+    $extends: LowTierWeaponDPSTankItem
+    combatItemSubType: gauntlet
+    category: gauntlet
+    requiredClass:
+      - FIGHTER
+
+  # ===========================================================================
+  # CLASS-SPECIFIC CHEST DERIVATIONS
+  # 13 classes × 2 tiers (High, Mid) = 26 definitions.
+  # Each overrides the generic chest linkPassivityCategoryId (120316) with the
+  # per-class top-roll category, and sets requiredClass to the single class.
+  # Low-tier chests do not get class specialization — vanilla low-tier gear is
+  # multi-class.
+  # ===========================================================================
+
+  # --- HIGH TIER ---
+
+  HighTierChestWarriorItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_WARRIOR
+    requiredClass:
+      - warrior
+
+  HighTierChestLancerItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_LANCER
+    requiredClass:
+      - lancer
+
+  HighTierChestBerserkerItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_BERSERKER
+    requiredClass:
+      - berserker
+
+  HighTierChestSlayerItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_SLAYER
+    requiredClass:
+      - slayer
+
+  HighTierChestSorcererItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_SORCERER
+    requiredClass:
+      - sorcerer
+
+  HighTierChestArcherItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_ARCHER
+    requiredClass:
+      - archer
+
+  HighTierChestMysticItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_MYSTIC
+    requiredClass:
+      - elementalist
+
+  HighTierChestPriestItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_PRIEST
+    requiredClass:
+      - priest
+
+  HighTierChestReaperItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_REAPER
+    requiredClass:
+      - soulless
+
+  HighTierChestGunnerItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_GUNNER
+    requiredClass:
+      - engineer
+
+  HighTierChestBrawlerItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_BRAWLER
+    requiredClass:
+      - fighter
+
+  HighTierChestNinjaItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_NINJA
+    requiredClass:
+      - assassin
+
+  HighTierChestValkyrieItem:
+    $extends: HighTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_VALKYRIE
+    requiredClass:
+      - glaiver
+
+  # --- MID TIER ---
+
+  MidTierChestWarriorItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_WARRIOR
+    requiredClass:
+      - warrior
+
+  MidTierChestLancerItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_LANCER
+    requiredClass:
+      - lancer
+
+  MidTierChestBerserkerItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_BERSERKER
+    requiredClass:
+      - berserker
+
+  MidTierChestSlayerItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_SLAYER
+    requiredClass:
+      - slayer
+
+  MidTierChestSorcererItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_SORCERER
+    requiredClass:
+      - sorcerer
+
+  MidTierChestArcherItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_ARCHER
+    requiredClass:
+      - archer
+
+  MidTierChestMysticItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_MYSTIC
+    requiredClass:
+      - elementalist
+
+  MidTierChestPriestItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_PRIEST
+    requiredClass:
+      - priest
+
+  MidTierChestReaperItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_REAPER
+    requiredClass:
+      - soulless
+
+  MidTierChestGunnerItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_GUNNER
+    requiredClass:
+      - engineer
+
+  MidTierChestBrawlerItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_BRAWLER
+    requiredClass:
+      - fighter
+
+  MidTierChestNinjaItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_NINJA
+    requiredClass:
+      - assassin
+
+  MidTierChestValkyrieItem:
+    $extends: MidTierChestItem
+    linkPassivityCategoryId: $CATEGORY_CHEST_VALKYRIE
+    requiredClass:
+      - glaiver
+
+exports:
+  variables:
+    # Re-export enchant IDs for consumers that need them directly
+    - ENCHANT_HIGH_TIER_WEAPON_DPS_TANK
+    - ENCHANT_HIGH_TIER_WEAPON_HEALER
+    - ENCHANT_HIGH_TIER_CHEST
+    - ENCHANT_HIGH_TIER_HAND_MAIL
+    - ENCHANT_HIGH_TIER_HAND_LEATHER
+    - ENCHANT_HIGH_TIER_HAND_ROBE
+    - ENCHANT_HIGH_TIER_BOOTS
+    - ENCHANT_MID_TIER_WEAPON_DPS_TANK
+    - ENCHANT_MID_TIER_WEAPON_HEALER
+    - ENCHANT_MID_TIER_CHEST
+    - ENCHANT_MID_TIER_HAND_MAIL
+    - ENCHANT_MID_TIER_HAND_LEATHER
+    - ENCHANT_MID_TIER_HAND_ROBE
+    - ENCHANT_MID_TIER_BOOTS
+    - ENCHANT_LOW_TIER_WEAPON_DPS_TANK
+    - ENCHANT_LOW_TIER_WEAPON_HEALER
+    - ENCHANT_LOW_TIER_CHEST
+    - ENCHANT_LOW_TIER_HAND_MAIL
+    - ENCHANT_LOW_TIER_HAND_LEATHER
+    - ENCHANT_LOW_TIER_HAND_ROBE
+    - ENCHANT_LOW_TIER_BOOTS
+  definitions:
+    # High Tier (Mythic) items
+    - HighTierWeaponDPSTankItem
+    - HighTierWeaponHealerItem
+    - HighTierChestItem
+    - HighTierHandMailItem
+    - HighTierHandLeatherItem
+    - HighTierHandRobeItem
+    - HighTierBootsItem
+    # Mid Tier (Superior) items
+    - MidTierWeaponDPSTankItem
+    - MidTierWeaponHealerItem
+    - MidTierChestItem
+    - MidTierHandMailItem
+    - MidTierHandLeatherItem
+    - MidTierHandRobeItem
+    - MidTierBootsItem
+    # Low Tier (Rare) items
+    - LowTierWeaponDPSTankItem
+    - LowTierWeaponHealerItem
+    - LowTierChestItem
+    - LowTierHandMailItem
+    - LowTierHandLeatherItem
+    - LowTierHandRobeItem
+    - LowTierBootsItem
+    # Class-specific weapon derivations
+    - MidTierChainWeapon
+    - HighTierChainWeapon
+    - LowTierChainWeapon
+    - MidTierGauntletWeapon
+    - HighTierGauntletWeapon
+    - LowTierGauntletWeapon
+    # Class-specific chest derivations (High Tier)
+    - HighTierChestWarriorItem
+    - HighTierChestLancerItem
+    - HighTierChestBerserkerItem
+    - HighTierChestSlayerItem
+    - HighTierChestSorcererItem
+    - HighTierChestArcherItem
+    - HighTierChestMysticItem
+    - HighTierChestPriestItem
+    - HighTierChestReaperItem
+    - HighTierChestGunnerItem
+    - HighTierChestBrawlerItem
+    - HighTierChestNinjaItem
+    - HighTierChestValkyrieItem
+    # Class-specific chest derivations (Mid Tier)
+    - MidTierChestWarriorItem
+    - MidTierChestLancerItem
+    - MidTierChestBerserkerItem
+    - MidTierChestSlayerItem
+    - MidTierChestSorcererItem
+    - MidTierChestArcherItem
+    - MidTierChestMysticItem
+    - MidTierChestPriestItem
+    - MidTierChestReaperItem
+    - MidTierChestGunnerItem
+    - MidTierChestBrawlerItem
+    - MidTierChestNinjaItem
+    - MidTierChestValkyrieItem

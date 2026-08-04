@@ -1,0 +1,88 @@
+# Enables Island of Dawn quests whose givers and kill targets are the NPC and mob
+# spawns restored by specs 15 and 16. Spec numbering guarantees 15 and 16 apply first,
+# so the world exists by the time these quests become offerable.
+#
+# The enable mechanic is the prerequisite list: an empty list clears the 99,99
+# never-satisfiable sentinel that soft-disables a quest, and a real id re-anchors a
+# quest onto its chain parent (1323 -> 1324 -> 1327, and 1332 -> 1333). None of these
+# quests auto-accepts from behind a prerequisite, so enabling them in stages cannot
+# strand a character mid-chain.
+#
+# Quest 1334 also needs a collection retarget. Its live body points at a collection id
+# that has no placed nodes anywhere on the island, while the classic id it replaced is
+# still placed in the CollectionTerritory files, so the collect task can never be
+# completed until the task points back at the placed id.
+#
+# Generated; regenerate rather than hand-edit.
+#
+# provenance: padding-level-1
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    # -- Chain roots: clear the sentinel, no anchor --------------------------
+    - id: 1319            # Dwellers of the Island
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1332            # They'll Eat Anything
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1334            # Investigating the Relics (repeatable) + collection retarget
+      changes:
+        requirements:
+          prerequisites: []
+        tasks:
+          - taskId: 1
+            type: CollectTask
+            body:
+              itemId: 410   # v31 collection (ancient relics); v92 body said 404, unplaced in IoD
+    - id: 1347            # It Was a Rock...Crawler
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1348            # Ferocious Flowering Felons
+      changes:
+        requirements:
+          prerequisites: []
+    - id: 1349            # Gotta Kill 'Em All
+      changes:
+        requirements:
+          prerequisites: []
+
+    # -- Anchored on a co-enabled parent -------------------------------------
+    - id: 1324            # Essence and Sensibility -> 1323 (spec 14)
+      changes:
+        requirements:
+          prerequisites: [1323]
+    - id: 1327            # Garrison in Distress -> 1324 (dialog fix below)
+      changes:
+        requirements:
+          prerequisites: [1324]
+    - id: 1333            # Twice the Bark, Twice the Bite -> 1332
+      changes:
+        requirements:
+          prerequisites: [1332]
+
+# Dialog fix for quest 1327: its LinkCreature token points at base template 13#304,
+# which is never spawned, while the task hunts 13,300921. The task side is
+# authoritative, so both texts carrying the token are retargeted. Text pages are
+# replace-all, so each page is reproduced verbatim apart from the token itself.
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 27
+      texts:
+        update:
+          - id: 4
+            pages:
+              - social: 4
+                content: "Stand tall, <PCNAME>. I need you to see to these {@LinkCreature:13#300921#sickly noruks}. We have received a request from the researchers to examine the blood of apparently weakened spirits and beasts.<BR><BR>You are my subordinate, so now you have orders. Kill as many as it takes. Just get the serum they want. When you're done, report to <font color='#660000'>Prefect Ashak</font>."
+          - id: 6
+            pages:
+              - social: 0
+                content: "It seems you don't have enough serum for my research. You will have to gather more from {@LinkCreature:13#300921#sickly noruks}. <BR><BR>I never would have thought that Neziir would assign this task to a raw recruit. I asked for the best, not the least."

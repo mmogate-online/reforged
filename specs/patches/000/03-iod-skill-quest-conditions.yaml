@@ -1,0 +1,56 @@
+# Island of Dawn — skill ID corrections in quest conditions
+# Skill learning order changed between v31 and v92. The IoD tutorial quests
+# have ConditionTask (learnSkill) objectives referencing skill IDs by number.
+#
+# quest 1371 (Warrior):  Rain of Blows (40100)   → Combative Strike (180100)
+# quest 1373 (Lancer):   Whirlwind (30100)        → Heart Thrust (120100)
+# quest 1374 (Slayer):   Cyclone (100100)          → Thunder Strike (30100)
+# quest 1375 (Archer):   Arrow Volley (20100)      → Radiant Arrow (30100)
+# quest 1379 (Sorcerer): Scattershot (30100)       → Arcane Barrage (70100)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    - id: 1371
+      changes:
+        tasks:
+          - taskId: 2
+            type: ConditionTask
+            body:
+              conditionType: learnSkill
+              conditionSkillId: 180100
+    - id: 1373
+      changes:
+        tasks:
+          - taskId: 2
+            type: ConditionTask
+            body:
+              conditionType: learnSkill
+              conditionSkillId: 120100
+    - id: 1374
+      changes:
+        tasks:
+          - taskId: 2
+            type: ConditionTask
+            body:
+              conditionType: learnSkill
+              conditionSkillId: 30100
+    - id: 1375
+      changes:
+        tasks:
+          - taskId: 2
+            type: ConditionTask
+            body:
+              conditionType: learnSkill
+              conditionSkillId: 30100
+    - id: 1379
+      changes:
+        tasks:
+          - taskId: 2
+            type: ConditionTask
+            body:
+              conditionType: learnSkill
+              conditionSkillId: 70100

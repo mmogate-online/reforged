@@ -1,0 +1,36 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retires quest 1386 "Bombs Away", a near-exact duplicate of the story quest that
+# gates it, and re-anchors its one dependent.
+#
+# 1386 repeats story quest 1329 "Going Above and Beyond" almost step for step: same
+# giver, same visit-hunt-visit tasks, the same bomb item injected and then deleted,
+# the same 10x Bomb I in the reward, and one extra report-back step on the end. Since
+# 1329 is also 1386's prerequisite, the player runs bomb training twice in a row for
+# the same NPC.
+#
+# Moving 1328 "Academic Theft" from 1386 onto 1329 preserves its gate position exactly
+# rather than loosening it, because 1386 already sat behind 1329, and 1328's
+# prerequisite is the only inbound reference to 1386 in the data. Nothing is orphaned:
+# every monster, item and NPC 1386 uses is shared with quests that stay live.
+#
+# The disable mechanic is requirements.prerequisites [9999], which resolves to the
+# reference 99,99, the never-satisfiable sentinel. It retires a quest in place: tasks,
+# dialogs, strings and the compensation row all stay intact but unreachable, which is
+# the publisher's own pattern for shipping a quest disabled.
+
+quests:
+  update:
+    # Retire the duplicate: back to the state the quest originally shipped in.
+    - id: 1386            # Bombs Away -> sentinel (was 1329, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+    # Re-anchor the only dependent onto the story quest 1386 duplicated.
+    - id: 1328            # Academic Theft -> 1329 (was 1386, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [1329]

@@ -1,0 +1,27 @@
+# Let a party use the Tainted Gorge Bridge entrance portal (WorkObject template 134,
+# teleport 642501 into continent 9037), which fronts the five-player dungeon behind
+# quest 1346.
+#
+# partyCantWork BLOCKS THE INTERACTION OUTRIGHT for a grouped player: it is not an
+# outcome-distribution flag, and a grouped player is told the entrance "can't be used
+# while in a party" rather than simply losing the reward. Template 134 was cloned from
+# the modern solo Black Rift portal (template 125), which is where the flag came from;
+# it is an exception flag on that shape, not a default, and the sibling work objects
+# sharing shapeId 200201 either leave it unset or set it false.
+#
+# `false` is written explicitly rather than dropping the attribute, so that authored
+# content states its intent instead of relying on an unset default.
+#
+# No client work is needed. workObjects does sync to WorkObjectData, but partyCantWork
+# is SERVER-ONLY: the client XSD declares no such attribute, so the sync reproduces
+# byte-identical client output and a W602 (XSD-dropped data) here is expected and benign.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+workObjects:
+  update:
+    - templateId: 134
+      changes:
+        partyCantWork: false

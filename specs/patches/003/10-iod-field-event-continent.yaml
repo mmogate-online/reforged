@@ -1,0 +1,29 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn: declare continent 13 a field-event host.
+#
+# The field event subsystem refuses to run on a continent that is not declared with
+# the field channel type. ContinentData.xml's own header comment defines the value:
+# "field : the new channel attribute that must be set in order to use
+# fieldEvent/fieldData; base behaviour otherwise identical to none/channelingZone".
+# The flip enables that subsystem and changes nothing else about how the continent
+# channels. It is infrastructure for every Island of Dawn field event rather than for
+# one encounter, which is why it is a spec of its own.
+#
+# THE CLIENT LEG IS REQUIRED, BUT THE SYNC FOR THIS FAMILY MUST NOT BE RUN. The
+# server writes isSpecificSpace in uppercase ("TRUE") while the client XSD types it
+# xsd:boolean, so the cast fails silently and the sync writes false on every such
+# continent, stripping the instanced-space flag from every dungeon and battlefield.
+# continentDatas is quarantined out of the sync map and the client edit is made by
+# hand: ContinentData continent 13, channelType "channelingZone" -> "field".
+
+continentDatas:
+  update:
+    - continentId: 13
+      changes:
+        # ONLY channelType. huntingZones is deliberately NOT supplied: that property is
+        # clear-and-replace, so naming it would rewrite the zone list, and omitting it
+        # is how the DSL is told to leave it alone.
+        channelType: "field"

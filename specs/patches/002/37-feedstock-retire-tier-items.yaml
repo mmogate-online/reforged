@@ -1,0 +1,170 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Retire the feedstock tier items: identity, not existence. Feedstock becomes one
+# untiered commodity, so 94101 survives and 94102 to 94112 are retired in place.
+#
+# THE ITEM ROWS ARE NOT DELETED. Deleting them would leave roughly 4,000 dangling item
+# references, and the world server validates gacha item ids at startup: the failure mode
+# is a silent access violation during load that names no file. The rows stay resident and
+# only their identity changes.
+#
+# THE ItemMix LADDER IS DELETED RATHER THAN MIGRATED. Its records read "94101 x6 ->
+# 94102" and so on; once every tier collapses onto 94101 each rung becomes "94101 xN ->
+# 94101", a machine that destroys player items. The rung deletes and the itemMixId clears
+# must therefore ship together, or a player can feed 6 feedstock into a live rung and get
+# one retired item back. Clearing an already-absent attribute is a W500 no-op, so this
+# spec converges on re-apply.
+
+# 1. Strings. Base file only: there is no `Local` leg. StrSheet_ItemLocal.xml is not
+# addressable by `itemStrings` (no underscore suffix, so it matches no regional variant)
+# and is absent from the sync source mapping. StrSheet_Item.xml is the sheet the English
+# server and client read, and it carries every id in this band.
+
+itemStrings:
+  update:
+    # The survivor. Drops "Tier 1", the level 1-30 band claim, and the combine instruction.
+    - id: 94101
+      changes:
+        name: "Feedstock"
+        toolTip: "Material used to enchant gear. Obtained by dismantling infusion fodder."
+
+    # The eleven retired tiers. They remain in the corpus so old references resolve; they
+    # are not obtainable, not consumed by any recipe, and cannot be combined.
+    #
+    # DESCRIPTION ONLY, NAMES UNTOUCHED. The publisher's own retirement convention sits
+    # in this very id range: the baseline strings for 94111 and 94112 keep their tier
+    # names and open the tooltip with
+    #   <font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. ...
+    # Item 447 "Depleted Masterwork Alkahest" is the same shape. Retirement is therefore
+    # stated the way the game already states it, and each name reverts to baseline simply
+    # by not being authored, since `update` touches only the attributes it names.
+    #
+    # The trailing sentence replaces the publisher's now-false "Right-click to combine"
+    # (94111) and "Dismantles into Entropic Emblems" (94112). Player-facing text states a
+    # fact about the world, never anything about our build order.
+    - id: 94102
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94103
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94104
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94105
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94106
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94107
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94108
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94109
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94110
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94111
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+    - id: 94112
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Feedstock is now a single material."
+
+# 2. The tier-up ladder: delete every rung. 94104 is absent from the list because the
+# ladder was already severed at the tier 4 to 5 rung: no record converts 4 into 5.
+
+itemMixes:
+  delete:
+    - 94101
+    - 94102
+    - 94103
+    - 94105
+    - 94106
+    - 94107
+    - 94108
+    - 94109
+    - 94110
+    - 94111
+
+  # The two live non-ladder recipes that reference retired tiers are repointed to 94101
+  # at unchanged amounts. `materials` is clear-and-replace: stating it writes exactly the
+  # rows given, omitting it leaves the shipped list alone.
+
+  update:
+    # 534 produced tier 8 from item 101374. The recipe is kept and repointed rather than
+    # deleted, since minting a retired tier is the only thing wrong with it. Its
+    # materials are correct as they stand, so this op touches `result` only.
+    - itemMixId: 534
+      changes:
+        result:
+          successItemId: 94101
+          successCount: 5
+
+    # 216862 consumed tier 5, which nothing grants any more, so the recipe would ask for
+    # an unobtainable material. A recipe that CONSUMES feedstock is a sink, not a faucet,
+    # so it survives with the surviving identity 94101 in place of the tier.
+    #
+    # All three materials are restated because `materials` is clear-and-replace: a
+    # material left out here is deleted. Only 94105 changes; the other two are verbatim.
+    - itemMixId: 216862
+      changes:
+        materials:
+          - itemId: 94204
+            count: 200
+          - itemId: 94101
+            count: 500
+          - itemId: 98505
+            count: 50
+
+# 3. The twelve itemMixId back-pointers. `clear` removes the attribute from the <Item>
+# element entirely, which is the canonical unset form: the vast majority of shipped items
+# carry no itemMixId at all and not one carries itemMixId="0", so setting 0 would be a
+# shape with zero corpus support. 94104 and 94112 already name mix ids that never
+# existed, so their clears are hygiene rather than repair.
+
+items:
+  update:
+    - id: 94101
+      changes:
+        clear: [itemMixId]
+    - id: 94102
+      changes:
+        clear: [itemMixId]
+    - id: 94103
+      changes:
+        clear: [itemMixId]
+    - id: 94104
+      changes:
+        clear: [itemMixId]
+    - id: 94105
+      changes:
+        clear: [itemMixId]
+    - id: 94106
+      changes:
+        clear: [itemMixId]
+    - id: 94107
+      changes:
+        clear: [itemMixId]
+    - id: 94108
+      changes:
+        clear: [itemMixId]
+    - id: 94109
+      changes:
+        clear: [itemMixId]
+    - id: 94110
+      changes:
+        clear: [itemMixId]
+    - id: 94111
+      changes:
+        clear: [itemMixId]
+    - id: 94112
+      changes:
+        clear: [itemMixId]

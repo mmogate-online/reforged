@@ -1,0 +1,105 @@
+# Weapon Standardization
+#
+# Applies the equipment-item-standard package's tier/role-baseline definitions
+# to every weapon item via $extends inside updateWhere.changes, then layers
+# per-subtype overrides for class-restricted weapon types (chain = Soulless,
+# gauntlet = Fighter).
+#
+# Layering (processed in order within items.updateWhere):
+#   1. Tier × role baseline — {Tier}Weapon{DPSTank,Healer}Item flows bound/
+#      tradable/dismantlable/storeSellable/warehouseStorable/guildWarehouseStorable/
+#      enchantEnable/dropType/dropIdentify/masterpieceRate/unidentifiedItemGrade/
+#      combineOptionValue/combatItemType/rareGrade/linkEnchantId/
+#      linkPassivityCategoryId (generic 120300).
+#   2. Per-subtype override — for chain and gauntlet weapons, {Tier}ChainWeapon /
+#      {Tier}GauntletWeapon adds combatItemSubType, category, and requiredClass.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: equipment-item-standard
+    use:
+      definitions:
+        # Tier × role exports
+        - HighTierWeaponDPSTankItem
+        - HighTierWeaponHealerItem
+        - MidTierWeaponDPSTankItem
+        - MidTierWeaponHealerItem
+        - LowTierWeaponDPSTankItem
+        - LowTierWeaponHealerItem
+        # Class-restricted subtype derivations
+        - HighTierChainWeapon
+        - MidTierChainWeapon
+        - HighTierGauntletWeapon
+        - MidTierGauntletWeapon
+        - LowTierGauntletWeapon
+
+  - from: equipment-item-ids
+    use:
+      variables:
+        - HIGH_TIER_DPS_WEAPON_IDS
+        - HIGH_TIER_HEALER_WEAPON_IDS
+        - MID_TIER_DPS_WEAPON_IDS
+        - MID_TIER_HEALER_WEAPON_IDS
+        - LOW_TIER_DPS_WEAPON_IDS
+        - LOW_TIER_HEALER_WEAPON_IDS
+        - HIGH_TIER_CHAIN_WEAPON_IDS
+        - MID_TIER_CHAIN_WEAPON_IDS
+        - HIGH_TIER_GAUNTLET_WEAPON_IDS
+        - MID_TIER_GAUNTLET_WEAPON_IDS
+        - LOW_TIER_GAUNTLET_WEAPON_IDS
+
+items:
+  updateWhere:
+
+    # ==========================================================================
+    # TIER × ROLE BASELINE
+    # ==========================================================================
+
+    - filter: { id: $HIGH_TIER_DPS_WEAPON_IDS }
+      changes:
+        $extends: HighTierWeaponDPSTankItem
+    - filter: { id: $HIGH_TIER_HEALER_WEAPON_IDS }
+      changes:
+        $extends: HighTierWeaponHealerItem
+
+    - filter: { id: $MID_TIER_DPS_WEAPON_IDS }
+      changes:
+        $extends: MidTierWeaponDPSTankItem
+    - filter: { id: $MID_TIER_HEALER_WEAPON_IDS }
+      changes:
+        $extends: MidTierWeaponHealerItem
+
+    - filter: { id: $LOW_TIER_DPS_WEAPON_IDS }
+      changes:
+        $extends: LowTierWeaponDPSTankItem
+    - filter: { id: $LOW_TIER_HEALER_WEAPON_IDS }
+      changes:
+        $extends: LowTierWeaponHealerItem
+
+    # ==========================================================================
+    # PER-SUBTYPE OVERRIDE — Chain (Soulless / Reaper)
+    # ==========================================================================
+
+    - filter: { id: $HIGH_TIER_CHAIN_WEAPON_IDS }
+      changes:
+        $extends: HighTierChainWeapon
+    - filter: { id: $MID_TIER_CHAIN_WEAPON_IDS }
+      changes:
+        $extends: MidTierChainWeapon
+
+    # ==========================================================================
+    # PER-SUBTYPE OVERRIDE — Gauntlet (Fighter / Brawler)
+    # ==========================================================================
+
+    - filter: { id: $HIGH_TIER_GAUNTLET_WEAPON_IDS }
+      changes:
+        $extends: HighTierGauntletWeapon
+    - filter: { id: $MID_TIER_GAUNTLET_WEAPON_IDS }
+      changes:
+        $extends: MidTierGauntletWeapon
+    - filter: { id: $LOW_TIER_GAUNTLET_WEAPON_IDS }
+      changes:
+        $extends: LowTierGauntletWeapon

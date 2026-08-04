@@ -1,0 +1,288 @@
+# Missing Chest Pieces for Level 60 Sets
+# Creates chest armor for Gunner, Brawler, Valkyrie, and Reaper
+# for sets that predate these classes.
+#
+# Sets completed:
+#   - Nightforge PVE (4 items: 71479-71482)
+#   - Visionmaker (4 items: 19270-19273)
+#   - Regent (4 items: 19274-19277)
+#
+# Must run AFTER 02-chest-toproll-system.yaml (creates the categories)
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: chest-toproll-categories
+    use:
+      variables:
+        - CATEGORY_CHEST_GUNNER
+        - CATEGORY_CHEST_BRAWLER
+        - CATEGORY_CHEST_VALKYRIE
+        - CATEGORY_CHEST_REAPER
+
+definitions:
+  # Common attributes for all chest pieces
+  chestBase:
+    level: 60
+    requiredLevel: 60
+    combatItemType: EQUIP_ARMOR_BODY
+    boundType: Equip
+    enchantEnable: true
+    rank: 4
+    buyPrice: 178144
+    sellPrice: 17815
+    divide: 0
+    dropType: 0
+    dropIdentify: false
+    masterpieceRate: 0
+    unidentifiedItemGrade: 1
+    extractRatio: 18
+    dismantlable: true
+    storeSellable: true
+    changeColorEnable: true
+    defaultValue: 3562875
+
+  # Nightforge PVE base (rareGrade 4)
+  nightforgeBase:
+    $extends: chestBase
+    rareGrade: 4
+    linkEnchantId: 950003
+    tradable: false
+    guildWarehouseStorable: false
+    artisanable: true
+    itemLevelId: 20173
+    linkMaterialEnchantId: 33004
+    combineOptionValue: 3
+
+  nightforgeBodyMail:
+    $extends: nightforgeBase
+    category: bodyMail
+    combatItemSubType: bodyMail
+    icon: Icon_Equipments.heavychest25_Tex
+    linkLookInfoId: 311175
+    linkPassivityId: ["1520000", "1520080", "1520040", "3100000"]
+
+  nightforgeBodyLeather:
+    $extends: nightforgeBase
+    category: bodyLeather
+    combatItemSubType: bodyLeather
+    icon: Icon_Equipments.lightchest25_Tex
+    linkLookInfoId: 211175
+    linkPassivityId: ["1520000", "1520080", "1520040", "3100000"]
+
+  # Visionmaker base (rareGrade 4)
+  visionmakerBase:
+    $extends: chestBase
+    rareGrade: 4
+    linkEnchantId: 950003
+    tradable: false
+    guildWarehouseStorable: false
+    artisanable: true
+    itemLevelId: 20165
+    linkMaterialEnchantId: 33004
+    combineOptionValue: 3
+
+  visionmakerBodyMail:
+    $extends: visionmakerBase
+    category: bodyMail
+    combatItemSubType: bodyMail
+    icon: Icon_Equipments.heavychest21_A_Tex
+    linkLookInfoId: 311134
+    linkPassivityId: ["1320300", "1325000", "1325500", "1320100", "1325100", "3000224"]
+
+  visionmakerBodyLeather:
+    $extends: visionmakerBase
+    category: bodyLeather
+    combatItemSubType: bodyLeather
+    icon: Icon_Equipments.lightchest21_A_Tex
+    linkLookInfoId: 211134
+    linkPassivityId: ["1320300", "1325000", "1325500", "1320100", "1320700", "3000224"]
+
+  # Regent base (rareGrade 3)
+  regentBase:
+    $extends: chestBase
+    rareGrade: 3
+    linkEnchantId: 950013
+    tradable: true
+    guildWarehouseStorable: true
+    artisanable: false
+    itemLevelId: 20164
+    linkMaterialEnchantId: 23004
+    combineOptionValue: 2
+
+  regentBodyMail:
+    $extends: regentBase
+    category: bodyMail
+    combatItemSubType: bodyMail
+    icon: Icon_Equipments.heavychest21_C_Tex
+    linkLookInfoId: 311136
+    linkPassivityId: ["1320300", "1325000", "1325500", "1320200", "1320600", "221300"]
+
+  regentBodyLeather:
+    $extends: regentBase
+    category: bodyLeather
+    combatItemSubType: bodyLeather
+    icon: Icon_Equipments.lightchest21_C_Tex
+    linkLookInfoId: 211136
+    linkPassivityId: ["1320300", "1325000", "1325500", "1320200", "1320600", "221300"]
+
+items:
+  upsert:
+
+    # =========================================================================
+    # NIGHTFORGE PVE
+    # =========================================================================
+
+    # Gunner - bodyMail
+    - $extends: nightforgeBodyMail
+      id: 71479
+      name: riftburst_plate
+      requiredClass: ENGINEER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Riftburst Plate"
+        toolTip: "Nightforge plate armor forged for gunners."
+
+    # Brawler - bodyMail
+    - $extends: nightforgeBodyMail
+      id: 71480
+      name: stonegrip_plate
+      requiredClass: FIGHTER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Stonegrip Plate"
+        toolTip: "Nightforge plate armor forged for brawlers."
+
+    # Valkyrie - bodyLeather
+    - $extends: nightforgeBodyLeather
+      id: 71481
+      name: vigilvest
+      requiredClass: GLAIVER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+      equipment:
+        computed: true
+      strings:
+        name: "Vigilvest"
+        toolTip: "Nightforge leather armor crafted for valkyries."
+
+    # Reaper - bodyLeather
+    - $extends: nightforgeBodyLeather
+      id: 71482
+      name: shadevest
+      requiredClass: SOULLESS
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Shadevest"
+        toolTip: "Nightforge leather armor crafted for reapers."
+
+    # =========================================================================
+    # VISIONMAKER
+    # =========================================================================
+
+    # Gunner - bodyMail
+    - $extends: visionmakerBodyMail
+      id: 19270
+      name: steelgaze_barrageplate
+      requiredClass: ENGINEER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Steelgaze Barrageplate"
+        toolTip: "Visionmaker plate armor forged for gunners."
+
+    # Brawler - bodyMail
+    - $extends: visionmakerBodyMail
+      id: 19271
+      name: steelgaze_ironfist
+      requiredClass: FIGHTER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Steelgaze Ironfist"
+        toolTip: "Visionmaker plate armor forged for brawlers."
+
+    # Valkyrie - bodyLeather
+    - $extends: visionmakerBodyLeather
+      id: 19272
+      name: dreamglaive_vest
+      requiredClass: GLAIVER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+      equipment:
+        computed: true
+      strings:
+        name: "Dreamglaive Vest"
+        toolTip: "Visionmaker leather armor crafted for valkyries."
+
+    # Reaper - bodyLeather
+    - $extends: visionmakerBodyLeather
+      id: 19273
+      name: dreamrend_vest
+      requiredClass: SOULLESS
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Dreamrend Vest"
+        toolTip: "Visionmaker leather armor crafted for reapers."
+
+    # =========================================================================
+    # REGENT
+    # =========================================================================
+
+    # Gunner - bodyMail
+    - $extends: regentBodyMail
+      id: 19274
+      name: royalplate
+      requiredClass: ENGINEER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_GUNNER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Royalplate"
+        toolTip: "Regent plate armor forged for gunners."
+
+    # Brawler - bodyMail
+    - $extends: regentBodyMail
+      id: 19275
+      name: queenplate
+      requiredClass: FIGHTER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_BRAWLER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Queenplate"
+        toolTip: "Regent plate armor forged for brawlers."
+
+    # Valkyrie - bodyLeather
+    - $extends: regentBodyLeather
+      id: 19276
+      name: grandvest
+      requiredClass: GLAIVER
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_VALKYRIE"]
+      equipment:
+        computed: true
+      strings:
+        name: "Grandvest"
+        toolTip: "Regent leather armor crafted for valkyries."
+
+    # Reaper - bodyLeather
+    - $extends: regentBodyLeather
+      id: 19277
+      name: courtcoat
+      requiredClass: SOULLESS
+      linkPassivityCategoryId: ["$CATEGORY_CHEST_REAPER"]
+      equipment:
+        computed: true
+      strings:
+        name: "Courtcoat"
+        toolTip: "Regent leather armor crafted for reapers."

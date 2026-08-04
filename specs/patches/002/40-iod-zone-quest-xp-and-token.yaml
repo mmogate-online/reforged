@@ -1,0 +1,606 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn zone quest XP clamp and early-progression token payout.
+#
+# THE XP RULE. Each zone quest is capped at 25 percent of the median story quest XP of
+# its level bracket, rounded to the nearest 10, where the bracket is minLevel rounded
+# down to an odd number: 1-2 caps at 200, 3-4 at 220, 5-6 at 900, 7-8 at 1300. A quest
+# already under its cap keeps its XP. Gold is deliberately left alone even where it now
+# looks large beside the clamped XP: the compensation for the cut is the token, and
+# raising gold as well would inflate the early economy this pass exists to contain.
+#
+# THE TOKEN RATE IS PRICED BY EFFORT: 20 at 3 or more tasks, 12 at 2 tasks, 8 at 1.
+# There is deliberately no per-level-band curve, because a steep curve would hollow out
+# the early zones the token exists to populate. Repeatable quests pay no token at all:
+# it is an early-progression currency with a fixed ceiling, and a quest that can be
+# re-accepted immediately and without limit would make that income unbounded and the
+# ceiling meaningless. A repeatable pays a content-scoped currency instead, one whose
+# only sink is the content it comes from.
+#
+# A `class` item bag pays a shared item by carrying one duplicate row per class. There
+# is no such thing as a classless row inside a `class` bag, so the token appears twelve
+# times in those blocks. Reaper/Soulless is omitted from every row.
+#
+# TRAP: `questCompensations: upsert` is REPLACE-ALL, and specs apply in path order, so
+# a spec numbered 40 is the last writer for every quest it names. Every block below is
+# therefore COMPLETE, restating exp, gold, itemBag and all surviving item rows rather
+# than only the changed ones, and quests already authored by an earlier spec in this
+# patch are amended there instead of named here. The dangerous case is a quest whose
+# gear rows live only in the patch 001 baseline: naming it here with the token alone
+# would silently strip that gear while the apply reported success.
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+  - from: dungeon-tokens
+    use:
+      variables:
+        - SORCHA_TOKEN
+
+questCompensations:
+  upsert:
+    # 1302 Another Fine Mess | bracket 1-2, cap 200
+    - questId: 1302
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 200
+          gold: 40
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1312 The Dark Patrol | bracket 7-8, cap 1300
+    - questId: 1312
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 250
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 12
+
+    # 1321 A Bridge Pretty Near | bracket 1-2, cap 200
+    - questId: 1321
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 200
+          gold: 80
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1326 Mana out of Mudmen | bracket 5-6, cap 900
+    # Class bag. The level-7 feet rows are restated in full because upsert replaces the
+    # whole bag; drop them and the quest stops paying gear.
+    - questId: 1326
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 200
+          itemBag: "class"
+          items:
+            - templateId: 15021      # Greaves of the First Expedition (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 15021
+              quantity: 1
+              class: "berserker"
+            - templateId: 15024      # Boots of the First Expedition (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 15024
+              quantity: 1
+              class: "slayer"
+            - templateId: 15024
+              quantity: 1
+              class: "archer"
+            - templateId: 15024
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15027      # Shoes of the First Expedition (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15027
+              quantity: 1
+              class: "priest"
+            - templateId: 15027
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15027
+              quantity: 1
+              class: "assassin"
+            - templateId: 15021
+              quantity: 1
+              class: "engineer"
+            - templateId: 15021
+              quantity: 1
+              class: "fighter"
+            # The token, one duplicate row per class.
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "assassin"
+
+    # 1327 Garrison in Distress | bracket 3-4, cap 220
+    - questId: 1327
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220
+          gold: 80
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    # 1328 Academic Theft | bracket 3-4, cap 220
+    - questId: 1328
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1330 Horned Horrors | bracket 5-6, cap 900
+    # Class bag. The level-7 hands rows are restated in full for the same reason as 1326.
+    - questId: 1330
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 190
+          itemBag: "class"
+          items:
+            - templateId: 15020      # Gauntlets of the First Expedition (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 15020
+              quantity: 1
+              class: "berserker"
+            - templateId: 15023      # Gloves of the First Expedition (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 15023
+              quantity: 1
+              class: "slayer"
+            - templateId: 15023
+              quantity: 1
+              class: "archer"
+            - templateId: 15023
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15026      # Sleeves of the First Expedition (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15026
+              quantity: 1
+              class: "priest"
+            - templateId: 15026
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15026
+              quantity: 1
+              class: "assassin"
+            - templateId: 15020
+              quantity: 1
+              class: "engineer"
+            - templateId: 15020
+              quantity: 1
+              class: "fighter"
+            # The token, one duplicate row per class.
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "assassin"
+
+    # 1334 Investigating the Relics <Repeatable> | bracket 5-6, cap 900
+    # Repeatable, so it pays no token at all (see the header).
+    - questId: 1334
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 800
+          gold: 80
+
+    # 1335 One of Our Couriers Is Missing | bracket 7-8, cap 1300
+    - questId: 1335
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 600
+          gold: 60
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 12
+
+    # 1336 Chione's Missing Cargo | bracket 7-8, cap 1300
+    - questId: 1336
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 600
+          gold: 60
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1337 The Last One | bracket 7-8, cap 1300
+    - questId: 1337
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 150
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1338 Chione's Report | bracket 7-8, cap 1300
+    - questId: 1338
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 500
+          gold: 50
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1339 Sersine, She Seeks Shackles | bracket 7-8, cap 1300
+    - questId: 1339
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 320
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1340 Painful Disc-overies | bracket 7-8, cap 1300
+    - questId: 1340
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 320
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 12
+
+    # 1341 Bequest of the Dead <Repeatable> | bracket 7-8, cap 1300
+    # Repeatable, so it pays no token (see the header). The three charms are the
+    # quest's own classic reward and stay.
+    - questId: 1341
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          itemBag: "allpay"
+          items:
+            - templateId: 7100      # Onslaught Charm I
+              quantity: 1
+            - templateId: 7104      # Ethereal Charm I
+              quantity: 1
+            - templateId: 7108      # Sanguine Charm I
+              quantity: 1
+
+    # 1345 Desperately Seeking Sorcha | bracket 7-8, cap 1300
+    - questId: 1345
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 500
+          gold: 50
+          itemBag: "allpay"
+          items:
+            - templateId: 8007      # Speed Potion
+              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 12
+
+    # 1346 Sorcha's Reckless Challenge | bracket 7-8, cap 1300
+    # Also grants Sorcha's Sigil, the dungeon's own token, spent at Sorcha herself.
+    # The sigil is authored here rather than alongside her shop because upsert is
+    # replace-all and this spec is the quest's last writer: a second writer would have
+    # to restate exp, gold and the Commendation row or would silently delete them.
+    #
+    # The sigil quantity is priced against the shop, not against the XP curve. The
+    # quest is one-time, so a player gets exactly one payout, and every item in the
+    # shop costs 30: one clear buys one of four, which is a choice. Pay more and one
+    # clear buys the whole catalogue.
+    - questId: 1346
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 600
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+            - templateId: $SORCHA_TOKEN                 # Sorcha's Sigil
+              quantity: 30
+
+    # 1351 Supply and Demand | bracket 3-4, cap 220
+    # Same title and same rewards as 1352.
+    - questId: 1351
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220
+          gold: 80
+          itemBag: "allpay"
+          items:
+            - templateId: 6048      # Healing Elixir I
+              quantity: 3
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    # 1352 Supply and Demand | bracket 3-4, cap 220
+    # Same title and same rewards as 1351.
+    - questId: 1352
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220
+          gold: 80
+          itemBag: "allpay"
+          items:
+            - templateId: 6048      # Healing Elixir I
+              quantity: 3
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+
+    # 1353 A Fiber of Their Being | bracket 3-4, cap 220
+    - questId: 1353
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220
+          gold: 230
+          itemBag: "allpay"
+          items:
+            - templateId: 91213      # Recipe: Healing Potion I
+              quantity: 1
+            - templateId: 1001      # Verdra Fibers
+              quantity: 10
+            - templateId: 1616      # Apprentice Alchemical Kit
+              quantity: 2
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1354 An Ounce of Prevention | bracket 3-4, cap 220
+    - questId: 1354
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220
+          gold: 230
+          itemBag: "allpay"
+          items:
+            - templateId: 6000      # Healing Potion I
+              quantity: 2
+            - templateId: 1616      # Apprentice Alchemical Kit
+              quantity: 5
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1355 Essence of the Matter | bracket 5-6, cap 900
+    - questId: 1355
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 310
+          itemBag: "allpay"
+          items:
+            - templateId: 91221      # Recipe: Mana Potion I
+              quantity: 1
+            - templateId: 1003      # Sun Essence
+              quantity: 8
+            - templateId: 1616      # Apprentice Alchemical Kit
+              quantity: 2
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1356 Mana from Heaven | bracket 5-6, cap 900
+    - questId: 1356
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 900
+          gold: 310
+          itemBag: "allpay"
+          items:
+            - templateId: 6016      # Mana Potion I
+              quantity: 2
+            - templateId: 1616      # Apprentice Alchemical Kit
+              quantity: 5
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1357 The Ore the Merrier | bracket 7-8, cap 1300
+    - questId: 1357
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 400
+          itemBag: "allpay"
+          items:
+            - templateId: 91282      # Recipe: Onslaught Scroll: Crit Power I
+              quantity: 1
+            - templateId: 1002      # Krymetal Ore
+              quantity: 20
+            - templateId: 1611      # Apprentice Scroll Kit
+              quantity: 1
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1358 Scroll With It | bracket 7-8, cap 1300
+    - questId: 1358
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1300
+          gold: 400
+          itemBag: "allpay"
+          items:
+            - templateId: 6197      # Onslaught Scroll: Crit Power I
+              quantity: 1
+            - templateId: 1611      # Apprentice Scroll Kit
+              quantity: 5
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 8
+
+    # 1390 Special Delivery | bracket 5-6, cap 900
+    - questId: 1390
+
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 300
+          itemBag: "allpay"
+          items:
+            - templateId: 160      # Safe Haven Teleport Scroll
+              quantity: 2
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation
+              quantity: 20
+

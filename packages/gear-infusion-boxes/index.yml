@@ -1,0 +1,44 @@
+# Infusion Gacha Box IDs
+# 12 boxes: 4 equipment slots x 3 grades (Uncommon, Rare, Superior)
+# Each box awards one random infusion gear piece of the matching slot/grade.
+#
+# Reserved range: 602190–602201 (12 IDs, contiguous with crystal boxes 602176–602189)
+
+spec:
+  version: "1.0"
+
+variables:
+  # Weapon boxes (pool: 195 items per grade — 15 passivities x 13 weapon subtypes)
+  INFUSION_WEAPON_BOX_UNCOMMON: 602190
+  INFUSION_WEAPON_BOX_RARE: 602191
+  INFUSION_WEAPON_BOX_SUPERIOR: 602192
+
+  # Chest boxes (pool: 54 items per grade — 18 passivities x 3 armor subtypes)
+  INFUSION_CHEST_BOX_UNCOMMON: 602193
+  INFUSION_CHEST_BOX_RARE: 602194
+  INFUSION_CHEST_BOX_SUPERIOR: 602195
+
+  # Gloves boxes (pool: 30 items per grade — 10 passivities x 3 armor subtypes)
+  INFUSION_GLOVES_BOX_UNCOMMON: 602196
+  INFUSION_GLOVES_BOX_RARE: 602197
+  INFUSION_GLOVES_BOX_SUPERIOR: 602198
+
+  # Boots boxes (pool: 21 items per grade — 7 passivities x 3 armor subtypes)
+  INFUSION_BOOTS_BOX_UNCOMMON: 602199
+  INFUSION_BOOTS_BOX_RARE: 602200
+  INFUSION_BOOTS_BOX_SUPERIOR: 602201
+
+exports:
+  variables:
+    - INFUSION_WEAPON_BOX_UNCOMMON
+    - INFUSION_WEAPON_BOX_RARE
+    - INFUSION_WEAPON_BOX_SUPERIOR
+    - INFUSION_CHEST_BOX_UNCOMMON
+    - INFUSION_CHEST_BOX_RARE
+    - INFUSION_CHEST_BOX_SUPERIOR
+    - INFUSION_GLOVES_BOX_UNCOMMON
+    - INFUSION_GLOVES_BOX_RARE
+    - INFUSION_GLOVES_BOX_SUPERIOR
+    - INFUSION_BOOTS_BOX_UNCOMMON
+    - INFUSION_BOOTS_BOX_RARE
+    - INFUSION_BOOTS_BOX_SUPERIOR

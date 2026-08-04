@@ -1,0 +1,83 @@
+spec:
+  version: "1.0"
+
+# Reusable archetypes for classic-zone spawn restoration (dc-restore pipeline).
+# Derived by statistical analysis of the 217 restored HZ 13 spawns in patch 001
+# (tau=0.9 modal-share acceptance, matching npc-standard). Each folded value is
+# annotated share=modal-share across the restoration sample.
+#
+# Zone-agnostic by design: identity fields (huntingZoneId, groupId, territoryId,
+# npcInstanceId, npcTemplateId), desc, and pos are always supplied per row, never
+# inherited. So are the genuinely per-mob behavioral fields (ai, spawnCount,
+# memberId, aggroSendToPartyDistance) whose modal share falls below tau.
+#
+# Consumers: tools/dc-restore/gen_spawn_specs.py emits territorySpawns entries as
+# "$extends: spawn-restore-standard.RestoreSpawnBase" (or RestoreSpawnAggressive)
+# plus only the fields that deviate from the archetype, and territories entries as
+# "$extends: spawn-restore-standard.ClassicTerritory". Deep merge is child-wins;
+# every list field here (escapeLocation) is a constant carried whole, and per-row
+# list fields (pos, fences) are supplied literally, so the list-replace rule is
+# never a hazard.
+
+definitions:
+  # ===== Territory spawn archetype =====
+  # 31 fields at tau>=0.9 across all 217 restored spawns. isAggressiveMonster and
+  # isReturn hold their non-aggressive default here (both false); the aggressive
+  # sub-archetype overrides isAggressiveMonster via RestoreSpawnAggressive.
+  RestoreSpawnBase:
+    dir: 0  # share=95% n=217
+    offsetZ: 0  # share=100% n=217
+    randomPos: true  # share=100% n=217
+    escapeLocation: [0, 0, 0]  # share=100% n=217
+    respawnTime: 20000  # share=100% n=217
+    respawnRandomTime: "2000"  # share=100% n=217
+    delaySpawnTimeWhenWorldStart: 0  # share=100% n=217
+    conditionalSpawn: false  # share=100% n=217
+    isAggressiveMonster: false  # share=92% n=217 (aggressive variant overrides)
+    isReturn: false  # share=92% n=217
+    isReturnMyTerritory: false  # share=100% n=217
+    returnDistance: 2000  # share=100% n=217
+    moveInTerritory: false  # share=100% n=217
+    questPatrol: false  # share=100% n=217
+    peaceStateNoMoving: false  # share=100% n=217
+    cautionStateNoMoving: false  # share=100% n=217
+    voidSpawn: false  # share=100% n=217
+    viewRadius: 200  # share=100% n=217
+    viewAngle: 360  # share=100% n=217
+    alertRadius: 250  # share=100% n=217
+    alertAngle: 360  # share=100% n=217
+    aggroShareGroupId: 0  # share=100% n=217
+    aggroSendToClanDistance: 0  # share=95% n=217
+    aggroSendToTerritory: ""  # share=100% n=217
+    aggroIgnorePartyId: ""  # share=100% n=217
+    aggroReceiveOnlyInSight: false  # share=100% n=217
+    excludeAggroLimit: false  # share=100% n=217
+    popupMsg: ""  # share=100% n=217
+    msgProb: 0  # share=100% n=217
+    msgInterval: 0  # share=100% n=217
+    randomGroupId: 0  # share=100% n=217
+
+  # Aggressive sub-archetype: 17 of 217 restored spawns. Differs from the base by
+  # a single flag; every other field is inherited. (isReturn is NOT correlated
+  # with aggression in the sample: the 17 aggressive rows all keep isReturn=false,
+  # and a disjoint set of 17 rows carry isReturn=true, emitted per row.)
+  RestoreSpawnAggressive:
+    $extends: RestoreSpawnBase
+    isAggressiveMonster: true
+
+  # ===== Territory archetype =====
+  # 6 fields constant across all 217 restored territories (share=100%). Identity
+  # (huntingZoneId, groupId, territoryId), desc, and fences are supplied per row.
+  ClassicTerritory:
+    type: normal  # share=100% n=217
+    addMaxZ: 256.000000  # share=100% n=217
+    subtractMinZ: 0.000000  # share=100% n=217
+    eventId: 0  # share=100% n=217
+    randomPosMinDist: 100.000000  # share=100% n=217
+    peaceMoveNpcCheckDist: 100.000000  # share=100% n=217
+
+exports:
+  definitions:
+    - RestoreSpawnBase
+    - RestoreSpawnAggressive
+    - ClassicTerritory

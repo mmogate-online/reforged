@@ -1,0 +1,157 @@
+# Reclaim continent 9037 (dungeon 437) for the classic level-8 Sorcha guard
+# dungeon of quest 1346, and sentinel-disable the modern level-65 IoD line
+# 21301-21307 that occupies it. That line is strictly linear and only its head
+# auto-accepts, so sentinelling 21301 makes the whole chain unofferable.
+#
+# THE DUNGEON NEEDS AN ENTRANCE PORTAL. 1346 is the only quest whose
+# dungeon-carrying task is the quest START task, and a bare guard task never
+# teleports anyone in: every working instance is entered through a physical work
+# object. That is what the workObjects / workObjectTerritories legs below are.
+#
+# restoreTargetQuests is a full replace on a non-null list, so the empty list
+# clears the modern forceRestore row that would otherwise push the disabled
+# level-65 quest onto entrants. It must stay empty.
+#
+# Dungeon scripting is server-authoritative; dungeonDatas has no client leg.
+#
+# provenance: padding-level-1
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9037
+      name: "@dungeon:9037"
+      startPos: [58475.543, -67826.4375, -5075.7671]
+      exitContinentId: 13
+      exitPos: [66615, -79814, -3003]
+      restoreTargetQuests: []
+      conditions:
+        - type: solo
+        - type: levelOver
+          value: 8
+        - type: maxMemberCount
+          value: 1
+        - type: progressQuest
+          value: 1346
+          taskId: 1
+        - type: completeQuest
+          value: 1346
+      eventGroups:
+        # ---- Sorcha spawn waves + guard timer (classic 1346, task 1) ----
+        - type: talkNpc
+          uniqueId: "437,1001"
+          events:
+            # Wave spawns over territories 43700322-43700363.
+            - textId: "2"
+              questId: "1346"
+              taskId: "1"
+              eventTaskGroups:
+                - eventTasks:
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700322", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "2" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700327", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "6" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700324", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700328", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700323", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700329", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700325", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700331", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: "40" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700332", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "2" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700338", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "6" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700333", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700341", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700344", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700334", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700339", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700345", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700346", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: "60" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700347", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700359", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700372", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700354", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: "4" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700360", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "15" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700374", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700361", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700362", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "10" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700378", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: "20" }
+                    - { type: spawn, huntingZoneId: 437, territoryId: "43700363", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: "" }
+            # 420s guard timer + staged narration.
+            - textId: "2"
+              questId: "1346"
+              taskId: "1"
+              eventTaskGroups:
+                - eventTasks:
+                    - { type: timerUi, time: 420, next: "time", nextValue: "1" }
+                    - { type: message, string: "@dungeon:9037001", style: "default", next: "time", nextValue: "3" }
+                    - { type: message, string: "@dungeon:9037012", style: "default", next: "time", nextValue: "77" }
+                    - { type: message, string: "@dungeon:9037002", style: "default", next: "time", nextValue: "126" }
+                    - { type: message, string: "@dungeon:9037003", style: "default", next: "time", nextValue: "209" }
+                    - { type: message, string: "@dungeon:9037004", style: "default", next: "none" }
+        # ---- Sorcha HP-threshold barks ----
+        - type: npcHp
+          uniqueId: "437,1001"
+          value: "90"
+          tasks:
+            - { type: message, string: "@dungeon:9037005", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "90", next: "complete" }
+            - { type: message, string: "@dungeon:9037006", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "50", next: "complete" }
+            - { type: message, string: "@dungeon:9037007", targetNpcId: { huntingZone: 0, templateId: 0 }, npc: { huntingZone: 437, templateId: 1001 }, style: "default", nextValue: "45", next: "complete" }
+            - { type: message, string: "@dungeon:9037008", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "30", next: "complete" }
+            - { type: message, string: "@dungeon:9037009", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "10", next: "complete" }
+            - { type: message, string: "@dungeon:9037010", targetNpcId: { huntingZone: 437, templateId: 1001 }, nextValue: "0", next: "complete" }
+        # ---- Guard failure: alert + eject to continent 13 ----
+        - type: questFail
+          events:
+            - questId: "1346"
+              taskId: "1"
+              eventTaskGroups:
+                - eventTasks:
+                    - { type: message, string: "@dungeon:9037011", style: "alert", next: "time", nextValue: "3" }
+                    - { type: teleport, continentId: 13, pos: [66615, -79814, -3003], next: "none" }
+
+# Entrance portal server legs. Template 134 mirrors the Black Rift portal shape,
+# re-gated to quest 1346 task 1; teleport 642501 lands at the 9037 start position.
+workObjects:
+  upsert:
+    - templateId: 134
+      shapeId: 200201
+      scale: 1.0
+      type: onoff
+      enableTime: 1000
+      prepareDuration: 3000
+      socialMotionId: 11
+      isForQuestId: 1346
+      firstTaskId: 1
+      lastTaskId: 1
+      despawnAfterWork: false
+      partyCantWork: true
+      actionScript: {}
+      namePlate:
+        nameplateHeight: 20
+      workGroups:
+        - prob: 1
+          works:
+            - type: teleport
+              prob: 1
+              teleportId: 642501
+              pcDespawnScriptId: 40000
+
+workObjectTerritories:
+  upsert:
+    - huntingZoneId: 13
+      templateId: 134
+      pos: "57908,-67648,-5097"
+      dir: 0
+      respawnTimeMin: 0
+      respawnTimeMax: 0
+
+quests:
+  update:
+    # Sentinel the head of the modern line. prerequisites [9999] emits the ref
+    # 99,99, which can never be satisfied, so 21301 and everything behind it stop
+    # being offered while their quest data stays intact.
+    - id: 21301
+      changes:
+        requirements:
+          prerequisites: [9999]

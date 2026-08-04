@@ -1,0 +1,119 @@
+# Sorcha's Sigil: the dungeon token item and its strings, plus the appear gate on
+# Sorcha and her guards. Her shop is spec 48; the quest reward that grants the
+# token is spec 002/40.
+#
+# QUEST-GRANTED, NOT DROPPED. A boss drop would have meant creating a
+# CompensationData/ECompensation_437.xml from nothing, because hunting zone 437
+# has no drop table anywhere in the corpus, and a drop file the world server has
+# never loaded for that zone risks a failed boot. Granting the token from quest
+# 1346 adds one Item row to a compensation row that already exists.
+#
+# THE APPEAR GATE. Sorcha shipped ungated in spec 44 so she could be inspected
+# without a dungeon clear. That stops being right once she sells trophies from her
+# own defeat: a player who has never entered her dungeon seeing her at Tower Base
+# reads as a bug rather than a preview. appearQuestId is server-only, no client
+# leg: the client simply never receives the spawn.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: dungeon-tokens
+    use:
+      variables:
+        - SORCHA_TOKEN
+
+# The token item is shaped exactly as vanilla item 72 `dungeon_coin`:
+#
+#   tradable: false                 no trade, no broker
+#   guildWarehouseStorable: false   no guild bank
+#   warehouseStorable: false        no personal bank, so no alt-to-main pooling
+#   boundType: None                 the loader refuses any boundType on a stackable
+#
+# NO MEDAL_USEABLE: that flag is what makes an item open a right-click shop, and
+# this token is meant to be spent by walking to Sorcha.
+
+items:
+  upsert:
+    - id: $SORCHA_TOKEN
+      name: token
+      combatItemType: NO_COMBAT
+      combatItemSubType: etc
+      category: etc
+      rank: 0
+      rareGrade: 3
+      level: 1
+      requiredLevel: 1
+      searchable: true
+      conversion: false
+      sortingNumber: 0
+      dropType: 2
+      buyPrice: 0
+      sellPrice: 0
+      divide: 0
+      maxStack: 99999        # corpus-proven ceiling (31 items use it; 8 use 100000)
+      slotLimit: 0
+      coolTimeGroup: 0
+      itemUseCount: 0
+      maxDropUnit: 9999
+      enchantEnable: false
+      tradable: false
+      boundType: None
+      destroyable: true
+      dismantlable: false
+      warehouseStorable: false
+      guildWarehouseStorable: false
+      storeSellable: false
+      obtainable: true
+      relocatable: true
+      artisanable: false
+      unidentifiedItemGrade: 0
+      masterpieceRate: 0
+      linkEquipmentId: 0
+      linkLookInfoId: 0
+      changeLook: false
+      extractLook: false
+      changeColorEnable: false
+      requiredGuildMaster: false
+      requiredEquipmentType: NO_COMBAT
+      linkCrestId: 0
+      linkCustomizingId: 0
+      linkSkillId: 0
+      linkPetAdultId: 0
+      linkPetOrbId: 0
+      icon: Icon_Items.mysterypaper5_Tex
+      dropSilhouette: Item_Drop.SM.Recipe_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
+      defaultValue: 0
+
+# Name and tooltip. This is a TOP-LEVEL block, never nested under `items:`:
+# migrate's entity detection anchors its key pattern at column 0, so an inline
+# `strings:` block never registers the itemStrings family and the client ships a
+# nameless item.
+
+itemStrings:
+  upsert:
+    - id: $SORCHA_TOKEN
+      name: "Sorcha's Sigil"
+      toolTip: "A witch's mark, pressed into wax by Sorcha herself and given to those who survived her challenge.$BR$BR<font color = '#FF0000'>Cannot be traded, banked, or stored in a guild bank.</font>$BR$BR<font color = '#41FF3A'>[Usage]</font>$BRExchange with Sorcha at Tower Base."
+
+# The quest grant lives in spec 002/40, not here. `questCompensations: upsert` is
+# REPLACE-ALL and specs apply in sorted filename order, so a block here would run
+# last and silently drop that quest's exp, gold and other item rows unless it
+# restated all of them. One authoritative statement per quest per patch.
+#
+# The appear gate. Sorcha 64,1014 and her two guards 64,1015 (one template, two
+# spawns) appear only once quest 1346 is complete.
+
+npcs:
+  update:
+    - huntingZoneId: 64
+      id: 1014
+      changes:
+        appearQuestId: 1346
+    - huntingZoneId: 64
+      id: 1015
+      changes:
+        appearQuestId: 1346

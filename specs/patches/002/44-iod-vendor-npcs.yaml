@@ -1,0 +1,515 @@
+# Island of Dawn vendor NPCs: five villager templates at Tower Base and Tainted
+# Gorge Outpost, with their territories, spawns, display names and greeting lines.
+#
+# A shop NPC needs three things beyond the template, and is silently broken without
+# any one of them: a VillagerData condition file (`speechConditions`), a
+# VillagerDialog entry, and a client shard for that dialog. The shop menu is drawn
+# INSIDE the dialog window, so an NPC with no dialog wiring cannot be clicked at all.
+#
+# NpcData is client synced: shapeId and basicActionId are the data the client needs
+# to render a model, so a server-only apply leaves the NPC invisible. This spec adds
+# spawn points, so gen_npcloc.py --prune belongs after the apply.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Tower Base villager envelope, mirrored field for field from Rutgar 64,1005.
+  # Per-row keys (huntingZoneId, id, name, shapeId, basicActionId, race, gender) are
+  # supplied at each upsert. aiid 100 is the villager idle AI; Rutgar's own 101 is
+  # deliberately NOT inherited, so no NPC here wanders. Do NOT swap this for the
+  # npc-standard package: partial overlap injects defaults these templates must not get.
+  _towerBaseVillager:
+    villager: true
+    invincible: true
+    aiid: 100
+    scale: 1
+    size: medium
+    resourceType: medium
+    resourceSize: 100
+    class: ""
+    # balanceType is deliberately absent: the donor carries an empty string and
+    # the DSL rejects "" as an NpcBalanceType (E202). Omitting it writes no
+    # attribute, which is what the client shard already coerces it to anyway.
+    collideOnMove: false
+    isObjectNpc: false
+    isWideBroadcaster: false
+    isFreeNamed: false
+    isLightParty: false
+    elite: false
+    showAggroTarget: false
+    showShorttermTarget: false
+    dontTurn: false
+    partyMember: 0
+    spawnScriptId: 0
+    despawnScriptId: 0
+    pcDespawnScriptId: 0
+    villagerVolumeOffset: ""
+    villagerVolumeActiveRange: 0
+    villagerVolumeHalfHeight: 0
+    villagerVolumeInteractionDist: 0
+    namePlate:
+      deathNameplateHeight: 0
+    abnormalityResistanceOverride:
+      resetTime: 60000
+    stat:
+      maxHp: 10000
+      walkSpeed: 60
+      runSpeed: 110
+      atk: 100
+      def: 2000
+      exp: 1
+      level: 40
+    npcOnly:
+      onDeathSkill: 0
+    anger:
+      gaugeSize: 403799
+      time: 16633
+      moveSpeedUpRate: 1.6
+      accumRateWhenHpLow: 1.0
+      accumRateWhenHpMed: 1
+      accumRateWhenHpHigh: 1.0
+      modeOnProbabilityWhenPartyMemberDead: 0.2
+    critical:
+      str: 30
+      res: 180
+      powRate: 1.5
+    criticalAdjust:
+      front: 1
+      right: 1.2
+      left: 1.2
+      back: 1.6
+    reaction:
+      statStr: 40
+      statRes: 150
+      miniRes: 100
+      basicRes: 100
+      basicIncRes: 0
+      basicGaugeResetTime: 20000
+      maxBasicGauge: 2000
+      maxAdditionalGauge: 600000
+    abnormality:
+      strA: 50
+      resA: 40
+      strB: 50
+      resB: 40
+      strC: 50
+      resC: 40
+      strD: 50
+      resD: 40
+    aggro:
+      hateSkillCategoryName: ""
+      viewRadius: 200
+      viewAngle: 360
+      sightRangeAggroWeight: 1.3
+      hateSkillAggroWeight: 1
+      bigReactionAggroWeight: 0.5
+      aggroSendToClanDistance: 300
+      clanName: ""
+      aggroSendToPartyDistance: 400
+      aggroSendRate: 1
+      aggroSendStackRate: 0.1
+      aggroSendStackRateWhenFirstAttacked: 2
+      aggroReceiveOnlyInSight: false
+      aggroReceiveRate: 0.5
+    skillList: {}
+    stackPoint:
+      maxStackPoint: 10
+      minStackPointRequire: 3
+      stackPointPeriod: 8000
+
+  # Fixed-point villager spawn envelope, read from the plaza villagers in territory
+  # 6400001. Per-row keys (huntingZoneId, groupId, territoryId, npcInstanceId,
+  # npcTemplateId, desc, pos) are supplied at each upsert.
+  _villagerSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    dir: 0                    # north; per-spawn overrides below where needed
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  # Small fixed-point territory envelope, mirrored from group 1300005.
+  _villagerTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+npcs:
+  upsert:
+    - huntingZoneId: 64
+      id: 1012
+      $extends: _towerBaseVillager
+      name: "Valkyon Quartermaster Deren"   # internal authoring name, never player-visible
+      shapeId: 530980                       # Merrick 213,1103, Human male
+      basicActionId: 5309800
+      race: Human
+      gender: male
+
+    - huntingZoneId: 64
+      id: 1013
+      $extends: _towerBaseVillager
+      name: "Bounty Broker Hollis"
+      shapeId: 510560                       # generic island Human male
+      basicActionId: 5000800
+      race: Human
+      gender: male
+
+    - huntingZoneId: 64
+      id: 1014
+      $extends: _towerBaseVillager
+      name: "Sorcha"
+      shapeId: 301040                       # Sorcha 437,1001; villager-proven by Ellonia 64,8000
+      basicActionId: 3010400
+      race: monster
+      gender: female
+
+    - huntingZoneId: 64
+      id: 1015
+      $extends: _towerBaseVillager
+      name: "Sorcha's Guardian"
+      shapeId: 300170                       # Sorcha's Guardian 437,1003, enchanted doll
+      basicActionId: 3001700
+      race: doll
+      gender: male
+      size: small                           # overrides the envelope: the dungeon template is small
+
+    - huntingZoneId: 213
+      id: 1055
+      $extends: _towerBaseVillager
+      name: "Bounty Broker Hazzir"
+      shapeId: 510535                       # Barsabba 213,1106, Aman male
+      basicActionId: 5001700
+      race: Aman
+      gender: male
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 64
+      groupId: 6400030
+      desc: "Reforged Vendors, Tower Base"
+    - huntingZoneId: 213
+      groupId: 1300007
+      desc: "Reforged Vendors, Island of Dawn"
+
+territories:
+  upsert:
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400030
+      $extends: _villagerTerritory
+      desc: "Valkyon Quartermaster"
+      fences:
+        - [66094, -79206, -3003]
+        - [66394, -79206, -3003]
+        - [66394, -78906, -3003]
+        - [66094, -78906, -3003]
+
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400031
+      $extends: _villagerTerritory
+      desc: "Bounty Broker, Tower Base"
+      fences:
+        - [65979, -78801, -2996]
+        - [66279, -78801, -2996]
+        - [66279, -78501, -2996]
+        - [65979, -78501, -2996]
+
+    # One territory for the whole Sorcha arrangement: her plus both guards.
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400032
+      $extends: _villagerTerritory
+      desc: "Sorcha and her guards"
+      fences:
+        - [66486, -78673, -2964]
+        - [66986, -78673, -2964]
+        - [66986, -78173, -2964]
+        - [66486, -78173, -2964]
+
+    - huntingZoneId: 213
+      groupId: 1300007
+      territoryId: 1300480
+      $extends: _villagerTerritory
+      desc: "Bounty Broker, Tainted Gorge Outpost"
+      fences:
+        - [53171, -70433, -5665]
+        - [53471, -70433, -5665]
+        - [53471, -70133, -5665]
+        - [53171, -70133, -5665]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400030
+      npcInstanceId: 6400201
+      npcTemplateId: 1012
+      $extends: _villagerSpawn
+      desc: "Valkyon Quartermaster Deren"
+      pos: [66244, -79056, -3003]
+
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400031
+      npcInstanceId: 6400202
+      npcTemplateId: 1013
+      $extends: _villagerSpawn
+      desc: "Bounty Broker Hollis"
+      pos: [66129, -78651, -2996]
+
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400032
+      npcInstanceId: 6400203
+      npcTemplateId: 1014
+      $extends: _villagerSpawn
+      desc: "Sorcha"
+      pos: [66736, -78463, -2964]
+      dir: 180                       # SOUTH. See the facing note below.
+
+    # Both guards are one template at two authored points, 80 units either side
+    # of Sorcha and 80 units in front of her. moveInTerritory false and
+    # randomPos false come from the envelope, so they stand where they are put.
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400032
+      npcInstanceId: 6400204
+      npcTemplateId: 1015
+      $extends: _villagerSpawn
+      desc: "Sorcha's Guardian, left"
+      pos: [66656, -78383, -2964]
+
+    - huntingZoneId: 64
+      groupId: 6400030
+      territoryId: 6400032
+      npcInstanceId: 6400205
+      npcTemplateId: 1015
+      $extends: _villagerSpawn
+      desc: "Sorcha's Guardian, right"
+      pos: [66816, -78383, -2964]
+
+    - huntingZoneId: 213
+      groupId: 1300007
+      territoryId: 1300480
+      npcInstanceId: 1305911
+      npcTemplateId: 1055
+      $extends: _villagerSpawn
+      desc: "Bounty Broker Hazzir"
+      pos: [53321, -70283, -5665]
+      dir: 97                        # faces the outpost centroid. See below.
+
+# `dir` is DEGREES, signed, COUNTER-CLOCKWISE, with 0 pointing along +x, which reads
+# as NORTH in game: 90 east, 180 south, 270 west. To face an NPC at a point, compute
+# it rather than guessing a compass word:
+#
+#   dir = degrees(atan2(targetY - npcY, targetX - npcX))
+#
+# Hazzir's 97 is that bearing to the centroid of the outpost NPCs around him, so he
+# reads as part of the camp. Anything left at 0 has not been aimed at anything.
+
+# Sorcha and her guard keep the name, title, race and gender they carry in hunting
+# zone 437, so the same character reads the same in both places.
+
+creatureStrings:
+  upsert:
+    - huntingZoneId: 64
+      templateId: 1012
+      name: "Deren"
+      gender: male
+      race: Human
+      title: "Valkyon Quartermaster"
+
+    - huntingZoneId: 64
+      templateId: 1013
+      name: "Hollis"
+      gender: male
+      race: Human
+      title: "Bounty Broker"
+
+    - huntingZoneId: 64
+      templateId: 1014
+      name: "Sorcha"
+      gender: female
+      race: monster
+      title: "Researcher"
+
+    - huntingZoneId: 64
+      templateId: 1015
+      name: "Sorcha's Guardian"
+      race: monster
+      title: "Guard"
+
+    - huntingZoneId: 213
+      templateId: 1055
+      name: "Hazzir"
+      gender: male
+      race: Aman
+      title: "Bounty Broker"
+
+# Required. Without a VillagerData condition file an NPC renders but cannot be
+# interacted with at all: this file is what makes the dialog window open, and the
+# shop menu is drawn inside that window. Every MedalStore NPC in the corpus carries
+# one. Server-only, no client leg; it writes to
+# VillagerData/{huntingZone:04d}{templateId:010d}.condition.
+#
+# Shape is the corpus modal one: a single Normal slot with a `random` param and an
+# empty Popup.
+
+speechConditions:
+  upsert:
+    - huntingZoneId: 64
+      templateId: 1012
+      note: "Valkyon Quartermaster Deren"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+    - huntingZoneId: 64
+      templateId: 1013
+      note: "Bounty Broker Hollis"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+    - huntingZoneId: 64
+      templateId: 1014
+      note: "Sorcha"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+    - huntingZoneId: 64
+      templateId: 1015
+      note: "Sorcha's Guardian"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+    - huntingZoneId: 213
+      templateId: 1055
+      note: "Bounty Broker Hazzir"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+# Load-bearing, not flavour: the condition file opens the dialog window and these
+# rows are what fill it. A server dialog row on its own leaves the window EMPTY,
+# because the client holds one shard per (huntingZoneId, id) and an NPC with no
+# shard gets nothing.
+#
+# SYNC WITH --no-narrow. Client shard numbers are POSITIONAL RANKS in ascending
+# (huntingZoneId, id) order, so inserting these five renumbers every shard after
+# them and a manifest-narrowed run is refused with E680.
+#
+# The dialog id IS the npc template id. `voiceTypeId` IS THE NPC'S VOICE and it
+# lives on this root; there is no voice attribute anywhere on an NpcData Template.
+# Take it from the NPC whose model was copied, because model and voice are chosen
+# together in the source data. A modal value is not a neutral default: 16 is modal
+# in these files only because it is a common Human female voice. 0 is not "unset",
+# it is what the non-humanoid models legitimately use.
+
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 64
+      id: 1012
+      voiceTypeId: 8
+      texts:
+        - id: 1
+          huntingZoneId: 64
+          villagerId: 1012
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Quartermaster Deren, Valkyon Federation. Every crate that crosses this base crosses my ledger first."
+
+    - huntingZoneId: 64
+      id: 1013
+      voiceTypeId: 4
+      texts:
+        - id: 1
+          huntingZoneId: 64
+          villagerId: 1013
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "There is a price on everything that crawls out of that gorge, <PCNAME>. I keep the list."
+
+    - huntingZoneId: 64
+      id: 1014
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          huntingZoneId: 64
+          villagerId: 1014
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "So this is where the Federation keeps its books. Quieter than the bridge, and the company complains less."
+
+    - huntingZoneId: 64
+      id: 1015
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          huntingZoneId: 64
+          villagerId: 1015
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "The doll turns its head to follow you, and says nothing at all."
+
+    - huntingZoneId: 213
+      id: 1055
+      voiceTypeId: 171
+      texts:
+        - id: 1
+          huntingZoneId: 213
+          villagerId: 1055
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Hazzir, at the outpost. What dies out there passes through my hands before it is worth anything."

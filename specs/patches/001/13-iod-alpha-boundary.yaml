@@ -1,0 +1,74 @@
+# Close the alpha at Island of Dawn: ground the pegasus route to the mainland and
+# re-terminate quest 1317 "Ride Off into the Sunset" at Flight Manager Leiyane on the
+# island instead of at Legate Troius in Velika.
+#
+# This is a deliberate policy divergence, not a classic restoration. When the mainland
+# opens, drop this file from the patch and re-apply the classic 1317 (task 4 -> Troius
+# 63,1107, the pegasus binding, the original dialog texts) to restore travel.
+#
+# Quest and villager dialog bodies store <BR> XML-escaped as &lt;BR&gt; on disk, but the
+# DSL content field takes the LOGICAL string with literal angle brackets (<BR>, <B>,
+# <PCNAME>, <NEXTPAGEBUTTON>) and the writer escapes on output. Writing the escaped form
+# here would double-escape it.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# Task 3 (Leiyane) becomes the completing task. Task 4 (visit Troius 63,1107) carried
+# the reward, and grounding travel makes Troius unreachable, so the reward moves onto
+# task 3 and task 4 is deleted rather than left as an unreachable tail.
+quests:
+  update:
+    - id: 1317
+      changes:
+        removeTasks: [4]
+        tasks:
+          - taskId: 3
+            type: VisitTask
+            nextTaskId: 0
+            hasReward: true
+
+# Quest end popup.
+questStrings:
+  update:
+    - id: 1317003
+      changes:
+        string: "This is where the alpha ends. Velika awaits when the skies reopen!"
+
+# Only texts 100, 3, 4 and 5 are touched; texts 1, 2 and 6 (Troius, inert once task 4
+# is gone) are left alone. Pages are replace-all, so text 3's unchanged page 2 has to be
+# reproduced verbatim alongside the edited page 1 or it would be dropped.
+questDialogs:
+  update:
+    - huntingZoneId: 13
+      id: 17
+      texts:
+        update:
+          - id: 100
+            pages:
+              - social: 0
+                content: "Adria and Teil thanked you for your valorous service, and said your skills will be needed elsewhere.<BR><BR>They directed you to Flight Manager Leiyane, but the pegasus routes to the mainland are grounded for now. When the skies reopen, Velika awaits."
+          - id: 3
+            pages:
+              - social: 4
+                content: "In the name of the Valkyon Federation, I'd like to extend our thanks for everything you've done. Adria, Sersine, and Leander speak quite highly of you.<BR><BR>The federation needs good soldiers elsewhere, however. With Karascha's death, we can make do here. Soon it will be time for you to go to Velika!<BR><NEXTPAGEBUTTON>\"Yes, sir!\"</NEXTPAGEBUTTON>"
+              - social: 4
+                content: "{@linkcreature:213#1001#Taleb} will help you arrange your return to Arun.<BR><BR>He's just on the other side of this pavilion."
+          - id: 4
+            pages:
+              - social: 4
+                content: "I've been expecting you, <PCNAME>.<BR><BR>We've adjusted your orders so that you remain on detached duty. This should let you search for Elleon without too much interference, but you're still expected to complete any orders you're given.<BR><BR>And on a personal note: once the flights to Velika reopen, the scenery around the city is really something.<BR><BR>Flight Manager Leiyane will get you saddled up."
+          - id: 5
+            pages:
+              - social: 4
+                content: "Pegasus travel is for long journeys, like back to the mainland and the capital, Velika.<BR><BR>But I'm afraid the mainland routes are grounded for now: this is where the alpha ends, <PCNAME>.<BR><BR>You've done the island proud. When the skies reopen, I'll saddle the fastest pegasus we have for your first flight to <B>Velika</B>."
+
+# Ground the pegasus. Leiyane's only menu is the flight binding, so deleting the whole
+# Villager entry removes both the flight UI and its guideEffectId 106 map icon.
+villagerMenus:
+  delete:
+    - huntingZoneId: 213
+      npcTemplateId: 1016

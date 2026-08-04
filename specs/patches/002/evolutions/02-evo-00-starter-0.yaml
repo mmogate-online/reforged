@@ -1,0 +1,133 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+        - PAVERUNE_OF_ARUN
+        - PAVERUNE_OF_SHARA
+      definitions:
+        - EvolutionItem
+        - PaveruneOfArunPath
+        - PaveruneOfSharaPath
+
+variables:
+  # ── Source Gear ──
+  SOURCE_WEAPON_DUAL: 10593  # dual — Disclose & Divulge
+  SOURCE_WEAPON_LANCE: 10594  # lance — Revelation Tree
+  SOURCE_WEAPON_TWOHAND: 10595  # twohand — Incisive Greatsword
+  SOURCE_WEAPON_AXE: 10596  # axe — Axe of Manifesto
+  SOURCE_WEAPON_CIRCLE: 10597  # circle — Darkseeing Lens
+  SOURCE_WEAPON_BOW: 10598  # bow — Revealing Arc
+  SOURCE_WEAPON_STAFF: 10599  # staff — Praesto Staff
+  SOURCE_WEAPON_ROD: 10600  # rod — Rod of Revelation
+  SOURCE_WEAPON_BLASTER: 55079  # blaster — See Shooter
+  SOURCE_WEAPON_SHURIKEN: 58245  # shuriken — Tattlebriar
+  SOURCE_WEAPON_GLAIVE: 59127  # glaive — Reconglaive
+  SOURCE_WEAPON_GAUNTLET: 82079  # gauntlet — Feather Dusters
+  SOURCE_BODYMAIL: 15667  # bodyMail — Outrider's Chestpiece
+  SOURCE_BODYLEATHER: 15670  # bodyLeather — Sentry's Jerkin
+  SOURCE_BODYROBE: 15673  # bodyRobe — Outrider's Robes
+  SOURCE_HANDMAIL: 15668  # handMail — Demonslayer Fists
+  SOURCE_HANDLEATHER: 15671  # handLeather — Demonslayer Mitts
+  SOURCE_HANDROBE: 15674  # handRobe — Demonslayer Handwraps
+  SOURCE_FEETMAIL: 15669  # feetMail — Decurion's Greaves
+  SOURCE_FEETLEATHER: 15672  # feetLeather — Decurion's Boots
+  SOURCE_FEETROBE: 15675  # feetRobe — Decurion's Shoes
+
+  # ── Result Gear ──
+  TARGET_WEAPON_DUAL: 10121  # dual — Pathfinder Pair
+  TARGET_WEAPON_LANCE: 10122  # lance — Duty's Lance
+  TARGET_WEAPON_TWOHAND: 10123  # twohand — Pathsweeper
+  TARGET_WEAPON_AXE: 10124  # axe — Chopper
+  TARGET_WEAPON_CIRCLE: 10125  # circle — Harvest Focus
+  TARGET_WEAPON_BOW: 10126  # bow — Arrowsvine
+  TARGET_WEAPON_STAFF: 10127  # staff — Staff of Redemption
+  TARGET_WEAPON_ROD: 10128  # rod — Wand of the Frond
+  TARGET_WEAPON_BLASTER: 55020  # blaster — Nobleshot
+  TARGET_WEAPON_SHURIKEN: 58186  # shuriken — Trailcover
+  TARGET_WEAPON_GLAIVE: 59068  # glaive — Pathdancer
+  TARGET_WEAPON_GAUNTLET: 82020  # gauntlet — Warfists
+  TARGET_BODYMAIL: 15136  # bodyMail — Nightshimmer Chestplate
+  TARGET_BODYLEATHER: 15139  # bodyLeather — Moonrise Vest
+  TARGET_BODYROBE: 15142  # bodyRobe — Nightswift Gown
+  TARGET_HANDMAIL: 15137  # handMail — Duskweaver Gauntlets
+  TARGET_HANDLEATHER: 15140  # handLeather — Nightfists
+  TARGET_HANDROBE: 15143  # handRobe — Somnus Sleeves
+  TARGET_FEETMAIL: 15138  # feetMail — Hit Kickers
+  TARGET_FEETLEATHER: 15141  # feetLeather — Tenebral Boots
+  TARGET_FEETROBE: 15144  # feetRobe — Umbral Slippers
+
+# ===========================================================================
+# Starter 0 Gear Set — Character Creation
+# ===========================================================================
+
+# Promote Starter 0 armor from Common (grade 0) to Uncommon (grade 1)
+# to match the weapon grade and keep consistency across the set.
+items:
+  updateWhere:
+    - filter:
+        id:
+          - $SOURCE_BODYMAIL
+          - $SOURCE_BODYLEATHER
+          - $SOURCE_BODYROBE
+          - $SOURCE_HANDMAIL
+          - $SOURCE_HANDLEATHER
+          - $SOURCE_HANDROBE
+          - $SOURCE_FEETMAIL
+          - $SOURCE_FEETLEATHER
+          - $SOURCE_FEETROBE
+      changes:
+        rareGrade: 1
+
+evolutionPaths:
+  upsert:
+    # ── Weapons: Paverune of Shara x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: PaveruneOfSharaPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: PaveruneOfSharaPath }
+    # ── Armor: Paverune of Arun x2 ──
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: PaveruneOfArunPath }
+    - $extends: EvolutionItem
+      $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: PaveruneOfArunPath }
+

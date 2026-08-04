@@ -1,0 +1,210 @@
+# Field event (Guardian Legion) definition library.
+#
+# Reference from a spec as `$extends: fieldevent.<name>` with `$with:` supplying the
+# parameters.
+#
+# Why this exists: the EventTask element is a FLAT superset of 38 attributes shared by
+# 21 task types, and the XSD cannot express which subset belongs to which type. That
+# guardrail is real (a spawn task needs territoryId, a changeHp task needs method and
+# amount, and neither tolerates the other's fields) but it lives nowhere machine
+# checkable. One template per task type restores it as convention, at zero engine cost.
+#
+# The templates carry each type's REQUIRED core, taken from the full corpus (7,060 tasks
+# across 12 files). Optional attributes are added inline at the call site. `next` is
+# omitted wherever the mapper defaults it per type; where the corpus does not determine
+# it, the template takes it as a parameter so the author cannot forget it.
+
+definitions:
+
+  # --------------------------------------------------------------------------
+  # Guardian scaling
+  # --------------------------------------------------------------------------
+
+  # One AutoEventBalance rung. 156 of the corpus's 175 rows are a plain arithmetic
+  # progression with userMin == userMax and the abnormality moving in lockstep, so a
+  # ladder is N of these differing only in N and ABN.
+  balanceTier:
+    $params: [N, ABN]
+    userMin: $N
+    userMax: $N
+    basicAbnormalities:
+      - targetNpcId: "0,0"
+        abnormalityId: $ABN
+
+  # --------------------------------------------------------------------------
+  # EventTask templates, one per corpus task type
+  # --------------------------------------------------------------------------
+
+  # next defaults to "time" for this type.
+  taskAiCombatWork:
+    $params: [NPC, WORK]
+    type: aiCombatWork
+    targetNpcId: $NPC
+    workId: $WORK
+
+  taskSpawn:
+    $params: [HUNTING_ZONE, TERRITORY, NEXT]
+    type: spawn
+    huntingZoneId: $HUNTING_ZONE
+    territoryId: $TERRITORY
+    next: $NEXT
+
+  taskDespawn:
+    $params: [HUNTING_ZONE, TERRITORY, NEXT]
+    type: despawn
+    huntingZoneId: $HUNTING_ZONE
+    territoryId: $TERRITORY
+    next: $NEXT
+
+  taskDynamicSpawn:
+    $params: [HUNTING_ZONE, INSTANCE, TEMPLATE, NEXT]
+    type: dynamicSpawn
+    huntingZoneId: $HUNTING_ZONE
+    targetInstanceId: $INSTANCE
+    dynamicSpawnTemplateId: $TEMPLATE
+    next: $NEXT
+
+  taskMessage:
+    $params: [STRING, NEXT]
+    type: message
+    string: $STRING
+    next: $NEXT
+
+  taskFlag:
+    $params: [NAME, VALUE, NEXT]
+    type: flag
+    name: $NAME
+    value: $VALUE
+    next: $NEXT
+
+  # next defaults to "none" for this type.
+  taskChangeHp:
+    $params: [HUNTING_ZONE, INSTANCE, METHOD, AMOUNT]
+    type: changeHp
+    targetHuntingZoneId: $HUNTING_ZONE
+    targetInstanceId: $INSTANCE
+    method: $METHOD
+    amount: $AMOUNT
+
+  taskProgress:
+    $params: [ACTION, VALUE, NEXT]
+    type: progress
+    action: $ACTION
+    value: $VALUE
+    next: $NEXT
+
+  # next defaults to "time" for this type. `id` references an eventDialog definition.
+  taskEventDialog:
+    $params: [DIALOG]
+    type: eventDialog
+    id: $DIALOG
+
+  taskGuide:
+    $params: [GUIDE_ID, GUIDE_TYPE, NEXT]
+    type: guide
+    guideId: $GUIDE_ID
+    guideType: $GUIDE_TYPE
+    next: $NEXT
+
+  taskTimer:
+    $params: [NAME, ACTION, TIMER_UI_OFF, NEXT]
+    type: timer
+    name: $NAME
+    action: $ACTION
+    timerUiOff: $TIMER_UI_OFF
+    next: $NEXT
+
+  # next defaults to "time" for this type; nextValue is the delay it waits.
+  taskEmpty:
+    $params: [DELAY]
+    type: empty
+    nextValue: $DELAY
+
+  taskAbnormality:
+    $params: [ABNORMALITY, TARGET, TURN, NEXT]
+    type: abnormality
+    abnormalityId: $ABNORMALITY
+    target: $TARGET
+    turn: $TURN
+    next: $NEXT
+
+  # next defaults to "none" for this type. `id` references an EventPoint rule.
+  taskPoint:
+    $params: [POINT_ID, TURN]
+    type: point
+    id: $POINT_ID
+    turn: $TURN
+
+  # next defaults to "none" for this type. `id` references a SpawnAreaList.
+  taskChangePos:
+    $params: [SPAWN_AREA, METHOD]
+    type: changePos
+    id: $SPAWN_AREA
+    method: $METHOD
+
+  # next defaults to "none" for this type. Declares how the mission's progress bar is
+  # driven; the corpus requires it to be the first task in its group.
+  taskProgressType:
+    $params: [PROGRESS_TYPE]
+    type: progressType
+    progressType: $PROGRESS_TYPE
+
+  taskDoActionScript:
+    $params: [SCRIPT, NPC, NEXT]
+    type: doActionScript
+    actionScriptId: $SCRIPT
+    targetNpcId: $NPC
+    next: $NEXT
+
+  taskAero:
+    $params: [STEP, NEXT]
+    type: aero
+    step: $STEP
+    next: $NEXT
+
+  # next defaults to "none" for this type.
+  taskKillCount:
+    $params: [COUNTER, ACTION]
+    type: killCount
+    killCountName: $COUNTER
+    action: $ACTION
+
+  # next defaults to "none" for this type.
+  taskWorkObjectSpawn:
+    $params: [HUNTING_ZONE, TEMPLATE]
+    type: workObjectSpawn
+    huntingZoneId: $HUNTING_ZONE
+    templateId: $TEMPLATE
+
+  # next defaults to "none" for this type.
+  taskWorkObjectDespawn:
+    $params: [HUNTING_ZONE, TEMPLATE]
+    type: workObjectDespawn
+    huntingZoneId: $HUNTING_ZONE
+    templateId: $TEMPLATE
+
+# Cross-module resolution requires each definition to be exported by name.
+exports:
+  definitions:
+    - balanceTier
+    - taskAiCombatWork
+    - taskSpawn
+    - taskDespawn
+    - taskDynamicSpawn
+    - taskMessage
+    - taskFlag
+    - taskChangeHp
+    - taskProgress
+    - taskEventDialog
+    - taskGuide
+    - taskTimer
+    - taskEmpty
+    - taskAbnormality
+    - taskPoint
+    - taskChangePos
+    - taskProgressType
+    - taskDoActionScript
+    - taskAero
+    - taskKillCount
+    - taskWorkObjectSpawn
+    - taskWorkObjectDespawn

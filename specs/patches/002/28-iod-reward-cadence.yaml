@@ -1,0 +1,402 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Island of Dawn level 1-4 reward cadence: zone quests own POWER progression and
+# story quests own LORE progression, so gear moves off the story spine onto the
+# zone quests, anchored on the level-4 set, and the duplicate Noruk quest 1318
+# is retired behind the sentinel prerequisite.
+#
+# The level-4 set is the anchor because it is the only complete low tier in the
+# data (nine pieces, all requiredLevel 4, one visual tier), and six of the nine
+# were granted by no quest anywhere. A player has to be able to finish a full
+# set look inside one bracket, which the level-3 tier cannot offer.
+#
+# A `class` bag has no classless row anywhere in the data, so a bag that also
+# grants a token duplicates that token across all twelve class rows.
+# Reaper/Soulless stays omitted from every row, even where the item admits it.
+#
+# questCompensations upsert is REPLACE-ALL and the last spec to name a quest
+# wins, with spec discovery ordered by relative path. That is why these zone
+# quests take their token and XP values HERE instead of in a higher-numbered
+# spec: such a spec would silently drop the set distribution above and still
+# report a successful apply.
+#
+# Mid-tier class weapons (levels 3 and 4) sit in id ranges far from the low-tier
+# ranges, so a nearest-match pool that knows only the low ids falls back to the
+# level-2 weapon and hands out the same item three quests running.
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+
+quests:
+  update:
+    # Retire the Noruk duplicate. Restores the v31 shipped state for this quest.
+    - id: 1318            # Hunting the Beasts -> sentinel (was 1322, spec 001/14)
+      changes:
+        requirements:
+          prerequisites: [9999]
+
+questCompensations:
+  upsert:
+    # ---- story spine: lore only, gear stripped -------------------------------
+    - questId: 1303       # The Secret Life of Trees (was lv4 weapon + lv4 body)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2600
+          gold: 260
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 60
+
+    - questId: 1304       # Making the Rounds (was the lv2 weapon set)
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 800
+          gold: 80
+
+    # ---- zone quests: the level-4 set, one piece each -------------------------
+          itemBag: "allpay"
+          items:
+            - templateId: $EARLY_PROGRESSION_TOKEN      # Valkyon Commendation (R23 story leg)
+              quantity: 40
+
+    - questId: 1322       # Unrest in the Forest (Kishale) -> lv4 FEET + token
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 200          # was 500; bracket 1-2 cap
+          gold: 50
+          itemBag: "class"
+          items:
+            - templateId: 17406      # Stump Thumpers (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 17406
+              quantity: 1
+              class: "berserker"
+            - templateId: 17406
+              quantity: 1
+              class: "engineer"
+            - templateId: 17406
+              quantity: 1
+              class: "fighter"
+            - templateId: 17409      # Logrolling Boots (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 17409
+              quantity: 1
+              class: "slayer"
+            - templateId: 17409
+              quantity: 1
+              class: "archer"
+            - templateId: 17409
+              quantity: 1
+              class: "glaiver"
+            - templateId: 17412      # Sappy Shoes (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 17412
+              quantity: 1
+              class: "priest"
+            - templateId: 17412
+              quantity: 1
+              class: "elementalist"
+            - templateId: 17412
+              quantity: 1
+              class: "assassin"
+            # The token, 12 duplicate rows.
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 12
+              class: "assassin"
+
+    - questId: 1324       # Essence and Sensibility (Dulari) -> lv4 BODY + token
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 200          # was 900; bracket 1-2 cap
+          gold: 90
+          itemBag: "class"
+          items:
+            - templateId: 17404      # Bark of Vekas (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 17404
+              quantity: 1
+              class: "berserker"
+            - templateId: 17404
+              quantity: 1
+              class: "engineer"
+            - templateId: 17404
+              quantity: 1
+              class: "fighter"
+            - templateId: 17407      # Treejack's Jacket (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 17407
+              quantity: 1
+              class: "slayer"
+            - templateId: 17407
+              quantity: 1
+              class: "archer"
+            - templateId: 17407
+              quantity: 1
+              class: "glaiver"
+            - templateId: 17410      # Tannen-tint Robes (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 17410
+              quantity: 1
+              class: "priest"
+            - templateId: 17410
+              quantity: 1
+              class: "elementalist"
+            - templateId: 17410
+              quantity: 1
+              class: "assassin"
+            # The token, 12 duplicate rows.
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "assassin"
+
+    - questId: 1325       # The Perfect Cut (Leolin) -> lv4 HANDS + token
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 220          # was 500; bracket 3-4 cap
+          gold: 50
+          itemBag: "class"
+          items:
+            - templateId: 17405      # Treefelling Gauntlets (mail)
+              quantity: 1
+              class: "lancer"
+            - templateId: 17405
+              quantity: 1
+              class: "berserker"
+            - templateId: 17405
+              quantity: 1
+              class: "engineer"
+            - templateId: 17405
+              quantity: 1
+              class: "fighter"
+            - templateId: 17408      # Pruning Gloves (leather)
+              quantity: 1
+              class: "warrior"
+            - templateId: 17408
+              quantity: 1
+              class: "slayer"
+            - templateId: 17408
+              quantity: 1
+              class: "archer"
+            - templateId: 17408
+              quantity: 1
+              class: "glaiver"
+            - templateId: 17411      # Canopy Sleeves (robe)
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 17411
+              quantity: 1
+              class: "priest"
+            - templateId: 17411
+              quantity: 1
+              class: "elementalist"
+            - templateId: 17411
+              quantity: 1
+              class: "assassin"
+            # The token, 12 duplicate rows.
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "assassin"
+
+    - questId: 1319       # Dwellers of the Island (Clovis) -> lv4 WEAPON + token
+      huntingZoneId: 13
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 200          # was 600; bracket 1-2 cap
+          gold: 60
+          itemBag: "class"
+          items:
+            - templateId: 12129      # Thorn & Bloom
+              quantity: 1
+              class: "warrior"
+            - templateId: 12130      # Bole of Vekas
+              quantity: 1
+              class: "lancer"
+            - templateId: 12131      # Blade of Vekas
+              quantity: 1
+              class: "slayer"
+            - templateId: 12132      # Bane of Vekas
+              quantity: 1
+              class: "berserker"
+            - templateId: 12133      # Heart of Vekas
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 12134      # Bough of Vekas
+              quantity: 1
+              class: "archer"
+            - templateId: 12135      # Branch of Vekas
+              quantity: 1
+              class: "priest"
+            - templateId: 12136      # Taproot of Vekas
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55271      # Boomstick of Vekas
+              quantity: 1
+              class: "engineer"
+            - templateId: 82271      # Twisted Rootfists (was 82006, level 2)
+              quantity: 1
+              class: "fighter"
+            - templateId: 58500      # Leafblade (was 58172, level 2)
+              quantity: 1
+              class: "assassin"
+            - templateId: 59319      # Graft of Vekas (was 59353, level 3)
+              quantity: 1
+              class: "glaiver"
+            # The token, 12 duplicate rows.
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "lancer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "berserker"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "engineer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "fighter"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "warrior"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "slayer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "archer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "glaiver"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "sorcerer"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "priest"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "elementalist"
+            - templateId: $EARLY_PROGRESSION_TOKEN
+              quantity: 8
+              class: "assassin"

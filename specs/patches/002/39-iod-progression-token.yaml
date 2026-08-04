@@ -1,0 +1,119 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# The early-progression currency for all sub-60 content, in every zone: the reward
+# that compensates for the quest XP removed across that band.
+#
+# NOT A MEDAL_USEABLE RIGHT-CLICK SHOP TOKEN. This token's shop lives on a physical
+# NPC vendor, so the item carries no VillagerMenuItem / BuyMenuList / BuyList chain
+# and no itemUseCount, unlike the item-opened MedalStore tokens elsewhere in the band.
+#
+# RESTRICTION IS CARRIED BY THE STORAGE FLAGS, NEVER BY `boundType`. A stackable item
+# may not specify one: the loader refuses the whole ItemTemplate file with "stackable
+# item cannot specify boundType", and the corpus states the same rule without
+# exception, every stackable row carrying boundType None and every Loot-bound row
+# being maxStack 1. Check maxStack alongside boundType before copying binding off
+# another item. The three flags that actually gate movement:
+#
+#   tradable: false                stops direct trade and the broker
+#   guildWarehouseStorable: false  stops the guild bank
+#   warehouseStorable: false       stops the personal bank, which is what welds
+#                                  income to the character that earned it and keeps
+#                                  one player from pooling alt runs into a main
+#
+# Booleans are authored lowercase; uppercase booleans break the client sync.
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+
+# 1. The item. Attribute shape follows the project's other tokens so the family stays
+# recognisable, with two deliberate departures: combatItemType NO_COMBAT rather than
+# MEDAL_USEABLE (no right-click affordance) and itemUseCount 0 (1 would arm a dead use
+# action).
+#
+# The icon is allocated so the currencies are told apart at a glance: mysterypaper5 is
+# the per-dungeon MedalStore tokens, mysterypaper6 is this one, mysterypaper8 is
+# reserved for an endgame token. The drop silhouette and drop sound are inert while the
+# token is quest-granted, since a quest reward renders neither.
+
+definitions:
+  _IodProgressionToken:
+    name: token
+    combatItemType: NO_COMBAT
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 3
+    level: 1
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 2
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 99999          # the corpus ceiling for a currency stack
+    slotLimit: 0
+    coolTimeGroup: 0
+    itemUseCount: 0
+    maxDropUnit: 9999
+    enchantEnable: false
+    tradable: false
+    boundType: None      # the only value the loader accepts on a stackable item
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: false   # no personal bank either, so alts cannot pool
+    guildWarehouseStorable: false
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    icon: Icon_Items.mysterypaper6_Tex
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
+    defaultValue: 0
+
+items:
+  upsert:
+    - id: $EARLY_PROGRESSION_TOKEN
+      $extends: _IodProgressionToken
+
+# 2. The strings, as a TOP-LEVEL block rather than the inline `strings:` form. The
+# migrate driver matches entity keys anchored at column 0, so an indented inline
+# `strings:` block never registers `itemStrings` and the family is never added to the
+# sync set: a patch whose only string authoring was inline ships a nameless item to the
+# client. `upsert` because the id has no StrSheet_Item row yet.
+#
+# TOOLTIP STRUCTURE follows the publisher's own convention rather than an invention:
+# `[Usage]` is the label for what a thing is spent on and carries green #41FF3A when it
+# names a spend target, while yellow #FFBB00 is the corpus colour for `[Source]`. The
+# verb is "exchange", which is what the shipped token tooltips use for redeeming at a
+# vendor. "Traded" is deliberately avoided, because the red restriction line directly
+# above says "Cannot be traded" and would read as a contradiction.
+
+itemStrings:
+  upsert:
+    - id: $EARLY_PROGRESSION_TOKEN
+      name: "Valkyon Commendation"
+      toolTip: "A Valkyon Federation commendation, issued to those still making their name.$BR$BR<font color = '#2478FF'>Earned across the realm from content below level 60.</font>$BR<font color = '#FF0000'>Cannot be traded, banked, or stored in a guild bank.</font>$BR$BR<font color = '#41FF3A'>[Usage]</font>$BRExchange with Valkyon quartermasters in major towns and outposts."

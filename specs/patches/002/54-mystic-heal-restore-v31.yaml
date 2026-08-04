@@ -1,0 +1,202 @@
+# Mystic Target Heal restored to its classic (v31) values: the direct
+# single-target heal, internal name "Target Heal", group 5.
+#
+# GENERATED from the v31 server datasheet; regenerate rather than hand-edit.
+#
+# v92 sits at 0.62x to 0.83x of the classic values across ranks 1-9. Ranks 10 and
+# 30 have no classic counterpart and are scaled by their own v92 ratio over the
+# restored rank 9, so rank 10 cannot end up weaker than the rank below it.
+#
+# NOT changed here:
+#   - Cooldown. v92 carries the 2500 ms gate on the Shot sub (10) while v31
+#     carries it on the LockOn sub (00). Same magnitude, different placement, so
+#     porting v31 by skill id would MOVE the gate rather than remove it. Priest
+#     Focus Heal carries the same inversion.
+#   - Mystic Orb (group 42). v31 has a single rank at level 63 against v92's ten
+#     ranks from level 8; the designs do not correspond.
+#   - Recovery Essence stack heals and groups 27/37 skill-side, all v92-only.
+#
+# Restoring classic values onto v92 ids hands a level 10 Mystic the classic rank 1
+# heal, which v31 granted at 18. That follows from restoring onto v92's ladder and
+# is deliberate.
+#
+# The healing elemental's over-time component is restored in
+# 55-mystic-heal-hot-restore-v31.yaml.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# Two layers of definitions. `Heal*` describe only WHERE HpDiff sits in the XML;
+# `S<skillId>` carry the actual balance decision, one line each, so every value
+# appears exactly once in this file instead of once per race/gender variant.
+#
+# `category` cannot be a list (the DSL rejects it), so the 11 variants must be
+# listed individually. Those lines carry no data, only the variant name.
+definitions:
+  Heal:
+    targetingLists:
+      - targetings:
+          - areas:
+              - effect:
+                  hpDiff:
+                    value: $V
+
+  # ---- Target Heal ----
+  S50110: { id: 50110, changes: { $extends: Heal, $with: { V: 978 } } }  # rank 1: 604 -> 978
+  S50210: { id: 50210, changes: { $extends: Heal, $with: { V: 1239 } } }  # rank 2: 780 -> 1239
+  S50310: { id: 50310, changes: { $extends: Heal, $with: { V: 1521 } } }  # rank 3: 993 -> 1521
+  S50410: { id: 50410, changes: { $extends: Heal, $with: { V: 1794 } } }  # rank 4: 1228 -> 1794
+  S50510: { id: 50510, changes: { $extends: Heal, $with: { V: 2036 } } }  # rank 5: 1470 -> 2036
+  S50610: { id: 50610, changes: { $extends: Heal, $with: { V: 2216 } } }  # rank 6: 1687 -> 2216
+  S50710: { id: 50710, changes: { $extends: Heal, $with: { V: 2325 } } }  # rank 7: 1860 -> 2325
+  S50810: { id: 50810, changes: { $extends: Heal, $with: { V: 2536 } } }  # rank 8: 1971 -> 2536
+  S50910: { id: 50910, changes: { $extends: Heal, $with: { V: 2547 } } }  # rank 9: 2101 -> 2547
+  S51010: { id: 51010, changes: { $extends: Heal, $with: { V: 2645 } } }  # rank 10: 2182 -> 2645 (derived: v31 rank 9 x 1.03855 (v92 ratio))
+  S53010: { id: 53010, changes: { $extends: Heal, $with: { V: 2645 } } }  # rank 30: 2182 -> 2645 (derived: v31 rank 9 x 1.03855 (v92 ratio))
+
+userSkills:
+  update:
+
+    # ---------------- Elementalist_Aman_F ----------------
+    - { category: Elementalist_Aman_F, $extends: S50110 }
+    - { category: Elementalist_Aman_F, $extends: S50210 }
+    - { category: Elementalist_Aman_F, $extends: S50310 }
+    - { category: Elementalist_Aman_F, $extends: S50410 }
+    - { category: Elementalist_Aman_F, $extends: S50510 }
+    - { category: Elementalist_Aman_F, $extends: S50610 }
+    - { category: Elementalist_Aman_F, $extends: S50710 }
+    - { category: Elementalist_Aman_F, $extends: S50810 }
+    - { category: Elementalist_Aman_F, $extends: S50910 }
+    - { category: Elementalist_Aman_F, $extends: S51010 }
+    - { category: Elementalist_Aman_F, $extends: S53010 }
+
+    # ---------------- Elementalist_Aman_M ----------------
+    - { category: Elementalist_Aman_M, $extends: S50110 }
+    - { category: Elementalist_Aman_M, $extends: S50210 }
+    - { category: Elementalist_Aman_M, $extends: S50310 }
+    - { category: Elementalist_Aman_M, $extends: S50410 }
+    - { category: Elementalist_Aman_M, $extends: S50510 }
+    - { category: Elementalist_Aman_M, $extends: S50610 }
+    - { category: Elementalist_Aman_M, $extends: S50710 }
+    - { category: Elementalist_Aman_M, $extends: S50810 }
+    - { category: Elementalist_Aman_M, $extends: S50910 }
+    - { category: Elementalist_Aman_M, $extends: S51010 }
+    - { category: Elementalist_Aman_M, $extends: S53010 }
+
+    # ---------------- Elementalist_Baraka_M ----------------
+    - { category: Elementalist_Baraka_M, $extends: S50110 }
+    - { category: Elementalist_Baraka_M, $extends: S50210 }
+    - { category: Elementalist_Baraka_M, $extends: S50310 }
+    - { category: Elementalist_Baraka_M, $extends: S50410 }
+    - { category: Elementalist_Baraka_M, $extends: S50510 }
+    - { category: Elementalist_Baraka_M, $extends: S50610 }
+    - { category: Elementalist_Baraka_M, $extends: S50710 }
+    - { category: Elementalist_Baraka_M, $extends: S50810 }
+    - { category: Elementalist_Baraka_M, $extends: S50910 }
+    - { category: Elementalist_Baraka_M, $extends: S51010 }
+    - { category: Elementalist_Baraka_M, $extends: S53010 }
+
+    # ---------------- Elementalist_Castanic_F ----------------
+    - { category: Elementalist_Castanic_F, $extends: S50110 }
+    - { category: Elementalist_Castanic_F, $extends: S50210 }
+    - { category: Elementalist_Castanic_F, $extends: S50310 }
+    - { category: Elementalist_Castanic_F, $extends: S50410 }
+    - { category: Elementalist_Castanic_F, $extends: S50510 }
+    - { category: Elementalist_Castanic_F, $extends: S50610 }
+    - { category: Elementalist_Castanic_F, $extends: S50710 }
+    - { category: Elementalist_Castanic_F, $extends: S50810 }
+    - { category: Elementalist_Castanic_F, $extends: S50910 }
+    - { category: Elementalist_Castanic_F, $extends: S51010 }
+    - { category: Elementalist_Castanic_F, $extends: S53010 }
+
+    # ---------------- Elementalist_Castanic_M ----------------
+    - { category: Elementalist_Castanic_M, $extends: S50110 }
+    - { category: Elementalist_Castanic_M, $extends: S50210 }
+    - { category: Elementalist_Castanic_M, $extends: S50310 }
+    - { category: Elementalist_Castanic_M, $extends: S50410 }
+    - { category: Elementalist_Castanic_M, $extends: S50510 }
+    - { category: Elementalist_Castanic_M, $extends: S50610 }
+    - { category: Elementalist_Castanic_M, $extends: S50710 }
+    - { category: Elementalist_Castanic_M, $extends: S50810 }
+    - { category: Elementalist_Castanic_M, $extends: S50910 }
+    - { category: Elementalist_Castanic_M, $extends: S51010 }
+    - { category: Elementalist_Castanic_M, $extends: S53010 }
+
+    # ---------------- Elementalist_HighElf_F ----------------
+    - { category: Elementalist_HighElf_F, $extends: S50110 }
+    - { category: Elementalist_HighElf_F, $extends: S50210 }
+    - { category: Elementalist_HighElf_F, $extends: S50310 }
+    - { category: Elementalist_HighElf_F, $extends: S50410 }
+    - { category: Elementalist_HighElf_F, $extends: S50510 }
+    - { category: Elementalist_HighElf_F, $extends: S50610 }
+    - { category: Elementalist_HighElf_F, $extends: S50710 }
+    - { category: Elementalist_HighElf_F, $extends: S50810 }
+    - { category: Elementalist_HighElf_F, $extends: S50910 }
+    - { category: Elementalist_HighElf_F, $extends: S51010 }
+    - { category: Elementalist_HighElf_F, $extends: S53010 }
+
+    # ---------------- Elementalist_HighElf_M ----------------
+    - { category: Elementalist_HighElf_M, $extends: S50110 }
+    - { category: Elementalist_HighElf_M, $extends: S50210 }
+    - { category: Elementalist_HighElf_M, $extends: S50310 }
+    - { category: Elementalist_HighElf_M, $extends: S50410 }
+    - { category: Elementalist_HighElf_M, $extends: S50510 }
+    - { category: Elementalist_HighElf_M, $extends: S50610 }
+    - { category: Elementalist_HighElf_M, $extends: S50710 }
+    - { category: Elementalist_HighElf_M, $extends: S50810 }
+    - { category: Elementalist_HighElf_M, $extends: S50910 }
+    - { category: Elementalist_HighElf_M, $extends: S51010 }
+    - { category: Elementalist_HighElf_M, $extends: S53010 }
+
+    # ---------------- Elementalist_Human_F ----------------
+    - { category: Elementalist_Human_F, $extends: S50110 }
+    - { category: Elementalist_Human_F, $extends: S50210 }
+    - { category: Elementalist_Human_F, $extends: S50310 }
+    - { category: Elementalist_Human_F, $extends: S50410 }
+    - { category: Elementalist_Human_F, $extends: S50510 }
+    - { category: Elementalist_Human_F, $extends: S50610 }
+    - { category: Elementalist_Human_F, $extends: S50710 }
+    - { category: Elementalist_Human_F, $extends: S50810 }
+    - { category: Elementalist_Human_F, $extends: S50910 }
+    - { category: Elementalist_Human_F, $extends: S51010 }
+    - { category: Elementalist_Human_F, $extends: S53010 }
+
+    # ---------------- Elementalist_Human_M ----------------
+    - { category: Elementalist_Human_M, $extends: S50110 }
+    - { category: Elementalist_Human_M, $extends: S50210 }
+    - { category: Elementalist_Human_M, $extends: S50310 }
+    - { category: Elementalist_Human_M, $extends: S50410 }
+    - { category: Elementalist_Human_M, $extends: S50510 }
+    - { category: Elementalist_Human_M, $extends: S50610 }
+    - { category: Elementalist_Human_M, $extends: S50710 }
+    - { category: Elementalist_Human_M, $extends: S50810 }
+    - { category: Elementalist_Human_M, $extends: S50910 }
+    - { category: Elementalist_Human_M, $extends: S51010 }
+    - { category: Elementalist_Human_M, $extends: S53010 }
+
+    # ---------------- Elementalist_Popori_F ----------------
+    - { category: Elementalist_Popori_F, $extends: S50110 }
+    - { category: Elementalist_Popori_F, $extends: S50210 }
+    - { category: Elementalist_Popori_F, $extends: S50310 }
+    - { category: Elementalist_Popori_F, $extends: S50410 }
+    - { category: Elementalist_Popori_F, $extends: S50510 }
+    - { category: Elementalist_Popori_F, $extends: S50610 }
+    - { category: Elementalist_Popori_F, $extends: S50710 }
+    - { category: Elementalist_Popori_F, $extends: S50810 }
+    - { category: Elementalist_Popori_F, $extends: S50910 }
+    - { category: Elementalist_Popori_F, $extends: S51010 }
+    - { category: Elementalist_Popori_F, $extends: S53010 }
+
+    # ---------------- Elementalist_Popori_M ----------------
+    - { category: Elementalist_Popori_M, $extends: S50110 }
+    - { category: Elementalist_Popori_M, $extends: S50210 }
+    - { category: Elementalist_Popori_M, $extends: S50310 }
+    - { category: Elementalist_Popori_M, $extends: S50410 }
+    - { category: Elementalist_Popori_M, $extends: S50510 }
+    - { category: Elementalist_Popori_M, $extends: S50610 }
+    - { category: Elementalist_Popori_M, $extends: S50710 }
+    - { category: Elementalist_Popori_M, $extends: S50810 }
+    - { category: Elementalist_Popori_M, $extends: S50910 }
+    - { category: Elementalist_Popori_M, $extends: S51010 }
+    - { category: Elementalist_Popori_M, $extends: S53010 }

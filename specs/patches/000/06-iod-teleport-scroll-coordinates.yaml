@@ -1,0 +1,21 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Restore v31 teleport coordinates for item 133 (Tower Base Teleport Scroll).
+# Skill 60130101 (Item_Teleport_SER_POS_여명의정원) is the scroll's use skill.
+# v92 had incorrect coordinates pointing to a different spawn location in zone 13.
+commonSkills:
+  update:
+    - category: Common
+      id: 60130101
+      changes:
+        targetingLists:
+          - targetingIndex: 0
+            targetings:
+              - areas:
+                  - effect:
+                      teleport:
+                        type: "SER_POS"
+                        recallContinent: 13
+                        recallPos: [66600.8672, -79855.5234, -2993.1643]

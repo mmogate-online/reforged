@@ -1,0 +1,36 @@
+# Island of Dawn (zone 13): scale normal monster stats to match the gear formula
+# applied to player equipment, which lifted level-1 starter gear by roughly x5
+# attack and x10 defense.
+#
+# Formula-neutral scaling, preserving the pre-formula time-to-kill and damage
+# pressure, would be maxHp x5 / atk x10. The applied maxHp x10 / atk x60 sits
+# deliberately above neutral so that island combat rewards dodging rather than
+# trading hits.
+#
+# The filter covers normal monsters only. Environmental creatures (playStyle
+# creature, under 1 HP) and cinematic NPCs fall inside the package's category,
+# but the multiplier has no practical effect on them.
+#
+# TRAP: `multiply` is not idempotent. Re-applying this spec compounds the
+# multipliers, so it belongs on a clean migration baseline and must not be
+# re-run without reverting first.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - IOD_NORMAL_MONSTERS
+
+balanceProfiles:
+  - name: IoDNormalMonstersGearFormula
+    npcFilter:
+      huntingZoneId: 13
+      id: $IOD_NORMAL_MONSTERS
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 60 }
