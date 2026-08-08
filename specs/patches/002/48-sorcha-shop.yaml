@@ -4,14 +4,15 @@
 # COSMETICS ONLY, and that is a framework invariant rather than a taste call: only
 # the tokens on the power-spend registry may sell power items, and a per-content
 # dungeon token like this one is not on it. No gear, no crystals, no enchant
-# materials, no consumable that affects combat. The four items below are
-# EQUIP_STYLE_ACCESSORY pieces that nothing else in the corpus grants, all
-# `part: STYLE` with every stat at zero and requiredLevel 10, so the no-power
-# constraint holds by construction rather than by judgment.
+# materials, no consumable that affects combat. The accessories are
+# EQUIP_STYLE_ACCESSORY pieces, all `part: STYLE` with every stat at zero and
+# requiredLevel 10. The mount grants no combat effect and rides at 280, which is
+# the standard mount speed in this corpus (599 of 649 riding books) rather than an
+# upgrade over it, so the no-power constraint holds by construction.
 #
-# Pricing follows from quest 1346 being one-time: a player gets exactly one payout
-# of 30 Sigils, so a catalogue priced at 30 each makes the first clear a choice of
-# one of four, and leaves later repeatable quests something to reward.
+# Pricing is denominated in dungeon clears. Quest 1346 pays 30 Sigils once and the
+# repeatable clear pays 10, so an accessory is the first clear's choice of one of
+# four, and the mount costs five further clears on top of that one-time payout.
 #
 # ID CONVENTION: NPC-bound MedalStore shops derive the list id from the menu id as
 # menu*10+k. A menu carries ONE currency (its tabs share needMedalItemId), which is
@@ -62,6 +63,8 @@ buyLists:
       desc: "Sorcha Cosmetics"
       needMedalItemId: $SORCHA_TOKEN
       items:
+        - itemId: 418              # Riding Skill: Regal Frostlion
+          priceRevision: 1
         - itemId: 50042            # Hat of Sweet Dreams
           priceRevision: 1
         - itemId: 50041            # Dapper Vampir's Hat
@@ -75,6 +78,9 @@ buyLists:
 
 exchanges:
   upsert:
+    - itemId: 418
+      medalItemId: $SORCHA_TOKEN
+      buyPriceMedal: 80
     - itemId: 50042
       medalItemId: $SORCHA_TOKEN
       buyPriceMedal: 30
