@@ -1,0 +1,68 @@
+# Grants Retaliate rank I at character creation, so no class has to buy it from
+# a trainer at level 12.
+#
+# One entry per class with its own id, because a skill id is only meaningful
+# inside one class's skill data: the same number names a different skill in
+# every class. A single keyless updateAll hands most classes an unrelated skill
+# that still applies cleanly and validates green. Glaiver's ladder uses the -99
+# sub; its -00 family has no learn row at all. Soulless is absent because its
+# shipped kit already carries Retaliate.
+#
+# The starting kit is not a view of the learn-gate table: an id here need not
+# have a learn row, and editing the learn rows cannot grant a skill at creation.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+defaultSkillSets:
+  updateAll:
+    - class: Archer
+      changes:
+        addActiveSkillIds: [140100]
+
+    - class: Assassin
+      changes:
+        addActiveSkillIds: [100100]
+
+    - class: Berserker
+      changes:
+        addActiveSkillIds: [130100]
+
+    - class: Elementalist
+      changes:
+        addActiveSkillIds: [210100]
+
+    - class: Engineer
+      changes:
+        addActiveSkillIds: [200100]
+
+    - class: Fighter
+      changes:
+        addActiveSkillIds: [120100]
+
+    - class: Glaiver
+      changes:
+        addActiveSkillIds: [180199]
+
+    - class: Lancer
+      changes:
+        addActiveSkillIds: [110100]
+
+    - class: Priest
+      changes:
+        addActiveSkillIds: [250100]
+
+    - class: Slayer
+      changes:
+        addActiveSkillIds: [100100]
+
+    - class: Sorcerer
+      changes:
+        addActiveSkillIds: [140100]
+
+    - class: Warrior
+      changes:
+        addActiveSkillIds: [130100]
