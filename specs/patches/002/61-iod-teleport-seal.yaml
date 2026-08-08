@@ -1,0 +1,49 @@
+# Seals the Island of Dawn against outbound teleport.
+#
+# RestrictionContents/Teleport is the only per-region teleport policy in the
+# schema. It keys on continentId, so a region spanning several continents needs
+# one row per continent and there is no single-row form.
+#
+# exceptionCategory is an ALLOW-LIST that bypasses both enter and leave, not a
+# deny-list. A sealed continent therefore keeps its internal portals working
+# only by naming every sibling continent, which is why these four rows
+# cross-reference each other instead of standing alone.
+#
+# 9804 belongs in the set although it is not part of the island map: it is
+# reachable from a portal inside the island, and its own recall lands back on
+# 13, so leaving it out turns it into an unsealed pocket a player can teleport
+# out of.
+#
+# The gate is server-side only. The client holds no copy of it, so the client
+# UI keeps offering destinations the server then refuses. That is the shipped
+# behaviour of this element, not a sync gap.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+worldData:
+  restrictionContents:
+    teleport:
+      enable: true
+      target: all
+      conditions:
+        upsert:
+          - continentId: 13
+            enter: false
+            leave: true
+            exceptionCategory: [9036, 9037, 9804]
+          - continentId: 9036
+            enter: false
+            leave: true
+            exceptionCategory: [13, 9037, 9804]
+          - continentId: 9037
+            enter: false
+            leave: true
+            exceptionCategory: [13, 9036, 9804]
+          - continentId: 9804
+            enter: false
+            leave: true
+            exceptionCategory: [13, 9036, 9037]
