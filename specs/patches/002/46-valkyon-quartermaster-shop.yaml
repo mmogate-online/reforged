@@ -16,6 +16,10 @@
 #
 # The Ascension Scroll row is guarded by PRICE, not by a level gate: an Island of
 # Dawn character could legitimately use it, so the cost is what keeps it far away.
+#
+# The Fortune Cache price IS the reward cadence. The cache carries no roll counter,
+# so how often a costume lands is set by its odds and its price together, and
+# changing either one silently re-tunes the other.
 
 spec:
   version: "1.0"
@@ -29,6 +33,8 @@ imports:
         - VALKYON_QM_MENU
         - VALKYON_QM_LIST_MATERIALS
         - VALKYON_QM_LIST_ASCENSION
+        - VALKYON_QM_LIST_GACHA
+        - VALKYON_FORTUNE_CACHE
 
 # Canon shape, copied from 59,1955: a Villager row keyed (huntingZoneId,
 # npcTemplateId) carrying one Menu of type MedalStore.
@@ -51,6 +57,8 @@ buyMenuLists:
           stringed: $VALKYON_QM_LIST_MATERIALS
         - id: $VALKYON_QM_LIST_ASCENSION
           stringed: $VALKYON_QM_LIST_ASCENSION
+        - id: $VALKYON_QM_LIST_GACHA
+          stringed: $VALKYON_QM_LIST_GACHA
 
 buyLists:
   upsert:
@@ -70,6 +78,13 @@ buyLists:
         - itemId: 185735           # Level 60 Scroll (LEVEL_JUMPING_UP, combatItemArg1 60)
           priceRevision: 1
 
+    - id: $VALKYON_QM_LIST_GACHA
+      desc: "Quartermaster Gacha"
+      needMedalItemId: $EARLY_PROGRESSION_TOKEN
+      items:
+        - itemId: $VALKYON_FORTUNE_CACHE
+          priceRevision: 1
+
 exchanges:
   upsert:
     - itemId: 94101
@@ -81,6 +96,9 @@ exchanges:
     - itemId: 185735
       medalItemId: $EARLY_PROGRESSION_TOKEN
       buyPriceMedal: 20000         # ~17 full island clears; see the header
+    - itemId: $VALKYON_FORTUNE_CACHE
+      medalItemId: $EARLY_PROGRESSION_TOKEN
+      buyPriceMedal: 100           # ~12 openings per island clear; see the header
 
 npcStrings:
   upsert:
@@ -90,6 +108,8 @@ npcStrings:
       string: "Materials"
     - id: $VALKYON_QM_LIST_ASCENSION
       string: "Ascension"
+    - id: $VALKYON_QM_LIST_GACHA
+      string: "Gacha"
 
 # 185735 shipped with a twelve-class `requiredClass` missing SOULLESS (Reaper).
 # `update` resolves an item by id across the whole region-partitioned template set,

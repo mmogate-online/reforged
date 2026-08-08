@@ -41,6 +41,14 @@ variables:
   VALKYON_QM_MENU: 9999012
   VALKYON_QM_LIST_MATERIALS: 99990121
   VALKYON_QM_LIST_ASCENSION: 99990122
+  VALKYON_QM_LIST_GACHA: 99990123
+
+  # The quartermaster's blind cosmetic cache. Allocated from the project's gacha
+  # box band, which runs on from the crystal caches (602176 to 602189) and the
+  # infusion caches (602190 to 602201) rather than from the token band above:
+  # this is stock, not currency, and the restriction quartet is the only thing
+  # it borrows from the token.
+  VALKYON_FORTUNE_CACHE: 602202
 
   # The sub-60 early-progression currency. Item name "Valkyon Commendation" (R27).
   # Paid by every vector below level 60: story quests (R23), zone quests, repeatables,
@@ -53,3 +61,5 @@ exports:
     - VALKYON_QM_MENU
     - VALKYON_QM_LIST_MATERIALS
     - VALKYON_QM_LIST_ASCENSION
+    - VALKYON_QM_LIST_GACHA
+    - VALKYON_FORTUNE_CACHE
