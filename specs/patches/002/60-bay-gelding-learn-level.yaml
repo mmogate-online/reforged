@@ -1,0 +1,26 @@
+# Drops the learn gate on the Bay Gelding riding skill to level 1.
+#
+# Lowering the skillbook item's own requiredLevel is not enough on its own. The
+# item gate and the learn gate are separate checks: the item decides who may
+# consume the book, SkillGetConList decides who may hold the skill, and the
+# stricter of the two wins. Both have to move together.
+#
+# The row is keyed on the whole (class, race, gender, skillId) tuple, because a
+# skill id repeats once per class that learns it. This one is Common on all
+# three, so it is stated in full rather than relying on the id being unique.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+skillGetConLists:
+  update:
+    # Riding Skill: Bay Gelding, taught by skillbook item 20
+    - skillId: 111111
+      class: Common
+      race: Common
+      gender: Common
+      changes:
+        level: 1

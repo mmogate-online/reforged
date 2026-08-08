@@ -1,0 +1,37 @@
+# Trims the character-creation kit to the classic starting set: no gold, no
+# level-60 experience scroll, no Goddess Blessing, no Village Atlas, and the Bay
+# Gelding mount book in place of the Regal Frostlion.
+#
+# One keyless updateAll entry: omitting `class` matches all 13 rows, and every
+# class receives the same change.
+#
+# The Village Atlas is listed twice on one class's row, so that removal
+# deliberately matches more than one entry.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+createChars:
+  updateAll:
+    - changes:
+        initMoney:
+          amount: 0
+
+        removeInitItems:
+          # Riding Skill: Regal Frostlion
+          - itemTemplateId: 418
+          # Village Atlas
+          - itemTemplateId: 166691
+          # Experience scroll, level 60
+          - itemTemplateId: 182434
+          # Goddess Blessing
+          - itemTemplateId: 60260
+
+        addInitItems:
+          # Riding Skill: Bay Gelding
+          - itemTemplateId: 20
+            initWear: false
+            amount: 1

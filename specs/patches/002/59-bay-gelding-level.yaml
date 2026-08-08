@@ -1,0 +1,20 @@
+# Drops the Bay Gelding riding book to a level-1 item, so the mount it teaches is
+# usable the moment a character is created rather than at level 11.
+#
+# Both `level` and `requiredLevel` move. `requiredLevel` is the gate that refuses
+# the use; `level` carries the same number on every riding book in the shipped
+# ladder, so leaving it at 11 would make the item inconsistent with its family.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  update:
+    # Riding Skill: Bay Gelding
+    - id: 20
+      changes:
+        level: 1
+        requiredLevel: 1
