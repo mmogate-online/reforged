@@ -1,0 +1,46 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# One channel at boot on every open-world continent, and a second only past 300 players.
+#
+# userMaxPerChannel is a GROWTH THRESHOLD, not a capacity limit. A channel that reaches
+# it does not refuse anyone; the server opens the next channel and keeps admitting
+# players. Only restrictChannel="true" would turn it into a hard cap, and it is
+# deliberately left unset: a crowded channel is the goal, a closed door is not.
+#
+# channelMax is deliberately NOT touched. It is the only channel attribute the client
+# also carries, so changing it would need a matching client write; initChannelCount and
+# userMaxPerChannel are read by the server alone.
+#
+# Four continents are excluded on purpose. 5 and 9015 are the starter pocket and the
+# tutorial garden, whose small cohorts are a design choice rather than capacity tuning;
+# 7087 and 9618 are event spaces that pre-allocate their whole channel set at boot.
+#
+# provenance: policy
+
+continentDatas:
+  update:
+    # Grouped by inChannelingContinent membership, which each head declares itself.
+    # huntingZones is deliberately absent: that property is clear-and-replace, so
+    # naming it would rewrite every continent's zone list. Omitting it leaves it alone.
+    - continentId:
+        # channeling group heads
+        [1, 2, 3, 4, 6,
+        # members of group 1
+        7001, 7002, 7003, 7004, 7005,
+        # members of group 2
+        7011, 7012, 7013, 7014, 7015,
+        # members of group 3
+        7021, 7022, 7023,
+        # member of group 4
+        7031,
+        # members of group 6
+        2000, 2050, 2052, 2054,
+        # in no channeling group: Island of Dawn, the civil-unrest continent,
+        # a mainland continent, and the test map
+        13, 152, 8001, 99]
+      changes:
+        initChannelCount: 1
+        initChannelCountByQA: 1
+        userMaxPerChannel: [300]
