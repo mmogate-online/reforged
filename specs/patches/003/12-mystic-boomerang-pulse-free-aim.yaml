@@ -1,0 +1,197 @@
+# Mystic Boomerang Pulse: free vertical aim.
+#
+# provenance: policy
+#
+# Every rank of the orb ships its projectile row with shootForward="true" and
+# shootForwardType="Upper", which sends the orb out at a fixed angle instead of
+# where the caster is aiming. Clearing shootForward is the only release a spec can
+# express: attributes cannot be removed, so shootForwardType stays on the row.
+#
+# projectileSkills rows merge by POSITION, not by id. Each rank here carries exactly
+# one row, so one entry per skill is unambiguous. A skill with several rows would
+# need one entry per row, in file order.
+#
+# The ladder is ten level ranks plus three rank-10 variants, and the class ships
+# eleven race and gender files, so every rank is listed once per variant.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+# The change is identical on every row, so it lives here once and each entry below
+# carries only the file it lands in and the rank it targets.
+definitions:
+  FreeAim:
+    changes:
+      targetingLists:
+        - targetings:
+            - projectileSkills:
+                - shootForward: false
+
+userSkills:
+  update:
+
+    # ---------------- Elementalist_Aman_F ----------------
+    - { category: Elementalist_Aman_F, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Aman_F, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Aman_F, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Aman_F, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Aman_F, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Aman_F, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Aman_F, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Aman_F, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Aman_F, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Aman_F, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Aman_F, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Aman_F, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Aman_F, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Aman_M ----------------
+    - { category: Elementalist_Aman_M, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Aman_M, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Aman_M, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Aman_M, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Aman_M, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Aman_M, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Aman_M, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Aman_M, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Aman_M, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Aman_M, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Aman_M, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Aman_M, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Aman_M, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Baraka_M ----------------
+    - { category: Elementalist_Baraka_M, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Baraka_M, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Baraka_M, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Baraka_M, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Baraka_M, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Baraka_M, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Baraka_M, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Baraka_M, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Baraka_M, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Baraka_M, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Baraka_M, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Baraka_M, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Baraka_M, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Castanic_F ----------------
+    - { category: Elementalist_Castanic_F, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Castanic_F, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Castanic_F, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Castanic_F, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Castanic_F, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Castanic_F, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Castanic_F, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Castanic_F, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Castanic_F, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Castanic_F, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Castanic_F, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Castanic_F, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Castanic_F, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Castanic_M ----------------
+    - { category: Elementalist_Castanic_M, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Castanic_M, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Castanic_M, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Castanic_M, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Castanic_M, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Castanic_M, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Castanic_M, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Castanic_M, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Castanic_M, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Castanic_M, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Castanic_M, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Castanic_M, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Castanic_M, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_HighElf_F ----------------
+    - { category: Elementalist_HighElf_F, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_HighElf_F, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_HighElf_F, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_HighElf_F, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_HighElf_F, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_HighElf_F, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_HighElf_F, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_HighElf_F, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_HighElf_F, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_HighElf_F, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_HighElf_F, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_HighElf_F, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_HighElf_F, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_HighElf_M ----------------
+    - { category: Elementalist_HighElf_M, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_HighElf_M, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_HighElf_M, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_HighElf_M, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_HighElf_M, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_HighElf_M, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_HighElf_M, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_HighElf_M, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_HighElf_M, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_HighElf_M, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_HighElf_M, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_HighElf_M, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_HighElf_M, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Human_F ----------------
+    - { category: Elementalist_Human_F, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Human_F, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Human_F, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Human_F, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Human_F, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Human_F, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Human_F, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Human_F, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Human_F, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Human_F, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Human_F, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Human_F, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Human_F, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Human_M ----------------
+    - { category: Elementalist_Human_M, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Human_M, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Human_M, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Human_M, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Human_M, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Human_M, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Human_M, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Human_M, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Human_M, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Human_M, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Human_M, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Human_M, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Human_M, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Popori_F ----------------
+    - { category: Elementalist_Popori_F, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Popori_F, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Popori_F, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Popori_F, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Popori_F, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Popori_F, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Popori_F, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Popori_F, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Popori_F, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Popori_F, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Popori_F, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Popori_F, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Popori_F, id: 423200, $extends: FreeAim }  # rank 10 variant
+
+    # ---------------- Elementalist_Popori_M ----------------
+    - { category: Elementalist_Popori_M, id: 420100, $extends: FreeAim }  # rank 1
+    - { category: Elementalist_Popori_M, id: 420200, $extends: FreeAim }  # rank 2
+    - { category: Elementalist_Popori_M, id: 420300, $extends: FreeAim }  # rank 3
+    - { category: Elementalist_Popori_M, id: 420400, $extends: FreeAim }  # rank 4
+    - { category: Elementalist_Popori_M, id: 420500, $extends: FreeAim }  # rank 5
+    - { category: Elementalist_Popori_M, id: 420600, $extends: FreeAim }  # rank 6
+    - { category: Elementalist_Popori_M, id: 420700, $extends: FreeAim }  # rank 7
+    - { category: Elementalist_Popori_M, id: 420800, $extends: FreeAim }  # rank 8
+    - { category: Elementalist_Popori_M, id: 420900, $extends: FreeAim }  # rank 9
+    - { category: Elementalist_Popori_M, id: 421000, $extends: FreeAim }  # rank 10
+    - { category: Elementalist_Popori_M, id: 423000, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Popori_M, id: 423100, $extends: FreeAim }  # rank 10 variant
+    - { category: Elementalist_Popori_M, id: 423200, $extends: FreeAim }  # rank 10 variant
