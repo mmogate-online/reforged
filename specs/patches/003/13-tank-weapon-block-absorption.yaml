@@ -1,0 +1,183 @@
+# Tank weapon block absorption: Patch 003
+# Raises flat block absorption by 20% on tank weapons usable at the level 10 cap.
+#
+# Block absorption is a Passivity of type 109 (flat, method 2) that a weapon references
+# as a FIXED passive through the ItemTemplate linkPassivityId list. It is never a random
+# roll: no passivity pool reachable from a tank weapon carries a type 109 member, so
+# editing pools would change nothing.
+#
+# Every rung is written as an absolute value, not a multiplier, for two reasons: the
+# passivities entity supports neither updateWhere nor multiply/add transforms, and an
+# absolute value stays correct when the patch is reapplied from its baseline.
+#
+# Bands are class-keyed: 12xxxx Lancer, 13xxxx Brawler, 14xxxx Berserker, 15xxxx Warrior.
+# The absorption gap between them is deliberate; a flat multiplier preserves it.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+passivities:
+  update:
+    - category: Equipment
+      id: 120100
+      changes:
+        value: 708
+    - category: Equipment
+      id: 120101
+      changes:
+        value: 748
+    - category: Equipment
+      id: 120102
+      changes:
+        value: 790
+    - category: Equipment
+      id: 120104
+      changes:
+        value: 881
+    - category: Equipment
+      id: 120105
+      changes:
+        value: 930
+    - category: Equipment
+      id: 120106
+      changes:
+        value: 983
+    - category: Equipment
+      id: 120108
+      changes:
+        value: 1096
+    - category: Equipment
+      id: 120109
+      changes:
+        value: 1157
+    - category: Equipment
+      id: 120110
+      changes:
+        value: 1222
+    - category: Equipment
+      id: 120114
+      changes:
+        value: 1517
+    - category: Equipment
+      id: 130100
+      changes:
+        value: 708
+    - category: Equipment
+      id: 130101
+      changes:
+        value: 748
+    - category: Equipment
+      id: 130102
+      changes:
+        value: 790
+    - category: Equipment
+      id: 130104
+      changes:
+        value: 881
+    - category: Equipment
+      id: 130105
+      changes:
+        value: 930
+    - category: Equipment
+      id: 130106
+      changes:
+        value: 983
+    - category: Equipment
+      id: 130108
+      changes:
+        value: 1096
+    - category: Equipment
+      id: 130109
+      changes:
+        value: 1157
+    - category: Equipment
+      id: 130110
+      changes:
+        value: 1222
+    - category: Equipment
+      id: 130114
+      changes:
+        value: 1517
+    - category: Equipment
+      id: 140100
+      changes:
+        value: 400
+    - category: Equipment
+      id: 140101
+      changes:
+        value: 421
+    - category: Equipment
+      id: 140102
+      changes:
+        value: 445
+    - category: Equipment
+      id: 140104
+      changes:
+        value: 497
+    - category: Equipment
+      id: 140105
+      changes:
+        value: 524
+    - category: Equipment
+      id: 140106
+      changes:
+        value: 554
+    - category: Equipment
+      id: 140108
+      changes:
+        value: 618
+    - category: Equipment
+      id: 140109
+      changes:
+        value: 653
+    - category: Equipment
+      id: 140110
+      changes:
+        value: 689
+    - category: Equipment
+      id: 150100
+      changes:
+        value: 648
+    - category: Equipment
+      id: 150101
+      changes:
+        value: 685
+    - category: Equipment
+      id: 150102
+      changes:
+        value: 725
+    - category: Equipment
+      id: 150103
+      changes:
+        value: 766
+    - category: Equipment
+      id: 150105
+      changes:
+        value: 856
+    - category: Equipment
+      id: 150106
+      changes:
+        value: 904
+    - category: Equipment
+      id: 150107
+      changes:
+        value: 955
+    - category: Equipment
+      id: 150108
+      changes:
+        value: 1009
+    - category: Equipment
+      id: 150109
+      changes:
+        value: 1066
+    - category: Equipment
+      id: 150509
+      changes:
+        value: 761
+    - category: Equipment
+      id: 150514
+      changes:
+        value: 1000
