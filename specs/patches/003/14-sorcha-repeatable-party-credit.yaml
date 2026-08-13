@@ -1,0 +1,246 @@
+# Sorcha's repeatable challenge (quest 1391) completes for every party member.
+#
+# WHY THE TASK SHAPE IS WHAT IT IS. A DungeonEventTask has no completion condition
+# of its own: it completes only when the dungeon script fires one `updateQuest`, so
+# the encounter credits whoever tripped the script and nobody else. A GuardianTask
+# instead completes on its own per-player `timeLimit` window, which is why it is the
+# shape every guard quest in a party dungeon uses. Quest 1346, which this repeats,
+# is one of them. Do not put this step back on a dungeon event.
+#
+# TWO `talkNpc` GROUPS ON SORCHA DO NOT DOUBLE HER DIALOG. The conversation window
+# lists one entry per MATCHING group, and 1391 requires 1346 complete, so no player
+# ever holds both. Leaving either group unbound would offer the line to everyone.
+#
+# THE 1391 GROUP IS SELECTED BY POSITION, AND HAS TO BE. A group binds to one quest,
+# so a shared encounter is written once per quest, and once rewritten this one carries
+# the same attributes as the 1346 group beside it. No attribute names one and not the
+# other on a re-apply; the index does, counted after the removal has resolved.
+#
+# THE 420s GUARD WINDOW CANNOT MOVE. The spawn chain is one linear sequence of
+# `next: time` delays that must fit inside it. It ends at 340s, leaving 80s of
+# hold-out with the finale on the field.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  sorchaWaves:
+    eventTasks:
+      # -- stage 1 (group 43700009) + rear (43700012) --
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700322", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: 2 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700327", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 6 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700324", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700328", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: 4 }   # was 10, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700364", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 6 }   # REAR Lumbering Ghilliedhu
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700323", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 10 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700329", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700325", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: 4 }   # was 10, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700365", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 6 }   # REAR Terron
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700331", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: 20 }  # was 40, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700366", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 20 }  # REAR Pigling
+      # -- stage 2 (group 43700010) + rear (43700013) --
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700332", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: 2 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700338", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 6 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700333", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700341", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: 4 }   # was 10, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700367", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 6 }   # REAR Cromos
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700344", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 7 }   # was 15, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700368", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 8 }   # REAR Rockcrawler
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700334", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 50,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700339", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 4 }   # was 10, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700369", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 6 }   # REAR Stonebeak Brigand
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700345", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 10 }  # was 20, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700370", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 10 }  # REAR Sporewalker
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700346", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time", nextValue: 30 }  # was 60, split
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700371", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 30 }  # REAR Rockcrawler
+      # -- stage 3 (groups 43700011 + 43700014), FULLY WIRED --
+      # All 25 stage-3 spawn points fire, inside the same 123s window
+      # the original 10 used. The rhythm is deliberate: clusters of
+      # spawns 4s apart (a pincer the party must split for), then a
+      # breather. The terminating task carries no delay.
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700347", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700348", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700375", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 9 }  # breather
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700359", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700349", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700372", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700376", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 8 }  # breather
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700354", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 0,   next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700350", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700377", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 9 }  # breather
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700360", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700351", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700374", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700379", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }   # rear group
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700352", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 8 }  # breather
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700361", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700353", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700380", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }   # rear group
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700355", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 9 }  # breather
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700362", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700356", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700378", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700357", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 4 }
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700358", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 70,  next: "time", nextValue: 8 }  # breather
+      - { type: spawn, huntingZoneId: 437, territoryId: "43700363", targetNpcId: { huntingZone: 437, templateId: 1001 }, startAggro: 150, next: "time" }
+  sorchaTimer:
+    eventTasks:
+      - { type: timerUi, time: 420, next: "time", nextValue: 1 }
+      - { type: message, string: "@dungeon:9037001", style: "default", next: "time", nextValue: 3 }
+      - { type: message, string: "@dungeon:9037012", style: "default", next: "time", nextValue: 77 }
+      - { type: message, string: "@dungeon:9037002", style: "default", next: "time", nextValue: 126 }
+      - { type: message, string: "@dungeon:9037003", style: "default", next: "time", nextValue: 209 }
+      - { type: message, string: "@dungeon:9037004", style: "default", next: "none" }
+
+# Task 1 becomes the guard step and is the start task, matching 1346. Task 2 is the
+# talk that used to be task 1, moved after the guard so it reports the result. The
+# turn-in is unchanged.
+quests:
+  upsert:
+    - id: 1391
+      tasks:
+        - taskId: 1
+          type: GuardianTask
+          dungeonId: 9037
+          timeLimit: [0, 7]
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:1391006"
+          body:
+            npcId: "437,1001"
+            aggroInterval: 3
+            aggroAmount: 1
+            aggroRange: 2000
+            postGuardianDialogue: "@quest:1391004"
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:1391009"
+          body:
+            npcId: "437,1001"
+            dialogueId: 3
+            completionButtonText: "@quest:1391005"
+        - taskId: 3
+          type: VisitTask
+          nextTaskId: 0
+          hasReward: true
+          journalScript: 4
+          journalText: "@quest:1391007"
+          body:
+            npcId: "64,1014"
+            dialogueId: 4
+            completionButtonText: "@quest:1391008"
+
+# Write the quote marks LITERALLY. Authoring `&quot;` here gets XML-escaped a second
+# time on write and ships `&amp;quot;`, which renders as the entity text in game.
+questStrings:
+  upsert:
+    - id: 1391004
+      string: "There. The numbers held this time."
+    - id: 1391005
+      string: '"Glad to help."'
+    - id: 1391006
+      string: "Take the {@LinkObject:134#teleportal} at the Tower Base to the Tainted Gorge Bridge, activate the magical device, and protect Sorcha for 7 minutes."
+    - id: 1391009
+      string: "The readings are finished. Speak with Sorcha."
+
+# Text 3 is Sorcha inside the dungeon. It is now spoken AFTER the guard window
+# rather than before it, so it reports the result instead of asking to begin.
+questDialogs:
+  upsert:
+    - huntingZoneId: 13
+      id: 91
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          prevId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 100
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1014
+          pages:
+            - social: 0
+              content: "Sorcha is taking another set of readings in the Tainted Gorge. The {@LinkObject:134#teleportal} at the Tower Base leads there."
+        - id: 2
+          npcZoneId: 64
+          prevId: 0
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "I know. I promised I'd be more careful, and here I am asking again.<BR><BR>But the readings I took in the gorge don't agree with each other, and one bad set of numbers is worse than none at all. I have to go back and take them properly.<BR><BR>The {@LinkObject:134#teleportal} here at the base will put us on the bridge. My dolls will come along. They're...enthusiastic. They are not soldiers. Will you stand with me while I work?"
+        - id: 3
+          npcZoneId: 437
+          prevId: 2
+          villagerId: 1001
+          pages:
+            - social: 4
+              content: "That's the last of it, and this time the numbers agree with each other.<BR><BR>Go on ahead, all of you. I'll pack the device up and follow.<BR><BR>Thank you. I mean that."
+        - id: 4
+          npcZoneId: 64
+          prevId: 3
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "There. Clean figures this time, and all of us walked back out.<BR><BR>Take these, please. The academy stamps them for field assistants and I have far more than I know what to do with.<BR><BR>Give me a little while to check the numbers against the last set. I expect I'll want to go back."
+
+dungeonDatas:
+  update:
+    - continentId: 9037
+      changes:
+        # ---- Retire the HP-zero eject ----
+        # Both quests now carry a guard task, so the questFail group below is the
+        # whole of the lose condition. This one fired alongside it and ejected the
+        # same player twice, seconds apart.
+        removeEventGroups:
+          - type: npcHp
+            value: "0"
+        replaceEventGroups:
+          # ---- Repeatable quest 1391: spawn waves + guard timer ----
+          # Was bound to the quest's own progress, which credits one player. See
+          # the header on why the selector is an index and not an attribute.
+          - match:
+              expect: 4
+              at: 1
+            group:
+              type: talkNpc
+              uniqueId: "437,1001"
+              events:
+                - textId: 2
+                  questId: 1391
+                  taskId: 1
+                  eventTaskGroups:
+                    - $extends: sorchaWaves
+                # The guard task completes on its own window, so this chain only
+                # narrates: it signals nothing.
+                - textId: 2
+                  questId: 1391
+                  taskId: 1
+                  eventTaskGroups:
+                    - $extends: sorchaTimer
+          # ---- Guard failure: alert + eject to continent 13 ----
+          # Both quests can now fail, so both need an event here.
+          - match:
+              type: questFail
+            group:
+              type: questFail
+              events:
+                - questId: 1346
+                  taskId: 1
+                  eventTaskGroups:
+                    - eventTasks:
+                        - { type: message, string: "@dungeon:9037011", style: "alert", next: "time", nextValue: 3 }
+                        - { type: teleport, continentId: 13, pos: [66615, -79814, -3003], next: "none" }
+                - questId: 1391
+                  taskId: 1
+                  eventTaskGroups:
+                    - eventTasks:
+                        - { type: message, string: "@dungeon:9037011", style: "alert", next: "time", nextValue: 3 }
+                        - { type: teleport, continentId: 13, pos: [66615, -79814, -3003], next: "none" }
