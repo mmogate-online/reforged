@@ -1,0 +1,51 @@
+# Chat channels: remove the level gate from every account package that carries one.
+#
+# Package 0 is the baseline every account starts from and the other packages are
+# sparse overrides on top of it. An account can hold several at once, and the
+# precedence between them is not expressed anywhere in the datasheets, so a gate
+# left on any one package can still reach a player. That is why all nine gated
+# packages are cleared rather than the baseline alone, and why they share one
+# definition: the nine must not be able to drift apart under a later edit.
+#
+# restrictedChannel and friendOnlyChannel are comma-packed into a single XML
+# attribute but are authored as lists: [] writes the empty string, which is how
+# the nine already-ungated packages ship. Omitting a key leaves the value alone.
+# restrictedChannelMaxLevel is deliberately untouched: it selects nothing once the
+# list it gates is empty, and every ungated package keeps its shipped level.
+#
+# Server-side only. The client AccountTrait node carries no channel values.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _ungateChat:
+    changes:
+      upsertProperties:
+        - name: chat
+          restrictedChannel: []
+          friendOnlyChannel: []
+
+accountTraits:
+  update:
+    - id: 0
+      $extends: _ungateChat
+    - id: 34
+      $extends: _ungateChat
+    - id: 101
+      $extends: _ungateChat
+    - id: 102
+      $extends: _ungateChat
+    - id: 104
+      $extends: _ungateChat
+    - id: 105
+      $extends: _ungateChat
+    - id: 107
+      $extends: _ungateChat
+    - id: 1000
+      $extends: _ungateChat
+    - id: 1001
+      $extends: _ungateChat
