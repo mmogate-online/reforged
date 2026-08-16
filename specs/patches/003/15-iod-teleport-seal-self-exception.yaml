@@ -1,0 +1,31 @@
+# Adds continent 13 to its own teleport-seal exception list.
+#
+# A sealed continent must name ITSELF in exceptionCategory, or every teleport
+# that begins and ends inside it removes the player from their party. The
+# party check resolves the Condition row of the DESTINATION continent and
+# keeps the party only when the player's CURRENT continent appears in that
+# row's exceptionCategory. On an internal teleport the two are the same
+# continent, so a row that omits itself can never match.
+#
+# The seal's own enter/leave enforcement is unaffected. It returns before
+# reading exceptionCategory whenever source and destination are equal, so a
+# self-entry is unreachable there and opens nothing.
+#
+# The island carries six internal teleport points, which is why this is
+# reachable from ordinary play and not an edge case.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+worldData:
+  restrictionContents:
+    teleport:
+      conditions:
+        upsert:
+          - continentId: 13
+            enter: false
+            leave: true
+            exceptionCategory: [13, 9036, 9037, 9804]
