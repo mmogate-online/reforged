@@ -1,0 +1,34 @@
+# Karascha's Lair (zone 436): combat companion stat scaling
+#
+# Leman is a villager who fights alongside the player rather than standing still, so
+# he takes the zone's monster damage on the same terms a player does. The zone's
+# monsters carry maxHp x8 and atk x70 over their classic values; a companion left on
+# classic stats dies to a single hit.
+#
+# The two multipliers cancel one axis each, so the number of hits he trades is the
+# classic one: maxHp offsets monster atk, atk offsets monster maxHp.
+#
+# Only stat.maxHp, stat.atk, stat.level and critical.res accept a transform, so def
+# is left alone rather than pinned to an absolute.
+#
+# `multiply` is not idempotent. Apply from the patch baseline, never twice over.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - KL_LEMAN
+
+balanceProfiles:
+  - name: KaraschaLairCompanion
+    npcFilter:
+      huntingZoneId: 436
+      id: $KL_LEMAN
+    npc:
+      stat:
+        maxHp: { multiply: 70 }
+        atk:   { multiply: 8 }
