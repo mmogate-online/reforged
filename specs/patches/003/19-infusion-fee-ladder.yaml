@@ -1,0 +1,72 @@
+# Infusion fee: a token cost while levelling, a real one from rank 4
+#
+# EquipmentCombine prices one infusion by the rank of the gear receiving it,
+# and rank tracks gear tier rather than character level. Ranks 1 to 3 carry
+# every infusable piece worn from level 8 to 58, where the fee lands on an
+# income that starts near nothing, so those three are set to a token amount
+# and the layer's friction is left to the stack-wipe. Rank 4 is the first tier
+# a piece is worth keeping; the ladder climbs from there to meet the rank 15
+# cost the game already shipped.
+#
+# `ranks` REPLACES the whole rank list. `upsertRanks` edits it in place, which
+# is why it is used here: ranks 15 and above are untouched game data, and
+# restating them in order to change rank 1 would move them into our keeping
+# for good.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # One ladder, applied identically to all four infusable slots, because the
+  # shipped file prices them identically and nothing here argues they differ.
+  infusionFeeLadder:
+    upsertRanks:
+      - rank: 1
+        material: { type: money, amount: 1000 }
+      - rank: 2
+        material: { type: money, amount: 5000 }
+      - rank: 3
+        material: { type: money, amount: 20000 }
+      - rank: 4
+        material: { type: money, amount: 2000000 }
+      - rank: 5
+        material: { type: money, amount: 2340000 }
+      - rank: 6
+        material: { type: money, amount: 2740000 }
+      - rank: 7
+        material: { type: money, amount: 3210000 }
+      - rank: 8
+        material: { type: money, amount: 3760000 }
+      - rank: 9
+        material: { type: money, amount: 4410000 }
+      - rank: 10
+        material: { type: money, amount: 5160000 }
+      - rank: 11
+        material: { type: money, amount: 6050000 }
+      - rank: 12
+        material: { type: money, amount: 7080000 }
+      - rank: 13
+        material: { type: money, amount: 8300000 }
+      - rank: 14
+        material: { type: money, amount: 9720000 }
+
+equipmentCombines:
+  update:
+    - combatItemType: EQUIP_WEAPON
+      changes:
+        $extends: infusionFeeLadder
+
+    - combatItemType: EQUIP_ARMOR_BODY
+      changes:
+        $extends: infusionFeeLadder
+
+    - combatItemType: EQUIP_ARMOR_ARM
+      changes:
+        $extends: infusionFeeLadder
+
+    - combatItemType: EQUIP_ARMOR_LEG
+      changes:
+        $extends: infusionFeeLadder
