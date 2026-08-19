@@ -1,0 +1,385 @@
+# Gear dismantle refunds: the rank and grade ladder
+#
+# One row per rank, grade and slot class for gear at ranks 1 to 4. The dismantle tool
+# resolves a refund through ItemTemplate@decompositionId into this file. The
+# EnchantDecomposition table in EnchantData.xml is keyed by the same three axes but is not
+# the table the tool reads, so a refund authored only there pays nothing.
+#
+# A Decomposition row carries no rank, grade or slot axis of its own, so a ladder on those
+# axes can only be expressed as one row per combination. Ids 100 to 159 come from the 1 to
+# 2000 band this file's own header reserves for rules applied in bulk to many items, where
+# a desc is mandatory.
+#
+# upsert REPLACES the record completely, so each row states its whole intended state.
+# FixedOutput is authored without enchantStep, which is the majority convention here.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+decompositions:
+  upsert:
+    # rank 1
+    - id: 100
+      desc: "rank 1 grade 0 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 103
+      desc: "rank 1 grade 1 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 8
+    - id: 106
+      desc: "rank 1 grade 2 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 24
+    - id: 109
+      desc: "rank 1 grade 3 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 48
+    - id: 112
+      desc: "rank 1 grade 4 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 96
+    - id: 101
+      desc: "rank 1 grade 0 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 104
+      desc: "rank 1 grade 1 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 107
+      desc: "rank 1 grade 2 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 18
+    - id: 110
+      desc: "rank 1 grade 3 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 36
+    - id: 113
+      desc: "rank 1 grade 4 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 72
+    - id: 102
+      desc: "rank 1 grade 0 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 2
+    - id: 105
+      desc: "rank 1 grade 1 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 108
+      desc: "rank 1 grade 2 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 12
+    - id: 111
+      desc: "rank 1 grade 3 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 24
+    - id: 114
+      desc: "rank 1 grade 4 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 48
+    # rank 2
+    - id: 115
+      desc: "rank 2 grade 0 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 118
+      desc: "rank 2 grade 1 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 8
+    - id: 121
+      desc: "rank 2 grade 2 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 30
+    - id: 124
+      desc: "rank 2 grade 3 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 60
+    - id: 127
+      desc: "rank 2 grade 4 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 120
+    - id: 116
+      desc: "rank 2 grade 0 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 119
+      desc: "rank 2 grade 1 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 122
+      desc: "rank 2 grade 2 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 22
+    - id: 125
+      desc: "rank 2 grade 3 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 46
+    - id: 128
+      desc: "rank 2 grade 4 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 90
+    - id: 117
+      desc: "rank 2 grade 0 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 2
+    - id: 120
+      desc: "rank 2 grade 1 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 123
+      desc: "rank 2 grade 2 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 16
+    - id: 126
+      desc: "rank 2 grade 3 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 30
+    - id: 129
+      desc: "rank 2 grade 4 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 60
+    # rank 3
+    - id: 130
+      desc: "rank 3 grade 0 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 133
+      desc: "rank 3 grade 1 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 8
+    - id: 136
+      desc: "rank 3 grade 2 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 36
+    - id: 139
+      desc: "rank 3 grade 3 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 72
+    - id: 142
+      desc: "rank 3 grade 4 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 144
+    - id: 131
+      desc: "rank 3 grade 0 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 134
+      desc: "rank 3 grade 1 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 137
+      desc: "rank 3 grade 2 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 28
+    - id: 140
+      desc: "rank 3 grade 3 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 54
+    - id: 143
+      desc: "rank 3 grade 4 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 108
+    - id: 132
+      desc: "rank 3 grade 0 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 2
+    - id: 135
+      desc: "rank 3 grade 1 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 138
+      desc: "rank 3 grade 2 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 18
+    - id: 141
+      desc: "rank 3 grade 3 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 36
+    - id: 144
+      desc: "rank 3 grade 4 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 72
+    # rank 4
+    - id: 145
+      desc: "rank 4 grade 0 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 148
+      desc: "rank 4 grade 1 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 8
+    - id: 151
+      desc: "rank 4 grade 2 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 42
+    - id: 154
+      desc: "rank 4 grade 3 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 84
+    - id: 157
+      desc: "rank 4 grade 4 weapon gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 168
+    - id: 146
+      desc: "rank 4 grade 0 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 149
+      desc: "rank 4 grade 1 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 6
+    - id: 152
+      desc: "rank 4 grade 2 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 32
+    - id: 155
+      desc: "rank 4 grade 3 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 64
+    - id: 158
+      desc: "rank 4 grade 4 chest gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 126
+    - id: 147
+      desc: "rank 4 grade 0 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 2
+    - id: 150
+      desc: "rank 4 grade 1 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 4
+    - id: 153
+      desc: "rank 4 grade 2 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 22
+    - id: 156
+      desc: "rank 4 grade 3 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 42
+    - id: 159
+      desc: "rank 4 grade 4 gloves and boots gear dismantle"
+      fixedOutputs:
+        - outputs:
+            - templateId: 94101
+              amount: 84

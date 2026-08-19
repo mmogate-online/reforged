@@ -1,0 +1,451 @@
+# Gear dismantle: point in-scope gear at its refund row
+#
+# Every combat gear item at ranks 1 to 4 requiring character level 60 or below gains a
+# decompositionId and the dismantlable flag, one block per rank, grade and slot class.
+#
+# Both attributes are needed together. The flag on its own leaves the dismantle tool with
+# no row to resolve, which is the state most gear in this band was already in: marked
+# dismantleable, refunding nothing.
+#
+# The id groups are named package exports rather than literals here, so the membership of
+# each group has one source and this spec stays readable as the change it makes.
+#
+# Selection is by id because a filter naming combat item type, subtype or category cannot
+# be evaluated across the item files: they carry values outside the ranges the schema
+# accepts, and the filter fails on the first one it meets.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: gear-dismantle-ids
+    use:
+      variables:
+        - DISMANTLE_R1_G0_WEAPON
+        - DISMANTLE_R1_G1_WEAPON
+        - DISMANTLE_R1_G2_WEAPON
+        - DISMANTLE_R1_G3_WEAPON
+        - DISMANTLE_R1_G4_WEAPON
+        - DISMANTLE_R1_G0_CHEST
+        - DISMANTLE_R1_G1_CHEST
+        - DISMANTLE_R1_G2_CHEST
+        - DISMANTLE_R1_G3_CHEST
+        - DISMANTLE_R1_G4_CHEST
+        - DISMANTLE_R1_G0_HANDS_FEET
+        - DISMANTLE_R1_G1_HANDS_FEET
+        - DISMANTLE_R1_G2_HANDS_FEET
+        - DISMANTLE_R1_G3_HANDS_FEET
+        - DISMANTLE_R1_G4_HANDS_FEET
+        - DISMANTLE_R2_G0_WEAPON
+        - DISMANTLE_R2_G1_WEAPON
+        - DISMANTLE_R2_G2_WEAPON
+        - DISMANTLE_R2_G3_WEAPON
+        - DISMANTLE_R2_G4_WEAPON
+        - DISMANTLE_R2_G0_CHEST
+        - DISMANTLE_R2_G1_CHEST
+        - DISMANTLE_R2_G2_CHEST
+        - DISMANTLE_R2_G3_CHEST
+        - DISMANTLE_R2_G4_CHEST
+        - DISMANTLE_R2_G0_HANDS_FEET
+        - DISMANTLE_R2_G1_HANDS_FEET
+        - DISMANTLE_R2_G2_HANDS_FEET
+        - DISMANTLE_R2_G3_HANDS_FEET
+        - DISMANTLE_R2_G4_HANDS_FEET
+        - DISMANTLE_R3_G0_WEAPON
+        - DISMANTLE_R3_G1_WEAPON
+        - DISMANTLE_R3_G2_WEAPON
+        - DISMANTLE_R3_G3_WEAPON
+        - DISMANTLE_R3_G4_WEAPON
+        - DISMANTLE_R3_G0_CHEST
+        - DISMANTLE_R3_G1_CHEST
+        - DISMANTLE_R3_G2_CHEST
+        - DISMANTLE_R3_G3_CHEST
+        - DISMANTLE_R3_G4_CHEST
+        - DISMANTLE_R3_G0_HANDS_FEET
+        - DISMANTLE_R3_G1_HANDS_FEET
+        - DISMANTLE_R3_G2_HANDS_FEET
+        - DISMANTLE_R3_G3_HANDS_FEET
+        - DISMANTLE_R3_G4_HANDS_FEET
+        - DISMANTLE_R4_G0_WEAPON
+        - DISMANTLE_R4_G1_WEAPON
+        - DISMANTLE_R4_G2_WEAPON
+        - DISMANTLE_R4_G3_WEAPON
+        - DISMANTLE_R4_G4_WEAPON
+        - DISMANTLE_R4_G0_CHEST
+        - DISMANTLE_R4_G1_CHEST
+        - DISMANTLE_R4_G2_CHEST
+        - DISMANTLE_R4_G3_CHEST
+        - DISMANTLE_R4_G4_CHEST
+        - DISMANTLE_R4_G0_HANDS_FEET
+        - DISMANTLE_R4_G1_HANDS_FEET
+        - DISMANTLE_R4_G2_HANDS_FEET
+        - DISMANTLE_R4_G3_HANDS_FEET
+        - DISMANTLE_R4_G4_HANDS_FEET
+
+items:
+  updateWhere:
+    # rank 1
+    # grade 0, weapon
+    - filter:
+        id: $DISMANTLE_R1_G0_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 100
+    # grade 1, weapon
+    - filter:
+        id: $DISMANTLE_R1_G1_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 103
+    # grade 2, weapon
+    - filter:
+        id: $DISMANTLE_R1_G2_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 106
+    # grade 3, weapon
+    - filter:
+        id: $DISMANTLE_R1_G3_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 109
+    # grade 4, weapon
+    - filter:
+        id: $DISMANTLE_R1_G4_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 112
+    # grade 0, chest
+    - filter:
+        id: $DISMANTLE_R1_G0_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 101
+    # grade 1, chest
+    - filter:
+        id: $DISMANTLE_R1_G1_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 104
+    # grade 2, chest
+    - filter:
+        id: $DISMANTLE_R1_G2_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 107
+    # grade 3, chest
+    - filter:
+        id: $DISMANTLE_R1_G3_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 110
+    # grade 4, chest
+    - filter:
+        id: $DISMANTLE_R1_G4_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 113
+    # grade 0, gloves and boots
+    - filter:
+        id: $DISMANTLE_R1_G0_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 102
+    # grade 1, gloves and boots
+    - filter:
+        id: $DISMANTLE_R1_G1_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 105
+    # grade 2, gloves and boots
+    - filter:
+        id: $DISMANTLE_R1_G2_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 108
+    # grade 3, gloves and boots
+    - filter:
+        id: $DISMANTLE_R1_G3_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 111
+    # grade 4, gloves and boots
+    - filter:
+        id: $DISMANTLE_R1_G4_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 114
+    # rank 2
+    # grade 0, weapon
+    - filter:
+        id: $DISMANTLE_R2_G0_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 115
+    # grade 1, weapon
+    - filter:
+        id: $DISMANTLE_R2_G1_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 118
+    # grade 2, weapon
+    - filter:
+        id: $DISMANTLE_R2_G2_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 121
+    # grade 3, weapon
+    - filter:
+        id: $DISMANTLE_R2_G3_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 124
+    # grade 4, weapon
+    - filter:
+        id: $DISMANTLE_R2_G4_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 127
+    # grade 0, chest
+    - filter:
+        id: $DISMANTLE_R2_G0_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 116
+    # grade 1, chest
+    - filter:
+        id: $DISMANTLE_R2_G1_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 119
+    # grade 2, chest
+    - filter:
+        id: $DISMANTLE_R2_G2_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 122
+    # grade 3, chest
+    - filter:
+        id: $DISMANTLE_R2_G3_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 125
+    # grade 4, chest
+    - filter:
+        id: $DISMANTLE_R2_G4_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 128
+    # grade 0, gloves and boots
+    - filter:
+        id: $DISMANTLE_R2_G0_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 117
+    # grade 1, gloves and boots
+    - filter:
+        id: $DISMANTLE_R2_G1_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 120
+    # grade 2, gloves and boots
+    - filter:
+        id: $DISMANTLE_R2_G2_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 123
+    # grade 3, gloves and boots
+    - filter:
+        id: $DISMANTLE_R2_G3_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 126
+    # grade 4, gloves and boots
+    - filter:
+        id: $DISMANTLE_R2_G4_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 129
+    # rank 3
+    # grade 0, weapon
+    - filter:
+        id: $DISMANTLE_R3_G0_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 130
+    # grade 1, weapon
+    - filter:
+        id: $DISMANTLE_R3_G1_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 133
+    # grade 2, weapon
+    - filter:
+        id: $DISMANTLE_R3_G2_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 136
+    # grade 3, weapon
+    - filter:
+        id: $DISMANTLE_R3_G3_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 139
+    # grade 4, weapon
+    - filter:
+        id: $DISMANTLE_R3_G4_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 142
+    # grade 0, chest
+    - filter:
+        id: $DISMANTLE_R3_G0_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 131
+    # grade 1, chest
+    - filter:
+        id: $DISMANTLE_R3_G1_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 134
+    # grade 2, chest
+    - filter:
+        id: $DISMANTLE_R3_G2_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 137
+    # grade 3, chest
+    - filter:
+        id: $DISMANTLE_R3_G3_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 140
+    # grade 4, chest
+    - filter:
+        id: $DISMANTLE_R3_G4_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 143
+    # grade 0, gloves and boots
+    - filter:
+        id: $DISMANTLE_R3_G0_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 132
+    # grade 1, gloves and boots
+    - filter:
+        id: $DISMANTLE_R3_G1_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 135
+    # grade 2, gloves and boots
+    - filter:
+        id: $DISMANTLE_R3_G2_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 138
+    # grade 3, gloves and boots
+    - filter:
+        id: $DISMANTLE_R3_G3_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 141
+    # grade 4, gloves and boots
+    - filter:
+        id: $DISMANTLE_R3_G4_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 144
+    # rank 4
+    # grade 0, weapon
+    - filter:
+        id: $DISMANTLE_R4_G0_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 145
+    # grade 1, weapon
+    - filter:
+        id: $DISMANTLE_R4_G1_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 148
+    # grade 2, weapon
+    - filter:
+        id: $DISMANTLE_R4_G2_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 151
+    # grade 3, weapon
+    - filter:
+        id: $DISMANTLE_R4_G3_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 154
+    # grade 4, weapon
+    - filter:
+        id: $DISMANTLE_R4_G4_WEAPON
+      changes:
+        dismantlable: true
+        decompositionId: 157
+    # grade 0, chest
+    - filter:
+        id: $DISMANTLE_R4_G0_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 146
+    # grade 1, chest
+    - filter:
+        id: $DISMANTLE_R4_G1_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 149
+    # grade 2, chest
+    - filter:
+        id: $DISMANTLE_R4_G2_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 152
+    # grade 3, chest
+    - filter:
+        id: $DISMANTLE_R4_G3_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 155
+    # grade 4, chest
+    - filter:
+        id: $DISMANTLE_R4_G4_CHEST
+      changes:
+        dismantlable: true
+        decompositionId: 158
+    # grade 0, gloves and boots
+    - filter:
+        id: $DISMANTLE_R4_G0_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 147
+    # grade 1, gloves and boots
+    - filter:
+        id: $DISMANTLE_R4_G1_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 150
+    # grade 2, gloves and boots
+    - filter:
+        id: $DISMANTLE_R4_G2_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 153
+    # grade 3, gloves and boots
+    - filter:
+        id: $DISMANTLE_R4_G3_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 156
+    # grade 4, gloves and boots
+    - filter:
+        id: $DISMANTLE_R4_G4_HANDS_FEET
+      changes:
+        dismantlable: true
+        decompositionId: 159

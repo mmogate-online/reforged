@@ -1,0 +1,24 @@
+# Gear dismantle: merchant stock excluded from the refund
+#
+# Gear a gold merchant sells cheaply enough that dismantling it would convert gold
+# into enchant material at a better rate than earning it. The flag is cleared rather
+# than the refund row removed, so the same gear obtained any other way is unaffected.
+#
+# The id list is a named package export, regenerated from the shop and refund tables.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: gear-dismantle-ids
+    use:
+      variables:
+        - DISMANTLE_BANNED_BY_GOLD_PRICE
+
+items:
+  updateWhere:
+    - filter:
+        id: $DISMANTLE_BANNED_BY_GOLD_PRICE
+      changes:
+        dismantlable: false
