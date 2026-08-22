@@ -1,0 +1,614 @@
+# Charm buffs: correct the four families whose effect rows were written in the charm
+# system's own vocabulary instead of the abnormality one.
+#
+# THE TWO EFFECT ENUMERATIONS ARE NOT THE SAME ONE. They agree on types 1-9 and
+# 14-16, which is why most charm families behave, and they part company above 100.
+# Attack speed is type 101 to the charm tables and type 24 here. Damage reflection is
+# type 102 there and type 110 here. Type 101 as an abnormality is not a stat at all:
+# it restores a fraction of maximum HP on a combat trigger, so every attack-speed
+# charm was healing its holder to full.
+#
+# TYPES 51, 52 AND 110 READ THE VALUE AS THE BONUS ITSELF, NOT AS A MULTIPLIER. The
+# charm tables state every bonus in 1 + x form, and carrying that form into these
+# three types inflates the effect roughly a hundredfold. Type 24 does take a
+# multiplier, so the attack-speed numbers are unchanged and only the type code moves.
+#
+# The charm system expressed regeneration as a multiplier on the natural regen rate.
+# No abnormality effect type modifies that rate, so types 51 and 52, a fixed share of
+# the maximum per tick, are the nearest available shape and the magnitudes below are
+# a fresh choice rather than a carried one.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  charmBuffBase:
+    property: 4
+    category: "4"
+    time: 1800000
+    isBuff: true
+    isShow: "True"
+    mobSize: "all"
+    priority: 7
+    maxStackCount: 1
+    levelOver: 1
+    levelUnder: 127
+    notCareDeath: true
+    notCareBattleField: true
+    group: "doping"
+
+  # Every shipped type 110 row is method 3 on a one-second tick with this clamp pair.
+  reflectRow:
+    $params: [VALUE]
+    type: 110
+    method: 3
+    value: $VALUE
+    tickInterval: 1
+    min: -10000000
+    max: 10000000
+
+abnormalities:
+  upsert:
+    # --- Attack speed: type 101 -> 24, multiplier unchanged ---
+
+    # Speed Charm
+    - id: 488000012
+      $extends: charmBuffBase
+      name: "Charm_Named_Speed"
+      kind: 9814
+      level: 3
+      effects:
+        - type: 24
+          method: 3
+          value: "1.06"
+          tickInterval: 0
+          appearEffectId: 10045001
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Speed Charm"
+        tooltip: "Attack speed increased by 6%. Lasts 30 minutes and persists through death."
+    # Greater Speed Charm
+    - id: 488000028
+      $extends: charmBuffBase
+      name: "Charm_Greater_Speed"
+      kind: 9814
+      level: 4
+      effects:
+        - type: 24
+          method: 3
+          value: "1.08"
+          tickInterval: 0
+          appearEffectId: 10045001
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Greater Speed Charm"
+        tooltip: "Attack speed increased by 8%. Lasts 30 minutes and persists through death."
+
+    # --- Damage reflection: type 102 -> 110, multiplier -> bonus ---
+
+    # Mirror Charm
+    - id: 488000020
+      $extends: charmBuffBase
+      name: "Charm_Named_Reverse"
+      kind: 9813
+      level: 3
+      effects:
+        - $extends: reflectRow
+          $with: { VALUE: "0.07" }
+          appearEffectId: 500245
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Mirror Charm"
+        tooltip: "Damage reflection increased by 7%. Lasts 30 minutes and persists through death."
+    # Greater Mirror Charm
+    - id: 488000036
+      $extends: charmBuffBase
+      name: "Charm_Greater_Reverse"
+      kind: 9813
+      level: 4
+      effects:
+        - $extends: reflectRow
+          $with: { VALUE: "0.1" }
+          appearEffectId: 500245
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Greater Mirror Charm"
+        tooltip: "Damage reflection increased by 10%. Lasts 30 minutes and persists through death."
+
+    # --- HP and MP regeneration: multiplier -> share of the maximum per tick ---
+
+    # Vigorous Charm
+    - id: 488000023
+      $extends: charmBuffBase
+      name: "Charm_Named_Vigorous"
+      kind: 9812
+      level: 3
+      effects:
+        - type: 51
+          method: 3
+          value: "0.009"
+          tickInterval: 5
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Vigorous Charm"
+        tooltip: "Recovers 0.9% of maximum HP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Greater Vigorous Charm
+    - id: 488000039
+      $extends: charmBuffBase
+      name: "Charm_Greater_Vigorous"
+      kind: 9812
+      level: 4
+      effects:
+        - type: 51
+          method: 3
+          value: "0.013"
+          tickInterval: 5
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Greater Vigorous Charm"
+        tooltip: "Recovers 1.3% of maximum HP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Infused Charm
+    - id: 488000024
+      $extends: charmBuffBase
+      name: "Charm_Named_Infused"
+      kind: 9812
+      level: 3
+      effects:
+        - type: 52
+          method: 3
+          value: "0.1183"
+          tickInterval: 5
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Infused Charm"
+        tooltip: "Replenishes 11.83% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Greater Infused Charm
+    - id: 488000040
+      $extends: charmBuffBase
+      name: "Charm_Greater_Infused"
+      kind: 9812
+      level: 4
+      effects:
+        - type: 52
+          method: 3
+          value: "0.169"
+          tickInterval: 5
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Greater Infused Charm"
+        tooltip: "Replenishes 16.9% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Balder's Infused Charm
+    - id: 488000056
+      $extends: charmBuffBase
+      name: "Charm_Balder_Infused"
+      kind: 9812
+      level: 4
+      effects:
+        - type: 52
+          method: 3
+          value: "0.169"
+          tickInterval: 5
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Balder's Infused Charm"
+        tooltip: "Replenishes 16.9% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Talisman Trio: Infusion
+    - id: 488000059
+      $extends: charmBuffBase
+      name: "Charm_Trio_Infused"
+      kind: 9812
+      level: 4
+      effects:
+        - type: 52
+          method: 3
+          value: "0.169"
+          tickInterval: 5
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+      abnormalityStrings:
+        name: "Talisman Trio: Infusion"
+        tooltip: "Replenishes 16.9% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+
+    # --- Bundles restate every effect row, because supplying effects replaces the
+    # --- whole list rather than merging into it.
+
+    # Onslaught Charm I
+    - id: 488000042
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Onslaught1"
+      kind: 9814
+      level: 1
+      effects:
+        - type: 3
+          method: 3
+          value: "1.07"
+          tickInterval: 0
+          appearEffectId: 10045001
+          effectPart: "FXBottom"
+        - type: 6
+          method: 3
+          value: "1.08"
+          tickInterval: 0
+        - type: 24
+          method: 3
+          value: "1.02"
+          tickInterval: 0
+        - type: 8
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Onslaught Charm I"
+        tooltip: "Power +7%, Critical hit chance +8%, Attack speed +2%, Knockdown chance +5%. Lasts 30 minutes and persists through death."
+    # Onslaught Charm II
+    - id: 488000043
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Onslaught2"
+      kind: 9814
+      level: 2
+      effects:
+        - type: 3
+          method: 3
+          value: "1.08"
+          tickInterval: 0
+          appearEffectId: 10045001
+          effectPart: "FXBottom"
+        - type: 6
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+        - type: 24
+          method: 3
+          value: "1.025"
+          tickInterval: 0
+        - type: 8
+          method: 3
+          value: "1.063"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Onslaught Charm II"
+        tooltip: "Power +8%, Critical hit chance +10%, Attack speed +2.5%, Knockdown chance +6.3%. Lasts 30 minutes and persists through death."
+    # Onslaught Charm III
+    - id: 488000044
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Onslaught3"
+      kind: 9814
+      level: 3
+      effects:
+        - type: 3
+          method: 3
+          value: "1.095"
+          tickInterval: 0
+          appearEffectId: 10045001
+          effectPart: "FXBottom"
+        - type: 6
+          method: 3
+          value: "1.12"
+          tickInterval: 0
+        - type: 24
+          method: 3
+          value: "1.03"
+          tickInterval: 0
+        - type: 8
+          method: 3
+          value: "1.0735"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Onslaught Charm III"
+        tooltip: "Power +9.5%, Critical hit chance +12%, Attack speed +3%, Knockdown chance +7.35%. Lasts 30 minutes and persists through death."
+    # Onslaught Charm IV
+    - id: 488000045
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Onslaught4"
+      kind: 9814
+      level: 4
+      effects:
+        - type: 3
+          method: 3
+          value: "1.135"
+          tickInterval: 0
+          appearEffectId: 10045001
+          effectPart: "FXBottom"
+        - type: 6
+          method: 3
+          value: "1.155"
+          tickInterval: 0
+        - type: 24
+          method: 3
+          value: "1.04"
+          tickInterval: 0
+        - type: 8
+          method: 3
+          value: "1.1055"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Onslaught Charm IV"
+        tooltip: "Power +13.5%, Critical hit chance +15.5%, Attack speed +4%, Knockdown chance +10.55%. Lasts 30 minutes and persists through death."
+    # Ethereal Charm I
+    - id: 488000046
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Ethereal1"
+      kind: 9813
+      level: 1
+      effects:
+        - type: 4
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+          appearEffectId: 500245
+          effectPart: "FXBottom"
+        - type: 7
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+        - type: 9
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+        - type: 14
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+        - type: 15
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+        - type: 16
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+        - $extends: reflectRow
+          $with: { VALUE: "0.025" }
+      abnormalityStrings:
+        name: "Ethereal Charm I"
+        tooltip: "Endurance +5%, Critical hit resistance +10%, Knockdown resistance +5%, Weakening resistance +5%, Poison resistance +5%, Immobility resistance +5%, Damage reflection +2.5%. Lasts 30 minutes and persists through death."
+    # Ethereal Charm II
+    - id: 488000047
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Ethereal2"
+      kind: 9813
+      level: 2
+      effects:
+        - type: 4
+          method: 3
+          value: "1.0625"
+          tickInterval: 0
+          appearEffectId: 500245
+          effectPart: "FXBottom"
+        - type: 7
+          method: 3
+          value: "1.12"
+          tickInterval: 0
+        - type: 9
+          method: 3
+          value: "1.06"
+          tickInterval: 0
+        - type: 14
+          method: 3
+          value: "1.06"
+          tickInterval: 0
+        - type: 15
+          method: 3
+          value: "1.06"
+          tickInterval: 0
+        - type: 16
+          method: 3
+          value: "1.06"
+          tickInterval: 0
+        - $extends: reflectRow
+          $with: { VALUE: "0.03" }
+      abnormalityStrings:
+        name: "Ethereal Charm II"
+        tooltip: "Endurance +6.25%, Critical hit resistance +12%, Knockdown resistance +6%, Weakening resistance +6%, Poison resistance +6%, Immobility resistance +6%, Damage reflection +3%. Lasts 30 minutes and persists through death."
+    # Ethereal Charm III
+    - id: 488000048
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Ethereal3"
+      kind: 9813
+      level: 3
+      effects:
+        - type: 4
+          method: 3
+          value: "1.075"
+          tickInterval: 0
+          appearEffectId: 500245
+          effectPart: "FXBottom"
+        - type: 7
+          method: 3
+          value: "1.14"
+          tickInterval: 0
+        - type: 9
+          method: 3
+          value: "1.07"
+          tickInterval: 0
+        - type: 14
+          method: 3
+          value: "1.07"
+          tickInterval: 0
+        - type: 15
+          method: 3
+          value: "1.07"
+          tickInterval: 0
+        - type: 16
+          method: 3
+          value: "1.07"
+          tickInterval: 0
+        - $extends: reflectRow
+          $with: { VALUE: "0.035" }
+      abnormalityStrings:
+        name: "Ethereal Charm III"
+        tooltip: "Endurance +7.5%, Critical hit resistance +14%, Knockdown resistance +7%, Weakening resistance +7%, Poison resistance +7%, Immobility resistance +7%, Damage reflection +3.5%. Lasts 30 minutes and persists through death."
+    # Ethereal Charm IV
+    - id: 488000049
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Ethereal4"
+      kind: 9813
+      level: 4
+      effects:
+        - type: 4
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+          appearEffectId: 500245
+          effectPart: "FXBottom"
+        - type: 7
+          method: 3
+          value: "1.2"
+          tickInterval: 0
+        - type: 9
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+        - type: 14
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+        - type: 15
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+        - type: 16
+          method: 3
+          value: "1.1"
+          tickInterval: 0
+        - $extends: reflectRow
+          $with: { VALUE: "0.05" }
+      abnormalityStrings:
+        name: "Ethereal Charm IV"
+        tooltip: "Endurance +10%, Critical hit resistance +20%, Knockdown resistance +10%, Weakening resistance +10%, Poison resistance +10%, Immobility resistance +10%, Damage reflection +5%. Lasts 30 minutes and persists through death."
+    # Sanguine Charm I
+    - id: 488000050
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Sanguine1"
+      kind: 9812
+      level: 1
+      effects:
+        - type: 1
+          method: 3
+          value: "1.0375"
+          tickInterval: 0
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+        - type: 2
+          method: 3
+          value: "1.025"
+          tickInterval: 0
+        - type: 51
+          method: 3
+          value: "0.003"
+          tickInterval: 5
+        - type: 52
+          method: 3
+          value: "0.04225"
+          tickInterval: 5
+        - type: 5
+          method: 3
+          value: "1.015"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Sanguine Charm I"
+        tooltip: "Maximum HP +3.75%, Maximum MP +2.5%, Movement speed +1.5%. Recovers 0.3% of maximum HP and 4.225% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Sanguine Charm II
+    - id: 488000051
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Sanguine2"
+      kind: 9812
+      level: 2
+      effects:
+        - type: 1
+          method: 3
+          value: "1.045"
+          tickInterval: 0
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+        - type: 2
+          method: 3
+          value: "1.03"
+          tickInterval: 0
+        - type: 51
+          method: 3
+          value: "0.004"
+          tickInterval: 5
+        - type: 52
+          method: 3
+          value: "0.0507"
+          tickInterval: 5
+        - type: 5
+          method: 3
+          value: "1.025"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Sanguine Charm II"
+        tooltip: "Maximum HP +4.5%, Maximum MP +3%, Movement speed +2.5%. Recovers 0.4% of maximum HP and 5.07% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Sanguine Charm III
+    - id: 488000052
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Sanguine3"
+      kind: 9812
+      level: 3
+      effects:
+        - type: 1
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+        - type: 2
+          method: 3
+          value: "1.035"
+          tickInterval: 0
+        - type: 51
+          method: 3
+          value: "0.0045"
+          tickInterval: 5
+        - type: 52
+          method: 3
+          value: "0.05915"
+          tickInterval: 5
+        - type: 5
+          method: 3
+          value: "1.035"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Sanguine Charm III"
+        tooltip: "Maximum HP +5%, Maximum MP +3.5%, Movement speed +3.5%. Recovers 0.45% of maximum HP and 5.915% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
+    # Sanguine Charm IV
+    - id: 488000053
+      $extends: charmBuffBase
+      name: "Charm_Bundle_Sanguine4"
+      kind: 9812
+      level: 4
+      effects:
+        - type: 1
+          method: 3
+          value: "1.075"
+          tickInterval: 0
+          appearEffectId: 50171
+          effectPart: "FXBottom"
+        - type: 2
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+        - type: 51
+          method: 3
+          value: "0.0065"
+          tickInterval: 5
+        - type: 52
+          method: 3
+          value: "0.0845"
+          tickInterval: 5
+        - type: 5
+          method: 3
+          value: "1.05"
+          tickInterval: 0
+      abnormalityStrings:
+        name: "Sanguine Charm IV"
+        tooltip: "Maximum HP +7.5%, Maximum MP +5%, Movement speed +5%. Recovers 0.65% of maximum HP and 8.45% of maximum MP every 5 seconds. Lasts 30 minutes and persists through death."
