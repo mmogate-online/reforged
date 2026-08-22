@@ -1,0 +1,35 @@
+# Island of Dawn: the exploding barrel becomes a weapon against Guardian Legion
+# monsters instead of an ornament.
+#
+# The barrel is an object npc the world already spawns across the Orcan camp on a
+# short respawn, so nothing here places anything: the mission borrows scenery it does
+# not own, and the mechanic is to pull a monster onto one and break it.
+#
+# THE BLAST IS UNTYPED AND HITS EVERYTHING IN RANGE, the player who set it off
+# included. There is no target filter on this skill and the area type vocabulary
+# offers none that separates a monster from a player.
+#
+# THE GEOMETRY IS NOT THE LEVER. Every exploding barrel in the corpus carries
+# byte-identical area data: radius 100, a full 360 degrees, 30 units of height,
+# everything-except-me, twenty targets. The dungeon barrels that flatten a room use
+# exactly this shape.
+#
+# BASE ATTACK CARRIES THE WHOLE BUFF, and the skill is left vanilla on purpose.
+# Damage is the product of the two, so either field moves it, and splitting a buff
+# across both hides most of the magnitude from anyone reading one of them. Sizing it
+# to a target's health pool does not work: attack passes through defence first and the
+# reduction is severe.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcs:
+  update:
+    - huntingZoneId: 13
+      id: 999
+      changes:
+        stat:
+          atk: 54009

@@ -1,0 +1,946 @@
+# Island of Dawn Guardian Legion: Orcan Raiders, a two-leg field event.
+#
+# Leg 1 is a kill quota, leg 2 is a single boss, and the bar is handed from one to
+# the other. That handover is the whole shape and it constrains the arithmetic: the
+# quota must close EXACTLY on the first divider (10 raiders x 2000 = 20000 of a
+# 100000 bar = 20%), and the boss's progressValue must be the remainder (80000).
+# A boss bound without progressValue would own the bar from zero instead.
+#
+# Event territories are type="quest". A normal-type territory spawns at world start,
+# which would leave the event's monsters standing in the live world permanently.
+#
+# The boss spawn keeps spawnCount 1, because progressType="npcHp" measures one
+# instance.
+#
+# eventGroups, conditions, guide.tasks, eventPoint.points, spawnAreaLists,
+# rotationGroups, rewardBags and clearRewards are each REPLACED WHOLE when supplied, so
+# this file is the whole of every one of them and never a patch on any.
+#
+# This spec adds FieldData_13.xml, which becomes a NEW shard in the client's sharded
+# Field layout. A manifest-narrowed sync cannot create a shard that does not exist
+# yet (E680), so the patch has to be applied with --no-narrow.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: spawn-restore-standard
+  - from: fieldevent
+  - from: gl-rank-rewards
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+  - from: npc-ids
+    use:
+      variables:
+        - IOD_GL_ORCAN_RAIDER
+        - IOD_GL_ORCAN_WARLORD
+
+# ---------------------------------------------------------------------------
+# Territory group and territories
+# ---------------------------------------------------------------------------
+# Fence corners and spawn anchors are taken from the ground positions the zone's own
+# Orcan camp already spawns on, so every one of them is known-walkable terrain.
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 13
+      groupId: 1300062
+      desc: "IoD Guardian Legion: Orcan Raiders"
+
+territories:
+  upsert:
+    # Mission boundary: a bare fence with no spawns, named as `startTerritoryId`.
+    # Encloses the staging pad, both wave clusters and the boss arena.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017000
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: mission boundary"
+      fences:
+        - [50794.0, -77026.0, -4645.0]
+        - [49616.0, -77112.0, -4643.0]
+        - [48276.0, -78431.0, -4410.0]
+        - [48558.0, -80575.0, -4261.0]
+        - [50436.0, -80287.0, -4642.0]
+        - [51028.0, -79164.0, -4732.0]
+        - [52317.0, -77358.0, -4450.0]
+
+    # Leg 1 wave, three dispersed points. Split so the quota cannot be cleared from one
+    # standing spot, and spread wide enough that the camp has to be walked.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017011
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: leg 1 wave, point 1"
+      fences:
+        - [50476.0, -78568.0, -4792.0]
+        - [50676.0, -78568.0, -4792.0]
+        - [50676.0, -78368.0, -4792.0]
+        - [50476.0, -78368.0, -4792.0]
+
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017012
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: leg 1 wave, point 2"
+      fences:
+        - [51101.0, -78010.0, -4753.0]
+        - [51301.0, -78010.0, -4753.0]
+        - [51301.0, -77810.0, -4753.0]
+        - [51101.0, -77810.0, -4753.0]
+
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017013
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: leg 1 wave, point 3"
+      fences:
+        - [49871.0, -79647.0, -4688.0]
+        - [50071.0, -79647.0, -4688.0]
+        - [50071.0, -79447.0, -4688.0]
+        - [49871.0, -79447.0, -4688.0]
+
+    # Leg 2 boss arena. Activated only by the transition's spawn task.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017020
+      $extends: spawn-restore-standard.ClassicTerritory
+      type: quest
+      addMaxZ: 300.000000
+      subtractMinZ: 500.000000
+      desc: "GL Orcan Raiders: leg 2 boss arena"
+      fences:
+        - [49762.0, -78003.0, -4753.0]
+        - [49962.0, -78003.0, -4753.0]
+        - [49962.0, -77803.0, -4753.0]
+        - [49762.0, -77803.0, -4753.0]
+
+# ---------------------------------------------------------------------------
+# Event monsters
+# ---------------------------------------------------------------------------
+# `ai` on a spawn row names the same record as the template's own `aiid`, and the two
+# must agree.
+
+territorySpawns:
+  upsert:
+    # Wave, point 1. The three counts must total exactly 10: the killCount group
+    # runs 1 to 10 and each firing adds 2000 to a 100000 bar, which is the first
+    # divider. Changing a count here silently moves where leg 2 begins.
+    #
+    # respawnTime 0 keeps the quota reachable when a raider dies out of reach or a
+    # straggler is left behind.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017011
+      npcInstanceId: 13017101
+      npcTemplateId: $IOD_GL_ORCAN_RAIDER
+      $extends: spawn-restore-standard.RestoreSpawnAggressive
+      memberId: 1
+      desc: "GL Orcan Raiders: leg 1 wave, point 1"
+      pos: [50576.0, -78468.0, -4792.0]
+      spawnCount: 4
+      respawnTime: 0
+      ai: 200
+      aggroSendToPartyDistance: 1000
+      # The restore archetype leaves isReturn false, which makes returnDistance inert:
+      # a monster pulled off this point never disengages and follows a player out of the
+      # mission entirely. Both fields are needed.
+      isReturn: true
+      # The distance is a PLAYABILITY number, not a containment one. Sized to keep a
+      # monster inside the boundary it becomes so short that ordinary kiting resets the
+      # fight, and the shipped mission layers do not size it that way: 96 percent of
+      # their spawn rows carry 2000 and nothing ships below 300. Where a monster can end
+      # up is set by where its anchor sits, not by this field.
+      returnDistance: 1500
+
+    # Wave, point 2.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017012
+      npcInstanceId: 13017102
+      npcTemplateId: $IOD_GL_ORCAN_RAIDER
+      $extends: spawn-restore-standard.RestoreSpawnAggressive
+      memberId: 1
+      desc: "GL Orcan Raiders: leg 1 wave, point 2"
+      pos: [51201.0, -77910.0, -4753.0]
+      spawnCount: 3
+      respawnTime: 0
+      ai: 200
+      aggroSendToPartyDistance: 1000
+      # The restore archetype leaves isReturn false, which makes returnDistance inert:
+      # a monster pulled off this point never disengages and follows a player out of the
+      # mission entirely. Both fields are needed.
+      isReturn: true
+      # The distance is a PLAYABILITY number, not a containment one. Sized to keep a
+      # monster inside the boundary it becomes so short that ordinary kiting resets the
+      # fight, and the shipped mission layers do not size it that way: 96 percent of
+      # their spawn rows carry 2000 and nothing ships below 300. Where a monster can end
+      # up is set by where its anchor sits, not by this field.
+      returnDistance: 1500
+
+    # Wave, point 3.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017013
+      npcInstanceId: 13017103
+      npcTemplateId: $IOD_GL_ORCAN_RAIDER
+      $extends: spawn-restore-standard.RestoreSpawnAggressive
+      memberId: 1
+      desc: "GL Orcan Raiders: leg 1 wave, point 3"
+      pos: [49971.0, -79547.0, -4688.0]
+      spawnCount: 3
+      respawnTime: 0
+      ai: 200
+      aggroSendToPartyDistance: 1000
+      # The restore archetype leaves isReturn false, which makes returnDistance inert:
+      # a monster pulled off this point never disengages and follows a player out of the
+      # mission entirely. Both fields are needed.
+      isReturn: true
+      # The distance is a PLAYABILITY number, not a containment one. Sized to keep a
+      # monster inside the boundary it becomes so short that ordinary kiting resets the
+      # fight, and the shipped mission layers do not size it that way: 96 percent of
+      # their spawn rows carry 2000 and nothing ships below 300. Where a monster can end
+      # up is set by where its anchor sits, not by this field.
+      returnDistance: 1500
+
+    # Boss. spawnCount stays 1: the leg 2 bar measures this one instance.
+    #
+    # respawnTime 0 is what every shipped mission gives its final boss and its wave
+    # mobs; only mid-fight adds carry a delay. A delay here is not a longer wait, it is
+    # a boss that stands back up after the mission has already been won, because
+    # nothing else in the script removes it once the bar is full.
+    - huntingZoneId: 13
+      groupId: 1300062
+      territoryId: 13017020
+      npcInstanceId: 13017201
+      npcTemplateId: $IOD_GL_ORCAN_WARLORD
+      $extends: spawn-restore-standard.RestoreSpawnAggressive
+      memberId: 1
+      desc: "GL Orcan Raiders: leg 2 boss"
+      pos: [49862.0, -77903.0, -4753.0]
+      spawnCount: 1
+      respawnTime: 0
+      ai: 201
+      aggroSendToPartyDistance: 1000
+      isReturn: true
+      # The boss takes the corpus default rather than the trash value: a leash reset
+      # restores the entire health pool, and this one is 492,360, so an early reset does
+      # not shorten the fight, it deletes it.
+      returnDistance: 2000
+
+# ---------------------------------------------------------------------------
+# Minimap pings
+# ---------------------------------------------------------------------------
+# A cutin is the ONLY way this system pings the minimap. `pingLoc` on the dialog row
+# carries an x,y,z the client drops a marker on, and the encounter script fires it by
+# id. The objective panel's own markers are static authored coordinates that only ever
+# appear on the world map, so without these a player inside the event has nothing on
+# the minimap telling them where to go.
+#
+# Ping the WAVE CENTRE rather than any one spawn point: the three clusters are spread
+# far enough apart that pinging one sends players away from the other two.
+#
+# The body text lives in the string sheet below, not on the row.
+
+eventDialogs:
+  upsert:
+    - id: 1301001
+      dialogStrId: 1301001
+      duration: 5000
+      continentId: 13
+      imgPath: "img://__Icon_System.NpcMessage_NPC_3"
+      titleStrId: "@Creature:13#2002"
+      pingLoc: "50583,-78642,-4750"
+    - id: 1301002
+      dialogStrId: 1301002
+      duration: 5000
+      continentId: 13
+      imgPath: "img://__Icon_System.NpcMessage_NPC_3"
+      titleStrId: "@Creature:13#2003"
+      pingLoc: "49862,-77903,-4753"
+
+eventDialogStrings:
+  upsert:
+    - id: 1301001
+      string: "The raiding party is here. Cut them down."
+    - id: 1301002
+      string: "Their warlord has taken the field."
+
+# ---------------------------------------------------------------------------
+# Location registry
+# ---------------------------------------------------------------------------
+# One row per event template, listing the same spawn anchors as the territories
+# above. The registry is what the quest link, ping and spawn-dot UI reads, and the
+# zone's registry is regenerated whole from spawn geometry by its own generator, so
+# these rows have to move whenever the spawn points above do.
+
+npcLocStrings:
+  upsert:
+    - huntingZoneId: 13
+      templateId: $IOD_GL_ORCAN_RAIDER
+      continent: 13
+      markers:
+        - [50576, -78468, -4792]
+        - [51201, -77910, -4753]
+        - [49971, -79547, -4688]
+    - huntingZoneId: 13
+      templateId: $IOD_GL_ORCAN_WARLORD
+      continent: 13
+      markers:
+        - [49862, -77903, -4753]
+
+# ---------------------------------------------------------------------------
+# Mission strings
+# ---------------------------------------------------------------------------
+# Objective step text reuses the shipped generic rows (@field:100001 "Defeat
+# {target}.", @field:111111 "Mission Complete") rather than authoring per-step lines.
+#
+# Ids follow the existing {continent4}{eventIdx2}{seq3} convention: continent 13
+# padded to 0013 plus event index 01 gives title 001301 (stored as 1301) and body
+# lines 001301NNN (stored as 1301NNN). Deviating from it risks colliding with another
+# continent's block.
+
+fieldStrings:
+  upsert:
+    # The title's colour is authored by hand and has to match the grade the mission
+    # advertises: every shipped event pairs them, and nothing checks it. Blue #2f8bd4
+    # is the rare tier, the same one the shipped rare missions carry.
+    - id: 1301
+      string: "<font color='#2f8bd4'>Orcan Raiders</font>"
+    - id: 13010
+      string: "The Dark Claw are massing at their bivouac on Island of Dawn. Break the raiding party, then kill the warlord who sent it."
+    - id: 1301101
+      string: "Dark Claw outriders have sighted us. The raiding party is forming."
+    - id: 1301810
+      string: "Mission starts in 10 seconds."
+    - id: 1301001
+      string: "Dark Claw raiders are moving on the bivouac. Break the raiding party."
+    - id: 1301002
+      string: "The raiding party is broken. Their warlord takes the field."
+    - id: 1301003
+      string: "The Dark Claw warlord is dead. The bivouac is broken."
+    - id: 1301004
+      string: "The Dark Claw hold the bivouac. The Guardian Legion withdraws."
+    - id: 1301930
+      string: "Mission ends in 30 seconds."
+    - id: 1301920
+      string: "Mission ends in 20 seconds."
+    - id: 1301910
+      string: "Mission ends in 10 seconds."
+
+# ---------------------------------------------------------------------------
+# The mission
+# ---------------------------------------------------------------------------
+
+fieldEvents:
+  upsert:
+    - continentId: 13
+      id: 1
+      startTerritoryId:
+        zoneId: 13
+        territoryId: 13017000
+      startPos: [50961.0, -78850.0, -4771.0]
+      startDir: 151
+      revivePos: [50961.0, -78850.0, -4771.0]
+      # 7777 is the shared "Guardian Legion Mission Zone" row in StrSheet_Region, used
+      # by every mission. Reused rather than authoring an island-specific name.
+      reviveTownNameId: 7777
+      revivalRecoveryRate: 1
+
+      # Entry gates. Headcounts follow the other small missions. The level band
+      # brackets the camp it sits in and stays well clear of the 65-70 missions, so the
+      # two tiers never share a rotation slot.
+      conditions:
+        - { type: maxMemberCount, value: 15 }
+        - { type: teleportMemberCount, value: 10 }
+        - { type: minLevel, value: 7 }
+        - { type: maxLevel, value: 15 }
+
+      # 660s is what the shipped two-leg missions run. The rotation group at the foot of
+      # this file uses the same value, so instances neither overlap nor gap.
+      #
+      # endWhenProgressFull is true here and false on all sixteen shipped missions, so
+      # this is the only place the behaviour exists. Every shipped mission keeps running
+      # its full timer after the bar fills; this one closes out once the boss is dead.
+      clearCondition:
+        progressTime: 660
+        endWhenProgressFull: true
+        endIntervalTime: 30
+
+      # The two dividers are the two legs: the quota fills 0 to 20, the boss's HP fills
+      # 20 to 100. standardPlayerCount is 5 rather than the usual 30 because this is a
+      # low-level mission for a handful of players.
+      progress:
+        maxValue: 100000
+        dividerPercent: [20, 100]
+        isSharedChannel: false
+        syncNpcHpInterval: 3
+        standardPlayerCount: 5
+
+      # Start and revive points, one per leg. `changePos` moves players to area 2 at the
+      # transition, which is what makes the front appear to advance.
+      spawnAreaLists:
+        - id: 1
+          spawnAreas:
+            - { center: "50961,-78850,-4771", dir: 151, randomRange: 0 }
+        - id: 2
+          spawnAreas:
+            - { center: "50576,-78468,-4792", dir: 142, randomRange: 0 }
+
+      # Contribution scoring, and the coefficient here is NOT a shipped value.
+      #
+      # The participation bag threshold lives in FieldEvent.xml and is global to every
+      # mission on the server, so it cannot be lowered for one low-level event without
+      # cheapening the level-65 ones. The per-event coefficient is the only lever, and
+      # it has to absorb the whole gap: the global dealing rate is 0.001, and the total
+      # health pool of this mission's eleven monsters is roughly four orders of
+      # magnitude short of the threshold. A shipped coefficient here scores a rounding
+      # error.
+      #
+      # Contribution is scored per player from damage dealt, and the monsters here hold a
+      # FIXED amount of health, so a coefficient is only ever correct for ONE headcount:
+      # what each player earns falls in proportion as the headcount rises. This one is
+      # set for a single player clearing the mission alone.
+      #
+      # The shipped missions escape that because AutoEventBalance scales monster health
+      # with the participant count, holding per-player damage roughly constant. This
+      # mission omits that ladder (see above), and this is the cost of the omission.
+      #
+      # Contribution points PERSIST ACROSS MISSIONS. The bar a player fills is their own
+      # running total against the shared threshold in FieldEvent.xml, not a per-mission
+      # score, which is why joining a mission already in progress is worth doing.
+      #
+      # WHAT A MISSION IS WORTH SCALES WITH THE GRADE IT ADVERTISES, doubling per step:
+      # one bar at small, two at medium, four at large. The world map promises a tier
+      # before a player commits, and a longer fight that paid the same as a short one
+      # would make that promise a lie. This mission is medium, so it targets two.
+      #
+      # The target is aimed above the floor on purpose. Damage dealt is not exactly the
+      # health pool once overkill and misses are counted, so a coefficient landing
+      # exactly on the boundary drops a whole bar on an untidy run.
+      #
+      # Derived, not chosen: the health pool IS the payout, so this moves whenever a
+      # monster's health does. Both come from the same calculator.
+      eventPoint:
+        points:
+          - { id: 1, type: dealing, value: 197.0 }
+
+      # Clear reward. The pool itself is global and lives in FieldEvent.xml, at the foot
+      # of this file; this half only names which pool the mission draws from. weightSum
+      # is the divisor the server rolls against to pick BETWEEN pools, so a single entry
+      # whose weight equals weightSum is a certainty rather than a draw.
+      clearRewardPool:
+        weightSum: 1
+        clearRewards:
+          - { id: 130101, weight: 1 }
+
+      # Objective panel, one step per leg plus the completion row.
+      #
+      # eventSize is the mission's GRADE, and it is presentation only: it selects the
+      # world map marker icon and the label beside it, and gates nothing. `medium` is
+      # the rare tier, blue, which is what the shipped rare missions carry. The title
+      # string above has to be recoloured to match, because that pairing is authored by
+      # hand on both sides and no gate compares them.
+      guide:
+        titleString: "@field:1301"
+        description: "@field:13010"
+        eventSize: medium
+        tasks:
+          - id: 1
+            target: "@creature:13#2002"
+            string: "@field:100001"
+            iconId: 2
+            markers:
+              - markerType: MARKER_FIELD_EVENT_AREA_01
+                markerPos: "50583,-78642,-4750"
+                markerScaleX: 0.75
+                markerScaleY: 0.75
+          - id: 2
+            target: "@creature:13#2003"
+            string: "@field:100001"
+            iconId: 3
+            markers:
+              - markerType: MARKER_FIELD_EVENT_AREA_03
+                markerPos: "49862,-77903,-4753"
+                markerScaleX: 0.5
+                markerScaleY: 0.5
+          - id: 3
+            target: ""
+            string: "@field:111111"
+            iconId: 1
+
+      # AutoEventBalance is deliberately OMITTED. Its abnormality ladder (77770001 to
+      # 77770030) is tuned for level-65 stat scales and has no low-level equivalent, so
+      # attaching it here would apply level-65 scaling to a low-level fight. Omitting it
+      # is a legal shape: other shipped missions carry no AutoEventBalance either.
+
+      # ---------------------------------------------------------------------
+      # Encounter script. Keyless and REPLACED WHOLE on every apply, so this block is
+      # always the complete script.
+      #
+      # Flag names are free text the engine only compares, so English is used. `name` on
+      # a flag GROUP is a comma list meaning AND, which is how the branch latches work.
+      #
+      # progressTimer values are SECONDS REMAINING, counting down from progressTime, so
+      # the opening beats carry the large numbers and the closing ones the small.
+      #
+      # The world's own camp IS taken over: 15 world territories inside the boundary are
+      # despawned at setup and put back at teardown, which is what lets a player tell an
+      # event monster from the ambient population.
+      #
+      # Two exclusions, both deliberate. The exploding barrels are left standing because
+      # the mission uses them as its environment weapon. And one of the four Dwarf Orcan
+      # territories stays, the one furthest from the fighting, because all four sit inside
+      # the boundary and five of the zone's quests hunt that template: clearing every one
+      # would leave those quests with no target anywhere on the island while the mission
+      # runs. Every other template taken over here also spawns outside the boundary, so
+      # the takeover costs a questing player a walk rather than a wait.
+      # ---------------------------------------------------------------------
+      eventGroups:
+        # Set up.
+        - type: initialize
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: oneshot, VALUE: 1, NEXT: none } }
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: success, VALUE: 0, NEXT: none } }
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: timeout, VALUE: 0, NEXT: none } }
+                    - { $extends: fieldevent.taskPoint, $with: { POINT_ID: 1, TURN: "on" } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1300905, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301345, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301369, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301450, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301458, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301459, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301460, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015150, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015170, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015110, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015120, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015130, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015070, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015090, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015100, NEXT: none } }
+
+        # Arm. uniqueId on a userCountInTerritory group is a TERRITORY pair, not an npc
+        # pair; the two readings share the attribute and are told apart by group type.
+        # The trigger is the whole mission boundary, so the event arms when a player
+        # walks in rather than on reaching one small pad most players never cross.
+        - type: userCountInTerritory
+          uniqueId: "13,13017000"
+          value: "1"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: armed, VALUE: 1, NEXT: none } }
+
+        # Leg 1. The whole opening beat lives here rather than on the mission clock,
+        # because the objective panel and its map markers are only ever pushed by a
+        # guide task: nothing resends them to a player who arrives later. Adding the
+        # panel from the clock, before anyone is present, reaches nobody.
+        #
+        # Order matters. The markers go up first so the countdown is spent looking at
+        # where the raiders will be, then the wave lands ten seconds after the warning.
+        - type: flag
+          name: "armed"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: add, NEXT: none } }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301101", NEXT: time }, nextValue: 0.7, style: speechbubble }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301810", NEXT: time }, nextValue: 10, style: combat }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301001", NEXT: none }, style: combat }
+                    - { $extends: fieldevent.taskEventDialog, $with: { DIALOG: 1301001 } }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017011, NEXT: none } }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017012, NEXT: none } }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017013, NEXT: none } }
+                    - $extends: fieldevent.taskKillCount
+                      $with: { COUNTER: wave, ACTION: start }
+                      value: 0
+                      targetType: specificNpc
+                      huntingZoneId: 13
+                      npcTemplateId: [$IOD_GL_ORCAN_RAIDER]
+
+        # The quota. Ten firings of 2000 fill the first divider exactly.
+        - type: killCount
+          min: 1
+          max: 10
+          killCountName: "wave"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskProgress, $with: { ACTION: plus, VALUE: 2000, NEXT: none } }
+
+        # Leg 2. `progressType basic` clears the bar's previous binding before the boss
+        # is bound to it; the shipped two-leg mission does the same pair in this order.
+        - type: progress
+          value: "20"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - $extends: fieldevent.taskKillCount
+                      $with: { COUNTER: wave, ACTION: stop }
+                      value: 0
+                      targetType: specificNpc
+                      huntingZoneId: 13
+                      npcTemplateId: [$IOD_GL_ORCAN_RAIDER]
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: complete, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017011, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017012, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017013, NEXT: none } }
+                    - { $extends: fieldevent.taskChangePos, $with: { SPAWN_AREA: 2, METHOD: start } }
+                    - { $extends: fieldevent.taskChangePos, $with: { SPAWN_AREA: 2, METHOD: revive } }
+                    - { $extends: fieldevent.taskProgressType, $with: { PROGRESS_TYPE: basic } }
+                    - $extends: fieldevent.taskProgressType
+                      $with: { PROGRESS_TYPE: npcHp }
+                      targetNpcId: { huntingZone: 13, templateId: $IOD_GL_ORCAN_WARLORD }
+                      progressValue: 80000
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301002", NEXT: none }, style: combat }
+                    - { $extends: fieldevent.taskEventDialog, $with: { DIALOG: 1301002 } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: remove, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "2", GUIDE_TYPE: add, NEXT: none } }
+
+        # Complete.
+        - type: progress
+          value: "100"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: success, VALUE: 1, NEXT: none } }
+
+        # Success branch. Latched on `oneshot`, which it clears first, so exactly one of
+        # success and timeout can ever run.
+        #
+        # The arena despawn is load bearing, not tidiness. Filling the bar does not end
+        # the mission (`endWhenProgressFull` is false), so without this the boss's own
+        # spawn row is still live for the rest of the timer. Both shipped missions
+        # despawn the boss territory here, and one delays it a beat so the death plays
+        # out first.
+        - type: flag
+          name: "success,oneshot"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: oneshot, VALUE: 0, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "2", GUIDE_TYPE: complete, NEXT: none } }
+                    - $extends: fieldevent.taskDespawn
+                      $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: time }
+                      nextValue: 2
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301003", NEXT: none }, style: combat }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: [1, 2], GUIDE_TYPE: remove, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "3", GUIDE_TYPE: add, NEXT: none } }
+
+        # Expiry.
+        - type: progressTimer
+          value: "0"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: timeout, VALUE: 1, NEXT: none } }
+
+        # Failure branch.
+        - type: flag
+          name: "timeout,oneshot"
+          repeat: false
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskFlag, $with: { NAME: oneshot, VALUE: 0, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017011, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017012, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017013, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301004", NEXT: none }, style: combat }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: [1, 2], GUIDE_TYPE: remove, NEXT: none } }
+                    - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "3", GUIDE_TYPE: add, NEXT: none } }
+
+        # Close. Missions end on this 30/20/10 warning ladder.
+        - type: progressTimer
+          value: "30"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301930", NEXT: none } }
+        - type: progressTimer
+          value: "20"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301920", NEXT: none } }
+        - type: progressTimer
+          value: "10"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskMessage, $with: { STRING: "@field:1301910", NEXT: none } }
+
+        - type: beforeEndEvent
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+
+        # Teardown. Despawns only what the event created; there is no world-restore half
+        # because nothing in the world was despawned at setup.
+        - type: beforeDeleteEvent
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1300905, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301345, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301369, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301450, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301458, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301459, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301460, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015150, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015170, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015110, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015120, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015130, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015070, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015090, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskSpawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13015100, NEXT: none }, isEventNpc: false }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017011, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017012, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017013, NEXT: none } }
+                    - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017020, NEXT: none } }
+
+# ---------------------------------------------------------------------------
+# Global field event config
+# ---------------------------------------------------------------------------
+# fieldEventConfig is a KEYLESS SINGLETON: sections sit directly under it with no
+# create/update wrapper and no `changes` block.
+#
+# `worldMapUi` is a SCALAR section and patches, so naming showMinLevel leaves
+# showMaxLevel and bottomUITitleStrId alone.
+#
+# `rotationGroups` is a LIST SECTION and REPLACES WHOLE, so every pre-existing group is
+# restated below verbatim: dropping one would silently unschedule the missions in it,
+# and an event that belongs to no rotation group never fires at all.
+#
+# One consequence, accepted: the section's comments are hoisted to the top of it and
+# no longer label the group each was written above. The sixth group, commented out and
+# labelled off by the publisher, survives the replace as a comment and stays inactive.
+
+fieldEventConfig:
+  # The world-map mission list is gated GLOBALLY, not per event, so a low-level mission
+  # cannot appear at all unless this floor comes down. Widening it also lists the
+  # level-65 missions for low-level players, but each mission's own Condition minLevel
+  # still blocks entry, so the cost is UI clutter rather than an exploit.
+  worldMapUi:
+    showMinLevel: 1
+
+  rotationGroups:
+    # Advanced (small) guardian missions. Pre-existing, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 990
+      randomRotation: true
+      events:
+        - { continentId: 7003, eventId: 1 }
+        - { continentId: 7014, eventId: 2 }
+        - { continentId: 7001, eventId: 2 }
+        - { continentId: 7012, eventId: 1 }
+    # Rare (medium). Pre-existing, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 660
+      randomRotation: true
+      events:
+        - { continentId: 7011, eventId: 1 }
+        - { continentId: 7015, eventId: 1 }
+    # Flying rare (medium). Pre-existing, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 440
+      randomRotation: true
+      events:
+        - { continentId: 7003, eventId: 2 }
+        - { continentId: 7021, eventId: 1 }
+    # Legendary. Pre-existing, restated verbatim.
+    - serverOpenDelay: 1800
+      startInterval: 3600
+      randomRotation: false
+      events:
+        - { continentId: 7005, eventId: 1 }
+    # Sky-island transit missions. Pre-existing, restated verbatim.
+    - serverOpenDelay: 30
+      startInterval: 330
+      randomRotation: false
+      events:
+        - { continentId: 7022, eventId: 90 }
+        - { continentId: 7011, eventId: 91 }
+        - { continentId: 7013, eventId: 92 }
+        - { continentId: 7003, eventId: 93 }
+        - { continentId: 7001, eventId: 94 }
+        - { continentId: 7031, eventId: 95 }
+    # Island of Dawn Orcan Raiders. Kept in its own single-member group with
+    # randomRotation false so it runs deterministically instead of competing for a slot
+    # with the level-65 wheel. startInterval equals the mission's progressTime, so
+    # instances run back to back and it is effectively always available.
+    - serverOpenDelay: 30
+      startInterval: 660
+      randomRotation: false
+      events:
+        - { continentId: 13, eventId: 1 }
+
+  # The participation bag, and it is GLOBAL: one threshold shared by every mission on
+  # the server, paid from a player's running contribution total rather than per mission.
+  #
+  # ALSO REPLACES WHOLE, so the shipped row is restated here in full. `repeat` is how
+  # many times a player may cross the threshold before the reward stops paying, and it
+  # is the ceiling on the whole Guardian Legion reward lane, not a per-mission limit.
+  # Raising it widens that lane for every mission at once, including the level 65 ones.
+  #
+  # The band below 60 pays the early-progression currency instead of the jewel box the
+  # shipped table pays everywhere. The box holds endgame enchant jewels and is worth
+  # nothing to a character in that band, while the currency is the one every other
+  # sub-60 vector already pays. Splitting the shipped 1 to 64 band rather than
+  # retargeting it is what keeps 60 to 64 on exactly what it has today.
+  rewardBags:
+    - requiredPoint: 100000
+      repeat: 200
+      levels:
+        - minLevel: 1
+          maxLevel: 59
+          rewards:
+            - { type: item, templateId: $EARLY_PROGRESSION_TOKEN, amount: 20 }
+        - minLevel: 60
+          maxLevel: 64
+          rewards:
+            - { type: item, templateId: 98582, amount: 1 }
+        - minLevel: 65
+          maxLevel: 70
+          rewards:
+            - { type: item, templateId: 98582, amount: 1 }
+            - { type: reputationPoint, npcGuildId: 611, amount: 250 }
+
+  # Clear-reward pools, referenced by id from a mission's own clearRewardPool.
+  #
+  # ALSO A LIST SECTION THAT REPLACES WHOLE, so the three shipped pools are restated
+  # below unchanged. Omitting one would strip the clear reward from the mission that
+  # references it, and nothing would report the loss.
+  #
+  # `rule` decides how a band is chosen. `point` reads a contribution-score cut, which
+  # is an absolute number and therefore falls per player as a mission fills up. `rank`
+  # reads a finishing position, which does not.
+  #
+  # Two rules bind inside a pool. Each itemBag's weightSum must equal the sum of its
+  # items' weights, because the server divides through it and a mismatch skews the table
+  # silently rather than failing. And showRewardList is the world-map tooltip only:
+  # nothing checks it against the payouts below it, so the two are kept in step by hand.
+  clearRewards:
+    # Island of Dawn Orcan Raiders. Ranked rather than scored, so what a player takes
+    # home does not depend on how many others turned up.
+    #
+    # EXACTLY ONE BAG PAYS, the tightest ruleValue the player qualifies for, so the four
+    # rungs do not stack: a first-place finisher takes the first rung alone even though
+    # they also qualify for the three below it. The last rung's ruleValue is the
+    # mission's own maxMemberCount, which is what makes it the everyone-else rung.
+    #
+    # Each bag in a rung is ONE box and rolls its own grade, so the percentages are an
+    # average across the rung rather than a guaranteed split. RARE_W*4 + UNCOMMON_W*4
+    # must equal 1000.
+    - id: 130101
+      rule: rank
+      showRewardList: [602191, 602194, 602197, 602200, 602190, 602193, 602196, 602199]
+      bags:
+        - { $extends: gl-rank-rewards.glRankRungRare, $with: { RULE_VALUE: 1, BOXES: 10 } }
+        - { $extends: gl-rank-rewards.glRankRungRare, $with: { RULE_VALUE: 2, BOXES: 8 } }
+        - { $extends: gl-rank-rewards.glRankRungRare, $with: { RULE_VALUE: 3, BOXES: 6 } }
+        - { $extends: gl-rank-rewards.glRankRungUncommon, $with: { RULE_VALUE: 15, BOXES: 5 } }
+
+    # Pre-existing, restated verbatim.
+    - id: 70030201
+      rule: point
+      showRewardList: [99977, 98281]
+      bags:
+        - ruleValue: 60000
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 99977, min: 1, max: 1, weight: 1000 }
+        - ruleValue: 150000
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 99977, min: 2, max: 2, weight: 800 }
+                - { templateId: 99977, min: 3, max: 3, weight: 195 }
+                - { templateId: 98281, min: 1, max: 1, weight: 5 }
+
+    # Pre-existing, restated verbatim.
+    - id: 70210101
+      rule: point
+      showRewardList: [99977, 98281]
+      bags:
+        - ruleValue: 60000
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 99977, min: 1, max: 1, weight: 1000 }
+        - ruleValue: 150000
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 99977, min: 2, max: 2, weight: 800 }
+                - { templateId: 99977, min: 3, max: 3, weight: 195 }
+                - { templateId: 98281, min: 1, max: 1, weight: 5 }
+
+    # Pre-existing, restated verbatim. Band order is descending here and ascending in
+    # the two pools above, which is how the publisher left them.
+    - id: 70050101
+      rule: point
+      showRewardList: [369, 98281, 96207, 200930, 366]
+      bags:
+        - ruleValue: 175000
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 366, min: 6, max: 6, weight: 700 }
+                - { templateId: 200930, min: 2, max: 2, weight: 270 }
+                - { templateId: 96207, min: 1, max: 1, weight: 24 }
+                - { templateId: 98281, min: 1, max: 1, weight: 5 }
+                - { templateId: 369, min: 10, max: 10, weight: 1 }
+        - ruleValue: 125000
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 366, min: 4, max: 4, weight: 700 }
+                - { templateId: 200930, min: 1, max: 1, weight: 270 }
+                - { templateId: 96207, min: 1, max: 1, weight: 25 }
+                - { templateId: 98281, min: 1, max: 1, weight: 5 }
+        - ruleValue: 62500
+          itemBags:
+            - prob: 1
+              weightSum: 1000
+              items:
+                - { templateId: 366, min: 2, max: 2, weight: 800 }
+                - { templateId: 200930, min: 1, max: 1, weight: 200 }

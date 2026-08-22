@@ -1,0 +1,241 @@
+# Island of Dawn: two authored Orcan templates for the Guardian Legion event.
+#
+# Both derive from Orcan templates in other zones, because the island ships no
+# elite Orcan at all. A donor is only usable when it shares the target's MODEL:
+# skill rows bind their animations by set and name, and every template here
+# resolves to Orcan_ANI.Anim.Orcan_Anim through shapeId 300650 with
+# basicActionId 3006500. The island's other Orcan line, shapeId 300710, is a
+# different animation set and is not interchangeable with this one.
+#
+# Stats are anchored to this zone's own named Orcans rather than to the donors,
+# whose level 51 and level 68 numbers mean nothing in a level 7 to 10 band.
+#
+# Both tiers carry elite=true. That is the nameplate badge the shipped Guardian
+# Legion missions put on EVERY mob they own, trash included, which is how a
+# player tells event content from the ambient population around it. No shipped
+# mission-layer template carries a second badge flag.
+#
+# aiid 200 is authored in this patch from the island's own Orcan Raider AI, and
+# every behaviour id it drives is a skill id these templates own. Both tiers
+# share it, so there is one record to retune rather than two.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - IOD_GL_ORCAN_RAIDER
+        - IOD_GL_ORCAN_WARLORD
+
+definitions:
+  # Everything both tiers hold identically: the Orcan model, the shared AI, and
+  # the combat profile taken from this zone's own named Orcans. Per-row keys are
+  # identity, silhouette (size, scale, nameplate), aggro reach, anger timing,
+  # abnormality resistances and stats.
+  IodEventOrcan:
+    shapeId: 300650
+    basicActionId: 3006500
+    parentId: 30065000
+    race: OrcanPirate
+    gender: male
+    resourceType: medium
+    resourceSize: 100
+    aiid: 200
+    elite: true
+    villager: false
+    isObjectNpc: false
+    questVillager: false
+    invincible: false
+    unionElite: false
+    isFreeNamed: false
+    critical:
+      str: 30
+      res: 180
+      powRate: 1.5
+    criticalAdjust:
+      front: 1.0
+      right: 1.2
+      left: 1.2
+      back: 1.6
+    namePlate:
+      deathNameplateHeight: 0
+    aggro:
+      clanName: orcan
+      sightRangeAggroWeight: 1.3
+      hateSkillAggroWeight: 1.0
+      bigReactionAggroWeight: 0.5
+      aggroSendToPartyDistance: 2000
+      aggroSendRate: 1.0
+      aggroSendStackRate: 0.1
+      aggroSendStackRateWhenFirstAttacked: 0.5
+      aggroIgnoreClanName: false
+      aggroReceiveOnlyInSight: false
+      aggroReceiveRate: 1.0
+    reaction:
+      statStr: 40
+      statRes: 50
+      miniRes: 50
+      basicRes: 50
+      basicIncRes: 0
+      basicGaugeResetTime: 20000
+      maxBasicGauge: 2000
+      maxAdditionalGauge: 600000
+    stackPoint:
+      maxStackPoint: 10
+      minStackPointRequire: 3
+      stackPointPeriod: 8000
+    anger:
+      moveSpeedUpRate: 2.0
+      accumRateWhenHpLow: 1.0
+      accumRateWhenHpMed: 1.0
+      accumRateWhenHpHigh: 1.0
+      modeOnProbabilityWhenPartyMemberDead: 0.2
+    npcOnly:
+      onDeathSkill: 0
+    balanceRef:
+      ignoreAttr: ""
+    abnormalityResistanceOverride:
+      abnormalities:
+        - { kind: 5, initRes: 40, incRes: 3 }
+        - { kind: 6, initRes: 50, incRes: 3 }
+        - { kind: 7, initRes: 30, incRes: 3 }
+
+npcs:
+  upsert:
+    # Wave raider. Model and combat posture from 87,2031 "Orcan Marauder";
+    # stats from 13,1002 Acharak, the toughest Orcan the island already has.
+    - $extends: IodEventOrcan
+      huntingZoneId: 13
+      id: $IOD_GL_ORCAN_RAIDER
+      name: "GL Orcan Raider"
+      size: medium
+      scale: 0.21
+      isLightParty: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      playStyle: basic
+      partyMember: 1
+      stat:
+        level: 8
+        # Five times the zone's toughest named Orcan. Event trash has to survive long
+        # enough to be fought rather than walked through, and ten of these are the whole
+        # of leg 1.
+        maxHp: 66385
+        # 3x the zone's scale. Attack is what actually reaches a target: four skills
+        # carry identical totalAtk on both tiers and land 1.23 to 1.28 times harder on
+        # the warlord, which is this field's ratio between them and not the skills'.
+        atk: 63660
+        def: 82.263564901417
+        exp: 139.612153554181
+        walkSpeed: 47.0
+        runSpeed: 95
+      namePlate:
+        nameplateHeight: 22
+      # viewAngle 360 and clan propagation at 300 are both the corpus defaults, and
+      # both were wrong here. A 140 degree cone leaves a blind arc a player can walk
+      # into, and a clan distance of 0 means a raider watches its neighbour get killed
+      # beside it. Together they are what makes the wave read as a camp rather than as
+      # a row of targets waiting their turn.
+      aggro:
+        viewRadius: 400
+        viewAngle: 360
+        aggroSendToClanDistance: 300
+      anger:
+        gaugeSize: 3983.25202176636
+        time: 18998
+      abnormality:
+        strA: 95
+        resA: 46
+        strB: 95
+        resB: 46
+        strC: 95
+        resC: 46
+        strD: 95
+        resD: 46
+      abnormalityResistanceOverride:
+        resetTime: 60000
+
+    # Boss. Model, scale and elite posture from 620,1005 "Wartok", the only
+    # Orcan-shaped template in the corpus that is both elite and large; stats
+    # from 13,1004 Kugai, the island's highest-level named monster.
+    #
+    # nameplateHeight scales with the model: this shape carries 18 at scale
+    # 0.17, so 0.41 wants 43 to keep the plate off the silhouette.
+    - $extends: IodEventOrcan
+      huntingZoneId: 13
+      id: $IOD_GL_ORCAN_WARLORD
+      name: "GL Orcan Warlord"
+      # Overrides the shared aiid above. The boss drives the model's charge and its
+      # evasive hops and the raider does not, and an AI is referenced by id, so the two
+      # tiers cannot differ while pointing at one record.
+      aiid: 201
+      size: large
+      scale: 0.41
+      isLightParty: true
+      showAggroTarget: true
+      showShorttermTarget: true
+      partyMember: 0
+      stat:
+        level: 10
+        # Sixty times the zone's highest named monster, and 14.8x this mission's own
+        # trash. A boss taken from the zone's stat line dies in about the time one of its
+        # own trash mobs does, which is not a fight. This value is the encounter length,
+        # not a power level.
+        #
+        # Both this and the raider health above are the mission's reward budget.
+        # Contribution is scored from damage dealt, so the health pool IS what the
+        # mission pays out, and neither number can move without the coefficient in the
+        # event spec moving with it. tools/gl-reward/calibrate.py derives that.
+        maxHp: 984720
+        # 5x the zone's scale, see the raider's note above.
+        atk: 141465
+        def: 105.547444311114
+        exp: 296.549059819383
+        walkSpeed: 41.0
+        runSpeed: 108
+      # Reaction immunity, which is what stops a boss being juggled. Some classes can
+      # chain a target into the air and hold it there, and a boss that can be held is a
+      # boss that never fights back. Every named boss in the corpus carries this and no
+      # trash template does, so it is the badge of the tier rather than a tuning knob.
+      #
+      # It covers EVERY reaction, not only the airborne one: the warlord will also stop
+      # staggering and stop being knocked down. That is the shipped behaviour for a
+      # named boss and it is why the reaction gauge fields inherited from the shared
+      # envelope stop mattering here.
+      reaction:
+        immune: true
+
+      namePlate:
+        nameplateHeight: 43
+      aggro:
+        viewRadius: 200
+        viewAngle: 120
+        aggroSendToClanDistance: 300
+      anger:
+        gaugeSize: 4281.61575280535
+        time: 13340
+      abnormality:
+        strA: 99
+        resA: 45
+        strB: 99
+        resB: 45
+        strC: 99
+        resC: 45
+        strD: 99
+        resD: 45
+      abnormalityResistanceOverride:
+        resetTime: 50
+
+creatureStrings:
+  upsert:
+    - huntingZoneId: 13
+      templateId: $IOD_GL_ORCAN_RAIDER
+      name: "Dark Claw Raider"
+    - huntingZoneId: 13
+      templateId: $IOD_GL_ORCAN_WARLORD
+      name: "Dark Claw Warlord"

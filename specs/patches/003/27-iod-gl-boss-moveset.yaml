@@ -1,0 +1,712 @@
+# Island of Dawn Guardian Legion: the boss's own AI, and the damage on its charge.
+#
+# AI 201 is AI 200 plus three behaviours. It exists as a SEPARATE RECORD because an
+# AI is referenced by id from a template, so two templates sharing one record cannot
+# behave differently. The raider keeps 200; only the Warlord points at 201.
+#
+# The three additions are the model's charge and its two evasive hops. Every Orcan on
+# this animation set already carries the skill rows for them; what the island's own AI
+# never had was a Work driving them, which is why they were never seen. Both halves are
+# required: a Work declares the behaviour, and a Tension info row with a non-zero prob is
+# what lets it be chosen. A Work no tension names never runs.
+#
+# The charge carried totalAtk 0, so it played and did nothing. Its damage is set here
+# rather than in the skills spec, which is generated and reproduces the donor verbatim.
+#
+# provenance: carry-over
+
+spec:
+  version: "1.0"
+  schema: v92
+
+ai:
+  upsert:
+    - huntingZoneId: 13
+      id: 201
+      name: 오칸 습격자
+      cautionState:
+        alertAngle: 360
+        alertRadius: 300
+        avoidSkill: 0
+        checkInterval: 5000
+        hpResetWhenCombatEnd: true
+        probActiveMove: 1
+        probAvoid: 0
+        rotateAngle: 45
+        rotateTime: 5
+        activeMoves:
+          - id: 0
+      combatState:
+        playSocialWhenFirstAggro: false
+        watchRotateAngle: 45
+        watchRotateTime: 5
+        attack:
+          workList:
+            - id: 1
+              desc: 기본 공격(적극적)
+              normalBehaviorId: 1101
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2101
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetDamagedCount(5) > 2
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 3000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 2
+              desc: 회전 공격
+              normalBehaviorId: 1102
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2102
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetDamagedCount(5) > 2 AND GetCombatTime() > 7000
+              distanceType: 1
+              distanceRate: 0.8
+              coolTime: 7000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 1
+              nextAttackId:
+                - 12
+              msgImmediately: true
+              msg:
+                - 218
+              msgProb: 0.1
+            - id: 3
+              desc: 백점프후우워
+              normalBehaviorId: 1103
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2103
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetDamagedCount(5) > 2 AND GetTargetDistance() < 60
+              distanceType: 1
+              distanceRate: 0
+              coolTime: 8000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 1
+              nextAttackId:
+                - 10
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 4
+              desc: 폭탄 투척
+              normalBehaviorId: 1104
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2104
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetTargetDistance() > 300
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: true
+              msg:
+                - 202
+              msgProb: 0.3
+            - id: 5
+              desc: 전진 공격
+              normalBehaviorId: 1105
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2105
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0.4
+              nextAttackId:
+                - 7
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 6
+              desc: 좌걸음
+              normalBehaviorId: 1207
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 1207
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetTargetDistance() > 100 AND GetDamagedCount(5) < 2
+              distanceType: 1
+              distanceRate: 0
+              coolTime: 7000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 1
+              nextAttackId:
+                - 7
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 7
+              desc: 좌걸음(반복)
+              normalBehaviorId: 1207
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 1207
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 1
+              distanceRate: 0
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 8
+              desc: 우걸음
+              normalBehaviorId: 1208
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 1208
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetTargetDistance() > 100 AND GetDamagedCount(5) < 2
+              distanceType: 1
+              distanceRate: 0
+              coolTime: 7000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 1
+              nextAttackId:
+                - 9
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 9
+              desc: 우걸음(반복)
+              normalBehaviorId: 1208
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 1208
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 1
+              distanceRate: 0
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 10
+              desc: 폭탄 투척(패턴용)
+              normalBehaviorId: 1104
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2104
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 1
+              distanceRate: 0
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: true
+              msg:
+                - 202
+              msgProb: 0.3
+            - id: 11
+              desc: 회전 공격(분노용)
+              normalBehaviorId: 1102
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2102
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 12
+              desc: 50% 탈진
+              normalBehaviorId: 1201
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 1201
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetHpRatio() >0.2 AND GetHpRatio() < 0.5 AND IsInAnger() == 0
+              distanceType: 1
+              distanceRate: 0.8
+              coolTime: 7000
+              isDirectionRevision: false
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 13
+              desc: 20% 탈진
+              normalBehaviorId: 1202
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 1202
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetHpRatio() <= 0.2 AND IsInAnger() == 0
+              distanceType: 1
+              distanceRate: 0.8
+              coolTime: 8000
+              isDirectionRevision: false
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 14
+              desc: 기본 공격(반복용)
+              normalBehaviorId: 1101
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2101
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0.3
+              nextAttackId:
+                - 7
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 15
+              desc: 회전 공격 사전 동작
+              normalBehaviorId: 1203
+              normalBehaviorType: skill
+              angerBehaviorId: 2203
+              angerBehaviorType: skill
+              preProcess: GetDamagedCount(5) > 2 AND GetCombatTime() > 7000
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 7000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 1
+              nextAttackId:
+                - 2
+            - id: 16
+              desc: 회전 공격 사전 동작(분노)
+              normalBehaviorId: 1203
+              normalBehaviorType: skill
+              angerBehaviorId: 2203
+              angerBehaviorType: skill
+              preProcess: 1
+              distanceType: 2
+              distanceRate: 0.8
+              isDirectionRevision: true
+              nextAttackProb:
+                - 1
+              nextAttackId:
+                - 2
+            - id: 17
+              desc: ultra attack (charge)
+              normalBehaviorId: 1106
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2106
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 2
+              distanceRate: 0.8
+              coolTime: 6000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 18
+              desc: evade left
+              normalBehaviorId: 1209
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2209
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 1
+              distanceRate: 0.8
+              coolTime: 6000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+            - id: 19
+              desc: evade right
+              normalBehaviorId: 1210
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2210
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: 1
+              distanceType: 1
+              distanceRate: 0.8
+              coolTime: 6000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0
+              nextAttackId:
+                - 0
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+          tensionList:
+            - id: 1
+              infos:
+                - workId: 12
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 13
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 4
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 17
+                  prob: 0.2
+                  distanceRate: 0.8
+                - workId: 18
+                  prob: 0.1
+                  distanceRate: 0.8
+                - workId: 19
+                  prob: 0.1
+                  distanceRate: 0.8
+                - workId: 6
+                  prob: 0.3
+                  distanceRate: 0.8
+                - workId: 8
+                  prob: 0.3
+                  distanceRate: 0.8
+                - workId: 3
+                  prob: 0.2
+                  distanceRate: 0.8
+                - workId: 15
+                  prob: 0.35
+                  distanceRate: 0.8
+                - workId: 2
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 1
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 7
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 9
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 10
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 11
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 14
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 16
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 5
+                  prob: 1
+                  distanceRate: 0.8
+            - id: 2
+              infos:
+                - workId: 12
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 13
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 4
+                  prob: 0.3
+                  distanceRate: 0.8
+                - workId: 17
+                  prob: 0.2
+                  distanceRate: 0.8
+                - workId: 18
+                  prob: 0.1
+                  distanceRate: 0.8
+                - workId: 19
+                  prob: 0.1
+                  distanceRate: 0.8
+                - workId: 16
+                  prob: 0.5
+                  distanceRate: 0.8
+                - workId: 11
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 1
+                  prob: 0.3
+                  distanceRate: 0.8
+                - workId: 15
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 2
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 3
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 6
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 7
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 8
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 9
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 10
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 14
+                  prob: 0
+                  distanceRate: 0.8
+                - workId: 5
+                  prob: 1
+                  distanceRate: 0.8
+        avoid:
+          avoidSkillId: 0
+          cooltime: 10000
+        cooperation:
+          concurrentAttackDuration: 5000
+          escapeDuration: 3000
+          sequentialAttackDelay: 1000
+          workList:
+            - id: 1
+              desc: 백점프후 우워 소셜
+              normalBehaviorId: 1103
+              normalBehaviorType: skill
+              offFlockOnNormalMode: true
+              angerBehaviorId: 2103
+              angerBehaviorType: skill
+              offFlockOnAngerMode: true
+              preProcess: GetTargetDistance() < 150 AND GetNpcCountInRange(500) > 3 AND GetCombatTime() > 8000
+              sendOrderId: 1
+              sendOrderRange: 2000
+              sendOrderMaxCount: 8
+              sendOrderRefTarget: 1
+              distanceType: 1
+              distanceRate: 0.8
+              coolTime: 30000
+              isDirectionRevision: true
+              nextAttackProb:
+                - 0.5
+              nextAttackId:
+                - 8
+              orderType: formation
+              formationId: 7
+              msgImmediately: true
+              msg:
+                - 1
+              msgProb: 0.5
+          tensionList:
+            - id: 1
+              infos:
+                - workId: 1
+                  prob: 1
+                  distanceRate: 0.8
+          receiveOrderList:
+            - orderId: 1
+              prob: 1
+              attackId: 1
+              formationCheckTime: 0
+              formationAttackProb: 0
+              formationAttackId: 0
+        idle:
+          duration: 1000
+        monsterFlee:
+          executionRate: 0
+          fleeDistance: 0
+          hpRate: 0
+          shareAggroRange: 0
+        move:
+          targetDistance: 200
+          timeout: 1000
+        patternLists:
+          - patterns:
+              - default: true
+                angerMode:
+                  tension:
+                    attackTension: 2
+                    cooperationTension: 1
+                    shorttermTargetTension: 1
+                  incline:
+                    attackProb: 1
+                    avoidProb: 0
+                    cooperationProb: 0
+                    moveProb: 0
+                    shorttermTargetProb: 0
+                    socialProb: 0
+                normalMode:
+                  tension:
+                    attackTension: 1
+                    cooperationTension: 1
+                    shorttermTargetTension: 1
+                  incline:
+                    attackProb: 1
+                    avoidProb: 0
+                    cooperationProb: 0.3
+                    moveProb: 0
+                    shorttermTargetProb: 0
+                    socialProb: 0
+        shorttermTarget:
+          stTensionList:
+            - id: 1
+              stInfos:
+                - stWorkId: 1
+                  prob: 1
+          stWorkList:
+            - id: 1
+              desc: 1
+              preProcess: 1
+              immediateAttackId: 1
+              msgImmediately: false
+              msg:
+                - 0
+              msgProb: 0
+        social:
+          socialMotionId: 0
+        counterFlee:
+          maxMovingTime: 0
+          recentHitTime: 0
+          recentPcBehaviorTime: 0
+          speedUpRate: 0
+          toAnger: false
+          workId: 0
+        monsterSummon:
+          executionRate: 0
+          hpRate: 0.2
+          summonNum: 1
+          summonRange: 300
+          summonTemplateId: 0
+      peaceState:
+        checkInterval: 5000
+        followNearUser: false
+        maxLeaderDistance: 100
+        minLeaderDistance: 50
+        randomMove:
+          moveMaxDistance: 400
+          moveMinDistance: 250
+          moveRadius: 500
+          probMove: 0.5
+          probSocial: 0.5
+          socials:
+            - socialMotionId: 0
+
+# The charge should hit harder than the spin, which is the heaviest thing the boss
+# otherwise throws. The multiplier is the one the model donor uses between the same two
+# skills, applied to this template's own numbers rather than copied as an absolute.
+#
+# It is applied to EFFECTIVE damage, not to totalAtk. What reaches a player is totalAtk
+# scaled by the skill's own `Effect atk`, and these two skills do not share one: the spin
+# is 0.25 and the charge 0.18. Matching the donor's raw totalAtk ratio reproduces the
+# donor exactly and still lands the charge BELOW the spin, which is the trap here.
+npcSkills:
+  update:
+    - huntingZoneId: 13
+      templateId: 2003
+      skillId: 1106
+      changes:
+        totalAtk: 15180.0
+    - huntingZoneId: 13
+      templateId: 2003
+      skillId: 2106
+      changes:
+        totalAtk: 16445.0
+
+    # The thrown bomb, and the only thing the boss can reach a kiting player with.
+    # Four times the zone's scale, which is a straight multiple of the damage dealt
+    # because this skill's `Effect atk` is 1 and it lands one hit rather than ticking.
+    # It stays under the charge and about level with the spin per use, so distance is
+    # punished without the bomb becoming the fight.
+    - huntingZoneId: 13
+      templateId: 2003
+      skillId: 1104
+      changes:
+        totalAtk: 9867.80
+    - huntingZoneId: 13
+      templateId: 2003
+      skillId: 2104
+      changes:
+        totalAtk: 10690.08

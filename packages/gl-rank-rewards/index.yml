@@ -1,0 +1,89 @@
+# Guardian Legion ranked clear rewards: the infusion gear box ladder.
+#
+# ONE ItemBag PER RUNG, NEVER ONE PER BOX. A bag rolls once and awards min..max of the
+# single Item it picked, so a whole rung is one bag whose rows carry the box count.
+#
+# The one-bag-per-box shape is the obvious way to write this and it takes the server
+# down: the arbiter stalls partway through its datasheet load, never signals ready, and
+# the supervisor then recycles it and every process behind it on a loop, so the world
+# server is never launched at all. Nothing is logged and no crash file is written. A
+# ladder built that way came to 29 bags against a shipped maximum of 3 in any one
+# reward bag.
+#
+# GRADE IS THE RUNG, NOT A ROLL. Each rung pays one grade outright, so placing decides
+# what a player gets rather than a lottery on top of it. The bag still rolls, but only
+# over the four equipment slots, which are flat at 250 apiece.
+#
+# Grade was briefly a weight across all eight boxes in one bag. It reads badly: because
+# the bag draws ONE row, an eighty percent rare rung still sent one first-place finisher
+# in five home with nothing but uncommons, and the intended eight-rare-two-uncommon mix
+# is not expressible here at all. Splitting grade across the rungs gets the same ladder
+# with none of that.
+#
+# The count of boxes and the rank cutoff are bound at the CALL SITE, so a mission can run
+# this ladder at its own generosity without a new definition.
+#
+# weightSum is the divisor the server rolls against, and the corpus holds no exception:
+# across every ItemBag in the shipped field event config the Item weights sum exactly to
+# it. A mismatch skews the table silently rather than failing, so RARE_W*4 + UNCOMMON_W*4
+# must equal 1000 at every call site.
+#
+# Slot weighting is flat within a grade even though the pools behind the four boxes are
+# very different sizes, so a weapon box is a much wider draw than a boots box. That is a
+# tuning choice, and the call site cannot change it: it lives here.
+
+spec:
+  version: "1.0"
+
+imports:
+  - from: gear-infusion-boxes
+    use:
+      variables:
+        - INFUSION_WEAPON_BOX_RARE
+        - INFUSION_CHEST_BOX_RARE
+        - INFUSION_GLOVES_BOX_RARE
+        - INFUSION_BOOTS_BOX_RARE
+        - INFUSION_WEAPON_BOX_UNCOMMON
+        - INFUSION_CHEST_BOX_UNCOMMON
+        - INFUSION_GLOVES_BOX_UNCOMMON
+        - INFUSION_BOOTS_BOX_UNCOMMON
+
+definitions:
+  # The slot draw, one grade each. NO $params on either: the box ids are package
+  # variables and only resolve in this module's scope, so a consumer that extends one
+  # directly gets "variable not found". $BOXES arrives through scope inheritance from
+  # the rung's call site.
+  glRungBagRare:
+    prob: 1
+    weightSum: 1000
+    items:
+      - { templateId: $INFUSION_WEAPON_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_CHEST_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_GLOVES_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_BOOTS_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
+
+  glRungBagUncommon:
+    prob: 1
+    weightSum: 1000
+    items:
+      - { templateId: $INFUSION_WEAPON_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_CHEST_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_GLOVES_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_BOOTS_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
+
+  glRankRungRare:
+    $params: [RULE_VALUE, BOXES]
+    ruleValue: $RULE_VALUE
+    itemBags:
+      - $extends: glRungBagRare
+
+  glRankRungUncommon:
+    $params: [RULE_VALUE, BOXES]
+    ruleValue: $RULE_VALUE
+    itemBags:
+      - $extends: glRungBagUncommon
+
+exports:
+  definitions:
+    - glRankRungRare
+    - glRankRungUncommon

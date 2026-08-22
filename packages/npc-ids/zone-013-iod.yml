@@ -11,7 +11,7 @@
 # Zone 13 scan results:
 #   - No villager=true templates
 #   - No showAggroTarget=true templates
-#   - No elite=true templates
+#   - No elite=true templates (classic content; the authored GL boss below is elite)
 #   - 2 objects (888 Training Dummy, 999 Exploding Barrel)
 #   - Remainder are Normal Monsters
 #
@@ -79,6 +79,15 @@ variables:
   IOD_SCION_SCOUT_3: 557            # Scion Scout (lv10, aiid=105)
   IOD_SCION_SCOUT_4: 558            # Scion Scout (lv10, aiid=106)
 
+  # --- Guardian Legion event monsters (authored, not classic content) ---
+  #
+  # These are deliberately absent from IOD_NORMAL_MONSTERS. That group is the
+  # filter for the zone's gear-formula rescale (maxHp x10 / atk x60), and these
+  # templates are authored with stats already on the post-rescale scale. Adding
+  # them to the group would multiply them a second time on any replay.
+  IOD_GL_ORCAN_RAIDER: 2002         # Orcan raider, event wave (authored)
+  IOD_GL_ORCAN_WARLORD: 2003        # Orcan boss, elite (authored)
+
   # --- Category groups ---
 
   IOD_FRIENDLY_NPCS: []
@@ -134,7 +143,8 @@ variables:
     - $IOD_STONEBEAK_BRIGAND
     - $IOD_STONEBEAK_HIGHCREST
 
-  IOD_ELITE_MONSTERS: []
+  IOD_ELITE_MONSTERS:
+    - $IOD_GL_ORCAN_WARLORD
 
   IOD_BOSS_MONSTERS: []
 
@@ -172,6 +182,8 @@ exports:
     - IOD_ACHARAKS_SOLDIER
     - IOD_KUGAI
     - IOD_TERRON_SABOTEUR_ENV
+    - IOD_GL_ORCAN_RAIDER
+    - IOD_GL_ORCAN_WARLORD
     - IOD_ROCKCRAWLER
     - IOD_ROCKCRAWLER_CLEAVER
     - IOD_PROWLING_CROMOS
