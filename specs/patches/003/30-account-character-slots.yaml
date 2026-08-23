@@ -1,0 +1,28 @@
+# Character slots: raise the baseline account grade from three to six.
+#
+# expandCharacterSlot.slot is an ABSOLUTE slot count, not an increment on top of
+# some other number, so six here means six. Package 0 is the baseline every
+# account starts from and the other grades are sparse overrides on top of it;
+# each one that names expandCharacterSlot at all already grants eight or more,
+# so raising the baseline is the whole change and no override needs touching.
+#
+# upsertProperties writes the one attribute in place and leaves the rest of the
+# package alone. The whole-list properties: form would replace all 58 baseline
+# capability rows with the single row written here.
+#
+# Server-side only. The client AccountTrait node carries the property name with
+# no value, so nothing syncs.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+accountTraits:
+  update:
+    - id: 0
+      changes:
+        upsertProperties:
+          - name: expandCharacterSlot
+            slot: 6
