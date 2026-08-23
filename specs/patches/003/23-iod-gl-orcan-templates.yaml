@@ -122,10 +122,17 @@ npcs:
       partyMember: 1
       stat:
         level: 8
-        # Five times the zone's toughest named Orcan. Event trash has to survive long
+        # Fifty times the zone's toughest named Orcan. Event trash has to survive long
         # enough to be fought rather than walked through, and ten of these are the whole
         # of leg 1.
-        maxHp: 66385
+        #
+        # THIS FIGURE IS READ AT TEN PARTICIPANTS, NOT AT ONE. The mission's participant
+        # ladder multiplies the damage an event npc takes by 20/rung, and the rung that
+        # lands on 1.0 is the ten-player one. A solo player faces a tenth of this and a
+        # full fifteen face half again as much, so the health authored here is the middle
+        # of that band rather than the whole fight. Removing the ladder makes it ten times
+        # too tough, not correct.
+        maxHp: 663850
         # 3x the zone's scale. Attack is what actually reaches a target: four skills
         # carry identical totalAtk on both tiers and land 1.23 to 1.28 times harder on
         # the warlord, which is this field's ratio between them and not the skills'.
@@ -190,8 +197,10 @@ npcs:
         # Both this and the raider health above are the mission's reward budget.
         # Contribution is scored from damage dealt, so the health pool IS what the
         # mission pays out, and neither number can move without the coefficient in the
-        # event spec moving with it. tools/gl-reward/calibrate.py derives that.
-        maxHp: 984720
+        # event spec moving with it.
+        #
+        # Read at ten participants, like the raider health above.
+        maxHp: 9847200
         # 5x the zone's scale, see the raider's note above.
         atk: 141465
         def: 105.547444311114

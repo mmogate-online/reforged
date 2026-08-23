@@ -404,43 +404,32 @@ fieldEvents:
           spawnAreas:
             - { center: "50576,-78468,-4792", dir: 142, randomRange: 0 }
 
-      # Contribution scoring, and the coefficient here is NOT a shipped value.
+      # Contribution scoring. None of these three values is a shipped coefficient.
       #
-      # The participation bag threshold lives in FieldEvent.xml and is global to every
-      # mission on the server, so it cannot be lowered for one low-level event without
-      # cheapening the level-65 ones. The per-event coefficient is the only lever, and
-      # it has to absorb the whole gap: the global dealing rate is 0.001, and the total
-      # health pool of this mission's eleven monsters is roughly four orders of
-      # magnitude short of the threshold. A shipped coefficient here scores a rounding
-      # error.
+      # The participation bag threshold in FieldEvent.xml is global to every mission on
+      # the server, so it cannot be lowered for one low-level event. The per-event
+      # coefficient is the only lever and has to absorb the whole gap: these monsters hold
+      # four orders of magnitude less health than the level-65 rosters the shipped
+      # coefficients were set against, so a shipped value here scores a rounding error.
       #
-      # Contribution is scored per player from damage dealt, and the monsters here hold a
-      # FIXED amount of health, so a coefficient is only ever correct for ONE headcount:
-      # what each player earns falls in proportion as the headcount rises. This one is
-      # set for a single player clearing the mission alone.
+      # The RATIO is shipped and is the Guardian Legion format standard: healing runs the
+      # whole mission at the top of the band, dealing is low while the kill quota is up and
+      # steps to the top when the boss appears. Ours is that ratio (0.24 : 0.96 : 1.0)
+      # scaled by one factor onto this mission's own reward budget.
       #
-      # The shipped missions escape that because AutoEventBalance scales monster health
-      # with the participant count, holding per-player damage roughly constant. This
-      # mission omits that ladder (see above), and this is the cost of the omission.
+      # WHAT A MISSION PAYS SCALES WITH THE GRADE IT ADVERTISES, doubling per step: one bar
+      # at small, two at medium, four at large. This mission is medium, so it targets two,
+      # aimed above the floor because damage credited is less than the health pool once
+      # overkill and misses are counted.
       #
-      # Contribution points PERSIST ACROSS MISSIONS. The bar a player fills is their own
-      # running total against the shared threshold in FieldEvent.xml, not a per-mission
-      # score, which is why joining a mission already in progress is worth doing.
-      #
-      # WHAT A MISSION IS WORTH SCALES WITH THE GRADE IT ADVERTISES, doubling per step:
-      # one bar at small, two at medium, four at large. The world map promises a tier
-      # before a player commits, and a longer fight that paid the same as a short one
-      # would make that promise a lie. This mission is medium, so it targets two.
-      #
-      # The target is aimed above the floor on purpose. Damage dealt is not exactly the
-      # health pool once overkill and misses are counted, so a coefficient landing
-      # exactly on the boundary drops a whole bar on an untidy run.
-      #
-      # Derived, not chosen: the health pool IS the payout, so this moves whenever a
-      # monster's health does. Both come from the same calculator.
+      # Derived, not chosen: the health pool IS the payout, so all three move whenever a
+      # monster's health does. They also carry the ladder's rung-20 normalisation, so a
+      # calibration run against the raw health pool reads them ten times too generous.
       eventPoint:
         points:
-          - { id: 1, type: dealing, value: 197.0 }
+          - { id: 1, type: dealing, value: 70.56 }
+          - { id: 2, type: healing, value: 294.0 }
+          - { id: 3, type: dealing, value: 282.24 }
 
       # Clear reward. The pool itself is global and lives in FieldEvent.xml, at the foot
       # of this file; this half only names which pool the mission draws from. weightSum
@@ -486,10 +475,43 @@ fieldEvents:
             string: "@field:111111"
             iconId: 1
 
-      # AutoEventBalance is deliberately OMITTED. Its abnormality ladder (77770001 to
-      # 77770030) is tuned for level-65 stat scales and has no low-level equivalent, so
-      # attaching it here would apply level-65 scaling to a low-level fight. Omitting it
-      # is a legal shape: other shipped missions carry no AutoEventBalance either.
+      # Participant ladder, and it is the mission's DIFFICULTY control as much as its
+      # reward control. A rung carries two reciprocal effects: event npcs take 20/rung
+      # times damage, and the health they lose is worth rung/20 times contribution.
+      #
+      # So a rung is really one statement made twice. Pairing rung 2P with P players
+      # holds BOTH the raw damage each player must deal and the contribution each player
+      # earns constant at every headcount, against a fixed authored health pool. Rung 20
+      # is the neutral one, which is why the monsters' authored health reads at TEN
+      # participants and not at one.
+      #
+      # Removing this ladder does not merely change scoring: it makes the fight ten times
+      # harder solo, because the 10x damage multiplier goes with it. Live-measured.
+      #
+      # The first row is the 0-or-1 window every shipped ladder opens with, so it is
+      # written out rather than templated. The rungs step by two because this mission caps
+      # at 15 and the top rung still has to land on 30.
+      autoEventBalance:
+        balances:
+          - userMin: 0
+            userMax: 1
+            basicAbnormalities:
+              - targetNpcId: { huntingZone: 0, templateId: 0 }
+                abnormalityId: 77770002
+          - { $extends: fieldevent.balanceTier, $with: { N: 2, ABN: 77770004 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 3, ABN: 77770006 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 4, ABN: 77770008 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 5, ABN: 77770010 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 6, ABN: 77770012 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 7, ABN: 77770014 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 8, ABN: 77770016 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 9, ABN: 77770018 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 10, ABN: 77770020 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 11, ABN: 77770022 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 12, ABN: 77770024 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 13, ABN: 77770026 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 14, ABN: 77770028 } }
+          - { $extends: fieldevent.balanceTier, $with: { N: 15, ABN: 77770030 } }
 
       # ---------------------------------------------------------------------
       # Encounter script. Keyless and REPLACED WHOLE on every apply, so this block is
@@ -523,6 +545,7 @@ fieldEvents:
                     - { $extends: fieldevent.taskFlag, $with: { NAME: success, VALUE: 0, NEXT: none } }
                     - { $extends: fieldevent.taskFlag, $with: { NAME: timeout, VALUE: 0, NEXT: none } }
                     - { $extends: fieldevent.taskPoint, $with: { POINT_ID: 1, TURN: "on" } }
+                    - { $extends: fieldevent.taskPoint, $with: { POINT_ID: 2, TURN: "on" } }
                     - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1300905, NEXT: none } }
                     - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301345, NEXT: none } }
                     - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 1301369, NEXT: none } }
@@ -604,6 +627,8 @@ fieldEvents:
                       targetType: specificNpc
                       huntingZoneId: 13
                       npcTemplateId: [$IOD_GL_ORCAN_RAIDER]
+                    - { $extends: fieldevent.taskPoint, $with: { POINT_ID: 1, TURN: "off" } }
+                    - { $extends: fieldevent.taskPoint, $with: { POINT_ID: 3, TURN: "on" } }
                     - { $extends: fieldevent.taskGuide, $with: { GUIDE_ID: "1", GUIDE_TYPE: complete, NEXT: none } }
                     - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017011, NEXT: none } }
                     - { $extends: fieldevent.taskDespawn, $with: { HUNTING_ZONE: 13, TERRITORY: 13017012, NEXT: none } }
@@ -798,10 +823,10 @@ fieldEventConfig:
         - { continentId: 7031, eventId: 95 }
     # Island of Dawn Orcan Raiders. Kept in its own single-member group with
     # randomRotation false so it runs deterministically instead of competing for a slot
-    # with the level-65 wheel. startInterval equals the mission's progressTime, so
-    # instances run back to back and it is effectively always available.
-    - serverOpenDelay: 30
-      startInterval: 660
+    # with the level-65 wheel. startInterval is longer than the mission's own
+    # progressTime, so instances never overlap and the island is quiet between them.
+    - serverOpenDelay: 600
+      startInterval: 900
       randomRotation: false
       events:
         - { continentId: 13, eventId: 1 }
@@ -826,7 +851,7 @@ fieldEventConfig:
         - minLevel: 1
           maxLevel: 59
           rewards:
-            - { type: item, templateId: $EARLY_PROGRESSION_TOKEN, amount: 20 }
+            - { type: item, templateId: $EARLY_PROGRESSION_TOKEN, amount: 80 }
         - minLevel: 60
           maxLevel: 64
           rewards:
@@ -852,25 +877,23 @@ fieldEventConfig:
   # silently rather than failing. And showRewardList is the world-map tooltip only:
   # nothing checks it against the payouts below it, so the two are kept in step by hand.
   clearRewards:
-    # Island of Dawn Orcan Raiders. Ranked rather than scored, so what a player takes
-    # home does not depend on how many others turned up.
+    # Island of Dawn Orcan Raiders. One box of one grade for every finisher, so placing
+    # decides nothing here.
     #
-    # EXACTLY ONE BAG PAYS, the tightest ruleValue the player qualifies for, so the four
-    # rungs do not stack: a first-place finisher takes the first rung alone even though
-    # they also qualify for the three below it. The last rung's ruleValue is the
-    # mission's own maxMemberCount, which is what makes it the everyone-else rung.
+    # `rule: rank` is kept even though a single rung does not discriminate: it is what
+    # makes the payout independent of turnout, where a point cut would move with the
+    # headcount. Adding rungs later is then a data change rather than a rule change.
     #
-    # Each bag in a rung is ONE box and rolls its own grade, so the percentages are an
-    # average across the rung rather than a guaranteed split. RARE_W*4 + UNCOMMON_W*4
-    # must equal 1000.
+    # ONE rung whose ruleValue is the mission's own maxMemberCount is the everyone-else
+    # rung, and with no tighter rung above it every rank from first down falls in it.
+    #
+    # The bag draws ONE row, so the four equipment slots inside it are the random pick
+    # and BOXES is how many copies of that one slot are paid.
     - id: 130101
       rule: rank
-      showRewardList: [602191, 602194, 602197, 602200, 602190, 602193, 602196, 602199]
+      showRewardList: [602190, 602193, 602196, 602199]
       bags:
-        - { $extends: gl-rank-rewards.glRankRungRare, $with: { RULE_VALUE: 1, BOXES: 10 } }
-        - { $extends: gl-rank-rewards.glRankRungRare, $with: { RULE_VALUE: 2, BOXES: 8 } }
-        - { $extends: gl-rank-rewards.glRankRungRare, $with: { RULE_VALUE: 3, BOXES: 6 } }
-        - { $extends: gl-rank-rewards.glRankRungUncommon, $with: { RULE_VALUE: 15, BOXES: 5 } }
+        - { $extends: gl-rank-rewards.glRankRungUncommon, $with: { RULE_VALUE: 15, BOXES: 1 } }
 
     # Pre-existing, restated verbatim.
     - id: 70030201

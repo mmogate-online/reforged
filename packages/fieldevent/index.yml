@@ -28,7 +28,9 @@ definitions:
     userMin: $N
     userMax: $N
     basicAbnormalities:
-      - targetNpcId: "0,0"
+      # targetNpcId is a block, not the emitted "zone,npc" string. Zero on both members
+      # is the wildcard the corpus uses for every rung: apply to all event npcs.
+      - targetNpcId: { huntingZone: 0, templateId: 0 }
         abnormalityId: $ABN
 
   # --------------------------------------------------------------------------

@@ -12,7 +12,7 @@
 #
 # GRADE IS THE RUNG, NOT A ROLL. Each rung pays one grade outright, so placing decides
 # what a player gets rather than a lottery on top of it. The bag still rolls, but only
-# over the four equipment slots, which are flat at 250 apiece.
+# over the four equipment slots.
 #
 # Grade was briefly a weight across all eight boxes in one bag. It reads badly: because
 # the bag draws ONE row, an eighty percent rare rung still sent one first-place finisher
@@ -25,12 +25,18 @@
 #
 # weightSum is the divisor the server rolls against, and the corpus holds no exception:
 # across every ItemBag in the shipped field event config the Item weights sum exactly to
-# it. A mismatch skews the table silently rather than failing, so RARE_W*4 + UNCOMMON_W*4
-# must equal 1000 at every call site.
+# it. A mismatch skews the table silently rather than failing, so the four slot weights
+# must sum to 1000.
 #
-# Slot weighting is flat within a grade even though the pools behind the four boxes are
-# very different sizes, so a weapon box is a much wider draw than a boots box. That is a
-# tuning choice, and the call site cannot change it: it lives here.
+# THE WEAPON SLOT IS WEIGHTED UP, and the reason is the pool behind it. The boxes draw
+# flat over their whole contents with no class or armour-type filter, and a weapon pool
+# spans 13 weapon subtypes against 3 armour subtypes for each of the other three, so a
+# weapon box is roughly four times less likely to yield a piece its opener can equip.
+# Flat slot weights therefore let the weapon slot gate a whole set. 400 against 200
+# closes about half of that gap; closing it fully would take a weapon weight near 590,
+# at which point most of what the ladder pays is weapon boxes.
+#
+# Slot weighting lives here and the call site cannot change it.
 
 spec:
   version: "1.0"
@@ -57,19 +63,19 @@ definitions:
     prob: 1
     weightSum: 1000
     items:
-      - { templateId: $INFUSION_WEAPON_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
-      - { templateId: $INFUSION_CHEST_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
-      - { templateId: $INFUSION_GLOVES_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
-      - { templateId: $INFUSION_BOOTS_BOX_RARE, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_WEAPON_BOX_RARE, min: $BOXES, max: $BOXES, weight: 400 }
+      - { templateId: $INFUSION_CHEST_BOX_RARE, min: $BOXES, max: $BOXES, weight: 200 }
+      - { templateId: $INFUSION_GLOVES_BOX_RARE, min: $BOXES, max: $BOXES, weight: 200 }
+      - { templateId: $INFUSION_BOOTS_BOX_RARE, min: $BOXES, max: $BOXES, weight: 200 }
 
   glRungBagUncommon:
     prob: 1
     weightSum: 1000
     items:
-      - { templateId: $INFUSION_WEAPON_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
-      - { templateId: $INFUSION_CHEST_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
-      - { templateId: $INFUSION_GLOVES_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
-      - { templateId: $INFUSION_BOOTS_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 250 }
+      - { templateId: $INFUSION_WEAPON_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 400 }
+      - { templateId: $INFUSION_CHEST_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 200 }
+      - { templateId: $INFUSION_GLOVES_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 200 }
+      - { templateId: $INFUSION_BOOTS_BOX_UNCOMMON, min: $BOXES, max: $BOXES, weight: 200 }
 
   glRankRungRare:
     $params: [RULE_VALUE, BOXES]
