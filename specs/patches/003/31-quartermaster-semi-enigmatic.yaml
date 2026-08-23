@@ -1,0 +1,46 @@
+# Sell the Semi-Enigmatic Scroll on the Valkyon Quartermaster's Materials tab
+#
+# `items` on a BuyList is CLEAR-AND-REPLACE, not append: an upsert that named the
+# scroll alone would silently drop feedstock and alkahest from the tab. All three
+# rows are restated for that reason, and the record is restated whole so the spec
+# is idempotent on its own rather than by inheriting the tab's prior state.
+#
+# THE PRICE IS IN `exchanges`, NOT IN `priceRevision`. priceRevision is a revision
+# index that never exceeds 100 anywhere in the corpus; the medal cost is
+# buyPriceMedal. An `exchanges` row is keyed on (itemId, medalItemId), so this one
+# is an independent insert and leaves the tab's other prices alone.
+#
+# The scroll already carries a name and a tooltip in the shipped string sheets, so
+# no itemStrings block is needed to keep it from rendering as a blank shop row.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: progression-tokens
+    use:
+      variables:
+        - EARLY_PROGRESSION_TOKEN
+        - VALKYON_QM_LIST_MATERIALS
+
+buyLists:
+  upsert:
+    - id: $VALKYON_QM_LIST_MATERIALS
+      desc: "Quartermaster Materials"
+      needMedalItemId: $EARLY_PROGRESSION_TOKEN
+      items:
+        - itemId: 94101            # Tier 1 Feedstock
+          priceRevision: 1
+        - itemId: 21351            # Masterwork Alkahest
+          priceRevision: 1
+        - itemId: 399              # Semi-Enigmatic Scroll
+          priceRevision: 1
+
+exchanges:
+  upsert:
+    - itemId: 399
+      medalItemId: $EARLY_PROGRESSION_TOKEN
+      buyPriceMedal: 4
