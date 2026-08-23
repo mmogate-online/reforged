@@ -8,6 +8,39 @@ is live on the server.
 
 Every change here comes from a spec in this repository, if you want the exact numbers.
 
+## [Patch 003] - 2026-08-23
+
+The Island of Dawn gets its first field event, and a long list of reported problems gets
+answered. The client also ships in two more languages for the first time.
+
+### Added
+
+- Guardian Legion: Orcan Raiders, the first field event to run on the Island of Dawn. Clear the raider wave to draw out the Orcan Warlord Acharak, then bring him down before the mission closes.
+- The exploding barrels around the Orcan camp are now a weapon. Pull a Guardian Legion monster onto one and break it. The blast does not care who is standing nearby, you included.
+- Gear dismantling. Combat gear in the early ranks now breaks down into enchant materials. Most of it was already marked breakable and refunded nothing.
+- The Semi-Enigmatic Scroll now sells on the Valkyon Quartermaster's Materials tab.
+- Spanish and Brazilian Portuguese, selectable in the launcher. Both are machine-translated first drafts under review, and anything not yet translated stays in English.
+
+### Changed
+
+- New accounts start with six character slots instead of three.
+- Infusion costs almost nothing while you are levelling and starts to bite from the fourth gear rank, climbing to meet the price the game already charged at the top.
+- Tank weapons absorb 20% more damage on a block at the level cap.
+- Chat channels no longer carry a level requirement.
+- The Island of Dawn now uses the classic terrain, which clears up the areas where skills would refuse to fire.
+- Leman now survives beside you in Karascha's Lair instead of dying to the first hit he takes.
+- The Orcan Warlord fights to his own battle music.
+
+### Fixed
+
+- The Mystic's Boomerang Pulse travels where you aim it. It used to launch at a fixed upward angle no matter where you pointed.
+- Blocking with a tank weapon now absorbs the damage it is supposed to.
+- Sorcha's repeatable challenge completes for every member of the party, not only whoever tripped it.
+- Teleporting between two points on the Island of Dawn no longer drops you out of your party.
+- Infusion boxes draw evenly across their whole reward list. They used to hand out the same single item on every open.
+- Attack-speed and damage-reflection charms were applying the wrong effect. Attack-speed charms had been healing the wearer to full instead of doing anything to attack speed.
+- Gameforge's system announcements, links and sender name are gone from chat.
+
 ## [Patch 002] - 2026-08-09
 
 The first Reforged patch. Patch 001 rebuilt the Island of Dawn as it was in the classic game;
