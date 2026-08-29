@@ -4,11 +4,34 @@
 # Every behaviour id this record drives is a skill id the target templates own,
 # and its formation and message references are local to this zone already.
 #
+# The definitions hold what a repeated block shares with its siblings, so what
+# a block states under one is the whole of what makes it different.
+#
 # provenance: carry-over
 
 spec:
   version: "1.0"
   schema: v92
+
+definitions:
+  Work:
+    normalBehaviorId: 1101
+    normalBehaviorType: skill
+    offFlockOnNormalMode: true
+    angerBehaviorId: 2101
+    angerBehaviorType: skill
+    offFlockOnAngerMode: true
+    preProcess: 1
+    distanceType: 1
+    distanceRate: 0.8
+    coolTime: 0
+    isDirectionRevision: true
+    msgImmediately: false
+    msgProb: 0.0
+  Info:
+    workId: 12
+    prob: 0.0
+    distanceRate: 0.8
 
 ai:
   upsert:
@@ -35,424 +58,250 @@ ai:
           tensionList:
             - id: 1
               infos:
-                - workId: 12
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 13
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 4
+                - $extends: Info
+                - $extends: Info
+                  workId: 13
+                - $extends: Info
+                  workId: 4
                   prob: 0.5
-                  distanceRate: 0.8
-                - workId: 6
+                - $extends: Info
+                  workId: 6
                   prob: 0.3
-                  distanceRate: 0.8
-                - workId: 8
+                - $extends: Info
+                  workId: 8
                   prob: 0.3
-                  distanceRate: 0.8
-                - workId: 3
+                - $extends: Info
+                  workId: 3
                   prob: 0.2
-                  distanceRate: 0.8
-                - workId: 15
+                - $extends: Info
+                  workId: 15
                   prob: 0.35
-                  distanceRate: 0.8
-                - workId: 2
+                - $extends: Info
+                  workId: 2
                   prob: 0
-                  distanceRate: 0.8
-                - workId: 1
+                - $extends: Info
+                  workId: 1
                   prob: 0.5
-                  distanceRate: 0.8
-                - workId: 7
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 9
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 10
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 11
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 14
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 16
+                - $extends: Info
+                  workId: 7
+                - $extends: Info
+                  workId: 9
+                - $extends: Info
+                  workId: 10
+                - $extends: Info
+                  workId: 11
+                - $extends: Info
+                  workId: 14
+                - $extends: Info
+                  workId: 16
                   prob: 0
-                  distanceRate: 0.8
-                - workId: 5
+                - $extends: Info
+                  workId: 5
                   prob: 1.0
-                  distanceRate: 0.8
             - id: 2
               infos:
-                - workId: 12
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 13
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 4
+                - $extends: Info
+                - $extends: Info
+                  workId: 13
+                - $extends: Info
+                  workId: 4
                   prob: 0.3
-                  distanceRate: 0.8
-                - workId: 16
+                - $extends: Info
+                  workId: 16
                   prob: 0.5
-                  distanceRate: 0.8
-                - workId: 11
+                - $extends: Info
+                  workId: 11
                   prob: 0
-                  distanceRate: 0.8
-                - workId: 1
+                - $extends: Info
+                  workId: 1
                   prob: 0.3
-                  distanceRate: 0.8
-                - workId: 15
+                - $extends: Info
+                  workId: 15
                   prob: 0
-                  distanceRate: 0.8
-                - workId: 2
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 3
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 6
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 7
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 8
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 9
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 10
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 14
-                  prob: 0.0
-                  distanceRate: 0.8
-                - workId: 5
+                - $extends: Info
+                  workId: 2
+                - $extends: Info
+                  workId: 3
+                - $extends: Info
+                  workId: 6
+                - $extends: Info
+                  workId: 7
+                - $extends: Info
+                  workId: 8
+                - $extends: Info
+                  workId: 9
+                - $extends: Info
+                  workId: 10
+                - $extends: Info
+                  workId: 14
+                - $extends: Info
+                  workId: 5
                   prob: 1.0
-                  distanceRate: 0.8
           workList:
-            - id: 1
+            - $extends: Work
+              id: 1
               desc: 기본 공격(적극적)
-              normalBehaviorId: 1101
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
-              angerBehaviorId: 2101
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetDamagedCount(5) > 2
               distanceType: 2
-              distanceRate: 0.8
               coolTime: 3000
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.0
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 2
+              nextAttackProb: [0.0]
+              msg: [0]
+            - $extends: Work
+              id: 2
               desc: 회전 공격
               normalBehaviorId: 1102
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 2102
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetDamagedCount(5) > 2 AND GetCombatTime() > 7000
-              distanceType: 1
-              distanceRate: 0.8
               coolTime: 7000
-              isDirectionRevision: true
-              nextAttackProb:
-                - 1
-              nextAttackId:
-                - 12
+              nextAttackProb: [1]
+              nextAttackId: [12]
               msgImmediately: true
-              msg:
-                - 218
+              msg: [218]
               msgProb: 0.1
-            - id: 3
+            - $extends: Work
+              id: 3
               desc: 백점프후우워
               normalBehaviorId: 1103
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 2103
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetDamagedCount(5) > 2 AND GetTargetDistance() < 60
-              distanceType: 1
               distanceRate: 0.0
               coolTime: 8000
-              isDirectionRevision: true
-              nextAttackProb:
-                - 1.0
-              nextAttackId:
-                - 10
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 4
+              nextAttackProb: [1.0]
+              nextAttackId: [10]
+              msg: [0]
+            - $extends: Work
+              id: 4
               desc: 폭탄 투척
               normalBehaviorId: 1104
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 2104
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetTargetDistance() > 300
               distanceType: 2
-              distanceRate: 0.8
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
               msgImmediately: true
-              msg:
-                - 202
+              msg: [202]
               msgProb: 0.3
-            - id: 5
+            - $extends: Work
+              id: 5
               desc: 전진 공격
               normalBehaviorId: 1105
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 2105
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
-              preProcess: 1
               distanceType: 2
-              distanceRate: 0.8
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.4
-              nextAttackId:
-                - 7
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 6
+              nextAttackProb: [0.4]
+              nextAttackId: [7]
+              msg: [0]
+            - $extends: Work
+              id: 6
               desc: 좌걸음
               normalBehaviorId: 1207
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 1207
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetTargetDistance() > 100 AND GetDamagedCount(5) < 2
-              distanceType: 1
               distanceRate: 0.0
               coolTime: 7000
-              isDirectionRevision: true
-              nextAttackProb:
-                - 1.0
-              nextAttackId:
-                - 7
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 7
+              nextAttackProb: [1.0]
+              nextAttackId: [7]
+              msg: [0]
+            - $extends: Work
+              id: 7
               desc: 좌걸음(반복)
               normalBehaviorId: 1207
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 1207
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
-              preProcess: 1
-              distanceType: 1
               distanceRate: 0.0
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 8
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
+              msg: [0]
+            - $extends: Work
+              id: 8
               desc: 우걸음
               normalBehaviorId: 1208
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 1208
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetTargetDistance() > 100 AND GetDamagedCount(5) < 2
-              distanceType: 1
               distanceRate: 0.0
               coolTime: 7000
-              isDirectionRevision: true
-              nextAttackProb:
-                - 1.0
-              nextAttackId:
-                - 9
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 9
+              nextAttackProb: [1.0]
+              nextAttackId: [9]
+              msg: [0]
+            - $extends: Work
+              id: 9
               desc: 우걸음(반복)
               normalBehaviorId: 1208
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 1208
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
-              preProcess: 1
-              distanceType: 1
               distanceRate: 0.0
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 10
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
+              msg: [0]
+            - $extends: Work
+              id: 10
               desc: 폭탄 투척(패턴용)
               normalBehaviorId: 1104
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 2104
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
-              preProcess: 1
-              distanceType: 1
               distanceRate: 0.0
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
               msgImmediately: true
-              msg:
-                - 202
+              msg: [202]
               msgProb: 0.3
-            - id: 11
+            - $extends: Work
+              id: 11
               desc: 회전 공격(분노용)
               normalBehaviorId: 1102
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 2102
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
-              preProcess: 1
               distanceType: 2
-              distanceRate: 0.8
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 12
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
+              msg: [0]
+            - $extends: Work
+              id: 12
               desc: 50% 탈진
               normalBehaviorId: 1201
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 1201
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetHpRatio() >0.2 AND GetHpRatio() < 0.5 AND IsInAnger() == 0
-              distanceType: 1
-              distanceRate: 0.8
               coolTime: 7000
               isDirectionRevision: false
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 13
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
+              msg: [0]
+            - $extends: Work
+              id: 13
               desc: 20% 탈진
               normalBehaviorId: 1202
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
               angerBehaviorId: 1202
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
               preProcess: GetHpRatio() <= 0.2 AND IsInAnger() == 0
-              distanceType: 1
-              distanceRate: 0.8
               coolTime: 8000
               isDirectionRevision: false
-              nextAttackProb:
-                - 0.0
-              nextAttackId:
-                - 0
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 14
+              nextAttackProb: [0.0]
+              nextAttackId: [0]
+              msg: [0]
+            - $extends: Work
+              id: 14
               desc: 기본 공격(반복용)
-              normalBehaviorId: 1101
-              normalBehaviorType: skill
-              offFlockOnNormalMode: true
-              angerBehaviorId: 2101
-              angerBehaviorType: skill
-              offFlockOnAngerMode: true
-              preProcess: 1
               distanceType: 2
-              distanceRate: 0.8
-              coolTime: 0
-              isDirectionRevision: true
-              nextAttackProb:
-                - 0.3
-              nextAttackId:
-                - 7
-              msgImmediately: false
-              msg:
-                - 0
-              msgProb: 0.0
-            - id: 15
+              nextAttackProb: [0.3]
+              nextAttackId: [7]
+              msg: [0]
+            - $extends: Work
+              $remove: [offFlockOnNormalMode, offFlockOnAngerMode, msgImmediately, msgProb]
+              id: 15
               desc: 회전 공격 사전 동작
-              normalBehaviorType: skill
-              angerBehaviorType: skill
               preProcess: GetDamagedCount(5) > 2 AND GetCombatTime() > 7000
               distanceType: 2
-              distanceRate: 0.8
               coolTime: 7000
-              isDirectionRevision: true
-              nextAttackProb:
-                - 1
-              nextAttackId:
-                - 2
+              nextAttackProb: [1]
+              nextAttackId: [2]
               normalBehaviorId: 1203
               angerBehaviorId: 2203
-            - id: 16
+            - $extends: Work
+              $remove:
+                - offFlockOnNormalMode
+                - offFlockOnAngerMode
+                - coolTime
+                - msgImmediately
+                - msgProb
+              id: 16
               desc: 회전 공격 사전 동작(분노)
-              normalBehaviorType: skill
-              angerBehaviorType: skill
-              preProcess: 1
               distanceType: 2
-              distanceRate: 0.8
-              isDirectionRevision: true
-              nextAttackProb:
-                - 1
-              nextAttackId:
-                - 2
+              nextAttackProb: [1]
+              nextAttackId: [2]
               normalBehaviorId: 1203
               angerBehaviorId: 2203
         avoid:
@@ -486,15 +335,12 @@ ai:
               distanceRate: 0.8
               coolTime: 30000
               isDirectionRevision: true
-              nextAttackProb:
-                - 0.5
-              nextAttackId:
-                - 8
+              nextAttackProb: [0.5]
+              nextAttackId: [8]
               orderType: formation
               formationId: 7
               msgImmediately: true
-              msg:
-                - 1
+              msg: [1]
               msgProb: 0.5
           receiveOrderList:
             - orderId: 1
@@ -565,8 +411,7 @@ ai:
               preProcess: 1
               immediateAttackId: 1
               msgImmediately: false
-              msg:
-                - 0
+              msg: [0]
               msgProb: 0.0
         social:
           socialMotionId: 0
