@@ -17,10 +17,6 @@
 # 1303's prerequisites are a REPLACE-all list, so the full OR set is restated below
 # with prerequisiteLogic: OR. A character is one class, so completing any single
 # training quest unlocks it, unchanged for the nine classic classes.
-#
-# CLIENT SYNC TRAP: new low-id quests insert into the client's IdSorted Quest and
-# QuestDialog layout, which the manifest-narrowed sync cannot place (E680). Sync
-# these with --no-narrow. QuestCompensationData and QuestGroupList are server-only.
 
 spec:
   version: "1.0"

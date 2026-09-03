@@ -436,10 +436,6 @@ speechConditions:
 # because the client holds one shard per (huntingZoneId, id) and an NPC with no
 # shard gets nothing.
 #
-# SYNC WITH --no-narrow. Client shard numbers are POSITIONAL RANKS in ascending
-# (huntingZoneId, id) order, so inserting these five renumbers every shard after
-# them and a manifest-narrowed run is refused with E680.
-#
 # The dialog id IS the npc template id. `voiceTypeId` IS THE NPC'S VOICE and it
 # lives on this root; there is no voice attribute anywhere on an NpcData Template.
 # Take it from the NPC whose model was copied, because model and voice are chosen
