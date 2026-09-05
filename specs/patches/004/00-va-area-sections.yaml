@@ -1,0 +1,123 @@
+# Velika and Arcadia area sections, restored to their classic shape: the Berzerad
+# Cemetery ring in ANC_C_P returns to its nine classic vertices, three per-section
+# item gates are cleared, mounts are disallowed again in Valkyon Federation HQ, the
+# Free Traders Hall section in VK_FA_P is re-added, and the entrance sections of two
+# instances that no longer exist are removed.
+#
+# Every existing-section op is a PARTIAL upsert: only the attributes listed are
+# written, so pk, guildWar, the recall points and the rest of each section survive
+# untouched. A fence list is replace-all rather than merged, which is why section 59
+# restates its whole ring. An item gate cannot be removed as an attribute, only
+# emptied: writing "" is the corpus form of "no gate", and omitting the key would
+# leave the current gate in place.
+#
+# The Free Traders Hall extends area-section-standard.ClassicSection, and its recall
+# continent is 7005 because Velika is mounted there. AreaData_7005_VK_FA_P.xml also
+# holds a commented-out copy of the same section; comments survive a write, so that
+# copy remains a comment and the live section is the one this spec writes.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: area-section-standard
+
+areaSections:
+  upsert:
+    # 3002 Berzerad Cemetery: the classic nine-vertex ring.
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 59
+      nameId: 3002
+      fences:
+        - [104139.4219, 18570.2539, 3752.5791]
+        - [107551.7344, 21084.9434, 4150.9092]
+        - [106099.1406, 23289.4180, 5816.7285]
+        - [102025.5547, 26051.3848, 6636.0615]
+        - [98639.6406, 23662.2441, 6320.0928]
+        - [99677.5391, 21680.9238, 4927.1494]
+        - [99606.6719, 18439.3438, 4157.7451]
+        - [101613.1797, 17670.0645, 3357.9258]
+        - [103441.8359, 18077.7773, 3877.0469]
+
+    # 63008 Freedom Plaza: no item gate.
+    - continentId: 7005
+      areaName: "VK_P"
+      sectionId: 62
+      nameId: 63008
+      enableItemId: ""
+
+    # 63009 Valkyon Federation HQ: no mounts.
+    - continentId: 7005
+      areaName: "VK_P"
+      sectionId: 63
+      nameId: 63009
+      ride: false
+
+    # 5006 Mighty Frog Pond: no item gate.
+    - continentId: 7001
+      areaName: "ANC_B_P"
+      sectionId: 108
+      nameId: 5006
+      disableItemId: ""
+
+    # 7001 Celestial Hills: no item gate.
+    - continentId: 7001
+      areaName: "AX2_P"
+      sectionId: 1
+      nameId: 7001
+      disableItemId: ""
+
+    # 9121100 Free Traders Hall (root-level section of VK_FA_P).
+    - continentId: 7005
+      areaName: "VK_FA_P"
+      sectionId: 116
+      $extends: area-section-standard.ClassicSection
+      desc: "벨리카 연맹 집회소"
+      nameId: 9121100
+      worldMapSectionId: 3
+      priority: 153
+      addMaxZ: 10000.000000
+      restBonus: false
+      maze: false
+      sellableItemId: "1191,1193,1204"
+      disableItemId: "1164,1167,1170"
+      recallReviveContinentId: 7005
+      recallRevivePos: "-2496.6724,9380.0674,2765.0933"
+      recallScrollContinentId: 7005
+      recallScrollPos: "-2496.6724,9380.0674,2765.0933"
+      recallReviveContinentIdA: 0
+      recallRevivePosA: ""
+      recallScrollContinentIdA: 0
+      recallScrollPosA: ""
+      recallReviveContinentIdB: 0
+      recallRevivePosB: ""
+      recallScrollContinentIdB: 0
+      recallScrollPosB: ""
+      recallReviveContinentIdC: 0
+      recallRevivePosC: ""
+      recallScrollContinentIdC: 0
+      recallScrollPosC: ""
+      fences:
+        - [30435.2832, 16752.0684, 1864.4922]
+        - [27218.0332, 19827.7617, 2919.1250]
+        - [25210.4648, 19817.3340, 1795.2070]
+        - [23753.2441, 17746.8320, 1182.5732]
+        - [22153.0547, 14778.8906, 573.7012]
+        - [22497.4531, 13766.3682, 630.4014]
+        - [24786.3613, 11526.6377, 681.1377]
+        - [26138.0371, 11727.5986, 762.5342]
+        - [30033.2188, 13850.0674, 2883.8271]
+
+  delete:
+    # Antaroth's Abyss entrance: the instance is gone.
+    - continentId: 7005
+      areaName: "VK_P"
+      sectionId: 920
+    # Broken Prison entrance: the instance is gone.
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 144

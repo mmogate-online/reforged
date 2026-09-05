@@ -1,0 +1,33 @@
+# Velika region strings: restores the Free Traders Hall name and the six Velika
+# Federation union-field names its world-map sections point at, and removes the
+# label of the Antaroth's Abyss entrance section, which is deleted with its instance.
+#
+# The entrance label for Broken Prison (8104002) is deliberately NOT deleted here:
+# a TeleportData entry still resolves it through an @rgn: reference, and a string
+# is removed only once nothing on the server resolves it.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+regionStrings:
+  upsert:
+    - id: 9121100
+      string: "Free Traders Hall"
+    - id: 9121001
+      string: "Free Traders Territory"
+    - id: 9121010
+      string: "Fort Tulufan"
+    - id: 9121002
+      string: "The Surround"
+    - id: 9122010
+      string: "Fort Elenea"
+    - id: 9121003
+      string: "The Barrens"
+    - id: 9123001
+      string: "Iron Order Territory"
+
+  delete:
+    - 97201

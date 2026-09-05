@@ -1,0 +1,374 @@
+# Velika world map: re-adds the Free Traders Hall (World 1, Velika guard, section 3)
+# and the Velika Federation union fields (World 9999, guard 61: the three field maps
+# and their three fortress towns), with every map marker each of them carried.
+#
+# A world-map section upsert replaces that section's whole marker list, so every
+# marker is stated here even where one already exists. Worlds and guards are
+# addressed by id and only the listed ones are touched; the continent list is left
+# alone because the key is absent. The client copy of this file merges by id and
+# never deletes, so this spec only adds sections and markers.
+#
+# Hall markers carry continent 7005 because Velika is mounted there. Union-field
+# markers carry their own field continents (9121, 9122, 9123), and the marker type
+# spellings are the ones the client asset names use.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+newWorldMap:
+  upsert:
+    - worldId: 1
+      desc: "월드맵아보레아"
+      guards:
+        - guardId: 1
+          desc: "1 벨리카"
+          sections:
+            - sectionId: 3
+              desc: "벨리카 연맹 집회소"
+              mapId: "WMap_Union_VK_FA"
+              floor: 1
+              nameId: 9121100
+              top: 30720
+              left: 7680
+              width: 13107.2
+              height: 9830.4
+              npcs:
+                - continentId: 7005
+                  desc: "보급관_콜 메이슨"
+                  nameId: "99,151"
+                  pos: "25276.0000,13669.0000,786.0000"
+                  type: "MARKER_UNION_SUPPLY"
+                - continentId: 7005
+                  desc: "강화장인_하바 나라크"
+                  nameId: "99,141"
+                  pos: "24533.0000,14446.0000,786.0000"
+                  type: "MARKER_UNION_ENCHANT"
+                - continentId: 7005
+                  desc: "창고지기_홀든"
+                  nameId: "99,31"
+                  pos: "23965.6387,14515.0127,785.1484"
+                  type: "MARKER_WAREHOUSE"
+                - continentId: 7005
+                  desc: "창고지기_세레나 페르델"
+                  nameId: "99,32"
+                  pos: "27093.3281,14589.4600,893.9476"
+                  type: "MARKER_WAREHOUSE"
+                - continentId: 7005
+                  desc: "강화장인_파르타 나라크"
+                  nameId: "99,142"
+                  pos: "26990.9766,14677.6006,893.9476"
+                  type: "MARKER_UNION_ENCHANT"
+                - continentId: 7005
+                  desc: "간부상인_크리스티 디아르"
+                  nameId: "99,131"
+                  pos: "28331.1797,16720.2832,893.9453"
+                  type: "MARKER_UNION_MERCHANT"
+                - continentId: 7005
+                  desc: "벨리카 연맹 게이트"
+                  nameId: "99,111"
+                  pos: "26902.8418,17608.0859,893.9476"
+                  type: "MARKER_UNION_DominionPotal_VK"
+                - continentId: 7005
+                  desc: "행정관_테리"
+                  nameId: "99,161"
+                  pos: "27562.9141,17479.3418,893.9453"
+                  type: "MARKER_UNION_EXECUTIVE"
+                - continentId: 7005
+                  desc: "보급관_정키"
+                  nameId: "99,152"
+                  pos: "25567.0000,16261.0000,893.0000"
+                  type: "MARKER_UNION_SUPPLY"
+                - continentId: 7005
+                  desc: "벨리카 시티포탈"
+                  nameId: "99,51"
+                  pos: "26093.5215,15687.6543,893.9476"
+                  type: "MARKER_CITYPORTAL"
+                - continentId: 7005
+                  desc: "연맹 훈련소 수문장"
+                  nameId: "99,171"
+                  pos: "28176.0000,15858.0000,893.0000"
+                  type: "MARKER_ENTER_DUNGEON"
+                - continentId: 7005
+                  desc: "집회소 이동 관리인_부비부"
+                  nameId: "99,172"
+                  pos: "26518.0000,15226.0000,893.0000"
+                  type: "MARKER_CITYPORTAL"
+                - continentId: 7005
+                  desc: "집회소 이동 관리인"
+                  nameId: "99,173"
+                  pos: "26642.0000,15172.0000,1244.0000"
+                  type: "MARKER_CITYPORTAL"
+                - continentId: 7005
+                  desc: "벨리카 연맹 게이트"
+                  nameId: "99,111"
+                  pos: "26925,17600,893"
+                  type: "MARKER_UNION_DominionPortal_VK"
+                - continentId: 7005
+                  desc: "거래중개인"
+                  nameId: "99,21"
+                  pos: "23850.8750,14440.7295,785.1484"
+                  type: "MARKER_TRADE_BROKER"
+                - continentId: 7005
+                  desc: "거래중개인"
+                  nameId: "99,22"
+                  pos: "25570.0918,16151.4365,893.9476"
+                  type: "MARKER_TRADE_BROKER"
+
+    - worldId: 9999
+      desc: "특수공간"
+      guards:
+        - guardId: 61
+          desc: "연맹"
+          sections:
+            - sectionId: 9121
+              desc: "벨리카_연맹"
+              mapId: "WMap_UnionField_01"
+              floor: 1
+              nameId: 9121001
+              top: -86086
+              left: -218112
+              width: 71493.82
+              height: 53620.37
+              mode: 6
+              npcs:
+                - continentId: 9121
+                  desc: "벨리카 집행관"
+                  nameId: "99,101"
+                  pos: "-101990.5078,-162666.5938,2403.7051"
+                  type: "MARKER_UNION_Bailiff_VK"
+                - continentId: 9121
+                  desc: "벨리카 연맹 게이트"
+                  nameId: "99,111"
+                  pos: "-100257.4766,-161383.9219,2402.8613"
+                  type: "MARKER_UNION_DominionPotal_VK"
+                - continentId: 9121
+                  desc: "알레만시아 스폰 포인트"
+                  nameId: "99,122"
+                  pos: "-105437.3438,-173282.5313,1346.5449"
+                  type: "MARKER_UNION_SpawnPoint_AL"
+                - continentId: 9121
+                  desc: "카이아도르 스폰 포인트"
+                  nameId: "99,123"
+                  pos: "-102006.8359,-190776.0625,711.5334"
+                  type: "MARKER_UNION_SpawnPoint_KA"
+                - continentId: 9121
+                  desc: "회복신관"
+                  nameId: "99,10"
+                  pos: "-105380,-174527, 829"
+                  type: "MARKER_RECOVERY"
+                - continentId: 9121
+                  desc: "회복신관"
+                  nameId: "99,38"
+                  pos: "-103190,-190469, 264"
+                  type: "MARKER_RECOVERY"
+            - sectionId: 91211
+              desc: "벨리카_연맹_마을"
+              mapId: "WMap_UnionField_Vill_01"
+              type: town
+              floor: 1
+              nameId: 9121010
+              top: -96768
+              left: -168960
+              width: 13107.2
+              height: 9830.4
+              mode: 6
+              npcs:
+                - continentId: 9121
+                  desc: "벨리카 집행관"
+                  nameId: "99,101"
+                  pos: "-101990.5078,-162666.5938,2403.7051"
+                  type: "MARKER_UNION_Bailiff_VK"
+                - continentId: 9121
+                  desc: "벨리카 연맹 게이트"
+                  nameId: "99,111"
+                  pos: "-100257.4766,-161383.9219,2402.8613"
+                  type: "MARKER_UNION_DominionPortal_VK"
+                - continentId: 9121
+                  desc: "창고지기"
+                  nameId: "99,31"
+                  pos: "-101122.5234,-163044.8438,2389.6660"
+                  type: "MARKER_WAREHOUSE"
+                - continentId: 9121
+                  desc: "회복신관"
+                  nameId: "99,10"
+                  pos: "-102936,-159770,2453"
+                  type: "MARKER_RECOVERY"
+                - continentId: 9121
+                  desc: "거래중개인"
+                  nameId: "99,21"
+                  pos: "-101206.4688,-163192.1094,2389.6680"
+                  type: "MARKER_TRADE_BROKER"
+                - continentId: 9121
+                  desc: "공헌도 상인"
+                  nameId: "99,144"
+                  pos: "-101396.6328,-160816.8125,2511.5134"
+                  type: "MARKER_REPUTATION_STORE"
+            - sectionId: 9122
+              desc: "알레만시아_연맹"
+              mapId: "WMap_UnionField_02"
+              floor: 1
+              nameId: 9121002
+              top: -86924
+              left: -172960
+              width: 71493.82
+              height: 53620.37
+              mode: 6
+              npcs:
+                - continentId: 9122
+                  desc: "알레만시아 집행관"
+                  nameId: "99,102"
+                  pos: "-118862.0156,-150283.1250,2367.2500"
+                  type: "MARKER_UNION_Bailiff_AL"
+                - continentId: 9122
+                  desc: "알레만시아 연맹 게이트"
+                  nameId: "99,112"
+                  pos: "-118811.0234,-149301.5156,2263.6543"
+                  type: "MARKER_UNION_DominionPotal_AL"
+                - continentId: 9122
+                  desc: "벨리카 스폰 포인트"
+                  nameId: "99,121"
+                  pos: "-117501.4063,-119916.3203,1720.9585"
+                  type: "MARKER_UNION_SpawnPoint_VK"
+                - continentId: 9122
+                  desc: "카이아도르 스폰 포인트"
+                  nameId: "99,123"
+                  pos: "-99741.0313,-116634.4531,1688.9078"
+                  type: "MARKER_UNION_SpawnPoint_KA"
+                - continentId: 9122
+                  desc: "회복신관"
+                  nameId: "99,10"
+                  pos: "-98837,-118345, 1135"
+                  type: "MARKER_RECOVERY"
+                - continentId: 9122
+                  desc: "회복신관"
+                  nameId: "99,38"
+                  pos: "-116572,-118391, 1181"
+                  type: "MARKER_RECOVERY"
+            - sectionId: 91221
+              desc: "알레만시아_연맹_마을"
+              mapId: "WMap_UnionField_Vill_02"
+              type: town
+              floor: 1
+              nameId: 9122010
+              top: -112128
+              left: -155136
+              width: 13107.2
+              height: 9830.4
+              mode: 6
+              npcs:
+                - continentId: 9122
+                  desc: "알레만시아 집행관"
+                  nameId: "99,102"
+                  pos: "-118862.0156,-150283.1250,2367.2500"
+                  type: "MARKER_UNION_Bailiff_AL"
+                - continentId: 9122
+                  desc: "알레만시아 연맹 게이트"
+                  nameId: "99,112"
+                  pos: "-118811.0234,-149301.5156,2263.6543"
+                  type: "MARKER_UNION_DominionPortal_AL"
+                - continentId: 9122
+                  desc: "창고지기"
+                  nameId: "99,31"
+                  pos: "-116762.0469,-149300.6719,2093.6855"
+                  type: "MARKER_WAREHOUSE"
+                - continentId: 9122
+                  desc: "회복신관"
+                  nameId: "99,10"
+                  pos: "-119169,-148429,2221"
+                  type: "MARKER_RECOVERY"
+                - continentId: 9122
+                  desc: "거래중개인"
+                  nameId: "99,21"
+                  pos: "-116753.4141,-149446.4063,2102.6035"
+                  type: "MARKER_TRADE_BROKER"
+                - continentId: 9122
+                  desc: "공헌도 상인"
+                  nameId: "99,145"
+                  pos: "-116825.1563,-147470.3594,2132.6882"
+                  type: "MARKER_REPUTATION_STORE"
+            - sectionId: 9123
+              desc: "카이아도르_연맹"
+              mapId: "WMap_UnionField_03"
+              floor: 1
+              nameId: 9121003
+              top: -88860
+              left: -126480
+              width: 71493.82
+              height: 53620.37
+              mode: 6
+              npcs:
+                - continentId: 9123
+                  desc: "카이아도르 집행관"
+                  nameId: "99,103"
+                  pos: "-99917.6016,-81915.4297,4883.8125"
+                  type: "MARKER_UNION_Bailiff_KA"
+                - continentId: 9123
+                  desc: "카이아도르 연맹 게이트"
+                  nameId: "99,113"
+                  pos: "-100343.4844,-84371.6172,4673.0234"
+                  type: "MARKER_UNION_DominionPotal_KA"
+                - continentId: 9123
+                  desc: "벨리카 스폰 포인트"
+                  nameId: "99,121"
+                  pos: "-113346.4453,-103258.0859,3123.3103"
+                  type: "MARKER_UNION_SpawnPoint_VK"
+                - continentId: 9123
+                  desc: "알레만시아 스폰 포인트"
+                  nameId: "99,122"
+                  pos: "-129124.4844,-97924.2422,1701.2615"
+                  type: "MARKER_UNION_SpawnPoint_AL"
+                - continentId: 9123
+                  desc: "회복신관"
+                  nameId: "99,10"
+                  pos: "-128818,-99047, 1121"
+                  type: "MARKER_RECOVERY"
+                - continentId: 9123
+                  desc: "회복신관"
+                  nameId: "99,38"
+                  pos: "-114712,-103521, 2449"
+                  type: "MARKER_RECOVERY"
+            - sectionId: 91231
+              desc: "카이아도르_연맹_마을"
+              mapId: "WMap_UnionField_Vill_03"
+              type: town
+              floor: 1
+              nameId: 9123001
+              top: -95232
+              left: -90624
+              width: 13107.2
+              height: 9830.4
+              mode: 6
+              npcs:
+                - continentId: 9123
+                  desc: "카이아도르 집행관"
+                  nameId: "99,103"
+                  pos: "-99917.6016,-81915.4297,4883.8125"
+                  type: "MARKER_UNION_Bailiff_KA"
+                - continentId: 9123
+                  desc: "카이아도르 연맹 게이트"
+                  nameId: "99,113"
+                  pos: "-100343.4844,-84371.6172,4673.0234"
+                  type: "MARKER_UNION_DominionPortal_KA"
+                - continentId: 9123
+                  desc: "창고지기"
+                  nameId: "99,31"
+                  pos: "-102229.7734,-83146.2891,4606.6255"
+                  type: "MARKER_WAREHOUSE"
+                - continentId: 9123
+                  desc: "회복신관"
+                  nameId: "99,10"
+                  pos: "-102123,-83675, 4550"
+                  type: "MARKER_RECOVERY"
+                - continentId: 9123
+                  desc: "거래중개인"
+                  nameId: "99,21"
+                  pos: "-102279.8594,-82968.4375,4569.2500"
+                  type: "MARKER_TRADE_BROKER"
+                - continentId: 9123
+                  desc: "공헌도 상인"
+                  nameId: "99,146"
+                  pos: "-101594.6094,-82196.8984,4620.5918"
+                  type: "MARKER_REPUTATION_STORE"

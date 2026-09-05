@@ -1,0 +1,142 @@
+# Velika and Arcadia instance pruning: removes the post-classic instances entered
+# from these regions (the Velika Banquet chain, Velik's Hold and Sanctuary with
+# their hard modes, Wonderholme, Antaroth's Abyss, Harrowhold, Broken Prison, the
+# solo trials and the solo rework of Bastion of Lok) and re-enables the classic
+# solo Bastion of Lok (continent 9887) behind its original entry.
+#
+# A dungeon is closed by deleting its DungeonConstraint row and every teleport that
+# lands in it. Where that empties a teleport list the list goes with it. The dungeon
+# definitions themselves (DungeonData_<continentId>.xml) stay: the arbiter validates
+# the dungeon registries (matching, events, work data, continents) against them and
+# refuses to start when a referenced definition is missing, so removing a definition
+# means removing every registry row first. Client-side registries that still name these instances
+# (DungeonMatching, StrSheet_Dungeon, ScenarioDungeon, DungeonWorkData, GmEvent), and the
+# menus of NPCs standing inside the removed instances, are left as dead wiring on purpose. Quests that enter these instances remain
+# until the quest surface is ported and point at nothing until then.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonConstraints:
+  delete:
+    - 3001
+    - 3017
+    - 9031
+    - 9032
+    - 9033
+    - 9505
+    - 9506
+    - 9509
+    - 9643
+    - 9710
+    - 9720
+    - 9780
+    - 9781
+    - 9795
+    - 9833
+    - 9920
+    - 9950
+    - 9980
+    - 9981
+
+  upsert:
+    - continentId: 9887
+      isActive: true
+      requiredActPoint: 0
+      huntingZoneId: 887
+      coolTimeForSupportMatching:
+        base: 60
+        withTrait: 30
+      coolTime: 10
+      coolTimeForAccountTrait:
+        base: 10
+        withTrait: 5
+
+teleports:
+  # Lists whose every destination is a removed instance.
+  delete:
+    - 505111
+    - 505112
+    - 506001
+    - 506005
+    - 506006
+    - 631404
+    - 639501
+    - 639780
+    - 639981
+    - 5051101
+    - 5051201
+    - 5051202
+    - 5051501
+    - 5051701
+    - 6431502
+    - 6431503
+    - 6431504
+    - 6431505
+    - 7101502
+    - 7101503
+    - 7201501
+    - 7201502
+    - 7801502
+    - 7801503
+    - 7811502
+    - 7811503
+    - 7811504
+    - 7811505
+    - 7815011
+    - 9201501
+    - 9201502
+    - 9509009
+    - 9509010
+    - 9801502
+    - 9801503
+    - 9811502
+    - 9811503
+    - 9811504
+    - 9811505
+    - 9815011
+    - 30171501
+    - 30171502
+
+  # A list that keeps another destination: only the removed instance's entry goes.
+  deleteTeleportEntries:
+    - teleportListId: 2301502
+      uniqueIds: [23015023]
+
+  # Two lists restated whole. 2031501 loses the solo-rework entry and regains the
+  # classic solo Bastion of Lok entry beside the party entry; it is written as a whole
+  # list because an entry-level edit does not carry the entry's condition. 31000 is the
+  # Oblivion Woods portal stone's list, pointed back at Lakan's Prison as the classic
+  # data has it instead of at the removed Broken Prison.
+  upsert:
+    - id: 2031501
+      teleports:
+        - uniqueId: 2031501
+          desc: "비밀 기지"
+          stringId: "@rgn:9087001"
+          continentId: 9087
+          pos: "76339, 583, 310"
+          dir: ""
+          distance: 10
+        - uniqueId: 2031502
+          desc: "비밀 기지(1인)"
+          stringId: "@rgn:9887001"
+          continentId: 9887
+          pos: "76339, 583, 310"
+          dir: ""
+          distance: 10
+          conditions:
+            - type: Bp
+              value: 10
+    - id: 31000
+      teleports:
+        - uniqueId: 31000
+          desc: "라칸의 제단 이동용"
+          stringId: "@rgn:31000"
+          continentId: 9810
+          pos: "-84921.9766,170370.3906,13781.1768"
+          dir: ""
+          distance: 10

@@ -1,0 +1,166 @@
+# Crystal merchants restored to their classic (v31) catalogues: tabs 1101 and
+# 1102 of store 110.
+#
+# buyLists upsert is REPLACE-ALL and store 110 is shared: 35 merchants offer it,
+# 6 in Velika and 29 in 21 other towns and camps, so the classic catalogue
+# reaches all of them. That blast radius is accepted deliberately. For the 29
+# merchants outside this region it means:
+#   1101 gains the 40 plain weapon crystals (Pounding, Bitter, Focused, Savage,
+#        Swift, Brilliant, Carving and Threatening in the Hexage, Pentant,
+#        Concach, Crux and Niveot cuts) and loses the 40 Fine weapon crystals
+#        (those eight plus Wrathful and Spiteful, in the four cuts below Niveot).
+#   1102 gains the 25 plain armor crystals (Hardy, Poised, Relentless, Fleetfoot
+#        and Vigorous in the same five cuts) and loses the 4 Fine Hardy crystals
+#        (Hexage, Pentant, Concach, Crux).
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: crystals
+    use:
+      variables:
+        - COMMON_BITTER_CONCACH
+        - COMMON_BITTER_CRUX
+        - COMMON_BITTER_HEXAGE
+        - COMMON_BITTER_NIVEOT
+        - COMMON_BITTER_PENTANT
+        - COMMON_BRILLIANT_CONCACH
+        - COMMON_BRILLIANT_CRUX
+        - COMMON_BRILLIANT_HEXAGE
+        - COMMON_BRILLIANT_NIVEOT
+        - COMMON_BRILLIANT_PENTANT
+        - COMMON_CARVING_CONCACH
+        - COMMON_CARVING_CRUX
+        - COMMON_CARVING_HEXAGE
+        - COMMON_CARVING_NIVEOT
+        - COMMON_CARVING_PENTANT
+        - COMMON_FLEETFOOT_CONCACH
+        - COMMON_FLEETFOOT_CRUX
+        - COMMON_FLEETFOOT_HEXAGE
+        - COMMON_FLEETFOOT_NIVEOT
+        - COMMON_FLEETFOOT_PENTANT
+        - COMMON_FOCUSED_CONCACH
+        - COMMON_FOCUSED_CRUX
+        - COMMON_FOCUSED_HEXAGE
+        - COMMON_FOCUSED_NIVEOT
+        - COMMON_FOCUSED_PENTANT
+        - COMMON_HARDY_CONCACH
+        - COMMON_HARDY_CRUX
+        - COMMON_HARDY_HEXAGE
+        - COMMON_HARDY_NIVEOT
+        - COMMON_HARDY_PENTANT
+        - COMMON_POISED_CONCACH
+        - COMMON_POISED_CRUX
+        - COMMON_POISED_HEXAGE
+        - COMMON_POISED_NIVEOT
+        - COMMON_POISED_PENTANT
+        - COMMON_POUNDING_CONCACH
+        - COMMON_POUNDING_CRUX
+        - COMMON_POUNDING_HEXAGE
+        - COMMON_POUNDING_NIVEOT
+        - COMMON_POUNDING_PENTANT
+        - COMMON_RELENTLESS_CONCACH
+        - COMMON_RELENTLESS_CRUX
+        - COMMON_RELENTLESS_HEXAGE
+        - COMMON_RELENTLESS_NIVEOT
+        - COMMON_RELENTLESS_PENTANT
+        - COMMON_SAVAGE_CONCACH
+        - COMMON_SAVAGE_CRUX
+        - COMMON_SAVAGE_HEXAGE
+        - COMMON_SAVAGE_NIVEOT
+        - COMMON_SAVAGE_PENTANT
+        - COMMON_SWIFT_CONCACH
+        - COMMON_SWIFT_CRUX
+        - COMMON_SWIFT_HEXAGE
+        - COMMON_SWIFT_NIVEOT
+        - COMMON_SWIFT_PENTANT
+        - COMMON_THREATENING_CONCACH
+        - COMMON_THREATENING_CRUX
+        - COMMON_THREATENING_HEXAGE
+        - COMMON_THREATENING_NIVEOT
+        - COMMON_THREATENING_PENTANT
+        - COMMON_VIGOROUS_CONCACH
+        - COMMON_VIGOROUS_CRUX
+        - COMMON_VIGOROUS_HEXAGE
+        - COMMON_VIGOROUS_NIVEOT
+        - COMMON_VIGOROUS_PENTANT
+
+definitions:
+  _listPriceItem:
+    priceRevision: 1
+
+buyLists:
+  upsert:
+    - id: 1101   # 40 items (v92 had 40)
+      items:
+        - { $extends: _listPriceItem, itemId: $COMMON_BRILLIANT_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_FOCUSED_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_SAVAGE_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_THREATENING_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_SWIFT_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_CARVING_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_BITTER_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_POUNDING_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_BRILLIANT_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_FOCUSED_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_SAVAGE_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_THREATENING_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_SWIFT_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_CARVING_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_BITTER_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_POUNDING_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_BRILLIANT_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_FOCUSED_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_SAVAGE_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_THREATENING_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_SWIFT_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_CARVING_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_BITTER_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_POUNDING_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_BRILLIANT_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_FOCUSED_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_SAVAGE_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_THREATENING_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_SWIFT_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_CARVING_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_BITTER_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_POUNDING_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_BRILLIANT_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_FOCUSED_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_SAVAGE_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_THREATENING_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_SWIFT_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_CARVING_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_BITTER_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_POUNDING_NIVEOT }
+    - id: 1102   # 25 items (v92 had 4)
+      items:
+        - { $extends: _listPriceItem, itemId: $COMMON_POISED_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_RELENTLESS_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_HARDY_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_FLEETFOOT_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_VIGOROUS_HEXAGE }
+        - { $extends: _listPriceItem, itemId: $COMMON_POISED_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_RELENTLESS_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_HARDY_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_FLEETFOOT_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_VIGOROUS_PENTANT }
+        - { $extends: _listPriceItem, itemId: $COMMON_POISED_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_RELENTLESS_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_HARDY_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_FLEETFOOT_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_VIGOROUS_CONCACH }
+        - { $extends: _listPriceItem, itemId: $COMMON_POISED_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_RELENTLESS_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_HARDY_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_FLEETFOOT_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_VIGOROUS_CRUX }
+        - { $extends: _listPriceItem, itemId: $COMMON_POISED_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_RELENTLESS_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_HARDY_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_FLEETFOOT_NIVEOT }
+        - { $extends: _listPriceItem, itemId: $COMMON_VIGOROUS_NIVEOT }
