@@ -1,0 +1,132 @@
+# Velika, Crescentia, Lumbertown and the Arcadia zones' villager menus returned
+# to their classic (v31) bindings: the rows v92 added are removed, among them the
+# Velika entry NPCs of the post-classic instances, whose doors go with them.
+#
+# The Velika design merchants stay on the stores v92 gave them. Store ids 192 and
+# 193 name different shops in the two eras, so a v31 binding would put a design
+# merchant in front of a store that does not match its title.
+#
+# Kept as v92 has them, on purpose: warehouse, wardrobe and inventory-expansion
+# entries on bankers, the class trainers' extra SkillLearn menus, and every entry
+# that names a v92-era system (pegasus platform, medal and guild stores, the
+# healers' restore menus, the union on/off switch). Those are account features
+# and engine wiring, not zone content, so they carry no op here.
+#
+# villagerMenus upsert replaces the whole menu list, so a re-pointed row states
+# every menu the villager offers.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 63
+      npcTemplateId: 1567   # v92 had Teleport 631567 (questCompleted 18118)
+      menus:
+        - { type: Teleport, id: 631567 }
+    # The guild-quest board stewards of the three hub towns: the board itself and the
+    # reward officer who takes completed guild quests.
+    - huntingZoneId: 59
+      npcTemplateId: 1602
+      menus:
+        - { type: ChapterHouse, id: 1 }
+    - huntingZoneId: 59
+      npcTemplateId: 1603
+      menus:
+        - { type: ChapterHouseEnd, id: 1 }
+    - huntingZoneId: 60
+      npcTemplateId: 1602
+      menus:
+        - { type: ChapterHouse, id: 1 }
+    - huntingZoneId: 60
+      npcTemplateId: 1029
+      menus:
+        - { type: ChapterHouseEnd, id: 1 }
+    - huntingZoneId: 63
+      npcTemplateId: 1602
+      menus:
+        - { type: ChapterHouse, id: 1 }
+    - huntingZoneId: 63
+      npcTemplateId: 1603
+      menus:
+        - { type: ChapterHouseEnd, id: 1 }
+
+  delete:
+    - { huntingZoneId: 2, npcTemplateId: 1271 }   # BuyMenuMedal 10011
+    - { huntingZoneId: 3, npcTemplateId: 1271 }   # BuyMenuMedal 10011
+    - { huntingZoneId: 3, npcTemplateId: 1810 }   # PartyMatching 1, Teleport 319810, NearTownTeleport 6464203
+    - { huntingZoneId: 5, npcTemplateId: 1271 }   # BuyMenuMedal 10011
+    - { huntingZoneId: 6, npcTemplateId: 1271 }   # BuyMenuMedal 10011
+    - { huntingZoneId: 7, npcTemplateId: 1271 }   # BuyMenuMedal 10011
+    - { huntingZoneId: 63, npcTemplateId: 1053 }   # SkillLearn 11
+    - { huntingZoneId: 63, npcTemplateId: 1054 }   # SkillLearn 12
+    - { huntingZoneId: 63, npcTemplateId: 1055 }   # SkillLearn 13
+    - { huntingZoneId: 63, npcTemplateId: 1108 }   # Merchant 6311080
+    - { huntingZoneId: 63, npcTemplateId: 1117 }   # Merchant 6311080
+    - { huntingZoneId: 63, npcTemplateId: 1118 }   # BuyMenu 60000
+    - { huntingZoneId: 63, npcTemplateId: 1133 }   # Teleport 505111 (questProgress 50511), Teleport 505111 (questProgress 50512)
+    - { huntingZoneId: 63, npcTemplateId: 1134 }   # Teleport 506001 (questProgress 50501), Teleport 506001 (questProgress 50502)
+    - { huntingZoneId: 63, npcTemplateId: 1170 }   # Teleport 631170
+    - { huntingZoneId: 63, npcTemplateId: 1267 }   # MedalStore 16095
+    - { huntingZoneId: 63, npcTemplateId: 1268 }   # Delivery 1000
+    - { huntingZoneId: 63, npcTemplateId: 1269 }   # Merchant 16094
+    - { huntingZoneId: 63, npcTemplateId: 1271 }   # BuyMenuMedal 10000
+    - { huntingZoneId: 63, npcTemplateId: 1276 }   # BuyMenu 10004
+    - { huntingZoneId: 63, npcTemplateId: 1278 }   # BuyMenuMedal 10010
+    - { huntingZoneId: 63, npcTemplateId: 1279 }   # BuyMenuMedal 10000
+    - { huntingZoneId: 63, npcTemplateId: 1284 }   # BuyMenu 10004
+    - { huntingZoneId: 63, npcTemplateId: 1303 }   # Teleport 506005 (questProgress 50502)
+    - { huntingZoneId: 63, npcTemplateId: 1304 }   # Teleport 506006 (questProgress 50531)
+    - { huntingZoneId: 63, npcTemplateId: 1404 }   # Teleport 631404, PartyMatching 1, NearTownTeleport 639920
+    - { huntingZoneId: 63, npcTemplateId: 1410 }   # Teleport 505112 (questProgress 50512)
+    - { huntingZoneId: 63, npcTemplateId: 1411 }   # Teleport 631167
+    - { huntingZoneId: 63, npcTemplateId: 1600 }   # Merchant 250
+    - { huntingZoneId: 63, npcTemplateId: 1601 }   # Merchant 250
+    - { huntingZoneId: 63, npcTemplateId: 1965 }   # PointStore 609
+    - { huntingZoneId: 63, npcTemplateId: 2072 }   # BuyMenuMedal 1018
+    - { huntingZoneId: 63, npcTemplateId: 2073 }   # BuyMenuMedal 1020
+    - { huntingZoneId: 63, npcTemplateId: 2074 }   # BuyMenu 1019
+    - { huntingZoneId: 63, npcTemplateId: 2951 }   # MedalStore 6113
+    - { huntingZoneId: 63, npcTemplateId: 3000 }   # guildStore 2110348
+    - { huntingZoneId: 63, npcTemplateId: 5101 }   # no menus
+    - { huntingZoneId: 63, npcTemplateId: 5104 }   # Merchant 16093
+    - { huntingZoneId: 63, npcTemplateId: 5105 }   # Warehouse 1, UserWarehouse 1, Parcel 1, StyleWarehouse 1, GuildWarehouse 1, ExtendInven 1
+    - { huntingZoneId: 63, npcTemplateId: 5106 }   # LeaveGmEvent 1
+    - { huntingZoneId: 63, npcTemplateId: 5107 }   # LeaveGmEvent 1
+    - { huntingZoneId: 63, npcTemplateId: 6110 }   # PointStore 6110
+    - { huntingZoneId: 63, npcTemplateId: 6111 }   # PointStore 6111
+    - { huntingZoneId: 63, npcTemplateId: 6112 }   # PointStore 6112
+    - { huntingZoneId: 63, npcTemplateId: 7001 }   # Teleport 8307001
+    - { huntingZoneId: 63, npcTemplateId: 7002 }   # DungeonWorkUi 1
+    - { huntingZoneId: 63, npcTemplateId: 8001 }   # cityWarTeleport 1, cityWarHistory 1
+    - { huntingZoneId: 63, npcTemplateId: 8002 }   # cityWarTaxInfo 1
+    - { huntingZoneId: 63, npcTemplateId: 9501 }   # Teleport 639501, NearTownTeleport 639502
+    - { huntingZoneId: 63, npcTemplateId: 9780 }   # Teleport 639780, PartyMatching 1
+    - { huntingZoneId: 63, npcTemplateId: 9805 }   # Delivery 1001
+    - { huntingZoneId: 63, npcTemplateId: 9981 }   # Teleport 639981, PartyMatching 1
+    - { huntingZoneId: 63, npcTemplateId: 20000 }   # BuyMenuMedal 1005
+    - { huntingZoneId: 63, npcTemplateId: 30002 }   # Merchant 111
+    - { huntingZoneId: 63, npcTemplateId: 30003 }   # Merchant 111
+    - { huntingZoneId: 63, npcTemplateId: 200000 }   # BuyMenu 1006
+    - { huntingZoneId: 63, npcTemplateId: 200001 }   # BuyMenuMedal 70000
+    - { huntingZoneId: 63, npcTemplateId: 200002 }   # BuyMenu 20001
+    - { huntingZoneId: 63, npcTemplateId: 200003 }   # BuyMenuMedal 1013
+    - { huntingZoneId: 63, npcTemplateId: 200004 }   # BuyMenuMedal 1014
+    - { huntingZoneId: 63, npcTemplateId: 200014 }   # BuyMenuMedal 20002
+    - { huntingZoneId: 63, npcTemplateId: 200019 }   # BuyMenuMedal 1017
+    - { huntingZoneId: 63, npcTemplateId: 200020 }   # BuyMenuMedal 1016
+    - { huntingZoneId: 63, npcTemplateId: 200021 }   # BuyMenuMedal 1021
+    - { huntingZoneId: 63, npcTemplateId: 200024 }   # BuyMenuMedal 1024
+    - { huntingZoneId: 63, npcTemplateId: 210000 }   # BuyMenu 1007
+    - { huntingZoneId: 63, npcTemplateId: 40009600 }   # MedalStore 2024540
+    - { huntingZoneId: 202, npcTemplateId: 1053 }   # Merchant 16087
+    - { huntingZoneId: 203, npcTemplateId: 1503 }   # Teleport 2031503
+    - { huntingZoneId: 203, npcTemplateId: 1504 }   # Teleport 2031504
+    - { huntingZoneId: 207, npcTemplateId: 9805 }   # Delivery 1001
+    - { huntingZoneId: 207, npcTemplateId: 9902 }   # Board 12
+    - { huntingZoneId: 207, npcTemplateId: 9903 }   # Merchant 16094
+    - { huntingZoneId: 207, npcTemplateId: 9904 }   # MedalStore 16095
+    - { huntingZoneId: 207, npcTemplateId: 9905 }   # Delivery 1000

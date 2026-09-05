@@ -1,0 +1,563 @@
+# Velika's classic (v31) crafting-material and design vendors: the eight stores
+# 180 to 185, 195 and 196 with their twenty tabs, and the merchants of Velika,
+# Crescentia and Lumbertown bound back to them.
+#
+# The stores and every tab list are absent from v92 rather than changed, so the
+# rows below are full catalogues, not deltas, and nothing outside this region
+# references them. The four v92 stores 190 to 193 that replaced them are left
+# as they are: merchants in other towns still sell from them, and the Velika
+# merchants that offered both in v31 keep both. Lists 1900 and 1910 were their
+# v31 tabs, so they are restored with the set but no store lists them.
+#
+# villagerMenus upsert replaces the whole menu list, so each row states every
+# menu the merchant offers.
+#
+# A store's title, its dialog button and every tab label resolve through
+# StrSheet_Npc by the store's stringId and each tab's stringed, so the strings
+# are restored with the stores or the store opens blank. The classic string ids
+# 180 to 182 name the live fishing delivery menus on this server, so stores 180
+# to 182 point at fresh ids 1800, 1810 and 1820 rather than renaming those.
+#
+# A merchant's title (StrSheet_Creature) follows the store it sells: material
+# vendors take their classic titles, design vendors on 190 to 193 keep v92's.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: item-ids
+    use:
+      variables:
+        - ARMORCRAFTING_DESIGN_KRYSTEEL_INGOT_23003
+        - DESIGN_DEOSILEX_23004
+        - DESIGN_VERDRACLOTH_23002
+        - DESIGN_ZALISLEATHER_23005
+        - WEAPONCRAFTING_DESIGN_KRYSTEEL_INGOT_23001
+
+definitions:
+  _listPriceItem:
+    priceRevision: 1
+
+buyMenuLists:
+  upsert:
+    - id: 180   # smithy, weapon materials
+      stringId: 1800   # 180 names the fish delivery menu on this server
+      desc: "대장간 무기재료 상점 !"
+      itemLists:
+        - { id: 1801, stringed: 1801 }
+        - { id: 1802, stringed: 1802 }
+        - { id: 1855, stringed: 1855 }
+    - id: 181   # smithy, heavy armor materials
+      stringId: 1810   # 181 names the fish crate delivery menu on this server
+      desc: "대장간 중갑재료 상점 !"
+      itemLists:
+        - { id: 1811, stringed: 1811 }
+        - { id: 1812, stringed: 1812 }
+        - { id: 1855, stringed: 1855 }
+    - id: 182   # tailor, light armor materials
+      stringId: 1820   # 182 names the quest fishing delivery menu on this server
+      desc: "재봉소 경갑재료 상점 !"
+      itemLists:
+        - { id: 1821, stringed: 1821 }
+        - { id: 1822, stringed: 1822 }
+        - { id: 1855, stringed: 1855 }
+    - id: 183   # tailor, robe materials
+      stringId: 183
+      desc: "재봉소 로브재료 상점 !"
+      itemLists:
+        - { id: 1831, stringed: 1831 }
+        - { id: 1832, stringed: 1832 }
+        - { id: 1855, stringed: 1855 }
+    - id: 184   # glyph crafting materials
+      stringId: 184
+      desc: "마법 각인서 재료 상점 !"
+      itemLists:
+        - { id: 1853, stringed: 1853 }
+        - { id: 1854, stringed: 1854 }
+        - { id: 1855, stringed: 1855 }
+    - id: 185   # alchemy, consumable materials
+      stringId: 185
+      desc: "연금공방 소모품 재료 상점 !"
+      itemLists:
+        - { id: 1853, stringed: 1853 }
+        - { id: 1852, stringed: 1852 }
+        - { id: 1855, stringed: 1855 }
+    - id: 195   # alchemy, consumable designs
+      stringId: 195
+      desc: "연금공방 소모품레시피 상점 !"
+      itemLists:
+        - { id: 1951, stringed: 1951 }
+        - { id: 1952, stringed: 1952 }
+        - { id: 1953, stringed: 1953 }
+        - { id: 1954, stringed: 1954 }
+    - id: 196   # glyph crafting designs
+      stringId: 196
+      desc: "마법 각인서 제작 레시피 !"
+      itemLists:
+        - { id: 1905, stringed: 1905 }
+        - { id: 1906, stringed: 1906 }
+
+npcStrings:
+  upsert:
+    # store titles, also the dialog button label
+    - { id: 1800, string: "Weaponcrafting Materials" }   # store 180
+    - { id: 1810, string: "Armorcrafting Materials" }    # store 181
+    - { id: 1820, string: "Armorcrafting Materials" }    # store 182
+    - { id: 183, string: "Armorcrafting Materials" }
+    - { id: 184, string: "Etching Materials" }
+    - { id: 185, string: "Alchemy Materials" }
+    - { id: 195, string: "Alchemy Formulas" }
+    - { id: 196, string: "Etching Designs" }
+    # tab labels; 1801, 1811, 1821 and 1831 read "Materials" on this server
+    - { id: 1801, string: "Refining Kits" }
+    - { id: 1802, string: "Weapon Kits" }
+    - { id: 1811, string: "Refining Kits" }
+    - { id: 1812, string: "Armor Kits" }
+    - { id: 1821, string: "Refining Kits" }
+    - { id: 1822, string: "Armor Kits" }
+    - { id: 1831, string: "Refining Kits" }
+    - { id: 1832, string: "Armor Kits" }
+    - { id: 1852, string: "Kits & Catalysts" }
+    - { id: 1853, string: "Refining Kits" }
+    - { id: 1854, string: "Etching Kits" }
+    - { id: 1855, string: "Misc" }
+    - { id: 1905, string: "Materials" }
+    - { id: 1906, string: "Artisan" }
+    - { id: 1951, string: "Materials" }
+    - { id: 1952, string: "Potions" }
+    - { id: 1953, string: "Scrolls" }
+    - { id: 1954, string: "Artisan" }
+
+creatureStrings:
+  update:
+    - { huntingZoneId: 63, templateId: 1189, changes: { title: "Weaponcrafting Materials" } }   # store 180
+    - { huntingZoneId: 63, templateId: 1190, changes: { title: "Weaponcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1191, changes: { title: "Weaponcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 50003, changes: { title: "Weaponcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1192, changes: { title: "Armorcrafting Materials" } }   # store 181
+    - { huntingZoneId: 63, templateId: 1193, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1194, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1207, changes: { title: "Armorcrafting Materials" } }   # store 182
+    - { huntingZoneId: 63, templateId: 1208, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1209, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1218, changes: { title: "Armorcrafting Materials" } }   # store 183
+    - { huntingZoneId: 63, templateId: 1219, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1220, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 50005, changes: { title: "Armorcrafting Materials" } }
+    - { huntingZoneId: 63, templateId: 1215, changes: { title: "Alchemy Formulas" } }   # store 195
+    - { huntingZoneId: 63, templateId: 1254, changes: { title: "Alchemy Formulas" } }
+    - { huntingZoneId: 63, templateId: 1214, changes: { title: "Etching Designs" } }   # store 196
+
+buyLists:
+  upsert:
+    - id: 1801   # 6 items; tab of store 180
+      items:
+        - { $extends: _listPriceItem, itemId: 1631 }   # Apprentice Refining Kit
+        - { $extends: _listPriceItem, itemId: 1632 }   # Journeyman Refining Kit
+        - { $extends: _listPriceItem, itemId: 1633 }   # Professional Refining Kit
+        - { $extends: _listPriceItem, itemId: 1634 }   # Classical Refining Kit
+        - { $extends: _listPriceItem, itemId: 1635 }   # Quality Refining Kit
+        - { $extends: _listPriceItem, itemId: 1648 }   # Artisan Refining Kit
+    - id: 1802   # 6 items; tab of store 180
+      items:
+        - { $extends: _listPriceItem, itemId: 1621 }   # Apprentice Weapon Kit
+        - { $extends: _listPriceItem, itemId: 1623 }   # Journeyman Weapon Kit
+        - { $extends: _listPriceItem, itemId: 1625 }   # Professional Weapon Kit
+        - { $extends: _listPriceItem, itemId: 1627 }   # Classical Weapon Kit
+        - { $extends: _listPriceItem, itemId: 1629 }   # Quality Weapon Kit
+        - { $extends: _listPriceItem, itemId: 1646 }   # Artisan Weapon Kit
+    - id: 1811   # 6 items; tab of store 181
+      items:
+        - { $extends: _listPriceItem, itemId: 1631 }   # Apprentice Refining Kit
+        - { $extends: _listPriceItem, itemId: 1632 }   # Journeyman Refining Kit
+        - { $extends: _listPriceItem, itemId: 1633 }   # Professional Refining Kit
+        - { $extends: _listPriceItem, itemId: 1634 }   # Classical Refining Kit
+        - { $extends: _listPriceItem, itemId: 1635 }   # Quality Refining Kit
+        - { $extends: _listPriceItem, itemId: 1648 }   # Artisan Refining Kit
+    - id: 1812   # 7 items; tab of store 181
+      items:
+        - { $extends: _listPriceItem, itemId: 1622 }   # Apprentice Armor Kit
+        - { $extends: _listPriceItem, itemId: 1624 }   # Journeyman Armor Kit
+        - { $extends: _listPriceItem, itemId: 1626 }   # Professional Armor Kit
+        - { $extends: _listPriceItem, itemId: 1628 }   # Classical Armor Kit
+        - { $extends: _listPriceItem, itemId: 1630 }   # Quality Armor Kit
+        - { $extends: _listPriceItem, itemId: 1647 }   # Artisan Armor Kit
+        - { $extends: _listPriceItem, itemId: 1649 }   # Artisan Catalyst
+    - id: 1821   # 6 items; tab of store 182
+      items:
+        - { $extends: _listPriceItem, itemId: 1631 }   # Apprentice Refining Kit
+        - { $extends: _listPriceItem, itemId: 1632 }   # Journeyman Refining Kit
+        - { $extends: _listPriceItem, itemId: 1633 }   # Professional Refining Kit
+        - { $extends: _listPriceItem, itemId: 1634 }   # Classical Refining Kit
+        - { $extends: _listPriceItem, itemId: 1635 }   # Quality Refining Kit
+        - { $extends: _listPriceItem, itemId: 1648 }   # Artisan Refining Kit
+    - id: 1822   # 7 items; tab of store 182
+      items:
+        - { $extends: _listPriceItem, itemId: 1622 }   # Apprentice Armor Kit
+        - { $extends: _listPriceItem, itemId: 1624 }   # Journeyman Armor Kit
+        - { $extends: _listPriceItem, itemId: 1626 }   # Professional Armor Kit
+        - { $extends: _listPriceItem, itemId: 1628 }   # Classical Armor Kit
+        - { $extends: _listPriceItem, itemId: 1630 }   # Quality Armor Kit
+        - { $extends: _listPriceItem, itemId: 1647 }   # Artisan Armor Kit
+        - { $extends: _listPriceItem, itemId: 1649 }   # Artisan Catalyst
+    - id: 1831   # 6 items; tab of store 183
+      items:
+        - { $extends: _listPriceItem, itemId: 1631 }   # Apprentice Refining Kit
+        - { $extends: _listPriceItem, itemId: 1632 }   # Journeyman Refining Kit
+        - { $extends: _listPriceItem, itemId: 1633 }   # Professional Refining Kit
+        - { $extends: _listPriceItem, itemId: 1634 }   # Classical Refining Kit
+        - { $extends: _listPriceItem, itemId: 1635 }   # Quality Refining Kit
+        - { $extends: _listPriceItem, itemId: 1648 }   # Artisan Refining Kit
+    - id: 1832   # 7 items; tab of store 183
+      items:
+        - { $extends: _listPriceItem, itemId: 1622 }   # Apprentice Armor Kit
+        - { $extends: _listPriceItem, itemId: 1624 }   # Journeyman Armor Kit
+        - { $extends: _listPriceItem, itemId: 1626 }   # Professional Armor Kit
+        - { $extends: _listPriceItem, itemId: 1628 }   # Classical Armor Kit
+        - { $extends: _listPriceItem, itemId: 1630 }   # Quality Armor Kit
+        - { $extends: _listPriceItem, itemId: 1647 }   # Artisan Armor Kit
+        - { $extends: _listPriceItem, itemId: 1649 }   # Artisan Catalyst
+    - id: 1852   # 18 items; tab of store 185
+      items:
+        - { $extends: _listPriceItem, itemId: 1611 }   # Apprentice Scroll Kit
+        - { $extends: _listPriceItem, itemId: 1612 }   # Journeyman Scroll Kit
+        - { $extends: _listPriceItem, itemId: 1613 }   # Professional Scroll Kit
+        - { $extends: _listPriceItem, itemId: 1614 }   # Classical Scroll Kit
+        - { $extends: _listPriceItem, itemId: 1615 }   # Quality Scroll Kit
+        - { $extends: _listPriceItem, itemId: 1644 }   # Artisan Scroll Kit
+        - { $extends: _listPriceItem, itemId: 1616 }   # Apprentice Alchemical Kit
+        - { $extends: _listPriceItem, itemId: 1617 }   # Journeyman Alchemical Kit
+        - { $extends: _listPriceItem, itemId: 1618 }   # Professional Alchemical Kit
+        - { $extends: _listPriceItem, itemId: 1619 }   # Classical Alchemical Kit
+        - { $extends: _listPriceItem, itemId: 1620 }   # Quality Alchemical Kit
+        - { $extends: _listPriceItem, itemId: 1645 }   # Artisan Alchemical Kit
+        - { $extends: _listPriceItem, itemId: 1636 }   # Apprentice's Catalyst
+        - { $extends: _listPriceItem, itemId: 1637 }   # Journeyman's Catalyst
+        - { $extends: _listPriceItem, itemId: 1638 }   # Professional's Catalyst
+        - { $extends: _listPriceItem, itemId: 1639 }   # Classical Catalyst
+        - { $extends: _listPriceItem, itemId: 1640 }   # Quality Catalyst
+        - { $extends: _listPriceItem, itemId: 1649 }   # Artisan Catalyst
+    - id: 1853   # 6 items; tab of stores 184, 185
+      items:
+        - { $extends: _listPriceItem, itemId: 1631 }   # Apprentice Refining Kit
+        - { $extends: _listPriceItem, itemId: 1632 }   # Journeyman Refining Kit
+        - { $extends: _listPriceItem, itemId: 1633 }   # Professional Refining Kit
+        - { $extends: _listPriceItem, itemId: 1634 }   # Classical Refining Kit
+        - { $extends: _listPriceItem, itemId: 1635 }   # Quality Refining Kit
+        - { $extends: _listPriceItem, itemId: 1648 }   # Artisan Refining Kit
+    - id: 1854   # 1 items; tab of store 184
+      items:
+        - { $extends: _listPriceItem, itemId: 6333 }   # Engraver's Kit
+    - id: 1855   # 1 items; tab of stores 180, 181, 182, 183, 184, 185
+      items:
+        - { $extends: _listPriceItem, itemId: 6446 }   # Revival Fruit
+    - id: 1900   # 17 items; tab of stores 190, 194
+      items:
+        - { $extends: _listPriceItem, itemId: 28282 }   # Design: Empyrspade
+        - { $extends: _listPriceItem, itemId: 28288 }   # Weaponcrafting Design: Spellcatch Bijou
+        - { $extends: _listPriceItem, itemId: 28070 }   # Design: Ostatak Oil
+        - { $extends: _listPriceItem, itemId: $WEAPONCRAFTING_DESIGN_KRYSTEEL_INGOT_23001 }
+        - { $extends: _listPriceItem, itemId: 23006 }   # Weaponcrafting Design: Linsteel Ingot
+        - { $extends: _listPriceItem, itemId: 23011 }   # Weaponcrafting Design: Norsteel Ingot
+        - { $extends: _listPriceItem, itemId: 23016 }   # Weaponcrafting Design: Shadsteel Ingot
+        - { $extends: _listPriceItem, itemId: 23021 }   # Weaponcrafting Design: Xersteel Ingot
+        - { $extends: _listPriceItem, itemId: 28155 }   # Weaponcrafting Design: Pure Xersteel Ingot
+        - { $extends: _listPriceItem, itemId: 28211 }   # Design: Pure Cobala Ingot (Weapon)
+        - { $extends: _listPriceItem, itemId: $DESIGN_DEOSILEX_23004 }
+        - { $extends: _listPriceItem, itemId: 23009 }   # Design: Aerosilex
+        - { $extends: _listPriceItem, itemId: 23014 }   # Design: Astrosilex
+        - { $extends: _listPriceItem, itemId: 23019 }   # Design: Cryosilex
+        - { $extends: _listPriceItem, itemId: 23024 }   # Design: Galvasilex
+        - { $extends: _listPriceItem, itemId: 28158 }   # Design: Pure Galvasilex
+        - { $extends: _listPriceItem, itemId: 28214 }   # Design: Pure Goblusilex (Weapon)
+    - id: 1905   # 6 items; tab of store 196
+      items:
+        - { $extends: _listPriceItem, itemId: 28066 }   # Design: Straw Scarab Powder
+        - { $extends: _listPriceItem, itemId: 28067 }   # Design: Elemental Scarab Powder
+        - { $extends: _listPriceItem, itemId: 28068 }   # Design: Aurora Scarab Powder
+        - { $extends: _listPriceItem, itemId: 28078 }   # Design: Titan's Fire
+        - { $extends: _listPriceItem, itemId: 28079 }   # Design: Titan's Peace
+        - { $extends: _listPriceItem, itemId: 28072 }   # Design: Marabca Oil
+    - id: 1906   # 24 items; tab of store 196
+      items:
+        - { $extends: _listPriceItem, itemId: 28012 }   # Weapon Etching Design: Pumped I
+        - { $extends: _listPriceItem, itemId: 28013 }   # Weapon Etching Design: Keen I
+        - { $extends: _listPriceItem, itemId: 28014 }   # Weapon Etching Design: Healing I
+        - { $extends: _listPriceItem, itemId: 28015 }   # Weapon Etching Design: Threatening I
+        - { $extends: _listPriceItem, itemId: 28016 }   # Weapon Etching Design: Energetic I
+        - { $extends: _listPriceItem, itemId: 28017 }   # Weapon Etching Design: Pumped II
+        - { $extends: _listPriceItem, itemId: 28018 }   # Weapon Etching Design: Keen II
+        - { $extends: _listPriceItem, itemId: 28019 }   # Weapon Etching Design: Healing II
+        - { $extends: _listPriceItem, itemId: 28020 }   # Weapon Etching Design: Threatening II
+        - { $extends: _listPriceItem, itemId: 28021 }   # Weapon Etching Design: Energetic II
+        - { $extends: _listPriceItem, itemId: 28035 }   # Handwear Etching Design: Pumped II
+        - { $extends: _listPriceItem, itemId: 28036 }   # Handwear Etching Design: Keen II
+        - { $extends: _listPriceItem, itemId: 28037 }   # Handwear Etching Design: Healing II
+        - { $extends: _listPriceItem, itemId: 28038 }   # Handwear Etching Design: Threatening II
+        - { $extends: _listPriceItem, itemId: 28039 }   # Handwear Etching Design: Energetic II
+        - { $extends: _listPriceItem, itemId: 28000 }   # Body Armor Etching Design: Grounded I
+        - { $extends: _listPriceItem, itemId: 28002 }   # Body Armor Etching Design: Relentless I
+        - { $extends: _listPriceItem, itemId: 28003 }   # Body Armor Etching Design: Unyielding I
+        - { $extends: _listPriceItem, itemId: 28004 }   # Body Armor Etching Design: Grounded II
+        - { $extends: _listPriceItem, itemId: 28006 }   # Body Armor Etching Design: Relentless II
+        - { $extends: _listPriceItem, itemId: 28007 }   # Body Armor Etching Design: Unyielding II
+        - { $extends: _listPriceItem, itemId: 28027 }   # Footwear Etching Design: Grounded II
+        - { $extends: _listPriceItem, itemId: 28029 }   # Footwear Etching Design: Relentless II
+        - { $extends: _listPriceItem, itemId: 28030 }   # Footwear Etching Design: Unyielding II
+    - id: 1910   # 25 items; tab of stores 191, 192, 193
+      items:
+        - { $extends: _listPriceItem, itemId: 28283 }   # Design: Empyrplate
+        - { $extends: _listPriceItem, itemId: 28301 }   # Armorcrafting Design: Spellcatch Bijou
+        - { $extends: _listPriceItem, itemId: 28071 }   # Design: Aterstod Oil
+        - { $extends: _listPriceItem, itemId: $ARMORCRAFTING_DESIGN_KRYSTEEL_INGOT_23003 }
+        - { $extends: _listPriceItem, itemId: 23008 }   # Armorcrafting Design: Linsteel Ingot
+        - { $extends: _listPriceItem, itemId: 23013 }   # Armorcrafting Design: Norsteel Ingot
+        - { $extends: _listPriceItem, itemId: 23018 }   # Armorcrafting Design: Shadsteel Ingot
+        - { $extends: _listPriceItem, itemId: 23023 }   # Armorcrafting Design: Xersteel Ingot
+        - { $extends: _listPriceItem, itemId: 28157 }   # Armorcrafting Design: Pure Xersteel Ingot
+        - { $extends: _listPriceItem, itemId: 28213 }   # Design: Pure Cobala Ingot (Armor)
+        - { $extends: _listPriceItem, itemId: $DESIGN_ZALISLEATHER_23005 }
+        - { $extends: _listPriceItem, itemId: 23010 }   # Design: Boscleather
+        - { $extends: _listPriceItem, itemId: 23015 }   # Design: Marleather
+        - { $extends: _listPriceItem, itemId: 23020 }   # Design: Hemeleather
+        - { $extends: _listPriceItem, itemId: 23025 }   # Design: Cereleather
+        - { $extends: _listPriceItem, itemId: 28159 }   # Design: Rough Cereleather
+        - { $extends: _listPriceItem, itemId: 28215 }   # Design: Fine Zawaleather (Armor)
+        - { $extends: _listPriceItem, itemId: $DESIGN_VERDRACLOTH_23002 }
+        - { $extends: _listPriceItem, itemId: 23007 }   # Design: Sylvacloth
+        - { $extends: _listPriceItem, itemId: 23012 }   # Design: Shetlacloth
+        - { $extends: _listPriceItem, itemId: 23017 }   # Design: Toiracloth
+        - { $extends: _listPriceItem, itemId: 23022 }   # Design: Luriacloth
+        - { $extends: _listPriceItem, itemId: 28156 }   # Design: Pure Luriacloth
+        - { $extends: _listPriceItem, itemId: 28212 }   # Design: Fine Pilka Silk (Armor)
+        - { $extends: _listPriceItem, itemId: 28160 }   # Design: Accessory Wire
+    - id: 1951   # 9 items; tab of store 195
+      items:
+        - { $extends: _listPriceItem, itemId: 28069 }   # Design: Hijka Oil
+        - { $extends: _listPriceItem, itemId: 26944 }   # Design: Promote Silrune of Shara
+        - { $extends: _listPriceItem, itemId: 26945 }   # Design: Promote Quoirune of Shara
+        - { $extends: _listPriceItem, itemId: 26946 }   # Design: Promote Archrune of Shara
+        - { $extends: _listPriceItem, itemId: 26947 }   # Design: Promote Keyrune of Shara
+        - { $extends: _listPriceItem, itemId: 26949 }   # Design: Promote Silrune of Arun
+        - { $extends: _listPriceItem, itemId: 26950 }   # Design: Promote Quoirune of Arun
+        - { $extends: _listPriceItem, itemId: 26951 }   # Design: Promote Archrune of Arun
+        - { $extends: _listPriceItem, itemId: 26952 }   # Design: Promote Keyrune of Arun
+    - id: 1952   # 83 items; tab of store 195
+      items:
+        - { $extends: _listPriceItem, itemId: 91229 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91230 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91231 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91232 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91233 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91234 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91235 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91236 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28178 }   # Worn Recipe: Healing Elixir IX
+        - { $extends: _listPriceItem, itemId: 91237 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91238 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91239 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91240 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91241 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91242 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91243 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91244 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28179 }   # Worn Recipe: Mana Elixir IX
+        - { $extends: _listPriceItem, itemId: 91245 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91247 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91249 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91251 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91253 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91255 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91257 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91259 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28182 }   # Worn Recipe: Health Restorative IX
+        - { $extends: _listPriceItem, itemId: 91261 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91263 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91265 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91267 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91269 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91271 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91273 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91275 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28183 }   # Worn Recipe: Mana Restorative IX
+        - { $extends: _listPriceItem, itemId: 91213 }   # Recipe: Healing Potion I
+        - { $extends: _listPriceItem, itemId: 91214 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91215 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91216 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91217 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91218 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91219 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91220 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28177 }   # Worn Recipe: Healing Potion IX
+        - { $extends: _listPriceItem, itemId: 91221 }   # Recipe: Mana Potion I
+        - { $extends: _listPriceItem, itemId: 91222 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91223 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91224 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91225 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91226 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91227 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91228 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28176 }   # Worn Recipe: Mana Potion IX
+        - { $extends: _listPriceItem, itemId: 91246 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91248 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91250 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91252 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91254 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91256 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91258 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91260 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28180 }   # Worn Recipe: Healing Draught IX
+        - { $extends: _listPriceItem, itemId: 91262 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91264 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91266 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91268 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91270 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91272 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91274 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91276 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28181 }   # Worn Recipe: Mana Draught IX
+        - { $extends: _listPriceItem, itemId: 91320 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91321 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91322 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91323 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91324 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91325 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91326 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91327 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91328 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91329 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91330 }   # Worn Recipe
+    - id: 1953   # 47 items; tab of store 195
+      items:
+        - { $extends: _listPriceItem, itemId: 91277 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91278 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91279 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91280 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91281 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28184 }   # Worn Recipe: Onslaught Scroll: Crit Factor VI
+        - { $extends: _listPriceItem, itemId: 91282 }   # Recipe: Onslaught Scroll: Crit Power I
+        - { $extends: _listPriceItem, itemId: 91283 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91284 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91285 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91286 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28185 }   # Worn Recipe: Onslaught Scroll: Crit Power VI
+        - { $extends: _listPriceItem, itemId: 91287 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91288 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91289 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91290 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91291 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91292 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91293 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91294 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91295 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91296 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28186 }   # Worn Recipe: Onslaught Scroll: Attack Speed VI
+        - { $extends: _listPriceItem, itemId: 91297 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91298 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91299 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91300 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91301 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 28187 }   # Worn Recipe: Warding Scroll VI
+        - { $extends: _listPriceItem, itemId: 91302 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91303 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91304 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91305 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91306 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91307 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91308 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91309 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91310 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91311 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91312 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91313 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91314 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91315 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91316 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91317 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91318 }   # Worn Recipe
+        - { $extends: _listPriceItem, itemId: 91319 }   # Worn Recipe
+    - id: 1954   # 13 items; tab of store 195
+      items:
+        - { $extends: _listPriceItem, itemId: 28164 }   # Worn Recipe: Gatherfaster Scroll
+        - { $extends: _listPriceItem, itemId: 28163 }   # Worn Recipe: Dedicated Crafter's Scroll
+        - { $extends: _listPriceItem, itemId: 28188 }   # Worn Recipe: Mana Potion X
+        - { $extends: _listPriceItem, itemId: 28189 }   # Worn Recipe: Healing Potion X
+        - { $extends: _listPriceItem, itemId: 28190 }   # Worn Recipe: Healing Elixir X
+        - { $extends: _listPriceItem, itemId: 28191 }   # Worn Recipe: Mana Elixir X
+        - { $extends: _listPriceItem, itemId: 28192 }   # Worn Recipe: Healing Draught X
+        - { $extends: _listPriceItem, itemId: 28193 }   # Worn Recipe: Mana Draught X
+        - { $extends: _listPriceItem, itemId: 28194 }   # Worn Recipe: Health Restorative X
+        - { $extends: _listPriceItem, itemId: 28195 }   # Worn Recipe: Mana Restorative X
+        - { $extends: _listPriceItem, itemId: 28199 }   # Worn Recipe: Warding Scroll VII
+        - { $extends: _listPriceItem, itemId: 28063 }   # Old Design: Ranger's Nostrum VI
+        - { $extends: _listPriceItem, itemId: 28064 }   # Old Design: Nostrum of Energy VI
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 59
+      npcTemplateId: 1600   # alchemy, consumable materials
+      menus:
+        - { type: Merchant, id: 185 }
+    - huntingZoneId: 60
+      npcTemplateId: 1600   # alchemy, consumable materials
+      menus:
+        - { type: Merchant, id: 185 }
+    - huntingZoneId: 63
+      npcTemplateId: [1189, 1190, 1191]   # smithy, weapon materials
+      menus:
+        - { type: Merchant, id: 180 }
+    - huntingZoneId: 63
+      npcTemplateId: [1192, 1193, 1194]   # smithy, heavy armor materials
+      menus:
+        - { type: Merchant, id: 181 }
+    - huntingZoneId: 63
+      npcTemplateId: [1207, 1208, 1209]   # tailor, light armor materials
+      menus:
+        - { type: Merchant, id: 182 }
+    - huntingZoneId: 63
+      npcTemplateId: 1211   # glyph crafting materials
+      menus:
+        - { type: Merchant, id: 184 }
+    - huntingZoneId: 63
+      npcTemplateId: [1212, 1255]   # alchemy, consumable materials
+      menus:
+        - { type: Merchant, id: 185 }
+    - huntingZoneId: 63
+      npcTemplateId: 1214   # glyph crafting designs
+      menus:
+        - { type: Merchant, id: 196 }
+    - huntingZoneId: 63
+      npcTemplateId: [1215, 1254]   # alchemy, consumable designs
+      menus:
+        - { type: Merchant, id: 195 }
+    - huntingZoneId: 63
+      npcTemplateId: [1218, 1219, 1220]   # tailor, robe materials
+      menus:
+        - { type: Merchant, id: 183 }
+    - huntingZoneId: 63
+      npcTemplateId: 50003   # smithy, weapon materials; v92 store 190
+      menus:
+        - { type: Merchant, id: 180 }
+        - { type: Merchant, id: 190 }
+    - huntingZoneId: 63
+      npcTemplateId: 50004   # glyph crafting materials; glyph crafting designs
+      menus:
+        - { type: Merchant, id: 184 }
+        - { type: Merchant, id: 196 }
+    - huntingZoneId: 63
+      npcTemplateId: 50005   # smithy, heavy armor materials; tailor, light armor materials; tailor, robe materials; v92 store 191; v92 store 192; v92 store 193
+      menus:
+        - { type: Merchant, id: 181 }
+        - { type: Merchant, id: 182 }
+        - { type: Merchant, id: 183 }
+        - { type: Merchant, id: 191 }
+        - { type: Merchant, id: 192 }
+        - { type: Merchant, id: 193 }
+    - huntingZoneId: 63
+      npcTemplateId: 50006   # alchemy, consumable materials; alchemy, consumable designs
+      menus:
+        - { type: Merchant, id: 185 }
+        - { type: Merchant, id: 195 }
