@@ -8,6 +8,35 @@ is live on the server.
 
 Every change here comes from a spec in this repository, if you want the exact numbers.
 
+## [Patch 004] - 2026-09-05
+
+Velika and Arcadia begin their return to the classic game: the places, names and merchants
+of the early continent as they were, and the instances that arrived later closed.
+
+### Added
+
+- The Free Traders Hall is back in Velika, with its name and its place on the world map.
+- The Velika Federation union fields and their fortress towns are back on the world map.
+- The classic solo Bastion of Lok can be entered again from the entry stone in Oblivion Woods, beside the party version. Each solo visit takes you through one half of the dungeon, chosen when you enter, with its own way out at the end.
+- Velika, Crescentia and Lumbertown have their classic crafting-material and design merchants back, selling what they sold in the early game.
+- The guild quest board and its turn-in are available again from the Mission Board and Verise in Velika.
+
+### Changed
+
+- The Berzerad Cemetery ring in Arcadia has its classic boundary again.
+- Crystal merchants everywhere sell the classic weapon and armor crystals instead of the Fine range.
+- Mounts are no longer allowed inside the Valkyon Federation headquarters.
+- Merchants and villagers in Velika, Crescentia, Lumbertown and Arcadia offer their classic menus again.
+
+### Removed
+
+- The instances added to Velika and Arcadia after the classic game are closed: the Velika Banquet, Velik's Hold, Velik's Sanctuary, Wonderholme, Antaroth's Abyss, Harrowhold, Broken Prison, the solo trials and the solo rework of Bastion of Lok.
+- The entry NPCs of those instances no longer offer them.
+
+### Fixed
+
+- The party Bastion of Lok's gate to the lower half is back. It had been missing since the solo rework was added.
+
 ## [Patch 003] - 2026-08-23
 
 The Island of Dawn gets its first field event, and a long list of reported problems gets
