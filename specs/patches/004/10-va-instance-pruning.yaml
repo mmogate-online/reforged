@@ -14,11 +14,20 @@
 # menus of NPCs standing inside the removed instances, are left as dead wiring on purpose. Quests that enter these instances remain
 # until the quest surface is ported and point at nothing until then.
 #
+# Dynamic geometry is not dead wiring: the world server keys doors by id across every
+# geometry file it loads, and the solo rework's copy of Bastion of Lok defines the same
+# door id as the party version, so while both load the party gate never spawns. The
+# rework's geometry file goes with the instance.
+#
 # provenance: ported-from-v31
 
 spec:
   version: "1.0"
   schema: v92
+
+dynamicGeos:
+  delete:
+    - 3001
 
 dungeonConstraints:
   delete:
@@ -140,3 +149,27 @@ teleports:
           pos: "-84921.9766,170370.3906,13781.1768"
           dir: ""
           distance: 10
+
+# The portal stone's name and dialog name its destination, and the client reads them
+# from its own copy, so they follow the list back to Lakan's Prison. The classic data
+# carries the name but no dialog for this stone; the dialog is its sibling's with the
+# destination image and text.
+creatureStrings:
+  update:
+    - huntingZoneId: 3
+      templateId: 1000
+      changes:
+        name: "Lakan's Prison Teleportal"
+
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 3
+      id: 1000
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          endSocial: 0
+          pages:
+            - social: 0
+              voiceTypeId: 0
+              text: "<img src='img://__Image_Dungeon_9810.9810'/><BR><BR>(This teleportal takes you to <font color='#0000FF'>Lakan's Prison</font>.)"
