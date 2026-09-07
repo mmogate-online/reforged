@@ -1,0 +1,4136 @@
+# Classic shop contents for the fixed merchants of this region: which tabs each
+# menu opens and what each tab sells, as the classic data has them.
+#
+# A menu upsert REPLACES its tab list and a catalog upsert REPLACES its items, so a
+# tab or an item the live server added and the classic data never had is removed by
+# restating the row; there is no delete op and none is needed. A catalog the live
+# menu referenced and the classic menu does not is left in the file, unreferenced.
+#
+# A store's title and its tab labels resolve through the NPC string table, so the
+# labels this server has no row for are restored beside the stores that need them:
+# without them a store opens blank and its tabs render unnamed.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyMenuLists:
+  upsert:
+    - id: 141
+      stringId: 141
+      desc: "T4.1 전장 평판 승리의 인도자 포인트 상점! [구 은성 무공 훈장 상점]"
+      itemLists:
+        - id: 1411
+          stringed: 1411
+        - id: 1412
+          stringed: 1412
+        - id: 1413
+          stringed: 1413
+        - id: 1414
+          stringed: 1414
+    - id: 142
+      stringId: 142
+      desc: "T4.2 투지의 전장 평판 광기의 학살자 포인트 상점!"
+      itemLists:
+        - id: 1421
+          stringed: 1421
+        - id: 1422
+          stringed: 1422
+        - id: 1423
+          stringed: 1423
+        - id: 1424
+          stringed: 1424
+    - id: 190
+      stringId: 190
+      desc: "무기레시피 상점 !"
+      itemLists:
+        - id: 1900
+          stringed: 1900
+        - id: 1901
+          stringed: 1901
+        - id: 1902
+          stringed: 1902
+        - id: 1903
+          stringed: 1903
+    - id: 191
+      stringId: 191
+      desc: "대장간 중갑레시피 상점 !"
+      itemLists:
+        - id: 1910
+          stringed: 1910
+        - id: 1911
+          stringed: 1911
+        - id: 1912
+          stringed: 1912
+        - id: 1913
+          stringed: 1913
+    - id: 192
+      stringId: 192
+      desc: "재봉소 경갑레시피 상점 !"
+      itemLists:
+        - id: 1910
+          stringed: 1910
+        - id: 1911
+          stringed: 1911
+        - id: 1912
+          stringed: 1912
+        - id: 1913
+          stringed: 1913
+    - id: 193
+      stringId: 193
+      desc: "재봉소 로브레시피 상점 !"
+      itemLists:
+        - id: 1910
+          stringed: 1910
+        - id: 1911
+          stringed: 1911
+        - id: 1912
+          stringed: 1912
+        - id: 1913
+          stringed: 1913
+    - id: 250
+      stringId: 250
+      desc: "명품관!"
+      itemLists:
+        - id: 2501
+          stringed: 2501
+        - id: 2502
+          stringed: 2502
+        - id: 2505
+          stringed: 2505
+    - id: 324
+      stringId: 324
+      desc: "벨리카 연합회 포인트 상점(포인트 사용)!"
+      itemLists:
+        - id: 3030
+          stringed: 3030
+        - id: 3031
+          stringed: 3031
+    - id: 16063
+      stringId: 16063
+      desc: "잡화 상점 상점: 벨리카 !"
+      itemLists:
+        - id: 80001
+          stringed: 80001
+        - id: 1602
+          stringed: 1602
+        - id: 16063
+          stringed: 1604
+    - id: 70004
+      stringId: 70004
+      desc: "토큰상점(거인의숲)"
+      itemLists:
+        - id: 9140
+          stringed: 70005
+        - id: 9141
+          stringed: 70006
+        - id: 9144
+          stringed: 70007
+
+reputationItems:
+  upsert:
+    - npcGuildId: 605
+      items:
+        - id: 45374
+          name: "강력한 진정제"
+          grade: 7
+          reputationPoint: 1500
+        - id: 50033
+          name: "너구리 인형 모자"
+          grade: 7
+          reputationPoint: 1500
+        - id: 50034
+          name: "파란 너구리 인형 모자"
+          grade: 7
+          reputationPoint: 1500
+        - id: 50035
+          name: "핫핑크 너구리 인형 모자"
+          grade: 7
+          reputationPoint: 1500
+        - id: 50036
+          name: "보라색 너구리 인형 모자"
+          grade: 7
+          reputationPoint: 1500
+        - id: 50039
+          name: "녹색 파티 모자"
+          grade: 4
+          reputationPoint: 20
+        - id: 50040
+          name: "남색 파티 모자"
+          grade: 4
+          reputationPoint: 20
+        - id: 50037
+          name: "파란 파티 모자"
+          grade: 4
+          reputationPoint: 20
+        - id: 50038
+          name: "벨릭의 축제 모자"
+          grade: 4
+          reputationPoint: 20
+        - id: 8908
+          name: "강화 크리스탈 - 쾌속의 역류 I"
+          grade: 6
+          reputationPoint: 75
+        - id: 8920
+          name: "강화 크리스탈 - 쾌속의 역류 I"
+          grade: 8
+          reputationPoint: 200
+    - npcGuildId: 901
+      items:
+        - id: 98598
+          name: "낡은 보급품"
+          grade: 5
+          reputationPoint: 18000
+        - id: 98599
+          name: "악마의 발톱"
+          grade: 5
+          reputationPoint: 24000
+        - id: 98600
+          name: "용의 두개골"
+          grade: 5
+          reputationPoint: 24000
+        - id: 98500
+          name: "아르보레아의 금빛 결정체"
+          grade: 5
+          reputationPoint: 3000
+        - id: 98514
+          name: "아르보레아의 은빛 결정체"
+          grade: 5
+          reputationPoint: 3000
+        - id: 98866
+          name: "스킬 연마 경험치북 20만"
+          grade: 5
+          reputationPoint: 1000000
+        - id: 98671
+          name: "순수한 보석 나비의 날개 가루"
+          grade: 5
+          reputationPoint: 200000
+        - id: 98672
+          name: "순수한 보석 나비의 보석 샘"
+          grade: 5
+          reputationPoint: 200000
+        - id: 98673
+          name: "정화된 신수의 고리 조각"
+          grade: 5
+          reputationPoint: 200000
+        - id: 98674
+          name: "정화된 신수의 장식 조각"
+          grade: 5
+          reputationPoint: 200000
+        - id: 98713
+          name: "예리한 다크샤드 응집 비법"
+          grade: 5
+          reputationPoint: 1500000
+        - id: 98714
+          name: "단단한 다크샤드 응집 비법"
+          grade: 5
+          reputationPoint: 1000000
+        - id: 98679
+          name: "드라니움 가공석 조각"
+          grade: 5
+          reputationPoint: 10000
+        - id: 9351
+          name: "아르보레아의 보랏빛 결정체"
+          grade: 5
+          reputationPoint: 3125
+        - id: 9352
+          name: "아르보레아의 보랏빛 조각"
+          grade: 5
+          reputationPoint: 21875
+        - id: 9353
+          name: "아르보레아의 푸른빛 결정체"
+          grade: 5
+          reputationPoint: 3125
+        - id: 9354
+          name: "아르보레아의 푸른빛 조각"
+          grade: 5
+          reputationPoint: 21875
+        - id: 90600
+          name: "명예의 휘장 [0등급]"
+          grade: 5
+          reputationPoint: 135000
+        - id: 9365
+          name: "수호자의 전장 보상 상자"
+          grade: 5
+          reputationPoint: 150000
+        - id: 9371
+          name: "투사의 일체형 잿빛 속옷 [고급]"
+          grade: 5
+          reputationPoint: 100000
+        - id: 90201
+          name: "징벌의 쌍검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90202
+          name: "징벌의 창"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90203
+          name: "징벌의 대검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90204
+          name: "징벌의 도끼"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90205
+          name: "징벌의 원반"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90206
+          name: "징벌의 활"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90207
+          name: "징벌의 지팡이"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90208
+          name: "징벌의 마법봉"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90209
+          name: "징벌의 비검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90210
+          name: "징벌의 마공포"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90211
+          name: "징벌의 권갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90212
+          name: "징벌의 수리검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90213
+          name: "징벌의 월광도"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90214
+          name: "징벌의 중갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90215
+          name: "징벌의 경갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90216
+          name: "징벌의 로브"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90217
+          name: "징벌의 중갑 장갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90218
+          name: "징벌의 경갑 장갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90219
+          name: "징벌의 글로브"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90220
+          name: "징벌의 중갑 신발"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90221
+          name: "징벌의 경갑 신발"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90222
+          name: "징벌의 슈즈"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90301
+          name: "철벽의 쌍검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90302
+          name: "철벽의 창"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90303
+          name: "철벽의 대검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90304
+          name: "철벽의 도끼"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90305
+          name: "철벽의 원반"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90306
+          name: "철벽의 활"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90307
+          name: "철벽의 지팡이"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90308
+          name: "철벽의 마법봉"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90309
+          name: "철벽의 비검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90310
+          name: "철벽의 마공포"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90311
+          name: "철벽의 권갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90312
+          name: "철벽의 수리검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90313
+          name: "철벽의 월광도"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90314
+          name: "철벽의 중갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90315
+          name: "철벽의 경갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90316
+          name: "철벽의 로브"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90317
+          name: "철벽의 중갑 장갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90318
+          name: "철벽의 경갑 장갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90319
+          name: "철벽의 글러브"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90320
+          name: "철벽의 중갑 신발"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90321
+          name: "철벽의 경갑 신발"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90322
+          name: "철벽의 슈즈"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90401
+          name: "철벽의 쌍검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90402
+          name: "철벽의 창"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90403
+          name: "철벽의 대검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90404
+          name: "철벽의 도끼"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90405
+          name: "철벽의 원반"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90406
+          name: "철벽의 활"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90407
+          name: "철벽의 지팡이"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90408
+          name: "철벽의 마법봉"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90409
+          name: "철벽의 비검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90410
+          name: "철벽의 마공포"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90411
+          name: "철벽의 권갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90412
+          name: "철벽의 수리검"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90413
+          name: "철벽의 월광도"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90414
+          name: "철벽의 중갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90415
+          name: "철벽의 경갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90416
+          name: "철벽의 로브"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90417
+          name: "철벽의 중갑 장갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90418
+          name: "철벽의 경갑 장갑"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90419
+          name: "철벽의 글러브"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90420
+          name: "철벽의 중갑 신발"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90421
+          name: "철벽의 경갑 신발"
+          grade: 5
+          reputationPoint: 135000
+        - id: 90422
+          name: "철벽의 슈즈"
+          grade: 5
+          reputationPoint: 135000
+        - id: 304
+          name: "스킬 교본: 칠흑의 군마"
+          grade: 5
+          reputationPoint: 4000
+        - id: 1459
+          name: "승리의 인도자 신규 제작 재료"
+          grade: 5
+          reputationPoint: 4000
+        - id: 5165
+          name: "검투사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5166
+          name: "창기사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5167
+          name: "무사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5168
+          name: "광전사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5169
+          name: "마법사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5170
+          name: "궁수의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5171
+          name: "사제의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 5172
+          name: "정령사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+        - id: 19267
+          name: "PvP 하급 목걸이"
+          grade: 5
+          reputationPoint: 40000
+        - id: 19268
+          name: "PvP 하급 목걸이"
+          grade: 5
+          reputationPoint: 40000
+        - id: 19269
+          name: "PvP 하급 목걸이"
+          grade: 5
+          reputationPoint: 40000
+        - id: 27239
+          name: "비검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27240
+          name: "쌍검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27241
+          name: "창 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27242
+          name: "대검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27243
+          name: "도끼 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27244
+          name: "원반 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27245
+          name: "활 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27246
+          name: "지팡이 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27247
+          name: "마법봉 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 27248
+          name: "단단한 중갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27249
+          name: "광포한 중갑  제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27250
+          name: "중갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27251
+          name: "중갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27252
+          name: "민첩한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27253
+          name: "고상한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27254
+          name: "날렵한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27255
+          name: "경갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27256
+          name: "경갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27257
+          name: "붉은 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27258
+          name: "푸른마력 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27259
+          name: "흰 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 27260
+          name: "흉포한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27261
+          name: "화려한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27262
+          name: "슈즈 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 27372
+          name: "냉정한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28401
+          name: "비검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28402
+          name: "쌍검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28403
+          name: "창 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28404
+          name: "대검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28405
+          name: "도끼 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28406
+          name: "원반 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28407
+          name: "활 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28408
+          name: "지팡이 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28409
+          name: "마법봉 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28410
+          name: "중갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28411
+          name: "중갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28412
+          name: "중갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28413
+          name: "경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28414
+          name: "경갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28415
+          name: "경갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28416
+          name: "로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28417
+          name: "글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28418
+          name: "글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28419
+          name: "슈즈 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28495
+          name: "승리한 투사의 증표"
+          grade: 5
+          reputationPoint: 2000
+        - id: 28496
+          name: "승리한 영웅의 증표"
+          grade: 5
+          reputationPoint: 2000
+        - id: 28497
+          name: "승리한 전설의 증표"
+          grade: 5
+          reputationPoint: 2000
+        - id: 55620
+          name: "마공포 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 55641
+          name: "마공사의 문장 봉인함_전장 포인트"
+          grade: 5
+          reputationPoint: 2000
+    - npcGuildId: 902
+      items:
+        - id: 1460
+          name: "광기의 학살자 신규 제작 재료"
+          grade: 5
+          reputationPoint: 6000
+        - id: 1462
+          name: "광기의 학살자 제작재료 도안1"
+          grade: 5
+          reputationPoint: 1000
+        - id: 1463
+          name: "광기의 학살자 제작재료 도안2"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28302
+          grade: 5
+          reputationPoint: 1000
+        - id: 28303
+          grade: 5
+          reputationPoint: 1000
+        - id: 28304
+          grade: 5
+          reputationPoint: 1000
+        - id: 28305
+          grade: 5
+          reputationPoint: 1000
+        - id: 28306
+          grade: 5
+          reputationPoint: 1000
+        - id: 28307
+          grade: 5
+          reputationPoint: 1000
+        - id: 28308
+          grade: 5
+          reputationPoint: 1000
+        - id: 28309
+          grade: 5
+          reputationPoint: 1000
+        - id: 28310
+          grade: 5
+          reputationPoint: 1000
+        - id: 28311
+          grade: 5
+          reputationPoint: 800
+        - id: 28312
+          grade: 5
+          reputationPoint: 800
+        - id: 28313
+          grade: 5
+          reputationPoint: 600
+        - id: 28314
+          grade: 5
+          reputationPoint: 600
+        - id: 28315
+          grade: 5
+          reputationPoint: 800
+        - id: 28316
+          grade: 5
+          reputationPoint: 800
+        - id: 28317
+          grade: 5
+          reputationPoint: 800
+        - id: 28318
+          grade: 5
+          reputationPoint: 800
+        - id: 28319
+          grade: 5
+          reputationPoint: 600
+        - id: 28320
+          grade: 5
+          reputationPoint: 600
+        - id: 28321
+          grade: 5
+          reputationPoint: 800
+        - id: 28322
+          grade: 5
+          reputationPoint: 800
+        - id: 28323
+          grade: 5
+          reputationPoint: 800
+        - id: 28324
+          grade: 5
+          reputationPoint: 600
+        - id: 28325
+          grade: 5
+          reputationPoint: 600
+        - id: 28326
+          grade: 5
+          reputationPoint: 600
+        - id: 28327
+          grade: 5
+          reputationPoint: 1000
+        - id: 28328
+          grade: 5
+          reputationPoint: 1000
+        - id: 28420
+          name: "비검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28421
+          name: "쌍검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28422
+          name: "창 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28423
+          name: "대검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28424
+          name: "도끼 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28425
+          name: "원반 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28426
+          name: "활 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28427
+          name: "지팡이 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28428
+          name: "마법봉 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28429
+          name: "단단한 중갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28430
+          name: "광포한 중갑  제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28431
+          name: "중갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28432
+          name: "중갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28433
+          name: "민첩한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28434
+          name: "고상한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28435
+          name: "날렵한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28436
+          name: "냉정한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28437
+          name: "경갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28438
+          name: "경갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28439
+          name: "붉은 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28440
+          name: "푸른 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28441
+          name: "흰 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28442
+          name: "흉포한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28443
+          name: "화려한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28444
+          name: "슈즈 로브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28445
+          name: "비검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28446
+          name: "쌍검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28447
+          name: "창 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28448
+          name: "대검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28449
+          name: "도끼 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28450
+          name: "원반 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28451
+          name: "활 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28452
+          name: "지팡이 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28453
+          name: "마법봉 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28454
+          name: "단단한 중갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28455
+          name: "광포한 중갑  제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28456
+          name: "중갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28457
+          name: "중갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28458
+          name: "민첩한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28459
+          name: "고상한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28460
+          name: "날렵한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28461
+          name: "냉정한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28462
+          name: "경갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28463
+          name: "경갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28464
+          name: "붉은 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28465
+          name: "푸른 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28466
+          name: "흰 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28467
+          name: "흉포한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28468
+          name: "화려한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28469
+          name: "슈즈 로브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28470
+          name: "비검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28471
+          name: "쌍검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28472
+          name: "창 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28473
+          name: "대검 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28474
+          name: "도끼 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28475
+          name: "원반 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28476
+          name: "활 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28477
+          name: "지팡이 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28478
+          name: "마법봉 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28479
+          name: "단단한 중갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28480
+          name: "광포한 중갑  제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28481
+          name: "중갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28482
+          name: "중갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28483
+          name: "민첩한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28484
+          name: "고상한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28485
+          name: "날렵한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28486
+          name: "냉정한 경갑 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28487
+          name: "경갑장갑 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28488
+          name: "경갑신발 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28489
+          name: "붉은 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28490
+          name: "푸른 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28491
+          name: "흰 마력 로브 제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 28492
+          name: "흉포한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28493
+          name: "화려한 글러브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28494
+          name: "슈즈 로브 제작 도안"
+          grade: 5
+          reputationPoint: 600
+        - id: 28498
+          name: "용맹한 투사의 증표"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28499
+          name: "용맹한 영웅의 증표"
+          grade: 5
+          reputationPoint: 1000
+        - id: 28500
+          name: "용맹한 전설의 증표"
+          grade: 5
+          reputationPoint: 3000
+        - id: 28502
+          grade: 5
+          reputationPoint: 1000
+        - id: 28503
+          grade: 5
+          reputationPoint: 1000
+        - id: 28504
+          grade: 5
+          reputationPoint: 1000
+        - id: 28505
+          grade: 5
+          reputationPoint: 1000
+        - id: 28506
+          grade: 5
+          reputationPoint: 1000
+        - id: 28507
+          grade: 5
+          reputationPoint: 1000
+        - id: 28508
+          grade: 5
+          reputationPoint: 1000
+        - id: 28509
+          grade: 5
+          reputationPoint: 1000
+        - id: 28510
+          grade: 5
+          reputationPoint: 1000
+        - id: 28511
+          grade: 5
+          reputationPoint: 800
+        - id: 28512
+          grade: 5
+          reputationPoint: 800
+        - id: 28513
+          grade: 5
+          reputationPoint: 600
+        - id: 28514
+          grade: 5
+          reputationPoint: 600
+        - id: 28515
+          grade: 5
+          reputationPoint: 800
+        - id: 28516
+          grade: 5
+          reputationPoint: 800
+        - id: 28517
+          grade: 5
+          reputationPoint: 800
+        - id: 28518
+          grade: 5
+          reputationPoint: 800
+        - id: 28519
+          grade: 5
+          reputationPoint: 600
+        - id: 28520
+          grade: 5
+          reputationPoint: 600
+        - id: 28521
+          grade: 5
+          reputationPoint: 800
+        - id: 28522
+          grade: 5
+          reputationPoint: 800
+        - id: 28523
+          grade: 5
+          reputationPoint: 800
+        - id: 28524
+          grade: 5
+          reputationPoint: 600
+        - id: 28525
+          grade: 5
+          reputationPoint: 600
+        - id: 28526
+          grade: 5
+          reputationPoint: 600
+        - id: 55619
+          grade: 5
+          reputationPoint: 1000
+        - id: 55621
+          name: "마공포 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 55623
+          name: "마공포 제작 도안"
+          grade: 5
+          reputationPoint: 1000
+        - id: 55624
+          grade: 5
+          reputationPoint: 1000
+        - id: 55635
+          grade: 5
+          reputationPoint: 800
+        - id: 55636
+          name: "현란한(마공사) 중갑  제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 55637
+          name: "현란한(마도 공학) 중갑  제작 도안"
+          grade: 5
+          reputationPoint: 800
+        - id: 55638
+          grade: 5
+          reputationPoint: 800
+
+exchanges:
+  upsert:
+    - itemId: 212760
+      medalItemId: 561
+      buyPriceMedal: 10
+    - itemId: 212761
+      medalItemId: 561
+      buyPriceMedal: 10
+    - itemId: 212762
+      medalItemId: 561
+      buyPriceMedal: 10
+    - itemId: 212763
+      medalItemId: 561
+      buyPriceMedal: 20
+    - itemId: 212764
+      medalItemId: 561
+      buyPriceMedal: 40
+    - itemId: 212765
+      medalItemId: 561
+      buyPriceMedal: 30
+    - itemId: 212766
+      medalItemId: 561
+      buyPriceMedal: 30
+    - itemId: 212783
+      medalItemId: 561
+      buyPriceMedal: 70
+    - itemId: 139495
+      medalItemId: 561
+      buyPriceMedal: 30
+    - itemId: 139518
+      medalItemId: 561
+      buyPriceMedal: 80
+    - itemId: 139034
+      medalItemId: 561
+      buyPriceMedal: 150
+    - itemId: 139082
+      medalItemId: 561
+      buyPriceMedal: 200
+    - itemId: 141000
+      medalItemId: 561
+      buyPriceMedal: 800
+    - itemId: 141001
+      medalItemId: 561
+      buyPriceMedal: 1000
+    - itemId: 141002
+      medalItemId: 561
+      buyPriceMedal: 1300
+
+npcStrings:
+  upsert:
+    - id: 1421
+      string: "Advanced Designs I"
+    - id: 1422
+      string: "Advanced Designs II"
+    - id: 1423
+      string: "Advanced Designs III"
+    - id: 1424
+      string: "Other Materials"
+    - id: 1900
+      string: "Materials"
+    - id: 1910
+      string: "Materials"
+    - id: 70005
+      string: "Weapons"
+    - id: 70006
+      string: "Armors"
+    - id: 70007
+      string: "Rubra Tokens"
+
+buyLists:
+  upsert:
+    - id: 1401
+      needMedalItemId: 45
+      items:
+        - itemId: 12161
+          priceRevision: 1
+        - itemId: 12162
+          priceRevision: 1
+        - itemId: 12163
+          priceRevision: 1
+        - itemId: 12164
+          priceRevision: 1
+        - itemId: 12165
+          priceRevision: 1
+        - itemId: 12166
+          priceRevision: 1
+        - itemId: 12167
+          priceRevision: 1
+        - itemId: 12168
+          priceRevision: 1
+        - itemId: 55275
+          priceRevision: 1
+        - itemId: 12201
+          priceRevision: 1
+        - itemId: 12202
+          priceRevision: 1
+        - itemId: 12203
+          priceRevision: 1
+        - itemId: 12204
+          priceRevision: 1
+        - itemId: 12205
+          priceRevision: 1
+        - itemId: 12206
+          priceRevision: 1
+        - itemId: 12207
+          priceRevision: 1
+        - itemId: 12208
+          priceRevision: 1
+        - itemId: 55280
+          priceRevision: 1
+        - itemId: 12169
+          priceRevision: 1
+        - itemId: 12170
+          priceRevision: 1
+        - itemId: 12171
+          priceRevision: 1
+        - itemId: 12172
+          priceRevision: 1
+        - itemId: 12173
+          priceRevision: 1
+        - itemId: 12174
+          priceRevision: 1
+        - itemId: 12175
+          priceRevision: 1
+        - itemId: 12176
+          priceRevision: 1
+        - itemId: 55276
+          priceRevision: 1
+        - itemId: 12209
+          priceRevision: 1
+        - itemId: 12210
+          priceRevision: 1
+        - itemId: 12211
+          priceRevision: 1
+        - itemId: 12212
+          priceRevision: 1
+        - itemId: 12213
+          priceRevision: 1
+        - itemId: 12214
+          priceRevision: 1
+        - itemId: 12215
+          priceRevision: 1
+        - itemId: 12216
+          priceRevision: 1
+        - itemId: 55281
+          priceRevision: 1
+        - itemId: 12177
+          priceRevision: 1
+        - itemId: 12178
+          priceRevision: 1
+        - itemId: 12179
+          priceRevision: 1
+        - itemId: 12180
+          priceRevision: 1
+        - itemId: 12181
+          priceRevision: 1
+        - itemId: 12182
+          priceRevision: 1
+        - itemId: 12183
+          priceRevision: 1
+        - itemId: 12184
+          priceRevision: 1
+        - itemId: 55277
+          priceRevision: 1
+        - itemId: 12217
+          priceRevision: 1
+        - itemId: 12218
+          priceRevision: 1
+        - itemId: 12219
+          priceRevision: 1
+        - itemId: 12220
+          priceRevision: 1
+        - itemId: 12221
+          priceRevision: 1
+        - itemId: 12222
+          priceRevision: 1
+        - itemId: 12223
+          priceRevision: 1
+        - itemId: 12224
+          priceRevision: 1
+        - itemId: 55282
+          priceRevision: 1
+        - itemId: 12241
+          priceRevision: 1
+        - itemId: 12242
+          priceRevision: 1
+        - itemId: 12243
+          priceRevision: 1
+        - itemId: 12244
+          priceRevision: 1
+        - itemId: 12245
+          priceRevision: 1
+        - itemId: 12246
+          priceRevision: 1
+        - itemId: 12247
+          priceRevision: 1
+        - itemId: 12248
+          priceRevision: 1
+        - itemId: 55285
+          priceRevision: 1
+    - id: 1402
+      needMedalItemId: 45
+      items:
+        - itemId: 17440
+          priceRevision: 1
+        - itemId: 17441
+          priceRevision: 1
+        - itemId: 17442
+          priceRevision: 1
+        - itemId: 17443
+          priceRevision: 1
+        - itemId: 17444
+          priceRevision: 1
+        - itemId: 17445
+          priceRevision: 1
+        - itemId: 17446
+          priceRevision: 1
+        - itemId: 17447
+          priceRevision: 1
+        - itemId: 17448
+          priceRevision: 1
+        - itemId: 17485
+          priceRevision: 1
+        - itemId: 17486
+          priceRevision: 1
+        - itemId: 17487
+          priceRevision: 1
+        - itemId: 17488
+          priceRevision: 1
+        - itemId: 17489
+          priceRevision: 1
+        - itemId: 17490
+          priceRevision: 1
+        - itemId: 17491
+          priceRevision: 1
+        - itemId: 17492
+          priceRevision: 1
+        - itemId: 17493
+          priceRevision: 1
+        - itemId: 17449
+          priceRevision: 1
+        - itemId: 17450
+          priceRevision: 1
+        - itemId: 17451
+          priceRevision: 1
+        - itemId: 17452
+          priceRevision: 1
+        - itemId: 17453
+          priceRevision: 1
+        - itemId: 17454
+          priceRevision: 1
+        - itemId: 17455
+          priceRevision: 1
+        - itemId: 17456
+          priceRevision: 1
+        - itemId: 17457
+          priceRevision: 1
+        - itemId: 17494
+          priceRevision: 1
+        - itemId: 17495
+          priceRevision: 1
+        - itemId: 17496
+          priceRevision: 1
+        - itemId: 17497
+          priceRevision: 1
+        - itemId: 17498
+          priceRevision: 1
+        - itemId: 17499
+          priceRevision: 1
+        - itemId: 17500
+          priceRevision: 1
+        - itemId: 17501
+          priceRevision: 1
+        - itemId: 17502
+          priceRevision: 1
+        - itemId: 17458
+          priceRevision: 1
+        - itemId: 17459
+          priceRevision: 1
+        - itemId: 17460
+          priceRevision: 1
+        - itemId: 17461
+          priceRevision: 1
+        - itemId: 17462
+          priceRevision: 1
+        - itemId: 17463
+          priceRevision: 1
+        - itemId: 17464
+          priceRevision: 1
+        - itemId: 17465
+          priceRevision: 1
+        - itemId: 17466
+          priceRevision: 1
+        - itemId: 17503
+          priceRevision: 1
+        - itemId: 17504
+          priceRevision: 1
+        - itemId: 17505
+          priceRevision: 1
+        - itemId: 17506
+          priceRevision: 1
+        - itemId: 17507
+          priceRevision: 1
+        - itemId: 17508
+          priceRevision: 1
+        - itemId: 17509
+          priceRevision: 1
+        - itemId: 17510
+          priceRevision: 1
+        - itemId: 17511
+          priceRevision: 1
+        - itemId: 17530
+          priceRevision: 1
+        - itemId: 17531
+          priceRevision: 1
+        - itemId: 17532
+          priceRevision: 1
+        - itemId: 17533
+          priceRevision: 1
+        - itemId: 17534
+          priceRevision: 1
+        - itemId: 17535
+          priceRevision: 1
+        - itemId: 17536
+          priceRevision: 1
+        - itemId: 17537
+          priceRevision: 1
+        - itemId: 17538
+          priceRevision: 1
+    - id: 1403
+      needMedalItemId: 45
+      items:
+        - itemId: 20095
+          priceRevision: 1
+        - itemId: 20100
+          priceRevision: 1
+        - itemId: 20396
+          priceRevision: 1
+        - itemId: 20401
+          priceRevision: 1
+        - itemId: 20693
+          priceRevision: 1
+        - itemId: 20698
+          priceRevision: 1
+        - itemId: 20096
+          priceRevision: 1
+        - itemId: 20101
+          priceRevision: 1
+        - itemId: 20397
+          priceRevision: 1
+        - itemId: 20402
+          priceRevision: 1
+        - itemId: 20694
+          priceRevision: 1
+        - itemId: 20699
+          priceRevision: 1
+        - itemId: 20097
+          priceRevision: 1
+        - itemId: 20102
+          priceRevision: 1
+        - itemId: 20105
+          priceRevision: 1
+        - itemId: 20398
+          priceRevision: 1
+        - itemId: 20403
+          priceRevision: 1
+        - itemId: 20406
+          priceRevision: 1
+        - itemId: 20695
+          priceRevision: 1
+        - itemId: 20700
+          priceRevision: 1
+        - itemId: 20703
+          priceRevision: 1
+    - id: 1411
+      desc: "전장 포인트 상점_승리의 인도자_제작재료"
+      needPointNpcGuildId: 901
+      items:
+        - itemId: 28401
+          priceRevision: 1
+        - itemId: 28402
+          priceRevision: 1
+        - itemId: 28403
+          priceRevision: 1
+        - itemId: 28404
+          priceRevision: 1
+        - itemId: 28405
+          priceRevision: 1
+        - itemId: 28406
+          priceRevision: 1
+        - itemId: 28407
+          priceRevision: 1
+        - itemId: 28408
+          priceRevision: 1
+        - itemId: 28409
+          priceRevision: 1
+        - itemId: 55620
+          priceRevision: 1
+        - itemId: 28410
+          priceRevision: 1
+        - itemId: 28411
+          priceRevision: 1
+        - itemId: 28412
+          priceRevision: 1
+        - itemId: 28413
+          priceRevision: 1
+        - itemId: 28414
+          priceRevision: 1
+        - itemId: 28415
+          priceRevision: 1
+        - itemId: 28416
+          priceRevision: 1
+        - itemId: 28417
+          priceRevision: 1
+        - itemId: 28418
+          priceRevision: 1
+        - itemId: 28419
+          priceRevision: 1
+    - id: 1412
+      desc: "전장 포인트 상점_승리의 인도자_악세서리"
+      needPointNpcGuildId: 901
+      items:
+        - itemId: 28495
+          priceRevision: 1
+        - itemId: 28496
+          priceRevision: 1
+        - itemId: 28497
+          priceRevision: 1
+    - id: 1413
+      desc: "전장 포인트 상점_외형장비 및 기타"
+      needPointNpcGuildId: 901
+      items:
+        - itemId: 19267
+          priceRevision: 1
+        - itemId: 19268
+          priceRevision: 1
+        - itemId: 19269
+          priceRevision: 1
+        - itemId: 304
+          priceRevision: 1
+        - itemId: 5165
+          priceRevision: 1
+        - itemId: 5166
+          priceRevision: 1
+        - itemId: 5167
+          priceRevision: 1
+        - itemId: 5168
+          priceRevision: 1
+        - itemId: 5169
+          priceRevision: 1
+        - itemId: 5170
+          priceRevision: 1
+        - itemId: 5171
+          priceRevision: 1
+        - itemId: 5172
+          priceRevision: 1
+        - itemId: 55641
+          priceRevision: 1
+    - id: 1414
+      desc: "무철(구)도안"
+      needPointNpcGuildId: 901
+      items:
+        - itemId: 1459
+          priceRevision: 1
+        - itemId: 27239
+          priceRevision: 1
+        - itemId: 27240
+          priceRevision: 1
+        - itemId: 27241
+          priceRevision: 1
+        - itemId: 27242
+          priceRevision: 1
+        - itemId: 27243
+          priceRevision: 1
+        - itemId: 27244
+          priceRevision: 1
+        - itemId: 27245
+          priceRevision: 1
+        - itemId: 27246
+          priceRevision: 1
+        - itemId: 27247
+          priceRevision: 1
+        - itemId: 27248
+          priceRevision: 1
+        - itemId: 27249
+          priceRevision: 1
+        - itemId: 27250
+          priceRevision: 1
+        - itemId: 27251
+          priceRevision: 1
+        - itemId: 27252
+          priceRevision: 1
+        - itemId: 27253
+          priceRevision: 1
+        - itemId: 27254
+          priceRevision: 1
+        - itemId: 27372
+          priceRevision: 1
+        - itemId: 27255
+          priceRevision: 1
+        - itemId: 27256
+          priceRevision: 1
+        - itemId: 27257
+          priceRevision: 1
+        - itemId: 27258
+          priceRevision: 1
+        - itemId: 27259
+          priceRevision: 1
+        - itemId: 27260
+          priceRevision: 1
+        - itemId: 27261
+          priceRevision: 1
+        - itemId: 27262
+          priceRevision: 1
+    - id: 1421
+      desc: "제작 재료"
+      needPointNpcGuildId: 902
+      items:
+        - itemId: 28420
+          priceRevision: 1
+        - itemId: 28421
+          priceRevision: 1
+        - itemId: 28422
+          priceRevision: 1
+        - itemId: 28423
+          priceRevision: 1
+        - itemId: 28424
+          priceRevision: 1
+        - itemId: 28425
+          priceRevision: 1
+        - itemId: 28426
+          priceRevision: 1
+        - itemId: 28427
+          priceRevision: 1
+        - itemId: 28428
+          priceRevision: 1
+        - itemId: 55621
+          priceRevision: 1
+        - itemId: 28445
+          priceRevision: 1
+        - itemId: 28446
+          priceRevision: 1
+        - itemId: 28447
+          priceRevision: 1
+        - itemId: 28448
+          priceRevision: 1
+        - itemId: 28449
+          priceRevision: 1
+        - itemId: 28450
+          priceRevision: 1
+        - itemId: 28451
+          priceRevision: 1
+        - itemId: 28452
+          priceRevision: 1
+        - itemId: 28453
+          priceRevision: 1
+        - itemId: 28429
+          priceRevision: 1
+        - itemId: 28430
+          priceRevision: 1
+        - itemId: 55636
+          priceRevision: 1
+        - itemId: 28431
+          priceRevision: 1
+        - itemId: 28432
+          priceRevision: 1
+        - itemId: 28433
+          priceRevision: 1
+        - itemId: 28434
+          priceRevision: 1
+        - itemId: 28435
+          priceRevision: 1
+        - itemId: 28436
+          priceRevision: 1
+        - itemId: 28437
+          priceRevision: 1
+        - itemId: 28438
+          priceRevision: 1
+        - itemId: 28439
+          priceRevision: 1
+        - itemId: 28440
+          priceRevision: 1
+        - itemId: 28441
+          priceRevision: 1
+        - itemId: 28442
+          priceRevision: 1
+        - itemId: 28443
+          priceRevision: 1
+        - itemId: 28444
+          priceRevision: 1
+        - itemId: 28454
+          priceRevision: 1
+        - itemId: 28455
+          priceRevision: 1
+        - itemId: 28456
+          priceRevision: 1
+        - itemId: 28457
+          priceRevision: 1
+        - itemId: 28458
+          priceRevision: 1
+        - itemId: 28459
+          priceRevision: 1
+        - itemId: 28460
+          priceRevision: 1
+        - itemId: 28461
+          priceRevision: 1
+        - itemId: 28462
+          priceRevision: 1
+        - itemId: 28463
+          priceRevision: 1
+        - itemId: 28464
+          priceRevision: 1
+        - itemId: 28465
+          priceRevision: 1
+        - itemId: 28466
+          priceRevision: 1
+        - itemId: 28467
+          priceRevision: 1
+        - itemId: 28468
+          priceRevision: 1
+        - itemId: 28469
+          priceRevision: 1
+    - id: 1422
+      desc: "신규C 무철 루트 제작 도안"
+      needPointNpcGuildId: 902
+      items:
+        - itemId: 28470
+          priceRevision: 1
+        - itemId: 28471
+          priceRevision: 1
+        - itemId: 28472
+          priceRevision: 1
+        - itemId: 28473
+          priceRevision: 1
+        - itemId: 28474
+          priceRevision: 1
+        - itemId: 28475
+          priceRevision: 1
+        - itemId: 28476
+          priceRevision: 1
+        - itemId: 28477
+          priceRevision: 1
+        - itemId: 28478
+          priceRevision: 1
+        - itemId: 55623
+          priceRevision: 1
+        - itemId: 28502
+          priceRevision: 1
+        - itemId: 28503
+          priceRevision: 1
+        - itemId: 28504
+          priceRevision: 1
+        - itemId: 28505
+          priceRevision: 1
+        - itemId: 28506
+          priceRevision: 1
+        - itemId: 28507
+          priceRevision: 1
+        - itemId: 28508
+          priceRevision: 1
+        - itemId: 28509
+          priceRevision: 1
+        - itemId: 28510
+          priceRevision: 1
+        - itemId: 55624
+          priceRevision: 1
+        - itemId: 28479
+          priceRevision: 1
+        - itemId: 28480
+          priceRevision: 1
+        - itemId: 55637
+          priceRevision: 1
+        - itemId: 28481
+          priceRevision: 1
+        - itemId: 28482
+          priceRevision: 1
+        - itemId: 28483
+          priceRevision: 1
+        - itemId: 28484
+          priceRevision: 1
+        - itemId: 28485
+          priceRevision: 1
+        - itemId: 28486
+          priceRevision: 1
+        - itemId: 28487
+          priceRevision: 1
+        - itemId: 28488
+          priceRevision: 1
+        - itemId: 28489
+          priceRevision: 1
+        - itemId: 28490
+          priceRevision: 1
+        - itemId: 28491
+          priceRevision: 1
+        - itemId: 28492
+          priceRevision: 1
+        - itemId: 28493
+          priceRevision: 1
+        - itemId: 28494
+          priceRevision: 1
+        - itemId: 28511
+          priceRevision: 1
+        - itemId: 28512
+          priceRevision: 1
+        - itemId: 55638
+          priceRevision: 1
+        - itemId: 28513
+          priceRevision: 1
+        - itemId: 28514
+          priceRevision: 1
+        - itemId: 28515
+          priceRevision: 1
+        - itemId: 28516
+          priceRevision: 1
+        - itemId: 28517
+          priceRevision: 1
+        - itemId: 28518
+          priceRevision: 1
+        - itemId: 28519
+          priceRevision: 1
+        - itemId: 28520
+          priceRevision: 1
+        - itemId: 28521
+          priceRevision: 1
+        - itemId: 28522
+          priceRevision: 1
+        - itemId: 28523
+          priceRevision: 1
+        - itemId: 28524
+          priceRevision: 1
+        - itemId: 28525
+          priceRevision: 1
+        - itemId: 28526
+          priceRevision: 1
+    - id: 1423
+      desc: "신규C 포인트 루트 제작 도안"
+      needPointNpcGuildId: 902
+      items:
+        - itemId: 28302
+          priceRevision: 1
+        - itemId: 28303
+          priceRevision: 1
+        - itemId: 28304
+          priceRevision: 1
+        - itemId: 28305
+          priceRevision: 1
+        - itemId: 28306
+          priceRevision: 1
+        - itemId: 28307
+          priceRevision: 1
+        - itemId: 28308
+          priceRevision: 1
+        - itemId: 28309
+          priceRevision: 1
+        - itemId: 28310
+          priceRevision: 1
+        - itemId: 55619
+          priceRevision: 1
+        - itemId: 28311
+          priceRevision: 1
+        - itemId: 28312
+          priceRevision: 1
+        - itemId: 55635
+          priceRevision: 1
+        - itemId: 28313
+          priceRevision: 1
+        - itemId: 28314
+          priceRevision: 1
+        - itemId: 28315
+          priceRevision: 1
+        - itemId: 28316
+          priceRevision: 1
+        - itemId: 28317
+          priceRevision: 1
+        - itemId: 28318
+          priceRevision: 1
+        - itemId: 28319
+          priceRevision: 1
+        - itemId: 28320
+          priceRevision: 1
+        - itemId: 28321
+          priceRevision: 1
+        - itemId: 28322
+          priceRevision: 1
+        - itemId: 28323
+          priceRevision: 1
+        - itemId: 28324
+          priceRevision: 1
+        - itemId: 28325
+          priceRevision: 1
+        - itemId: 28326
+          priceRevision: 1
+        - itemId: 28327
+          priceRevision: 1
+        - itemId: 28328
+          priceRevision: 1
+    - id: 1424
+      desc: "구 제작 재료"
+      needPointNpcGuildId: 902
+      items:
+        - itemId: 28498
+          priceRevision: 1
+        - itemId: 28499
+          priceRevision: 1
+        - itemId: 28500
+          priceRevision: 1
+        - itemId: 1462
+          priceRevision: 1
+        - itemId: 1463
+          priceRevision: 1
+        - itemId: 1460
+          priceRevision: 1
+    - id: 1431
+      needMedalItemId: 561
+      items:
+        - itemId: 212760
+          priceRevision: 1
+        - itemId: 212761
+          priceRevision: 1
+        - itemId: 212762
+          priceRevision: 1
+        - itemId: 212763
+          priceRevision: 1
+        - itemId: 212764
+          priceRevision: 1
+        - itemId: 212765
+          priceRevision: 1
+        - itemId: 212766
+          priceRevision: 1
+        - itemId: 212783
+          priceRevision: 1
+    - id: 1432
+      needMedalItemId: 561
+      items:
+        - itemId: 139495
+          priceRevision: 1
+        - itemId: 139518
+          priceRevision: 1
+        - itemId: 139034
+          priceRevision: 1
+        - itemId: 139082
+          priceRevision: 1
+    - id: 1433
+      needMedalItemId: 561
+      items:
+        - itemId: 141000
+          priceRevision: 1
+        - itemId: 141001
+          priceRevision: 1
+        - itemId: 141002
+          priceRevision: 1
+    - id: 1511
+      needMedalItemId: 22
+      items:
+        - itemId: 11641
+          priceRevision: 1
+        - itemId: 11642
+          priceRevision: 1
+        - itemId: 11643
+          priceRevision: 1
+        - itemId: 11644
+          priceRevision: 1
+        - itemId: 11645
+          priceRevision: 1
+        - itemId: 11646
+          priceRevision: 1
+        - itemId: 11647
+          priceRevision: 1
+        - itemId: 11648
+          priceRevision: 1
+        - itemId: 55210
+          priceRevision: 1
+        - itemId: 11729
+          priceRevision: 1
+        - itemId: 11730
+          priceRevision: 1
+        - itemId: 11731
+          priceRevision: 1
+        - itemId: 11732
+          priceRevision: 1
+        - itemId: 11733
+          priceRevision: 1
+        - itemId: 11734
+          priceRevision: 1
+        - itemId: 11735
+          priceRevision: 1
+        - itemId: 11736
+          priceRevision: 1
+        - itemId: 55221
+          priceRevision: 1
+        - itemId: 11649
+          priceRevision: 1
+        - itemId: 11650
+          priceRevision: 1
+        - itemId: 11651
+          priceRevision: 1
+        - itemId: 11652
+          priceRevision: 1
+        - itemId: 11653
+          priceRevision: 1
+        - itemId: 11654
+          priceRevision: 1
+        - itemId: 11655
+          priceRevision: 1
+        - itemId: 11656
+          priceRevision: 1
+        - itemId: 55211
+          priceRevision: 1
+        - itemId: 11737
+          priceRevision: 1
+        - itemId: 11738
+          priceRevision: 1
+        - itemId: 11739
+          priceRevision: 1
+        - itemId: 11740
+          priceRevision: 1
+        - itemId: 11741
+          priceRevision: 1
+        - itemId: 11742
+          priceRevision: 1
+        - itemId: 11743
+          priceRevision: 1
+        - itemId: 11744
+          priceRevision: 1
+        - itemId: 55222
+          priceRevision: 1
+        - itemId: 11657
+          priceRevision: 1
+        - itemId: 11658
+          priceRevision: 1
+        - itemId: 11659
+          priceRevision: 1
+        - itemId: 11660
+          priceRevision: 1
+        - itemId: 11661
+          priceRevision: 1
+        - itemId: 11662
+          priceRevision: 1
+        - itemId: 11663
+          priceRevision: 1
+        - itemId: 11664
+          priceRevision: 1
+        - itemId: 55212
+          priceRevision: 1
+        - itemId: 11817
+          priceRevision: 1
+        - itemId: 11818
+          priceRevision: 1
+        - itemId: 11819
+          priceRevision: 1
+        - itemId: 11820
+          priceRevision: 1
+        - itemId: 11821
+          priceRevision: 1
+        - itemId: 11822
+          priceRevision: 1
+        - itemId: 11823
+          priceRevision: 1
+        - itemId: 11824
+          priceRevision: 1
+        - itemId: 55232
+          priceRevision: 1
+        - itemId: 11745
+          priceRevision: 1
+        - itemId: 11746
+          priceRevision: 1
+        - itemId: 11747
+          priceRevision: 1
+        - itemId: 11748
+          priceRevision: 1
+        - itemId: 11749
+          priceRevision: 1
+        - itemId: 11750
+          priceRevision: 1
+        - itemId: 11751
+          priceRevision: 1
+        - itemId: 11752
+          priceRevision: 1
+        - itemId: 55223
+          priceRevision: 1
+        - itemId: 11889
+          priceRevision: 1
+        - itemId: 11890
+          priceRevision: 1
+        - itemId: 11891
+          priceRevision: 1
+        - itemId: 11892
+          priceRevision: 1
+        - itemId: 11893
+          priceRevision: 1
+        - itemId: 11894
+          priceRevision: 1
+        - itemId: 11895
+          priceRevision: 1
+        - itemId: 11896
+          priceRevision: 1
+        - itemId: 55241
+          priceRevision: 1
+        - itemId: 11665
+          priceRevision: 1
+        - itemId: 11666
+          priceRevision: 1
+        - itemId: 11667
+          priceRevision: 1
+        - itemId: 11668
+          priceRevision: 1
+        - itemId: 11669
+          priceRevision: 1
+        - itemId: 11670
+          priceRevision: 1
+        - itemId: 11671
+          priceRevision: 1
+        - itemId: 11672
+          priceRevision: 1
+        - itemId: 55213
+          priceRevision: 1
+        - itemId: 11825
+          priceRevision: 1
+        - itemId: 11826
+          priceRevision: 1
+        - itemId: 11827
+          priceRevision: 1
+        - itemId: 11828
+          priceRevision: 1
+        - itemId: 11829
+          priceRevision: 1
+        - itemId: 11830
+          priceRevision: 1
+        - itemId: 11831
+          priceRevision: 1
+        - itemId: 11832
+          priceRevision: 1
+        - itemId: 55233
+          priceRevision: 1
+        - itemId: 11753
+          priceRevision: 1
+        - itemId: 11754
+          priceRevision: 1
+        - itemId: 11755
+          priceRevision: 1
+        - itemId: 11756
+          priceRevision: 1
+        - itemId: 11757
+          priceRevision: 1
+        - itemId: 11758
+          priceRevision: 1
+        - itemId: 11759
+          priceRevision: 1
+        - itemId: 11760
+          priceRevision: 1
+        - itemId: 55224
+          priceRevision: 1
+        - itemId: 11897
+          priceRevision: 1
+        - itemId: 11898
+          priceRevision: 1
+        - itemId: 11899
+          priceRevision: 1
+        - itemId: 11900
+          priceRevision: 1
+        - itemId: 11901
+          priceRevision: 1
+        - itemId: 11902
+          priceRevision: 1
+        - itemId: 11903
+          priceRevision: 1
+        - itemId: 11904
+          priceRevision: 1
+        - itemId: 55242
+          priceRevision: 1
+    - id: 1521
+      needMedalItemId: 23
+      items:
+        - itemId: 11673
+          priceRevision: 1
+        - itemId: 11674
+          priceRevision: 1
+        - itemId: 11675
+          priceRevision: 1
+        - itemId: 11676
+          priceRevision: 1
+        - itemId: 11677
+          priceRevision: 1
+        - itemId: 11678
+          priceRevision: 1
+        - itemId: 11679
+          priceRevision: 1
+        - itemId: 11680
+          priceRevision: 1
+        - itemId: 55214
+          priceRevision: 1
+        - itemId: 11833
+          priceRevision: 1
+        - itemId: 11834
+          priceRevision: 1
+        - itemId: 11835
+          priceRevision: 1
+        - itemId: 11836
+          priceRevision: 1
+        - itemId: 11837
+          priceRevision: 1
+        - itemId: 11838
+          priceRevision: 1
+        - itemId: 11839
+          priceRevision: 1
+        - itemId: 11840
+          priceRevision: 1
+        - itemId: 55234
+          priceRevision: 1
+        - itemId: 11761
+          priceRevision: 1
+        - itemId: 11762
+          priceRevision: 1
+        - itemId: 11763
+          priceRevision: 1
+        - itemId: 11764
+          priceRevision: 1
+        - itemId: 11765
+          priceRevision: 1
+        - itemId: 11766
+          priceRevision: 1
+        - itemId: 11767
+          priceRevision: 1
+        - itemId: 11768
+          priceRevision: 1
+        - itemId: 55225
+          priceRevision: 1
+        - itemId: 11905
+          priceRevision: 1
+        - itemId: 11906
+          priceRevision: 1
+        - itemId: 11907
+          priceRevision: 1
+        - itemId: 11908
+          priceRevision: 1
+        - itemId: 11909
+          priceRevision: 1
+        - itemId: 11910
+          priceRevision: 1
+        - itemId: 11911
+          priceRevision: 1
+        - itemId: 11912
+          priceRevision: 1
+        - itemId: 55243
+          priceRevision: 1
+        - itemId: 11961
+          priceRevision: 1
+        - itemId: 11962
+          priceRevision: 1
+        - itemId: 11963
+          priceRevision: 1
+        - itemId: 11964
+          priceRevision: 1
+        - itemId: 11965
+          priceRevision: 1
+        - itemId: 11966
+          priceRevision: 1
+        - itemId: 11967
+          priceRevision: 1
+        - itemId: 11968
+          priceRevision: 1
+        - itemId: 55250
+          priceRevision: 1
+        - itemId: 12017
+          priceRevision: 1
+        - itemId: 12018
+          priceRevision: 1
+        - itemId: 12019
+          priceRevision: 1
+        - itemId: 12020
+          priceRevision: 1
+        - itemId: 12021
+          priceRevision: 1
+        - itemId: 12022
+          priceRevision: 1
+        - itemId: 12023
+          priceRevision: 1
+        - itemId: 12024
+          priceRevision: 1
+        - itemId: 55257
+          priceRevision: 1
+        - itemId: 11681
+          priceRevision: 1
+        - itemId: 11682
+          priceRevision: 1
+        - itemId: 11683
+          priceRevision: 1
+        - itemId: 11684
+          priceRevision: 1
+        - itemId: 11685
+          priceRevision: 1
+        - itemId: 11686
+          priceRevision: 1
+        - itemId: 11687
+          priceRevision: 1
+        - itemId: 11688
+          priceRevision: 1
+        - itemId: 55215
+          priceRevision: 1
+        - itemId: 11841
+          priceRevision: 1
+        - itemId: 11842
+          priceRevision: 1
+        - itemId: 11843
+          priceRevision: 1
+        - itemId: 11844
+          priceRevision: 1
+        - itemId: 11845
+          priceRevision: 1
+        - itemId: 11846
+          priceRevision: 1
+        - itemId: 11847
+          priceRevision: 1
+        - itemId: 11848
+          priceRevision: 1
+        - itemId: 55235
+          priceRevision: 1
+        - itemId: 11769
+          priceRevision: 1
+        - itemId: 11770
+          priceRevision: 1
+        - itemId: 11771
+          priceRevision: 1
+        - itemId: 11772
+          priceRevision: 1
+        - itemId: 11773
+          priceRevision: 1
+        - itemId: 11774
+          priceRevision: 1
+        - itemId: 11775
+          priceRevision: 1
+        - itemId: 11776
+          priceRevision: 1
+        - itemId: 55226
+          priceRevision: 1
+        - itemId: 11913
+          priceRevision: 1
+        - itemId: 11914
+          priceRevision: 1
+        - itemId: 11915
+          priceRevision: 1
+        - itemId: 11916
+          priceRevision: 1
+        - itemId: 11917
+          priceRevision: 1
+        - itemId: 11918
+          priceRevision: 1
+        - itemId: 11919
+          priceRevision: 1
+        - itemId: 11920
+          priceRevision: 1
+        - itemId: 55244
+          priceRevision: 1
+        - itemId: 11969
+          priceRevision: 1
+        - itemId: 11970
+          priceRevision: 1
+        - itemId: 11971
+          priceRevision: 1
+        - itemId: 11972
+          priceRevision: 1
+        - itemId: 11973
+          priceRevision: 1
+        - itemId: 11974
+          priceRevision: 1
+        - itemId: 11975
+          priceRevision: 1
+        - itemId: 11976
+          priceRevision: 1
+        - itemId: 55251
+          priceRevision: 1
+        - itemId: 12025
+          priceRevision: 1
+        - itemId: 12026
+          priceRevision: 1
+        - itemId: 12027
+          priceRevision: 1
+        - itemId: 12028
+          priceRevision: 1
+        - itemId: 12029
+          priceRevision: 1
+        - itemId: 12030
+          priceRevision: 1
+        - itemId: 12031
+          priceRevision: 1
+        - itemId: 12032
+          priceRevision: 1
+        - itemId: 55258
+          priceRevision: 1
+    - id: 1531
+      needMedalItemId: 24
+      items:
+        - itemId: 11689
+          priceRevision: 1
+        - itemId: 11690
+          priceRevision: 1
+        - itemId: 11691
+          priceRevision: 1
+        - itemId: 11692
+          priceRevision: 1
+        - itemId: 11693
+          priceRevision: 1
+        - itemId: 11694
+          priceRevision: 1
+        - itemId: 11695
+          priceRevision: 1
+        - itemId: 11696
+          priceRevision: 1
+        - itemId: 55216
+          priceRevision: 1
+        - itemId: 11849
+          priceRevision: 1
+        - itemId: 11850
+          priceRevision: 1
+        - itemId: 11851
+          priceRevision: 1
+        - itemId: 11852
+          priceRevision: 1
+        - itemId: 11853
+          priceRevision: 1
+        - itemId: 11854
+          priceRevision: 1
+        - itemId: 11855
+          priceRevision: 1
+        - itemId: 11856
+          priceRevision: 1
+        - itemId: 55236
+          priceRevision: 1
+        - itemId: 11777
+          priceRevision: 1
+        - itemId: 11778
+          priceRevision: 1
+        - itemId: 11779
+          priceRevision: 1
+        - itemId: 11780
+          priceRevision: 1
+        - itemId: 11781
+          priceRevision: 1
+        - itemId: 11782
+          priceRevision: 1
+        - itemId: 11783
+          priceRevision: 1
+        - itemId: 11784
+          priceRevision: 1
+        - itemId: 55227
+          priceRevision: 1
+        - itemId: 11921
+          priceRevision: 1
+        - itemId: 11922
+          priceRevision: 1
+        - itemId: 11923
+          priceRevision: 1
+        - itemId: 11924
+          priceRevision: 1
+        - itemId: 11925
+          priceRevision: 1
+        - itemId: 11926
+          priceRevision: 1
+        - itemId: 11927
+          priceRevision: 1
+        - itemId: 11928
+          priceRevision: 1
+        - itemId: 55245
+          priceRevision: 1
+        - itemId: 11977
+          priceRevision: 1
+        - itemId: 11978
+          priceRevision: 1
+        - itemId: 11979
+          priceRevision: 1
+        - itemId: 11980
+          priceRevision: 1
+        - itemId: 11981
+          priceRevision: 1
+        - itemId: 11982
+          priceRevision: 1
+        - itemId: 11983
+          priceRevision: 1
+        - itemId: 11984
+          priceRevision: 1
+        - itemId: 55252
+          priceRevision: 1
+        - itemId: 12033
+          priceRevision: 1
+        - itemId: 12034
+          priceRevision: 1
+        - itemId: 12035
+          priceRevision: 1
+        - itemId: 12036
+          priceRevision: 1
+        - itemId: 12037
+          priceRevision: 1
+        - itemId: 12038
+          priceRevision: 1
+        - itemId: 12039
+          priceRevision: 1
+        - itemId: 12040
+          priceRevision: 1
+        - itemId: 55259
+          priceRevision: 1
+        - itemId: 11697
+          priceRevision: 1
+        - itemId: 11698
+          priceRevision: 1
+        - itemId: 11699
+          priceRevision: 1
+        - itemId: 11700
+          priceRevision: 1
+        - itemId: 11701
+          priceRevision: 1
+        - itemId: 11702
+          priceRevision: 1
+        - itemId: 11703
+          priceRevision: 1
+        - itemId: 11704
+          priceRevision: 1
+        - itemId: 55217
+          priceRevision: 1
+        - itemId: 11857
+          priceRevision: 1
+        - itemId: 11858
+          priceRevision: 1
+        - itemId: 11859
+          priceRevision: 1
+        - itemId: 11860
+          priceRevision: 1
+        - itemId: 11861
+          priceRevision: 1
+        - itemId: 11862
+          priceRevision: 1
+        - itemId: 11863
+          priceRevision: 1
+        - itemId: 11864
+          priceRevision: 1
+        - itemId: 55237
+          priceRevision: 1
+        - itemId: 11785
+          priceRevision: 1
+        - itemId: 11786
+          priceRevision: 1
+        - itemId: 11787
+          priceRevision: 1
+        - itemId: 11788
+          priceRevision: 1
+        - itemId: 11789
+          priceRevision: 1
+        - itemId: 11790
+          priceRevision: 1
+        - itemId: 11791
+          priceRevision: 1
+        - itemId: 11792
+          priceRevision: 1
+        - itemId: 55228
+          priceRevision: 1
+        - itemId: 11929
+          priceRevision: 1
+        - itemId: 11930
+          priceRevision: 1
+        - itemId: 11931
+          priceRevision: 1
+        - itemId: 11932
+          priceRevision: 1
+        - itemId: 11933
+          priceRevision: 1
+        - itemId: 11934
+          priceRevision: 1
+        - itemId: 11935
+          priceRevision: 1
+        - itemId: 11936
+          priceRevision: 1
+        - itemId: 55246
+          priceRevision: 1
+        - itemId: 11985
+          priceRevision: 1
+        - itemId: 11986
+          priceRevision: 1
+        - itemId: 11987
+          priceRevision: 1
+        - itemId: 11988
+          priceRevision: 1
+        - itemId: 11989
+          priceRevision: 1
+        - itemId: 11990
+          priceRevision: 1
+        - itemId: 11991
+          priceRevision: 1
+        - itemId: 11992
+          priceRevision: 1
+        - itemId: 55253
+          priceRevision: 1
+        - itemId: 12041
+          priceRevision: 1
+        - itemId: 12042
+          priceRevision: 1
+        - itemId: 12043
+          priceRevision: 1
+        - itemId: 12044
+          priceRevision: 1
+        - itemId: 12045
+          priceRevision: 1
+        - itemId: 12046
+          priceRevision: 1
+        - itemId: 12047
+          priceRevision: 1
+        - itemId: 12048
+          priceRevision: 1
+        - itemId: 55260
+          priceRevision: 1
+        - itemId: 12489
+          priceRevision: 1
+        - itemId: 12490
+          priceRevision: 1
+        - itemId: 12491
+          priceRevision: 1
+        - itemId: 12492
+          priceRevision: 1
+        - itemId: 12493
+          priceRevision: 1
+        - itemId: 12494
+          priceRevision: 1
+        - itemId: 12495
+          priceRevision: 1
+        - itemId: 12496
+          priceRevision: 1
+        - itemId: 55316
+          priceRevision: 1
+        - itemId: 12497
+          priceRevision: 1
+        - itemId: 12498
+          priceRevision: 1
+        - itemId: 12499
+          priceRevision: 1
+        - itemId: 12500
+          priceRevision: 1
+        - itemId: 12501
+          priceRevision: 1
+        - itemId: 12502
+          priceRevision: 1
+        - itemId: 12503
+          priceRevision: 1
+        - itemId: 12504
+          priceRevision: 1
+        - itemId: 55317
+          priceRevision: 1
+        - itemId: 12505
+          priceRevision: 1
+        - itemId: 12506
+          priceRevision: 1
+        - itemId: 12507
+          priceRevision: 1
+        - itemId: 12508
+          priceRevision: 1
+        - itemId: 12509
+          priceRevision: 1
+        - itemId: 12510
+          priceRevision: 1
+        - itemId: 12511
+          priceRevision: 1
+        - itemId: 12512
+          priceRevision: 1
+        - itemId: 55318
+          priceRevision: 1
+        - itemId: 12513
+          priceRevision: 1
+        - itemId: 12514
+          priceRevision: 1
+        - itemId: 12515
+          priceRevision: 1
+        - itemId: 12516
+          priceRevision: 1
+        - itemId: 12517
+          priceRevision: 1
+        - itemId: 12518
+          priceRevision: 1
+        - itemId: 12519
+          priceRevision: 1
+        - itemId: 12520
+          priceRevision: 1
+        - itemId: 55319
+          priceRevision: 1
+        - itemId: 12521
+          priceRevision: 1
+        - itemId: 12522
+          priceRevision: 1
+        - itemId: 12523
+          priceRevision: 1
+        - itemId: 12524
+          priceRevision: 1
+        - itemId: 12525
+          priceRevision: 1
+        - itemId: 12526
+          priceRevision: 1
+        - itemId: 12527
+          priceRevision: 1
+        - itemId: 12528
+          priceRevision: 1
+        - itemId: 55320
+          priceRevision: 1
+        - itemId: 12529
+          priceRevision: 1
+        - itemId: 12530
+          priceRevision: 1
+        - itemId: 12531
+          priceRevision: 1
+        - itemId: 12532
+          priceRevision: 1
+        - itemId: 12533
+          priceRevision: 1
+        - itemId: 12534
+          priceRevision: 1
+        - itemId: 12535
+          priceRevision: 1
+        - itemId: 12536
+          priceRevision: 1
+        - itemId: 55321
+          priceRevision: 1
+        - itemId: 12537
+          priceRevision: 1
+        - itemId: 12538
+          priceRevision: 1
+        - itemId: 12539
+          priceRevision: 1
+        - itemId: 12540
+          priceRevision: 1
+        - itemId: 12541
+          priceRevision: 1
+        - itemId: 12542
+          priceRevision: 1
+        - itemId: 12543
+          priceRevision: 1
+        - itemId: 12544
+          priceRevision: 1
+        - itemId: 55322
+          priceRevision: 1
+        - itemId: 12545
+          priceRevision: 1
+        - itemId: 12546
+          priceRevision: 1
+        - itemId: 12547
+          priceRevision: 1
+        - itemId: 12548
+          priceRevision: 1
+        - itemId: 12549
+          priceRevision: 1
+        - itemId: 12550
+          priceRevision: 1
+        - itemId: 12551
+          priceRevision: 1
+        - itemId: 12552
+          priceRevision: 1
+        - itemId: 55323
+          priceRevision: 1
+    - id: 1541
+      needMedalItemId: 25
+      items:
+        - itemId: 11705
+          priceRevision: 1
+        - itemId: 11706
+          priceRevision: 1
+        - itemId: 11707
+          priceRevision: 1
+        - itemId: 11708
+          priceRevision: 1
+        - itemId: 11709
+          priceRevision: 1
+        - itemId: 11710
+          priceRevision: 1
+        - itemId: 11711
+          priceRevision: 1
+        - itemId: 11712
+          priceRevision: 1
+        - itemId: 55218
+          priceRevision: 1
+        - itemId: 11865
+          priceRevision: 1
+        - itemId: 11866
+          priceRevision: 1
+        - itemId: 11867
+          priceRevision: 1
+        - itemId: 11868
+          priceRevision: 1
+        - itemId: 11869
+          priceRevision: 1
+        - itemId: 11870
+          priceRevision: 1
+        - itemId: 11871
+          priceRevision: 1
+        - itemId: 11872
+          priceRevision: 1
+        - itemId: 55238
+          priceRevision: 1
+        - itemId: 12073
+          priceRevision: 1
+        - itemId: 12074
+          priceRevision: 1
+        - itemId: 12075
+          priceRevision: 1
+        - itemId: 12076
+          priceRevision: 1
+        - itemId: 12077
+          priceRevision: 1
+        - itemId: 12078
+          priceRevision: 1
+        - itemId: 12079
+          priceRevision: 1
+        - itemId: 12080
+          priceRevision: 1
+        - itemId: 55264
+          priceRevision: 1
+        - itemId: 11793
+          priceRevision: 1
+        - itemId: 11794
+          priceRevision: 1
+        - itemId: 11795
+          priceRevision: 1
+        - itemId: 11796
+          priceRevision: 1
+        - itemId: 11797
+          priceRevision: 1
+        - itemId: 11798
+          priceRevision: 1
+        - itemId: 11799
+          priceRevision: 1
+        - itemId: 11800
+          priceRevision: 1
+        - itemId: 55229
+          priceRevision: 1
+        - itemId: 11937
+          priceRevision: 1
+        - itemId: 11938
+          priceRevision: 1
+        - itemId: 11939
+          priceRevision: 1
+        - itemId: 11940
+          priceRevision: 1
+        - itemId: 11941
+          priceRevision: 1
+        - itemId: 11942
+          priceRevision: 1
+        - itemId: 11943
+          priceRevision: 1
+        - itemId: 11944
+          priceRevision: 1
+        - itemId: 55247
+          priceRevision: 1
+        - itemId: 12097
+          priceRevision: 1
+        - itemId: 12098
+          priceRevision: 1
+        - itemId: 12099
+          priceRevision: 1
+        - itemId: 12100
+          priceRevision: 1
+        - itemId: 12101
+          priceRevision: 1
+        - itemId: 12102
+          priceRevision: 1
+        - itemId: 12103
+          priceRevision: 1
+        - itemId: 12104
+          priceRevision: 1
+        - itemId: 55267
+          priceRevision: 1
+        - itemId: 11993
+          priceRevision: 1
+        - itemId: 11994
+          priceRevision: 1
+        - itemId: 11995
+          priceRevision: 1
+        - itemId: 11996
+          priceRevision: 1
+        - itemId: 11997
+          priceRevision: 1
+        - itemId: 11998
+          priceRevision: 1
+        - itemId: 11999
+          priceRevision: 1
+        - itemId: 12000
+          priceRevision: 1
+        - itemId: 55254
+          priceRevision: 1
+        - itemId: 12049
+          priceRevision: 1
+        - itemId: 12050
+          priceRevision: 1
+        - itemId: 12051
+          priceRevision: 1
+        - itemId: 12052
+          priceRevision: 1
+        - itemId: 12053
+          priceRevision: 1
+        - itemId: 12054
+          priceRevision: 1
+        - itemId: 12055
+          priceRevision: 1
+        - itemId: 12056
+          priceRevision: 1
+        - itemId: 55261
+          priceRevision: 1
+        - itemId: 12081
+          priceRevision: 1
+        - itemId: 12082
+          priceRevision: 1
+        - itemId: 12083
+          priceRevision: 1
+        - itemId: 12084
+          priceRevision: 1
+        - itemId: 12085
+          priceRevision: 1
+        - itemId: 12086
+          priceRevision: 1
+        - itemId: 12087
+          priceRevision: 1
+        - itemId: 12088
+          priceRevision: 1
+        - itemId: 55265
+          priceRevision: 1
+        - itemId: 12105
+          priceRevision: 1
+        - itemId: 12106
+          priceRevision: 1
+        - itemId: 12107
+          priceRevision: 1
+        - itemId: 12108
+          priceRevision: 1
+        - itemId: 12109
+          priceRevision: 1
+        - itemId: 12110
+          priceRevision: 1
+        - itemId: 12111
+          priceRevision: 1
+        - itemId: 12112
+          priceRevision: 1
+        - itemId: 55268
+          priceRevision: 1
+        - itemId: 11713
+          priceRevision: 1
+        - itemId: 11714
+          priceRevision: 1
+        - itemId: 11715
+          priceRevision: 1
+        - itemId: 11716
+          priceRevision: 1
+        - itemId: 11717
+          priceRevision: 1
+        - itemId: 11718
+          priceRevision: 1
+        - itemId: 11719
+          priceRevision: 1
+        - itemId: 11720
+          priceRevision: 1
+        - itemId: 55219
+          priceRevision: 1
+        - itemId: 11873
+          priceRevision: 1
+        - itemId: 11874
+          priceRevision: 1
+        - itemId: 11875
+          priceRevision: 1
+        - itemId: 11876
+          priceRevision: 1
+        - itemId: 11877
+          priceRevision: 1
+        - itemId: 11878
+          priceRevision: 1
+        - itemId: 11879
+          priceRevision: 1
+        - itemId: 11880
+          priceRevision: 1
+        - itemId: 55239
+          priceRevision: 1
+        - itemId: 11801
+          priceRevision: 1
+        - itemId: 11802
+          priceRevision: 1
+        - itemId: 11803
+          priceRevision: 1
+        - itemId: 11804
+          priceRevision: 1
+        - itemId: 11805
+          priceRevision: 1
+        - itemId: 11806
+          priceRevision: 1
+        - itemId: 11807
+          priceRevision: 1
+        - itemId: 11808
+          priceRevision: 1
+        - itemId: 55230
+          priceRevision: 1
+        - itemId: 11945
+          priceRevision: 1
+        - itemId: 11946
+          priceRevision: 1
+        - itemId: 11947
+          priceRevision: 1
+        - itemId: 11948
+          priceRevision: 1
+        - itemId: 11949
+          priceRevision: 1
+        - itemId: 11950
+          priceRevision: 1
+        - itemId: 11951
+          priceRevision: 1
+        - itemId: 11952
+          priceRevision: 1
+        - itemId: 55248
+          priceRevision: 1
+        - itemId: 12001
+          priceRevision: 1
+        - itemId: 12002
+          priceRevision: 1
+        - itemId: 12003
+          priceRevision: 1
+        - itemId: 12004
+          priceRevision: 1
+        - itemId: 12005
+          priceRevision: 1
+        - itemId: 12006
+          priceRevision: 1
+        - itemId: 12007
+          priceRevision: 1
+        - itemId: 12008
+          priceRevision: 1
+        - itemId: 55255
+          priceRevision: 1
+        - itemId: 12057
+          priceRevision: 1
+        - itemId: 12058
+          priceRevision: 1
+        - itemId: 12059
+          priceRevision: 1
+        - itemId: 12060
+          priceRevision: 1
+        - itemId: 12061
+          priceRevision: 1
+        - itemId: 12062
+          priceRevision: 1
+        - itemId: 12063
+          priceRevision: 1
+        - itemId: 12064
+          priceRevision: 1
+        - itemId: 55262
+          priceRevision: 1
+    - id: 1701
+      needMedalItemId: 14
+      items:
+        - itemId: 118
+          priceRevision: 1
+        - itemId: 119
+          priceRevision: 1
+        - itemId: 120
+          priceRevision: 1
+        - itemId: 121
+          priceRevision: 1
+        - itemId: 122
+          priceRevision: 1
+    - id: 1901
+      items:
+        - itemId: 25001
+          priceRevision: 1
+        - itemId: 25009
+          priceRevision: 1
+        - itemId: 25177
+          priceRevision: 1
+        - itemId: 25185
+          priceRevision: 1
+        - itemId: 25321
+          priceRevision: 1
+        - itemId: 25329
+          priceRevision: 1
+        - itemId: 25337
+          priceRevision: 1
+        - itemId: 25345
+          priceRevision: 1
+        - itemId: 25353
+          priceRevision: 1
+        - itemId: 25365
+          priceRevision: 1
+        - itemId: 28083
+          priceRevision: 1
+        - itemId: 28100
+          priceRevision: 1
+        - itemId: 28117
+          priceRevision: 1
+        - itemId: 28134
+          priceRevision: 1
+        - itemId: 28142
+          priceRevision: 1
+        - itemId: 25002
+          priceRevision: 1
+        - itemId: 25010
+          priceRevision: 1
+        - itemId: 25178
+          priceRevision: 1
+        - itemId: 25186
+          priceRevision: 1
+        - itemId: 25322
+          priceRevision: 1
+        - itemId: 25330
+          priceRevision: 1
+        - itemId: 25338
+          priceRevision: 1
+        - itemId: 25346
+          priceRevision: 1
+        - itemId: 25354
+          priceRevision: 1
+        - itemId: 25366
+          priceRevision: 1
+        - itemId: 28084
+          priceRevision: 1
+        - itemId: 28101
+          priceRevision: 1
+        - itemId: 28118
+          priceRevision: 1
+        - itemId: 28135
+          priceRevision: 1
+        - itemId: 28143
+          priceRevision: 1
+        - itemId: 25003
+          priceRevision: 1
+        - itemId: 25011
+          priceRevision: 1
+        - itemId: 25179
+          priceRevision: 1
+        - itemId: 25187
+          priceRevision: 1
+        - itemId: 25323
+          priceRevision: 1
+        - itemId: 25331
+          priceRevision: 1
+        - itemId: 25339
+          priceRevision: 1
+        - itemId: 25347
+          priceRevision: 1
+        - itemId: 25355
+          priceRevision: 1
+        - itemId: 25367
+          priceRevision: 1
+        - itemId: 28085
+          priceRevision: 1
+        - itemId: 28102
+          priceRevision: 1
+        - itemId: 28119
+          priceRevision: 1
+        - itemId: 28136
+          priceRevision: 1
+        - itemId: 28144
+          priceRevision: 1
+        - itemId: 25004
+          priceRevision: 1
+        - itemId: 25012
+          priceRevision: 1
+        - itemId: 25180
+          priceRevision: 1
+        - itemId: 25188
+          priceRevision: 1
+        - itemId: 25324
+          priceRevision: 1
+        - itemId: 25332
+          priceRevision: 1
+        - itemId: 25340
+          priceRevision: 1
+        - itemId: 25348
+          priceRevision: 1
+        - itemId: 25356
+          priceRevision: 1
+        - itemId: 25368
+          priceRevision: 1
+        - itemId: 28086
+          priceRevision: 1
+        - itemId: 28103
+          priceRevision: 1
+        - itemId: 28120
+          priceRevision: 1
+        - itemId: 28137
+          priceRevision: 1
+        - itemId: 28145
+          priceRevision: 1
+    - id: 1902
+      items:
+        - itemId: 25005
+          priceRevision: 1
+        - itemId: 25013
+          priceRevision: 1
+        - itemId: 25181
+          priceRevision: 1
+        - itemId: 25189
+          priceRevision: 1
+        - itemId: 25325
+          priceRevision: 1
+        - itemId: 25333
+          priceRevision: 1
+        - itemId: 25341
+          priceRevision: 1
+        - itemId: 25349
+          priceRevision: 1
+        - itemId: 25357
+          priceRevision: 1
+        - itemId: 25369
+          priceRevision: 1
+        - itemId: 28087
+          priceRevision: 1
+        - itemId: 28104
+          priceRevision: 1
+        - itemId: 28121
+          priceRevision: 1
+        - itemId: 28138
+          priceRevision: 1
+        - itemId: 28146
+          priceRevision: 1
+        - itemId: 25006
+          priceRevision: 1
+        - itemId: 25014
+          priceRevision: 1
+        - itemId: 25182
+          priceRevision: 1
+        - itemId: 25190
+          priceRevision: 1
+        - itemId: 25326
+          priceRevision: 1
+        - itemId: 25334
+          priceRevision: 1
+        - itemId: 25342
+          priceRevision: 1
+        - itemId: 25350
+          priceRevision: 1
+        - itemId: 25358
+          priceRevision: 1
+        - itemId: 25370
+          priceRevision: 1
+        - itemId: 28088
+          priceRevision: 1
+        - itemId: 28105
+          priceRevision: 1
+        - itemId: 28122
+          priceRevision: 1
+        - itemId: 28139
+          priceRevision: 1
+        - itemId: 28147
+          priceRevision: 1
+        - itemId: 25007
+          priceRevision: 1
+        - itemId: 25015
+          priceRevision: 1
+        - itemId: 25183
+          priceRevision: 1
+        - itemId: 25191
+          priceRevision: 1
+        - itemId: 25327
+          priceRevision: 1
+        - itemId: 25335
+          priceRevision: 1
+        - itemId: 25343
+          priceRevision: 1
+        - itemId: 25351
+          priceRevision: 1
+        - itemId: 25359
+          priceRevision: 1
+        - itemId: 25371
+          priceRevision: 1
+        - itemId: 28089
+          priceRevision: 1
+        - itemId: 28106
+          priceRevision: 1
+        - itemId: 28123
+          priceRevision: 1
+        - itemId: 28140
+          priceRevision: 1
+        - itemId: 28148
+          priceRevision: 1
+        - itemId: 25008
+          priceRevision: 1
+        - itemId: 25016
+          priceRevision: 1
+        - itemId: 25184
+          priceRevision: 1
+        - itemId: 25192
+          priceRevision: 1
+        - itemId: 25328
+          priceRevision: 1
+        - itemId: 25336
+          priceRevision: 1
+        - itemId: 25344
+          priceRevision: 1
+        - itemId: 25352
+          priceRevision: 1
+        - itemId: 25360
+          priceRevision: 1
+        - itemId: 25372
+          priceRevision: 1
+        - itemId: 28090
+          priceRevision: 1
+        - itemId: 28107
+          priceRevision: 1
+        - itemId: 28124
+          priceRevision: 1
+        - itemId: 28141
+          priceRevision: 1
+        - itemId: 28149
+          priceRevision: 1
+        - itemId: 55600
+          priceRevision: 1
+        - itemId: 55601
+          priceRevision: 1
+        - itemId: 55602
+          priceRevision: 1
+        - itemId: 55603
+          priceRevision: 1
+        - itemId: 55604
+          priceRevision: 1
+        - itemId: 55605
+          priceRevision: 1
+        - itemId: 55606
+          priceRevision: 1
+        - itemId: 55607
+          priceRevision: 1
+        - itemId: 55608
+          priceRevision: 1
+        - itemId: 55609
+          priceRevision: 1
+        - itemId: 55610
+          priceRevision: 1
+        - itemId: 55611
+          priceRevision: 1
+        - itemId: 55612
+          priceRevision: 1
+        - itemId: 55613
+          priceRevision: 1
+        - itemId: 55614
+          priceRevision: 1
+    - id: 1903
+      items:
+        - itemId: 28216
+          priceRevision: 1
+        - itemId: 28217
+          priceRevision: 1
+        - itemId: 28218
+          priceRevision: 1
+        - itemId: 28219
+          priceRevision: 1
+        - itemId: 28220
+          priceRevision: 1
+        - itemId: 28221
+          priceRevision: 1
+        - itemId: 28222
+          priceRevision: 1
+        - itemId: 28223
+          priceRevision: 1
+        - itemId: 28224
+          priceRevision: 1
+        - itemId: 55615
+          priceRevision: 1
+    - id: 1911
+      items:
+        - itemId: 26001
+          priceRevision: 1
+        - itemId: 26010
+          priceRevision: 1
+        - itemId: 26199
+          priceRevision: 1
+        - itemId: 26208
+          priceRevision: 1
+        - itemId: 26361
+          priceRevision: 1
+        - itemId: 26370
+          priceRevision: 1
+        - itemId: 26379
+          priceRevision: 1
+        - itemId: 26388
+          priceRevision: 1
+        - itemId: 26397
+          priceRevision: 1
+        - itemId: 26415
+          priceRevision: 1
+        - itemId: 28094
+          priceRevision: 1
+        - itemId: 28111
+          priceRevision: 1
+        - itemId: 28128
+          priceRevision: 1
+        - itemId: 26004
+          priceRevision: 1
+        - itemId: 26013
+          priceRevision: 1
+        - itemId: 26202
+          priceRevision: 1
+        - itemId: 26211
+          priceRevision: 1
+        - itemId: 26364
+          priceRevision: 1
+        - itemId: 26373
+          priceRevision: 1
+        - itemId: 26382
+          priceRevision: 1
+        - itemId: 26391
+          priceRevision: 1
+        - itemId: 26400
+          priceRevision: 1
+        - itemId: 26418
+          priceRevision: 1
+        - itemId: 28096
+          priceRevision: 1
+        - itemId: 28113
+          priceRevision: 1
+        - itemId: 28130
+          priceRevision: 1
+        - itemId: 26007
+          priceRevision: 1
+        - itemId: 26016
+          priceRevision: 1
+        - itemId: 26205
+          priceRevision: 1
+        - itemId: 26214
+          priceRevision: 1
+        - itemId: 26367
+          priceRevision: 1
+        - itemId: 26376
+          priceRevision: 1
+        - itemId: 26385
+          priceRevision: 1
+        - itemId: 26394
+          priceRevision: 1
+        - itemId: 26403
+          priceRevision: 1
+        - itemId: 26421
+          priceRevision: 1
+        - itemId: 28098
+          priceRevision: 1
+        - itemId: 28115
+          priceRevision: 1
+        - itemId: 28132
+          priceRevision: 1
+    - id: 1912
+      items:
+        - itemId: 26002
+          priceRevision: 1
+        - itemId: 26011
+          priceRevision: 1
+        - itemId: 26200
+          priceRevision: 1
+        - itemId: 26209
+          priceRevision: 1
+        - itemId: 26362
+          priceRevision: 1
+        - itemId: 26371
+          priceRevision: 1
+        - itemId: 26380
+          priceRevision: 1
+        - itemId: 26389
+          priceRevision: 1
+        - itemId: 26398
+          priceRevision: 1
+        - itemId: 26416
+          priceRevision: 1
+        - itemId: 28095
+          priceRevision: 1
+        - itemId: 28112
+          priceRevision: 1
+        - itemId: 28129
+          priceRevision: 1
+        - itemId: 26005
+          priceRevision: 1
+        - itemId: 26014
+          priceRevision: 1
+        - itemId: 26203
+          priceRevision: 1
+        - itemId: 26212
+          priceRevision: 1
+        - itemId: 26365
+          priceRevision: 1
+        - itemId: 26374
+          priceRevision: 1
+        - itemId: 26383
+          priceRevision: 1
+        - itemId: 26392
+          priceRevision: 1
+        - itemId: 26401
+          priceRevision: 1
+        - itemId: 26419
+          priceRevision: 1
+        - itemId: 28097
+          priceRevision: 1
+        - itemId: 28114
+          priceRevision: 1
+        - itemId: 28131
+          priceRevision: 1
+        - itemId: 26008
+          priceRevision: 1
+        - itemId: 26017
+          priceRevision: 1
+        - itemId: 26206
+          priceRevision: 1
+        - itemId: 26215
+          priceRevision: 1
+        - itemId: 26368
+          priceRevision: 1
+        - itemId: 26377
+          priceRevision: 1
+        - itemId: 26386
+          priceRevision: 1
+        - itemId: 26395
+          priceRevision: 1
+        - itemId: 26404
+          priceRevision: 1
+        - itemId: 26422
+          priceRevision: 1
+        - itemId: 28099
+          priceRevision: 1
+        - itemId: 28116
+          priceRevision: 1
+        - itemId: 28133
+          priceRevision: 1
+        - itemId: 26003
+          priceRevision: 1
+        - itemId: 26012
+          priceRevision: 1
+        - itemId: 26201
+          priceRevision: 1
+        - itemId: 26210
+          priceRevision: 1
+        - itemId: 26363
+          priceRevision: 1
+        - itemId: 26372
+          priceRevision: 1
+        - itemId: 26381
+          priceRevision: 1
+        - itemId: 26390
+          priceRevision: 1
+        - itemId: 26399
+          priceRevision: 1
+        - itemId: 26417
+          priceRevision: 1
+        - itemId: 28091
+          priceRevision: 1
+        - itemId: 28108
+          priceRevision: 1
+        - itemId: 28125
+          priceRevision: 1
+        - itemId: 28150
+          priceRevision: 1
+        - itemId: 26006
+          priceRevision: 1
+        - itemId: 26015
+          priceRevision: 1
+        - itemId: 26204
+          priceRevision: 1
+        - itemId: 26213
+          priceRevision: 1
+        - itemId: 26366
+          priceRevision: 1
+        - itemId: 26375
+          priceRevision: 1
+        - itemId: 26384
+          priceRevision: 1
+        - itemId: 26393
+          priceRevision: 1
+        - itemId: 26402
+          priceRevision: 1
+        - itemId: 26420
+          priceRevision: 1
+        - itemId: 28092
+          priceRevision: 1
+        - itemId: 28109
+          priceRevision: 1
+        - itemId: 28126
+          priceRevision: 1
+        - itemId: 28151
+          priceRevision: 1
+        - itemId: 26009
+          priceRevision: 1
+        - itemId: 26018
+          priceRevision: 1
+        - itemId: 26207
+          priceRevision: 1
+        - itemId: 26216
+          priceRevision: 1
+        - itemId: 26369
+          priceRevision: 1
+        - itemId: 26378
+          priceRevision: 1
+        - itemId: 26387
+          priceRevision: 1
+        - itemId: 26396
+          priceRevision: 1
+        - itemId: 26405
+          priceRevision: 1
+        - itemId: 26423
+          priceRevision: 1
+        - itemId: 28093
+          priceRevision: 1
+        - itemId: 28110
+          priceRevision: 1
+        - itemId: 28127
+          priceRevision: 1
+        - itemId: 28152
+          priceRevision: 1
+    - id: 1913
+      items:
+        - itemId: 28225
+          priceRevision: 1
+        - itemId: 28226
+          priceRevision: 1
+        - itemId: 28227
+          priceRevision: 1
+        - itemId: 28228
+          priceRevision: 1
+        - itemId: 28229
+          priceRevision: 1
+        - itemId: 28230
+          priceRevision: 1
+        - itemId: 28231
+          priceRevision: 1
+        - itemId: 28232
+          priceRevision: 1
+        - itemId: 28233
+          priceRevision: 1
+        - itemId: 28234
+          priceRevision: 1
+        - itemId: 28235
+          priceRevision: 1
+        - itemId: 28236
+          priceRevision: 1
+    - id: 2741
+      needMedalItemId: 371
+      items:
+        - itemId: 318
+          priceRevision: 1
+        - itemId: 319
+          priceRevision: 1
+        - itemId: 320
+          priceRevision: 1
+        - itemId: 321
+          priceRevision: 1
+        - itemId: 322
+          priceRevision: 1
+        - itemId: 323
+          priceRevision: 1
+        - itemId: 324
+          priceRevision: 1
+        - itemId: 325
+          priceRevision: 1
+        - itemId: 55000
+          priceRevision: 1
+    - id: 2801
+      needMedalItemId: 72
+      items:
+        - itemId: 4672
+          priceRevision: 1
+        - itemId: 4673
+          priceRevision: 1
+        - itemId: 4674
+          priceRevision: 1
+        - itemId: 4675
+          priceRevision: 1
+        - itemId: 4676
+          priceRevision: 1
+        - itemId: 4677
+          priceRevision: 1
+        - itemId: 4678
+          priceRevision: 1
+        - itemId: 4679
+          priceRevision: 1
+        - itemId: 55001
+          priceRevision: 1
+        - itemId: 4680
+          priceRevision: 1
+        - itemId: 4681
+          priceRevision: 1
+        - itemId: 4682
+          priceRevision: 1
+    - id: 2811
+      needMedalItemId: 73
+      items:
+        - itemId: 4683
+          priceRevision: 1
+        - itemId: 4684
+          priceRevision: 1
+        - itemId: 4685
+          priceRevision: 1
+        - itemId: 4686
+          priceRevision: 1
+        - itemId: 4687
+          priceRevision: 1
+        - itemId: 4688
+          priceRevision: 1
+        - itemId: 4689
+          priceRevision: 1
+        - itemId: 4690
+          priceRevision: 1
+        - itemId: 55002
+          priceRevision: 1
+        - itemId: 4691
+          priceRevision: 1
+        - itemId: 4692
+          priceRevision: 1
+        - itemId: 4693
+          priceRevision: 1
+    - id: 2821
+      needMedalItemId: 74
+      items:
+        - itemId: 4694
+          priceRevision: 1
+        - itemId: 4695
+          priceRevision: 1
+        - itemId: 4696
+          priceRevision: 1
+        - itemId: 4697
+          priceRevision: 1
+        - itemId: 4698
+          priceRevision: 1
+        - itemId: 4699
+          priceRevision: 1
+        - itemId: 4700
+          priceRevision: 1
+        - itemId: 55003
+          priceRevision: 1
+        - itemId: 4701
+          priceRevision: 1
+        - itemId: 4702
+          priceRevision: 1
+        - itemId: 4703
+          priceRevision: 1
+        - itemId: 4704
+          priceRevision: 1
+    - id: 2831
+      needMedalItemId: 75
+      items:
+        - itemId: 4705
+          priceRevision: 1
+        - itemId: 4706
+          priceRevision: 1
+        - itemId: 4707
+          priceRevision: 1
+        - itemId: 4708
+          priceRevision: 1
+        - itemId: 4709
+          priceRevision: 1
+        - itemId: 4710
+          priceRevision: 1
+        - itemId: 4711
+          priceRevision: 1
+        - itemId: 4712
+          priceRevision: 1
+        - itemId: 55004
+          priceRevision: 1
+        - itemId: 4713
+          priceRevision: 1
+        - itemId: 4714
+          priceRevision: 1
+        - itemId: 4715
+          priceRevision: 1
+    - id: 3030
+      needPointNpcGuildId: 605
+      items:
+        - itemId: 8908
+          priceRevision: 1
+        - itemId: 8920
+          priceRevision: 1
+    - id: 80000
+      desc: "떠돌이 상인 상점_전용 잡화"
+    - id: 1601
+      items:
+        - itemId: 94203
+          priceRevision: 1
+        - itemId: 94204
+          priceRevision: 1
+        - itemId: 94205
+          priceRevision: 1
+        - itemId: 94206
+          priceRevision: 1
+        - itemId: 200001
+          priceRevision: 1
+        - itemId: 213307
+          priceRevision: 1
+        - itemId: 98
+          priceRevision: 1
+        - itemId: 99
+          priceRevision: 1
+        - itemId: 91
+          priceRevision: 1
+        - itemId: 92
+          priceRevision: 1
+        - itemId: 219000
+          priceRevision: 1
+        - itemId: 93
+          priceRevision: 1
+    - id: 16059
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 135
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+    - id: 16060
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 134
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+    - id: 80001
+      desc: "벨리카 잡화_팻말 포함"
+      items:
+        - itemId: 94203
+          priceRevision: 1
+        - itemId: 94204
+          priceRevision: 1
+        - itemId: 94205
+          priceRevision: 1
+        - itemId: 94206
+          priceRevision: 1
+        - itemId: 200001
+          priceRevision: 1
+        - itemId: 213307
+          priceRevision: 1
+        - itemId: 98
+          priceRevision: 1
+        - itemId: 99
+          priceRevision: 1
+        - itemId: 91
+          priceRevision: 1
+        - itemId: 92
+          priceRevision: 1
+        - itemId: 219000
+          priceRevision: 1
+        - itemId: 93
+          priceRevision: 1
+    - id: 16063
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 133
+          priceRevision: 1
+        - itemId: 134
+          priceRevision: 1
+        - itemId: 135
+          priceRevision: 1
+        - itemId: 136
+          priceRevision: 1
+        - itemId: 137
+          priceRevision: 1
+        - itemId: 138
+          priceRevision: 1
+        - itemId: 139
+          priceRevision: 1
+        - itemId: 140
+          priceRevision: 1
+        - itemId: 141
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+    - id: 16086
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+    - id: 16087
+      desc: "A대륙 사냥터 내 출장 잡화상인"
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+    - id: 9140
+      desc: "토큰상점(거인의숲)_무기"
+      needMedalItemId: 71378
+      items:
+        - itemId: 71264
+          priceRevision: 1
+        - itemId: 71265
+          priceRevision: 1
+        - itemId: 71266
+          priceRevision: 1
+        - itemId: 71267
+          priceRevision: 1
+        - itemId: 71268
+          priceRevision: 1
+        - itemId: 71269
+          priceRevision: 1
+        - itemId: 71270
+          priceRevision: 1
+        - itemId: 71271
+          priceRevision: 1
+        - itemId: 55490
+          priceRevision: 1
+    - id: 9141
+      desc: "토큰상점(거인의숲)_방어구"
+      needMedalItemId: 71378
+      items:
+        - itemId: 71272
+          priceRevision: 1
+        - itemId: 71273
+          priceRevision: 1
+        - itemId: 71274
+          priceRevision: 1
+        - itemId: 71275
+          priceRevision: 1
+        - itemId: 71276
+          priceRevision: 1
+        - itemId: 71277
+          priceRevision: 1
+        - itemId: 71278
+          priceRevision: 1
+        - itemId: 71279
+          priceRevision: 1
+        - itemId: 71280
+          priceRevision: 1
+        - itemId: 71281
+          priceRevision: 1
+        - itemId: 71282
+          priceRevision: 1
+        - itemId: 71283
+          priceRevision: 1
+    - id: 9144
+      desc: "토큰상점(거인의숲)_타오르는 돌 II"
+      needMedalItemId: 71378
+      items:
+        - itemId: 71381
+          priceRevision: 1
