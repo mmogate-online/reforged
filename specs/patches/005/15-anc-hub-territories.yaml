@@ -6,7 +6,11 @@
 # `_spawn` and `_party` bases hold the modal value of each field over this file's rows;
 # a row states only its identity, its geometry and what departs from the base.
 #
-# The T-cat exchanger's two classic placements in Crescentia and Lumbertown are left out: his catalogue no longer exists, and the live data had already dormanted one of them.
+# Placements ported with voidSpawn true are parked: the rows, their territories and
+# parties stay in the file and nothing spawns from them until a later patch restates
+# them without the flag.
+#
+# The T-cat exchanger's two classic placements in Crescentia and Lumbertown are left out: his catalogue no longer exists, and the live data had already dormanted one of them. The 359 and 360 politics groups are ON/OFF pairs a guild lord used to toggle; nothing governs a `policy` territory on this server, so both halves of a pair spawn at once and stand on top of each other, which is why the OFF half of each pair is parked.
 #
 # provenance: ported-from-v31
 
@@ -210,6 +214,7 @@ territorySpawns:
       npcTemplateId: 1002
       pos: [96320.75, 17713.0078, 2929.248]
       dir: 266
+      voidSpawn: true
     - huntingZoneId: 359
       groupId: 35900001
       territoryId: 35900005
@@ -223,6 +228,7 @@ territorySpawns:
       viewRadius: 200
       viewAngle: 360
       aggroSendToPartyDistance: 1000
+      voidSpawn: true
     - huntingZoneId: 360
       groupId: 36000001
       territoryId: 36000002
@@ -232,6 +238,7 @@ territorySpawns:
       npcTemplateId: 1002
       pos: [89661.9219, -2270.5898, 714.375]
       dir: 255
+      voidSpawn: true
     - huntingZoneId: 360
       groupId: 36000001
       territoryId: 36000005
@@ -241,3 +248,4 @@ territorySpawns:
       npcTemplateId: 1101
       pos: [90476.9766, -2817.9944, 756.6038]
       dir: 182
+      voidSpawn: true
