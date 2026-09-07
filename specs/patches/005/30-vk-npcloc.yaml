@@ -1,0 +1,1627 @@
+# StrSheet_NpcLoc quest-marker registry for hunting zones 63.
+#
+# GENERATED FILE. Do not hand-edit: regenerate with
+#   python tools/dc-restore/gen_npcloc.py --zones 63 --continent 7005 --out <this file> --prune
+#
+# Derived from the CURRENT server TerritoryData, which is v31-authoritative
+# under the classic-restoration doctrine. One row per (huntingZoneId,
+# templateId); the value is the pipe-joined list of that template's spawn
+# positions on continent 7005. A spawn stored as the 0,0,0 random-in-fence
+# sentinel contributes its territory's fence centroid instead, so no dead
+# '7005#0,0,0' link target is ever emitted. Mode: prune (replace-by-zone).
+#
+# Waypoints use the TYPED form (`continent` + `markers`) rather than a packed
+# `string`. Both are supported and the raw form is what the DSL docs call the
+# generator default, but a packed payload runs to thousands of characters, so a
+# spawn change shows up as one enormous changed line. Typed markers diff one
+# waypoint at a time, which is what this project's regression-diff discipline
+# needs. `markers` replaces the whole list and is sequence-exact, so repeated
+# waypoints are preserved as written.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcLocStrings:
+  upsert:
+    - huntingZoneId: 63
+      templateId: 1001
+      continent: 7005
+      markers:
+        - [-3075, 5996, 2183]
+    - huntingZoneId: 63
+      templateId: 1002
+      continent: 7005
+      markers:
+        - [-3039, 6012, 2183]
+    - huntingZoneId: 63
+      templateId: 1003
+      continent: 7005
+      markers:
+        - [-2717, 7065, 2182]
+    - huntingZoneId: 63
+      templateId: 1004
+      continent: 7005
+      markers:
+        - [-306, 8612, 2181]
+    - huntingZoneId: 63
+      templateId: 1005
+      continent: 7005
+      markers:
+        - [-2075, 2618, 1778]
+    - huntingZoneId: 63
+      templateId: 1006
+      continent: 7005
+      markers:
+        - [-1854, 2320, 1778]
+    - huntingZoneId: 63
+      templateId: 1007
+      continent: 7005
+      markers:
+        - [890, 4133, 1778]
+    - huntingZoneId: 63
+      templateId: 1009
+      continent: 7005
+      markers:
+        - [1507, 3072, 1745]
+    - huntingZoneId: 63
+      templateId: 1011
+      continent: 7005
+      markers:
+        - [-228, 6613, 1956]
+    - huntingZoneId: 63
+      templateId: 1012
+      continent: 7005
+      markers:
+        - [338, 7076, 1888]
+    - huntingZoneId: 63
+      templateId: 1013
+      continent: 7005
+      markers:
+        - [-1585, 5850, 1888]
+    - huntingZoneId: 63
+      templateId: 1014
+      continent: 7005
+      markers:
+        - [-883, 6180, 1956]
+    - huntingZoneId: 63
+      templateId: 1015
+      continent: 7005
+      markers:
+        - [-6804, 2647, 1692]
+    - huntingZoneId: 63
+      templateId: 1016
+      continent: 7005
+      markers:
+        - [1789, 8273, 1967]
+    - huntingZoneId: 63
+      templateId: 1017
+      continent: 7005
+      markers:
+        - [2515, 7603, 1967]
+    - huntingZoneId: 63
+      templateId: 1018
+      continent: 7005
+      markers:
+        - [2697, 7959, 1971]
+    - huntingZoneId: 63
+      templateId: 1048
+      continent: 7005
+      markers:
+        - [1971, 7658, 1967]
+    - huntingZoneId: 63
+      templateId: 1049
+      continent: 7005
+      markers:
+        - [-2689, 4453, 1979]
+    - huntingZoneId: 63
+      templateId: 1050
+      continent: 7005
+      markers:
+        - [2717, 8109, 1967]
+    - huntingZoneId: 63
+      templateId: 1051
+      continent: 7005
+      markers:
+        - [-3024, 4636, 1972]
+    - huntingZoneId: 63
+      templateId: 1052
+      continent: 7005
+      markers:
+        - [-3343, 4386, 1972]
+    - huntingZoneId: 63
+      templateId: 1057
+      continent: 7005
+      markers:
+        - [-3107, 6632, 2176]
+    - huntingZoneId: 63
+      templateId: 1058
+      continent: 7005
+      markers:
+        - [-5504, 9266, 2182]
+    - huntingZoneId: 63
+      templateId: 1070
+      continent: 7005
+      markers:
+        - [-4964, 5379, 1872]
+    - huntingZoneId: 63
+      templateId: 1093
+      continent: 7005
+      markers:
+        - [-3116, 5056, 1979]
+    - huntingZoneId: 63
+      templateId: 1094
+      continent: 7005
+      markers:
+        - [-3454, 4923, 1979]
+    - huntingZoneId: 63
+      templateId: 1095
+      continent: 7005
+      markers:
+        - [-2995, 4054, 1979]
+    - huntingZoneId: 63
+      templateId: 1096
+      continent: 7005
+      markers:
+        - [-3515, 4149, 1979]
+    - huntingZoneId: 63
+      templateId: 1097
+      continent: 7005
+      markers:
+        - [983, 4035, 1778]
+    - huntingZoneId: 63
+      templateId: 1098
+      continent: 7005
+      markers:
+        - [3283, 4883, 1683]
+    - huntingZoneId: 63
+      templateId: 1099
+      continent: 7005
+      markers:
+        - [2166, 7962, 1967]
+    - huntingZoneId: 63
+      templateId: 1100
+      continent: 7005
+      markers:
+        - [-2874, 4937, 1972]
+    - huntingZoneId: 63
+      templateId: 1101
+      continent: 7005
+      markers:
+        - [-950, 10368, 2186]
+    - huntingZoneId: 63
+      templateId: 1102
+      continent: 7005
+      markers:
+        - [-1975, 12930, 2179]
+    - huntingZoneId: 63
+      templateId: 1103
+      continent: 7005
+      markers:
+        - [800, 8488, 2182]
+    - huntingZoneId: 63
+      templateId: 1104
+      continent: 7005
+      markers:
+        - [836, 8521, 2182]
+    - huntingZoneId: 63
+      templateId: 1105
+      continent: 7005
+      markers:
+        - [2957, 7561, 1687]
+    - huntingZoneId: 63
+      templateId: 1106
+      continent: 7005
+      markers:
+        - [-1347, 12550, 2182]
+    - huntingZoneId: 63
+      templateId: 1107
+      continent: 7005
+      markers:
+        - [6, 5043, 1686]
+    - huntingZoneId: 63
+      templateId: 1108
+      continent: 7005
+      markers:
+        - [686, 9595, 2181]
+    - huntingZoneId: 63
+      templateId: 1110
+      continent: 7005
+      markers:
+        - [-3426, 6979, 2176]
+    - huntingZoneId: 63
+      templateId: 1111
+      continent: 7005
+      markers:
+        - [-2493, 3795, 1684]
+    - huntingZoneId: 63
+      templateId: 1112
+      continent: 7005
+      markers:
+        - [2906, 7502, 1687]
+    - huntingZoneId: 63
+      templateId: 1113
+      continent: 7005
+      markers:
+        - [-369, 8573, 2181]
+    - huntingZoneId: 63
+      templateId: 1114
+      continent: 7005
+      markers:
+        - [-2667, 7094, 2182]
+    - huntingZoneId: 63
+      templateId: 1115
+      continent: 7005
+      markers:
+        - [-5976, 4389, 1872]
+    - huntingZoneId: 63
+      templateId: 1117
+      continent: 7005
+      markers:
+        - [-4013, 6570, 2182]
+    - huntingZoneId: 63
+      templateId: 1121
+      continent: 7005
+      markers:
+        - [5222, 10443, 1692]
+    - huntingZoneId: 63
+      templateId: 1122
+      continent: 7005
+      markers:
+        - [-5672, 1647, 1699]
+    - huntingZoneId: 63
+      templateId: 1123
+      continent: 7005
+      markers:
+        - [-5952, 1069, 1684]
+    - huntingZoneId: 63
+      templateId: 1124
+      continent: 7005
+      markers:
+        - [-5169, 1959, 1693]
+    - huntingZoneId: 63
+      templateId: 1125
+      continent: 7005
+      markers:
+        - [-5416, 1542, 1693]
+    - huntingZoneId: 63
+      templateId: 1126
+      continent: 7005
+      markers:
+        - [682, 4557, 1779]
+        - [8740, 8451, 1439]
+        - [7362, 9130, 1687]
+        - [4815, 10003, 1692]
+        - [12704, 7461, 1091]
+        - [4045, 11834, 1869]
+        - [-1113, 10751, 2186]
+        - [286, 10927, 2176]
+        - [-5068, 7504, 2176]
+        - [-4767, 7511, 2176]
+        - [-5725, 5653, 1873]
+        - [-6292, -1297, 1428]
+        - [-6581, -1263, 1430]
+        - [-6253, 179, 1687]
+        - [-5703, 2893, 1690]
+        - [-6076, 2936, 1690]
+        - [-2443, 3914, 1684]
+    - huntingZoneId: 63
+      templateId: 1128
+      continent: 7005
+      markers:
+        - [6776, 9902, 1692]
+    - huntingZoneId: 63
+      templateId: 1129
+      continent: 7005
+      markers:
+        - [2212, 10794, 1873]
+        - [-1278, 10588, 2186]
+        - [-821, 8401, 2176]
+        - [-2226, 7432, 2174]
+        - [-5335, 5583, 1873]
+        - [-2497, 3866, 1684]
+    - huntingZoneId: 63
+      templateId: 1130
+      continent: 7005
+      markers:
+        - [-7043, 1766, 1692]
+    - huntingZoneId: 63
+      templateId: 1131
+      continent: 7005
+      markers:
+        - [-1327, 7583, 2174]
+    - huntingZoneId: 63
+      templateId: 1135
+      continent: 7005
+      markers:
+        - [-4732, 1573, 1692]
+    - huntingZoneId: 63
+      templateId: 1136
+      continent: 7005
+      markers:
+        - [851, 8824, 2176]
+    - huntingZoneId: 63
+      templateId: 1137
+      continent: 7005
+      markers:
+        - [-2005, 12878, 2179]
+    - huntingZoneId: 63
+      templateId: 1138
+      continent: 7005
+      markers:
+        - [-612, 6474, 1960]
+    - huntingZoneId: 63
+      templateId: 1139
+      continent: 7005
+      markers:
+        - [573, 4486, 1779]
+        - [8851, 8770, 1436]
+        - [4718, 9663, 1690]
+        - [12870, 7849, 1060]
+        - [2114, 10412, 1873]
+        - [3955, 11600, 1869]
+        - [517, 10849, 2176]
+        - [-4204, 8370, 2186]
+        - [-5109, 7253, 2176]
+        - [-4789, 7188, 2176]
+    - huntingZoneId: 63
+      templateId: 1140
+      continent: 7005
+      markers:
+        - [382, 2931, 1679]
+    - huntingZoneId: 63
+      templateId: 1141
+      continent: 7005
+      markers:
+        - [-5983, 1169, 1693]
+    - huntingZoneId: 63
+      templateId: 1142
+      continent: 7005
+      markers:
+        - [-5888, 9538, 2182]
+    - huntingZoneId: 63
+      templateId: 1143
+      continent: 7005
+      markers:
+        - [-5185, 4617, 1875]
+    - huntingZoneId: 63
+      templateId: 1144
+      continent: 7005
+      markers:
+        - [-5087, 5026, 1874]
+    - huntingZoneId: 63
+      templateId: 1145
+      continent: 7005
+      markers:
+        - [6357, 8584, 1690]
+    - huntingZoneId: 63
+      templateId: 1147
+      continent: 7005
+      markers:
+        - [-5771, 1834, 1699]
+    - huntingZoneId: 63
+      templateId: 1148
+      continent: 7005
+      markers:
+        - [789, 8653, 2182]
+    - huntingZoneId: 63
+      templateId: 1151
+      continent: 7005
+      markers:
+        - [3573, 4565, 1685]
+        - [3513, 4805, 1685]
+        - [3337, 4914, 1685]
+        - [3057, 4810, 1685]
+        - [3012, 4521, 1685]
+        - [3186, 4345, 1685]
+        - [3430, 4365, 1685]
+        - [4175, 6342, 1685]
+        - [4158, 6584, 1685]
+        - [3963, 6730, 1685]
+        - [3762, 6704, 1685]
+        - [3609, 6449, 1685]
+        - [3754, 6192, 1685]
+        - [4003, 6169, 1685]
+        - [-6233, 4923, 1875]
+        - [-6300, 5158, 1875]
+        - [-6521, 5260, 1875]
+        - [-6711, 5190, 1875]
+        - [-6805, 4913, 1875]
+        - [-6617, 4691, 1875]
+        - [-6368, 4717, 1875]
+    - huntingZoneId: 63
+      templateId: 1152
+      continent: 7005
+      markers:
+        - [2386, 5372, 1685]
+        - [2121, 5521, 1685]
+        - [2124, 5817, 1685]
+        - [2379, 5967, 1685]
+        - [2641, 5836, 1685]
+        - [2646, 5533, 1685]
+        - [3458, 5290, 1683]
+        - [3756, 5244, 1683]
+        - [3956, 5472, 1685]
+        - [3849, 5754, 1685]
+        - [3558, 5791, 1685]
+        - [3371, 5577, 1683]
+        - [-7205, 5493, 1875]
+        - [-7371, 5746, 1875]
+        - [-7675, 5725, 1875]
+        - [-7806, 5456, 1875]
+        - [-7634, 5207, 1875]
+        - [-7341, 5228, 1875]
+    - huntingZoneId: 63
+      templateId: 1153
+      continent: 7005
+      markers:
+        - [2606, 6739, 1685]
+        - [2864, 6700, 1685]
+        - [2958, 6450, 1685]
+        - [2780, 6241, 1685]
+        - [2516, 6294, 1685]
+        - [2431, 6542, 1685]
+        - [-7178, 4326, 1875]
+        - [-7370, 4512, 1875]
+        - [-7620, 4443, 1875]
+        - [-7692, 4185, 1875]
+        - [-7505, 3995, 1875]
+        - [-7246, 4065, 1875]
+    - huntingZoneId: 63
+      templateId: 1155
+      continent: 7005
+      markers:
+        - [2438, 9927, 1870]
+    - huntingZoneId: 63
+      templateId: 1156
+      continent: 7005
+      markers:
+        - [6630, 10121, 1692]
+    - huntingZoneId: 63
+      templateId: 1157
+      continent: 7005
+      markers:
+        - [285, 8869, 2176]
+    - huntingZoneId: 63
+      templateId: 1158
+      continent: 7005
+      markers:
+        - [872, 8849, 2176]
+    - huntingZoneId: 63
+      templateId: 1159
+      continent: 7005
+      markers:
+        - [2347, 9785, 1870]
+    - huntingZoneId: 63
+      templateId: 1160
+      continent: 7005
+      markers:
+        - [-2170, 12890, 2179]
+    - huntingZoneId: 63
+      templateId: 1161
+      continent: 7005
+      markers:
+        - [-5939, 4386, 1872]
+    - huntingZoneId: 63
+      templateId: 1162
+      continent: 7005
+      markers:
+        - [-2223, 3298, 1681]
+    - huntingZoneId: 63
+      templateId: 1163
+      continent: 7005
+      markers:
+        - [-20, 9244, 2174]
+    - huntingZoneId: 63
+      templateId: 1166
+      continent: 7005
+      markers:
+        - [4232, 11189, 1873]
+    - huntingZoneId: 63
+      templateId: 1167
+      continent: 7005
+      markers:
+        - [-1278, 7636, 2172]
+    - huntingZoneId: 63
+      templateId: 1168
+      continent: 7005
+      markers:
+        - [-1403, 11977, 2182]
+    - huntingZoneId: 63
+      templateId: 1169
+      continent: 7005
+      markers:
+        - [-1396, 7560, 2172]
+    - huntingZoneId: 63
+      templateId: 1173
+      continent: 7005
+      markers:
+        - [-4480, 5280, 1869]
+    - huntingZoneId: 63
+      templateId: 1176
+      continent: 7005
+      markers:
+        - [2105, 8502, 1967]
+    - huntingZoneId: 63
+      templateId: 1178
+      continent: 7005
+      markers:
+        - [-5900, 1020, 1679]
+        - [-5766, 1077, 1679]
+    - huntingZoneId: 63
+      templateId: 1179
+      continent: 7005
+      markers:
+        - [-5899, 1067, 1682]
+        - [-5854, 1070, 1681]
+    - huntingZoneId: 63
+      templateId: 1180
+      continent: 7005
+      markers:
+        - [-5811, 1056, 1679]
+        - [-5945, 1008, 1679]
+    - huntingZoneId: 63
+      templateId: 1181
+      continent: 7005
+      markers:
+        - [-5779, 1018, 1678]
+    - huntingZoneId: 63
+      templateId: 1182
+      continent: 7005
+      markers:
+        - [-5876, 1096, 1684]
+    - huntingZoneId: 63
+      templateId: 1183
+      continent: 7005
+      markers:
+        - [-5586, 1679, 1699]
+    - huntingZoneId: 63
+      templateId: 1184
+      continent: 7005
+      markers:
+        - [-5634, 1758, 1699]
+    - huntingZoneId: 63
+      templateId: 1185
+      continent: 7005
+      markers:
+        - [-1512, 2293, 1778]
+    - huntingZoneId: 63
+      templateId: 1186
+      continent: 7005
+      markers:
+        - [-1519, 2878, 1778]
+    - huntingZoneId: 63
+      templateId: 1187
+      continent: 7005
+      markers:
+        - [545, 9501, 2181]
+        - [703, 9801, 2181]
+        - [-3880, 6652, 2182]
+        - [-4196, 6624, 2182]
+    - huntingZoneId: 63
+      templateId: 1189
+      continent: 7005
+      markers:
+        - [3926, 6375, 1683]
+    - huntingZoneId: 63
+      templateId: 1190
+      continent: 7005
+      markers:
+        - [3350, 4598, 1683]
+    - huntingZoneId: 63
+      templateId: 1191
+      continent: 7005
+      markers:
+        - [-6543, 5054, 1869]
+    - huntingZoneId: 63
+      templateId: 1192
+      continent: 7005
+      markers:
+        - [3891, 6506, 1683]
+    - huntingZoneId: 63
+      templateId: 1193
+      continent: 7005
+      markers:
+        - [3277, 4683, 1683]
+    - huntingZoneId: 63
+      templateId: 1194
+      continent: 7005
+      markers:
+        - [-6460, 5002, 1871]
+    - huntingZoneId: 63
+      templateId: 1195
+      continent: 7005
+      markers:
+        - [3823, 6451, 1683]
+    - huntingZoneId: 63
+      templateId: 1196
+      continent: 7005
+      markers:
+        - [3261, 4557, 1683]
+    - huntingZoneId: 63
+      templateId: 1197
+      continent: 7005
+      markers:
+        - [-6491, 4901, 1871]
+    - huntingZoneId: 63
+      templateId: 1198
+      continent: 7005
+      markers:
+        - [4004, 6419, 1684]
+    - huntingZoneId: 63
+      templateId: 1199
+      continent: 7005
+      markers:
+        - [3198, 4620, 1683]
+    - huntingZoneId: 63
+      templateId: 1200
+      continent: 7005
+      markers:
+        - [-6586, 4968, 1871]
+    - huntingZoneId: 63
+      templateId: 1201
+      continent: 7005
+      markers:
+        - [2426, 7566, 1967]
+    - huntingZoneId: 63
+      templateId: 1202
+      continent: 7005
+      markers:
+        - [2318, 5715, 1690]
+    - huntingZoneId: 63
+      templateId: 1203
+      continent: 7005
+      markers:
+        - [3620, 5315, 1684]
+    - huntingZoneId: 63
+      templateId: 1204
+      continent: 7005
+      markers:
+        - [-7416, 5473, 1873]
+    - huntingZoneId: 63
+      templateId: 1205
+      continent: 7005
+      markers:
+        - [-3563, 4765, 1979]
+    - huntingZoneId: 63
+      templateId: 1206
+      continent: 7005
+      markers:
+        - [-2831, 4153, 1979]
+    - huntingZoneId: 63
+      templateId: 1207
+      continent: 7005
+      markers:
+        - [2450, 5589, 1685]
+    - huntingZoneId: 63
+      templateId: 1208
+      continent: 7005
+      markers:
+        - [3711, 5731, 1684]
+    - huntingZoneId: 63
+      templateId: 1209
+      continent: 7005
+      markers:
+        - [-7523, 5554, 1873]
+    - huntingZoneId: 63
+      templateId: 1211
+      continent: 7005
+      markers:
+        - [2640, 6586, 1685]
+    - huntingZoneId: 63
+      templateId: 1212
+      continent: 7005
+      markers:
+        - [-7385, 4029, 1873]
+    - huntingZoneId: 63
+      templateId: 1213
+      continent: 7005
+      markers:
+        - [-3347, 4057, 1979]
+    - huntingZoneId: 63
+      templateId: 1214
+      continent: 7005
+      markers:
+        - [2786, 6555, 1685]
+    - huntingZoneId: 63
+      templateId: 1215
+      continent: 7005
+      markers:
+        - [-7498, 4239, 1873]
+    - huntingZoneId: 63
+      templateId: 1216
+      continent: 7005
+      markers:
+        - [-2706, 4647, 1979]
+    - huntingZoneId: 63
+      templateId: 1217
+      continent: 7005
+      markers:
+        - [-2929, 5002, 1979]
+    - huntingZoneId: 63
+      templateId: 1218
+      continent: 7005
+      markers:
+        - [2109, 5657, 1685]
+    - huntingZoneId: 63
+      templateId: 1219
+      continent: 7005
+      markers:
+        - [3931, 5601, 1686]
+    - huntingZoneId: 63
+      templateId: 1220
+      continent: 7005
+      markers:
+        - [-7527, 5754, 1873]
+    - huntingZoneId: 63
+      templateId: 1221
+      continent: 7005
+      markers:
+        - [2718, 8048, 1967]
+    - huntingZoneId: 63
+      templateId: 1222
+      continent: 7005
+      markers:
+        - [2651, 5673, 1685]
+    - huntingZoneId: 63
+      templateId: 1223
+      continent: 7005
+      markers:
+        - [3864, 5351, 1683]
+    - huntingZoneId: 63
+      templateId: 1224
+      continent: 7005
+      markers:
+        - [-7740, 5629, 1873]
+    - huntingZoneId: 63
+      templateId: 1225
+      continent: 7005
+      markers:
+        - [1850, 8346, 1967]
+    - huntingZoneId: 63
+      templateId: 1226
+      continent: 7005
+      markers:
+        - [-1181, 12142, 2182]
+    - huntingZoneId: 63
+      templateId: 1228
+      continent: 7005
+      markers:
+        - [-544, 8673, 2181]
+    - huntingZoneId: 63
+      templateId: 1229
+      continent: 7005
+      markers:
+        - [-1607, 2260, 1778]
+    - huntingZoneId: 63
+      templateId: 1230
+      continent: 7005
+      markers:
+        - [-1559, 2279, 1778]
+    - huntingZoneId: 63
+      templateId: 1231
+      continent: 7005
+      markers:
+        - [-1950, 2343, 1778]
+    - huntingZoneId: 63
+      templateId: 1232
+      continent: 7005
+      markers:
+        - [-1974, 2381, 1778]
+    - huntingZoneId: 63
+      templateId: 1233
+      continent: 7005
+      markers:
+        - [-5575, 9242, 2182]
+    - huntingZoneId: 63
+      templateId: 1234
+      continent: 7005
+      markers:
+        - [-1251, 12082, 2182]
+    - huntingZoneId: 63
+      templateId: 1235
+      continent: 7005
+      markers:
+        - [-1298, 12584, 2182]
+    - huntingZoneId: 63
+      templateId: 1236
+      continent: 7005
+      markers:
+        - [-1248, 12637, 2181]
+    - huntingZoneId: 63
+      templateId: 1237
+      continent: 7005
+      markers:
+        - [19165, 7925, 1657]
+    - huntingZoneId: 63
+      templateId: 1238
+      continent: 7005
+      markers:
+        - [18819, 7933, 1671]
+    - huntingZoneId: 63
+      templateId: 1239
+      continent: 7005
+      markers:
+        - [19064, 7744, 1686]
+    - huntingZoneId: 63
+      templateId: 1240
+      continent: 7005
+      markers:
+        - [18957, 7762, 1685]
+    - huntingZoneId: 63
+      templateId: 1241
+      continent: 7005
+      markers:
+        - [19103, 7687, 1701]
+        - [18809, 7820, 1671.5]
+        - [18905, 7634, 1696]
+        - [19032, 7912, 1667]
+        - [19014, 7608, 1709]
+        - [18825, 7697, 1682]
+        - [18903, 7891, 1678]
+        - [19113, 7809, 1667]
+    - huntingZoneId: 63
+      templateId: 1242
+      continent: 7005
+      markers:
+        - [21364, 13031, 537]
+    - huntingZoneId: 63
+      templateId: 1243
+      continent: 7005
+      markers:
+        - [21164, 12438, 529]
+    - huntingZoneId: 63
+      templateId: 1244
+      continent: 7005
+      markers:
+        - [-506, 3212, 1684]
+    - huntingZoneId: 63
+      templateId: 1245
+      continent: 7005
+      markers:
+        - [-513, 3348, 1684]
+    - huntingZoneId: 63
+      templateId: 1246
+      continent: 7005
+      markers:
+        - [-4790, 7744, 2176]
+    - huntingZoneId: 63
+      templateId: 1247
+      continent: 7005
+      markers:
+        - [-4795, 7613, 2176]
+    - huntingZoneId: 63
+      templateId: 1250
+      continent: 7005
+      markers:
+        - [-3600, 6488, 2176]
+    - huntingZoneId: 63
+      templateId: 1251
+      continent: 7005
+      markers:
+        - [-2869, 7106, 2181]
+    - huntingZoneId: 63
+      templateId: 1253
+      continent: 7005
+      markers:
+        - [2138, 9115, 1870]
+    - huntingZoneId: 63
+      templateId: 1254
+      continent: 7005
+      markers:
+        - [2758, 6397, 1686]
+    - huntingZoneId: 63
+      templateId: 1255
+      continent: 7005
+      markers:
+        - [2604, 6440, 1685]
+    - huntingZoneId: 63
+      templateId: 1256
+      continent: 7005
+      markers:
+        - [-1646, 12282, 2184]
+    - huntingZoneId: 63
+      templateId: 1258
+      continent: 7005
+      markers:
+        - [-151, 9710, 2174]
+    - huntingZoneId: 63
+      templateId: 1260
+      continent: 7005
+      markers:
+        - [-206, 3918, 1684]
+    - huntingZoneId: 63
+      templateId: 1261
+      continent: 7005
+      markers:
+        - [-1472, 12529, 2181]
+    - huntingZoneId: 63
+      templateId: 1263
+      continent: 7005
+      markers:
+        - [-1632, 12233, 2182]
+    - huntingZoneId: 63
+      templateId: 1300
+      continent: 7005
+      markers:
+        - [12737, 7665, 1057]
+    - huntingZoneId: 63
+      templateId: 1301
+      continent: 7005
+      markers:
+        - [-4138, 4955, 1872]
+    - huntingZoneId: 63
+      templateId: 1602
+      continent: 7005
+      markers:
+        - [-1783, 2950, 1778]
+    - huntingZoneId: 63
+      templateId: 1603
+      continent: 7005
+      markers:
+        - [-1706, 2931, 1779]
+    - huntingZoneId: 63
+      templateId: 1604
+      continent: 7005
+      markers:
+        - [1091, 4015, 1778]
+    - huntingZoneId: 63
+      templateId: 1605
+      continent: 7005
+      markers:
+        - [3537, 4679, 1684]
+    - huntingZoneId: 63
+      templateId: 1606
+      continent: 7005
+      markers:
+        - [2489, 6631, 1685]
+    - huntingZoneId: 63
+      templateId: 1607
+      continent: 7005
+      markers:
+        - [4041, 6658, 1684]
+    - huntingZoneId: 63
+      templateId: 1608
+      continent: 7005
+      markers:
+        - [2496, 5888, 1685]
+    - huntingZoneId: 63
+      templateId: 1609
+      continent: 7005
+      markers:
+        - [3607, 5585, 1684]
+    - huntingZoneId: 63
+      templateId: 1800
+      continent: 7005
+      markers:
+        - [-512, 6314, 1956]
+    - huntingZoneId: 63
+      templateId: 1801
+      continent: 7005
+      markers:
+        - [174, 11281, 2174]
+    - huntingZoneId: 63
+      templateId: 1802
+      continent: 7005
+      markers:
+        - [-5326, 7723, 2175]
+    - huntingZoneId: 63
+      templateId: 1803
+      continent: 7005
+      markers:
+        - [-4671, 834, 1757]
+    - huntingZoneId: 63
+      templateId: 1804
+      continent: 7005
+      markers:
+        - [6189, 7855, 1757]
+    - huntingZoneId: 63
+      templateId: 1808
+      continent: 7005
+      markers:
+        - [-2497, 9380, 2765]
+    - huntingZoneId: 63
+      templateId: 1901
+      continent: 7005
+      markers:
+        - [-5927, 1073, 1684]
+    - huntingZoneId: 63
+      templateId: 1902
+      continent: 7005
+      markers:
+        - [-11504, -6915, 496]
+        - [-11678, -7122, 496]
+        - [-11498, -7315, 500]
+        - [-11191, -6977, 508]
+        - [-10700, -6935, 507]
+        - [-11230, -7394, 522]
+    - huntingZoneId: 63
+      templateId: 1909
+      continent: 7005
+      markers:
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-66, 10042, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-1018, 9194, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-4220, 7458, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+        - [-2691, 8044, 2174]
+    - huntingZoneId: 63
+      templateId: 1999
+      continent: 7005
+      markers:
+        - [2205, 10315, 1872]
+    - huntingZoneId: 63
+      templateId: 2001
+      continent: 7005
+      markers:
+        - [135, 10655, 2174]
+    - huntingZoneId: 63
+      templateId: 2002
+      continent: 7005
+      markers:
+        - [-772, 10460, 2183]
+    - huntingZoneId: 63
+      templateId: 2003
+      continent: 7005
+      markers:
+        - [1732, 4567, 1672]
+    - huntingZoneId: 63
+      templateId: 2004
+      continent: 7005
+      markers:
+        - [364, 5315, 1683]
+    - huntingZoneId: 63
+      templateId: 2005
+      continent: 7005
+      markers:
+        - [37, 5097, 1683]
+    - huntingZoneId: 63
+      templateId: 2007
+      continent: 7005
+      markers:
+        - [454, 10535, 2174]
+    - huntingZoneId: 63
+      templateId: 2008
+      continent: 7005
+      markers:
+        - [-958, 10262, 2183]
+    - huntingZoneId: 63
+      templateId: 2009
+      continent: 7005
+      markers:
+        - [155, 3508, 1672]
+    - huntingZoneId: 63
+      templateId: 2010
+      continent: 7005
+      markers:
+        - [-961, 7466, 2172]
+    - huntingZoneId: 63
+      templateId: 2012
+      continent: 7005
+      markers:
+        - [-1376, 7203, 2172]
+    - huntingZoneId: 63
+      templateId: 3001
+      continent: 7005
+      markers:
+        - [3333, 9951, 1874]
+    - huntingZoneId: 63
+      templateId: 3002
+      continent: 7005
+      markers:
+        - [3511, 10571, 1874]
+    - huntingZoneId: 63
+      templateId: 3003
+      continent: 7005
+      markers:
+        - [2963, 10846, 1874]
+    - huntingZoneId: 63
+      templateId: 3005
+      continent: 7005
+      markers:
+        - [2376, 10946, 1872]
+    - huntingZoneId: 63
+      templateId: 3006
+      continent: 7005
+      markers:
+        - [2169, 10191, 1872]
+    - huntingZoneId: 63
+      templateId: 3007
+      continent: 7005
+      markers:
+        - [2182, 10246, 1872]
+    - huntingZoneId: 63
+      templateId: 3601
+      continent: 7005
+      markers:
+        - [3052, 10789, 1873]
+    - huntingZoneId: 63
+      templateId: 3602
+      continent: 7005
+      markers:
+        - [3103, 10787, 1874]
+    - huntingZoneId: 63
+      templateId: 4007
+      continent: 7005
+      markers:
+        - [-2554, 7372, 2173]
+        - [-185, 8966, 2176]
+        - [-855, 6519, 1956]
+    - huntingZoneId: 63
+      templateId: 4008
+      continent: 7005
+      markers:
+        - [-2532, 7309, 2173]
+        - [-244, 8917, 2176]
+        - [-807, 6478, 1956]
+    - huntingZoneId: 63
+      templateId: 4009
+      continent: 7005
+      markers:
+        - [-2483, 7270, 2171]
+        - [-133, 9034, 2176]
+        - [-878, 6588, 1956]
+    - huntingZoneId: 63
+      templateId: 7000
+      continent: 7005
+      markers:
+        - [2297, 10555, 1865]
+    - huntingZoneId: 63
+      templateId: 8000
+      continent: 7005
+      markers:
+        - [-3205, 7586, 2174]
+    - huntingZoneId: 63
+      templateId: 8003
+      continent: 7005
+      markers:
+        - [-677, 9250, 2174]
+        - [-811, 9808, 2174]
+        - [-295, 9317, 2174]
+        - [-285, 9842, 2174]
+        - [2557, 9823, 1871]
+        - [2188, 9988, 1869]
+        - [2834, 9794, 1871]
+        - [2808, 9515, 1872]
+        - [2490, 9609, 1872]
+        - [2819, 10989, 1869]
+        - [4076, 11499, 1869]
+        - [6594, 8709, 1692]
+        - [6732, 10027, 1692]
+        - [4642, 9226, 1692]
+        - [4750, 8832, 1692]
+        - [1223, 11304, 2176]
+        - [516, 11501, 2176]
+        - [-3314, 7969, 2174]
+        - [-3423, 7379, 2174]
+        - [-3709, 8033, 2174]
+        - [-3882, 7558, 2174]
+        - [-4196, 8653, 2188]
+        - [-4118, 8429, 2188]
+        - [-5735, 7012, 2176]
+        - [-4244, 3901, 1900]
+        - [-5579, 5321, 1870]
+        - [-6094, 4431, 1872]
+        - [-7156, 4955, 1871]
+        - [-5361, 921, 1692]
+        - [-6944, 1458, 1692]
+        - [-7208, 2290, 1692]
+        - [3341, 5115, 1684]
+        - [3643, 6014, 1684]
+        - [3495, 7430, 1682]
+        - [2527, 7129, 1686]
+        - [2828, 6025, 1684]
+        - [2193, 4245, 1680]
+        - [-729, 6179, 1960]
+        - [-295, 6455, 1961]
+        - [-1440, 7404, 2174]
+        - [-1129, 7607, 2174]
+        - [353, 4442, 1684]
+        - [842, 4762, 1686]
+        - [331, 3058, 1679]
+        - [948, 3176, 1693]
+        - [853, 3321, 1693]
+        - [1548, 5005, 1684]
+    - huntingZoneId: 63
+      templateId: 8005
+      continent: 7005
+      markers:
+        - [-782, 9240, 2174]
+        - [2887, 10906, 1872]
+        - [5694, 8249, 1692]
+        - [6683, 8766, 1692]
+        - [4663, 9043, 1692]
+        - [976, 11361, 2176]
+        - [-3210, 7955, 2174]
+        - [-3913, 7659, 2174]
+        - [-4035, 8163, 2180]
+        - [-4788, 7686, 2176]
+        - [-5768, 6741, 2176]
+        - [-5685, 7266, 2176]
+        - [-5656, 7514, 2176]
+        - [-4975, 4916, 1875]
+        - [-4998, 4763, 1875]
+        - [-4844, 4886, 1875]
+        - [-4871, 4756, 1875]
+        - [-5390, 5299, 1872]
+        - [-5759, 5340, 1871]
+        - [-5174, 2681, 1692]
+        - [-6834, 1446, 1692]
+        - [-7228, 2417, 1687]
+        - [3247, 5108, 1684]
+        - [3233, 7532, 1681]
+        - [2807, 5942, 1684]
+        - [-650, 6534, 1961]
+        - [483, 2743, 1679]
+    - huntingZoneId: 63
+      templateId: 8007
+      continent: 7005
+      markers:
+        - [-804, 9369, 2174]
+        - [2748, 11084, 1869]
+        - [5380, 10601, 1692]
+        - [852, 11405, 2176]
+        - [-3217, 7825, 2174]
+        - [-5718, 7152, 2176]
+        - [-4947, 4822, 1875]
+        - [-7245, 4855, 1874]
+        - [-4791, 2359, 1692]
+        - [-6463, 2947, 1692]
+        - [3360, 7452, 1681]
+        - [178, 5255, 1682]
+        - [266, 3155, 1679]
+    - huntingZoneId: 63
+      templateId: 9001
+      continent: 7005
+      markers:
+        - [-677, 9250, 2174]
+        - [-811, 9808, 2174]
+        - [-295, 9317, 2174]
+        - [-285, 9842, 2174]
+        - [2557, 9823, 1871]
+        - [2188, 9988, 1869]
+        - [2834, 9794, 1871]
+        - [2808, 9515, 1872]
+        - [2490, 9609, 1872]
+        - [2819, 10989, 1869]
+        - [4076, 11499, 1869]
+        - [6594, 8709, 1692]
+        - [6732, 10027, 1692]
+        - [4642, 9226, 1692]
+        - [4750, 8832, 1692]
+        - [1223, 11304, 2176]
+        - [516, 11501, 2176]
+        - [-3314, 7969, 2174]
+        - [-3423, 7379, 2174]
+        - [-3709, 8033, 2174]
+        - [-4196, 8653, 2188]
+        - [-4118, 8429, 2188]
+        - [-3882, 7558, 2174]
+        - [-5735, 7012, 2176]
+        - [-4244, 3901, 1900]
+        - [-5579, 5321, 1870]
+        - [-6094, 4431, 1872]
+        - [-7156, 4955, 1871]
+        - [-5361, 921, 1692]
+        - [-6944, 1458, 1692]
+        - [-7208, 2290, 1692]
+        - [3341, 5115, 1684]
+        - [3643, 6014, 1684]
+        - [3495, 7430, 1682]
+        - [2527, 7129, 1686]
+        - [2828, 6025, 1684]
+        - [2193, 4245, 1680]
+        - [-729, 6179, 1960]
+        - [-295, 6455, 1961]
+        - [-1440, 7404, 2174]
+        - [-1129, 7607, 2174]
+        - [353, 4442, 1684]
+        - [842, 4762, 1686]
+        - [331, 3058, 1679]
+        - [948, 3176, 1693]
+        - [853, 3321, 1693]
+        - [1548, 5005, 1684]
+    - huntingZoneId: 63
+      templateId: 9002
+      continent: 7005
+      markers:
+        - [-804, 9369, 2174]
+        - [2748, 11084, 1869]
+        - [5380, 10601, 1692]
+        - [852, 11405, 2176]
+        - [-3217, 7825, 2174]
+        - [-5718, 7152, 2176]
+        - [-4947, 4822, 1875]
+        - [-7245, 4855, 1874]
+        - [-4791, 2359, 1692]
+        - [-6463, 2947, 1692]
+        - [3360, 7452, 1681]
+        - [178, 5255, 1682]
+        - [266, 3155, 1679]
+    - huntingZoneId: 63
+      templateId: 9003
+      continent: 7005
+      markers:
+        - [-782, 9240, 2174]
+        - [2887, 10906, 1872]
+        - [5694, 8249, 1692]
+        - [6683, 8766, 1692]
+        - [4663, 9043, 1692]
+        - [976, 11361, 2176]
+        - [-4035, 8163, 2180]
+        - [-4788, 7686, 2176]
+        - [-3210, 7955, 2174]
+        - [-3913, 7659, 2174]
+        - [-5768, 6741, 2176]
+        - [-5685, 7266, 2176]
+        - [-5656, 7514, 2176]
+        - [-4975, 4916, 1875]
+        - [-4998, 4763, 1875]
+        - [-4844, 4886, 1875]
+        - [-4871, 4756, 1875]
+        - [-5390, 5299, 1872]
+        - [-5759, 5340, 1871]
+        - [-5174, 2681, 1692]
+        - [-6834, 1446, 1692]
+        - [-7228, 2417, 1687]
+        - [3247, 5108, 1684]
+        - [3233, 7532, 1681]
+        - [2807, 5942, 1684]
+        - [-650, 6534, 1961]
+        - [483, 2743, 1679]
+    - huntingZoneId: 63
+      templateId: 9004
+      continent: 7005
+      markers:
+        - [-961, 9368, 2174]
+    - huntingZoneId: 63
+      templateId: 9005
+      continent: 7005
+      markers:
+        - [-819, 9090, 2174]
+    - huntingZoneId: 63
+      templateId: 22002
+      continent: 7005
+      markers:
+        - [27563, 17479, 894]
+    - huntingZoneId: 63
+      templateId: 22003
+      continent: 7005
+      markers:
+        - [28331, 16720, 894]
+    - huntingZoneId: 63
+      templateId: 22004
+      continent: 7005
+      markers:
+        - [25511, 16230, 894]
+    - huntingZoneId: 63
+      templateId: 22005
+      continent: 7005
+      markers:
+        - [25319, 13717, 786]
+    - huntingZoneId: 63
+      templateId: 22006
+      continent: 7005
+      markers:
+        - [26991, 14678, 894]
+    - huntingZoneId: 63
+      templateId: 22007
+      continent: 7005
+      markers:
+        - [24586, 14499, 786]
+    - huntingZoneId: 63
+      templateId: 22008
+      continent: 7005
+      markers:
+        - [28135, 15809, 894]
+        - [-2487, 7303, 2172]
+        - [-193, 9011, 2176]
+        - [-811, 6527, 1956]
+    - huntingZoneId: 63
+      templateId: 22009
+      continent: 7005
+      markers:
+        - [26094, 15688, 894]
+    - huntingZoneId: 63
+      templateId: 22010
+      continent: 7005
+      markers:
+        - [26482, 15208, 894]
+    - huntingZoneId: 63
+      templateId: 22011
+      continent: 7005
+      markers:
+        - [26611, 15156, 1244]
+    - huntingZoneId: 63
+      templateId: 22013
+      continent: 7005
+      markers:
+        - [23966, 14515, 785]
+    - huntingZoneId: 63
+      templateId: 22014
+      continent: 7005
+      markers:
+        - [27093, 14589, 894]
+    - huntingZoneId: 63
+      templateId: 22015
+      continent: 7005
+      markers:
+        - [26903, 17608, 894]
+    - huntingZoneId: 63
+      templateId: 30000
+      continent: 7005
+      markers:
+        - [23851, 14441, 785]
+    - huntingZoneId: 63
+      templateId: 30001
+      continent: 7005
+      markers:
+        - [25570, 16151, 894]
+    - huntingZoneId: 63
+      templateId: 50018
+      continent: 7005
+      markers:
+        - [1627, 3148, 1745]
+    - huntingZoneId: 63
+      templateId: 220044
+      continent: 7005
+      markers:
+        - [-2520, 7350, 2174]
+    - huntingZoneId: 63
+      templateId: 220045
+      continent: 7005
+      markers:
+        - [-231, 8970, 2176]
+    - huntingZoneId: 63
+      templateId: 220046
+      continent: 7005
+      markers:
+        - [-841, 6565, 1956]
+    - huntingZoneId: 63
+      templateId: 220080
+      continent: 7005
+      markers:
+        - [28206, 15883, 894]
+        - [-2449, 7243, 2172]
+        - [-115, 9073, 2176]
+        - [-805, 6436, 1956]
+
+  # Stale keys in the covered zones that the regeneration did not
+  # produce (v92-only rework-roster leftovers).
+  delete:
+    - huntingZoneId: 63
+      templateId: 1132
+    - huntingZoneId: 63
+      templateId: 1264
+    - huntingZoneId: 63
+      templateId: 1265
+    - huntingZoneId: 63
+      templateId: 1286
+    - huntingZoneId: 63
+      templateId: 1302
+    - huntingZoneId: 63
+      templateId: 1305
+    - huntingZoneId: 63
+      templateId: 1307
+    - huntingZoneId: 63
+      templateId: 1310
+    - huntingZoneId: 63
+      templateId: 1311
+    - huntingZoneId: 63
+      templateId: 1313
+    - huntingZoneId: 63
+      templateId: 1315
+    - huntingZoneId: 63
+      templateId: 1400
+    - huntingZoneId: 63
+      templateId: 1401
+    - huntingZoneId: 63
+      templateId: 1402
+    - huntingZoneId: 63
+      templateId: 1404
+    - huntingZoneId: 63
+      templateId: 1405
+    - huntingZoneId: 63
+      templateId: 1502
+    - huntingZoneId: 63
+      templateId: 1503
+    - huntingZoneId: 63
+      templateId: 1507
+    - huntingZoneId: 63
+      templateId: 1509
+    - huntingZoneId: 63
+      templateId: 1510
+    - huntingZoneId: 63
+      templateId: 1521
+    - huntingZoneId: 63
+      templateId: 1522
+    - huntingZoneId: 63
+      templateId: 1532
+    - huntingZoneId: 63
+      templateId: 1533
+    - huntingZoneId: 63
+      templateId: 1534
+    - huntingZoneId: 63
+      templateId: 1535
+    - huntingZoneId: 63
+      templateId: 1536
+    - huntingZoneId: 63
+      templateId: 1564
+    - huntingZoneId: 63
+      templateId: 1566
+    - huntingZoneId: 63
+      templateId: 1567
+    - huntingZoneId: 63
+      templateId: 2011
+    - huntingZoneId: 63
+      templateId: 2013
+    - huntingZoneId: 63
+      templateId: 2014
+    - huntingZoneId: 63
+      templateId: 2950
+    - huntingZoneId: 63
+      templateId: 2951
+    - huntingZoneId: 63
+      templateId: 2953
+    - huntingZoneId: 63
+      templateId: 6001
+    - huntingZoneId: 63
+      templateId: 6002
+    - huntingZoneId: 63
+      templateId: 6003
+    - huntingZoneId: 63
+      templateId: 6004
+    - huntingZoneId: 63
+      templateId: 6005
+    - huntingZoneId: 63
+      templateId: 6006
+    - huntingZoneId: 63
+      templateId: 9981
+    - huntingZoneId: 63
+      templateId: 20001
+    - huntingZoneId: 63
+      templateId: 20002
+    - huntingZoneId: 63
+      templateId: 20003
+    - huntingZoneId: 63
+      templateId: 20004
+    - huntingZoneId: 63
+      templateId: 20005
+    - huntingZoneId: 63
+      templateId: 20007

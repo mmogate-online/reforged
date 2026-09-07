@@ -1,0 +1,243 @@
+# Classic territory state for hunting zones 59, 60, 359, 360: spawns,
+# parties, fences and territory attributes as the classic data places them.
+# Territories and groups that exist only on the live server are deleted; a parent delete
+# cascades to its spawns, so no child delete precedes it. Shared rows are restated in full
+# where any classic attribute differs, and untouched where none does. The `_territory`,
+# `_spawn` and `_party` bases hold the modal value of each field over this file's rows;
+# a row states only its identity, its geometry and what departs from the base.
+#
+# The T-cat exchanger's two classic placements in Crescentia and Lumbertown are left out: his catalogue no longer exists, and the live data had already dormanted one of them.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _territory:
+    type: policy
+    addMaxZ: 256.0
+    subtractMinZ: 0.0
+    randomPosMinDist: 100.0
+    peaceMoveNpcCheckDist: 100.0
+  _spawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    respawnTime: 90000
+    isAggressiveMonster: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroSendToClanDistance: 300
+    aggroSendToPartyDistance: 400
+    aggroReceiveOnlyInSight: false
+    aggroIgnorePartyId: ""
+    aggroShareGroupId: 0
+    escapeLocation: [0.0, 0.0, 0.0]
+    isReturn: true
+    conditionalSpawn: false
+    returnDistance: 2000
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    respawnRandomTime: "20000"
+    moveInTerritory: true
+    popupMsg: ""
+    msgProb: 0.0
+    msgInterval: 0
+
+territoryGroups:
+  delete:
+    - huntingZoneId: 59
+      groupId: 5900006
+
+territories:
+  delete:
+    - huntingZoneId: 59
+      groupId: 5900001
+      territoryId: 5900021
+    - huntingZoneId: 60
+      groupId: 6000001
+      territoryId: 6000030
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000002
+      territoryId: 6000038
+      $extends: _territory
+      desc: 기본 테리토리
+      type: normal
+      addMaxZ: 200.0
+      subtractMinZ: 230.0
+      eventId: 0
+      fences:
+        - [95318.4063, -8190.6738, 3922.1338]
+        - [95297.7734, -8227.3359, 3922.1338]
+        - [95351.0547, -8359.5166, 3922.1333]
+        - [95313.7969, -8685.0879, 3957.0986]
+        - [95172.7031, -8744.1719, 3957.0989]
+        - [95021.2109, -9134.4531, 3957.0991]
+        - [95347.4922, -9949.1563, 3957.0986]
+        - [95738.0, -10117.665, 3957.0979]
+        - [96552.6563, -9770.1816, 3957.0986]
+        - [96711.6797, -9382.0039, 3957.0994]
+        - [96370.8828, -8584.958, 3957.0952]
+        - [95984.4531, -8417.6523, 3957.0952]
+        - [95866.4375, -8471.1592, 3957.0955]
+        - [95586.9531, -8258.3203, 3922.1274]
+        - [95532.7578, -8138.5962, 3922.1255]
+        - [95486.9531, -8124.7651, 3922.1245]
+    - huntingZoneId: 359
+      groupId: 35900001
+      territoryId: 35900001
+      $extends: _territory
+      desc: 명품 ON
+      fences:
+        - [96222.8906, 17794.1367, 2929.5347]
+        - [96219.6875, 17661.6719, 2928.9417]
+        - [96435.2813, 17652.4141, 2929.2405]
+        - [96377.5, 17747.2285, 3121.7341]
+    - huntingZoneId: 360
+      groupId: 36000001
+      territoryId: 36000001
+      $extends: _territory
+      desc: 명품 ON
+      fences:
+        - [89733.4063, -2265.429, 716.516]
+        - [89574.2578, -2231.3577, 715.917]
+        - [89631.1406, -2338.1318, 710.3958]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 59
+      groupId: 5900001
+      territoryId: 5900018
+      npcInstanceId: 5900015
+      $extends: _spawn
+      desc: 디나인 로스
+      npcTemplateId: 1015
+      pos: [96298.3359, 17093.7266, 2891.1172]
+      dir: 0
+      respawnTime: 10000
+      delaySpawnTimeWhenWorldStart: 0
+      aggroSendToTerritory: ""
+      isReturn: false
+      isReturnMyTerritory: false
+      returnDistance: 0
+      moveInTerritory: false
+      msgBroadcastingChannel: false
+      excludeAggroLimit: false
+      randomGroupId: 0
+    - huntingZoneId: 59
+      groupId: 5900005
+      territoryId: 5900020
+      npcInstanceId: 5900086
+      $extends: _spawn
+      desc: 길드 퀘스트 게시판
+      npcTemplateId: 1602
+      pos: [95467.7109, 16641.4609, 2884.6824]
+      dir: 106
+      delaySpawnTimeWhenWorldStart: 0
+      viewRadius: 200
+      viewAngle: 360
+      aggroSendToTerritory: ""
+      isReturnMyTerritory: false
+      msgBroadcastingChannel: false
+      excludeAggroLimit: false
+      randomGroupId: 0
+    - huntingZoneId: 59
+      groupId: 5900005
+      territoryId: 5900020
+      npcInstanceId: 5900087
+      $extends: _spawn
+      desc: 길드 퀘스트 보상담당관
+      npcTemplateId: 1603
+      pos: [95566.3203, 16655.5039, 2887.1987]
+      dir: 106
+      delaySpawnTimeWhenWorldStart: 0
+      viewRadius: 200
+      viewAngle: 360
+      aggroSendToTerritory: ""
+      isReturnMyTerritory: false
+      msgBroadcastingChannel: false
+      excludeAggroLimit: false
+      randomGroupId: 0
+    - huntingZoneId: 60
+      groupId: 6000001
+      territoryId: 6000026
+      npcInstanceId: 6000036
+      $extends: _spawn
+      desc: 집회소 자키아
+      npcTemplateId: 1029
+      pos: [89255.9609, -3582.2588, 841.1403]
+      dir: 89
+      respawnTime: 10000
+      delaySpawnTimeWhenWorldStart: 0
+      aggroSendToTerritory: ""
+      isReturn: false
+      isReturnMyTerritory: false
+      returnDistance: 0
+      moveInTerritory: false
+      msgBroadcastingChannel: false
+      excludeAggroLimit: false
+      randomGroupId: 0
+    - huntingZoneId: 60
+      groupId: 6000001
+      territoryId: 6000026
+      npcInstanceId: 6000999
+      $extends: _spawn
+      desc: 게시판
+      npcTemplateId: 1602
+      pos: [88725.1328, -5109.9644, 1076.7496]
+      dir: 248
+      delaySpawnTimeWhenWorldStart: 0
+      aggroSendToTerritory: ""
+      isReturnMyTerritory: false
+      msgBroadcastingChannel: false
+      excludeAggroLimit: false
+      randomGroupId: 0
+    - huntingZoneId: 359
+      groupId: 35900001
+      territoryId: 35900002
+      npcInstanceId: 35900002
+      $extends: _spawn
+      desc: 사본 - 명품관 캐미언 화이트리버
+      npcTemplateId: 1002
+      pos: [96320.75, 17713.0078, 2929.248]
+      dir: 266
+    - huntingZoneId: 359
+      groupId: 35900001
+      territoryId: 35900005
+      npcInstanceId: 35900007
+      $extends: _spawn
+      desc: 회복신관 로스팅
+      npcTemplateId: 1101
+      pos: [96191.0938, 16970.3672, 2888.2505]
+      dir: 271
+      isAggressiveMonster: true
+      viewRadius: 200
+      viewAngle: 360
+      aggroSendToPartyDistance: 1000
+    - huntingZoneId: 360
+      groupId: 36000001
+      territoryId: 36000002
+      npcInstanceId: 36000002
+      $extends: _spawn
+      desc: 사본 - 명품 갈색눈빛 켈트란
+      npcTemplateId: 1002
+      pos: [89661.9219, -2270.5898, 714.375]
+      dir: 255
+    - huntingZoneId: 360
+      groupId: 36000001
+      territoryId: 36000005
+      npcInstanceId: 36000007
+      $extends: _spawn
+      desc: 신관 링킨
+      npcTemplateId: 1101
+      pos: [90476.9766, -2817.9944, 756.6038]
+      dir: 182

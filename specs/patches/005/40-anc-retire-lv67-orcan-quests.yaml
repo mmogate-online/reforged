@@ -1,0 +1,40 @@
+# Retire the four level 67 quests that ran on the Iron Thorn Orcan storyline in
+# Celestial Hills. That storyline is modern content and its whole NPC block is
+# gone from the zone, so the quests now name templates nothing places: the Iron
+# Thorn Orcans and their loot piles, the Badge Merchant, Ozarun, Gazarun,
+# Duzorun and Titus. The three dailies have no giver standing anywhere any more,
+# and the chain quest dead ends part way through its 27 tasks.
+#
+# A quest whose targets do not spawn does not error. It fails silently, and the
+# player is left hunting something that is not there, which is why these are
+# switched off rather than left live.
+#
+# A quest is switched off by giving it an unsatisfiable prerequisite on quest
+# 99999, written into the datasheet as the ref 999,99. There is no flag for it.
+# The sentinel REPLACES the real prerequisite rather than joining it: the corpus
+# never carries both on one quest.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    - id: 6001            # [Dungeon] The Secret Weapon
+      changes:
+        requirements:
+          prerequisites: [99999]
+    - id: 51040           # Iron and Steel
+      changes:
+        requirements:
+          prerequisites: [99999]
+    - id: 61461           # Setback of the Deal
+      changes:
+        requirements:
+          prerequisites: [99999]
+    - id: 61462           # There's a Treasure!
+      changes:
+        requirements:
+          prerequisites: [99999]

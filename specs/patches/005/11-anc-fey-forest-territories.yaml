@@ -1,0 +1,96 @@
+# Classic territory state for hunting zones 2, 202: spawns,
+# parties, fences and territory attributes as the classic data places them.
+# Territories and groups that exist only on the live server are deleted; a parent delete
+# cascades to its spawns, so no child delete precedes it. Shared rows are restated in full
+# where any classic attribute differs, and untouched where none does. The `_territory`,
+# `_spawn` and `_party` bases hold the modal value of each field over this file's rows;
+# a row states only its identity, its geometry and what departs from the base.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _spawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    dir: 258
+    respawnTime: 10000
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroSendToClanDistance: 300
+    aggroSendToPartyDistance: 400
+    aggroSendToTerritory: ""
+    aggroReceiveOnlyInSight: false
+    aggroIgnorePartyId: ""
+    aggroShareGroupId: 0
+    escapeLocation: [0.0, 0.0, 0.0]
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    respawnRandomTime: "20000"
+    moveInTerritory: true
+    popupMsg: ""
+    msgProb: 0.0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    excludeAggroLimit: false
+
+territoryGroups:
+  delete:
+    - huntingZoneId: 2
+      groupId: 200016
+
+territories:
+  delete:
+    - huntingZoneId: 2
+      groupId: 200014
+      territoryId: 200921
+    - huntingZoneId: 202
+      groupId: 20200006
+      territoryId: 20200039
+
+territorySpawns:
+  delete:
+    - huntingZoneId: 202
+      groupId: 20200006
+      territoryId: 200386
+      npcInstanceId: 20200120
+  upsert:
+    - huntingZoneId: 202
+      groupId: 20200006
+      territoryId: 200386
+      npcInstanceId: 20200076
+      $extends: _spawn
+      desc: 퍼볼브 우드스톡
+      npcTemplateId: 1001
+      pos: [96898.9453, -10440.083, 972.2173]
+    - huntingZoneId: 202
+      groupId: 20200006
+      territoryId: 200386
+      npcInstanceId: 20200118
+      $extends: _spawn
+      desc: 출장 잡화 상인
+      npcTemplateId: 1052
+      pos: [96462.2813, -11151.8008, 973.4668]
+      dir: 39
+      respawnTime: 90000
+      viewRadius: 200
+      viewAngle: 360
+      isReturn: true
+      returnDistance: 2000
+      randomGroupId: 0
