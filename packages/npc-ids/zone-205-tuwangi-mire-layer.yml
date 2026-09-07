@@ -1,0 +1,140 @@
+# Tuwangi Mire layer (zone 205) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 37 templates: 37 friendly npcs.
+# 10 templates have no display name and are named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  TML_TORVATH:               1001     # Torvath (lv40)
+  TML_LOHOLI:                1002     # Loholi (lv40)
+  TML_PANGARI:               1003     # Pangari (lv40)
+  TML_JAEDON:                1004     # Jaedon (lv40)
+  TML_DEOBARD:               1005     # Deobard (lv40)
+  TML_BOERMAS:               1006     # Boermas (lv40)
+  TML_GARA:                  1010     # Gara (lv40)
+  TML_ZELIA:                 1011     # Zelia (lv40)
+  TML_MITANY:                1012     # Mitany (lv40)
+  TML_WIMOND:                1015     # Wimond (lv40)
+  TML_JIRRA:                 1016     # Jirra (lv40)
+  TML_RATHE:                 1017     # Rathe (lv40)
+  TML_TANGMO:                1020     # Tangmo (lv40)
+  TML_MAGAGO:                1021     # Magago (lv40)
+  TML_LANGA:                 1022     # Langa (lv40)
+  TML_QUAGMIRE_HERB:         1023     # Quagmire Herb (lv40)
+  TML_BUNZI:                 1024     # Bunzi (lv40)
+  TML_GUARD:                 1700     # Guard (lv65)
+  TML_KRUMU:                 2000     # Krumu (lv40)
+  TML_HAROSO:                2001     # Haroso (lv40)
+  TML_VEDOBO:                2002     # Vedobo (lv40)
+  TML_KUKUTA:                2003     # Kukuta (lv40)
+  TML_FRIGHTENED_TUWANGI_1:  2004     # Frightened Tuwangi (lv40)
+  TML_FRIGHTENED_TUWANGI_2:  2005     # Frightened Tuwangi (lv40)
+  TML_FRIGHTENED_TUWANGI_3:  2006     # Frightened Tuwangi (lv40)
+  TML_FRIGHTENED_TUWANGI_4:  2007     # Frightened Tuwangi (lv40)
+  TML_FRIGHTENED_TUWANGI_5:  2008     # Frightened Tuwangi (lv40)
+  TML_UNNAMED_7000:          7000     # 장식용_투구_댄스 (lv40)
+  TML_UNNAMED_7001:          7001     # 장식용_일반_분홍 (lv40)
+  TML_UNNAMED_7002:          7002     # 장식용_폭탄_사냥 (lv40)
+  TML_UNNAMED_7003:          7003     # 장식용_초록_제사 (lv40)
+  TML_UNNAMED_7004:          7004     # 장식용_파랑_댄스 (lv40)
+  TML_UNNAMED_7005:          7005     # 장식용_맨손_댄스 (lv40)
+  TML_UNNAMED_7006:          7006     # 장식용_바바_댄스 (lv40)
+  TML_UNNAMED_7007:          7007     # 장식용_바바_제사 (lv40)
+  TML_UNNAMED_7008:          7008     # 장식용_맨손_제사 (lv40)
+  TML_UNNAMED_7009:          7009     # 장식용_맨손_환영 (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  TML_FRIENDLY_NPCS:
+    - $TML_TORVATH
+    - $TML_LOHOLI
+    - $TML_PANGARI
+    - $TML_JAEDON
+    - $TML_DEOBARD
+    - $TML_BOERMAS
+    - $TML_GARA
+    - $TML_ZELIA
+    - $TML_MITANY
+    - $TML_WIMOND
+    - $TML_JIRRA
+    - $TML_RATHE
+    - $TML_TANGMO
+    - $TML_MAGAGO
+    - $TML_LANGA
+    - $TML_QUAGMIRE_HERB
+    - $TML_BUNZI
+    - $TML_GUARD
+    - $TML_KRUMU
+    - $TML_HAROSO
+    - $TML_VEDOBO
+    - $TML_KUKUTA
+    - $TML_FRIGHTENED_TUWANGI_1
+    - $TML_FRIGHTENED_TUWANGI_2
+    - $TML_FRIGHTENED_TUWANGI_3
+    - $TML_FRIGHTENED_TUWANGI_4
+    - $TML_FRIGHTENED_TUWANGI_5
+    - $TML_UNNAMED_7000
+    - $TML_UNNAMED_7001
+    - $TML_UNNAMED_7002
+    - $TML_UNNAMED_7003
+    - $TML_UNNAMED_7004
+    - $TML_UNNAMED_7005
+    - $TML_UNNAMED_7006
+    - $TML_UNNAMED_7007
+    - $TML_UNNAMED_7008
+    - $TML_UNNAMED_7009
+  TML_NORMAL_MONSTERS: []
+  TML_ELITE_MONSTERS: []
+  TML_BOSS_MONSTERS: []
+  TML_WORLD_BOSSES: []
+  TML_OBJECTS: []
+
+exports:
+  variables:
+    - TML_TORVATH
+    - TML_LOHOLI
+    - TML_PANGARI
+    - TML_JAEDON
+    - TML_DEOBARD
+    - TML_BOERMAS
+    - TML_GARA
+    - TML_ZELIA
+    - TML_MITANY
+    - TML_WIMOND
+    - TML_JIRRA
+    - TML_RATHE
+    - TML_TANGMO
+    - TML_MAGAGO
+    - TML_LANGA
+    - TML_QUAGMIRE_HERB
+    - TML_BUNZI
+    - TML_GUARD
+    - TML_KRUMU
+    - TML_HAROSO
+    - TML_VEDOBO
+    - TML_KUKUTA
+    - TML_FRIGHTENED_TUWANGI_1
+    - TML_FRIGHTENED_TUWANGI_2
+    - TML_FRIGHTENED_TUWANGI_3
+    - TML_FRIGHTENED_TUWANGI_4
+    - TML_FRIGHTENED_TUWANGI_5
+    - TML_UNNAMED_7000
+    - TML_UNNAMED_7001
+    - TML_UNNAMED_7002
+    - TML_UNNAMED_7003
+    - TML_UNNAMED_7004
+    - TML_UNNAMED_7005
+    - TML_UNNAMED_7006
+    - TML_UNNAMED_7007
+    - TML_UNNAMED_7008
+    - TML_UNNAMED_7009
+    - TML_FRIENDLY_NPCS
+    - TML_NORMAL_MONSTERS
+    - TML_ELITE_MONSTERS
+    - TML_BOSS_MONSTERS
+    - TML_WORLD_BOSSES
+    - TML_OBJECTS

@@ -1,0 +1,149 @@
+# Crescentia (zone 59) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 40 templates: 40 friendly npcs.
+# 8 templates have no display name and are named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  CR_CORANN:         1001     # Corann (lv40)
+  CR_EDAHM:          1002     # Edahm (lv40)
+  CR_LUNAREA:        1003     # Lunarea (lv40)
+  CR_FEROX:          1004     # Ferox (lv40)
+  CR_LEMAK:          1005     # Lemak (lv40)
+  CR_TAMEL:          1006     # Tamel (lv40)
+  CR_PIRAN:          1007     # Piran (lv40)
+  CR_THOL:           1008     # Thol (lv40)
+  CR_JODOC:          1009     # Jodoc (lv40)
+  CR_NIRALIA:        1010     # Niralia (lv40)
+  CR_JUSTARIUS:      1011     # Justarius (lv40)
+  CR_ESEDRAN:        1012     # Esedran (lv40)
+  CR_ZINJI:          1013     # Zinji (lv40)
+  CR_ALTARIUS:       1014     # Altarius (lv40)
+  CR_DENINE:         1015     # Denine (lv40)
+  CR_TELEPORTAL:     1017     # Teleportal (lv40)
+  CR_KESTER:         1018     # Kester (lv40)
+  CR_NUR:            1019     # Nur (lv40)
+  CR_FERUS:          1025     # Ferus (lv40)
+  CR_YORI:           1026     # Yori (lv40)
+  CR_VIGILANTE_1:    1027     # Vigilante (lv40)
+  CR_VIGILANTE_2:    1028     # Vigilante (lv40)
+  CR_GRANELA:        1029     # Granela (lv40)
+  CR_DANJEN:         1030     # Danjen (lv40)
+  CR_ROSON:          1031     # Roson (lv40)
+  CR_BATOONI:        1099     # Batooni (lv40)
+  CR_HIRESK:         1600     # Hiresk (lv40)
+  CR_MISSION_BOARD:  1602     # Mission Board (lv40)
+  CR_JALIZE:         1603     # Jalize (lv40)
+  CR_GUARD:          1700     # Guard (lv65)
+  CR_SPARKY:         1900     # Sparky (lv40)
+  CR_UNNAMED_1901:   1901     #  (lv40)
+  CR_UNNAMED_1902:   1902     #  (lv40)
+  CR_ELLONIA:        8000     # Ellonia (lv40)
+  CR_UNNAMED_8003:   8003     #  (lv40)
+  CR_UNNAMED_8005:   8005     #  (lv40)
+  CR_UNNAMED_8007:   8007     #  (lv40)
+  CR_UNNAMED_9001:   9001     #  (lv40)
+  CR_UNNAMED_9002:   9002     #  (lv40)
+  CR_UNNAMED_9003:   9003     #  (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  CR_FRIENDLY_NPCS:
+    - $CR_CORANN
+    - $CR_EDAHM
+    - $CR_LUNAREA
+    - $CR_FEROX
+    - $CR_LEMAK
+    - $CR_TAMEL
+    - $CR_PIRAN
+    - $CR_THOL
+    - $CR_JODOC
+    - $CR_NIRALIA
+    - $CR_JUSTARIUS
+    - $CR_ESEDRAN
+    - $CR_ZINJI
+    - $CR_ALTARIUS
+    - $CR_DENINE
+    - $CR_TELEPORTAL
+    - $CR_KESTER
+    - $CR_NUR
+    - $CR_FERUS
+    - $CR_YORI
+    - $CR_VIGILANTE_1
+    - $CR_VIGILANTE_2
+    - $CR_GRANELA
+    - $CR_DANJEN
+    - $CR_ROSON
+    - $CR_BATOONI
+    - $CR_HIRESK
+    - $CR_MISSION_BOARD
+    - $CR_JALIZE
+    - $CR_GUARD
+    - $CR_SPARKY
+    - $CR_UNNAMED_1901
+    - $CR_UNNAMED_1902
+    - $CR_ELLONIA
+    - $CR_UNNAMED_8003
+    - $CR_UNNAMED_8005
+    - $CR_UNNAMED_8007
+    - $CR_UNNAMED_9001
+    - $CR_UNNAMED_9002
+    - $CR_UNNAMED_9003
+  CR_NORMAL_MONSTERS: []
+  CR_ELITE_MONSTERS: []
+  CR_BOSS_MONSTERS: []
+  CR_WORLD_BOSSES: []
+  CR_OBJECTS: []
+
+exports:
+  variables:
+    - CR_CORANN
+    - CR_EDAHM
+    - CR_LUNAREA
+    - CR_FEROX
+    - CR_LEMAK
+    - CR_TAMEL
+    - CR_PIRAN
+    - CR_THOL
+    - CR_JODOC
+    - CR_NIRALIA
+    - CR_JUSTARIUS
+    - CR_ESEDRAN
+    - CR_ZINJI
+    - CR_ALTARIUS
+    - CR_DENINE
+    - CR_TELEPORTAL
+    - CR_KESTER
+    - CR_NUR
+    - CR_FERUS
+    - CR_YORI
+    - CR_VIGILANTE_1
+    - CR_VIGILANTE_2
+    - CR_GRANELA
+    - CR_DANJEN
+    - CR_ROSON
+    - CR_BATOONI
+    - CR_HIRESK
+    - CR_MISSION_BOARD
+    - CR_JALIZE
+    - CR_GUARD
+    - CR_SPARKY
+    - CR_UNNAMED_1901
+    - CR_UNNAMED_1902
+    - CR_ELLONIA
+    - CR_UNNAMED_8003
+    - CR_UNNAMED_8005
+    - CR_UNNAMED_8007
+    - CR_UNNAMED_9001
+    - CR_UNNAMED_9002
+    - CR_UNNAMED_9003
+    - CR_FRIENDLY_NPCS
+    - CR_NORMAL_MONSTERS
+    - CR_ELITE_MONSTERS
+    - CR_BOSS_MONSTERS
+    - CR_WORLD_BOSSES
+    - CR_OBJECTS

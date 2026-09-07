@@ -1,0 +1,40 @@
+# Crescentia layer (zone 359) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 4 templates: 4 friendly npcs.
+
+spec:
+  version: "1.0"
+
+variables:
+  CRL_CAMINE_1:  1001     # Camine (lv40)
+  CRL_CAMINE_2:  1002     # Camine (lv40)
+  CRL_RONTIN_1:  1101     # Rontin (lv40)
+  CRL_RONTIN_2:  1102     # Rontin (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  CRL_FRIENDLY_NPCS:
+    - $CRL_CAMINE_1
+    - $CRL_CAMINE_2
+    - $CRL_RONTIN_1
+    - $CRL_RONTIN_2
+  CRL_NORMAL_MONSTERS: []
+  CRL_ELITE_MONSTERS: []
+  CRL_BOSS_MONSTERS: []
+  CRL_WORLD_BOSSES: []
+  CRL_OBJECTS: []
+
+exports:
+  variables:
+    - CRL_CAMINE_1
+    - CRL_CAMINE_2
+    - CRL_RONTIN_1
+    - CRL_RONTIN_2
+    - CRL_FRIENDLY_NPCS
+    - CRL_NORMAL_MONSTERS
+    - CRL_ELITE_MONSTERS
+    - CRL_BOSS_MONSTERS
+    - CRL_WORLD_BOSSES
+    - CRL_OBJECTS

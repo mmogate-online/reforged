@@ -1,0 +1,128 @@
+# Fey Forest (zone 2) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 33 templates: 33 normal monsters.
+# 1 template has no display name and is named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  FF_REDCAP:                 1        # Redcap (lv12)
+  FF_FURIOUS_FAERIE:         2        # Furious Faerie (lv14)
+  FF_CENTAUR:                3        # Centaur (lv12)
+  FF_SLINKING_SABERTOOTH:    4        # Slinking Sabertooth (lv12)
+  FF_HULKING_SABERTOOTH:     5        # Hulking Sabertooth (lv13)
+  FF_SULLEN_UNICORN:         6        # Sullen Unicorn (lv14)
+  FF_WARTHOG_BRUTE:          7        # Warthog Brute (lv11)
+  FF_HOGLING:                8        # Hogling (lv12)
+  FF_MERCILESS_JALMARAK:     10       # Merciless Jalmarak (lv14)
+  FF_CENTAUR_INSURGENT:      13       # Centaur Insurgent (lv12)
+  FF_LUMBERING_SPOREWALKER:  22       # Lumbering Sporewalker (lv14)
+  FF_FEISTY_TERRON:          23       # Feisty Terron (lv14)
+  FF_BLOATED_SPOREWALKER:    32       # Bloated Sporewalker (lv14)
+  FF_TERRON_LUNATIC:         33       # Terron Lunatic (lv14)
+  FF_SABERTOOTH:             34       # Sabertooth (lv11)
+  FF_FAERIE_VIGILANTE:       52       # Faerie Vigilante (lv12)
+  FF_FERAL_UNICORN:          56       # Feral Unicorn (lv14)
+  FF_LONG_TUSK_WARTHOG:      57       # Long Tusk Warthog (lv11)
+  FF_ARMORED_HOGLING:        58       # Armored Hogling (lv12)
+  FF_RUNAWAY_PIGLING:        59       # Runaway Pigling (lv12)
+  FF_FAERIE_REBEL:           62       # Faerie Rebel (lv14)
+  FF_FAERIE_RENEGADE:        102      # Faerie Renegade (lv14)
+  FF_FAERIE_INSURGENT:       152      # Faerie Insurgent (lv11)
+  FF_FAERIE_GUARDIANS:       202      # Faerie Guardians (lv13)
+  FF_LIKHAN:                 203      # Likhan (lv13)
+  FF_SERAVY:                 206      # Seravy (lv15)
+  FF_DARK_SORCERER:          209      # Dark Sorcerer (lv12)
+  FF_CRUEL_SORCERER_1:       210      # Cruel Sorcerer (lv12)
+  FF_GARKIOR:                259      # Garkior (lv14)
+  FF_CRUEL_SORCERER_2:       260      # Cruel Sorcerer (lv14)
+  FF_GARASH_BLOODTUSK:       507      # Garash Bloodtusk (lv15)
+  FF_TRADON:                 510      # Tradon (lv15)
+  FF_UNNAMED_600:            600      # (환경몬스터)거대꿀벌 (lv12)
+
+  # Category groups reference the scalars above so each id has one home.
+  FF_FRIENDLY_NPCS: []
+  FF_NORMAL_MONSTERS:
+    - $FF_REDCAP
+    - $FF_FURIOUS_FAERIE
+    - $FF_CENTAUR
+    - $FF_SLINKING_SABERTOOTH
+    - $FF_HULKING_SABERTOOTH
+    - $FF_SULLEN_UNICORN
+    - $FF_WARTHOG_BRUTE
+    - $FF_HOGLING
+    - $FF_MERCILESS_JALMARAK
+    - $FF_CENTAUR_INSURGENT
+    - $FF_LUMBERING_SPOREWALKER
+    - $FF_FEISTY_TERRON
+    - $FF_BLOATED_SPOREWALKER
+    - $FF_TERRON_LUNATIC
+    - $FF_SABERTOOTH
+    - $FF_FAERIE_VIGILANTE
+    - $FF_FERAL_UNICORN
+    - $FF_LONG_TUSK_WARTHOG
+    - $FF_ARMORED_HOGLING
+    - $FF_RUNAWAY_PIGLING
+    - $FF_FAERIE_REBEL
+    - $FF_FAERIE_RENEGADE
+    - $FF_FAERIE_INSURGENT
+    - $FF_FAERIE_GUARDIANS
+    - $FF_LIKHAN
+    - $FF_SERAVY
+    - $FF_DARK_SORCERER
+    - $FF_CRUEL_SORCERER_1
+    - $FF_GARKIOR
+    - $FF_CRUEL_SORCERER_2
+    - $FF_GARASH_BLOODTUSK
+    - $FF_TRADON
+    - $FF_UNNAMED_600
+  FF_ELITE_MONSTERS: []
+  FF_BOSS_MONSTERS: []
+  FF_WORLD_BOSSES: []
+  FF_OBJECTS: []
+
+exports:
+  variables:
+    - FF_REDCAP
+    - FF_FURIOUS_FAERIE
+    - FF_CENTAUR
+    - FF_SLINKING_SABERTOOTH
+    - FF_HULKING_SABERTOOTH
+    - FF_SULLEN_UNICORN
+    - FF_WARTHOG_BRUTE
+    - FF_HOGLING
+    - FF_MERCILESS_JALMARAK
+    - FF_CENTAUR_INSURGENT
+    - FF_LUMBERING_SPOREWALKER
+    - FF_FEISTY_TERRON
+    - FF_BLOATED_SPOREWALKER
+    - FF_TERRON_LUNATIC
+    - FF_SABERTOOTH
+    - FF_FAERIE_VIGILANTE
+    - FF_FERAL_UNICORN
+    - FF_LONG_TUSK_WARTHOG
+    - FF_ARMORED_HOGLING
+    - FF_RUNAWAY_PIGLING
+    - FF_FAERIE_REBEL
+    - FF_FAERIE_RENEGADE
+    - FF_FAERIE_INSURGENT
+    - FF_FAERIE_GUARDIANS
+    - FF_LIKHAN
+    - FF_SERAVY
+    - FF_DARK_SORCERER
+    - FF_CRUEL_SORCERER_1
+    - FF_GARKIOR
+    - FF_CRUEL_SORCERER_2
+    - FF_GARASH_BLOODTUSK
+    - FF_TRADON
+    - FF_UNNAMED_600
+    - FF_FRIENDLY_NPCS
+    - FF_NORMAL_MONSTERS
+    - FF_ELITE_MONSTERS
+    - FF_BOSS_MONSTERS
+    - FF_WORLD_BOSSES
+    - FF_OBJECTS

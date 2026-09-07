@@ -1,0 +1,272 @@
+# Lumbertown (zone 60) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 81 templates: 81 friendly npcs.
+# 11 templates have no display name and are named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  LT_VALDRIN:          1001     # Valdrin (lv40)
+  LT_CATRINE:          1002     # Catrine (lv40)
+  LT_ROMGAN:           1003     # Romgan (lv40)
+  LT_CHASE:            1004     # Chase (lv40)
+  LT_SANDOR:           1005     # Sandor (lv40)
+  LT_EREK:             1006     # Erek (lv40)
+  LT_LATTON:           1007     # Latton (lv40)
+  LT_BROSE:            1008     # Brose (lv40)
+  LT_KENAN:            1009     # Kenan (lv40)
+  LT_JARAM:            1010     # Jaram (lv40)
+  LT_ACKERLY:          1011     # Ackerly (lv40)
+  LT_NYLEES:           1012     # Nylees (lv40)
+  LT_ARN:              1013     # Arn (lv40)
+  LT_DAVEN:            1014     # Daven (lv40)
+  LT_ALMANON:          1015     # Almanon (lv40)
+  LT_SUREN:            1017     # Suren (lv40)
+  LT_EINNA:            1018     # Einna (lv40)
+  LT_LENNERT:          1019     # Lennert (lv40)
+  LT_GATTOLL:          1020     # Gattoll (lv40)
+  LT_DRALLAS:          1021     # Drallas (lv40)
+  LT_SURELL:           1022     # Surell (lv40)
+  LT_HEIKON:           1023     # Heikon (lv40)
+  LT_MACHOL:           1024     # Machol (lv40)
+  LT_ALLOS:            1025     # Allos (lv40)
+  LT_NYTREN:           1026     # Nytren (lv40)
+  LT_NYTELL:           1027     # Nytell (lv40)
+  LT_DUEGAL:           1028     # Duegal (lv40)
+  LT_ZANDRA:           1029     # Zandra (lv40)
+  LT_TELEPORTAL:       1030     # Teleportal (lv40)
+  LT_SANAZ:            1031     # Sanaz (lv40)
+  LT_NENUEL:           1032     # Nenuel (lv40)
+  LT_NURNI:            1038     # Nurni (lv40)
+  LT_KLAON:            1039     # Klaon (lv40)
+  LT_ANMABA:           1040     # Anmaba (lv40)
+  LT_SHARLEI:          1041     # Sharlei (lv40)
+  LT_ANTONE:           1042     # Antone (lv40)
+  LT_EISON:            1043     # Eison (lv40)
+  LT_ARCADIA_GUARD_1:  1048     # Arcadia Guard (lv40)
+  LT_ARCADIA_GUARD_2:  1049     # Arcadia Guard (lv40)
+  LT_REFUGEE_1:        1050     # Refugee (lv40)
+  LT_REFUGEE_2:        1051     # Refugee (lv40)
+  LT_REFUGEE_3:        1052     # Refugee (lv40)
+  LT_REFUGEE_4:        1053     # Refugee (lv40)
+  LT_WORKER_1:         1054     # Worker (lv40)
+  LT_WORKER_2:         1055     # Worker (lv40)
+  LT_LUCAR:            1056     # Lucar (lv40)
+  LT_ROYER:            1057     # Royer (lv40)
+  LT_BELEHA:           1058     # Beleha (lv40)
+  LT_SADMA:            1059     # Sadma (lv40)
+  LT_REFUGEE_5:        1060     # Refugee (lv40)
+  LT_REFUGEE_6:        1061     # Refugee (lv40)
+  LT_REFUGEE_7:        1062     # Refugee (lv40)
+  LT_REFUGEE_8:        1063     # Refugee (lv40)
+  LT_REFUGEE_9:        1064     # Refugee (lv40)
+  LT_REFUGEE_10:       1065     # Refugee (lv40)
+  LT_REFUGEE_11:       1066     # Refugee (lv40)
+  LT_REFUGEE_12:       1067     # Refugee (lv40)
+  LT_REFUGEE_13:       1068     # Refugee (lv40)
+  LT_REFUGEE_14:       1069     # Refugee (lv40)
+  LT_REFUGEE_15:       1071     # Refugee (lv40)
+  LT_REFUGEE_16:       1072     # Refugee (lv40)
+  LT_TOMBA:            1099     # Tomba (lv40)
+  LT_MERESH:           1600     # Meresh (lv40)
+  LT_MISSION_BOARD:    1602     # Mission Board (lv40)
+  LT_UNNAMED_1900:     1900     #  (lv40)
+  LT_UNNAMED_1901:     1901     #  (lv40)
+  LT_UNNAMED_1902:     1902     #  (lv40)
+  LT_UNNAMED_1903:     1903     #  (lv40)
+  LT_UNNAMED_1905:     1905     #  (lv40)
+  LT_BROWNIE:          1906     # Brownie (lv40)
+  LT_ASH:              1907     # Ash (lv40)
+  LT_GREY:             1908     # Grey (lv40)
+  LT_HAINES:           1909     # Haines (lv40)
+  LT_POLLAC:           1910     # Pollac (lv40)
+  LT_ELLONIA:          8000     # Ellonia (lv40)
+  LT_UNNAMED_8003:     8003     #  (lv40)
+  LT_UNNAMED_8005:     8005     #  (lv40)
+  LT_UNNAMED_8007:     8007     #  (lv40)
+  LT_UNNAMED_9001:     9001     #  (lv40)
+  LT_UNNAMED_9002:     9002     #  (lv40)
+  LT_UNNAMED_9003:     9003     #  (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  LT_FRIENDLY_NPCS:
+    - $LT_VALDRIN
+    - $LT_CATRINE
+    - $LT_ROMGAN
+    - $LT_CHASE
+    - $LT_SANDOR
+    - $LT_EREK
+    - $LT_LATTON
+    - $LT_BROSE
+    - $LT_KENAN
+    - $LT_JARAM
+    - $LT_ACKERLY
+    - $LT_NYLEES
+    - $LT_ARN
+    - $LT_DAVEN
+    - $LT_ALMANON
+    - $LT_SUREN
+    - $LT_EINNA
+    - $LT_LENNERT
+    - $LT_GATTOLL
+    - $LT_DRALLAS
+    - $LT_SURELL
+    - $LT_HEIKON
+    - $LT_MACHOL
+    - $LT_ALLOS
+    - $LT_NYTREN
+    - $LT_NYTELL
+    - $LT_DUEGAL
+    - $LT_ZANDRA
+    - $LT_TELEPORTAL
+    - $LT_SANAZ
+    - $LT_NENUEL
+    - $LT_NURNI
+    - $LT_KLAON
+    - $LT_ANMABA
+    - $LT_SHARLEI
+    - $LT_ANTONE
+    - $LT_EISON
+    - $LT_ARCADIA_GUARD_1
+    - $LT_ARCADIA_GUARD_2
+    - $LT_REFUGEE_1
+    - $LT_REFUGEE_2
+    - $LT_REFUGEE_3
+    - $LT_REFUGEE_4
+    - $LT_WORKER_1
+    - $LT_WORKER_2
+    - $LT_LUCAR
+    - $LT_ROYER
+    - $LT_BELEHA
+    - $LT_SADMA
+    - $LT_REFUGEE_5
+    - $LT_REFUGEE_6
+    - $LT_REFUGEE_7
+    - $LT_REFUGEE_8
+    - $LT_REFUGEE_9
+    - $LT_REFUGEE_10
+    - $LT_REFUGEE_11
+    - $LT_REFUGEE_12
+    - $LT_REFUGEE_13
+    - $LT_REFUGEE_14
+    - $LT_REFUGEE_15
+    - $LT_REFUGEE_16
+    - $LT_TOMBA
+    - $LT_MERESH
+    - $LT_MISSION_BOARD
+    - $LT_UNNAMED_1900
+    - $LT_UNNAMED_1901
+    - $LT_UNNAMED_1902
+    - $LT_UNNAMED_1903
+    - $LT_UNNAMED_1905
+    - $LT_BROWNIE
+    - $LT_ASH
+    - $LT_GREY
+    - $LT_HAINES
+    - $LT_POLLAC
+    - $LT_ELLONIA
+    - $LT_UNNAMED_8003
+    - $LT_UNNAMED_8005
+    - $LT_UNNAMED_8007
+    - $LT_UNNAMED_9001
+    - $LT_UNNAMED_9002
+    - $LT_UNNAMED_9003
+  LT_NORMAL_MONSTERS: []
+  LT_ELITE_MONSTERS: []
+  LT_BOSS_MONSTERS: []
+  LT_WORLD_BOSSES: []
+  LT_OBJECTS: []
+
+exports:
+  variables:
+    - LT_VALDRIN
+    - LT_CATRINE
+    - LT_ROMGAN
+    - LT_CHASE
+    - LT_SANDOR
+    - LT_EREK
+    - LT_LATTON
+    - LT_BROSE
+    - LT_KENAN
+    - LT_JARAM
+    - LT_ACKERLY
+    - LT_NYLEES
+    - LT_ARN
+    - LT_DAVEN
+    - LT_ALMANON
+    - LT_SUREN
+    - LT_EINNA
+    - LT_LENNERT
+    - LT_GATTOLL
+    - LT_DRALLAS
+    - LT_SURELL
+    - LT_HEIKON
+    - LT_MACHOL
+    - LT_ALLOS
+    - LT_NYTREN
+    - LT_NYTELL
+    - LT_DUEGAL
+    - LT_ZANDRA
+    - LT_TELEPORTAL
+    - LT_SANAZ
+    - LT_NENUEL
+    - LT_NURNI
+    - LT_KLAON
+    - LT_ANMABA
+    - LT_SHARLEI
+    - LT_ANTONE
+    - LT_EISON
+    - LT_ARCADIA_GUARD_1
+    - LT_ARCADIA_GUARD_2
+    - LT_REFUGEE_1
+    - LT_REFUGEE_2
+    - LT_REFUGEE_3
+    - LT_REFUGEE_4
+    - LT_WORKER_1
+    - LT_WORKER_2
+    - LT_LUCAR
+    - LT_ROYER
+    - LT_BELEHA
+    - LT_SADMA
+    - LT_REFUGEE_5
+    - LT_REFUGEE_6
+    - LT_REFUGEE_7
+    - LT_REFUGEE_8
+    - LT_REFUGEE_9
+    - LT_REFUGEE_10
+    - LT_REFUGEE_11
+    - LT_REFUGEE_12
+    - LT_REFUGEE_13
+    - LT_REFUGEE_14
+    - LT_REFUGEE_15
+    - LT_REFUGEE_16
+    - LT_TOMBA
+    - LT_MERESH
+    - LT_MISSION_BOARD
+    - LT_UNNAMED_1900
+    - LT_UNNAMED_1901
+    - LT_UNNAMED_1902
+    - LT_UNNAMED_1903
+    - LT_UNNAMED_1905
+    - LT_BROWNIE
+    - LT_ASH
+    - LT_GREY
+    - LT_HAINES
+    - LT_POLLAC
+    - LT_ELLONIA
+    - LT_UNNAMED_8003
+    - LT_UNNAMED_8005
+    - LT_UNNAMED_8007
+    - LT_UNNAMED_9001
+    - LT_UNNAMED_9002
+    - LT_UNNAMED_9003
+    - LT_FRIENDLY_NPCS
+    - LT_NORMAL_MONSTERS
+    - LT_ELITE_MONSTERS
+    - LT_BOSS_MONSTERS
+    - LT_WORLD_BOSSES
+    - LT_OBJECTS

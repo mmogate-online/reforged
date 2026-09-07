@@ -1,0 +1,161 @@
+# Valley of Titans layer (zone 206) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 44 templates: 44 friendly npcs.
+# 5 templates have no display name and are named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  VTL_ZACKRAN:                    1001     # Zackran (lv40)
+  VTL_JEAQUIN:                    1002     # Jeaquin (lv40)
+  VTL_SOZIA:                      1003     # Sozia (lv40)
+  VTL_CARDEA:                     1004     # Cardea (lv40)
+  VTL_LETHAR:                     1005     # Lethar (lv40)
+  VTL_ETHIA:                      1006     # Ethia (lv40)
+  VTL_LAKHIA:                     1008     # Lakhia (lv40)
+  VTL_MILJEAN:                    1009     # Miljean (lv40)
+  VTL_PETRINA:                    1010     # Petrina (lv40)
+  VTL_DELAILE:                    1011     # Delaile (lv40)
+  VTL_WHIMNIA:                    1013     # Whimnia (lv40)
+  VTL_ARCHIVES_BOX:               1014     # Archives Box (lv40)
+  VTL_AGRONA:                     1015     # Agrona (lv40)
+  VTL_FURLAN:                     1016     # Furlan (lv40)
+  VTL_HAYMAL:                     1017     # Haymal (lv40)
+  VTL_FANELLA:                    1018     # Fanella (lv40)
+  VTL_OTHIAS:                     1019     # Othias (lv40)
+  VTL_DAKONA:                     1020     # Dakona (lv40)
+  VTL_CREVAN:                     1021     # Crevan (lv40)
+  VTL_EMBARR:                     1022     # Embarr (lv40)
+  VTL_PIRUZ:                      1023     # Piruz (lv40)
+  VTL_GORO:                       1027     # Goro (lv40)
+  VTL_NIALL:                      1028     # Niall (lv40)
+  VTL_KECTUR:                     1029     # Kectur (lv40)
+  VTL_TANNI:                      1030     # Tanni (lv40)
+  VTL_WAVEN:                      1031     # Waven (lv40)
+  VTL_SERLIK:                     1032     # Serlik (lv40)
+  VTL_MILVAN:                     1033     # Milvan (lv40)
+  VTL_MIRIM:                      1034     # Mirim (lv40)
+  VTL_HUMFRICK:                   1035     # Humfrick (lv40)
+  VTL_JUNK_BOX_1:                 1036     # Junk Box (lv40)
+  VTL_JUNK_BOX_2:                 1037     # Junk Box (lv40)
+  VTL_JUNK_BOX_3:                 1038     # Junk Box (lv40)
+  VTL_VILLAGER:                   1040     # Villager (lv16)
+  VTL_LISADORE:                   1041     # Lisadore (lv40)
+  VTL_ISLA:                       1042     # Isla (lv40)
+  VTL_HAMBI:                      1050     # Hambi (lv40)
+  VTL_BASTION_OF_LOK_TELEPORTAL:  1501     # Bastion of Lok Teleportal (lv40)
+  VTL_GUARD:                      1700     # Guard (lv65)
+  VTL_UNNAMED_1900:               1900     #  (lv40)
+  VTL_UNNAMED_1901:               1901     #  (lv40)
+  VTL_UNNAMED_1903:               1903     #  (lv40)
+  VTL_UNNAMED_1905:               1905     #  (lv40)
+  VTL_UNNAMED_1906:               1906     #  (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  VTL_FRIENDLY_NPCS:
+    - $VTL_ZACKRAN
+    - $VTL_JEAQUIN
+    - $VTL_SOZIA
+    - $VTL_CARDEA
+    - $VTL_LETHAR
+    - $VTL_ETHIA
+    - $VTL_LAKHIA
+    - $VTL_MILJEAN
+    - $VTL_PETRINA
+    - $VTL_DELAILE
+    - $VTL_WHIMNIA
+    - $VTL_ARCHIVES_BOX
+    - $VTL_AGRONA
+    - $VTL_FURLAN
+    - $VTL_HAYMAL
+    - $VTL_FANELLA
+    - $VTL_OTHIAS
+    - $VTL_DAKONA
+    - $VTL_CREVAN
+    - $VTL_EMBARR
+    - $VTL_PIRUZ
+    - $VTL_GORO
+    - $VTL_NIALL
+    - $VTL_KECTUR
+    - $VTL_TANNI
+    - $VTL_WAVEN
+    - $VTL_SERLIK
+    - $VTL_MILVAN
+    - $VTL_MIRIM
+    - $VTL_HUMFRICK
+    - $VTL_JUNK_BOX_1
+    - $VTL_JUNK_BOX_2
+    - $VTL_JUNK_BOX_3
+    - $VTL_VILLAGER
+    - $VTL_LISADORE
+    - $VTL_ISLA
+    - $VTL_HAMBI
+    - $VTL_BASTION_OF_LOK_TELEPORTAL
+    - $VTL_GUARD
+    - $VTL_UNNAMED_1900
+    - $VTL_UNNAMED_1901
+    - $VTL_UNNAMED_1903
+    - $VTL_UNNAMED_1905
+    - $VTL_UNNAMED_1906
+  VTL_NORMAL_MONSTERS: []
+  VTL_ELITE_MONSTERS: []
+  VTL_BOSS_MONSTERS: []
+  VTL_WORLD_BOSSES: []
+  VTL_OBJECTS: []
+
+exports:
+  variables:
+    - VTL_ZACKRAN
+    - VTL_JEAQUIN
+    - VTL_SOZIA
+    - VTL_CARDEA
+    - VTL_LETHAR
+    - VTL_ETHIA
+    - VTL_LAKHIA
+    - VTL_MILJEAN
+    - VTL_PETRINA
+    - VTL_DELAILE
+    - VTL_WHIMNIA
+    - VTL_ARCHIVES_BOX
+    - VTL_AGRONA
+    - VTL_FURLAN
+    - VTL_HAYMAL
+    - VTL_FANELLA
+    - VTL_OTHIAS
+    - VTL_DAKONA
+    - VTL_CREVAN
+    - VTL_EMBARR
+    - VTL_PIRUZ
+    - VTL_GORO
+    - VTL_NIALL
+    - VTL_KECTUR
+    - VTL_TANNI
+    - VTL_WAVEN
+    - VTL_SERLIK
+    - VTL_MILVAN
+    - VTL_MIRIM
+    - VTL_HUMFRICK
+    - VTL_JUNK_BOX_1
+    - VTL_JUNK_BOX_2
+    - VTL_JUNK_BOX_3
+    - VTL_VILLAGER
+    - VTL_LISADORE
+    - VTL_ISLA
+    - VTL_HAMBI
+    - VTL_BASTION_OF_LOK_TELEPORTAL
+    - VTL_GUARD
+    - VTL_UNNAMED_1900
+    - VTL_UNNAMED_1901
+    - VTL_UNNAMED_1903
+    - VTL_UNNAMED_1905
+    - VTL_UNNAMED_1906
+    - VTL_FRIENDLY_NPCS
+    - VTL_NORMAL_MONSTERS
+    - VTL_ELITE_MONSTERS
+    - VTL_BOSS_MONSTERS
+    - VTL_WORLD_BOSSES
+    - VTL_OBJECTS

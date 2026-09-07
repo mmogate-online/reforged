@@ -1,0 +1,137 @@
+# Oblivion Woods (zone 3) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 36 templates: 2 friendly npcs, 32 normal monsters, 2 boss monsters.
+# 1 template has no display name and is named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  OW_STONEBEAK_SCAVENGER:     1        # Stonebeak Scavenger (lv14)
+  OW_AGITATED_SPOREWALKER:    2        # Agitated Sporewalker (lv15)
+  OW_MOSSY_GHILLIEDHU:        3        # Mossy Ghilliedhu (lv19)
+  OW_GRAYAL:                  4        # Grayal (lv15)
+  OW_SKELETAL_RETAINER:       5        # Skeletal Retainer (lv15)
+  OW_SKELETAL_SOLDIER:        6        # Skeletal Soldier (lv17)
+  OW_DAKANIUS:                7        # Dakanius (lv17)
+  OW_DEVAN_ARCHPRIEST:        9        # Devan Archpriest (lv18)
+  OW_DEVAN_WARLORD:           12       # Devan Warlord (lv15)
+  OW_DARK_MAIDEN:             13       # Dark Maiden (lv15)
+  OW_REAVER_OF_RESURRECTION:  14       # Reaver of Resurrection (lv17)
+  OW_EBONHEART_SORCERER:      15       # Ebonheart Sorcerer (lv17)
+  OW_FALLEN_DEFENDER:         16       # Fallen Defender (lv16)
+  OW_DEVAN_ROBBER:            17       # Devan Robber (lv15)
+  OW_DEVAN_SCRAPPER:          18       # Devan Scrapper (lv15)
+  OW_DEVAN_BRIGAND:           19       # Devan Brigand (lv16)
+  OW_KULSILVA:                20       # Kulsilva (lv18)
+  OW_DUR_BARAK:               21       # Dur Barak (lv18)
+  OW_LANOK:                   22       # Lanok (lv21)
+  OW_AGGRAVATED_SPOREWALKER:  23       # Aggravated Sporewalker (lv16)
+  OW_KEENER_CONSCRIPT:        24       # Keener Conscript (lv16)
+  OW_DAKANIUSS_GUARD_1:       30       # Dakanius's Guard (lv16)
+  OW_DAKANIUSS_GUARD_2:       31       # Dakanius's Guard (lv16)
+  OW_DEVAN_WATCHER:           32       # Devan Watcher (lv14)
+  OW_STONEBEAK_SOLDIER:       101      # Stonebeak Soldier (lv13)
+  OW_STONEBEAK_FIGHTER:       1001     # Stonebeak Fighter (lv13)
+  OW_WALL_OF_WORDCRAFT:       1049     # Wall of Wordcraft (lv40)
+  OW_UNNAMED_7000:            7000     # (환경몬스터)식충식물 (lv16)
+  OW_DEVAN_BANDIT:            300140   # Devan Bandit (lv15)
+  OW_DEVAN_BLADEMASTER:       300141   # Devan Blademaster (lv17)
+  OW_DEVAN_WARRIOR:           300142   # Devan Warrior (lv14)
+  OW_DEVAN_ARCANIST:          300160   # Devan Arcanist (lv16)
+  OW_DEVAN_CHANTER:           300161   # Devan Chanter (lv15)
+  OW_FURIOUS_DRAGOON:         300611   # Furious Dragoon (lv15)
+  OW_BASILISK:                300811   # Basilisk (lv20)
+  OW_FALLEN_SOLDIER:          301080   # Fallen Soldier (lv15)
+
+  # Category groups reference the scalars above so each id has one home.
+  OW_FRIENDLY_NPCS:
+    - $OW_KEENER_CONSCRIPT
+    - $OW_WALL_OF_WORDCRAFT
+  OW_NORMAL_MONSTERS:
+    - $OW_STONEBEAK_SCAVENGER
+    - $OW_AGITATED_SPOREWALKER
+    - $OW_MOSSY_GHILLIEDHU
+    - $OW_GRAYAL
+    - $OW_SKELETAL_RETAINER
+    - $OW_SKELETAL_SOLDIER
+    - $OW_DAKANIUS
+    - $OW_DEVAN_ARCHPRIEST
+    - $OW_DEVAN_WARLORD
+    - $OW_DARK_MAIDEN
+    - $OW_REAVER_OF_RESURRECTION
+    - $OW_EBONHEART_SORCERER
+    - $OW_FALLEN_DEFENDER
+    - $OW_DEVAN_ROBBER
+    - $OW_DEVAN_SCRAPPER
+    - $OW_DEVAN_BRIGAND
+    - $OW_KULSILVA
+    - $OW_DUR_BARAK
+    - $OW_AGGRAVATED_SPOREWALKER
+    - $OW_DAKANIUSS_GUARD_1
+    - $OW_DAKANIUSS_GUARD_2
+    - $OW_DEVAN_WATCHER
+    - $OW_STONEBEAK_SOLDIER
+    - $OW_STONEBEAK_FIGHTER
+    - $OW_UNNAMED_7000
+    - $OW_DEVAN_BANDIT
+    - $OW_DEVAN_BLADEMASTER
+    - $OW_DEVAN_WARRIOR
+    - $OW_DEVAN_ARCANIST
+    - $OW_DEVAN_CHANTER
+    - $OW_FURIOUS_DRAGOON
+    - $OW_FALLEN_SOLDIER
+  OW_ELITE_MONSTERS: []
+  OW_BOSS_MONSTERS:
+    - $OW_LANOK
+    - $OW_BASILISK
+  OW_WORLD_BOSSES: []
+  OW_OBJECTS: []
+
+exports:
+  variables:
+    - OW_STONEBEAK_SCAVENGER
+    - OW_AGITATED_SPOREWALKER
+    - OW_MOSSY_GHILLIEDHU
+    - OW_GRAYAL
+    - OW_SKELETAL_RETAINER
+    - OW_SKELETAL_SOLDIER
+    - OW_DAKANIUS
+    - OW_DEVAN_ARCHPRIEST
+    - OW_DEVAN_WARLORD
+    - OW_DARK_MAIDEN
+    - OW_REAVER_OF_RESURRECTION
+    - OW_EBONHEART_SORCERER
+    - OW_FALLEN_DEFENDER
+    - OW_DEVAN_ROBBER
+    - OW_DEVAN_SCRAPPER
+    - OW_DEVAN_BRIGAND
+    - OW_KULSILVA
+    - OW_DUR_BARAK
+    - OW_LANOK
+    - OW_AGGRAVATED_SPOREWALKER
+    - OW_KEENER_CONSCRIPT
+    - OW_DAKANIUSS_GUARD_1
+    - OW_DAKANIUSS_GUARD_2
+    - OW_DEVAN_WATCHER
+    - OW_STONEBEAK_SOLDIER
+    - OW_STONEBEAK_FIGHTER
+    - OW_WALL_OF_WORDCRAFT
+    - OW_UNNAMED_7000
+    - OW_DEVAN_BANDIT
+    - OW_DEVAN_BLADEMASTER
+    - OW_DEVAN_WARRIOR
+    - OW_DEVAN_ARCANIST
+    - OW_DEVAN_CHANTER
+    - OW_FURIOUS_DRAGOON
+    - OW_BASILISK
+    - OW_FALLEN_SOLDIER
+    - OW_FRIENDLY_NPCS
+    - OW_NORMAL_MONSTERS
+    - OW_ELITE_MONSTERS
+    - OW_BOSS_MONSTERS
+    - OW_WORLD_BOSSES
+    - OW_OBJECTS

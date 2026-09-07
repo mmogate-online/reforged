@@ -1,0 +1,98 @@
+# Celestial Hills (zone 7) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 23 templates: 15 normal monsters, 8 boss monsters.
+# 1 template has no display name and is named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  CH_NAGA_MERCENARY:          1        # Naga Mercenary (lv22)
+  CH_INDOLENT_KUMAS:          3        # Indolent Kumas (lv22)
+  CH_TORPID_KUMAS:            4        # Torpid Kumas (lv23)
+  CH_RED_FANG_ORCAN:          5        # Red Fang Orcan (lv22)
+  CH_RED_FANG_FIGHTER:        6        # Red Fang Fighter (lv22)
+  CH_RED_FANG_RAGER:          7        # Red Fang Rager (lv23)
+  CH_RED_FANG_KOBOLD:         8        # Red Fang Kobold (lv22)
+  CH_RED_FANG_KOBOLD_MINION:  9        # Red Fang Kobold Minion (lv22)
+  CH_LEAN_HYENA:              10       # Lean Hyena (lv22)
+  CH_BLOODGUARD:              11       # Bloodguard (lv23)
+  CH_LOKIAN_LANCER:           12       # Lokian Lancer (lv24)
+  CH_LOKIAN_BERSERKER:        13       # Lokian Berserker (lv24)
+  CH_LOKIAN_SORCERER:         14       # Lokian Sorcerer (lv24)
+  CH_NAKARASH:                18       # Nakarash (lv24)
+  CH_CROWU:                   20       # Crowu (lv25)
+  CH_GOAT:                    21       # Goat (lv22)
+  CH_UNNAMED_22:              22       # (환경몬스터)도마뱀 (lv22)
+  CH_JUGGERNAUT_MERCENARY:    23       # Juggernaut Mercenary (lv24)
+  CH_DARK_IMP:                100      # Dark Imp (lv22)
+  CH_BARRAQ:                  101      # Barraq (lv25)
+  CH_TEZLUAR:                 102      # Tezluar (lv25)
+  CH_RADAT:                   1000     # Radat (lv22)
+  CH_KADAS:                   2000     # Kadas (lv22)
+
+  # Category groups reference the scalars above so each id has one home.
+  CH_FRIENDLY_NPCS: []
+  CH_NORMAL_MONSTERS:
+    - $CH_RED_FANG_ORCAN
+    - $CH_RED_FANG_FIGHTER
+    - $CH_RED_FANG_RAGER
+    - $CH_RED_FANG_KOBOLD
+    - $CH_RED_FANG_KOBOLD_MINION
+    - $CH_LEAN_HYENA
+    - $CH_BLOODGUARD
+    - $CH_LOKIAN_LANCER
+    - $CH_LOKIAN_BERSERKER
+    - $CH_LOKIAN_SORCERER
+    - $CH_CROWU
+    - $CH_GOAT
+    - $CH_UNNAMED_22
+    - $CH_DARK_IMP
+    - $CH_TEZLUAR
+  CH_ELITE_MONSTERS: []
+  CH_BOSS_MONSTERS:
+    - $CH_NAGA_MERCENARY
+    - $CH_INDOLENT_KUMAS
+    - $CH_TORPID_KUMAS
+    - $CH_NAKARASH
+    - $CH_JUGGERNAUT_MERCENARY
+    - $CH_BARRAQ
+    - $CH_RADAT
+    - $CH_KADAS
+  CH_WORLD_BOSSES: []
+  CH_OBJECTS: []
+
+exports:
+  variables:
+    - CH_NAGA_MERCENARY
+    - CH_INDOLENT_KUMAS
+    - CH_TORPID_KUMAS
+    - CH_RED_FANG_ORCAN
+    - CH_RED_FANG_FIGHTER
+    - CH_RED_FANG_RAGER
+    - CH_RED_FANG_KOBOLD
+    - CH_RED_FANG_KOBOLD_MINION
+    - CH_LEAN_HYENA
+    - CH_BLOODGUARD
+    - CH_LOKIAN_LANCER
+    - CH_LOKIAN_BERSERKER
+    - CH_LOKIAN_SORCERER
+    - CH_NAKARASH
+    - CH_CROWU
+    - CH_GOAT
+    - CH_UNNAMED_22
+    - CH_JUGGERNAUT_MERCENARY
+    - CH_DARK_IMP
+    - CH_BARRAQ
+    - CH_TEZLUAR
+    - CH_RADAT
+    - CH_KADAS
+    - CH_FRIENDLY_NPCS
+    - CH_NORMAL_MONSTERS
+    - CH_ELITE_MONSTERS
+    - CH_BOSS_MONSTERS
+    - CH_WORLD_BOSSES
+    - CH_OBJECTS

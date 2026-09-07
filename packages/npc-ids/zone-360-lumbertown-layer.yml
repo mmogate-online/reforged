@@ -1,0 +1,40 @@
+# Lumbertown layer (zone 360) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 4 templates: 4 friendly npcs.
+
+spec:
+  version: "1.0"
+
+variables:
+  LTL_KELTRAN_1:  1001     # Keltran (lv40)
+  LTL_KELTRAN_2:  1002     # Keltran (lv40)
+  LTL_LINKIN_1:   1101     # Linkin (lv40)
+  LTL_LINKIN_2:   1102     # Linkin (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  LTL_FRIENDLY_NPCS:
+    - $LTL_KELTRAN_1
+    - $LTL_KELTRAN_2
+    - $LTL_LINKIN_1
+    - $LTL_LINKIN_2
+  LTL_NORMAL_MONSTERS: []
+  LTL_ELITE_MONSTERS: []
+  LTL_BOSS_MONSTERS: []
+  LTL_WORLD_BOSSES: []
+  LTL_OBJECTS: []
+
+exports:
+  variables:
+    - LTL_KELTRAN_1
+    - LTL_KELTRAN_2
+    - LTL_LINKIN_1
+    - LTL_LINKIN_2
+    - LTL_FRIENDLY_NPCS
+    - LTL_NORMAL_MONSTERS
+    - LTL_ELITE_MONSTERS
+    - LTL_BOSS_MONSTERS
+    - LTL_WORLD_BOSSES
+    - LTL_OBJECTS

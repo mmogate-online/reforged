@@ -1,0 +1,119 @@
+# Tuwangi Mire (zone 5) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 30 templates: 1 friendly npcs, 28 normal monsters, 1 objects.
+# 5 templates have no display name and are named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  TM_TUWANGI_OVERSEER:     1        # Tuwangi Overseer (lv20)
+  TM_TUWANGI_HELPER:       2        # Tuwangi Helper (lv20)
+  TM_TUWANGI_WORKER:       3        # Tuwangi Worker (lv20)
+  TM_TUWANGI_FROGRIDER:    4        # Tuwangi Frogrider (lv22)
+  TM_TUWANGI_BLOCKHEAD:    5        # Tuwangi Blockhead (lv22)
+  TM_TUWANGI_CHOPPER:      6        # Tuwangi Chopper (lv22)
+  TM_TUWANGI_WARFROGGER:   7        # Tuwangi Warfrogger (lv21)
+  TM_KEEN_HAT_TUWANGI:     8        # Keen Hat Tuwangi (lv21)
+  TM_STONEHAMMER_TUWANGI:  9        # Stonehammer Tuwangi (lv21)
+  TM_MIRETOAD:             10       # Miretoad (lv19)
+  TM_BUBU_DRAGON:          11       # Bubu Dragon (lv19)
+  TM_FROG_DRUM:            12       # Frog Drum (lv21)
+  TM_INKY_SABERTOOTH:      13       # Inky Sabertooth (lv20)
+  TM_MUDDY_SPOREWALKER:    14       # Muddy Sporewalker (lv19)
+  TM_HUNGRY_CULLAR:        15       # Hungry Cullar (lv19)
+  TM_TENTACULLAR:          16       # Tentacullar (lv19)
+  TM_GARANGKA:             17       # Garangka (lv23)
+  TM_BAUBA:                18       # Bauba (lv21)
+  TM_MOONG:                19       # Moong (lv22)
+  TM_RAGUGA:               20       # Raguga (lv23)
+  TM_TUWANGI_PROTECTOR:    21       # Tuwangi Protector (lv22)
+  TM_TUWANGI_HATCHETER:    22       # Tuwangi Hatcheter (lv23)
+  TM_FROGBANE_DRUM_1:      7000     # Frogbane Drum (lv40)
+  TM_FROGBANE_DRUM_2:      7002     # Frogbane Drum (lv40)
+  TM_FROGBANE_DRUM_3:      7003     # Frogbane Drum (lv40)
+  TM_UNNAMED_7010:         7010     # 후카두꺼비_A (lv15)
+  TM_UNNAMED_7012:         7012     # 후카두꺼비_B (lv15)
+  TM_UNNAMED_7013:         7013     # 후카두꺼비_C (lv15)
+  TM_UNNAMED_7020:         7020     # 투명NPC (lv26)
+  TM_UNNAMED_7777:         7777     # 도마뱀 (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  TM_FRIENDLY_NPCS:
+    - $TM_UNNAMED_7777
+  TM_NORMAL_MONSTERS:
+    - $TM_TUWANGI_OVERSEER
+    - $TM_TUWANGI_HELPER
+    - $TM_TUWANGI_WORKER
+    - $TM_TUWANGI_FROGRIDER
+    - $TM_TUWANGI_BLOCKHEAD
+    - $TM_TUWANGI_CHOPPER
+    - $TM_TUWANGI_WARFROGGER
+    - $TM_KEEN_HAT_TUWANGI
+    - $TM_STONEHAMMER_TUWANGI
+    - $TM_MIRETOAD
+    - $TM_BUBU_DRAGON
+    - $TM_INKY_SABERTOOTH
+    - $TM_MUDDY_SPOREWALKER
+    - $TM_HUNGRY_CULLAR
+    - $TM_TENTACULLAR
+    - $TM_GARANGKA
+    - $TM_BAUBA
+    - $TM_MOONG
+    - $TM_RAGUGA
+    - $TM_TUWANGI_PROTECTOR
+    - $TM_TUWANGI_HATCHETER
+    - $TM_FROGBANE_DRUM_1
+    - $TM_FROGBANE_DRUM_2
+    - $TM_FROGBANE_DRUM_3
+    - $TM_UNNAMED_7010
+    - $TM_UNNAMED_7012
+    - $TM_UNNAMED_7013
+    - $TM_UNNAMED_7020
+  TM_ELITE_MONSTERS: []
+  TM_BOSS_MONSTERS: []
+  TM_WORLD_BOSSES: []
+  TM_OBJECTS:
+    - $TM_FROG_DRUM
+
+exports:
+  variables:
+    - TM_TUWANGI_OVERSEER
+    - TM_TUWANGI_HELPER
+    - TM_TUWANGI_WORKER
+    - TM_TUWANGI_FROGRIDER
+    - TM_TUWANGI_BLOCKHEAD
+    - TM_TUWANGI_CHOPPER
+    - TM_TUWANGI_WARFROGGER
+    - TM_KEEN_HAT_TUWANGI
+    - TM_STONEHAMMER_TUWANGI
+    - TM_MIRETOAD
+    - TM_BUBU_DRAGON
+    - TM_FROG_DRUM
+    - TM_INKY_SABERTOOTH
+    - TM_MUDDY_SPOREWALKER
+    - TM_HUNGRY_CULLAR
+    - TM_TENTACULLAR
+    - TM_GARANGKA
+    - TM_BAUBA
+    - TM_MOONG
+    - TM_RAGUGA
+    - TM_TUWANGI_PROTECTOR
+    - TM_TUWANGI_HATCHETER
+    - TM_FROGBANE_DRUM_1
+    - TM_FROGBANE_DRUM_2
+    - TM_FROGBANE_DRUM_3
+    - TM_UNNAMED_7010
+    - TM_UNNAMED_7012
+    - TM_UNNAMED_7013
+    - TM_UNNAMED_7020
+    - TM_UNNAMED_7777
+    - TM_FRIENDLY_NPCS
+    - TM_NORMAL_MONSTERS
+    - TM_ELITE_MONSTERS
+    - TM_BOSS_MONSTERS
+    - TM_WORLD_BOSSES
+    - TM_OBJECTS

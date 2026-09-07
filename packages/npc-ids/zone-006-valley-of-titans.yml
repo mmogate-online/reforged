@@ -1,0 +1,151 @@
+# Valley of Titans (zone 6) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 41 templates: 6 friendly npcs, 34 normal monsters, 1 boss monsters.
+
+spec:
+  version: "1.0"
+
+variables:
+  VT_GRAZING_NORUK:         1011     # Grazing Noruk (lv16)
+  VT_STOMPING_NORUK:        1021     # Stomping Noruk (lv17)
+  VT_RAVENOUS_HYENA:        1031     # Ravenous Hyena (lv16)
+  VT_STARVING_HYENA:        1032     # Starving Hyena (lv17)
+  VT_GUTREND_KULKARI:       1041     # Gutrend Kulkari (lv16)
+  VT_GUTREND_HYENA_1:       1042     # Gutrend Hyena (lv17)
+  VT_GUTREND_CLAWTAMER:     1051     # Gutrend Clawtamer (lv16)
+  VT_GUTREND_HYENA_2:       1052     # Gutrend Hyena (lv17)
+  VT_GUTREND_BRIGAND:       1061     # Gutrend Brigand (lv16)
+  VT_GUTREND_PILLAGER:      1062     # Gutrend Pillager (lv17)
+  VT_GUTREND_RAIDER:        1071     # Gutrend Raider (lv16)
+  VT_GUTREND_SKULLCRUSHER:  1081     # Gutrend Skullcrusher (lv16)
+  VT_HYENA_STALKER:         1091     # Hyena Stalker (lv17)
+  VT_HILLWALKER_WARTHOG:    2011     # Hillwalker Warthog (lv17)
+  VT_GREAT_TUSK_WARTHOG:    2021     # Great Tusk Warthog (lv18)
+  VT_SCAVENGING_BEAR:       2031     # Scavenging Bear (lv17)
+  VT_RAVENOUS_BEAR:         2041     # Ravenous Bear (lv18)
+  VT_GUTREND_REAPER:        2051     # Gutrend Reaper (lv17)
+  VT_GUTREND_SENTRY:        2061     # Gutrend Sentry (lv17)
+  VT_GUTREND_SEER:          2081     # Gutrend Seer (lv18)
+  VT_GUTREND_JUGGERNAUT:    2082     # Gutrend Juggernaut (lv19)
+  VT_SCION_JUSTICAR:        3011     # Scion Justicar (lv19)
+  VT_LOKIAN_BATTLERAGER:    3021     # Lokian Battlerager (lv19)
+  VT_LOKIAN_REAVER:         3031     # Lokian Reaver (lv19)
+  VT_LOKIAN_MYSTIC:         3032     # Lokian Mystic (lv19)
+  VT_LOKIAN_DARKCALLER:     3041     # Lokian Darkcaller (lv19)
+  VT_LOKIAN_REAPMASTER:     3042     # Lokian Reapmaster (lv19)
+  VT_CRISAKA:               5001     # Crisaka (lv20)
+  VT_ABRATA:                5002     # Abrata (lv20)
+  VT_ARAKIA:                5003     # Arakia (lv20)
+  VT_KRASHAR:               7031     # Krashar (lv20)
+  VT_LAKRAX:                7032     # Lakrax (lv19)
+  VT_TORAX:                 7033     # Torax (lv19)
+  VT_DAKARIUS:              7041     # Dakarius (lv20)
+  VT_SMULCH:                7051     # Smulch (lv17)
+  VT_ARCADIA_GUARD_1:       8001     # Arcadia Guard (lv16)
+  VT_ARCADIA_GUARD_2:       8002     # Arcadia Guard (lv16)
+  VT_ARCADIA_GUARD_3:       8003     # Arcadia Guard (lv16)
+  VT_ARCADIA_GUARD_4:       8004     # Arcadia Guard (lv19)
+  VT_ARCADIA_GUARD_5:       8005     # Arcadia Guard (lv19)
+  VT_ARCADIA_GUARD_6:       8006     # Arcadia Guard (lv19)
+
+  # Category groups reference the scalars above so each id has one home.
+  VT_FRIENDLY_NPCS:
+    - $VT_ARCADIA_GUARD_1
+    - $VT_ARCADIA_GUARD_2
+    - $VT_ARCADIA_GUARD_3
+    - $VT_ARCADIA_GUARD_4
+    - $VT_ARCADIA_GUARD_5
+    - $VT_ARCADIA_GUARD_6
+  VT_NORMAL_MONSTERS:
+    - $VT_GRAZING_NORUK
+    - $VT_STOMPING_NORUK
+    - $VT_RAVENOUS_HYENA
+    - $VT_STARVING_HYENA
+    - $VT_GUTREND_KULKARI
+    - $VT_GUTREND_HYENA_1
+    - $VT_GUTREND_CLAWTAMER
+    - $VT_GUTREND_HYENA_2
+    - $VT_GUTREND_BRIGAND
+    - $VT_GUTREND_PILLAGER
+    - $VT_GUTREND_RAIDER
+    - $VT_GUTREND_SKULLCRUSHER
+    - $VT_HYENA_STALKER
+    - $VT_HILLWALKER_WARTHOG
+    - $VT_GREAT_TUSK_WARTHOG
+    - $VT_SCAVENGING_BEAR
+    - $VT_RAVENOUS_BEAR
+    - $VT_GUTREND_REAPER
+    - $VT_GUTREND_SENTRY
+    - $VT_GUTREND_SEER
+    - $VT_GUTREND_JUGGERNAUT
+    - $VT_SCION_JUSTICAR
+    - $VT_LOKIAN_BATTLERAGER
+    - $VT_LOKIAN_REAVER
+    - $VT_LOKIAN_MYSTIC
+    - $VT_LOKIAN_DARKCALLER
+    - $VT_LOKIAN_REAPMASTER
+    - $VT_CRISAKA
+    - $VT_ABRATA
+    - $VT_KRASHAR
+    - $VT_LAKRAX
+    - $VT_TORAX
+    - $VT_DAKARIUS
+    - $VT_SMULCH
+  VT_ELITE_MONSTERS: []
+  VT_BOSS_MONSTERS:
+    - $VT_ARAKIA
+  VT_WORLD_BOSSES: []
+  VT_OBJECTS: []
+
+exports:
+  variables:
+    - VT_GRAZING_NORUK
+    - VT_STOMPING_NORUK
+    - VT_RAVENOUS_HYENA
+    - VT_STARVING_HYENA
+    - VT_GUTREND_KULKARI
+    - VT_GUTREND_HYENA_1
+    - VT_GUTREND_CLAWTAMER
+    - VT_GUTREND_HYENA_2
+    - VT_GUTREND_BRIGAND
+    - VT_GUTREND_PILLAGER
+    - VT_GUTREND_RAIDER
+    - VT_GUTREND_SKULLCRUSHER
+    - VT_HYENA_STALKER
+    - VT_HILLWALKER_WARTHOG
+    - VT_GREAT_TUSK_WARTHOG
+    - VT_SCAVENGING_BEAR
+    - VT_RAVENOUS_BEAR
+    - VT_GUTREND_REAPER
+    - VT_GUTREND_SENTRY
+    - VT_GUTREND_SEER
+    - VT_GUTREND_JUGGERNAUT
+    - VT_SCION_JUSTICAR
+    - VT_LOKIAN_BATTLERAGER
+    - VT_LOKIAN_REAVER
+    - VT_LOKIAN_MYSTIC
+    - VT_LOKIAN_DARKCALLER
+    - VT_LOKIAN_REAPMASTER
+    - VT_CRISAKA
+    - VT_ABRATA
+    - VT_ARAKIA
+    - VT_KRASHAR
+    - VT_LAKRAX
+    - VT_TORAX
+    - VT_DAKARIUS
+    - VT_SMULCH
+    - VT_ARCADIA_GUARD_1
+    - VT_ARCADIA_GUARD_2
+    - VT_ARCADIA_GUARD_3
+    - VT_ARCADIA_GUARD_4
+    - VT_ARCADIA_GUARD_5
+    - VT_ARCADIA_GUARD_6
+    - VT_FRIENDLY_NPCS
+    - VT_NORMAL_MONSTERS
+    - VT_ELITE_MONSTERS
+    - VT_BOSS_MONSTERS
+    - VT_WORLD_BOSSES
+    - VT_OBJECTS

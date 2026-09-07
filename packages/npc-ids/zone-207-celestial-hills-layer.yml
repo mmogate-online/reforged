@@ -1,0 +1,103 @@
+# Celestial Hills layer (zone 207) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 25 templates: 25 friendly npcs.
+
+spec:
+  version: "1.0"
+
+variables:
+  CHL_MATTIN:     1001     # Mattin (lv40)
+  CHL_DRUSTAN:    1002     # Drustan (lv40)
+  CHL_ELTHIM:     1003     # Elthim (lv40)
+  CHL_HEROTH:     1005     # Heroth (lv40)
+  CHL_KIERAN:     1006     # Kieran (lv40)
+  CHL_LAERIA:     1007     # Laeria (lv40)
+  CHL_ONUMAK:     1008     # Onumak (lv40)
+  CHL_SIRIA:      1009     # Siria (lv40)
+  CHL_MERIDIEN:   1010     # Meridien (lv40)
+  CHL_GODRIC:     1013     # Godric (lv40)
+  CHL_MALVESTRA:  1014     # Malvestra (lv40)
+  CHL_NOXXIA:     1015     # Noxxia (lv40)
+  CHL_NALE:       1016     # Nale (lv40)
+  CHL_BONNARD:    1018     # Bonnard (lv40)
+  CHL_DONAL:      1019     # Donal (lv40)
+  CHL_CHESILE:    1021     # Chesile (lv40)
+  CHL_ANORA:      1022     # Anora (lv40)
+  CHL_DORI:       1037     # Dori (lv40)
+  CHL_ALLOSH:     1038     # Allosh (lv40)
+  CHL_PROTE:      1039     # Prote (lv40)
+  CHL_JERIAM:     1043     # Jeriam (lv40)
+  CHL_PADRAIG:    1044     # Padraig (lv40)
+  CHL_MALFI:      1046     # Malfi (lv40)
+  CHL_DENILIS:    1100     # Denilis (lv40)
+  CHL_GUARD:      1700     # Guard (lv65)
+
+  # Category groups reference the scalars above so each id has one home.
+  CHL_FRIENDLY_NPCS:
+    - $CHL_MATTIN
+    - $CHL_DRUSTAN
+    - $CHL_ELTHIM
+    - $CHL_HEROTH
+    - $CHL_KIERAN
+    - $CHL_LAERIA
+    - $CHL_ONUMAK
+    - $CHL_SIRIA
+    - $CHL_MERIDIEN
+    - $CHL_GODRIC
+    - $CHL_MALVESTRA
+    - $CHL_NOXXIA
+    - $CHL_NALE
+    - $CHL_BONNARD
+    - $CHL_DONAL
+    - $CHL_CHESILE
+    - $CHL_ANORA
+    - $CHL_DORI
+    - $CHL_ALLOSH
+    - $CHL_PROTE
+    - $CHL_JERIAM
+    - $CHL_PADRAIG
+    - $CHL_MALFI
+    - $CHL_DENILIS
+    - $CHL_GUARD
+  CHL_NORMAL_MONSTERS: []
+  CHL_ELITE_MONSTERS: []
+  CHL_BOSS_MONSTERS: []
+  CHL_WORLD_BOSSES: []
+  CHL_OBJECTS: []
+
+exports:
+  variables:
+    - CHL_MATTIN
+    - CHL_DRUSTAN
+    - CHL_ELTHIM
+    - CHL_HEROTH
+    - CHL_KIERAN
+    - CHL_LAERIA
+    - CHL_ONUMAK
+    - CHL_SIRIA
+    - CHL_MERIDIEN
+    - CHL_GODRIC
+    - CHL_MALVESTRA
+    - CHL_NOXXIA
+    - CHL_NALE
+    - CHL_BONNARD
+    - CHL_DONAL
+    - CHL_CHESILE
+    - CHL_ANORA
+    - CHL_DORI
+    - CHL_ALLOSH
+    - CHL_PROTE
+    - CHL_JERIAM
+    - CHL_PADRAIG
+    - CHL_MALFI
+    - CHL_DENILIS
+    - CHL_GUARD
+    - CHL_FRIENDLY_NPCS
+    - CHL_NORMAL_MONSTERS
+    - CHL_ELITE_MONSTERS
+    - CHL_BOSS_MONSTERS
+    - CHL_WORLD_BOSSES
+    - CHL_OBJECTS

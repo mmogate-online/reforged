@@ -1,0 +1,878 @@
+# Velika (zone 63) NPC template ids.
+#
+# Roster: every template the zone's classic territory set places. Flags and levels
+# come from the live template row, display names from the live client sheet.
+# Categories follow the package README; WORLD_BOSSES is a manual list.
+# 283 templates: 273 friendly npcs, 3 normal monsters, 7 objects.
+# 23 templates have no display name and are named by id.
+
+spec:
+  version: "1.0"
+
+variables:
+  VLK_ALTON:                 1001     # Alton (lv40)
+  VLK_ZENA:                  1002     # Zena (lv40)
+  VLK_KYZION:                1003     # Kyzion (lv40)
+  VLK_HAPHIZ:                1004     # Haphiz (lv40)
+  VLK_YIYAHU:                1005     # Yiyahu (lv40)
+  VLK_VYRUN:                 1006     # Vyrun (lv40)
+  VLK_EIKVAN:                1007     # Eikvan (lv40)
+  VLK_ADELA:                 1009     # Adela (lv40)
+  VLK_GUARD_1:               1011     # Guard (lv40)
+  VLK_GUARD_2:               1012     # Guard (lv40)
+  VLK_GUARD_3:               1013     # Guard (lv40)
+  VLK_GUARD_4:               1014     # Guard (lv40)
+  VLK_TOMRI:                 1015     # Tomri (lv40)
+  VLK_CASSIER:               1016     # Cassier (lv40)
+  VLK_TORED:                 1017     # Tored (lv40)
+  VLK_ADRIOS:                1018     # Adrios (lv40)
+  VLK_ARMIA:                 1048     # Armia (lv40)
+  VLK_TEKUS:                 1049     # Tekus (lv40)
+  VLK_AKARIA:                1050     # Akaria (lv40)
+  VLK_KENAYIN:               1051     # Kenayin (lv40)
+  VLK_SHARISSE:              1052     # Sharisse (lv40)
+  VLK_LEITZ:                 1057     # Leitz (lv40)
+  VLK_LITRON:                1058     # Litron (lv40)
+  VLK_HAIDEHR:               1070     # Haidehr (lv40)
+  VLK_COLDREN:               1093     # Coldren (lv40)
+  VLK_PINNIA:                1094     # Pinnia (lv40)
+  VLK_BELEKH:                1095     # Belekh (lv40)
+  VLK_HAMILE:                1096     # Hamile (lv40)
+  VLK_LEXXIA:                1097     # Lexxia (lv40)
+  VLK_SANTIA:                1098     # Santia (lv40)
+  VLK_TYSUR:                 1099     # Tysur (lv40)
+  VLK_MIDIAN:                1100     # Midian (lv40)
+  VLK_URIELA:                1101     # Uriela (lv40)
+  VLK_SEIR:                  1102     # Seir (lv40)
+  VLK_MUKHEM:                1103     # Mukhem (lv40)
+  VLK_YOLL:                  1104     # Yoll (lv40)
+  VLK_JARAAM:                1105     # Jaraam (lv40)
+  VLK_COWAL:                 1106     # Cowal (lv40)
+  VLK_TROIUS:                1107     # Troius (lv40)
+  VLK_JERELYN:               1108     # Jerelyn (lv40)
+  VLK_FEREMI:                1110     # Feremi (lv40)
+  VLK_MEDYON:                1111     # Medyon (lv40)
+  VLK_AKERON:                1112     # Akeron (lv40)
+  VLK_YIERON:                1113     # Yieron (lv40)
+  VLK_CHORO:                 1114     # Choro (lv40)
+  VLK_GIMITEN:               1115     # Gimiten (lv40)
+  VLK_ALBA:                  1117     # Alba (lv40)
+  VLK_DELSHAD:               1121     # Delshad (lv40)
+  VLK_NAGRIA:                1122     # Nagria (lv40)
+  VLK_LEYTYA:                1123     # Leytya (lv40)
+  VLK_MADLENE:               1124     # Madlene (lv40)
+  VLK_ANQUI:                 1125     # Anqui (lv40)
+  VLK_GUARD_5:               1126     # Guard (lv40)
+  VLK_MIDRIL:                1128     # Midril (lv40)
+  VLK_GUARD_6:               1129     # Guard (lv40)
+  VLK_LUBUNUL:               1130     # Lubunul (lv40)
+  VLK_RULAK:                 1131     # Rulak (lv40)
+  VLK_SEJANUS:               1135     # Sejanus (lv40)
+  VLK_JEFALN:                1136     # Jefaln (lv40)
+  VLK_SAMAEL_1:              1137     # Samael (lv40)
+  VLK_SAMAEL_2:              1138     # Samael (lv40)
+  VLK_GUARD_7:               1139     # Guard (lv40)
+  VLK_LARANCE:               1140     # Larance (lv40)
+  VLK_RIDAM:                 1141     # Ridam (lv40)
+  VLK_HAUZEN:                1142     # Hauzen (lv40)
+  VLK_MIKKEN:                1143     # Mikken (lv40)
+  VLK_SHOLAN:                1144     # Sholan (lv40)
+  VLK_HEILUN:                1145     # Heilun (lv40)
+  VLK_SYMON:                 1147     # Symon (lv40)
+  VLK_POKI:                  1148     # Poki (lv40)
+  VLK_FORGE:                 1151     # Forge (lv40)
+  VLK_SEWING_TABLE:          1152     # Sewing Table (lv40)
+  VLK_ALEMBIC:               1153     # Alembic (lv40)
+  VLK_JARIX:                 1155     # Jarix (lv40)
+  VLK_MUKAD:                 1156     # Mukad (lv40)
+  VLK_RUMAIA:                1157     # Rumaia (lv40)
+  VLK_LIBANI:                1158     # Libani (lv40)
+  VLK_IZULAN:                1159     # Izulan (lv40)
+  VLK_DOUGAL_1:              1160     # Dougal (lv40)
+  VLK_BLAKEWELL:             1161     # Blakewell (lv40)
+  VLK_SHAN:                  1162     # Shan (lv40)
+  VLK_RAMIERES:              1163     # Ramieres (lv40)
+  VLK_ELLEON_1:              1166     # Elleon (lv40)
+  VLK_CIEBEL:                1167     # Ciebel (lv40)
+  VLK_ELLEON_2:              1168     # Elleon (lv40)
+  VLK_ELLEON_3:              1169     # Elleon (lv40)
+  VLK_ABAN:                  1173     # Aban (lv40)
+  VLK_WYRAIN:                1176     # Wyrain (lv40)
+  VLK_UNNAMED_1178:          1178     #  (lv40)
+  VLK_UNNAMED_1179:          1179     #  (lv40)
+  VLK_UNNAMED_1180:          1180     #  (lv40)
+  VLK_TIDAK:                 1181     # Tidak (lv40)
+  VLK_SERIPE:                1182     # Seripe (lv40)
+  VLK_DAYSON:                1183     # Dayson (lv40)
+  VLK_SEDENAL:               1184     # Sedenal (lv40)
+  VLK_SALMIKU:               1185     # Salmiku (lv40)
+  VLK_ELLYSK:                1186     # Ellysk (lv40)
+  VLK_UNNAMED_1187:          1187     #  (lv40)
+  VLK_AYDA:                  1189     # Ayda (lv40)
+  VLK_THURA:                 1190     # Thura (lv40)
+  VLK_CHEI:                  1191     # Chei (lv40)
+  VLK_PALAM:                 1192     # Palam (lv40)
+  VLK_VARESHA:               1193     # Varesha (lv40)
+  VLK_CHLOEZA:               1194     # Chloeza (lv40)
+  VLK_VATEHR:                1195     # Vatehr (lv40)
+  VLK_BABUR:                 1196     # Babur (lv40)
+  VLK_AMARA:                 1197     # Amara (lv40)
+  VLK_KHADEM:                1198     # Khadem (lv40)
+  VLK_WOMAR:                 1199     # Womar (lv40)
+  VLK_MEAHZ:                 1200     # Meahz (lv40)
+  VLK_SULMAR:                1201     # Sulmar (lv40)
+  VLK_BAELIO:                1202     # Baelio (lv40)
+  VLK_KILCIS:                1203     # Kilcis (lv40)
+  VLK_JENEA:                 1204     # Jenea (lv40)
+  VLK_STALANICA:             1205     # Stalanica (lv40)
+  VLK_TRIALIA:               1206     # Trialia (lv40)
+  VLK_ABELIAN:               1207     # Abelian (lv40)
+  VLK_CARLAMUS:              1208     # Carlamus (lv40)
+  VLK_MARTINIAN:             1209     # Martinian (lv40)
+  VLK_ANHISE:                1211     # Anhise (lv40)
+  VLK_KELINE:                1212     # Keline (lv40)
+  VLK_WHEIANNE:              1213     # Wheianne (lv40)
+  VLK_KINLESH:               1214     # Kinlesh (lv40)
+  VLK_PERASK:                1215     # Perask (lv40)
+  VLK_COLWER:                1216     # Colwer (lv40)
+  VLK_PHIDIAS:               1217     # Phidias (lv40)
+  VLK_LEONOR:                1218     # Leonor (lv40)
+  VLK_NAZUN:                 1219     # Nazun (lv40)
+  VLK_KARUMME:               1220     # Karumme (lv40)
+  VLK_ANYUMUN:               1221     # Anyumun (lv40)
+  VLK_MONTANYO:              1222     # Montanyo (lv40)
+  VLK_MARO:                  1223     # Maro (lv40)
+  VLK_AJE:                   1224     # Aje (lv40)
+  VLK_MANI:                  1225     # Mani (lv40)
+  VLK_AMVYA:                 1226     # Amvya (lv40)
+  VLK_GETTY:                 1228     # Getty (lv40)
+  VLK_GELKI:                 1229     # Gelki (lv40)
+  VLK_CHEVRIA:               1230     # Chevria (lv40)
+  VLK_CURA:                  1231     # Cura (lv40)
+  VLK_MISHU:                 1232     # Mishu (lv40)
+  VLK_LEONAD:                1233     # Leonad (lv40)
+  VLK_SINOETA:               1234     # Sinoeta (lv40)
+  VLK_ALMIST:                1235     # Almist (lv40)
+  VLK_NATAR:                 1236     # Natar (lv40)
+  VLK_LISHENE:               1237     # Lishene (lv40)
+  VLK_QAJAIM:                1238     # Qajaim (lv40)
+  VLK_JARTIEL:               1239     # Jartiel (lv40)
+  VLK_TEST_MONSTER:          1240     # Test Monster (lv40)
+  VLK_UNNAMED_1241:          1241     #  (lv40)
+  VLK_JEMO:                  1242     # Jemo (lv40)
+  VLK_CORVISIA:              1243     # Corvisia (lv40)
+  VLK_YURTAS:                1244     # Yurtas (lv40)
+  VLK_KAMON:                 1245     # Kamon (lv40)
+  VLK_PRESSIA:               1246     # Pressia (lv40)
+  VLK_DRASS:                 1247     # Drass (lv40)
+  VLK_SKYLI:                 1250     # Skyli (lv40)
+  VLK_PORIAN:                1251     # Porian (lv40)
+  VLK_KALYNDA:               1253     # Kalynda (lv40)
+  VLK_TERIFE:                1254     # Terife (lv40)
+  VLK_KEITES:                1255     # Keites (lv40)
+  VLK_SURAH:                 1256     # Surah (lv40)
+  VLK_MARKIS:                1258     # Markis (lv40)
+  VLK_KARERAS:               1260     # Kareras (lv40)
+  VLK_LEANDER:               1261     # Leander (lv40)
+  VLK_JULEOR:                1263     # Juleor (lv40)
+  VLK_SHUNIN:                1300     # Shunin (lv40)
+  VLK_HUSRIG:                1301     # Husrig (lv40)
+  VLK_PYON_1:                1500     # Pyon (lv40)
+  VLK_PYON_2:                1501     # Pyon (lv40)
+  VLK_PAESYN:                1502     # Paesyn (lv64)
+  VLK_RAFE:                  1503     # Rafe (lv40)
+  VLK_UNNAMED_1504:          1504     # 죽은소 (lv40)
+  VLK_UNNAMED_1505:          1505     # 마차 (lv60)
+  VLK_UNNAMED_1506:          1506     # 전복된_마차 (lv60)
+  VLK_NARI:                  1507     # Nari (lv64)
+  VLK_UNNAMED_1508:          1508     # 양 (lv40)
+  VLK_LEAFGARB_GHILLIEDHU:   1509     # Leafgarb Ghilliedhu (lv60)
+  VLK_ROTBOUGH_MYCANAR:      1510     # Rotbough Mycanar (lv60)
+  VLK_PLATFORM_GUARD_1:      1511     # Platform Guard (lv64)
+  VLK_UNNAMED_1513:          1513     # 엘카이아호외관 (lv64)
+  VLK_UNNAMED_1518:          1518     # 젖소 (lv40)
+  VLK_VANGUARD_VETERAN_1:    1519     # Vanguard Veteran (lv64)
+  VLK_VANGUARD_VETERAN_2:    1520     # Vanguard Veteran (lv64)
+  VLK_DOUGAL_2:              1521     # Dougal (lv64)
+  VLK_ZOLYN:                 1522     # Zolyn (lv64)
+  VLK_PLATFORM_GUARD_2:      1530     # Platform Guard (lv64)
+  VLK_VANGUARD_1:            1531     # Vanguard (lv64)
+  VLK_CAENIA:                1532     # Caenia (lv64)
+  VLK_TAMARI:                1533     # Tamari (lv64)
+  VLK_TONAS:                 1534     # Tonas (lv64)
+  VLK_EDUYAR:                1535     # Eduyar (lv64)
+  VLK_ACTOL:                 1536     # Actol (lv64)
+  VLK_BANIO:                 1538     # Banio (lv64)
+  VLK_DANTIS:                1550     # Dantis (lv64)
+  VLK_VANGUARD_2:            1551     # Vanguard (lv64)
+  VLK_YAERI:                 1552     # Yaeri (lv64)
+  VLK_VANGUARD_3:            1554     # Vanguard (lv64)
+  VLK_PLATFORM_GUARD_3:      1555     # Platform Guard (lv64)
+  VLK_VANGUARD_4:            1557     # Vanguard (lv64)
+  VLK_AZAELIN:               1558     # Azaelin (lv64)
+  VLK_KAZIN:                 1559     # Kazin (lv64)
+  VLK_RILAK:                 1560     # Rilak (lv64)
+  VLK_AIKO:                  1561     # Aiko (lv64)
+  VLK_HANCER:                1563     # Hancer (lv64)
+  VLK_TILDA:                 1564     # Tilda (lv64)
+  VLK_BUROMT:                1565     # Buromt (lv64)
+  VLK_MARIBEL:               1566     # Maribel (lv64)
+  VLK_GULAN:                 1567     # Gulan (lv64)
+  VLK_UNSTABLE_TELEPORTAL:   1599     # Unstable Teleportal (lv40)
+  VLK_MISSION_BOARD:         1602     # Mission Board (lv40)
+  VLK_VERISE:                1603     # Verise (lv40)
+  VLK_MAIUS:                 1604     # Maius (lv40)
+  VLK_KAZADIAN:              1605     # Kazadian (lv40)
+  VLK_DIRINE:                1606     # Dirine (lv40)
+  VLK_HADRAK:                1607     # Hadrak (lv40)
+  VLK_JAERON:                1608     # Jaeron (lv40)
+  VLK_SHAPALYN:              1609     # Shapalyn (lv40)
+  VLK_CITY_TELEPORTAL_1:     1800     # City Teleportal (lv40)
+  VLK_CITY_TELEPORTAL_2:     1801     # City Teleportal (lv40)
+  VLK_CITY_TELEPORTAL_3:     1802     # City Teleportal (lv40)
+  VLK_CITY_TELEPORTAL_4:     1803     # City Teleportal (lv40)
+  VLK_CITY_TELEPORTAL_5:     1804     # City Teleportal (lv40)
+  VLK_CITY_TELEPORTAL_6:     1808     # City Teleportal (lv40)
+  VLK_UNNAMED_1901:          1901     #  (lv40)
+  VLK_UNNAMED_1902:          1902     #  (lv40)
+  VLK_UNNAMED_1909:          1909     #  (lv40)
+  VLK_TECOLT:                1999     # Tecolt (lv40)
+  VLK_VELIKA_GUARD_1:        2001     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_2:        2002     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_3:        2003     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_4:        2004     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_5:        2005     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_6:        2007     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_7:        2008     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_8:        2009     # Velika Guard (lv40)
+  VLK_VELIKA_GUARD_9:        2010     # Velika Guard (lv40)
+  VLK_STARVING_VELIKA_BEAR:  2011     # Starving Velika Bear (lv60)
+  VLK_VELIKA_GUARD_10:       2012     # Velika Guard (lv40)
+  VLK_BARIAN:                3001     # Barian (lv40)
+  VLK_TARATIA:               3002     # Taratia (lv40)
+  VLK_ELTHIENNE:             3003     # Elthienne (lv40)
+  VLK_MERUMA:                3005     # Meruma (lv40)
+  VLK_THAMAN:                3006     # Thaman (lv40)
+  VLK_SABLE_SABERTOOTH:      3007     # Sable Sabertooth (lv40)
+  VLK_AKUN:                  3601     # Akun (lv40)
+  VLK_FENXIA:                3602     # Fenxia (lv40)
+  VLK_UNNAMED_4007:          4007     # 연맹_깃발C_벨리카 (lv30)
+  VLK_UNNAMED_4008:          4008     # 연맹_깃발C_알레만시아 (lv30)
+  VLK_UNNAMED_4009:          4009     # 연맹_깃발C_카이아도르 (lv30)
+  VLK_SHURIMON:              7000     # Shurimon (lv40)
+  VLK_ELLONIA:               8000     # Ellonia (lv40)
+  VLK_UNNAMED_8003:          8003     #  (lv40)
+  VLK_UNNAMED_8005:          8005     #  (lv40)
+  VLK_UNNAMED_8007:          8007     #  (lv40)
+  VLK_UNNAMED_9001:          9001     #  (lv40)
+  VLK_UNNAMED_9002:          9002     #  (lv40)
+  VLK_UNNAMED_9003:          9003     #  (lv40)
+  VLK_AMBRRR:                9004     # Ambrrr (lv1)
+  VLK_COLBRRR:               9005     # Colbrrr (lv1)
+  VLK_THERRY:                22002    # Therry (lv40)
+  VLK_CHRIAR:                22003    # Chriar (lv40)
+  VLK_OLEM:                  22004    # Olem (lv40)
+  VLK_JUKI:                  22005    # Juki (lv40)
+  VLK_PARTAN_1:              22006    # Partan (lv40)
+  VLK_HAVAR_1:               22007    # Havar (lv40)
+  VLK_ZIHM:                  22008    # Zihm (lv40)
+  VLK_CITY_TELEPORTAL_7:     22009    # City Teleportal (lv40)
+  VLK_BUBIBU:                22010    # Bubibu (lv40)
+  VLK_DUBARI:                22011    # Dubari (lv40)
+  VLK_HOLDEN:                22013    # Holden (lv40)
+  VLK_FRUND:                 22014    # Frund (lv40)
+  VLK_FREE_TRADERS_GATE:     22015    # Free Traders Gate (lv40)
+  VLK_FLOWA:                 30000    # Flowa (lv40)
+  VLK_ZALE:                  30001    # Zale (lv40)
+  VLK_PHLYIN:                50018    # Phlyin (lv40)
+  VLK_ROBENIT:               220044   # Robenit (lv40)
+  VLK_JIRAMOR:               220045   # Jiramor (lv40)
+  VLK_ELONTAI:               220046   # Elontai (lv40)
+  VLK_PARTAN_2:              220047   # Partan (lv40)
+  VLK_HAVAR_2:               220048   # Havar (lv40)
+  VLK_PARTAN_3:              220049   # Partan (lv40)
+  VLK_HAVAR_3:               220050   # Havar (lv40)
+  VLK_NARCHIR:               220080   # Narchir (lv40)
+
+  # Category groups reference the scalars above so each id has one home.
+  VLK_FRIENDLY_NPCS:
+    - $VLK_ALTON
+    - $VLK_ZENA
+    - $VLK_KYZION
+    - $VLK_HAPHIZ
+    - $VLK_YIYAHU
+    - $VLK_VYRUN
+    - $VLK_EIKVAN
+    - $VLK_ADELA
+    - $VLK_GUARD_1
+    - $VLK_GUARD_2
+    - $VLK_GUARD_3
+    - $VLK_GUARD_4
+    - $VLK_TOMRI
+    - $VLK_CASSIER
+    - $VLK_TORED
+    - $VLK_ADRIOS
+    - $VLK_ARMIA
+    - $VLK_TEKUS
+    - $VLK_AKARIA
+    - $VLK_KENAYIN
+    - $VLK_SHARISSE
+    - $VLK_LEITZ
+    - $VLK_LITRON
+    - $VLK_HAIDEHR
+    - $VLK_COLDREN
+    - $VLK_PINNIA
+    - $VLK_BELEKH
+    - $VLK_HAMILE
+    - $VLK_LEXXIA
+    - $VLK_SANTIA
+    - $VLK_TYSUR
+    - $VLK_MIDIAN
+    - $VLK_URIELA
+    - $VLK_SEIR
+    - $VLK_MUKHEM
+    - $VLK_YOLL
+    - $VLK_JARAAM
+    - $VLK_COWAL
+    - $VLK_TROIUS
+    - $VLK_JERELYN
+    - $VLK_FEREMI
+    - $VLK_MEDYON
+    - $VLK_AKERON
+    - $VLK_YIERON
+    - $VLK_CHORO
+    - $VLK_GIMITEN
+    - $VLK_ALBA
+    - $VLK_DELSHAD
+    - $VLK_NAGRIA
+    - $VLK_LEYTYA
+    - $VLK_MADLENE
+    - $VLK_ANQUI
+    - $VLK_GUARD_5
+    - $VLK_MIDRIL
+    - $VLK_GUARD_6
+    - $VLK_LUBUNUL
+    - $VLK_RULAK
+    - $VLK_SEJANUS
+    - $VLK_JEFALN
+    - $VLK_SAMAEL_1
+    - $VLK_SAMAEL_2
+    - $VLK_GUARD_7
+    - $VLK_LARANCE
+    - $VLK_RIDAM
+    - $VLK_HAUZEN
+    - $VLK_MIKKEN
+    - $VLK_SHOLAN
+    - $VLK_HEILUN
+    - $VLK_SYMON
+    - $VLK_POKI
+    - $VLK_JARIX
+    - $VLK_MUKAD
+    - $VLK_RUMAIA
+    - $VLK_LIBANI
+    - $VLK_IZULAN
+    - $VLK_DOUGAL_1
+    - $VLK_BLAKEWELL
+    - $VLK_SHAN
+    - $VLK_RAMIERES
+    - $VLK_ELLEON_1
+    - $VLK_CIEBEL
+    - $VLK_ELLEON_2
+    - $VLK_ELLEON_3
+    - $VLK_ABAN
+    - $VLK_WYRAIN
+    - $VLK_UNNAMED_1178
+    - $VLK_UNNAMED_1179
+    - $VLK_UNNAMED_1180
+    - $VLK_TIDAK
+    - $VLK_SERIPE
+    - $VLK_DAYSON
+    - $VLK_SEDENAL
+    - $VLK_SALMIKU
+    - $VLK_ELLYSK
+    - $VLK_UNNAMED_1187
+    - $VLK_AYDA
+    - $VLK_THURA
+    - $VLK_CHEI
+    - $VLK_PALAM
+    - $VLK_VARESHA
+    - $VLK_CHLOEZA
+    - $VLK_VATEHR
+    - $VLK_BABUR
+    - $VLK_AMARA
+    - $VLK_KHADEM
+    - $VLK_WOMAR
+    - $VLK_MEAHZ
+    - $VLK_SULMAR
+    - $VLK_BAELIO
+    - $VLK_KILCIS
+    - $VLK_JENEA
+    - $VLK_STALANICA
+    - $VLK_TRIALIA
+    - $VLK_ABELIAN
+    - $VLK_CARLAMUS
+    - $VLK_MARTINIAN
+    - $VLK_ANHISE
+    - $VLK_KELINE
+    - $VLK_WHEIANNE
+    - $VLK_KINLESH
+    - $VLK_PERASK
+    - $VLK_COLWER
+    - $VLK_PHIDIAS
+    - $VLK_LEONOR
+    - $VLK_NAZUN
+    - $VLK_KARUMME
+    - $VLK_ANYUMUN
+    - $VLK_MONTANYO
+    - $VLK_MARO
+    - $VLK_AJE
+    - $VLK_MANI
+    - $VLK_AMVYA
+    - $VLK_GETTY
+    - $VLK_GELKI
+    - $VLK_CHEVRIA
+    - $VLK_CURA
+    - $VLK_MISHU
+    - $VLK_LEONAD
+    - $VLK_SINOETA
+    - $VLK_ALMIST
+    - $VLK_NATAR
+    - $VLK_LISHENE
+    - $VLK_QAJAIM
+    - $VLK_JARTIEL
+    - $VLK_TEST_MONSTER
+    - $VLK_UNNAMED_1241
+    - $VLK_JEMO
+    - $VLK_CORVISIA
+    - $VLK_YURTAS
+    - $VLK_KAMON
+    - $VLK_PRESSIA
+    - $VLK_DRASS
+    - $VLK_SKYLI
+    - $VLK_PORIAN
+    - $VLK_KALYNDA
+    - $VLK_TERIFE
+    - $VLK_KEITES
+    - $VLK_SURAH
+    - $VLK_MARKIS
+    - $VLK_KARERAS
+    - $VLK_LEANDER
+    - $VLK_JULEOR
+    - $VLK_SHUNIN
+    - $VLK_HUSRIG
+    - $VLK_PYON_1
+    - $VLK_PYON_2
+    - $VLK_PAESYN
+    - $VLK_RAFE
+    - $VLK_UNNAMED_1504
+    - $VLK_UNNAMED_1505
+    - $VLK_UNNAMED_1506
+    - $VLK_NARI
+    - $VLK_UNNAMED_1508
+    - $VLK_PLATFORM_GUARD_1
+    - $VLK_UNNAMED_1518
+    - $VLK_VANGUARD_VETERAN_1
+    - $VLK_VANGUARD_VETERAN_2
+    - $VLK_DOUGAL_2
+    - $VLK_ZOLYN
+    - $VLK_PLATFORM_GUARD_2
+    - $VLK_VANGUARD_1
+    - $VLK_CAENIA
+    - $VLK_TAMARI
+    - $VLK_TONAS
+    - $VLK_EDUYAR
+    - $VLK_ACTOL
+    - $VLK_BANIO
+    - $VLK_DANTIS
+    - $VLK_VANGUARD_2
+    - $VLK_YAERI
+    - $VLK_VANGUARD_3
+    - $VLK_PLATFORM_GUARD_3
+    - $VLK_VANGUARD_4
+    - $VLK_AZAELIN
+    - $VLK_KAZIN
+    - $VLK_RILAK
+    - $VLK_AIKO
+    - $VLK_HANCER
+    - $VLK_TILDA
+    - $VLK_BUROMT
+    - $VLK_MARIBEL
+    - $VLK_GULAN
+    - $VLK_UNSTABLE_TELEPORTAL
+    - $VLK_MISSION_BOARD
+    - $VLK_VERISE
+    - $VLK_MAIUS
+    - $VLK_KAZADIAN
+    - $VLK_DIRINE
+    - $VLK_HADRAK
+    - $VLK_JAERON
+    - $VLK_SHAPALYN
+    - $VLK_CITY_TELEPORTAL_1
+    - $VLK_CITY_TELEPORTAL_2
+    - $VLK_CITY_TELEPORTAL_3
+    - $VLK_CITY_TELEPORTAL_4
+    - $VLK_CITY_TELEPORTAL_5
+    - $VLK_CITY_TELEPORTAL_6
+    - $VLK_UNNAMED_1901
+    - $VLK_UNNAMED_1902
+    - $VLK_UNNAMED_1909
+    - $VLK_TECOLT
+    - $VLK_VELIKA_GUARD_1
+    - $VLK_VELIKA_GUARD_2
+    - $VLK_VELIKA_GUARD_3
+    - $VLK_VELIKA_GUARD_4
+    - $VLK_VELIKA_GUARD_5
+    - $VLK_VELIKA_GUARD_6
+    - $VLK_VELIKA_GUARD_7
+    - $VLK_VELIKA_GUARD_8
+    - $VLK_VELIKA_GUARD_9
+    - $VLK_VELIKA_GUARD_10
+    - $VLK_BARIAN
+    - $VLK_TARATIA
+    - $VLK_ELTHIENNE
+    - $VLK_MERUMA
+    - $VLK_THAMAN
+    - $VLK_SABLE_SABERTOOTH
+    - $VLK_AKUN
+    - $VLK_FENXIA
+    - $VLK_SHURIMON
+    - $VLK_ELLONIA
+    - $VLK_UNNAMED_8003
+    - $VLK_UNNAMED_8005
+    - $VLK_UNNAMED_8007
+    - $VLK_UNNAMED_9001
+    - $VLK_UNNAMED_9002
+    - $VLK_UNNAMED_9003
+    - $VLK_AMBRRR
+    - $VLK_COLBRRR
+    - $VLK_THERRY
+    - $VLK_CHRIAR
+    - $VLK_OLEM
+    - $VLK_JUKI
+    - $VLK_PARTAN_1
+    - $VLK_HAVAR_1
+    - $VLK_ZIHM
+    - $VLK_CITY_TELEPORTAL_7
+    - $VLK_BUBIBU
+    - $VLK_DUBARI
+    - $VLK_HOLDEN
+    - $VLK_FRUND
+    - $VLK_FREE_TRADERS_GATE
+    - $VLK_FLOWA
+    - $VLK_ZALE
+    - $VLK_PHLYIN
+    - $VLK_ROBENIT
+    - $VLK_JIRAMOR
+    - $VLK_ELONTAI
+    - $VLK_PARTAN_2
+    - $VLK_HAVAR_2
+    - $VLK_PARTAN_3
+    - $VLK_HAVAR_3
+    - $VLK_NARCHIR
+  VLK_NORMAL_MONSTERS:
+    - $VLK_LEAFGARB_GHILLIEDHU
+    - $VLK_ROTBOUGH_MYCANAR
+    - $VLK_STARVING_VELIKA_BEAR
+  VLK_ELITE_MONSTERS: []
+  VLK_BOSS_MONSTERS: []
+  VLK_WORLD_BOSSES: []
+  VLK_OBJECTS:
+    - $VLK_FORGE
+    - $VLK_SEWING_TABLE
+    - $VLK_ALEMBIC
+    - $VLK_UNNAMED_1513
+    - $VLK_UNNAMED_4007
+    - $VLK_UNNAMED_4008
+    - $VLK_UNNAMED_4009
+
+exports:
+  variables:
+    - VLK_ALTON
+    - VLK_ZENA
+    - VLK_KYZION
+    - VLK_HAPHIZ
+    - VLK_YIYAHU
+    - VLK_VYRUN
+    - VLK_EIKVAN
+    - VLK_ADELA
+    - VLK_GUARD_1
+    - VLK_GUARD_2
+    - VLK_GUARD_3
+    - VLK_GUARD_4
+    - VLK_TOMRI
+    - VLK_CASSIER
+    - VLK_TORED
+    - VLK_ADRIOS
+    - VLK_ARMIA
+    - VLK_TEKUS
+    - VLK_AKARIA
+    - VLK_KENAYIN
+    - VLK_SHARISSE
+    - VLK_LEITZ
+    - VLK_LITRON
+    - VLK_HAIDEHR
+    - VLK_COLDREN
+    - VLK_PINNIA
+    - VLK_BELEKH
+    - VLK_HAMILE
+    - VLK_LEXXIA
+    - VLK_SANTIA
+    - VLK_TYSUR
+    - VLK_MIDIAN
+    - VLK_URIELA
+    - VLK_SEIR
+    - VLK_MUKHEM
+    - VLK_YOLL
+    - VLK_JARAAM
+    - VLK_COWAL
+    - VLK_TROIUS
+    - VLK_JERELYN
+    - VLK_FEREMI
+    - VLK_MEDYON
+    - VLK_AKERON
+    - VLK_YIERON
+    - VLK_CHORO
+    - VLK_GIMITEN
+    - VLK_ALBA
+    - VLK_DELSHAD
+    - VLK_NAGRIA
+    - VLK_LEYTYA
+    - VLK_MADLENE
+    - VLK_ANQUI
+    - VLK_GUARD_5
+    - VLK_MIDRIL
+    - VLK_GUARD_6
+    - VLK_LUBUNUL
+    - VLK_RULAK
+    - VLK_SEJANUS
+    - VLK_JEFALN
+    - VLK_SAMAEL_1
+    - VLK_SAMAEL_2
+    - VLK_GUARD_7
+    - VLK_LARANCE
+    - VLK_RIDAM
+    - VLK_HAUZEN
+    - VLK_MIKKEN
+    - VLK_SHOLAN
+    - VLK_HEILUN
+    - VLK_SYMON
+    - VLK_POKI
+    - VLK_FORGE
+    - VLK_SEWING_TABLE
+    - VLK_ALEMBIC
+    - VLK_JARIX
+    - VLK_MUKAD
+    - VLK_RUMAIA
+    - VLK_LIBANI
+    - VLK_IZULAN
+    - VLK_DOUGAL_1
+    - VLK_BLAKEWELL
+    - VLK_SHAN
+    - VLK_RAMIERES
+    - VLK_ELLEON_1
+    - VLK_CIEBEL
+    - VLK_ELLEON_2
+    - VLK_ELLEON_3
+    - VLK_ABAN
+    - VLK_WYRAIN
+    - VLK_UNNAMED_1178
+    - VLK_UNNAMED_1179
+    - VLK_UNNAMED_1180
+    - VLK_TIDAK
+    - VLK_SERIPE
+    - VLK_DAYSON
+    - VLK_SEDENAL
+    - VLK_SALMIKU
+    - VLK_ELLYSK
+    - VLK_UNNAMED_1187
+    - VLK_AYDA
+    - VLK_THURA
+    - VLK_CHEI
+    - VLK_PALAM
+    - VLK_VARESHA
+    - VLK_CHLOEZA
+    - VLK_VATEHR
+    - VLK_BABUR
+    - VLK_AMARA
+    - VLK_KHADEM
+    - VLK_WOMAR
+    - VLK_MEAHZ
+    - VLK_SULMAR
+    - VLK_BAELIO
+    - VLK_KILCIS
+    - VLK_JENEA
+    - VLK_STALANICA
+    - VLK_TRIALIA
+    - VLK_ABELIAN
+    - VLK_CARLAMUS
+    - VLK_MARTINIAN
+    - VLK_ANHISE
+    - VLK_KELINE
+    - VLK_WHEIANNE
+    - VLK_KINLESH
+    - VLK_PERASK
+    - VLK_COLWER
+    - VLK_PHIDIAS
+    - VLK_LEONOR
+    - VLK_NAZUN
+    - VLK_KARUMME
+    - VLK_ANYUMUN
+    - VLK_MONTANYO
+    - VLK_MARO
+    - VLK_AJE
+    - VLK_MANI
+    - VLK_AMVYA
+    - VLK_GETTY
+    - VLK_GELKI
+    - VLK_CHEVRIA
+    - VLK_CURA
+    - VLK_MISHU
+    - VLK_LEONAD
+    - VLK_SINOETA
+    - VLK_ALMIST
+    - VLK_NATAR
+    - VLK_LISHENE
+    - VLK_QAJAIM
+    - VLK_JARTIEL
+    - VLK_TEST_MONSTER
+    - VLK_UNNAMED_1241
+    - VLK_JEMO
+    - VLK_CORVISIA
+    - VLK_YURTAS
+    - VLK_KAMON
+    - VLK_PRESSIA
+    - VLK_DRASS
+    - VLK_SKYLI
+    - VLK_PORIAN
+    - VLK_KALYNDA
+    - VLK_TERIFE
+    - VLK_KEITES
+    - VLK_SURAH
+    - VLK_MARKIS
+    - VLK_KARERAS
+    - VLK_LEANDER
+    - VLK_JULEOR
+    - VLK_SHUNIN
+    - VLK_HUSRIG
+    - VLK_PYON_1
+    - VLK_PYON_2
+    - VLK_PAESYN
+    - VLK_RAFE
+    - VLK_UNNAMED_1504
+    - VLK_UNNAMED_1505
+    - VLK_UNNAMED_1506
+    - VLK_NARI
+    - VLK_UNNAMED_1508
+    - VLK_LEAFGARB_GHILLIEDHU
+    - VLK_ROTBOUGH_MYCANAR
+    - VLK_PLATFORM_GUARD_1
+    - VLK_UNNAMED_1513
+    - VLK_UNNAMED_1518
+    - VLK_VANGUARD_VETERAN_1
+    - VLK_VANGUARD_VETERAN_2
+    - VLK_DOUGAL_2
+    - VLK_ZOLYN
+    - VLK_PLATFORM_GUARD_2
+    - VLK_VANGUARD_1
+    - VLK_CAENIA
+    - VLK_TAMARI
+    - VLK_TONAS
+    - VLK_EDUYAR
+    - VLK_ACTOL
+    - VLK_BANIO
+    - VLK_DANTIS
+    - VLK_VANGUARD_2
+    - VLK_YAERI
+    - VLK_VANGUARD_3
+    - VLK_PLATFORM_GUARD_3
+    - VLK_VANGUARD_4
+    - VLK_AZAELIN
+    - VLK_KAZIN
+    - VLK_RILAK
+    - VLK_AIKO
+    - VLK_HANCER
+    - VLK_TILDA
+    - VLK_BUROMT
+    - VLK_MARIBEL
+    - VLK_GULAN
+    - VLK_UNSTABLE_TELEPORTAL
+    - VLK_MISSION_BOARD
+    - VLK_VERISE
+    - VLK_MAIUS
+    - VLK_KAZADIAN
+    - VLK_DIRINE
+    - VLK_HADRAK
+    - VLK_JAERON
+    - VLK_SHAPALYN
+    - VLK_CITY_TELEPORTAL_1
+    - VLK_CITY_TELEPORTAL_2
+    - VLK_CITY_TELEPORTAL_3
+    - VLK_CITY_TELEPORTAL_4
+    - VLK_CITY_TELEPORTAL_5
+    - VLK_CITY_TELEPORTAL_6
+    - VLK_UNNAMED_1901
+    - VLK_UNNAMED_1902
+    - VLK_UNNAMED_1909
+    - VLK_TECOLT
+    - VLK_VELIKA_GUARD_1
+    - VLK_VELIKA_GUARD_2
+    - VLK_VELIKA_GUARD_3
+    - VLK_VELIKA_GUARD_4
+    - VLK_VELIKA_GUARD_5
+    - VLK_VELIKA_GUARD_6
+    - VLK_VELIKA_GUARD_7
+    - VLK_VELIKA_GUARD_8
+    - VLK_VELIKA_GUARD_9
+    - VLK_STARVING_VELIKA_BEAR
+    - VLK_VELIKA_GUARD_10
+    - VLK_BARIAN
+    - VLK_TARATIA
+    - VLK_ELTHIENNE
+    - VLK_MERUMA
+    - VLK_THAMAN
+    - VLK_SABLE_SABERTOOTH
+    - VLK_AKUN
+    - VLK_FENXIA
+    - VLK_UNNAMED_4007
+    - VLK_UNNAMED_4008
+    - VLK_UNNAMED_4009
+    - VLK_SHURIMON
+    - VLK_ELLONIA
+    - VLK_UNNAMED_8003
+    - VLK_UNNAMED_8005
+    - VLK_UNNAMED_8007
+    - VLK_UNNAMED_9001
+    - VLK_UNNAMED_9002
+    - VLK_UNNAMED_9003
+    - VLK_AMBRRR
+    - VLK_COLBRRR
+    - VLK_THERRY
+    - VLK_CHRIAR
+    - VLK_OLEM
+    - VLK_JUKI
+    - VLK_PARTAN_1
+    - VLK_HAVAR_1
+    - VLK_ZIHM
+    - VLK_CITY_TELEPORTAL_7
+    - VLK_BUBIBU
+    - VLK_DUBARI
+    - VLK_HOLDEN
+    - VLK_FRUND
+    - VLK_FREE_TRADERS_GATE
+    - VLK_FLOWA
+    - VLK_ZALE
+    - VLK_PHLYIN
+    - VLK_ROBENIT
+    - VLK_JIRAMOR
+    - VLK_ELONTAI
+    - VLK_PARTAN_2
+    - VLK_HAVAR_2
+    - VLK_PARTAN_3
+    - VLK_HAVAR_3
+    - VLK_NARCHIR
+    - VLK_FRIENDLY_NPCS
+    - VLK_NORMAL_MONSTERS
+    - VLK_ELITE_MONSTERS
+    - VLK_BOSS_MONSTERS
+    - VLK_WORLD_BOSSES
+    - VLK_OBJECTS

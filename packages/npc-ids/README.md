@@ -70,8 +70,30 @@ Used as the prefix for every variable in a zone file.
 | 59 | Crescentia | `CR` |
 | 60 | Lumbertown | `LT` |
 | 63 | Velika | `VLK` |
+| 202 | Fey Forest layer | `FFL` |
+| 203 | Oblivion Woods layer | `OWL` |
+| 205 | Tuwangi Mire layer | `TML` |
+| 206 | Valley of Titans layer | `VTL` |
+| 207 | Celestial Hills layer | `CHL` |
+| 359 | Crescentia layer | `CRL` |
+| 360 | Lumbertown layer | `LTL` |
 | 487 | Bastion of Lok | `BOL` |
 | 488 | Sinestral Manor | `SM` |
+
+A layer zone is the villager or mission hunting zone that shares a continent with a combat
+zone; its abbreviation is the combat zone's plus `L`.
+
+## Generated zone files
+
+Zone files whose header says the roster comes from the zone's classic territory set are
+written by a generator and are rewritten whole on every run. Edit the generator's inputs or
+rules, never the file. Their `index.yml` blocks sit between `# >>> generated` and
+`# <<< generated` markers for the same reason. Two conventions exist only in generated files:
+
+- A template with no display name in any client sheet is named `{ZONE_ABBR}_UNNAMED_{id}`, so
+  it still has exactly one scalar and a spec can address it.
+- The roster is the set of templates the zone spawns after its classic port, not the set the
+  live server spawns today, and a spawn a ruling leaves out of the port is left out here too.
 
 ## Categorization Rules
 
