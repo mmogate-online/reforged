@@ -3,10 +3,40 @@
 What changed in TERA Reforged, written for players.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). One entry per
-patch, newest first. An entry is written only when a patch has shipped, so everything below
-is live on the server.
+patch, newest first, written when the patch closes on the test server. A patch reaches the
+live server when its release goes out, which for the Velika and Arcadia restoration (patch 004
+onward) is once the whole region is restored and reviewed, so the newest entries describe
+what is on the test server rather than what is live today.
 
 Every change here comes from a spec in this repository, if you want the exact numbers.
+
+## [Patch 005] - 2026-09-07
+
+The creatures, camps and merchants of Velika and Arcadia are back where the classic game
+put them, and what was added to these zones later is gone.
+
+### Added
+
+- The Free Traders Hall in Velika has its staff again: the Federation clerks, the enchanters, the gate and a City Teleportal inside the hall, plus the three Federation join agents in the city.
+- Every Velika City Teleportal offers the Free Traders Hall as a destination again, for the same fee as the other stops, and the two teleportals inside the hall work.
+- Crescentia has Denine, Jalize and a Mission Board back; Lumbertown has Zandra and a Mission Board back.
+- The classic camps of Oblivion Woods, Tuwangi Mire, Celestial Hills and Fey Forest are back, including the formation groups that had been thinned or removed.
+
+### Changed
+
+- Creatures in Arcadia stand, patrol and respawn the way they did in the classic game.
+- Oblivion Woods packs come in pairs again and chase further before giving up; Tuwangi Mire camps respawn on the classic timer; formation groups respawn together as a unit.
+- The Devan of Oblivion Woods carry their classic names and no rank titles; Basenius and Tuebenius, Crowu, Poki and Markis read as they did.
+- The fixed merchants of Velika, Crescentia, Lumbertown and Arcadia sell their classic stock, tab by tab.
+- Vendor prices are classic everywhere: items cost what they did, and merchants pay a fraction of the purchase price when you sell to them, not close to the full price.
+- Quest links and map pings in these zones point at the camps and NPCs that are actually there.
+
+### Removed
+
+- The additions made to Velika after the classic game: the staged event set, the modern dungeon teleportals, and the seasonal, fishing and event staff.
+- The T-cat exchanger in Crescentia and Lumbertown.
+- The level 60 wildlife outside Velika's walls and the airship platform crew, until the level cap rises.
+- Four level 67 quests in Celestial Hills whose storyline no longer has its creatures in the zone.
 
 ## [Patch 004] - 2026-09-05
 
