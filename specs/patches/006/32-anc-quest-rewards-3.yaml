@@ -1,0 +1,535 @@
+# Hunting zone 3 quest rewards (quest ids 300-399), restored from the classic
+# QuestCompensationData. Each upsert replaces the quest's whole reward block, so every
+# block below states the reward in full. A quest whose current row already matches the
+# classic source is omitted, and a quest retired from the zone has its row deleted.
+# Generated, do not hand-edit.
+#
+# Scope is the 41 quests of this zone kept in the current era; classic rows outside that
+# set are not ported.
+#
+# Class-scoped quests carry ONE ROW PER (templateId, class), mirroring the classic source.
+# The DSL keys compensation Item rows by templateId + class + race, so duplicate
+# templateIds survive an apply, while a semicolon-joined class list is rejected (E207).
+# Class names are the server-side INTERNAL ones (fighter/assassin/glaiver), never the
+# client CCompensation names.
+#
+# Rows for classes that postdate the classic data are appended: armor reuses the classic
+# piece's templateId, since requiredClass already lists the new wearer, and weapons are
+# that class's own weapon at the requiredLevel nearest the classic tier.
+#
+# QuestCompensationData has a client leg (the quest log reward panel), so this needs a sync.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questCompensations:
+  upsert:
+    - questId: 301
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 8400
+          itemBag: "class"
+          npcGuildId: 605
+          reputationExp: 100
+          reputationPoint: 5
+          items:
+            - templateId: 10601
+              quantity: 1
+              class: "warrior"
+            - templateId: 10602
+              quantity: 1
+              class: "lancer"
+            - templateId: 10603
+              quantity: 1
+              class: "slayer"
+            - templateId: 10604
+              quantity: 1
+              class: "berserker"
+            - templateId: 10605
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 10606
+              quantity: 1
+              class: "archer"
+            - templateId: 10607
+              quantity: 1
+              class: "priest"
+            - templateId: 10608
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55080
+              quantity: 1
+              class: "engineer"
+            - templateId: 82080
+              quantity: 1
+              class: "fighter"
+            - templateId: 58246
+              quantity: 1
+              class: "assassin"
+            - templateId: 59128
+              quantity: 1
+              class: "glaiver"
+    - questId: 302
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 12000
+          itemBag: "class"
+          npcGuildId: 605
+          reputationExp: 100
+          reputationPoint: 5
+          items:
+            - templateId: 15676
+              quantity: 1
+              class: "lancer"
+            - templateId: 15676
+              quantity: 1
+              class: "berserker"
+            - templateId: 15679
+              quantity: 1
+              class: "warrior"
+            - templateId: 15679
+              quantity: 1
+              class: "slayer"
+            - templateId: 15679
+              quantity: 1
+              class: "archer"
+            - templateId: 15679
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15682
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15682
+              quantity: 1
+              class: "priest"
+            - templateId: 15682
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15682
+              quantity: 1
+              class: "assassin"
+            - templateId: 15676
+              quantity: 1
+              class: "engineer"
+            - templateId: 15676
+              quantity: 1
+              class: "fighter"
+    - questId: 321
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2600
+          gold: 260
+          itemBag: "allpay"
+          items:
+            - templateId: 94203
+              quantity: 4
+    - questId: 322
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 11400
+          gold: 1140
+          itemBag: "allpay"
+          items:
+            - templateId: 94203
+              quantity: 4
+    - questId: 323
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4500
+          gold: 450
+          itemBag: "allpay"
+          items:
+            - templateId: 6050
+              quantity: 10
+    - questId: 324
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1800
+          gold: 180
+          itemBag: "allpay"
+          items:
+            - templateId: 6050
+              quantity: 10
+    - questId: 325
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2400
+          gold: 240
+          itemBag: "allpay"
+          items:
+            - templateId: 6018
+              quantity: 10
+    - questId: 326
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4500
+          gold: 450
+    - questId: 327
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1200
+          gold: 120
+    - questId: 328
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 7400
+          gold: 740
+          itemBag: "allpay"
+          items:
+            - templateId: 6050
+              quantity: 10
+    - questId: 329
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 2400
+          gold: 240
+    - questId: 330
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 10400
+          gold: 1040
+          itemBag: "allpay"
+          items:
+            - templateId: 7101
+              quantity: 2
+    - questId: 331
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1200
+          gold: 120
+    - questId: 332
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 7300
+          gold: 730
+          itemBag: "allpay"
+          items:
+            - templateId: 6050
+              quantity: 15
+    - questId: 333
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 10400
+          gold: 1040
+          itemBag: "allpay"
+          items:
+            - templateId: 129
+              quantity: 1
+    - questId: 334
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 11400
+          gold: 1140
+          itemBag: "allpay"
+    - questId: 335
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3600
+          gold: 360
+          itemBag: "allpay"
+          items:
+            - templateId: 6002
+              quantity: 5
+    - questId: 336
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 4800
+          gold: 480
+          itemBag: "allpay"
+          items:
+            - templateId: 6020
+              quantity: 5
+    - questId: 337
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 11100
+          itemBag: "class"
+          items:
+            - templateId: 10553
+              quantity: 1
+              class: "warrior"
+            - templateId: 94203
+              quantity: 4
+              class: "warrior"
+            - templateId: 10554
+              quantity: 1
+              class: "lancer"
+            - templateId: 94203
+              quantity: 4
+              class: "lancer"
+            - templateId: 10555
+              quantity: 1
+              class: "slayer"
+            - templateId: 94203
+              quantity: 4
+              class: "slayer"
+            - templateId: 10556
+              quantity: 1
+              class: "berserker"
+            - templateId: 94203
+              quantity: 4
+              class: "berserker"
+            - templateId: 10557
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 94203
+              quantity: 4
+              class: "sorcerer"
+            - templateId: 10558
+              quantity: 1
+              class: "archer"
+            - templateId: 94203
+              quantity: 4
+              class: "archer"
+            - templateId: 10559
+              quantity: 1
+              class: "priest"
+            - templateId: 94203
+              quantity: 4
+              class: "priest"
+            - templateId: 10560
+              quantity: 1
+              class: "elementalist"
+            - templateId: 94203
+              quantity: 4
+              class: "elementalist"
+            - templateId: 55074
+              quantity: 1
+              class: "engineer"
+            - templateId: 94203
+              quantity: 4
+              class: "engineer"
+            - templateId: 82074
+              quantity: 1
+              class: "fighter"
+            - templateId: 58240
+              quantity: 1
+              class: "assassin"
+            - templateId: 59122
+              quantity: 1
+              class: "glaiver"
+    - questId: 338
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3000
+          gold: 300
+    - questId: 339
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 1800
+          gold: 180
+    - questId: 340
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3600
+          gold: 360
+    - questId: 341
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 45000
+          gold: 4500
+    - questId: 342
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 23400
+          itemBag: "class"
+          items:
+            - templateId: 10569
+              quantity: 1
+              class: "warrior"
+            - templateId: 10570
+              quantity: 1
+              class: "lancer"
+            - templateId: 10571
+              quantity: 1
+              class: "slayer"
+            - templateId: 10572
+              quantity: 1
+              class: "berserker"
+            - templateId: 10573
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 10574
+              quantity: 1
+              class: "archer"
+            - templateId: 10575
+              quantity: 1
+              class: "priest"
+            - templateId: 10576
+              quantity: 1
+              class: "elementalist"
+            - templateId: 55076
+              quantity: 1
+              class: "engineer"
+            - templateId: 82076
+              quantity: 1
+              class: "fighter"
+            - templateId: 58242
+              quantity: 1
+              class: "assassin"
+            - templateId: 59124
+              quantity: 1
+              class: "glaiver"
+    - questId: 343
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 9900
+          itemBag: "class"
+          items:
+            - templateId: 15694
+              quantity: 1
+              class: "lancer"
+            - templateId: 15694
+              quantity: 1
+              class: "berserker"
+            - templateId: 15697
+              quantity: 1
+              class: "warrior"
+            - templateId: 15697
+              quantity: 1
+              class: "slayer"
+            - templateId: 15697
+              quantity: 1
+              class: "archer"
+            - templateId: 15697
+              quantity: 1
+              class: "glaiver"
+            - templateId: 15700
+              quantity: 1
+              class: "sorcerer"
+            - templateId: 15700
+              quantity: 1
+              class: "priest"
+            - templateId: 15700
+              quantity: 1
+              class: "elementalist"
+            - templateId: 15700
+              quantity: 1
+              class: "assassin"
+            - templateId: 15694
+              quantity: 1
+              class: "engineer"
+            - templateId: 15694
+              quantity: 1
+              class: "fighter"
+    - questId: 344
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 3600
+          gold: 360
+    - questId: 370
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          itemBag: "allpay"
+          items:
+            - templateId: 14
+              quantity: 1
+    - questId: 371
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          itemBag: "allpay"
+          items:
+            - templateId: 14
+              quantity: 1
+    - questId: 372
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          itemBag: "allpay"
+          items:
+            - templateId: 14
+              quantity: 1
+    - questId: 373
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          itemBag: "allpay"
+          items:
+            - templateId: 14
+              quantity: 1
+    - questId: 374
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          itemBag: "allpay"
+          items:
+            - templateId: 14
+              quantity: 4
+    - questId: 381
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          policyPoint: "500"
+
+  delete:
+    - questId: 303
+      huntingZoneId: 3
+    - questId: 304
+      huntingZoneId: 3
+    - questId: 305
+      huntingZoneId: 3
+    - questId: 306
+      huntingZoneId: 3

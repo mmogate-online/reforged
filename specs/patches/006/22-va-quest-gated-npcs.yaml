@@ -1,0 +1,44 @@
+# Five villagers whose appearance the live server tied to quests of its own
+# re-authored story chain: Samael and Elleon in Velika, Chama and Kantusa in
+# Oblivion Woods, and Ciebel's hide condition. This patch replaces that chain with
+# the classic one, and a gate on a quest that no longer exists never opens, so the
+# NPC would never stand. The classic data gates none of the five.
+# `questVillager` returns to the classic value where the classic file states one.
+#
+# A gate is a PAIR, and the server counts the quest ids against the task ids and
+# refuses the whole NpcData file when they disagree. So a cleared quest id must have
+# its task id cleared in the same op, and the cleared form is the attribute PRESENT
+# AND EMPTY. It is not `0`: a `hideQuestId` of `0` paired with a `hideQuestTaskId` of
+# `0` appears nowhere in the data the server accepts, and it is refused.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcs:
+  update:
+    - huntingZoneId: 63
+      id: 1138            # Samael
+      changes:
+        questVillager: true
+        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+    - huntingZoneId: 63
+      id: 1166            # Elleon
+      changes:
+        questVillager: true
+        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+    - huntingZoneId: 63
+      id: 1167            # Ciebel
+      changes:
+        empty: [hideQuestId, hideQuestTaskId]
+    - huntingZoneId: 203
+      id: 1013            # Chama
+      changes:
+        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+    - huntingZoneId: 203
+      id: 1030            # Kantusa
+      changes:
+        questVillager: true
+        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]

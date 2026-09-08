@@ -1,0 +1,424 @@
+# Classic Velika quests the live server no longer carries, created whole from the
+# classic data with their briefing dialogs and quest strings. Prerequisites are global
+# quest ids; the datasheet writes them as zone,index pairs. A quest whose classic
+# prerequisite is the 99,99 sentinel stays unobtainable, as the classic data ships it.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  upsert:
+    - id: 6362
+      header:
+        questNumber: 6362
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6362001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 11
+        maxLevel: 21
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6362003"
+          hasReward: false
+          body:
+            npcId: "63,1160"
+            dialogueId: 3
+            completionButtonText: "@quest:6362002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:6362005"
+          hasReward: true
+          body:
+            npcId: "60,1909"
+            dialogueId: 4
+            completionButtonText: "@quest:6362004"
+            visitCinematicId: 0
+    - id: 6386
+      header:
+        questNumber: 6386
+        linkedQuest: 101
+        executionArea: 116
+        recommendedPartySize: 1
+        recommendedLevel: 30
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6386001"
+        designersNote: ""
+        specialGuide: "적용"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        autoAccept: true
+      requirements:
+        minLevel: 30
+        maxLevel: 39
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6386002"
+          body:
+            successMessage: "@quest:6386003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 10
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6386005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:6386004"
+            visitCinematicId: 0
+    - id: 6387
+      header:
+        questNumber: 6387
+        linkedQuest: 101
+        executionArea: 116
+        recommendedPartySize: 1
+        recommendedLevel: 40
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6387001"
+        designersNote: ""
+        specialGuide: "적용"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        autoAccept: true
+      requirements:
+        minLevel: 40
+        maxLevel: 49
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6387002"
+          body:
+            successMessage: "@quest:6387003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 10
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6387005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:6387004"
+            visitCinematicId: 0
+    - id: 6388
+      header:
+        questNumber: 6388
+        linkedQuest: 101
+        executionArea: 116
+        recommendedPartySize: 1
+        recommendedLevel: 50
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6388001"
+        designersNote: ""
+        specialGuide: "적용"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        autoAccept: true
+      requirements:
+        minLevel: 50
+        maxLevel: 59
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6388002"
+          body:
+            successMessage: "@quest:6388003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 10
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6388005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:6388004"
+            visitCinematicId: 0
+    - id: 6389
+      header:
+        questNumber: 6389
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6389001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 11
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6389003"
+          hasReward: false
+          body:
+            npcId: "63,1260"
+            dialogueId: 3
+            completionButtonText: "@quest:6389002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:6389005"
+          hasReward: true
+          body:
+            npcId: "63,1260"
+            dialogueId: 4
+            completionButtonText: "@quest:6389004"
+            visitCinematicId: 0
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 63
+      id: 62
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "[Recall Order] <BR><BR>{@Rgn:63009} is supplying experienced soldiers with war horses. All soldiers who receive this message are to return to {@Rgn:63009}.<BR><BR>Consul {@LinkCreature:63#1160}"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1160
+          pages:
+            - social: 0
+              content: "Welcome back, <PCNAME>. We figured it’s not right to let an experienced soldier like you continue walking around on foot.<BR><BR>Providing those who serve the Valkyon Federation with the supplies they need is the least we can do. Wait here. I will make the necessary arrangements for you to claim your war horse."
+        - id: 4
+          npcZoneId: 60
+          prevId: 3
+          villagerId: 1909
+          pages:
+            - social: 0
+              content: "Are you the <PCNAME> {@Creature:63#1160} mentioned? I’ve prepared a gift for you, in the stable here. You can choose from Brownie, the bay gelding; Ash, the Arcadian dapple; or Grey, the Velikan gray. They're all good breeds, and will serve you well."
+    - huntingZoneId: 63
+      id: 86
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 4
+              content: "Well done!<BR><BR>Great exploits in the battleground earn you Bellicarium credits. Bring those credits to me to purchase your choice of reward items. It's just like pirate's booty!<BR><BR>Don't you feel more like a pirate already?"
+    - huntingZoneId: 63
+      id: 87
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 4
+              content: "Well done!<BR><BR>Great exploits in the battleground earn you Bellicarium credits. Bring those credits to me to purchase your choice of reward items. It's just like pirate's booty!<BR><BR>Don't you feel more like a pirate already?"
+    - huntingZoneId: 63
+      id: 88
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 4
+              content: "Well done!<BR><BR>Great exploits in the battleground earn you Bellicarium credits. Bring those credits to me to purchase your choice of reward items. It's just like pirate's booty!<BR><BR>Don't you feel more like a pirate already?"
+    - huntingZoneId: 63
+      id: 89
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "[Mysterious Summons]<BR><BR>If you would live your life on your terms, not those dictated by the weak, meet {@LinkCreature:63#1260} in Velika."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1260
+          pages:
+            - social: 0
+              content: "I sense you have quite a few battles under your belt.<BR><BR>If you've the temerity to be bold, to ignore the fears of the inferior, and to strike when you wish to, speak with me again.<BR><BR>I'll guide your next steps when you're ready."
+        - id: 4
+          npcZoneId: 63
+          prevId: 3
+          villagerId: 1260
+          pages:
+            - social: 0
+              content: "Law and order are structures designed by the sheep to keep the wolves at bay. The sheep are content with their lot in life. Are you?<NEXTPAGEBUTTON>\"I'm certainly no sheep.\"</NEXTPAGEBUTTON>"
+            - social: 0
+              content: "Well then, seize your destiny, my friend—by force if necessary.<BR><BR>By making the <font color='#FF0000'>Outlaw Declaration</font>, you'll tell the world that you choose your own path to power.<BR><BR>Once the declaration is made, you will become an outlaw. You will be able to attack others, and they can attack you. The gods protect the truly weak, but what would be the point of troubling yourself with them?<NEXTPAGEBUTTON>\"I like real challenges.\"</NEXTPAGEBUTTON>"
+            - social: 0
+              content: "Be warned, my friend—the more you fight, the more your infamy grows. Depending on how infamous you get, you might end up drawing the wrath of the gods.<BR><BR>Trifling restrictions, really, and a small price to pay for freedom, I say.<BR><BR>The choice is yours...."
+
+questStrings:
+  upsert:
+    - id: 6362001
+      string: "Saddle Up"
+    - id: 6362002
+      string: "\"Certainly.\""
+    - id: 6362003
+      string: "Go to {@LinkCreature:63#1160} at {@Rgn:63009} in {@Rgn:63001}"
+    - id: 6362004
+      string: "\"This is unexpected. Thank you.\""
+    - id: 6362005
+      string: "Visit {@LinkCreature:60#1909#Haines} near {@Rgn:60001}"
+    - id: 6386001
+      string: "Think Like a Pirate"
+    - id: 6386002
+      string: "Win a battle in Corsairs' Stronghold."
+    - id: 6386003
+      string: ""
+    - id: 6386004
+      string: "\"Arrr!\""
+    - id: 6386005
+      string: "Find Surah at the Valkyon Headquarters in Velika."
+    - id: 6387001
+      string: "Act Like a Pirate"
+    - id: 6387002
+      string: "Win a battle in Corsairs' Stronghold."
+    - id: 6387003
+      string: ""
+    - id: 6387004
+      string: "\"Arrr!\""
+    - id: 6387005
+      string: "Find Surah at the Valkyon Headquarters in Velika."
+    - id: 6388001
+      string: "Fight Like a Pirate"
+    - id: 6388002
+      string: "Win a battle in Corsairs' Stronghold."
+    - id: 6388003
+      string: ""
+    - id: 6388004
+      string: "\"Arrr!\""
+    - id: 6388005
+      string: "Find Surah at the Valkyon Headquarters in Velika."
+    - id: 6389001
+      string: "Embrace Infamy"
+    - id: 6389002
+      string: "\"Very well.\""
+    - id: 6389003
+      string: "Meet with {@LinkCreature:63#1260} near the {@Rgn:63002}."
+    - id: 6389004
+      string: "\"I'll bear that in mind.\""
+    - id: 6389005
+      string: "Speak with {@LinkCreature:63#1260} again."

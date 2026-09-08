@@ -1,0 +1,113 @@
+# Quest journal registrations for the ported quests: a quest is listed under the story
+# group its classic header names, removed from any other group it was listed in, and a
+# deleted quest is unregistered. A quest is never registered in two groups. A group the
+# file lacks is created here with the ported quest as its whole membership, and a
+# registration appends at the group end.
+#
+# Every heading and label here is display text the client schema requires on each
+# registration, so it is taken from the client's own file, or from the quest's English
+# title where the client does not carry the quest. The server file's own labels are
+# never a source: they are Chinese and Russian, and a registration built from them
+# would ship that to players.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questStoryGroups:
+  upsert:
+    - id: 18
+      name: "Access and Allies"
+      quests:
+        - id: 15103
+          dec: "Access and Allies"
+  upsertQuests:
+    - storyGroupId: 3
+      quests:
+        - id: 201
+          dec: "Strife in the Fey Forest"
+        - id: 202
+          dec: "Faeries in a Fix"
+        - id: 203
+          dec: "Dark Hunger"
+        - id: 301
+          dec: "Devan Uprising"
+        - id: 302
+          dec: "Pulling Back the Veil"
+        - id: 6305
+          dec: "Joining the Ranks"
+    - storyGroupId: 4
+      quests:
+        - id: 601
+          dec: "Emergency Support"
+        - id: 602
+          dec: "The Force Behind the Devans"
+        - id: 603
+          dec: "Going on the Offensive"
+        - id: 604
+          dec: "From the Mouths of Scions"
+        - id: 605
+          dec: "Some Gave All"
+        - id: 701
+          dec: "Scruffy Kumas Herders"
+        - id: 702
+          dec: "Building a Mystery"
+        - id: 704
+          dec: "For Valor Above and Beyond"
+    - storyGroupId: 5
+      quests:
+        - id: 1501
+          dec: "Circle the Wagons"
+        - id: 1505
+          dec: "Discredit Where Credit Is Due"
+    - storyGroupId: 6
+      quests:
+        - id: 901
+          dec: "Federation Traitor"
+        - id: 2001
+          dec: "Revelation of the Goddess"
+        - id: 2002
+          dec: "These Aren't the Weapons We're Looking For"
+        - id: 2003
+          dec: "The Mystery Deepens"
+    - storyGroupId: 7
+      quests:
+        - id: 2301
+          dec: "A Tale of Two Tails"
+    - storyGroupId: 9
+      quests:
+        - id: 801
+          dec: "Whereabouts of the Core"
+  deleteQuests:
+    - storyGroupId: 3
+      questIds: [59911]
+    - storyGroupId: 4
+      questIds: [301, 302, 303, 304, 305, 306, 6305]
+    - storyGroupId: 5
+      questIds: [602, 603, 604, 605, 606]
+    - storyGroupId: 6
+      questIds: [1505, 1506]
+    - storyGroupId: 7
+      questIds: [901, 2001, 2002, 2003]
+    - storyGroupId: 8
+      questIds: [4701]
+    - storyGroupId: 11
+      questIds: [801]
+    - storyGroupId: 27
+      questIds: [50532]
+    - storyGroupId: 28
+      questIds: [50502, 50511, 50531]
+    - storyGroupId: 30
+      questIds: [6001, 6002, 50601]
+    - storyGroupId: 2000
+      questIds: [200303, 200304, 200305]
+    - storyGroupId: 2901
+      questIds: [2950]
+    - storyGroupId: 7005
+      questIds: [4150, 4151, 6364, 6365]
+    - storyGroupId: 7006
+      questIds: [61901, 61902, 61905, 61906]
+    - storyGroupId: 7021
+      questIds: [70220]

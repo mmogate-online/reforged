@@ -1,0 +1,24 @@
+# Story group 7009 registers exactly one quest, and the server and the client name
+# different ones: the server row is quest 61502 with a label in Chinese, the client row
+# is 61501 with the English text a player already sees. Quest 61502 carries no title
+# string in either tree, so there is no English to give it and nothing to translate
+# from. This family projects server to client, so leaving the server row as it stands
+# would replace the client's English entry with the Chinese one for every player, in
+# every language. The client's row is adopted instead: no text is invented, and both
+# sides end up naming the same quest.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questStoryGroups:
+  deleteQuests:
+    - storyGroupId: 7009
+      questIds: [61502]
+  upsertQuests:
+    - storyGroupId: 7009
+      quests:
+        - id: 61501
+          dec: "[Important] Hatching a Partner"

@@ -1,0 +1,98 @@
+# Hunting zone 60 quest rewards (quest ids 6000-6099), restored from the classic
+# QuestCompensationData. Each upsert replaces the quest's whole reward block, so every
+# block below states the reward in full. A quest whose current row already matches the
+# classic source is omitted, and a quest retired from the zone has its row deleted.
+# Generated, do not hand-edit.
+#
+# Scope is the 1 quests of this zone kept in the current era; classic rows outside that
+# set are not ported.
+#
+# Class-scoped quests carry ONE ROW PER (templateId, class), mirroring the classic source.
+# The DSL keys compensation Item rows by templateId + class + race, so duplicate
+# templateIds survive an apply, while a semicolon-joined class list is rejected (E207).
+# Class names are the server-side INTERNAL ones (fighter/assassin/glaiver), never the
+# client CCompensation names.
+#
+# Rows for classes that postdate the classic data are appended: armor reuses the classic
+# piece's templateId, since requiredClass already lists the new wearer, and weapons are
+# that class's own weapon at the requiredLevel nearest the classic tier.
+#
+# QuestCompensationData has a client leg (the quest log reward panel), so this needs a sync.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questCompensations:
+  upsert:
+    - questId: 6099
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          itemBag: "class"
+          items:
+            - templateId: 94101
+              quantity: 4
+              class: "warrior"
+            - templateId: 94101
+              quantity: 4
+              class: "lancer"
+            - templateId: 94101
+              quantity: 4
+              class: "slayer"
+            - templateId: 94101
+              quantity: 4
+              class: "berserker"
+            - templateId: 94101
+              quantity: 4
+              class: "sorcerer"
+            - templateId: 94101
+              quantity: 4
+              class: "archer"
+            - templateId: 94101
+              quantity: 4
+              class: "priest"
+            - templateId: 94101
+              quantity: 4
+              class: "elementalist"
+            - templateId: 94101
+              quantity: 4
+              class: "engineer"
+            - templateId: 94203
+              quantity: 15
+              class: "lancer"
+            - templateId: 94203
+              quantity: 15
+              class: "berserker"
+            - templateId: 94203
+              quantity: 15
+              class: "warrior"
+            - templateId: 94203
+              quantity: 15
+              class: "slayer"
+            - templateId: 94203
+              quantity: 15
+              class: "archer"
+            - templateId: 94203
+              quantity: 15
+              class: "sorcerer"
+            - templateId: 94203
+              quantity: 15
+              class: "priest"
+            - templateId: 94203
+              quantity: 15
+              class: "elementalist"
+            - templateId: 94203
+              quantity: 15
+              class: "engineer"
+
+  delete:
+    - questId: 6001
+      huntingZoneId: 60
+    - questId: 6002
+      huntingZoneId: 60
+    - questId: 6050
+      huntingZoneId: 60

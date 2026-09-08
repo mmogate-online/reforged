@@ -1,0 +1,1663 @@
+# Classic cross-region quests the live server no longer carries, created whole from the
+# classic data with their briefing dialogs and quest strings. Prerequisites are global
+# quest ids; the datasheet writes them as zone,index pairs. A quest whose classic
+# prerequisite is the 99,99 sentinel stays unobtainable, as the classic data ships it.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  upsert:
+    - id: 1501
+      header:
+        questNumber: 1501
+        linkedQuest: 101
+        storyGroupId: 5
+        recommendedPartySize: 1
+        recommendedLevel: 24
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:1501001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 23
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:1501003"
+          hasReward: false
+          body:
+            npcId: "63,1137"
+            dialogueId: 3
+            completionButtonText: "@quest:1501002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          continentId: 1
+          worldPosition: "-1924,12792,2179"
+          journalText: "@quest:1501005"
+          hasReward: false
+          body:
+            npcId: "67,1007"
+            dialogueId: 4
+            completionButtonText: "@quest:1501004"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 4
+          journalScript: 4
+          continentId: 7002
+          worldPosition: "-15303,49790,3114"
+          journalText: "@quest:1501007"
+          hasReward: false
+          body:
+            npcId: "215,1019"
+            dialogueId: 5
+            completionButtonText: "@quest:1501006"
+            visitCinematicId: 0
+        - taskId: 4
+          type: "HuntTask"
+          nextTaskId: 5
+          journalScript: 5
+          continentId: 7002
+          worldPosition: "-24050,45152,2488"
+          journalText: "@quest:1501008"
+          body:
+            targets:
+              - templateId: "15,6"
+                killCount: 5
+        - taskId: 5
+          type: "VisitTask"
+          nextTaskId: 6
+          journalScript: 5
+          journalText: "@quest:1501010"
+          hasReward: false
+          body:
+            npcId: "215,1019"
+            dialogueId: 6
+            completionButtonText: "@quest:1501009"
+            visitCinematicId: 0
+        - taskId: 6
+          type: "VisitTask"
+          nextTaskId: 7
+          journalScript: 6
+          journalText: "@quest:1501012"
+          hasReward: false
+          body:
+            npcId: "215,1010"
+            dialogueId: 7
+            completionButtonText: "@quest:1501011"
+            visitCinematicId: 0
+        - taskId: 7
+          type: "VisitTask"
+          nextTaskId: 8
+          journalScript: 7
+          journalText: "@quest:1501014"
+          hasReward: false
+          body:
+            npcId: "215,1027"
+            dialogueId: 8
+            completionButtonText: "@quest:1501013"
+            visitCinematicId: 0
+        - taskId: 8
+          type: "PlayMovieTask"
+          nextTaskId: 9
+          journalScript: 8
+          body:
+            movieId: 10
+        - taskId: 9
+          type: "AbnormalStateTask"
+          nextTaskId: 10
+          journalScript: 8
+          journalText: "@quest:1501015"
+          body:
+            npcId: "439,2000"
+            targetId: 15011
+        - taskId: 10
+          type: "GuardianTask"
+          nextTaskId: 11
+          journalScript: 8
+          journalText: "@quest:1501016"
+          dungeonId: 9039
+          timeLimit: [0, 4]
+          body:
+            npcId: "439,1001"
+            aggroInterval: 10
+            aggroAmount: 30
+            aggroRange: 500
+            postGuardianDialogue: ""
+            targetMonster: ""
+        - taskId: 11
+          type: "VisitTask"
+          nextTaskId: 12
+          journalScript: 8
+          journalText: "@quest:1501018"
+          hasReward: false
+          body:
+            npcId: "215,1027"
+            dialogueId: 9
+            completionButtonText: "@quest:1501017"
+            visitCinematicId: 0
+        - taskId: 12
+          type: "HuntAndDeliverTask"
+          nextTaskId: 13
+          journalScript: 9
+          journalText: "@quest:1501020"
+          journalText2: "@quest:1501021"
+          hasReward: false
+          cinematicId: 121510271
+          body:
+            flagItemName: "@quest:1501019"
+            targetCount: 10
+            itemId: 29
+            targets:
+              - templateId: "15,14"
+                grantRate: 70
+            sequentialDistribution: "미적용"
+            targetNpc: "215,1027"
+            completionDialogue: 10
+            incompleteDialogue: 11
+            completionButtonText: "@quest:1501022"
+        - taskId: 13
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 10
+          journalText: "@quest:1501024"
+          hasReward: true
+          body:
+            npcId: "215,1027"
+            dialogueId: 12
+            completionButtonText: "@quest:1501023"
+            visitCinematicId: 0
+    - id: 2301
+      header:
+        questNumber: 2301
+        linkedQuest: 101
+        storyGroupId: 7
+        recommendedPartySize: 1
+        recommendedLevel: 34
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:2301001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 33
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:2301003"
+          hasReward: false
+          body:
+            npcId: "63,1102"
+            dialogueId: 3
+            completionButtonText: "@quest:2301002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          continentId: 1
+          worldPosition: "-1924,12792,2179"
+          journalText: "@quest:2301005"
+          hasReward: false
+          body:
+            npcId: "68,1007"
+            dialogueId: 4
+            completionButtonText: "@quest:2301004"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 4
+          journalScript: 4
+          continentId: 7002
+          worldPosition: "-34702,32802,2076"
+          journalText: "@quest:2301007"
+          hasReward: false
+          body:
+            npcId: "223,1002"
+            dialogueId: 5
+            completionButtonText: "@quest:2301006"
+            visitCinematicId: 0
+        - taskId: 4
+          type: "VisitTask"
+          nextTaskId: 5
+          journalScript: 5
+          journalText: "@quest:2301009"
+          hasReward: false
+          body:
+            npcId: "223,1002"
+            dialogueId: 6
+            completionButtonText: "@quest:2301008"
+            visitCinematicId: 0
+        - taskId: 5
+          type: "CollectTask"
+          nextTaskId: 6
+          journalScript: 6
+          journalText: "@quest:2301011"
+          journalText2: "@quest:2301012"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 504
+            deliveryItems:
+              - itemId: 9108
+                quantity: 5
+            targetNpc: "223,1002"
+            completionDialogue: 7
+            incompleteDialogue: 8
+            completionButtonText: "@quest:2301010"
+        - taskId: 6
+          type: "VisitTask"
+          nextTaskId: 7
+          journalScript: 7
+          journalText: "@quest:2301014"
+          hasReward: false
+          completionItems:
+            - itemId: 5079
+              quantity: 1
+          body:
+            npcId: "223,1042"
+            dialogueId: 9
+            completionButtonText: "@quest:2301013"
+            visitCinematicId: 0
+        - taskId: 7
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 9
+          journalText: "@quest:2301016"
+          journalText2: "@quest:2301017"
+          hasReward: true
+          cinematicId: 122310021
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 5079
+            itemCount: 1
+            targetNpc: "223,1002"
+            completionDialogue: 10
+            incompleteDialogue: 11
+            completionButtonText: "@quest:2301015"
+    - id: 12116
+      header:
+        questNumber: 12116
+        linkedQuest: 101
+        repeatCount: 1
+        recommendedPartySize: 3
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:12116001"
+        designersNote: ""
+        questType: "Alliance"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,22002"
+      requirements:
+        minLevel: 60
+        maxLevel: 65
+      tasks:
+        - taskId: 1
+          type: "HuntAndDeliverTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:12116003"
+          journalText2: "@quest:12116004"
+          hasReward: true
+          cinematicId: 0
+          body:
+            huntMode: "혼자"
+            failOnDeath: "False"
+            publicQuest: "False"
+            flagItemName: "@quest:12116002"
+            targetCount: 1
+            itemId: 1400
+            targets:
+              - templateId: "425,8005"
+                grantRate: 100
+              - templateId: "825,6000"
+                grantRate: 100
+              - templateId: "426,20000"
+                grantRate: 100
+              - templateId: "727,2007"
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: "63,22002"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:12116005"
+    - id: 12117
+      header:
+        questNumber: 12117
+        linkedQuest: 101
+        repeatCount: 1
+        recommendedPartySize: 1
+        recommendedLevel: 65
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:12117001"
+        designersNote: ""
+        questType: "Alliance"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,22008"
+      requirements:
+        minLevel: 65
+        maxLevel: 65
+      tasks:
+        - taskId: 1
+          type: "HuntAndDeliverTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:12117003"
+          journalText2: "@quest:12117004"
+          hasReward: true
+          cinematicId: 0
+          body:
+            huntMode: "혼자"
+            failOnDeath: "False"
+            publicQuest: "False"
+            flagItemName: "@quest:12117002"
+            targetCount: 1
+            itemId: 1401
+            targets:
+              - templateId: "124,102"
+                grantRate: 100
+              - templateId: "124,103"
+                grantRate: 100
+              - templateId: "124,104"
+                grantRate: 100
+              - templateId: "124,105"
+                grantRate: 100
+              - templateId: "124,106"
+                grantRate: 100
+              - templateId: "125,102"
+                grantRate: 100
+              - templateId: "125,103"
+                grantRate: 100
+              - templateId: "125,104"
+                grantRate: 100
+              - templateId: "125,105"
+                grantRate: 100
+              - templateId: "125,106"
+                grantRate: 100
+              - templateId: "126,102"
+                grantRate: 100
+              - templateId: "126,103"
+                grantRate: 100
+              - templateId: "126,104"
+                grantRate: 100
+              - templateId: "126,105"
+                grantRate: 100
+              - templateId: "126,106"
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: "63,22008"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:12117005"
+    - id: 15103
+      header:
+        questNumber: 15103
+        linkedQuest: 101
+        storyGroupId: 18
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:15103001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 60
+        prerequisites: [15102]
+      tasks:
+        - taskId: 1
+          type: "BranchTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:15103005"
+          body:
+            targetNpc: "151,1003"
+            preBranchDialogue: 3
+            branchType: "manual"
+            completionButtonText: "@quest:15103006"
+            choices:
+              - text: "@quest:15103002"
+                postChoiceDialogue: 4
+                nextTaskId: 2
+              - text: "@quest:15103003"
+                postChoiceDialogue: 5
+                nextTaskId: 3
+              - text: "@quest:15103004"
+                postChoiceDialogue: 6
+                nextTaskId: 4
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:15103008"
+          hasReward: true
+          body:
+            npcId: "63,220044"
+            dialogueId: 7
+            completionButtonText: "@quest:15103007"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:15103010"
+          hasReward: true
+          body:
+            npcId: "72,220046"
+            dialogueId: 8
+            completionButtonText: "@quest:15103009"
+            visitCinematicId: 0
+        - taskId: 4
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:15103012"
+          hasReward: true
+          body:
+            npcId: "84,220045"
+            dialogueId: 9
+            completionButtonText: "@quest:15103011"
+            visitCinematicId: 0
+    - id: 48702
+      header:
+        questNumber: 48702
+        linkedQuest: 101
+        recommendedPartySize: 5
+        recommendedLevel: 21
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:48702001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        startItems:
+          - itemId: 5067
+            quantity: 1
+        giverNpc: "203,1006"
+      requirements:
+        minLevel: 20
+        prerequisites: [605]
+      tasks:
+        - taskId: 1
+          type: "HuntTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:48702002"
+          body:
+            targets:
+              - templateId: "487,102"
+                killCount: 10
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:48702004"
+          hasReward: true
+          deleteItems:
+            - itemId: 5067
+              quantity: 1
+          body:
+            npcId: "203,1007"
+            dialogueId: 3
+            completionButtonText: "@quest:48702003"
+            visitCinematicId: 0
+    - id: 48791
+      header:
+        questNumber: 48791
+        linkedQuest: 101
+        recommendedPartySize: 5
+        recommendedLevel: 21
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:48791001"
+        designersNote: ""
+        questType: "Repeatable"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "203,1032"
+      requirements:
+        minLevel: 20
+        maxLevel: 25
+        prerequisites: [48722]
+      tasks:
+        - taskId: 1
+          type: "RepeatTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:48791004"
+          journalText2: "@quest:48791005"
+          hasReward: true
+          cinematicId: 0
+          body:
+            flagItemName: "@quest:48791002"
+            deliveryQuantity: 35
+            iconId: 25
+            targets:
+              - templateId: "487,1001"
+                grantRate: 80
+              - templateId: "487,1002"
+                grantRate: 80
+              - templateId: "487,1003"
+                grantRate: 80
+              - templateId: "487,1004"
+                grantRate: 80
+            repeatMethod: "무한"
+            repeatTarget: "사냥"
+            repeatCount: 1
+            maxFlagCount: 350
+            sequentialDistribution: "미적용"
+            targetNpc: "203,1032"
+            normalDialogue: 3
+            incompleteDialogue: 4
+            rewardChoiceText: "@quest:48791003"
+    - id: 48792
+      header:
+        questNumber: 48792
+        linkedQuest: 101
+        recommendedPartySize: 5
+        recommendedLevel: 22
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:48792001"
+        designersNote: ""
+        questType: "Repeatable"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "203,1032"
+      requirements:
+        minLevel: 20
+        maxLevel: 25
+        prerequisites: [48721]
+      tasks:
+        - taskId: 1
+          type: "RepeatTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:48792004"
+          journalText2: "@quest:48792005"
+          hasReward: true
+          cinematicId: 0
+          body:
+            flagItemName: "@quest:48792002"
+            deliveryQuantity: 8
+            iconId: 25
+            targets:
+              - templateId: "487,2002"
+                grantRate: 100
+              - templateId: "487,2003"
+                grantRate: 100
+              - templateId: "487,2004"
+                grantRate: 100
+              - templateId: "487,3001"
+                grantRate: 66
+              - templateId: "487,3002"
+                grantRate: 66
+            repeatMethod: "무한"
+            repeatTarget: "사냥"
+            repeatCount: 1
+            maxFlagCount: 80
+            sequentialDistribution: "미적용"
+            targetNpc: "203,1032"
+            normalDialogue: 3
+            incompleteDialogue: 4
+            rewardChoiceText: "@quest:48792003"
+    - id: 90101
+      header:
+        questNumber: 90101
+        linkedQuest: 101
+        executionArea: 116
+        recommendedPartySize: 1
+        recommendedLevel: 30
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:90101001"
+        designersNote: ""
+        questType: "Daily"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        territoryEntryTrigger: [116, 11600043]
+      requirements:
+        minLevel: 30
+        maxLevel: 59
+        reputation: [901, 1]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:90101002"
+          body:
+            successMessage: "@quest:90101003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 10
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:90101005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:90101004"
+            visitCinematicId: 0
+    - id: 90102
+      header:
+        questNumber: 90102
+        linkedQuest: 101
+        executionArea: 112
+        recommendedPartySize: 1
+        recommendedLevel: 65
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:90102001"
+        designersNote: ""
+        questType: "Daily"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        territoryEntryTrigger: [112, 11200019]
+      requirements:
+        minLevel: 65
+        maxLevel: 65
+        reputation: [901, 1]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:90102002"
+          body:
+            successMessage: "@quest:90102003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 26
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:90102005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:90102004"
+            visitCinematicId: 0
+    - id: 90104
+      header:
+        questNumber: 90104
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:90104001"
+        designersNote: ""
+        questType: "Daily"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        territoryEntryTrigger: [102, 10200017]
+      requirements:
+        minLevel: 11
+        maxLevel: 65
+        reputation: [901, 1]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:90104002"
+          body:
+            successMessage: "@quest:90104003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 46
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:90104005"
+          hasReward: true
+          body:
+            npcId: "63,9005"
+            dialogueId: 3
+            completionButtonText: "@quest:90104004"
+            visitCinematicId: 0
+    - id: 90109
+      header:
+        questNumber: 90109
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 65
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:90109001"
+        designersNote: ""
+        questType: "Daily"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+      requirements:
+        minLevel: 65
+        maxLevel: 65
+        reputation: [901, 1]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:90109002"
+          body:
+            successMessage: "@quest:90109003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 29
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:90109005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:90109004"
+            visitCinematicId: 0
+    - id: 90110
+      header:
+        questNumber: 90110
+        linkedQuest: 101
+        executionArea: 116
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:90110001"
+        designersNote: ""
+        questType: "Daily"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        territoryEntryTrigger: [116, 11600043]
+      requirements:
+        minLevel: 60
+        maxLevel: 65
+        reputation: [901, 1]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:90110002"
+          body:
+            successMessage: "@quest:90110003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 10
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:90110005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:90110004"
+            visitCinematicId: 0
+    - id: 90112
+      header:
+        questNumber: 90112
+        linkedQuest: 101
+        executionArea: 117
+        recommendedPartySize: 1
+        recommendedLevel: 65
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:90112001"
+        designersNote: ""
+        questType: "Daily"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        territoryEntryTrigger: [117, 11700132]
+      requirements:
+        minLevel: 65
+        maxLevel: 65
+        reputation: [901, 1]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:90112002"
+          body:
+            successMessage: "@quest:90121003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 5
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:90112005"
+          hasReward: true
+          body:
+            npcId: "63,1256"
+            dialogueId: 3
+            completionButtonText: "@quest:90112004"
+            visitCinematicId: 0
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 15
+      id: 1
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "General Samael dispatched you to Popolion to investigate some wild rumors. Unchecked aggression raged across the landscape and bizarre aberrations attacked the locals.<BR><BR>You encountered a pair of baraka scholars, Bedoram and Brohua, who investigated the source of the trouble. Bedoram traced the problem to a relic known as a dementalith, but warned you that such a device is a massive investment and that the danger was greater than it first appeared."
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Mission Orders<BR><BR>Report to General Samael at once. All other orders rescinded."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1137
+          pages:
+            - social: 4
+              content: "We're keeping it quiet, but Poporia is in trouble and Consul Dougal ordered me to have someone investigate.<BR><BR>Head to Popolion and investigate the source of this disturbance, but take no chances. Whatever the problem, it mustn't spread to Val Aureum or other provinces. Do you understand me?<BR><BR>If stopping this threat means burning Popolion to the ground, then that's what you do."
+        - id: 4
+          npcZoneId: 67
+          prevId: 3
+          villagerId: 1007
+          pages:
+            - social: 4
+              content: "You're the federation agent? Not a moment too soon! The bad news? Trouble everywhere outside Popolion. Is it a disease? A curse? There's talk about vampir blood magic, but no one knows anything.<BR><BR>The good news? Not much. Two baraka scholars have been braving the woods seeking answers, but it's dangerous out there. Find {@LinkCreature:215#1019#Brohua} at the camp southwest of here and see what you can do to help."
+        - id: 5
+          npcZoneId: 215
+          prevId: 4
+          villagerId: 1019
+          pages:
+            - social: 4
+              content: "Outside aid at last! If nothing else, it's comforting to talk to someone sane! I am Bedoram's assistant at your service. Nothing much to report yet, although we have concluded that this is less a plague or curse than an...emanation? Hard to say. What we do know is that the longer you stay, the deeper it affects you.<BR><BR>It has affected my colleagues, though I don't think they realize it yet.<NEXTPAGEBUTTON>\"Where is Bedoram?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "He's moving our gear to a new camp northwest of here. We're mapping the strength field of the—oh, I won't bore you.<BR><BR>I am more concerned with all the {@LinkCreature:15#6#disturbed constructs} near our camp. I've seen them slaughter travelers, but Prefect Paka's holding back his troops. He's convinced we're about to be overrun by farmers.<BR><BR>Could you deal with them?"
+        - id: 6
+          npcZoneId: 215
+          prevId: 5
+          villagerId: 1019
+          pages:
+            - social: 4
+              content: "I'm grateful to you.<BR><BR>As soon as I pack up here, I will go back to Popolion.<BR><BR><PCNAME>, would you check in with Bedoram? He may need assistance. He headed north so he probably passed through Camp Retribution. Go there and ask Centurion {@LinkCreature:215#1010$$Amallen} if he knows of Bedoram's whereabouts."
+        - id: 7
+          npcZoneId: 215
+          prevId: 6
+          villagerId: 1010
+          pages:
+            - social: 4
+              content: "What's that? You're looking for {@LinkCreature:215#1027$$Bedoram}?<BR><BR>He stopped briefly on his way to Camp Redemption to get his equipment from the caravan.<BR><BR>Go find him. Our lives may depend on the outcome of his research."
+        - id: 8
+          npcZoneId: 215
+          prevId: 7
+          villagerId: 1027
+          pages:
+            - social: 4
+              content: "The caravan is long overdue. Whatever shall I do?<BR><BR>Without my instruments, I cannot isolate the source of the troubles. Did Paka actually send the—<BR><BR>Wait, what was that? A distress signal! The caravan is in trouble! You must help them! Quickly! I'll {@LinkCreature:215#1027#teleport you}."
+        - id: 9
+          npcZoneId: 215
+          prevId: 8
+          villagerId: 1027
+          pages:
+            - social: 4
+              content: "Thanks be to Oriyn! You saved the caravan, and my equipment.<BR><BR>Now, I must take field-strength readings, then cross-compare against our earlier data. Oh, and I'll need fresh chemical residue!<BR><BR>Could you gather the chemical samples I need? The field causes physical changes over time. I must see the blood of the, ahem, {@LinkCreature:15#14#blood fiends}."
+        - id: 10
+          npcZoneId: 215
+          prevId: 9
+          villagerId: 1027
+          pages:
+            - social: 4
+              content: "Excellent!<BR><BR>I'm almost done entering the new data. Once I add this blood, the analyzer will determine the drift in your samples and compare them.<BR><BR>If I am right, they'll be the same."
+        - id: 11
+          npcZoneId: 215
+          villagerId: 1027
+          pages:
+            - social: 0
+              content: "I still need that blood, <PCNAME>. Those {@LinkCreature:15#14#blood fiends} are the key.<BR><BR>I've asked for the bare minimum sufficient for my tests!"
+        - id: 12
+          npcZoneId: 215
+          prevId: 10
+          villagerId: 1027
+          pages:
+            - social: 4
+              content: "This isn't a plague, thankfully, nor is it a primal curse. It's...oh, no!<BR><BR>Blood magic—and powerful blood magic at that. It would take a large group of arcanists to achieve this effect, or possibly an artifact.<NEXTPAGEBUTTON>\"What kind of artifact?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "Good question!<BR><BR>I've seen similar effects before, but dementaliths were always involved. Yes. They're powerful enough to cause this.<BR><BR>I'll tell you this, though. Whoever would deploy such a device must have an agenda, and be ruthless enough to pay any price for success.<BR><BR>By Oriyn's light, what a mess."
+    - huntingZoneId: 23
+      id: 1
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "The elin princesses Rida and Arin were locked in a feud over heraldry. The dispute over the new design for a Poporia Kingdom flag got ugly when Rida fled Pora Elinu and raised an army.<BR><BR>Lienyn recruited you to resolve the dispute as the queen was unavailable. Princess Arin wanted your help to brew a draught to compel Rida back to her side."
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Mission Orders<BR><BR>The Kingdom of Poporia, a vital part of the Valkyon Federation, requests assistance in Pora Elinu.<BR><BR>Report to Commander Seir in Velika for further details."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1102
+          pages:
+            - social: 4
+              content: "Good to see you again, <PCNAME>. You've proven yourself to be capable and resourceful. Now we'll see if you can be delicate as well.<BR><BR>The Kingdom of Poporia asked for you specifically for this mission.<NEXTPAGEBUTTON>\"How may I serve?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "There's a dispute between two royal princesses, Arin and Rida. The queen is communing with the goddess Seren and isn't available. The kingdom wants an outsider to help resolve this, to avoid a political nightmare.<BR><BR> If you ask me, it's already a political nightmare.<BR><BR>{@LinkCreature:68#1007#Lienyn} in Pora Elinu has the details."
+        - id: 4
+          npcZoneId: 68
+          prevId: 3
+          villagerId: 1007
+          pages:
+            - social: 4
+              content: "Greetings, <PCNAME>. Commander Seir speaks well of your skills...and your discretion. I need someone to mediate a dispute between the royals. It's an internal matter requiring an outside perspective.<BR><BR>You have a deft touch, I understand.<NEXTPAGEBUTTON>\"How can I help?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "Princesses Rida and Arin are feuding, and the argument has divided the kingdom. The queen would normally intervene, but she remains in seclusion and can't be disturbed.<BR><BR>Speak with Princess Arin and hear her out, but try to sway her for the good of the kingdom! She won't give in easily, but if this were an easy task, we'd not need you. Done ordering."
+        - id: 5
+          npcZoneId: 223
+          prevId: 4
+          villagerId: 1002
+          pages:
+            - social: 4
+              content: "This is an internal matter, but I deign to accept your presence. You certainly can't make matters worse!<BR><BR>We're designing a new flag for the kingdom. Rida, that...intractable bovine, insists on a truly ridiculous symbol, while my design uses a more suitable one. The issue has divided us all!<NEXTPAGEBUTTON>\"You're fighting over art?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "Not just art! Our nation's symbol!<BR><BR>The officials voted to adopt my image. Princess Rida's simply stubborn. Not to mention the fact her symbol is a squirrel! Gauche.<BR><BR>The fox is a clearly superior symbol and resonates with our people. How can we not stand and fight?"
+        - id: 6
+          npcZoneId: 223
+          prevId: 5
+          villagerId: 1002
+          pages:
+            - social: 4
+              content: "The votes were clear. My symbol won by a full individual vote. It wasn't even close.<BR><BR>It's not my fault the squirrel princess is nuts!<BR><BR>When she lost the vote, she ran out of the assembly and went off on this foolish crusade. She's raising an army!<BR><BR>We need to stand united, under one banner. My banner, to be precise.<NEXTPAGEBUTTON>\"What can I do to help?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "Well, first you can tell Rida she's being foolish and stubborn. Then you can help me make her a drink.<BR><BR>If you bring me some <font color='#0080FF'><A href=\"markmap:loc=7002#-38335.6172,46082.5313,1267.9902&type=1&name=Dewdrop Buds\">dewdrop buds</A></FONT>, I'll brew a dazzling cocktail. It tastes great and makes people much more receptive to suggestion. Simple!"
+        - id: 7
+          npcZoneId: 223
+          prevId: 6
+          villagerId: 1002
+          pages:
+            - social: 4
+              content: "Perfect! Now, we lack only something of the person we're charming.<BR><BR>Don't look horrified. This is my sister—I'd never hurt her!<BR><BR>If you climb to the top of the tallest tree in eastern Pora Elinu, you'll find Sujai, Rida's maid. She should be able to obtain a <b>strand of Rida's hair</b>. Bring that back to me and we'll be set!<NEXTPAGEBUTTON>\"Why can't you go?\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "Because I am a princess and you are not. It would be beneath me because...it's so tall!<BR><BR>Now, hurry along!"
+        - id: 8
+          npcZoneId: 223
+          villagerId: 1002
+          pages:
+            - social: 0
+              content: "I just need those dewdrop buds, and this whole sordid affair is behind us! Now, off with you."
+        - id: 9
+          npcZoneId: 223
+          prevId: 7
+          villagerId: 1042
+          pages:
+            - social: 4
+              content: "By Seren's tears, who are you?<BR><BR>Arin sent you? I can't take sides in this—I'm just a maid!<BR><BR>A strand of hair? Of course I could get that, but I'd never do anything to harm Princess Rida! I'm a loyal daughter of the kingdom!<NEXTPAGEBUTTON>\"No harm will come to her.\"</NEXTPAGEBUTTON>"
+            - social: 4
+              content: "Well, you have an honest face, and I want the princesses to stop arguing.<BR><BR>It's just a flag! Seren guide us!<BR><BR>As you wish, <PCNAME>. Take this bracelet—it's made of her hair. So long as you do her no harm, you have my permission to use it."
+        - id: 10
+          npcZoneId: 223
+          prevId: 9
+          villagerId: 1002
+          pages:
+            - social: 4
+              content: "You have the hair! You are a skilled negotiator indeed, <PCNAME>!<BR><BR>Please, accept this reward with the thanks of a grateful princess."
+        - id: 11
+          npcZoneId: 223
+          villagerId: 1002
+          pages:
+            - social: 0
+    - huntingZoneId: 121
+      id: 16
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 22002
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 22002
+          pages:
+            - social: 1
+              content: "What we need are echelon trophies. Unfortunately, you'll need to spread out across the world to find them.<BR><BR>Try these spots:<BR><BR>Balder's Temple (Normal)—{@linkcreature:425#8005#Auricadis}<BR>Balder’s Temple (1 person)—{@linkcreature:825#6000#Nightmare Glaciernus}<BR>Argon Core—{@linkcreature:426#20000#Meldita}<BR>Manaya's Core—{@linkcreature:727#2007#Shandra Manaya}"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 22002
+          pages:
+            - social: 4
+              content: "Oh good—this token will help us become the richest power this world has ever seen!<BR><BR>Thank you!"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 22002
+          pages:
+            - social: 0
+              content: "For profit!"
+    - huntingZoneId: 121
+      id: 17
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 22008
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 22008
+          pages:
+            - social: 1
+              content: "We've got to get you trained up, <PCNAME>!<BR><BR>Oh, I know you think you've been training for a while now, but however good you think you are, you have to be better to be part of the Free Traders Collective.<BR><BR>You'll need to kill a {@linkcreature:124#102#Cyclops}, a {@linkcreature:125#103#Dracoloth}, or a {@linkcreature:126#104#Vulcan Render}. You'll get a heart token when you do.<BR><BR>Once you've finished, bring your token back."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 22008
+          pages:
+            - social: 4
+              content: "Good job. I can already tell you're going to be an asset to the collective."
+        - id: 4
+          npcZoneId: 63
+          villagerId: 22008
+          pages:
+            - social: 0
+              content: "For the Free Traders Collective!"
+    - huntingZoneId: 151
+      id: 3
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "As you show an interest in alliances, Korino introduces you to the alliance recruiters."
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Like most secrets, everyone knows about our secret research territory. So now some powerhouses have made alliances outside the federation's rule to control the mining and distribution of noctenium.<BR><BR>These powerhouses desire a pocket realm with their own access to noctenium. No one's tried to seize this one, so they must have found pocket realms of their own."
+        - id: 3
+          npcZoneId: 151
+          prevId: 2
+          villagerId: 1003
+          pages:
+            - social: 4
+              content: "You want to join an alliance? I'm an expert on noctenium, not alliances. But if it'll get you out of my hair, I can send you to the cities where the alliances congregate.<BR><BR>Meet with a recruiter in Velika, Allemantheia, or Kaiator. I'm sure they'd love to sell you on their power-hungry groups. Which alliance do you think you're interested in?"
+        - id: 4
+          npcZoneId: 151
+          prevId: 2
+          villagerId: 1003
+          pages:
+            - social: 4
+              content: "I gave you a scroll to Velika. Teleport there and ask Robenit your questions about the Free Traders Collective."
+        - id: 5
+          npcZoneId: 151
+          prevId: 2
+          villagerId: 1003
+          pages:
+            - social: 4
+              content: "You have a scroll to Allemantheia. You can teleport there and ask Lasri about the Enlightened Union."
+        - id: 6
+          npcZoneId: 151
+          prevId: 2
+          villagerId: 1003
+          pages:
+            - social: 4
+              content: "Use the teleport scroll to Kaiator and ask Donnelly about the Iron Order."
+        - id: 7
+          npcZoneId: 63
+          prevId: 3
+          villagerId: 220044
+          pages:
+            - social: 4
+              content: "Are you interested in an alliance?<BR><BR>Guild masters can join an alliance right away and the entire guild benefits. Guild members can only ask the guild master to make a good choice.<BR><BR>Do you have a preference? I'm sure your guild master will appreciate knowing that information."
+        - id: 8
+          npcZoneId: 72
+          prevId: 3
+          villagerId: 220046
+          pages:
+            - social: 4
+              content: "Oh, you are interested in joining an alliance?<BR><BR> I can sign up guild masters right away. But guild members should discuss their preference with their guild master. Any guild master will appreciate such good information."
+        - id: 9
+          npcZoneId: 84
+          prevId: 3
+          villagerId: 220045
+          pages:
+            - social: 4
+              content: "Interested in joining an alliance?<BR><BR>Only guild masters can join right away. For guild members, I suggest you talk to your guild master about which to join."
+    - huntingZoneId: 487
+      id: 2
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 203
+          villagerId: 1006
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 203
+          villagerId: 1006
+          pages:
+            - social: 4
+              content: "It isn't enough to cut off the head to this insidious threat. We must remove their means to threaten us in the future.<BR><BR>Use this explosive to destroy any {@LinkCreature:487#102#weapon chests} in the bastion."
+        - id: 3
+          npcZoneId: 203
+          prevId: 2
+          villagerId: 1007
+          pages:
+            - social: 4
+              content: "Well done, soldier. Well done indeed.<BR><BR>Farewell."
+    - huntingZoneId: 487
+      id: 91
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 203
+          villagerId: 1032
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 203
+          villagerId: 1032
+          pages:
+            - social: 5
+              content: "We're still mopping up Scions down in the bastion and could use some help, <PCNAME>.<BR><BR>Head into the bastion and kill {@LinkCreature:487#1001#devan assassins}, {@LinkCreature:487#1002#shamans}, {@LinkCreature:487#1003#butchers}, and {@LinkCreature:487#1004#bodyguards}.<BR><BR>Report back to me when you're done."
+        - id: 3
+          npcZoneId: 203
+          prevId: 2
+          villagerId: 1032
+          pages:
+            - social: 5
+              content: "Great to work with you again. You're an incredible soldier."
+        - id: 4
+          npcZoneId: 203
+          villagerId: 1032
+          pages:
+            - social: 0
+              content: "The sooner you get down there, the sooner the Scions stop breathing."
+    - huntingZoneId: 487
+      id: 92
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 203
+          villagerId: 1032
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 203
+          villagerId: 1032
+          pages:
+            - social: 5
+              content: "Some of the Scion heavy hitters still lurk in the bastion. Until we've secured those tunnels, Oblivion Woods isn't safe.<BR><BR>Take out {@LinkCreature:487#2002#bastion mystics}, {@LinkCreature:487#2003#sorcerers}, {@LinkCreature:487#2004#reapers}, {@LinkCreature:487#3001#lancers}, and {@LinkCreature:487#3002#slayers}.<BR><BR>Report back to me when you've sent 'em all back to the Dream."
+        - id: 3
+          npcZoneId: 203
+          prevId: 2
+          villagerId: 1032
+          pages:
+            - social: 5
+              content: "I'm glad we had a veteran like you around. I could've sent a squad of less-experienced soldiers to do that job—and probably lost most of them. Thanks."
+        - id: 4
+          npcZoneId: 203
+          villagerId: 1032
+          pages:
+            - social: 0
+              content: "Don't come back until you've got enough badges to make me proud."
+    - huntingZoneId: 901
+      id: 1
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "You're quite the swashbuckling <PCCLASS:lcase>.<BR><BR>Are you ready to take on the pirate's life again?"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 0
+              content: "You're quite good at this! I expected no less."
+    - huntingZoneId: 901
+      id: 2
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "I've been waiting for you, <PCNAME>!<BR><BR>I knew great heroes like you wouldn't miss a chance to prove their strength and honor. Ha ha!<BR><BR>Welcome to Fraywind Canyon, where heroes become legends."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 0
+              content: "You're quite good at this! I expected no less."
+    - huntingZoneId: 901
+      id: 4
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Hey, <PCName>!<BR><BR>If you win in the Wintera snowfield, I'll give you a special gift!"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 9005
+          pages:
+            - social: 0
+              content: "Congratulations! You won!<BR><BR>I hope you enjoyed the game.<BR><BR>Come back soon and bring more friends—Wintera only lasts so long!"
+    - huntingZoneId: 901
+      id: 9
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "There's never been a \"true hero\" born. Soldiers rush into battle, and fate hands them a choice. The ones that make the right choice, they're the ones who get to be heroes.<BR><BR>Onward to glory!"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 0
+              content: "You did a hero's work out there, <PCNAME>. Allies and enemies alike are going to remember you for a long time."
+    - huntingZoneId: 901
+      id: 10
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "You're quite the swashbuckling <PCCLASS:lcase>.<BR><BR>Are you ready to take on the pirate's life again?"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 0
+              content: "You're quite good at this! I expected no less."
+    - huntingZoneId: 901
+      id: 12
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Everybody knows of the values of rock candies, by now. Cutthroat Harbor is packed with treasurehunters, despite the fact not all could return safely.<BR><BR><PCNAME>, are you also seeking the treasure?<BR>If you obtain some of them, could you, please, let me have a look?<BR><BR>I will surely reciprocate!"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1256
+          pages:
+            - social: 0
+              content: "You came back safely, what a relief. So how abou them rock candies?<BR><BR>From the looks on your face, it didn't go all too well, did it?<BR>Well, no worries. We should all glad to be alive.<BR><BR>I sincerely thank you for showing me those treasures.<BR>After all, it is not an everyday sight to see, when you can't leave the post like myself."
+
+questStrings:
+  upsert:
+    - id: 1501001
+      string: "Circle the Wagons"
+    - id: 1501002
+      string: "\"I'll leave right away.\""
+    - id: 1501003
+      string: "Report to Commander Samael."
+    - id: 1501004
+      string: "\"Of course, I'll do what I can.\""
+    - id: 1501005
+      string: "Report to Prefect Paka in Popolion."
+    - id: 1501006
+      string: "\"It's as good as done.\""
+    - id: 1501007
+      string: "Look for Brohua at Camp Vigilance."
+    - id: 1501008
+      string: "Drive back the disturbed constructs around Camp Vigilance."
+    - id: 1501009
+      string: "\"For the federation.\""
+    - id: 1501010
+      string: "Return to Brohua at Camp Vigilance."
+    - id: 1501011
+      string: "\"I'll make haste.\""
+    - id: 1501012
+      string: "Go see Centurion Amallen at Camp Retribution."
+    - id: 1501013
+      string: "\"I'd better hurry!\""
+    - id: 1501014
+      string: "Find Bedoram at Camp Redemption."
+    - id: 1501015
+      string: "Teleport to the wagon through {@linkcreature:215#1027$$Bedoram} and protect it."
+    - id: 1501016
+      string: "\"For the federation.\""
+    - id: 1501017
+      string: "Return through the teleportal and report in."
+    - id: 1501018
+      string: "Blood Sample"
+    - id: 1501019
+      string: "Take blood samples from the local blood fiends."
+    - id: 1501020
+      string: "Rush the blood samples to Bedoram at Camp Redemption."
+    - id: 1501021
+      string: "\"Glad to help.\""
+    - id: 1501022
+      string: "\"We can destroy them. I know it.\""
+    - id: 1501023
+      string: "Get the analysis results."
+    - id: 1501024
+      string: "Talk to Bedoram again"
+    - id: 2301001
+      string: "A Tale of Two Tails"
+    - id: 2301002
+      string: "\"As ordered!\""
+    - id: 2301003
+      string: "Report to Seir in Velika."
+    - id: 2301004
+      string: "\"I'll do my best.\""
+    - id: 2301005
+      string: "Take a pegasus to Pora Elinu and report to Lienyn."
+    - id: 2301006
+      string: "\"I'll do what I can.\""
+    - id: 2301007
+      string: "Speak with Princess Arin."
+    - id: 2301008
+      string: "\"If that's your wish.\""
+    - id: 2301009
+      string: "Listen to Arin's tale."
+    - id: 2301010
+      string: "\"Yes, highness.\""
+    - id: 2301011
+      string: "Collect dewdrop buds for Arin's potion."
+    - id: 2301012
+      string: "Deliver the buds to Arin."
+    - id: 2301013
+      string: "\"Thank you.\""
+    - id: 2301014
+      string: "Climb the vines near the entrance to Pora Elinu and find Sujai."
+    - id: 2301015
+      string: "\"Thanks.\""
+    - id: 2301016
+      string: "Deliver Rida's hair to Arin."
+    - id: 2301017
+      string: "Deliver Rida's hair to Arin."
+    - id: 12116001
+      string: "Trophies for Fun and Profit"
+    - id: 12116002
+      string: "Echelon Trophy"
+    - id: 12116003
+      string: "Hunt bosses inside dungeons to find trophies for the collective."
+    - id: 12116004
+      string: "Bring trophy to the {@linkcreature:63#22002#Alliance Administrator}."
+    - id: 12116005
+      string: "\"For profit!\""
+    - id: 12117001
+      string: "Collective Training"
+    - id: 12117002
+      string: "Beast Heart"
+    - id: 12117003
+      string: "Train against the beasts in the vaults."
+    - id: 12117004
+      string: "Report to {@linkcreature:63#22008#Zihm}."
+    - id: 12117005
+      string: "\"For the collective!\""
+    - id: 15103001
+      string: "Access and Allies"
+    - id: 15103002
+      string: "Free Traders Collective in Velika"
+    - id: 15103003
+      string: "Enlightened Union in Allemantheia"
+    - id: 15103004
+      string: "Iron Order in Kaiator"
+    - id: 15103005
+      string: "Tell {@linkcreature:151#1003#Korino} that you are curious about alliances."
+    - id: 15103006
+      string: "\"Thanks.\""
+    - id: 15103007
+      string: "\"You've been very helpful.\""
+    - id: 15103008
+      string: "Talk to Robenit in Velika."
+    - id: 15103009
+      string: "\"You've been very informative.\""
+    - id: 15103010
+      string: "Talk to Lasri in Allemantheia."
+    - id: 15103011
+      string: "\"This is all very interesting.\""
+    - id: 15103012
+      string: "Talk to Donnelly in Kaiator."
+    - id: 48702001
+      string: "Pulling the Fangs"
+    - id: 48702002
+      string: "Use the explosive charge to destroy the weapons cache.<BR>(Only normal mode will advance quests.)"
+    - id: 48702003
+      string: "\"As ordered!\""
+    - id: 48702004
+      string: "Report to Centurion Hendry at the Vanguard Outpost in Oblivion Woods."
+    - id: 48791001
+      string: "Thus Always to Devas"
+    - id: 48791002
+      string: "Scion Badge"
+    - id: 48791003
+      string: "\"For the federation!\""
+    - id: 48791004
+      string: "Eliminate the devan assassins, shamans, butchers, and bodyguards in the Bastion of Lok and collect their badges.<BR>(Only normal mode will advance quests.)"
+    - id: 48791005
+      string: "Deliver the badges to Tersiaj."
+    - id: 48792001
+      string: "Take Down the Heavies"
+    - id: 48792002
+      string: "Scion Badge"
+    - id: 48792003
+      string: "\"For the federation!\""
+    - id: 48792004
+      string: "Eliminate the bastion mystics, sorcerers, reapers, lancers, and slayers in the Bastion of Lok and recover their badges.<BR>(Only normal mode will advance quests.)"
+    - id: 48792005
+      string: "Deliver the badges to Tersiaj."
+    - id: 90101001
+      string: "A Pirate's Life for Me"
+    - id: 90101002
+      string: "Win another battle in Corsairs' Stronghold."
+    - id: 90101003
+      string: ""
+    - id: 90101004
+      string: "\"Arrr!\""
+    - id: 90101005
+      string: "Find Surah at the Valkyon Headquarters in Velika."
+    - id: 90102001
+      string: "Hero of Fraywind Canyon"
+    - id: 90102002
+      string: "Victory in Fraywind Canyon"
+    - id: 90102003
+      string: ""
+    - id: 90102004
+      string: "\"Thanks.\""
+    - id: 90102005
+      string: "Report to Surah in Velika."
+    - id: 90104001
+      string: "Win, Place, or Snow"
+    - id: 90104002
+      string: "Win in the Wintera Snowfield."
+    - id: 90104003
+      string: ""
+    - id: 90104004
+      string: "\"Thanks!\""
+    - id: 90104005
+      string: "Find {@linkcreature:63#9005} in Velika."
+    - id: 90109001
+      string: "Onward to Glory!"
+    - id: 90109002
+      string: "Win in Fraywind Canyon."
+    - id: 90109003
+      string: ""
+    - id: 90109004
+      string: "\"It's an honor just to serve.\""
+    - id: 90109005
+      string: "Find Surah at the Valkyon Headquarters in Velika."
+    - id: 90110001
+      string: "A Pirate's Life for Me"
+    - id: 90110002
+      string: "[Corsairs' Stronghold] Win a battle in Corsairs' Stronghold."
+    - id: 90110003
+      string: ""
+    - id: 90110004
+      string: "\"We must all work together.\""
+    - id: 90110005
+      string: "Find Surah at the Valkyon Headquarters in Velika."
+    - id: 90112002
+      string: "[Kumasylum] Win in the Kumasylum."

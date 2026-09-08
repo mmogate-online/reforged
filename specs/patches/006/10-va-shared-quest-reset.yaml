@@ -1,0 +1,15 @@
+# Shared quests whose classic body differs are deleted here and built again whole by
+# the shared-quest specs that follow, so nothing the live file added past the classic
+# data survives the port. The delete has to be its own spec: a delete and an upsert of
+# the same quest in one spec leave the DSL reading a file its own delete removed, and
+# the whole spec fails. Dialog files and quest strings are untouched by a quest delete,
+# and the shared-quest specs restate them.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  delete: [201, 202, 203, 222, 224, 233, 235, 238, 301, 302, 322, 323, 324, 327, 328, 330, 331, 333, 334, 335, 337, 338, 339, 341, 523, 524, 526, 529, 534, 535, 540, 601, 602, 603, 604, 605, 622, 623, 624, 626, 627, 630, 631, 635, 636, 640, 641, 642, 643, 644, 730, 733, 734, 735, 736, 737, 738, 801, 901, 1317, 1505, 2001, 2002, 2003, 2501, 2505, 2701, 6305, 6306, 6321, 6322, 6323, 6324, 6325, 6326, 6327, 6328, 6329, 6330, 6331, 6332, 6333, 6334, 6335, 6336, 6337, 6338, 6357, 6359, 6361, 6381, 6383, 6384, 6385, 6395, 8421, 8422, 17201, 17202, 17203, 17204, 48701, 48721, 48722, 48723, 48724, 48725, 48727, 48728, 60501, 60502, 60503, 60504, 60505, 60506, 60507, 60508, 60509, 60510, 60520, 60521, 60522, 60523, 60524, 60528, 70212, 70213, 70214, 70215, 70217, 999820, 999920]

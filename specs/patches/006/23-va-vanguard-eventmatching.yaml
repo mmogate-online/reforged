@@ -1,0 +1,151 @@
+# The Vanguard Request board's activity-finder entries, one per daily quest.
+#
+# This patch removes the live server's Vanguard daily quests, and the world server
+# resolves every `questId` on this file at load: an entry naming a quest that is not
+# there stops the whole datasheet load, with no message naming the file. So the
+# entries go with the quests, in the same patch, or the server does not start.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eventMatchingEvents:
+  delete:
+    - eventId: 800030
+      group: priority
+    - eventId: 800031
+      group: priority
+    - eventId: 800101
+      group: priority
+    - eventId: 800104
+      group: priority
+    - eventId: 800137
+      group: priority
+    - eventId: 800138
+      group: priority
+    - eventId: 800139
+      group: priority
+    - eventId: 800140
+      group: priority
+    - eventId: 800141
+      group: priority
+    - eventId: 800142
+      group: priority
+    - eventId: 800143
+      group: priority
+    - eventId: 800144
+      group: priority
+    - eventId: 800145
+      group: priority
+    - eventId: 800146
+      group: priority
+    - eventId: 800147
+      group: priority
+    - eventId: 800148
+      group: priority
+    - eventId: 800149
+      group: priority
+    - eventId: 800150
+      group: priority
+    - eventId: 800151
+      group: priority
+    - eventId: 800152
+      group: priority
+    - eventId: 800153
+      group: priority
+    - eventId: 800154
+      group: priority
+    - eventId: 800155
+      group: priority
+    - eventId: 800156
+      group: priority
+    - eventId: 800157
+      group: priority
+    - eventId: 800158
+      group: priority
+    - eventId: 800159
+      group: priority
+    - eventId: 800160
+      group: priority
+    - eventId: 800161
+      group: priority
+    - eventId: 800162
+      group: priority
+    - eventId: 800163
+      group: priority
+    - eventId: 800164
+      group: priority
+    - eventId: 800165
+      group: priority
+    - eventId: 800166
+      group: priority
+    - eventId: 810030
+      group: secondary
+    - eventId: 810031
+      group: secondary
+    - eventId: 810101
+      group: secondary
+    - eventId: 810104
+      group: secondary
+    - eventId: 810137
+      group: secondary
+    - eventId: 810138
+      group: secondary
+    - eventId: 810139
+      group: secondary
+    - eventId: 810140
+      group: secondary
+    - eventId: 810141
+      group: secondary
+    - eventId: 810142
+      group: secondary
+    - eventId: 810143
+      group: secondary
+    - eventId: 810144
+      group: secondary
+    - eventId: 810145
+      group: secondary
+    - eventId: 810146
+      group: secondary
+    - eventId: 810147
+      group: secondary
+    - eventId: 810148
+      group: secondary
+    - eventId: 810149
+      group: secondary
+    - eventId: 810150
+      group: secondary
+    - eventId: 810151
+      group: secondary
+    - eventId: 810152
+      group: secondary
+    - eventId: 810153
+      group: secondary
+    - eventId: 810154
+      group: secondary
+    - eventId: 810155
+      group: secondary
+    - eventId: 810156
+      group: secondary
+    - eventId: 810157
+      group: secondary
+    - eventId: 810158
+      group: secondary
+    - eventId: 810159
+      group: secondary
+    - eventId: 810160
+      group: secondary
+    - eventId: 810161
+      group: secondary
+    - eventId: 810162
+      group: secondary
+    - eventId: 810163
+      group: secondary
+    - eventId: 810164
+      group: secondary
+    - eventId: 810165
+      group: secondary
+    - eventId: 810166
+      group: secondary

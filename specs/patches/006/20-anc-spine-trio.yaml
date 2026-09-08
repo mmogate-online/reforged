@@ -1,0 +1,811 @@
+# The Celestial Hills story spine: quests 701, 702 and 704, created whole from the
+# classic data with their briefing dialogs and quest strings. Kept apart from the other
+# creates so the chain can be applied, tested and revised as one unit.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  upsert:
+    - id: 701
+      header:
+        questNumber: 701
+        linkedQuest: 101
+        storyGroupId: 4
+        recommendedPartySize: 1
+        recommendedLevel: 22
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:701001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 21
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:701003"
+          hasReward: false
+          body:
+            npcId: "60,1014"
+            dialogueId: 3
+            completionButtonText: "@quest:701002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          continentId: 7001
+          worldPosition: "88906,-4065,879"
+          journalText: "@quest:701005"
+          hasReward: false
+          body:
+            npcId: "207,1005"
+            dialogueId: 4
+            completionButtonText: "@quest:701004"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "HuntTask"
+          nextTaskId: 4
+          journalScript: 4
+          continentId: 7001
+          worldPosition: "61715,2687,1354"
+          journalText: "@quest:701006"
+          body:
+            targets:
+              - templateId: "7,1000"
+                killCount: 1
+        - taskId: 4
+          type: "VisitTask"
+          nextTaskId: 5
+          journalScript: 4
+          journalText: "@quest:701008"
+          hasReward: false
+          body:
+            npcId: "207,1005"
+            dialogueId: 5
+            completionButtonText: "@quest:701007"
+            visitCinematicId: 0
+        - taskId: 5
+          type: "VisitTask"
+          nextTaskId: 6
+          journalScript: 5
+          journalText: "@quest:701010"
+          hasReward: false
+          body:
+            npcId: "207,1009"
+            dialogueId: 6
+            completionButtonText: "@quest:701009"
+            visitCinematicId: 0
+        - taskId: 6
+          type: "HuntAndDeliverTask"
+          nextTaskId: 7
+          journalScript: 6
+          journalText: "@quest:701012"
+          journalText2: "@quest:701013"
+          hasReward: false
+          cinematicId: 0
+          body:
+            flagItemName: "@quest:701011"
+            targetCount: 1
+            itemId: 38
+            targets:
+              - templateId: "7,2000"
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: "207,1009"
+            completionDialogue: 7
+            incompleteDialogue: 8
+            completionButtonText: "@quest:701014"
+        - taskId: 7
+          type: "CollectTask"
+          nextTaskId: 8
+          journalScript: 7
+          journalText: "@quest:701016"
+          journalText2: "@quest:701017"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 503
+            deliveryItems:
+              - itemId: 9107
+                quantity: 5
+            targetNpc: "207,1009"
+            completionDialogue: 9
+            incompleteDialogue: 10
+            completionButtonText: "@quest:701015"
+        - taskId: 8
+          type: "VisitTask"
+          nextTaskId: 9
+          journalScript: 9
+          journalText: "@quest:701019"
+          hasReward: false
+          body:
+            npcId: "207,1009"
+            dialogueId: 11
+            completionButtonText: "@quest:701018"
+            visitCinematicId: 0
+        - taskId: 9
+          type: "HuntTask"
+          nextTaskId: 10
+          journalScript: 11
+          journalText: "@quest:701020"
+          body:
+            targets:
+              - templateId: "7,100"
+                killCount: 4
+        - taskId: 10
+          type: "VisitTask"
+          nextTaskId: 11
+          journalScript: 11
+          journalText: "@quest:701022"
+          hasReward: false
+          body:
+            npcId: "207,1009"
+            dialogueId: 12
+            completionButtonText: "@quest:701021"
+            visitCinematicId: 0
+        - taskId: 11
+          type: "DeliverInjectedItemTask"
+          nextTaskId: 0
+          journalScript: 12
+          journalText: "@quest:701025"
+          hasReward: true
+          cinematicId: 0
+          body:
+            giverName: "@quest:701023"
+            flagItemName: "@quest:701024"
+            iconId: 98
+            deliveryQuantity: 1
+            targetNpc: "207,1001"
+            dialogue: 13
+            completionButtonText: "@quest:701026"
+    - id: 702
+      header:
+        questNumber: 702
+        linkedQuest: 101
+        storyGroupId: 4
+        recommendedPartySize: 1
+        recommendedLevel: 22
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:702001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        giverNpc: "207,1001"
+      requirements:
+        minLevel: 21
+        prerequisites: [701]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          continentId: 7001
+          worldPosition: "37990,-1490,517"
+          journalText: "@quest:702003"
+          hasReward: false
+          body:
+            npcId: "207,1044"
+            dialogueId: 3
+            completionButtonText: "@quest:702002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "HuntAndCollectTask"
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:702004"
+          body:
+            itemId: 5024
+            huntingZoneId: 7
+            targetId: 14
+            targetCount: 1
+            grantRate: 100
+            goalCount: 5
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 4
+          journalScript: 3
+          journalText: "@quest:702006"
+          hasReward: false
+          body:
+            npcId: "207,1044"
+            dialogueId: 4
+            completionButtonText: "@quest:702005"
+            visitCinematicId: 0
+        - taskId: 4
+          type: "HuntAndCollectTask"
+          nextTaskId: 5
+          journalScript: 4
+          journalText: "@quest:702007"
+          body:
+            itemId: 5025
+            huntingZoneId: 7
+            targetId: 13
+            targetCount: 1
+            grantRate: 100
+            goalCount: 1
+        - taskId: 5
+          type: "BranchTask"
+          nextTaskId: 0
+          journalScript: 4
+          journalText: "@quest:702010"
+          body:
+            targetNpc: "207,1044"
+            preBranchDialogue: 5
+            branchType: "manual"
+            completionButtonText: "@quest:702011"
+            choices:
+              - text: "@quest:702008"
+                postChoiceDialogue: 6
+                nextTaskId: 6
+              - text: "@quest:702009"
+                postChoiceDialogue: 7
+                nextTaskId: 7
+        - taskId: 6
+          type: "VisitTask"
+          nextTaskId: 7
+          journalScript: 5
+          journalText: "@quest:702013"
+          hasReward: false
+          completionItems:
+            - itemId: 5025
+              quantity: 1
+          deleteItems:
+            - itemId: 5025
+              quantity: 1
+          body:
+            npcId: "207,1044"
+            dialogueId: 8
+            completionButtonText: "@quest:702012"
+            visitCinematicId: 0
+        - taskId: 7
+          type: "DeliverItemTask"
+          nextTaskId: 8
+          journalScript: 5
+          journalText: "@quest:702015"
+          journalText2: "@quest:702016"
+          hasReward: false
+          cinematicId: 0
+          deleteItems:
+            - itemId: 5025
+              quantity: 100
+            - itemId: 5024
+              quantity: 100
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 5026
+            itemCount: 5
+            targetNpc: "207,1044"
+            completionDialogue: 9
+            incompleteDialogue: 10
+            completionButtonText: "@quest:702014"
+        - taskId: 8
+          type: "HuntTask"
+          nextTaskId: 9
+          journalScript: 9
+          journalText: "@quest:702017"
+          body:
+            targets:
+              - templateId: "7,102"
+                killCount: 1
+        - taskId: 9
+          type: "VisitTask"
+          nextTaskId: 10
+          journalScript: 9
+          journalText: "@quest:702019"
+          hasReward: false
+          body:
+            npcId: "207,1044"
+            dialogueId: 11
+            completionButtonText: "@quest:702018"
+            visitCinematicId: 0
+        - taskId: 10
+          type: "VisitTask"
+          nextTaskId: 11
+          journalScript: 11
+          journalText: "@quest:702021"
+          hasReward: false
+          body:
+            npcId: "207,1001"
+            dialogueId: 12
+            completionButtonText: "@quest:702020"
+            visitCinematicId: 0
+        - taskId: 11
+          type: "GuardianTask"
+          nextTaskId: 12
+          journalScript: 12
+          journalText: "@quest:702023"
+          dungeonId: 9019
+          timeLimit: [0, 5]
+          body:
+            npcId: "419,99"
+            aggroInterval: 1
+            aggroAmount: 1
+            aggroRange: 300
+            postGuardianDialogue: "@quest:702022"
+            targetMonster: ""
+        - taskId: 12
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 12
+          failureReturnTaskId: 9
+          journalText: "@quest:702025"
+          hasReward: true
+          body:
+            npcId: "419,99"
+            dialogueId: 13
+            completionButtonText: "@quest:702024"
+            visitCinematicId: 0
+    - id: 704
+      header:
+        questNumber: 704
+        linkedQuest: 101
+        storyGroupId: 4
+        recommendedPartySize: 1
+        recommendedLevel: 23
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:704001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        startItems:
+          - itemId: 5063
+            quantity: 1
+        giverNpc: "207,1001"
+      requirements:
+        minLevel: 21
+        prerequisites: [702]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:704003"
+          hasReward: false
+          body:
+            npcId: "63,1160"
+            dialogueId: 3
+            completionButtonText: "@quest:704002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "DeliverItemTask"
+          nextTaskId: 3
+          journalScript: 3
+          continentId: 1
+          worldPosition: "-1924,12792,2179"
+          journalText: "@quest:704005"
+          journalText2: "@quest:704006"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 5063
+            itemCount: 1
+            targetNpc: "63,1137"
+            completionDialogue: 4
+            incompleteDialogue: 5
+            completionButtonText: "@quest:704004"
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 4
+          journalScript: 4
+          journalText: "@quest:704008"
+          hasReward: false
+          deleteItems:
+            - itemId: 5063
+              quantity: 1
+          body:
+            npcId: "63,1138"
+            dialogueId: 6
+            completionButtonText: "@quest:704007"
+            visitCinematicId: 0
+        - taskId: 4
+          type: "PlayMovieTask"
+          nextTaskId: 5
+          journalScript: 6
+          body:
+            movieId: 25
+        - taskId: 5
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 6
+          journalText: "@quest:704010"
+          hasReward: true
+          deleteItems:
+            - itemId: 5063
+              quantity: 1
+          body:
+            npcId: "63,1138"
+            dialogueId: 7
+            completionButtonText: "@quest:704009"
+            visitCinematicId: 0
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 7
+      id: 1
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "You helped Mysterium researchers discover how the Scions of Lok were controlling the kumases."
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Mission Orders<BR><BR>Reinforcements required in the Celestial Hills. Soldiers available for reassignment should report to Prefect Daven in Lumbertown at once."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "Ah, <PCNAME>! Just who I was looking for.<BR><BR>I've got several disturbing reports from Celestial Hills about nagas and kumases. Take charge of this matter personally.<BR><BR>Head to Godric's Farm and speak with {@LinkCreature:207#1005#Heroth}. He'll have more details for you."
+        - id: 4
+          npcZoneId: 207
+          prevId: 3
+          villagerId: 1005
+          pages:
+            - social: 4
+              content: "Do you see those baetyliths out there with the blue markings? The kumases can't stay away from them. Neither can the researchers I'm responsible for, apparently. Some of them have wandered off, and I won't be able to look for them until we've cleared the nearby kumases. Look for Radat, their leader. Take him out."
+        - id: 5
+          npcZoneId: 207
+          prevId: 4
+          villagerId: 1005
+          pages:
+            - social: 4
+              content: "You're pretty handy. A lot of soldiers panic the first time they fight a kumas, but you seem to know what you're about. Good work.<BR><BR>Some of the researchers have straggled in from their camp southeast of here, but {@LinkCreature:207#1009#Siria}, the most stubborn of them all, is still out there. Think you could scout around and find her?"
+        - id: 6
+          npcZoneId: 207
+          prevId: 5
+          villagerId: 1009
+          pages:
+            - social: 4
+              content: "Aww, was Heroth worried? How sweet—if I was a maiden in distress. I'm on a mission, same as him.<BR><BR>Ready to help? Okay.<BR><BR>The kumases are obsessed with the markings on the baetyliths, which are in the original language of magic. God stuff.<BR><BR>The nagas work for the kumases. There's a kumas called {@LinkCreature:7#2000#Kadas}. I'd like to get a look at the amulet he wears. There might be a hint there."
+        - id: 7
+          npcZoneId: 207
+          prevId: 6
+          villagerId: 1009
+          pages:
+            - social: 4
+              content: "Wow, you got it! That's great! Now I need something else to compare this with.<BR><BR>Why are you looking at me like that? Didn't you agree to help me?<BR><BR>If you examine the <font color='#0080FF'><A href=\"markmap:loc=7001#55019,9993,1935&type=1&name=Baetyliths Location\">baetyliths</A></font> scattered all around here, you'll find shards. Bring some back to me. Now isn't that easy?"
+        - id: 8
+          npcZoneId: 207
+          villagerId: 1009
+          pages:
+            - social: 0
+              content: "Blast and damnation! It's just one kumas. You've killed so many already. I just want you to kill one more, and bring me its amulet. Please, hurry!"
+        - id: 9
+          npcZoneId: 207
+          prevId: 7
+          villagerId: 1009
+          pages:
+            - social: 4
+              content: "Let's take a look.<BR><BR>Just as I thought. The power in these shards feels the same as the amulet. But in the amulet, it's more concentrated.<BR><BR>My guess is the amulet is storing up power from the baetyliths."
+        - id: 10
+          npcZoneId: 207
+          villagerId: 1009
+          pages:
+            - social: 0
+              content: "No, no, you need to bring me some baetylith shards to compare the amulet against. A hypothesis needs to be tested!"
+        - id: 11
+          npcZoneId: 207
+          prevId: 9
+          villagerId: 1009
+          pages:
+            - social: 4
+              content: "A few of the baetyliths seem to have most of the power. They're easy to recognize—they spark with energy. I wonder if that's where the kumases are storing the power they've taken from the others.<BR><BR>Poke around a bit, will you? If the {@LinkObject:45#sparking baetyliths} are important, someone or something will try to prevent you from finding out."
+        - id: 12
+          npcZoneId: 207
+          prevId: 11
+          villagerId: 1009
+          pages:
+            - social: 4
+              content: "Imps, eh? They'll work for anyone. In this case I'm guessing they work for the kumases.<BR><BR>It means whatever they're taking from the baetyliths, the kumases don't want to share.<BR><BR>Take my report to Mattin at the Sanctum Mysterium south of here. I'll go back to Godric's farm and remind Heroth he's not my nursemaid."
+        - id: 13
+          npcZoneId: 207
+          prevId: 12
+          villagerId: 1001
+          pages:
+            - social: 4
+              content: "A report from Siria? Let me see...<BR><BR>Sounds like she's got a handle on the kumas problem, all right. Thank you for bringing this."
+    - huntingZoneId: 7
+      id: 2
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 207
+          villagerId: 1001
+          pages:
+            - social: 0
+              content: "The Mysterium sought your help to foil the research the Scions of Lok were conducting. You found references to an ancient fountain, but stopped the Scions' leader—Tezluar—before they could finish what they were doing. Unfortunately, the Scions reacted forcefully and launched a massive assault on the Sanctum Mysterium. You protected Mattin as he brought magical shields to bear and saved the sanctum."
+        - id: 2
+          npcZoneId: 207
+          villagerId: 1001
+          pages:
+            - social: 4
+              content: "We're in a race with the Scions of Lok to uncover the ancient secrets in the Cardovek Remnants. Sadly, they've got a head start on us.<BR><BR>The Celestial Hills were important to many of the gods, and the Scions might well be looking for something related. Certainly the omphaloses on the plains are divine in origin.<BR><BR>Go see Padraig, one of our scholars near the remnants."
+        - id: 3
+          npcZoneId: 207
+          prevId: 2
+          villagerId: 1044
+          pages:
+            - social: 4
+              content: "Aye, they're up to something, but I'm not sure what. They've got some papers, but they're all encoded—and they're divided into parts.<BR><BR>If you could put together a whole document, I might be able to make sense of it. The {@LinkCreature:7#14#Lokian sorcerers} are your best bet for finding a complete copy of the pages."
+        - id: 4
+          npcZoneId: 207
+          prevId: 3
+          villagerId: 1044
+          pages:
+            - social: 4
+              content: "Blast it all!<BR><BR>The documents are fine, but they're in code. I've seen the {@LinkCreature:7#13#Lokian berserkers} reading the cryptographs—so they have to have some way of decoding it.<BR><BR>Find a berserker and see if it has something we can use to decipher the text. We must learn what they're up to."
+        - id: 5
+          npcZoneId: 207
+          prevId: 4
+          villagerId: 1044
+          pages:
+            - social: 4
+              content: "Do you have everything?<BR><BR>All the cryptographs and a decryption device?We can learn nothing without them.<BR><BR>Did you decrypt the messages?"
+        - id: 6
+          npcZoneId: 207
+          prevId: 4
+          villagerId: 1044
+          pages:
+            - social: 0
+              content: "You lost it?<BR><BR>Now what am I gonna do? Oh! Wait a minute, <PCNAME>."
+        - id: 7
+          npcZoneId: 207
+          prevId: 4
+          villagerId: 1044
+          pages:
+            - social: 0
+              content: "Come on, I want to see the ENTIRE decrypted message."
+        - id: 8
+          npcZoneId: 207
+          prevId: 5
+          villagerId: 1044
+          pages:
+            - social: 4
+              content: "Someone gave me this a while back but I didn't realize at the time...<BR><BR>You must be the luckiest <PCClass:lcase> I've ever met. Is this the decoder you lost? Here! Take it and get to the decoding."
+        - id: 9
+          npcZoneId: 207
+          prevId: 5
+          villagerId: 1044
+          pages:
+            - social: 4
+              content: "That flaming naga spoor {@LinkCreature:7#102#Tezluar}! He's behind this! He's looking for some fountain—looks like Akasha was after it once upon a time.<BR><BR>They don't have a clue where it is right now and with a little help from you, they need never find it.<BR><BR>Kill Tezluar and deal these Scion fools a real setback."
+        - id: 10
+          npcZoneId: 207
+          villagerId: 1044
+          pages:
+            - social: 0
+              content: "The {@LinkCreature:7#13#Lokian berserkers} must have some way to read the cryptographs. They don't have enough brains to do it themselves!"
+        - id: 11
+          npcZoneId: 207
+          prevId: 9
+          villagerId: 1044
+          pages:
+            - social: 4
+              content: "Well done, my friend! Hurry back to Mattin and deliver the good news!"
+        - id: 12
+          npcZoneId: 207
+          prevId: 11
+          villagerId: 1001
+          pages:
+            - social: 4
+              content: "The Scions of Lok appear to be sore losers. They're massing for an attack. Our shield can repel them—if we can get it raised in time.<BR><BR>Keep our foes at bay until the defenses are active!"
+        - id: 13
+          npcZoneId: 419
+          prevId: 12
+          villagerId: 99
+          pages:
+            - social: 4
+              content: "Courage and skill protected the secrets and knowledge we've uncovered. For that, we are very grateful.<BR><BR>The Celestial Hills have many secrets, some we are not yet ready to discover, and others, perhaps, were never meant for us to know. Together, we've kept them safe.<BR><BR>Go with our thanks."
+    - huntingZoneId: 7
+      id: 4
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 207
+          villagerId: 1001
+          pages:
+            - social: 0
+              content: "General Samael taught you how to use glyphs as a reward for your achievements in the Celestial Hills."
+        - id: 2
+          npcZoneId: 207
+          villagerId: 1001
+          pages:
+            - social: 4
+              content: "Take this to Dougal in Velika. Tell him I sent you. Please hurry."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1160
+          pages:
+            - social: 4
+              content: "It's rare to see such glowing words written in Mattin's hand. You certainly impressed him, <PCNAME>.<BR><BR>Deliver this little epistle to Samael. He's as hard to win over as Mattin, but if anything can do it, this report can.<BR><BR>Well done, <PCNAME>. This is exactly the kind of action we need from our soldiers right now."
+        - id: 4
+          npcZoneId: 63
+          prevId: 3
+          villagerId: 1137
+          pages:
+            - social: 4
+              content: "Hmm. Well, this is quite a report. I guess you're not the keener I expected. I underestimated you. I promise I won't do that in the future.<BR><BR>We need more than just soldiers, we need leaders. Dougal thinks you're ready for a commission. I'm hardly going to argue against it, not after deeds such as these. Come, it's not every day you get to be a hero."
+        - id: 5
+          npcZoneId: 63
+          villagerId: 1137
+          pages:
+            - social: 0
+              content: "Do you have something to report?"
+        - id: 6
+          npcZoneId: 63
+          prevId: 4
+          villagerId: 1138
+          pages:
+            - social: 4
+              content: "<PCNAME>! What took you so long?<BR><BR>let's start the ceremony."
+        - id: 7
+          npcZoneId: 63
+          prevId: 6
+          villagerId: 1138
+          pages:
+            - social: 4
+              content: "Now, as an officer, you should learn how to use glyphs.<BR><BR>Glyphs have different powers according to the classes. Glyphs will grant additional power to your skills."
+
+questStrings:
+  upsert:
+    - id: 701001
+      string: "Scruffy Kumas Herders"
+    - id: 701002
+      string: "\"For the federation!\""
+    - id: 701003
+      string: "Speak with Prefect Daven in Lumbertown."
+    - id: 701004
+      string: "\"I'm on it.\""
+    - id: 701005
+      string: "Report to Centurion Heroth at Godric's Farm in Celestial Hills."
+    - id: 701006
+      string: "Eliminate Radat to discourage the kumases."
+    - id: 701007
+      string: "\"I won't let you down.\""
+    - id: 701008
+      string: "Report back to Centurion Heroth."
+    - id: 701009
+      string: "\"I'll find one.\""
+    - id: 701010
+      string: "Find Siria in central Omphalos Plains."
+    - id: 701011
+      string: "Kumasi Amulet"
+    - id: 701012
+      string: "Kill Kadas and retrieve his amulet."
+    - id: 701013
+      string: "Take the amulet to Siria."
+    - id: 701014
+      string: "\"I'll do it.\""
+    - id: 701015
+      string: "\"So what's next?\""
+    - id: 701016
+      string: "Investigate the baetyliths in the Omphalos Plains and collect shards for Siria."
+    - id: 701017
+      string: "Take the shards back to Siria."
+    - id: 701018
+      string: "\"Wish me luck.\""
+    - id: 701019
+      string: "Speak with Siria."
+    - id: 701020
+      string: "Investigate the sparking baetyliths in the Omphalos Plains and eliminate their {@LinkObject:45#protectors}."
+    - id: 701021
+      string: "\"You can count on me.\""
+    - id: 701022
+      string: "Report back to Siria."
+    - id: 701023
+      string: "Siria"
+    - id: 701024
+      string: "Siria's Report"
+    - id: 701025
+      string: "Report to Mattin at the Sanctum Mysterium."
+    - id: 701026
+      string: "\"Glad to be of service!\""
+    - id: 702001
+      string: "Building a Mystery"
+    - id: 702002
+      string: "\"I think I can help.\""
+    - id: 702003
+      string: "Find Padraig near the Cardovek Remnants."
+    - id: 702004
+      string: "Kill Lokian sorcerers to recover cryptographs."
+    - id: 702005
+      string: "\"I'll see to it.\""
+    - id: 702006
+      string: "Bring the cryptographs to Padraig."
+    - id: 702007
+      string: "Kill a Lokian berserker in the Cardovek Remnants and recover a decryption device."
+    - id: 702008
+      string: "\"Um...I must have dropped it.\""
+    - id: 702009
+      string: "\"I decrypted the message.\""
+    - id: 702010
+      string: "Decrypt the messages and return to Padraig."
+    - id: 702011
+      string: "\"Wait for what?\""
+    - id: 702012
+      string: "\"I'll take care of it.\""
+    - id: 702013
+      string: "Return to Padraig."
+    - id: 702014
+      string: "\"I go kill Tezluar.\""
+    - id: 702015
+      string: "\"The decryption is taken care of.\""
+    - id: 702016
+      string: "Use the decryption device on the cryptographs and deliver the decrypted message to Padraig."
+    - id: 702017
+      string: "Find Tezluar in the Cardovek Remnants and kill him."
+    - id: 702018
+      string: "\"Understood!\""
+    - id: 702019
+      string: "Report to Mysterium researcher Padraig at Cardovek Remnants."
+    - id: 702020
+      string: "\"I can help.\""
+    - id: 702021
+      string: "Report to Mattin at the Sanctum Mysterium."
+    - id: 702022
+      string: "It is done. The defense shield is active."
+    - id: 702023
+      string: "Speak with Mattin and teleport together. Speak with Mattin again and defend him from attack."
+    - id: 702024
+      string: "\"It was an honor.\""
+    - id: 702025
+      string: "Speak with Mattin at the Sanctum Mysterium."
+    - id: 704001
+      string: "For Valor Above and Beyond"
+    - id: 704002
+      string: "\"Yes, sir.\""
+    - id: 704003
+      string: "Report to Dougal in Velika."
+    - id: 704004
+      string: "Give your report to Samael."
+    - id: 704005
+      string: "Bring Mattin's report to Garrison Commander Samael at Velika Headquarters."
+    - id: 704006
+      string: "Bring Mattin's report to Garrison Commander Samael at Velika Headquarters."
+    - id: 704007
+      string: "\"For the federation!\""
+    - id: 704008
+      string: "Receive Samael's reward in Velika."
+    - id: 704009
+      string: "Receive reward"
+    - id: 704010
+      string: "Receive reward from Samael at Velik's Steps"

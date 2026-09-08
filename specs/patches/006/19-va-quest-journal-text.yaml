@@ -1,0 +1,1756 @@
+# The quest journal's own labels live in QuestGroupList: the region name on each hunting
+# zone, the heading on each story group, and the per-quest label inside a group. The client
+# schema requires all three, so once this family is projected to the client whatever the
+# server holds is what a player reads, and the server rows carried Chinese and Russian text
+# where the shipped client carried English. These updates put the client's own text on the
+# server rows, so the projection changes memberships and nothing a player sees.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questHuntingZones:
+  update:
+    - id: 1
+      changes:
+        name: "{@Rgn:1001$$Ruinweald}"
+    - id: 2
+      changes:
+        name: "{@Rgn:2001$$Fey Forest}"
+    - id: 3
+      changes:
+        name: "{@Rgn:3001$$Oblivion Woods}"
+    - id: 4
+      changes:
+        name: "{@Rgn:4001$$Fyrmount}"
+    - id: 5
+      changes:
+        name: "{@Rgn:5001$$Tuwangi Mire}"
+    - id: 6
+      changes:
+        name: "{@Rgn:6001$$Valley of Titans}"
+    - id: 7
+      changes:
+        name: "{@Rgn:7001$$Celestial Hills}"
+    - id: 8
+      changes:
+        name: "{@Rgn:8001$$Hungry Caverns}"
+    - id: 9
+      changes:
+        name: "{@Rgn:9002$$Azarel's Labyrinth}"
+    - id: 10
+      changes:
+        name: "{@Rgn:10001$$Serpentis Isle}"
+    - id: 11
+      changes:
+        name: "{@Rgn:11005$$Pirate Grotto}"
+    - id: 12
+      changes:
+        name: "{@Rgn:12001$$Mistmoor Island}"
+    - id: 13
+      changes:
+        name: "{@Rgn:13001$$Island of Dawn}"
+    - id: 15
+      changes:
+        name: "{@Rgn:15001$$Cliffs of Insanity}"
+    - id: 16
+      changes:
+        name: "{@Rgn:16001$$Vale of the Fang}"
+    - id: 17
+      changes:
+        name: "{@Rgn:17001$$Paraanon Ravine}"
+    - id: 18
+      changes:
+        name: "{@Rgn:18001$$Colossal Ruins}"
+    - id: 19
+      changes:
+        name: "{@Rgn:19001$$Freeholds}"
+    - id: 20
+      changes:
+        name: "{@Rgn:20001$$Tenebrous Mines}"
+    - id: 21
+      changes:
+        name: "{@Rgn:21001$$Basilisk Crag}"
+    - id: 22
+      changes:
+        name: "{@Rgn:22001$$Eldritch Academy}"
+    - id: 23
+      changes:
+        name: "{@Rgn:23001$$Lake of Tears}"
+    - id: 24
+      changes:
+        name: "{@Rgn:24001$$Aurum Road}"
+    - id: 25
+      changes:
+        name: "{@Rgn:25001$$Dark Cathedral}"
+    - id: 26
+      changes:
+        name: "{@Rgn:26001$$Blessing Basin}"
+    - id: 27
+      changes:
+        name: "{@Rgn:27001$$Essenian Crest}"
+    - id: 28
+      changes:
+        name: "{@Rgn:28001$$Blightwood}"
+    - id: 29
+      changes:
+        name: "{@Rgn:29001$$Timeless Woods}"
+    - id: 30
+      changes:
+        name: "{@Rgn:30001$$Balder's Refuge}"
+    - id: 31
+      changes:
+        name: "{@Rgn:31001$$Tempest Reach}"
+    - id: 32
+      changes:
+        name: "{@Rgn:32001$$Mount Tyrannas}"
+    - id: 33
+      changes:
+        name: "{@Rgn:33001$$Citadel of Torment}"
+    - id: 34
+      changes:
+        name: "{@Rgn:34001$$Frost Reach}"
+    - id: 35
+      changes:
+        name: "{@Rgn:35001$$Wyrmgorge}"
+    - id: 36
+      changes:
+        name: "{@Rgn:36001$$Tor Exsul}"
+    - id: 37
+      changes:
+        name: "{@Rgn:37011$$Doomcrypt}"
+    - id: 38
+      changes:
+        name: "{@Rgn:38001$$Sienna Canyon}"
+    - id: 39
+      changes:
+        name: "{@Rgn:39001$$Arachnaea}"
+    - id: 40
+      changes:
+        name: "{@Rgn:40001$$Quarantine Zone}"
+    - id: 41
+      changes:
+        name: "{@Rgn:41001$$Feral Valley}"
+    - id: 42
+      changes:
+        name: "{@Rgn:42001$$Temple of Dagon}"
+    - id: 43
+      changes:
+        name: "{@Rgn:43001$$Cathuulrach}"
+    - id: 44
+      changes:
+        name: "{@Rgn:44001$$Ebonmaw}"
+    - id: 45
+      changes:
+        name: "{@Rgn:45001$$Thrallhold}"
+    - id: 46
+      changes:
+        name: "{@Rgn:46001$$The Three Towers}"
+    - id: 47
+      changes:
+        name: "{@Rgn:47001$$Tirkai Forest}"
+    - id: 48
+      changes:
+        name: "{@Rgn:48001$$Khanovar Front}"
+    - id: 49
+      changes:
+        name: "{@Rgn:49001$$Argonea}"
+    - id: 50
+      changes:
+        name: "{@Rgn:50001$$Granarkus}"
+    - id: 51
+      changes:
+        name: "{@Rgn:51001$$Vale of Spires}"
+    - id: 52
+      changes:
+        name: "{@Rgn:52001$$Plain of the Damned}"
+    - id: 53
+      changes:
+        name: "{@Rgn:53001$$Labyrinth of Terror}"
+    - id: 54
+      changes:
+        name: "{@Rgn:54001$$Seeliewood}"
+    - id: 55
+      changes:
+        name: "{@Rgn:55001$$Darkquaver Woods}"
+    - id: 56
+      changes:
+        name: "{@Rgn:56001$$Susurrus Woods}"
+    - id: 57
+      changes:
+        name: "{@Rgn:57001$$Amena Quatla}"
+    - id: 58
+      changes:
+        name: "{@Rgn:58001$$Balderon}"
+    - id: 59
+      changes:
+        name: "{@Rgn:59001$$Crescentia}"
+    - id: 60
+      changes:
+        name: "{@Rgn:60001$$Lumbertown}"
+    - id: 61
+      changes:
+        name: "{@Rgn:61001$$Castanica}"
+    - id: 62
+      changes:
+        name: "{@Rgn:62001$$Cutthroat Harbor}"
+    - id: 63
+      changes:
+        name: "{@Rgn:63001$$Velika}"
+    - id: 64
+      changes:
+        name: "{@Rgn:64001$$Abandoned Camp}"
+    - id: 65
+      changes:
+        name: "{@Rgn:65001$$Chebika}"
+    - id: 66
+      changes:
+        name: "{@Rgn:66001$$Tulufan}"
+    - id: 67
+      changes:
+        name: "{@Rgn:67001$$Popolion}"
+    - id: 68
+      changes:
+        name: "{@Rgn:68001$$Pora Elinu}"
+    - id: 69
+      changes:
+        name: "{@Rgn:69001$$Tralion}"
+    - id: 70
+      changes:
+        name: "{@Rgn:70001$$Tria}"
+    - id: 71
+      changes:
+        name: "{@Rgn:71001$$Unyielding Bastion}"
+    - id: 72
+      changes:
+        name: "{@Rgn:72001$$Allemantheia}"
+    - id: 73
+      changes:
+        name: "{@Rgn:73001$$Acarum}"
+    - id: 74
+      changes:
+        name: "{@Rgn:74001$$Elenea}"
+    - id: 75
+      changes:
+        name: "{@Rgn:75001$$Frontera}"
+    - id: 76
+      changes:
+        name: "{@Rgn:76001$$Kanstria}"
+    - id: 77
+      changes:
+        name: "{@Rgn:77001$$Pathfinder Post}"
+    - id: 78
+      changes:
+        name: "{@Rgn:78001$$Zulfikar Fortress}"
+    - id: 79
+      changes:
+        name: "{@Rgn:79001$$Habere}"
+    - id: 80
+      changes:
+        name: "{@Rgn:80001$$Dragonfall}"
+    - id: 81
+      changes:
+        name: "{@Rgn:81001$$Scythera Fae}"
+    - id: 83
+      changes:
+        name: "{@Rgn:83001$$Bleakrock}"
+    - id: 84
+      changes:
+        name: "{@Rgn:84001$$Kaiator}"
+    - id: 85
+      changes:
+        name: "{@Rgn:85001$$Davarn's Refuge}"
+    - id: 87
+      changes:
+        name: "{@Rgn:87001$$Ashen Hope}"
+    - id: 100
+      changes:
+        name: "Crafting Support"
+    - id: 101
+      changes:
+        name: "Your Masterful Support"
+    - id: 102
+      changes:
+        name: "{@Rgn:102001$$Wintera Snowfield}"
+    - id: 110
+      changes:
+        name: "{@Rgn:110$$Gridiron}"
+    - id: 111
+      changes:
+        name: "{@Rgn:111$$Coliseum}"
+    - id: 112
+      changes:
+        name: "{@Rgn:112$$Fraywind Canyon}"
+    - id: 113
+      changes:
+        name: "{@Rgn:113$$Champions' Skyring}"
+    - id: 114
+      changes:
+        name: "{@Rgn:114$$Arcadan Base (Old)}"
+    - id: 115
+      changes:
+        name: "{@Rgn:115$$Champions' Skyring}"
+    - id: 116
+      changes:
+        name: "{@Rgn:116$$Corsairs' Stronghold}"
+    - id: 117
+      changes:
+        name: "{@Rgn:117$$Kumasylum}"
+    - id: 118
+      changes:
+        name: "{@Rgn:118$$Kumas Royale}"
+    - id: 121
+      changes:
+        name: "Free Traders Territory"
+    - id: 122
+      changes:
+        name: "Enlightened Union Territory"
+    - id: 123
+      changes:
+        name: "Iron Order Territory"
+    - id: 151
+      changes:
+        name: "{@Rgn:9151001$$Noctenium Research Grounds}"
+    - id: 172
+      changes:
+        name: "{@Rgn:172001$$Mjusu Kraal}"
+    - id: 181
+      changes:
+        name: "{@Rgn:181001$$Ex Prima}"
+    - id: 182
+      changes:
+        name: "{@Rgn:182001$$Spring Valley}"
+    - id: 183
+      changes:
+        name: "{@Rgn:183002$$Hightwatch}"
+    - id: 191
+      changes:
+        name: "{@Rgn:19101$$Arx Umbra}"
+    - id: 207
+      changes:
+        name: "{@Rgn:7001$$Celestial Hills}"
+    - id: 213
+      changes:
+        name: "{@Rgn:13001$$Island of Dawn}"
+    - id: 223
+      changes:
+        name: "{@Rgn:23001$$Lake of Tears}"
+    - id: 248
+      changes:
+        name: "{@Rgn:48001$$Khanovar Front}"
+    - id: 249
+      changes:
+        name: "{@Rgn:49001$$Argonea}"
+    - id: 250
+      changes:
+        name: "{@Rgn:50001$$Granarkus}"
+    - id: 260
+      changes:
+        name: "{@Rgn:260$$Battleground}"
+    - id: 261
+      changes:
+        name: "{@Rgn:261$$Alliance}"
+    - id: 291
+      changes:
+        name: "{@Rgn:291$$Battleground}"
+    - id: 401
+      changes:
+        name: "{@Rgn:9001001$$Velika instance}"
+    - id: 402
+      changes:
+        name: "{@Rgn:9002001$$Blessing Basin instance}"
+    - id: 403
+      changes:
+        name: "{@Rgn:9003001$$Fyrmount instancee}"
+    - id: 404
+      changes:
+        name: "{@Rgn:9004001$$Glacial Expanse instance}"
+    - id: 405
+      changes:
+        name: "{@Rgn:9005001$$Two Remains instance}"
+    - id: 406
+      changes:
+        name: "{@Rgn:9006001$$Throne of Nightmares instance}"
+    - id: 407
+      changes:
+        name: "{@Rgn:9007001$$Unveil the Mask part 1}"
+    - id: 408
+      changes:
+        name: "{@Rgn:9008001$$Unveil the Mask part 2}"
+    - id: 411
+      changes:
+        name: "{@Rgn:9011001$$Blacksmith's Workshop}"
+    - id: 412
+      changes:
+        name: "{@Rgn:9012001$$Three Towers Spires}"
+    - id: 413
+      changes:
+        name: "{@Rgn:9013001$$Cyasma Spire}"
+    - id: 414
+      changes:
+        name: "{@Rgn:9014001$$Khanovar Gauntlet}"
+    - id: 415
+      changes:
+        name: "Prologue"
+    - id: 416
+      changes:
+        name: "Prologue"
+    - id: 417
+      changes:
+        name: "{@Rgn:9017001$$Lighthouse of the Sun}"
+    - id: 418
+      changes:
+        name: "{@Rgn:9018001$$Frontline Underground Tunnel}"
+    - id: 419
+      changes:
+        name: "{@Rgn:9019001$$Celestial Hills mission}"
+    - id: 420
+      changes:
+        name: "{@Rgn:9020001$$Valley of Titans instance}"
+    - id: 421
+      changes:
+        name: "{@Rgn:9021001$$Tenebrous Mines instance}"
+    - id: 422
+      changes:
+        name: "{@Rgn:9022001$$Colossal Ruins instance}"
+    - id: 423
+      changes:
+        name: "{@Rgn:9023001$$Azarel's Labyrinth instance}"
+    - id: 424
+      changes:
+        name: "{@Rgn:9024001$$Fane of Kaprima}"
+    - id: 425
+      changes:
+        name: "{@Rgn:9025001$$Balder's Temple}"
+    - id: 426
+      changes:
+        name: "{@Rgn:9026001$$Argon Corpus}"
+    - id: 427
+      changes:
+        name: "{@Rgn:9027001$$Manaya's Core}"
+    - id: 429
+      changes:
+        name: "{@Rgn:9029001$$Vault of Kaprima}"
+    - id: 431
+      changes:
+        name: "{@Rgn:9031001$Akasha's Trial}"
+    - id: 432
+      changes:
+        name: "{@Rgn:9032001$$Baracos' Trial}"
+    - id: 436
+      changes:
+        name: "{@Rgn:9036001$$Island of Dawn (Karascha)}"
+    - id: 437
+      changes:
+        name: "{@Rgn:9037001$$Island of Dawn (Protection)}"
+    - id: 438
+      changes:
+        name: "{@Rgn:9038001$$Mistmoor Island instance}"
+    - id: 439
+      changes:
+        name: "{@Rgn:9039001$$Cliffs of Insanity instance}"
+    - id: 443
+      changes:
+        name: "Wonderholme (Hard)"
+    - id: 450
+      changes:
+        name: "{@Rgn:9050007$$Rift's Edge (Hard)}"
+    - id: 453
+      changes:
+        name: "{@Rgn:9053001$$Kezzel's Gorge}"
+    - id: 454
+      changes:
+        name: "{@Rgn:9054001$$Bathysmal Rise (Hard)}"
+    - id: 455
+      changes:
+        name: "Ravenous Gorge"
+    - id: 456
+      changes:
+        name: "{@Rgn:905601$$Timescape (Hard)}"
+    - id: 457
+      changes:
+        name: "{@Rgn:9057$$Akeron's Inferno (Hard)}"
+    - id: 459
+      changes:
+        name: "{@Rgn:9059$$Forsaken Island}"
+    - id: 460
+      changes:
+        name: "{@Rgn:9060$$Kalivan's Dreadnaught (Hard)}"
+    - id: 466
+      changes:
+        name: "{@Rgn:9066$$Demon's Wheel}"
+    - id: 469
+      changes:
+        name: "{@Rgn:469001$$Imperial Lands—five decades ago}"
+    - id: 470
+      changes:
+        name: "{@Rgn:9070$$Manglemire}"
+    - id: 471
+      changes:
+        name: "{@Rgn:9071001$$Necromancer Tomb}"
+    - id: 472
+      changes:
+        name: "{@Rgn:9072001$$Golden Labyrinth}"
+    - id: 473
+      changes:
+        name: "{@Rgn:9073001$$Ebon Tower}"
+    - id: 474
+      changes:
+        name: "{@Rgn:9074001$$Accursed Animal instance}"
+    - id: 475
+      changes:
+        name: "{@Rgn:9075001$$Kelsaik's Nest}"
+    - id: 476
+      changes:
+        name: "{@Rgn:9076001$$Labyrinth of Terror}"
+    - id: 477
+      changes:
+        name: "{@Rgn:9077001$$Batu Desert}"
+    - id: 478
+      changes:
+        name: "{@Rgn:9078001$$Suryati's Peak}"
+    - id: 479
+      changes:
+        name: "{@Rgn:9079001$$Saravash's Ascent}"
+    - id: 480
+      changes:
+        name: "{@Rgn:9080001$$Sigil Adstringo}"
+    - id: 481
+      changes:
+        name: "{@Rgn:9081001$$Training Grounds}"
+    - id: 482
+      changes:
+        name: "{@Rgn:9082001$$Temple of Temerity}"
+    - id: 487
+      changes:
+        name: "{@Rgn:9087001$$Bastion of Lok}"
+    - id: 488
+      changes:
+        name: "{@Rgn:9088001$$Sinestral Manor}"
+    - id: 489
+      changes:
+        name: "{@Rgn:9089001$$Cultists' Refuge}"
+    - id: 490
+      changes:
+        name: "{@Rgn:9090001$$Fey Forest instance}"
+    - id: 491
+      changes:
+        name: "{@Rgn:9091001$$Eldritch Academy instance}"
+    - id: 492
+      changes:
+        name: "{@Rgn:9092001$$Temple of Dagon instance}"
+    - id: 493
+      changes:
+        name: "{@Rgn:9093001$$Akasha's Hideout}"
+    - id: 494
+      changes:
+        name: "{@Rgn:9094001$$Saleron's Sky Garden}"
+    - id: 496
+      changes:
+        name: "{@Rgn:9096001$$Sirjuka Gallery}"
+    - id: 505
+      changes:
+        name: "{@Rgn:505$$Ruined Velika Banquet}"
+    - id: 506
+      changes:
+        name: "{@Rgn:506$$Velika Banquet}"
+    - id: 507
+      changes:
+        name: "{@Rgn:507$$Dragon's Landing}"
+    - id: 508
+      changes:
+        name: "{@Rgn:508$$Soulscape}"
+    - id: 509
+      changes:
+        name: "{@Rgn:506$$Velika Banquet}"
+    - id: 510
+      changes:
+        name: "{@Rgn:510$$Amber Powder Madness}"
+    - id: 511
+      changes:
+        name: "{@Rgn:9811001$$The Abscess}"
+    - id: 528
+      changes:
+        name: "{@Rgn:84017$$Kaiator Headquarters}"
+    - id: 550
+      changes:
+        name: "Event Quest"
+    - id: 569
+      changes:
+        name: "{@Rgn:569001$$Castle Aranea (Solo)}"
+    - id: 599
+      changes:
+        name: "{@Rgn:827001$$Tiaran the Sorrow Tree}"
+    - id: 601
+      changes:
+        name: "Invalesco"
+    - id: 602
+      changes:
+        name: "{@Rgn:78001$$Zulfikar Fortress}"
+    - id: 603
+      changes:
+        name: "{@Rgn:76001$$Kanstria}"
+    - id: 604
+      changes:
+        name: "{@Rgn:71001$$Bastion}"
+    - id: 605
+      changes:
+        name: "Hands of Velika"
+    - id: 606
+      changes:
+        name: "Agnitor"
+    - id: 607
+      changes:
+        name: "Unified Theory Institute"
+    - id: 608
+      changes:
+        name: "Jax Trust"
+    - id: 609
+      changes:
+        name: "Vanguard Scout"
+    - id: 611
+      changes:
+        name: "{@Rgn:9711001$$The Abscess (Hard)}"
+    - id: 612
+      changes:
+        name: "Exodor Investigations"
+    - id: 613
+      changes:
+        name: "Anti-Amber Operations"
+    - id: 614
+      changes:
+        name: "Valkyon Health Service"
+    - id: 615
+      changes:
+        name: "Partner"
+    - id: 616
+      changes:
+        name: "Free Exodor"
+    - id: 617
+      changes:
+        name: "Exodor Justicar"
+    - id: 619
+      changes:
+        name: "Fishing"
+    - id: 620
+      changes:
+        name: "Songbird Event"
+    - id: 622
+      changes:
+        name: "Songbird Event"
+    - id: 628
+      changes:
+        name: "Songbird Event"
+    - id: 643
+      changes:
+        name: "{@Rgn:9043006$$Wonderholme}"
+    - id: 710
+      changes:
+        name: "{@Rgn:9710$$Broken Prison}"
+    - id: 711
+      changes:
+        name: "{@Rgn:9711001$$The Abscess}"
+    - id: 720
+      changes:
+        name: "{@Rgn:9720$$Antaroth's Abyss}"
+    - id: 724
+      changes:
+        name: "{@Rgn:9724001$$Fane of Kaprima}"
+    - id: 725
+      changes:
+        name: "{@Rgn:9725001$$Balder's Temple}"
+    - id: 726
+      changes:
+        name: "{@Rgn:9726001$$Argon Corpus}"
+    - id: 727
+      changes:
+        name: "{@Rgn:9727001$$Manaya's Core}"
+    - id: 735
+      changes:
+        name: "{@Rgn:9735$$RK-9 Kennel}"
+    - id: 739
+      changes:
+        name: "{@Rgn:9739$$Red Refuge}"
+    - id: 743
+      changes:
+        name: "Wonderholme (Normal)"
+    - id: 750
+      changes:
+        name: "{@Rgn:9050006$$Rift's Edge}"
+    - id: 754
+      changes:
+        name: "{@Rgn:9054009$$Bathysmal Rise}"
+    - id: 756
+      changes:
+        name: "{@Rgn:975601$$Timescape}"
+    - id: 759
+      changes:
+        name: "{@Rgn:9759$$Forsaken Island (Hard)}"
+    - id: 760
+      changes:
+        name: "{@Rgn:9760$$Kalivan's Dreadnaught}"
+    - id: 766
+      changes:
+        name: "Shattered Fleet"
+    - id: 773
+      changes:
+        name: "{@Rgn:9773001$$Ebon Tower (Hard)}"
+    - id: 775
+      changes:
+        name: "{@Rgn:9775001$$Kelsaik's Nest (Hard)}"
+    - id: 776
+      changes:
+        name: "{@Rgn:9776001$$Labyrinth of Terror (Hard)}"
+    - id: 777
+      changes:
+        name: "Channelworks"
+    - id: 780
+      changes:
+        name: "{@Rgn:9780$$Velik's Hidden Gate}"
+    - id: 781
+      changes:
+        name: "{@Rgn:9781$$Velik's Sanctuary}"
+    - id: 782
+      changes:
+        name: "{@Rgn:9782$$Grotto of Lost Souls}"
+    - id: 783
+      changes:
+        name: "{@Rgn:9783$$Dark Reach Citadel}"
+    - id: 793
+      changes:
+        name: "{@Rgn:9793001$$Akasha's Hideout (Hard)}"
+    - id: 794
+      changes:
+        name: "{@Rgn:9794$$Thaumetal Refinery}"
+    - id: 795
+      changes:
+        name: "Crucible of Fame"
+    - id: 801
+      changes:
+        name: "{@Rgn:9801001$$Nexus Traverse}"
+    - id: 808
+      changes:
+        name: "{@Rgn:9808001$$Sabex Armory}"
+    - id: 809
+      changes:
+        name: "{@Rgn:9809001$$Macellarius Catacombs}"
+    - id: 810
+      changes:
+        name: "{@Rgn:9810001$$Lakan's Prison}"
+    - id: 811
+      changes:
+        name: "{@Rgn:9811001$$The Abscess}"
+    - id: 813
+      changes:
+        name: "Ghillieglade"
+    - id: 814
+      changes:
+        name: "{@Rgn:9814001$$The Vault of Oriyn}"
+    - id: 818
+      changes:
+        name: "{@Rgn:818001$$Energia Celo}"
+    - id: 821
+      changes:
+        name: "Dakuryon's Sanctum"
+    - id: 822
+      changes:
+        name: "{@Rgn:9822001$$Bastion of Lok}"
+    - id: 823
+      changes:
+        name: "Sky Cruiser Intrepid"
+    - id: 825
+      changes:
+        name: "Balder's Temple (Solo)"
+    - id: 827
+      changes:
+        name: "{@Rgn:827001$$Stepstone Isle}"
+    - id: 828
+      changes:
+        name: "{@Rgn:828001$$Shadetree}"
+    - id: 829
+      changes:
+        name: "{@Rgn:829001$$Tiaran the Sorrow Tree}"
+    - id: 830
+      changes:
+        name: "{@Rgn:9830001$$Celestial Arena (Solo)}"
+    - id: 833
+      changes:
+        name: "{@Rgn:833$$Wyrmgorge}"
+    - id: 860
+      changes:
+        name: "{@Rgn:9860$$Kalivan's Challenge}"
+    - id: 871
+      changes:
+        name: "{@Rgn:9871001$$Necromancer Tomb (Solo)}"
+    - id: 872
+      changes:
+        name: "{@Rgn:9872001$$Golden Labyrinth (Solo)}"
+    - id: 873
+      changes:
+        name: "{@Rgn:9873001$$Ebon Tower (Solo)}"
+    - id: 885
+      changes:
+        name: "{@Rgn:9885001$$Dreadspire}"
+    - id: 887
+      changes:
+        name: "{@Rgn:9887001$$Bastion of Lok (Solo)}"
+    - id: 888
+      changes:
+        name: "{@Rgn:9888001$$Sinestral Manor (Solo)}"
+    - id: 889
+      changes:
+        name: "{@Rgn:9889001$$Cultists' Refuge (Solo)}"
+    - id: 901
+      changes:
+        name: "Bellicarium"
+    - id: 909
+      changes:
+        name: "Iron Battleground"
+    - id: 916
+      changes:
+        name: "{@Rgn:9916001$$Sky Cruiser Endeavor}"
+    - id: 920
+      changes:
+        name: "{@Rgn:9920$$Antaroth's Abyss (Hard)}"
+    - id: 935
+      changes:
+        name: "{@Rgn:9935$$RK-9 Kennel (Hard)}"
+    - id: 939
+      changes:
+        name: "{@Rgn:9939$$Red Refuge (Hard)}"
+    - id: 950
+      changes:
+        name: "{@Rgn:950001$$Harrowhold}"
+    - id: 979
+      changes:
+        name: "{@Rgn:9979001$$Saravash's Ascent}"
+    - id: 980
+      changes:
+        name: "{@Rgn:9980$$Velik's Fallen Gate}"
+    - id: 981
+      changes:
+        name: "{@Rgn:9981$$Velik's Sanctuary (Hard)}"
+    - id: 982
+      changes:
+        name: "{@Rgn:9982$$Grotto of Lost Souls (Hard)}"
+    - id: 983
+      changes:
+        name: "{@Rgn:9983$$Dark Reach Citadel (Hard)}"
+    - id: 994
+      changes:
+        name: "{@Rgn:9994$$Thaumetal Refinery (Hard)}"
+    - id: 1022
+      changes:
+        name: "Operation: Overwatch"
+    - id: 1023
+      changes:
+        name: "Event"
+    - id: 2000
+      changes:
+        name: "{@Rgn:2000000$$Rogash's Garden}"
+    - id: 2001
+      changes:
+        name: "{@Rgn:2000001$$Exodor Farmlands}"
+    - id: 2002
+      changes:
+        name: "{@Rgn:2000002$$Iridian Wetlands}"
+    - id: 2003
+      changes:
+        name: "{@Rgn:2000003$$Verrak Fortress}"
+    - id: 2100
+      changes:
+        name: "{@Rgn:2100001$$Inside Rogash's Sanctuary}"
+    - id: 2101
+      changes:
+        name: "{@Rgn:2101001$$Larvae Hatchery}"
+    - id: 2102
+      changes:
+        name: "{@Rgn:2102001$$Interrogation Center}"
+    - id: 2103
+      changes:
+        name: "{@Rgn:2103001$$Black Core Engine Room}"
+    - id: 3001
+      changes:
+        name: "{@Rgn:3001001$$Bastion of Lok (Solo)}"
+    - id: 3002
+      changes:
+        name: "{@Rgn:3002001$$Sinestral Manor (Solo)}"
+    - id: 3003
+      changes:
+        name: "{@Rgn:3003001$$Cultists' Refuge (Solo)}"
+    - id: 3004
+      changes:
+        name: "{@Rgn:3004001$$Necromancer Tomb (Solo)}"
+    - id: 3005
+      changes:
+        name: "{@Rgn:3005001$$Golden Labyrinth (Solo)}"
+    - id: 3006
+      changes:
+        name: "{@Rgn:3006001$$Akasha's Hideout (Solo)}"
+    - id: 3007
+      changes:
+        name: "{@Rgn:3007001$$Saleron's Sky Garden (Solo)}"
+    - id: 3008
+      changes:
+        name: "{@Rgn:3008001$$Labyrinth of Terror (Solo)}"
+    - id: 3009
+      changes:
+        name: "{@Rgn:3009001$$Ebon Tower (Solo)}"
+    - id: 3010
+      changes:
+        name: "{@Rgn:3010001$$Kelsaik's Nest (Solo)}"
+    - id: 3011
+      changes:
+        name: "{@Rgn:3011001$$Manaya's Core (Solo)}"
+    - id: 3017
+      changes:
+        name: "{@Rgn:3017$$Antaroth's Abyss (7-person)}"
+    - id: 3018
+      changes:
+        name: "{@Rgn:3018$$Dark Reach Citadel (7-person)}"
+    - id: 3019
+      changes:
+        name: "{@Rgn:3019$$Grotto of Lost Souls (7-person)}"
+    - id: 3023
+      changes:
+        name: "{@Rgn:3023$$Verrak Fortress}"
+    - id: 3024
+      changes:
+        name: "{@Rgn:10230001$$Azart Hatchery (Solo)}"
+    - id: 3025
+      changes:
+        name: "{@Rgn:10230002$$Azart Hatchery}"
+    - id: 3026
+      changes:
+        name: "{@Rgn:3026$$Corrupted Skynest}"
+    - id: 3027
+      changes:
+        name: "{@Rgn:3027$$Forbidden Arena}"
+    - id: 3101
+      changes:
+        name: "{@Rgn:3101$$Gossamer Vault}"
+    - id: 3201
+      changes:
+        name: "{@Rgn:3201$$Gossamer Vault (Hard)}"
+    - id: 8000
+      changes:
+        name: "Valkyon Federation Initiative Letter"
+    - id: 9997
+      changes:
+        name: "Vanguard Initiative"
+    - id: 9999
+      changes:
+        name: "Vanguard Initiative"
+
+questStoryGroups:
+  update:
+    - id: 0
+      changes:
+        name: "Prologue"
+    - id: 1
+      changes:
+        name: "The World of TERA"
+    - id: 2
+      changes:
+        name: "To the Tainted Gorge"
+    - id: 3
+      changes:
+        name: "Stepstone Isle"
+    - id: 4
+      changes:
+        name: "Valkyon Wants You"
+    - id: 5
+      changes:
+        name: "Cultists' Conspiracy"
+    - id: 6
+      changes:
+        name: "Insanity Epidemic"
+    - id: 7
+      changes:
+        name: "Phantom Menace"
+    - id: 8
+      changes:
+        name: "Apparition of the False Lok"
+    - id: 9
+      changes:
+        name: "Allemantheia"
+    - id: 10
+      changes:
+        name: "Kaidun"
+    - id: 11
+      changes:
+        name: "Fraya's Fury"
+    - id: 13
+      changes:
+        name: "Danger in Kaiator"
+    - id: 14
+      changes:
+        name: "Hope and Anguish"
+    - id: 15
+      changes:
+        name: "Harbinger of Annihilation"
+    - id: 16
+      changes:
+        name: "From the Ashes"
+    - id: 19
+      changes:
+        name: "The Vanguard Initiative"
+    - id: 20
+      changes:
+        name: "Savage Reach"
+    - id: 21
+      changes:
+        name: "Spring Valley"
+    - id: 22
+      changes:
+        name: "Ex Prima"
+    - id: 23
+      changes:
+        name: "Arx Umbra"
+    - id: 24
+      changes:
+        name: "Argon War"
+    - id: 26
+      changes:
+        name: "Island of Dawn"
+    - id: 27
+      changes:
+        name: "[Solo] A New Beginning"
+    - id: 28
+      changes:
+        name: "[Apex] The Two Banquets"
+    - id: 30
+      changes:
+        name: "[Important] The Nightmare Begins"
+    - id: 550
+      changes:
+        name: "Warrior's Journey"
+    - id: 618
+      changes:
+        name: "[Important] Kaia's Gift"
+    - id: 997
+      changes:
+        name: "Hero's Challenge"
+    - id: 998
+      changes:
+        name: "Through Enemy Eyes"
+    - id: 2000
+      changes:
+        name: "[Important] Exodor"
+    - id: 2901
+      changes:
+        name: "Pocket Tab Storage"
+    - id: 7005
+      changes:
+        name: "[Dungeon] For the Federation!"
+    - id: 7006
+      changes:
+        name: "[Fishing] Fishing Association"
+    - id: 7007
+      changes:
+        name: "Forgotten Tales"
+    - id: 7008
+      changes:
+        name: "Forgotten Tales"
+    - id: 7009
+      changes:
+        name: "[Important] Companions and Partners"
+    - id: 7010
+      changes:
+        name: "[Battleground] To the Battlegrounds"
+    - id: 7011
+      changes:
+        name: "[Festival] Festival of the Sun"
+    - id: 7012
+      changes:
+        name: "[Festival] Banquet of Blood"
+    - id: 7013
+      changes:
+        name: "[Festival] Beach Party"
+    - id: 7021
+      changes:
+        name: "[Festival] Rootstock"
+    - id: 7022
+      changes:
+        name: "[Festival] Pond Faire"
+  upsertQuests:
+    - storyGroupId: 0
+      quests:
+        - id: 41501
+          dec: "Reach the Beach"
+        - id: 41502
+          dec: "Reach the Beach"
+        - id: 41503
+          dec: "Reach the Beach"
+        - id: 41504
+          dec: "Reach the Beach"
+        - id: 41505
+          dec: "Reach the Beach"
+        - id: 41506
+          dec: "Reach the Beach"
+        - id: 41507
+          dec: "Reach the Beach"
+        - id: 41508
+          dec: "Reach the Beach"
+        - id: 41510
+          dec: "The Prologue Ends"
+    - storyGroupId: 1
+      quests:
+        - id: 1301
+          dec: "Dawn's Early Light"
+        - id: 1304
+          dec: "Making the Rounds"
+        - id: 1371
+          dec: "Warrior Training"
+        - id: 1372
+          dec: "Lancer Training"
+        - id: 1373
+          dec: "Slayer Training"
+        - id: 1374
+          dec: "Berserker Training"
+        - id: 1375
+          dec: "Archer Training"
+        - id: 1376
+          dec: "Sorcerer Training"
+        - id: 1377
+          dec: "Priest Training"
+        - id: 1378
+          dec: "Mystic Training"
+        - id: 1379
+          dec: "Gunner Training"
+        - id: 1303
+          dec: "The Secret Life of Trees"
+        - id: 1329
+          dec: "Going Above and Beyond"
+        - id: 1384
+          dec: "Getting to Know the Garrison"
+        - id: 1382
+          dec: "Gathering Your Strength"
+        - id: 1383
+          dec: "Gathering Your Strength"
+        - id: 1331
+          dec: "Climbing through the Ranks"
+        - id: 1305
+          dec: "A Clue In the Dark"
+    - storyGroupId: 2
+      quests:
+        - id: 1311
+          dec: "Redeployment"
+        - id: 1309
+          dec: "Acharak Attacks"
+        - id: 1313
+          dec: "Into the Gorge"
+        - id: 1350
+          dec: "Strange Attractors"
+        - id: 1315
+          dec: "Putting the Pieces Together"
+        - id: 1316
+          dec: "Dark Revelations"
+        - id: 1317
+          dec: "Ride Off Into the Sunset"
+    - storyGroupId: 3
+      quests:
+        - id: 59901
+          dec: "To Help by Gathering"
+        - id: 59902
+          dec: "To Soothe a Crying Child"
+        - id: 59903
+          dec: "To Protect the Sorrow Tree"
+        - id: 59904
+          dec: "To Stop the Ghilliedhus"
+        - id: 59905
+          dec: "In the Name of Science"
+        - id: 59906
+          dec: "To Protect the Innocent"
+        - id: 59907
+          dec: "In Search of Lost Children"
+        - id: 59908
+          dec: "To Restore Nature"
+        - id: 59909
+          dec: "For Anya's Sake"
+        - id: 59912
+          dec: "For Valorous Service"
+        - id: 59910
+          dec: "For the Children"
+        - id: 59911
+          dec: "For the Federation!"
+    - storyGroupId: 4
+      quests:
+        - id: 6359
+          dec: "Brand New Support"
+        - id: 6305
+          dec: "Joining the Ranks"
+        - id: 303
+          dec: "Isolated Town"
+        - id: 301
+          dec: "Devan Uprising"
+        - id: 304
+          dec: "Find the Captain"
+        - id: 305
+          dec: "To the Devan Encampment"
+        - id: 306
+          dec: "Sinister Ritual"
+        - id: 302
+          dec: "Pulling Back the Veil"
+    - storyGroupId: 5
+      quests:
+        - id: 602
+          dec: "The Force Behind the Devans"
+        - id: 603
+          dec: "Going on the Offensive"
+        - id: 604
+          dec: "From the Mouths of Scions"
+        - id: 605
+          dec: "Some Gave All"
+        - id: 48701
+          dec: "Once More unto the Breach"
+        - id: 606
+          dec: "For Valor Above and Beyond"
+    - storyGroupId: 6
+      quests:
+        - id: 1506
+          dec: "Circle the Wagons"
+        - id: 1507
+          dec: "Plague Hunt"
+        - id: 1508
+          dec: "Dementalith"
+        - id: 1509
+          dec: "Contagious Mastermind"
+        - id: 1510
+          dec: "Blood Will Always Tell"
+        - id: 1511
+          dec: "Watcher of the Manor"
+        - id: 1504
+          dec: "A Manor Invasion"
+        - id: 1505
+          dec: "Discredit Where Credit Is Due"
+    - storyGroupId: 7
+      quests:
+        - id: 2001
+          dec: "Revelation of the Goddess"
+        - id: 2002
+          dec: "These Aren't the Weapons We're Looking For"
+        - id: 2003
+          dec: "The Mystery Deepens"
+        - id: 901
+          dec: "Federation Traitor"
+        - id: 902
+          dec: "Sic Semper Proditores"
+        - id: 903
+          dec: "Relic of a Bygone Age"
+        - id: 904
+          dec: "The Fall of the Betrayer"
+    - storyGroupId: 8
+      quests:
+        - id: 4701
+          dec: "Cleansing Tirkai"
+        - id: 4703
+          dec: "Abandoned Argon Base"
+        - id: 2501
+          dec: "Secrets Not Meant to Be Known"
+        - id: 2502
+          dec: "A Race through Dark Places"
+        - id: 2503
+          dec: "Dark Dreams Sundered"
+        - id: 2505
+          dec: "The Guardian of Velika"
+    - storyGroupId: 9
+      quests:
+        - id: 2701
+          dec: "The Desert Jewel"
+        - id: 2702
+          dec: "Rotten to the Core"
+        - id: 2801
+          dec: "Visions of Destiny"
+    - storyGroupId: 10
+      quests:
+        - id: 3101
+          dec: "The Traitor of Acarum"
+        - id: 3102
+          dec: "Where's Kaidun?"
+        - id: 3103
+          dec: "Freeing Kaidun"
+    - storyGroupId: 11
+      quests:
+        - id: 7205
+          dec: "Clue of Hope"
+        - id: 4001
+          dec: "Fraya's Fury"
+        - id: 3901
+          dec: "Unveil the Mask"
+        - id: 4503
+          dec: "Building a Mysterium"
+        - id: 801
+          dec: "Whereabouts of the Core"
+        - id: 401
+          dec: "Rescue the Core"
+        - id: 804
+          dec: "Fraya's Faith"
+        - id: 49301
+          dec: "Search and Destroy"
+        - id: 49302
+          dec: "Purging the Plague"
+    - storyGroupId: 13
+      quests:
+        - id: 5501
+          dec: "The Gauntlet Thrown Down"
+        - id: 5502
+          dec: "The Indomitable Spirit"
+        - id: 5601
+          dec: "Drowned In Blood"
+        - id: 5602
+          dec: "Sikander's Bane"
+    - storyGroupId: 14
+      quests:
+        - id: 3704
+          dec: "The Imprisoned God"
+        - id: 3705
+          dec: "Test of the God"
+        - id: 3702
+          dec: "Fragment of Hope"
+        - id: 4601
+          dec: "The Three Towers"
+        - id: 4602
+          dec: "Sole Survivor"
+    - storyGroupId: 15
+      quests:
+        - id: 5201
+          dec: "Into the Furnace"
+        - id: 5202
+          dec: "Labyrinth of Terror"
+        - id: 5203
+          dec: "Materials for Miracles"
+        - id: 5204
+          dec: "Thulsa's Doom"
+        - id: 5205
+          dec: "The Harbinger of Annihilation"
+    - storyGroupId: 16
+      quests:
+        - id: 8701
+          dec: "Called to Serve"
+        - id: 8702
+          dec: "The Ash Princess"
+        - id: 8703
+          dec: "Picking up the Pieces"
+        - id: 8704
+          dec: "Secret of the Red Seal"
+        - id: 8705
+          dec: "Take the Fight to Them"
+        - id: 8706
+          dec: "Those Who Sow the Wind..."
+        - id: 8707
+          dec: "Reap the Whirlwind"
+        - id: 8708
+          dec: "Rise from the Ashes"
+        - id: 8709
+          dec: "New Member of the Federation"
+    - storyGroupId: 19
+      quests:
+        - id: 17216
+          dec: "A New Threat"
+        - id: 17217
+          dec: "Confident Support"
+        - id: 17201
+          dec: "Supplies and Demands"
+        - id: 17202
+          dec: "Checked Baggage"
+        - id: 17203
+          dec: "Worse than the Disease..."
+        - id: 17204
+          dec: "The Sky Cruiser"
+        - id: 17205
+          dec: "An Army Travels on its Stomach"
+        - id: 17206
+          dec: "In-Flight Entertainment"
+        - id: 17207
+          dec: "The Battle for Intrepid"
+    - storyGroupId: 20
+      quests:
+        - id: 17208
+          dec: "Rough Landing"
+        - id: 17209
+          dec: "Augurs and Omens"
+        - id: 17210
+          dec: "Trials and Errors"
+        - id: 17211
+          dec: "The Valley of the Guwangi"
+        - id: 17212
+          dec: "The Dangers of Diplomacy"
+        - id: 17213
+          dec: "Mechanically Inclined"
+        - id: 17214
+          dec: "The Not-So-Great Escape"
+    - storyGroupId: 21
+      quests:
+        - id: 18201
+          dec: "Barreling In"
+        - id: 18202
+          dec: "Intercepted Transmission"
+        - id: 18203
+          dec: "In Search of Answers"
+        - id: 18204
+          dec: "Closer to the Truth"
+        - id: 18205
+          dec: "Lucky Charms"
+        - id: 18206
+          dec: "Weird Science"
+        - id: 18207
+          dec: "Stick with It"
+        - id: 18208
+          dec: "Not FDA-Approved"
+        - id: 18209
+          dec: "One Step Forward"
+        - id: 18210
+          dec: "Birthplace of Knowledge"
+        - id: 18211
+          dec: "Need to Know"
+        - id: 18212
+          dec: "One Price Left to Pay"
+    - storyGroupId: 22
+      quests:
+        - id: 18101
+          dec: "I Bring Bad Tidings"
+        - id: 18102
+          dec: "How Does This Work?"
+        - id: 18103
+          dec: "Stairway to Wisdom"
+        - id: 18104
+          dec: "Harrier and Harrier"
+        - id: 18105
+          dec: "Little Lost Lambs"
+        - id: 18106
+          dec: "Unforeseen Effects"
+        - id: 18107
+          dec: "Ritual of Solace"
+        - id: 18108
+          dec: "Non Compos Mentis"
+        - id: 18109
+          dec: "It's All Relative"
+        - id: 18110
+          dec: "Evade and Escape"
+        - id: 18111
+          dec: "Trash and Treasure"
+        - id: 18112
+          dec: "Zo-Zo's Petals"
+        - id: 18113
+          dec: "Narrowing the Search"
+        - id: 18114
+          dec: "The Search for Truth"
+        - id: 18115
+          dec: "Moment of Truth"
+        - id: 18116
+          dec: "Secret of the Storm Barrier"
+        - id: 18117
+          dec: "Tragedy and Triumph"
+        - id: 18118
+          dec: "War Is Nigh"
+    - storyGroupId: 23
+      quests:
+        - id: 19101
+          dec: "Playing Catch-Up"
+        - id: 19102
+          dec: "Parts are Parts"
+        - id: 19103
+          dec: "A Heavy Burden"
+        - id: 19104
+          dec: "Pulling the Strings"
+        - id: 19105
+          dec: "Unravelling the Mystery"
+        - id: 19106
+          dec: "Shut the Front Door"
+        - id: 19107
+          dec: "Having a Blast"
+        - id: 19108
+          dec: "Have Fun Storming the Castle"
+        - id: 19109
+          dec: "Into the Fortress"
+        - id: 19110
+          dec: "Never Let Go"
+        - id: 19111
+          dec: "In Pursuit of Justice"
+        - id: 19112
+          dec: "The Reckoning"
+    - storyGroupId: 24
+      quests:
+        - id: 4803
+          dec: "War Veteran"
+        - id: 4801
+          dec: "Fire for Effect"
+        - id: 4804
+          dec: "Battlewounds"
+        - id: 4802
+          dec: "The Goddess of War"
+        - id: 4901
+          dec: "Into the Heart of Darkness"
+        - id: 4902
+          dec: "Cyasma Spire"
+        - id: 5001
+          dec: "Finding the Flame"
+        - id: 5002
+          dec: "An End to War"
+    - storyGroupId: 27
+      quests:
+        - id: 50533
+          dec: "[Solo] A Gift for the Goddess"
+        - id: 50534
+          dec: "[Solo] The Missing Supplier"
+        - id: 50535
+          dec: "[Solo] The Celestial Warrior"
+        - id: 50536
+          dec: "[Solo] Olivung's Beginner Cooking Class"
+        - id: 50537
+          dec: "[Solo] Olivung's Intermediate Cooking Class"
+        - id: 50538
+          dec: "[Solo] Olivung's Expert Cooking Class"
+        - id: 50539
+          dec: "[Solo] The Melancholy of a Designer"
+        - id: 50540
+          dec: "[Solo] Need a Rest"
+        - id: 50541
+          dec: "[Solo] The Finest Fireworks"
+        - id: 50532
+          dec: "[Solo] Time Distortions"
+    - storyGroupId: 28
+      quests:
+        - id: 50501
+          dec: "[Apex] Velika Banquet"
+        - id: 50502
+          dec: "[Apex] Uninvited Guests"
+        - id: 50511
+          dec: "[Apex] 72 Hours Earlier"
+        - id: 50512
+          dec: "[Apex] Impending Doom"
+        - id: 50525
+          dec: "[Apex] Following the Followers"
+        - id: 50526
+          dec: "[Apex] Between Worlds"
+        - id: 50527
+          dec: "[Apex] Temper"
+        - id: 50528
+          dec: "[Apex] Self-Doubt"
+        - id: 50529
+          dec: "[Apex] Guilt"
+        - id: 50530
+          dec: "[Apex] Awakened"
+        - id: 50531
+          dec: "[Apex] One More Time"
+    - storyGroupId: 30
+      quests:
+        - id: 50601
+          dec: "[Important] Velik's Dream"
+        - id: 50602
+          dec: "[Important] Ill Deeds by Twilight"
+        - id: 50603
+          dec: "[Important] The Crash"
+        - id: 6000
+          dec: "[Important] Devastated Villagers"
+        - id: 6001
+          dec: "[Important] The Secret Weapon"
+        - id: 6002
+          dec: "[Important] Bringing Down Exodor"
+    - storyGroupId: 618
+      quests:
+        - id: 61801
+          dec: "The Way to Exodor"
+    - storyGroupId: 2000
+      quests:
+        - id: 200001
+          dec: "The Way to Exodor"
+        - id: 200002
+          dec: "Exploring Exodor"
+        - id: 200003
+          dec: "The Rescue"
+        - id: 200101
+          dec: "Help from a Stranger"
+        - id: 200102
+          dec: "Secret of the Crystals"
+        - id: 200103
+          dec: "The Attack"
+        - id: 200201
+          dec: "The Cure"
+        - id: 200202
+          dec: "Rescue Mission"
+        - id: 200203
+          dec: "Pursuit"
+        - id: 200301
+          dec: "To the Fortress"
+        - id: 200302
+          dec: "Search for the Engine Room"
+        - id: 200303
+          dec: "Engine Shutdown"
+        - id: 200304
+          dec: "The Hero Returns"
+        - id: 200305
+          dec: "Exodor Advance Base"
+    - storyGroupId: 2901
+      quests:
+        - id: 2950
+          dec: "Getty's Invention"
+    - storyGroupId: 7005
+      quests:
+        - id: 6364
+          dec: "[Dungeon - 446] Velik's Hold"
+        - id: 6365
+          dec: "[Dungeon - 446] Velik's Sanctuary"
+        - id: 17222
+          dec: "[Dungeon - 453] RK-9 Kennel"
+        - id: 4150
+          dec: "[Dungeon - 453] Red Refuge"
+        - id: 4151
+          dec: "[Dungeon - 456] Antaroth's Abyss"
+        - id: 5640
+          dec: "[Dungeon - 456] Grotto of Lost Souls"
+        - id: 6140
+          dec: "[Dungeon - 461] Bahaar's Sanctum"
+        - id: 310101
+          dec: "[Dungeon - 456] Dawn of the Butterflies"
+        - id: 310102
+          dec: "[Dungeon - 456] Gossamer Vault"
+        - id: 302301
+          dec: "[Dungeon - 456] Verrak Fortress"
+        - id: 302302
+          dec: "[Dungeon - 456] Verrak Fortress"
+        - id: 302601
+          dec: "[Dungeon - 461] Corrupted Skynest"
+        - id: 302701
+          dec: "[Dungeon - 461] Forbidden Arena"
+    - storyGroupId: 7006
+      quests:
+        - id: 61901
+          dec: "[Fishing] Fishing! Like It?"
+        - id: 61902
+          dec: "[Fishing] Let's Cook Some Fish"
+        - id: 61903
+          dec: "[Fishing] Let's Sell Some Fish"
+        - id: 61904
+          dec: "[Fishing] Way of the Angler"
+        - id: 61905
+          dec: "[Fishing] Totally Safe. Totally."
+        - id: 61906
+          dec: "[Fishing] Catch a Giant Blue"
+        - id: 61907
+          dec: "[Fishing] Something Fishy This Way Comes"
+        - id: 61908
+          dec: "[Fishing] Fishy Frittery Goodness"
+        - id: 61909
+          dec: "[Fishing] Big-Ass Fish Story"
+        - id: 61910
+          dec: "[Fishing] Legendary Angler"
+        - id: 61911
+          dec: "[Fishing] Casting for Gold"
+        - id: 61912
+          dec: "[Fishing] When It's Time To Relax I"
+        - id: 61913
+          dec: "[Fishing] When It's Time To Relax II"
+        - id: 61914
+          dec: "[Fishing] Octopus's Garden Salad"
+    - storyGroupId: 7007
+      quests:
+        - id: 18352
+          dec: "[Valkyrie] Omeros's Request"
+        - id: 118302
+          dec: "[Valkyrie] A New Story"
+    - storyGroupId: 7008
+      quests:
+        - id: 18353
+          dec: "Dusty Tome"
+        - id: 118301
+          dec: "Old Book"
+    - storyGroupId: 7010
+      quests:
+        - id: 18377
+          dec: "[Battleground] Road to Triumph"
+        - id: 18378
+          dec: "[Battleground] To the Gridiron"
+    - storyGroupId: 7011
+      quests:
+        - id: 70101
+          dec: "[Event] Holy Responsibilities"
+        - id: 70102
+          dec: "[Event] Attending Services"
+        - id: 70103
+          dec: "[Event] Keep the Fires Burning"
+        - id: 70104
+          dec: "[Event] Ice to Meet You"
+        - id: 70105
+          dec: "[Event—Daily] Combating Sloth"
+        - id: 70106
+          dec: "[Event—Daily] Taking Out the Trash"
+        - id: 70107
+          dec: "[Event—Daily] Dust Never Sleeps"
+        - id: 70108
+          dec: "[Event—Daily] Icing on the Cake"
+        - id: 70109
+          dec: "[Event—Daily] Skyrockets in Flight"
+    - storyGroupId: 7012
+      quests:
+        - id: 70111
+          dec: "[Event] Carnival of Carnivores"
+        - id: 70112
+          dec: "[Event—Daily] Off the Menu"
+        - id: 70113
+          dec: "[Event—Daily] The Party's Over"
+        - id: 70114
+          dec: "[Event—Daily] The Party. Is. Over."
+    - storyGroupId: 7013
+      quests:
+        - id: 70115
+          dec: "[Event] Life's a Beach"
+        - id: 70116
+          dec: "[Event] Would You Like to Play a Game"
+        - id: 70117
+          dec: "[Event—Daily] Splash Cannon"
+        - id: 70118
+          dec: "[Event—Daily] Blind Melon Bash"
+        - id: 70119
+          dec: "[Event—Daily] Sand Castles in the Sand"
+        - id: 70120
+          dec: "[Event—Daily] The Horn Carver's Concerns"
+        - id: 70121
+          dec: "[Event—Daily] Beauty at the Beach"
+        - id: 70122
+          dec: "[Event] Ramsay's New Hobby"
+    - storyGroupId: 7021
+      quests:
+        - id: 70201
+          dec: "[Rootstock] Going to the Fair"
+        - id: 70202
+          dec: "[Rootstock] Get Back to Your Roots"
+        - id: 70203
+          dec: "[Rootstock] Create a Farmer's Almanac"
+        - id: 70204
+          dec: "[Rootstock] Down on the Farm"
+        - id: 70205
+          dec: "[Rootstock-Daily] Dish Delivery"
+        - id: 70206
+          dec: "[Rootstock-Daily] Kick-Bale"
+        - id: 70207
+          dec: "[Rootstock-Daily] Sheep Herding"
+        - id: 70208
+          dec: "[Rootstock-Daily] Ranch Management"
+        - id: 70209
+          dec: "[Rootstock-Daily] Higgledy-Piggledy"
+        - id: 70219
+          dec: "[Rootstock] Freeholds Special Blend"
+        - id: 70220
+          dec: "[Rootstock-Daily] Freeholds Special Blend"
+    - storyGroupId: 7022
+      quests:
+        - id: 70211
+          dec: "[Pond Faire] Pond Life"
+        - id: 70212
+          dec: "[Pond Faire] Prepare for the Faire"
+        - id: 70213
+          dec: "[Pond Faire] Lilies and Drums"
+        - id: 70214
+          dec: "[Pond Faire] Hide-n-Seek"
+        - id: 70215
+          dec: "[Pond Faire—Daily] Slay the Dragons"
+        - id: 70216
+          dec: "[Pond Faire—Daily] Drumline"
+        - id: 70217
+          dec: "[Pond Faire—Daily] Floral Attraction"
+        - id: 70218
+          dec: "[Pond Faire—Daily] And the Beat Goes On"

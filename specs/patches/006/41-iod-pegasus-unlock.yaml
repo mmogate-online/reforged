@@ -1,0 +1,47 @@
+# Reopen the pegasus flight from the Island of Dawn to the mainland. It was grounded,
+# and quest 1317 re-terminated on the island, while the mainland stayed closed. The
+# quest port in this patch restores 1317's classic body, whose last task stands in
+# Velika, so the flight has to carry a player there or the quest cannot be finished.
+#
+# Two pieces are left once the quest itself is classic again: the villager binding that
+# opens the flight window and its map icon, and the flight manager's own line, which
+# still tells the player the routes are closed. Her dialog record is restated whole
+# because an upsert replaces the text list, so the silent text 99 is stated beside the
+# one being changed rather than dropped.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 213
+      npcTemplateId: 1016
+      guideEffectId: 106
+      menus:
+        - type: Pegasus
+          id: 13
+
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 213
+      id: 1016
+      voiceTypeId: 49
+      texts:
+        - id: 1
+          huntingZoneId: 213
+          prevId: 0
+          villagerId: 1016
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Your orders, please.<BR><BR>(If you're level 10 or higher, you can take the pegasus to Velika.)"
+        - id: 99
+          huntingZoneId: 213
+          prevId: 0
+          villagerId: 1016
+          endSocial: 14
+          pages:
+            - social: 4

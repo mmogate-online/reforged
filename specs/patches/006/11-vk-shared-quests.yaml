@@ -1,0 +1,2175 @@
+# Classic quest bodies for the Velika quests the live server also carries, restated
+# whole from the classic data: header, requirements, trigger and every task. The quest
+# file is deleted first, by the reset spec that runs ahead of these, then built again
+# here. An update cannot reach the whole difference: there is no spelling that clears a
+# header value or a task item bag the classic file leaves empty, so the live value
+# would survive. Each quest's briefing dialog is restated whole where it differs, and
+# every quest string in the quest's id range that differs is restated beside it.
+#
+# 24 quests in the region stay unobtainable by prerequisite, as the classic data ships
+# them: 17 carry the disabling prerequisite themselves and 7 follow one that does.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  upsert:
+    - id: 6305
+      header:
+        questNumber: 6305
+        linkedQuest: 101
+        storyGroupId: 3
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6305001"
+        designersNote: ""
+        questType: "Mission"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        giverNpc: "63,1107"
+      requirements:
+        minLevel: 10
+        prerequisites: [1317]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6305003"
+          hasReward: false
+          body:
+            npcId: "63,1101"
+            dialogueId: 3
+            completionButtonText: "@quest:6305002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:6305005"
+          hasReward: false
+          body:
+            npcId: "63,1102"
+            dialogueId: 4
+            completionButtonText: "@quest:6305004"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "PlayMovieTask"
+          nextTaskId: 4
+          journalScript: 4
+          body:
+            movieId: 9
+        - taskId: 4
+          type: "VisitTask"
+          nextTaskId: 5
+          journalScript: 4
+          journalText: "@quest:6305007"
+          hasReward: false
+          body:
+            npcId: "63,1102"
+            dialogueId: 5
+            completionButtonText: "@quest:6305006"
+            visitCinematicId: 0
+        - taskId: 5
+          type: "PlayMovieTask"
+          nextTaskId: 6
+          journalScript: 5
+          body:
+            movieId: 20
+        - taskId: 6
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 5
+          journalText: "@quest:6305009"
+          hasReward: true
+          body:
+            npcId: "63,1137"
+            dialogueId: 6
+            completionButtonText: "@quest:6305008"
+            visitCinematicId: 0
+    - id: 6306
+      header:
+        questNumber: 6306
+        linkedQuest: 6307
+        recommendedPartySize: 1
+        recommendedLevel: 10
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6306001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,1007"
+      requirements:
+        minLevel: 10
+        prerequisites: [6301]
+        # The classic list is the five classes above. The four that follow did not
+        # exist then, and this quest is one of a pair that splits the roster by
+        # weapon type, so a class matching neither half is offered neither guild
+        # hall. They are carried so the pair still covers every class.
+        classes: ["Lancer", "Berserker", "Slayer", "Warrior", "Archer",
+                  "Engineer", "Assassin", "Fighter", "Glaiver"]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6306003"
+          hasReward: true
+          body:
+            npcId: "63,1100"
+            dialogueId: 3
+            completionButtonText: "@quest:6306002"
+            visitCinematicId: 0
+    - id: 6321
+      header:
+        questNumber: 6321
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 55
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6321001"
+        designersNote: ""
+        startPopup: "@quest:6321002"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "84,1132"
+      requirements:
+        minLevel: 55
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6321004"
+          hasReward: false
+          body:
+            npcId: "63,1160"
+            dialogueId: 3
+            completionButtonText: "@quest:6321003"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:6321006"
+          hasReward: false
+          body:
+            npcId: "60,1013"
+            dialogueId: 4
+            completionButtonText: "@quest:6321005"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "DeliverItemTask"
+          nextTaskId: 4
+          journalScript: 4
+          journalText: "@quest:6321008"
+          journalText2: "@quest:6321009"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 1001
+                quantity: 50
+              - itemId: 1002
+                quantity: 50
+              - itemId: 1003
+                quantity: 50
+            targetNpc: "60,1013"
+            completionDialogue: 5
+            incompleteDialogue: 6
+            completionButtonText: "@quest:6321007"
+        - taskId: 4
+          type: "VisitTask"
+          nextTaskId: 5
+          journalScript: 5
+          journalText: "@quest:6321011"
+          hasReward: false
+          body:
+            npcId: "67,1015"
+            dialogueId: 7
+            completionButtonText: "@quest:6321010"
+            visitCinematicId: 0
+        - taskId: 5
+          type: "DeliverItemTask"
+          nextTaskId: 6
+          journalScript: 7
+          journalText: "@quest:6321013"
+          journalText2: "@quest:6321014"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 1005
+                quantity: 50
+              - itemId: 1006
+                quantity: 50
+              - itemId: 1007
+                quantity: 50
+            targetNpc: "67,1015"
+            completionDialogue: 8
+            incompleteDialogue: 9
+            completionButtonText: "@quest:6321012"
+        - taskId: 6
+          type: "VisitTask"
+          nextTaskId: 7
+          journalScript: 8
+          journalText: "@quest:6321016"
+          hasReward: false
+          body:
+            npcId: "66,1009"
+            dialogueId: 10
+            completionButtonText: "@quest:6321015"
+            visitCinematicId: 0
+        - taskId: 7
+          type: "DeliverItemTask"
+          nextTaskId: 8
+          journalScript: 10
+          journalText: "@quest:6321018"
+          journalText2: "@quest:6321019"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 1009
+                quantity: 50
+              - itemId: 1010
+                quantity: 50
+              - itemId: 1011
+                quantity: 50
+            targetNpc: "66,1009"
+            completionDialogue: 11
+            incompleteDialogue: 12
+            completionButtonText: "@quest:6321017"
+        - taskId: 8
+          type: "VisitTask"
+          nextTaskId: 9
+          journalScript: 11
+          journalText: "@quest:6321021"
+          hasReward: false
+          body:
+            npcId: "70,1011"
+            dialogueId: 13
+            completionButtonText: "@quest:6321020"
+            visitCinematicId: 0
+        - taskId: 9
+          type: "DeliverItemTask"
+          nextTaskId: 10
+          journalScript: 13
+          journalText: "@quest:6321023"
+          journalText2: "@quest:6321024"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 1013
+                quantity: 50
+              - itemId: 1014
+                quantity: 50
+              - itemId: 1015
+                quantity: 50
+            targetNpc: "70,1011"
+            completionDialogue: 14
+            incompleteDialogue: 15
+            completionButtonText: "@quest:6321022"
+        - taskId: 10
+          type: "VisitTask"
+          nextTaskId: 11
+          journalScript: 14
+          journalText: "@quest:6321026"
+          hasReward: false
+          body:
+            npcId: "75,1007"
+            dialogueId: 16
+            completionButtonText: "@quest:6321025"
+            visitCinematicId: 0
+        - taskId: 11
+          type: "DeliverItemTask"
+          nextTaskId: 12
+          journalScript: 16
+          journalText: "@quest:6321028"
+          journalText2: "@quest:6321029"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 1017
+                quantity: 50
+              - itemId: 1018
+                quantity: 50
+              - itemId: 1019
+                quantity: 50
+            targetNpc: "75,1007"
+            completionDialogue: 17
+            incompleteDialogue: 18
+            completionButtonText: "@quest:6321027"
+        - taskId: 12
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 17
+          journalText: "@quest:6321031"
+          hasReward: true
+          body:
+            npcId: "63,1160"
+            dialogueId: 19
+            completionButtonText: "@quest:6321030"
+            visitCinematicId: 0
+    - id: 6322
+      header:
+        questNumber: 6322
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6322001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6322003"
+          journalText2: "@quest:6322004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45109
+                quantity: 1
+              - itemId: 1016
+                quantity: 10
+              - itemId: 1013
+                quantity: 20
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6322002"
+    - id: 6323
+      header:
+        questNumber: 6323
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6323001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6323003"
+          journalText2: "@quest:6323004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45104
+                quantity: 1
+              - itemId: 1020
+                quantity: 30
+              - itemId: 1016
+                quantity: 20
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6323002"
+    - id: 6324
+      header:
+        questNumber: 6324
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6324001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6324003"
+          journalText2: "@quest:6324004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45107
+                quantity: 1
+              - itemId: 1017
+                quantity: 30
+              - itemId: 1003
+                quantity: 20
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6324002"
+    - id: 6325
+      header:
+        questNumber: 6325
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6325001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6325003"
+          journalText2: "@quest:6325004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45101
+                quantity: 1
+              - itemId: 1002
+                quantity: 20
+              - itemId: 1017
+                quantity: 40
+              - itemId: 1009
+                quantity: 40
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6325002"
+    - id: 6326
+      header:
+        questNumber: 6326
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6326001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6326003"
+          journalText2: "@quest:6326004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45102
+                quantity: 1
+              - itemId: 1012
+                quantity: 30
+              - itemId: 1020
+                quantity: 20
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6326002"
+    - id: 6327
+      header:
+        questNumber: 6327
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6327001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6327003"
+          journalText2: "@quest:6327004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45106
+                quantity: 1
+              - itemId: 1004
+                quantity: 60
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6327002"
+    - id: 6328
+      header:
+        questNumber: 6328
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6328001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6328003"
+          journalText2: "@quest:6328004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45395
+                quantity: 1
+              - itemId: 1017
+                quantity: 10
+              - itemId: 1020
+                quantity: 10
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6328002"
+    - id: 6329
+      header:
+        questNumber: 6329
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6329001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6329003"
+          journalText2: "@quest:6329004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45110
+                quantity: 1
+              - itemId: 1017
+                quantity: 20
+              - itemId: 1009
+                quantity: 20
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6329002"
+    - id: 6330
+      header:
+        questNumber: 6330
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6330001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6330003"
+          journalText2: "@quest:6330004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45394
+                quantity: 1
+              - itemId: 1003
+                quantity: 5
+              - itemId: 1009
+                quantity: 5
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6330002"
+    - id: 6331
+      header:
+        questNumber: 6331
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6331001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6331003"
+          journalText2: "@quest:6331004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45108
+                quantity: 1
+              - itemId: 1018
+                quantity: 3
+              - itemId: 1017
+                quantity: 10
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6331002"
+    - id: 6332
+      header:
+        questNumber: 6332
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6332001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6332003"
+          journalText2: "@quest:6332004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45376
+                quantity: 1
+              - itemId: 1030
+                quantity: 15
+              - itemId: 1034
+                quantity: 15
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6332002"
+    - id: 6333
+      header:
+        questNumber: 6333
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6333001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc: "63,3005"
+      requirements:
+        minLevel: 99
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6333003"
+          journalText2: "@quest:6333004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            deliveryItems:
+              - itemId: 45375
+                quantity: 1
+              - itemId: 1012
+                quantity: 30
+              - itemId: 1016
+                quantity: 30
+            targetNpc: "63,3005"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6333002"
+    - id: 6334
+      header:
+        questNumber: 6334
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6334001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,3006"
+      requirements:
+        minLevel: 60
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6334003"
+          journalText2: "@quest:6334004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 45366
+            itemCount: 1
+            targetNpc: "63,3006"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6334002"
+    - id: 6335
+      header:
+        questNumber: 6335
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6335001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,3006"
+      requirements:
+        minLevel: 60
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6335003"
+          journalText2: "@quest:6335004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 45370
+            itemCount: 1
+            targetNpc: "63,3006"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6335002"
+    - id: 6336
+      header:
+        questNumber: 6336
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6336001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,3006"
+      requirements:
+        minLevel: 60
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6336003"
+          journalText2: "@quest:6336004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 45372
+            itemCount: 1
+            targetNpc: "63,3006"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6336002"
+    - id: 6337
+      header:
+        questNumber: 6337
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6337001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,3006"
+      requirements:
+        minLevel: 60
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6337003"
+          journalText2: "@quest:6337004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 45374
+            itemCount: 1
+            targetNpc: "63,3006"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6337002"
+    - id: 6338
+      header:
+        questNumber: 6338
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 60
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6338001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,3006"
+      requirements:
+        minLevel: 60
+      tasks:
+        - taskId: 1
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6338003"
+          journalText2: "@quest:6338004"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 45368
+            itemCount: 1
+            targetNpc: "63,3006"
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6338002"
+    - id: 6357
+      header:
+        questNumber: 6357
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 21
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6357001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,1160"
+      requirements:
+        minLevel: 20
+        prerequisites: [9999]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6357003"
+          hasReward: false
+          body:
+            npcId: "63,1149"
+            dialogueId: 3
+            completionButtonText: "@quest:6357002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:6357005"
+          journalText2: "@quest:6357006"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 51
+            itemCount: 10
+            targetNpc: "63,1149"
+            completionDialogue: 4
+            incompleteDialogue: 5
+            completionButtonText: "@quest:6357004"
+    - id: 6359
+      header:
+        questNumber: 6359
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 10
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6359001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        autoAccept: true
+      requirements:
+        minLevel: 10
+        prerequisites: [1317]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6359003"
+          hasReward: true
+          body:
+            npcId: "63,1228"
+            dialogueId: 3
+            completionButtonText: "@quest:6359002"
+            visitCinematicId: 0
+    - id: 6361
+      header:
+        questNumber: 6361
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6361001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        autoAccept: true
+      requirements:
+        minLevel: 11
+        maxLevel: 21
+        prerequisites: [9999]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6361003"
+          hasReward: false
+          body:
+            npcId: "63,1160"
+            dialogueId: 3
+            completionButtonText: "@quest:6361002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:6361005"
+          hasReward: false
+          body:
+            npcId: "63,1149"
+            dialogueId: 4
+            completionButtonText: "@quest:6361004"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 4
+          journalText: "@quest:6361007"
+          journalText2: "@quest:6361008"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 51
+            itemCount: 10
+            targetNpc: "63,1149"
+            completionDialogue: 5
+            incompleteDialogue: 6
+            completionButtonText: "@quest:6361006"
+    - id: 6381
+      header:
+        questNumber: 6381
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 25
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6381001"
+        designersNote: ""
+        endPopup: "@quest:6381002"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+      requirements:
+        minLevel: 25
+        prerequisites: [9999]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6381004"
+          hasReward: false
+          body:
+            npcId: "63,1160"
+            dialogueId: 3
+            completionButtonText: "@quest:6381003"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:6381006"
+          journalText2: "@quest:6381007"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 94203
+            itemCount: 20
+            targetNpc: "63,1605"
+            completionDialogue: 4
+            incompleteDialogue: 5
+            completionButtonText: "@quest:6381005"
+    - id: 6383
+      header:
+        questNumber: 6383
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 15
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6383001"
+        designersNote: ""
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Forbidden"
+        giverNpc: "63,1136"
+      requirements:
+        minLevel: 15
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6383003"
+          hasReward: false
+          completionItems:
+            - itemId: 1002
+              quantity: 10
+          body:
+            npcId: "63,1098"
+            dialogueId: 3
+            completionButtonText: "@quest:6383002"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:6383005"
+          hasReward: false
+          completionItems:
+            - itemId: 1631
+              quantity: 10
+          body:
+            npcId: "63,1190"
+            dialogueId: 4
+            completionButtonText: "@quest:6383004"
+            visitCinematicId: 0
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 4
+          journalScript: 4
+          journalText: "@quest:6383007"
+          hasReward: false
+          completionItems:
+            - itemId: 23001
+              quantity: 1
+          body:
+            npcId: "63,1196"
+            dialogueId: 5
+            completionButtonText: "@quest:6383006"
+            visitCinematicId: 0
+        - taskId: 4
+          type: "ConditionTask"
+          nextTaskId: 5
+          journalScript: 5
+          journalText: "@quest:6383008"
+          body:
+            successMessage: "@quest:6383009"
+            conditionType: "learnSkill"
+            conditionSkillId: 23001
+            conditionSkillType: "제작"
+        - taskId: 5
+          type: "DeliverItemTask"
+          nextTaskId: 0
+          journalScript: 5
+          journalText: "@quest:6383011"
+          journalText2: "@quest:6383012"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 1022
+            itemCount: 5
+            targetNpc: "63,1098"
+            completionDialogue: 6
+            incompleteDialogue: 7
+            completionButtonText: "@quest:6383010"
+    - id: 6384
+      header:
+        questNumber: 6384
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 25
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6384001"
+        designersNote: ""
+        endPopup: "@quest:6384003"
+        startPopup: "@quest:6384002"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,1605"
+      requirements:
+        minLevel: 25
+        prerequisites: [6381]
+      tasks:
+        - taskId: 1
+          type: "VisitTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6384005"
+          hasReward: false
+          body:
+            npcId: "63,1605"
+            dialogueId: 3
+            completionButtonText: "@quest:6384004"
+            visitCinematicId: 0
+        - taskId: 2
+          type: "ConditionTask"
+          nextTaskId: 3
+          journalScript: 3
+          journalText: "@quest:6384006"
+          body:
+            successMessage: "@quest:6384007"
+            conditionType: "enhance"
+            conditionEnhanceCount: 1
+            conditionOfferingGrade: "common"
+        - taskId: 3
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:6384009"
+          hasReward: true
+          body:
+            npcId: "63,1605"
+            dialogueId: 4
+            completionButtonText: "@quest:6384008"
+            visitCinematicId: 0
+    - id: 6385
+      header:
+        questNumber: 6385
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 25
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6385001"
+        designersNote: ""
+        startPopup: "@quest:6385002"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,1605"
+      requirements:
+        minLevel: 25
+        prerequisites: [6381]
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6385003"
+          body:
+            successMessage: "@quest:6385004"
+            conditionType: "enhance"
+            conditionEnhanceCount: 3
+            conditionOfferingGrade: "common"
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6385006"
+          hasReward: true
+          body:
+            npcId: "63,1605"
+            dialogueId: 3
+            completionButtonText: "@quest:6385005"
+            visitCinematicId: 0
+    - id: 6395
+      header:
+        questNumber: 6395
+        linkedQuest: 101
+        executionArea: 102
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6395001"
+        designersNote: ""
+        specialGuide: "적용"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: "63,9004"
+      requirements:
+        minLevel: 11
+      tasks:
+        - taskId: 1
+          type: "ConditionTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6395002"
+          body:
+            successMessage: "@quest:6395003"
+            conditionType: "winBattlefield"
+            conditionBattlefieldId: 46
+            conditionWinCount: 1
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6395005"
+          hasReward: true
+          body:
+            npcId: "63,9004"
+            dialogueId: 3
+            completionButtonText: "@quest:6395004"
+            visitCinematicId: 0
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 63
+      id: 5
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 1107
+          pages:
+            - social: 0
+              content: "You've become an official federation soldier. You were summoned to Velika to meet Commander Seir, the commander of the Valkyon Federation's forces.<BR><BR>Seir was impressed with you and welcomed you formally into federation service, but the real power pusher of the military, Commander Samael, doesn't seem impressed with you. He dismissed your accomplishments as mere luck."
+        - id: 2
+          npcZoneId: 63
+          villagerId: 1107
+          pages:
+            - social: 4
+              content: "<PCNAME>, you did fine work on the Island of Dawn. Commander Seir is anxious to speak with you. Head to the federation's headquarters and find Uriela.<BR><BR>She'll point you in the right direction. Good luck."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "<PCNAME>? I've heard that name, haven't I? Oh! Yes, you're one of the recruits who helped out on the island! So peculiar, that island....<BR><BR>Ah, forgive me. I'm losing track of myself. Please go in. Commander Seir is expecting you."
+        - id: 4
+          npcZoneId: 63
+          prevId: 3
+          villagerId: 1102
+          pages:
+            - social: 4
+              content: "<PCNAME>? Delighted to meet a young soldier with your gumption!<BR><BR>With the situation in Arcadia province, and soldiers so thin on the ground this far from the argon front, we need more people who can take initiative.<BR><BR>Let me formally welcome you to the ranks of the Valkyon Federation!"
+        - id: 5
+          npcZoneId: 63
+          prevId: 4
+          villagerId: 1102
+          pages:
+            - social: 4
+              content: "Tales of your heroics on the Island of Dawn spread quickly, <PCNAME>. The federation needs you now more than ever. Are you ready for new orders?<NEXTPAGEBUTTON>\"Yes, sir!\"</NEXTPAGEBUTTON>"
+            - social: 5
+              content: "Splendid. Commander Samael will handle your next deployment. It was good to meet you, <PCNAME>. I look forward to reading reports of your exploits!"
+        - id: 6
+          npcZoneId: 63
+          prevId: 5
+          villagerId: 1137
+          pages:
+            - social: 4
+              content: "Look, you did fine—if killing a bunch of piglings counts as a battle. Around here we've got real problems that need real soldiers. We've got rebellion in Arcadia, and no supplies coming from the north.<BR><BR>If you're not up to it, you put lives at risk. Gotta keep your eye on the big picture. It takes more than luck to make a soldier."
+    - huntingZoneId: 63
+      id: 21
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 84
+          villagerId: 1132
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 84
+          villagerId: 1132
+          pages:
+            - social: 5
+              content: "Word's come in for you, <PCNAME>. Consul Dougal wants you back in Velika as soon as possible.<BR><BR>Something about supporting efforts on the home front. Best get moving."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1160
+          pages:
+            - social: 5
+              content: "Thank you for coming this far, <PCNAME>. Let me cut to the chase. Supporting the war effort's affected the quality of life throughout the federation.<BR><BR>The federation's sending you and other agents to support the magistrates, gather material goods, and provide some relief.<BR><BR>Report to Magistrate Arn in Lumbertown. Show the citizens that they're just as much of a priority as the argons."
+        - id: 4
+          npcZoneId: 60
+          prevId: 3
+          villagerId: 1013
+          pages:
+            - social: 9
+              content: "Nature provides but enemies plunder. We're short on raw materials.<BR><BR>What we need most are verdra fibers, krymetal ore, and some sun essence. Without those, it's hard to make a living around here."
+        - id: 5
+          npcZoneId: 60
+          prevId: 4
+          villagerId: 1013
+          pages:
+            - social: 8
+              content: "This will help out a lot! We can repair our tools, tend to our lands, and heal our hurts. Thank you.<NEXTPAGEBUTTON>\"Honored to be of service.\"</NEXTPAGEBUTTON>"
+            - social: 5
+              content: "You're far too modest. I'm sure Magistrate Bisi will agree when he sees you. He's in Popolion, and in more dire need than we were.<BR><BR>May Velik bless you."
+        - id: 6
+          npcZoneId: 60
+          villagerId: 1013
+          pages:
+            - social: 0
+              content: "Times are tough for everyone. We're just asking for some help with the bare necessities."
+        - id: 7
+          npcZoneId: 67
+          prevId: 5
+          villagerId: 1015
+          pages:
+            - social: 9
+              content: "Yes, Lumbertown's starved for raw materials. Can you help?<BR><BR>Gather sylva fibers, linmetal ore, and some essence of wind, please? There's no glory in this, but it would help us all."
+        - id: 8
+          npcZoneId: 67
+          prevId: 7
+          villagerId: 1015
+          pages:
+            - social: 13
+              content: "Thank you so much!<BR><BR>Nature does provide—when nature has <PCNAME>'s help!<NEXTPAGEBUTTON>\"All in a day's work.\"</NEXTPAGEBUTTON>"
+            - social: 5
+              content: "We will never forget what you did for us. Never!<BR><BR>New orders have come in for you. Looks like you're going to Tulufan. They need you next.<BR><BR>May Seren bless you!"
+        - id: 9
+          npcZoneId: 67
+          villagerId: 1015
+          pages:
+            - social: 0
+              content: "You can get all I asked for from Popolion's fields. I'd go but for the monsters..."
+        - id: 10
+          npcZoneId: 66
+          prevId: 8
+          villagerId: 1009
+          pages:
+            - social: 5
+              content: "About damned time!<BR><BR>I've written so many letters to Velika that I've probably got my own wing in the archives.<BR><BR>Our stores were stolen recently. We'll get by—if we can replenish our stocks of shetla fibers, normetal ore, and star essence.<BR><BR>Can you help?"
+        - id: 11
+          npcZoneId: 66
+          prevId: 10
+          villagerId: 1009
+          pages:
+            - social: 8
+              content: "Not bad. Adequate even.<BR><BR>If we'd known the federation would abandon us, we'd never have joined in the first place.<NEXTPAGEBUTTON>\"We're in this together.\"</NEXTPAGEBUTTON>"
+            - social: 5
+              content: "Hmph. Maybe.<BR><BR>Consul Dougal says you're to head to Tria in Southern Shara next.<BR><BR>Kaia's blessings protect you, <PCNAME>."
+        - id: 12
+          npcZoneId: 66
+          villagerId: 1009
+          pages:
+            - social: 0
+              content: "Well, I guess we could make do with sand. Bloody useful stuff, right? Can't make clothes, can't make weapons, but it can make anyone itch!"
+        - id: 13
+          npcZoneId: 70
+          prevId: 11
+          villagerId: 1011
+          pages:
+            - social: 5
+              content: "We're grateful for any assistance.<BR><BR>Supplies are low at the moment. In particular, we need toira fibers, shadmetal ore, and some essence of ice.<BR><BR>The federation's support is vital to our survival and success. Please help us."
+        - id: 14
+          npcZoneId: 70
+          prevId: 13
+          villagerId: 1011
+          pages:
+            - social: 5
+              content: "This will do nicely.<BR><BR>The people of Tria found new hope. Please accept our thanks.<NEXTPAGEBUTTON>\"You're welcome.\"</NEXTPAGEBUTTON>"
+            - social: 5
+              content: "Prefect Lauma, in Frontera, hopes to similarly benefit from federation assistance. Safe journey!"
+        - id: 15
+          npcZoneId: 70
+          villagerId: 1011
+          pages:
+            - social: 0
+              content: "We know this is difficult, but we're out of options. Please help us."
+        - id: 16
+          npcZoneId: 75
+          prevId: 14
+          villagerId: 1007
+          pages:
+            - social: 5
+              content: "Consul Dougal explained about the federation's initiative to help the outlying settlements. We need the aid.<BR><BR>We're short on luria fibers, xermetal ore, and lightning essence. Any additions to our stocks would be appreciated."
+        - id: 17
+          npcZoneId: 75
+          prevId: 16
+          villagerId: 1007
+          pages:
+            - social: 5
+              content: "Dougal chose his assistant well. We're grateful for the help and will put these supplies to good use.<BR><BR>Dougal has also asked you to return to Velika. Farewell, <PCNAME>."
+        - id: 18
+          npcZoneId: 75
+          villagerId: 1007
+          pages:
+            - social: 0
+              content: "We must have raw materials to keep Frontera active and productive."
+        - id: 19
+          npcZoneId: 63
+          prevId: 17
+          villagerId: 1160
+          pages:
+            - social: 5
+              content: "I've heard nothing but good things about you. Even Turrek is more cheerful now.<BR><BR>There were no plots foiled or great beasts vanquished, but service to others is in the highest traditions of federation service. You've done well, <PCNAME>. Thank you."
+    - huntingZoneId: 63
+      id: 22
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Ah, yes, I remember those: &quot;the colorful tuwangi look without the stinky froggy smell.&quot; Those hats took lots of bloodhide, toira fibers...and one perfectly spherical fruit.<BR><BR>Sadly, the fruit has been harvested to extinction. You can't find them anywhere! Don't waste your time looking.<NEXTPAGEBUTTON>&quot;But I have one.&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Wow! How long have you been holding onto this?<BR><BR>No, not important. All I really need to know is which color hat you want!<NEXTPAGEBUTTON>&quot;Well...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "That perfectly round fruit just doesn't exist. I don't even think you can get them at auction any more.<BR><BR>If you don't already have the fruit, don't waste your time gathering the other components."
+    - huntingZoneId: 63
+      id: 23
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "I used to make these hats that were all the rage with officers and other leaders.<BR><BR>But the main component, the leadership plume—you can't find those anymore. Not unless you've been hoarding one in a bank vault somewhere.<NEXTPAGEBUTTON>&quot;Yo ho!&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Well, I'll be! You've had this gathering dust for a while, huh?<BR><BR>Okay, I'm game: What color do you want?<NEXTPAGEBUTTON>&quot;Well...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "Just so you know, you can't just find leadership plumes anymore. So if you don't already have one, don't waste your time."
+    - huntingZoneId: 63
+      id: 24
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "A hood? I don't make those anymore.<BR><BR> Luria fibers and sun essence are easy to come by, but innerlid leather? You can't even find that in a museum, these days.<NEXTPAGEBUTTON>&quot;I already have some.&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Oh, my! You actually have some?<BR><BR>Quick! Let's make you a hood! What tailor-made color would you like?<NEXTPAGEBUTTON>&quot;Well...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "Look: Innerlid leather only comes from the eyelids of certain breeds of dracoloth—and that particular breed doesn't exist anymore.<BR><BR>Hunted to extinction for their eyelids, of all things..."
+    - huntingZoneId: 63
+      id: 26
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Aviator cap? Those are so last year.<BR><BR>It's the cyasma-infused leather, you see. Rough hide and grave hide are plentiful, but nobody makes the cyasma-infused leather. So don't even ask.<NEXTPAGEBUTTON>&quot;But I already have some...&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "You actually had some cyasma-infused leather? Well, I suppose I can make one more aviator cap, if you're sure you want one.<NEXTPAGEBUTTON>&quot;I am!&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "Even the Invalesco don't trade in cyasma-infused leather anymore—and if they don't have it, no one would."
+    - huntingZoneId: 63
+      id: 27
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Seriously? You want a custom-made pirate hat?<BR><BR>Look, if you don't have a piece of cyasma-infused leather sitting in a bank vault somewhere, there's nothing I can do for you. Even the Invalesco don't bother with it anymore.<NEXTPAGEBUTTON>&quot;It so happens, I do!&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Well, well. Been hoarding this somewhere, have you? No, none of my business.<BR><BR>Let's get you that hat. Which color did you want?<NEXTPAGEBUTTON>&quot;Let's see...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "Let me guess: You've found everything but the cyasma-infused leather.<BR><BR>Want my advice? If you haven't found it by now, you're not going to."
+    - huntingZoneId: 63
+      id: 28
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "A party hat? Oh, yes, I remember making those. I don't do that anymore.<BR><BR>The basic components are plentiful enough: gravehide and luria fibers. But the Chebikan cotton mill burned down, and you can't get Chebikan cotton anymore.<NEXTPAGEBUTTON>&quot;But I have this...&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "You actually have some Chebikan cotton? And you still want me to make a party hat out of it? Okay...<BR><BR>Well, I guess I just need to know what color you want.<NEXTPAGEBUTTON>&quot;Let's see...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "First the Chebikan cotton mill burned down, then the Hands of Velika sold out of their back stock. Now you just can't get it—and even if you could, why waste it making a party hat?"
+    - huntingZoneId: 63
+      id: 29
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "A popo hat? Keep your voice down!<BR><BR>Listen: I got word that certain popori really weren't pleased by me making popori hats, so I had to stop.<NEXTPAGEBUTTON>&quot;Well, what do I do with this moppet?&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Well, seeing as how you already had the popori moppet, I suppose I could make just one more.<BR><BR>Now, what were you thinking for the fur color?<NEXTPAGEBUTTON>&quot;Let's see...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "The Hands of Velika tell me that the popori don't find these hats all that amusing. But, if you already have the moppet—and you really, really want one—I suppose it's better I make it for you."
+    - huntingZoneId: 63
+      id: 30
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "There was a time I happily made starling nestcaps—but then they got so popular that everyone wanted one.<BR><BR>Problem is, making one requires a vale starling egg, and all those hat-hunters snatched up every last one.<BR><BR>No more eggs, no more starlings. And no more hats.<NEXTPAGEBUTTON>&quot;You mean an egg like this?&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "You've got a starling egg? Well, um, it'd be a shame to waste it...<BR><BR>Okay, what color starling works best with your armor?<NEXTPAGEBUTTON>&quot;Let's see...&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "The Hyderad Legacy used to import starling eggs, but that business just dried up when the starlings died out. You'll never find one."
+    - huntingZoneId: 63
+      id: 31
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "You want a gilded feather? Sorry, but I made myself a promise: I don't make those anymore.<BR><BR>It's the downy struthio feathers, you see: The Shariar made struthio-poaching illegal. It's not worth it to me to invoke their wrath.<NEXTPAGEBUTTON>&quot;But I already have this feather...&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "You've already got the feather? Well, the Shariar only enforce the &quot;no-hunt&quot; law, so I guess I could make one more.<NEXTPAGEBUTTON>&quot;Great news.&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "Sorry, but the valiant fighters of the Shariar made struthio-hunting a crime. My advice is to sell off your xermetal ore and luria fibers and forget all about struthio feathers."
+    - huntingZoneId: 63
+      id: 32
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Vampirs and witches do love their hats. So much so that they don't want anyone else making them.<BR><BR>The big problem is, they've locked away every last fire-kissed ruby in existence, so there's no chance whatsoever of getting one of these hats. Not now.<NEXTPAGEBUTTON>&quot;But I already have this fire-kissed ruby...&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "What? You already have one? My, my...<BR><BR>Okay, one more, for old time's sake. What style were you thinking?<NEXTPAGEBUTTON>&quot;What styles do you have?&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "If all you need is the fire-kissed ruby, I'm afraid you're out of luck. They're not available anymore. You should just sell the norsteel and shadsteel, and have done with it."
+    - huntingZoneId: 63
+      id: 33
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Unless you have a piece of eldritch leather squirreled away somewhere, don't even ask. I can't make the top hats without the leather, and you can't get the leather anywhere.<NEXTPAGEBUTTON>&quot;I have the leather.&quot;</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3005
+          pages:
+            - social: 5
+              content: "Wow, you actually had some?<BR><BR>Well, okay, then! What spectacular hat fits you best?<NEXTPAGEBUTTON>&quot;Let me see your selection.&quot;</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3005
+          pages:
+            - social: 0
+              content: "If you need eldritch leather, you're out of luck. Trust me, just dump your bloodhide and rough hide on the market, and cut your losses."
+    - huntingZoneId: 63
+      id: 34
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3006
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3006
+          pages:
+            - social: 5
+              content: "In order to tame a beast, you must first know what it eats.<BR><BR>If you feed it something it likes, say Tirkai grizzly steaks, it'll trust you.<NEXTPAGEBUTTON>4</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3006
+          pages:
+            - social: 5
+              content: "After Val Tirkai fell to the argons, it became difficult to obtain the steaks here in Velika, but you obviously managed.<BR><BR>You’ll earn the beast's trust with this.<NEXTPAGEBUTTON>4</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3006
+          pages:
+            - social: 0
+              content: "Taming a beast is no simple matter, and the shortest route to their hearts is through their stomachs."
+    - huntingZoneId: 63
+      id: 36
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 3006
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 3006
+          pages:
+            - social: 5
+              content: "There’s an item that makes any feline purr—a silvervine branch. Now, it's rare and expensive, but absolutely worth the effort.<BR><BR>Bring one of those and we'll have this leopard curled up at your feet in no time.<NEXTPAGEBUTTON>4</NEXTPAGEBUTTON>"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 3006
+          pages:
+            - social: 5
+              content: "Mmm, smells so...divine. I—I want it!<BR><BR>Sorry. Went a little whisker-crazy.<BR><BR>You probably should keep that away from me. I'm working the twelve steps, but each day's a challenge.<NEXTPAGEBUTTON>4</NEXTPAGEBUTTON>"
+        - id: 4
+          npcZoneId: 63
+          villagerId: 3006
+          pages:
+            - social: 0
+              content: "We really need that silvervine branch. It's for your leopard, not me. Honest!"
+    - huntingZoneId: 63
+      id: 59
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Are you always running out of space for the items you acquire on your travels? Sick of interrupting your adventures to organize your inventory?<BR><BR>If so, I have good news for you! Getty from Freedom Plaza in Velika, the city of commerce, has the solution you've been searching for, and your first inventory expansion is free!<BR><BR>That's right! Free! Try it yourself and discover the convenience of having an expanded inventory.<BR><BR>Come to Freedom Plaza today!"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1228
+          pages:
+            - social: 0
+              content: "Hey there! Do you find yourself shoving items into your backpack long after it's full, only to realize they're strewn about the path behind you?<BR><BR>I offer an \"Inventory Expansion\" service for people just like you. First time's on the house!<BR><BR>If you're satisfied, you're welcome to come back and purchase my larger expansions!"
+    - huntingZoneId: 63
+      id: 61
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 0
+          villagerId: 0
+          pages:
+            - social: 0
+              content: "Mission orders<BR><BR>To empower our forces on the home front, Velika Headquarters will supply warhorses to skilled soldiers. Return to headquarters at once.<BR><BR>—Dougal, Velika Consul"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1160
+          pages:
+            - social: 0
+              content: "Welcome, <PCNAME>! It's a shame a skilled soldier like you has been walking all this time.<BR><BR>Better to spend money on fine horses than on extra boot-leather, eh? A swift steed should help you get from mission to mission faster."
+        - id: 4
+          npcZoneId: 63
+          prevId: 3
+          villagerId: 1149
+          pages:
+            - social: 0
+              content: "You must be the <PCCLASS:lcase> that Dougal mentioned. I knew you'd come, but...my horses have grown restless lately, and they're not obeying their riders.<BR><BR>Maybe <font color='#0080FF'><A href=\"markmap:loc=1#-11565.4844,-9482.6436,6291.0557&type=1&name=Veridia Plants\">veridian extract</A></font>can calm their nerves. Gather some veridia plants around here and extract the oils. Then I'd feel better about turning these big boys loose."
+        - id: 5
+          npcZoneId: 63
+          prevId: 4
+          villagerId: 1149
+          pages:
+            - social: 0
+              content: "This is just the thing—our horses are doing much better! Take this small token of my appreciation. It's one of my best, so I hope it'll be helpful for you."
+        - id: 6
+          npcZoneId: 63
+          villagerId: 1149
+          pages:
+            - social: 0
+              content: "Please bring me <font color='#0080FF'><A href=\"markmap:loc=1#-11565.4844,-9482.6436,6291.0557&type=1&name=Veridia Plants\">veridian extract</A></font>. They'll make our horses less restless."
+    - huntingZoneId: 63
+      id: 83
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 1136
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 1136
+          pages:
+            - social: 0
+              content: "Hey, I don't suppose you're on your way to the Creation Workshop in Velika, are you? I'm waiting for a weapon from them—do you think you could stop in and ask Santia when it will be finished?<BR><BR>Only if you happen to find yourself going that way, of course."
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 1098
+          pages:
+            - social: 0
+              content: "Oh, Velika's left...well, nevermind. I completely forgot about Jefaln's weapon. I'm absolutely swamped, though—it would really help me out if you could get materials from Thura and a design from Babur, and then process this ore for me.<BR><BR>Don't worry, I'll make the actual weapon, and it won't take long, but it would go so much faster if the ore was already processed."
+        - id: 4
+          npcZoneId: 63
+          prevId: 3
+          villagerId: 1190
+          pages:
+            - social: 0
+              content: "Hello! I handle reagents and parts, parts and reagents! They sound like the same thing. I guess they are, really, but everyone refers to them as separate things.<BR><BR>Anyway, you use them for different things. And in any case, I carry both. What did you want?"
+        - id: 5
+          npcZoneId: 63
+          prevId: 4
+          villagerId: 1196
+          pages:
+            - social: 0
+              content: "Designs, designs, I'm up to my eyeballs in designs. You look rather plaid. Ha! Ha ha!<BR><BR>Ha? Eh, design merchant humor. You wouldn't get it.<BR><BR>Anyhow, here's the design you'll need."
+        - id: 6
+          npcZoneId: 63
+          prevId: 5
+          villagerId: 1098
+          pages:
+            - social: 0
+              content: "Nicely done. Take this weapon design for your help."
+        - id: 7
+          npcZoneId: 63
+          villagerId: 1098
+          pages:
+            - social: 0
+              content: "What are you staring at? Your arms broken?<BR><BR>Well, I didn't see materials in them, so I assumed you had trouble lifting them."
+    - huntingZoneId: 63
+      id: 95
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          npcZoneId: 0
+          villagerId: 0
+          pages: []
+        - id: 100
+          npcZoneId: 63
+          villagerId: 9004
+          pages:
+            - social: 0
+        - id: 2
+          npcZoneId: 63
+          villagerId: 9004
+          pages:
+            - social: 0
+              content: "Hey! Don't just stay indoors all winter!<BR><BR>I'm Ambrrr, the Wintera messenger. Come find {@linkcreature:63#9004#me} in Velika and I will let you in on the best-kept secret of winter: the exciting Wintera battle!<BR>You can enjoy this game for a short time while Wintera lasts, so don't delay!<BR><BR>——Ambrrr"
+        - id: 3
+          npcZoneId: 63
+          prevId: 2
+          villagerId: 9004
+          pages:
+            - social: 1
+              content: "You came!<BR><BR>Are you ready to learn about our Wintera snowball battle?"
+
+questStrings:
+  upsert:
+    - id: 6305002
+      string: "\"As ordered!\""
+    - id: 6305003
+      string: "Report to Uriela in front of the Valkyon Federation Headquarters."
+    - id: 6305004
+      string: "\"The honor is mine.\""
+    - id: 6305005
+      string: "Meet with Commander Seir."
+    - id: 6305006
+      string: "\"Thank you.\""
+    - id: 6305007
+      string: "Speak with Commander Seir."
+    - id: 6305008
+      string: "\"For the federation!\""
+    - id: 6305009
+      string: "Speak with Commander Samael."
+    - id: 6321008
+      string: "Collect verdra fibers, krymetal ore, and sun essences."
+    - id: 6321013
+      string: "Collect sylva fibers, linmetal ore and essences of wind."
+    - id: 6321018
+      string: "Collect shetla fibers, normetal ore and star essences."
+    - id: 6321023
+      string: "Collect toira fibers, shadmetal ore and essences of ice."
+    - id: 6321028
+      string: "Collect luria fibers, xermetal ore and lightning essences."
+    - id: 6383002
+      string: "\"I'll talk to Thura.\""
+    - id: 6383005
+      string: "Get apprentice refining kits from Thura."
+    - id: 6383007
+      string: "Get a design from Babur."
+    - id: 6383011
+      string: "Process the ore at the forge."
+    - id: 6383012
+      string: "Deliver the ingots to Santia."
+    - id: 6395002
+      string: "Win in the Wintera Snowfield."
+    - id: 6395003
+      string: "How did you like that? Just like being a kid again, eh?"

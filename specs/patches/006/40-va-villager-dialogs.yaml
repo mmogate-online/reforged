@@ -1,0 +1,364 @@
+# Villager dialogs for hunting zones 2, 3, 5, 6, 7, 59, 60, 63, 202, 203, 205, 206, 207,
+# 302, 303, 305, 306, 307, 359, 360, 363, 623, 628: the server VillagerDialog rows
+# reconciled against each zone's spawn table and the classic client dialog shards.
+# Generated.
+#
+# Each NPC falls under one rule. Placed in its zone's TerritoryData: its rows stay untouched
+# and no op names it. Rows, a placement at the previous patch close and none now (a parked
+# voidSpawn row still counts as placed): its rows are deleted. Rows and no placement at
+# either point: never territory-spawned in this era, possibly spawned by a quest script
+# the territory files do not show, so the rows stay as inert wiring. Placed, no rows, and
+# a classic client dialog shard: that shard's lines are upserted in the server row shape.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+villagerDialogs:
+  delete:
+    # hunting zone 2
+    - huntingZoneId: 2
+      id: 1271
+    # hunting zone 3
+    - huntingZoneId: 3
+      id: 1000
+    - huntingZoneId: 3
+      id: 1271
+    - huntingZoneId: 3
+      id: 1810
+    # hunting zone 5
+    - huntingZoneId: 5
+      id: 1271
+    # hunting zone 6
+    - huntingZoneId: 6
+      id: 1271
+    # hunting zone 7
+    - huntingZoneId: 7
+      id: 1271
+    - huntingZoneId: 7
+      id: 6001
+    - huntingZoneId: 7
+      id: 6002
+    # hunting zone 59
+    - huntingZoneId: 59
+      id: 8100
+    # hunting zone 63
+    - huntingZoneId: 63
+      id: 1053
+    - huntingZoneId: 63
+      id: 1054
+    - huntingZoneId: 63
+      id: 1055
+    - huntingZoneId: 63
+      id: 1059
+    - huntingZoneId: 63
+      id: 1060
+    - huntingZoneId: 63
+      id: 1118
+    - huntingZoneId: 63
+      id: 1132
+    - huntingZoneId: 63
+      id: 1133
+    - huntingZoneId: 63
+      id: 1134
+    - huntingZoneId: 63
+      id: 1146
+    - huntingZoneId: 63
+      id: 1170
+    - huntingZoneId: 63
+      id: 1259
+    - huntingZoneId: 63
+      id: 1262
+    - huntingZoneId: 63
+      id: 1264
+    - huntingZoneId: 63
+      id: 1265
+    - huntingZoneId: 63
+      id: 1267
+    - huntingZoneId: 63
+      id: 1268
+    - huntingZoneId: 63
+      id: 1269
+    - huntingZoneId: 63
+      id: 1271
+    - huntingZoneId: 63
+      id: 1272
+    - huntingZoneId: 63
+      id: 1273
+    - huntingZoneId: 63
+      id: 1276
+    - huntingZoneId: 63
+      id: 1277
+    - huntingZoneId: 63
+      id: 1278
+    - huntingZoneId: 63
+      id: 1279
+    - huntingZoneId: 63
+      id: 1280
+    - huntingZoneId: 63
+      id: 1281
+    - huntingZoneId: 63
+      id: 1284
+    - huntingZoneId: 63
+      id: 1285
+    - huntingZoneId: 63
+      id: 1286
+    - huntingZoneId: 63
+      id: 1302
+    - huntingZoneId: 63
+      id: 1303
+    - huntingZoneId: 63
+      id: 1304
+    - huntingZoneId: 63
+      id: 1305
+    - huntingZoneId: 63
+      id: 1307
+    - huntingZoneId: 63
+      id: 1310
+    - huntingZoneId: 63
+      id: 1311
+    - huntingZoneId: 63
+      id: 1312
+    - huntingZoneId: 63
+      id: 1313
+    - huntingZoneId: 63
+      id: 1314
+    - huntingZoneId: 63
+      id: 1315
+    - huntingZoneId: 63
+      id: 1316
+    - huntingZoneId: 63
+      id: 1317
+    - huntingZoneId: 63
+      id: 1318
+    - huntingZoneId: 63
+      id: 1400
+    - huntingZoneId: 63
+      id: 1401
+    - huntingZoneId: 63
+      id: 1402
+    - huntingZoneId: 63
+      id: 1404
+    - huntingZoneId: 63
+      id: 1405
+    - huntingZoneId: 63
+      id: 1410
+    - huntingZoneId: 63
+      id: 1411
+    - huntingZoneId: 63
+      id: 1600
+    - huntingZoneId: 63
+      id: 1601
+    - huntingZoneId: 63
+      id: 2072
+    - huntingZoneId: 63
+      id: 2073
+    - huntingZoneId: 63
+      id: 2074
+    - huntingZoneId: 63
+      id: 2950
+    - huntingZoneId: 63
+      id: 2951
+    - huntingZoneId: 63
+      id: 2952
+    - huntingZoneId: 63
+      id: 2953
+    - huntingZoneId: 63
+      id: 5101
+    - huntingZoneId: 63
+      id: 5102
+    - huntingZoneId: 63
+      id: 5103
+    - huntingZoneId: 63
+      id: 5104
+    - huntingZoneId: 63
+      id: 5105
+    - huntingZoneId: 63
+      id: 5106
+    - huntingZoneId: 63
+      id: 5107
+    - huntingZoneId: 63
+      id: 5201
+    - huntingZoneId: 63
+      id: 5202
+    - huntingZoneId: 63
+      id: 5203
+    - huntingZoneId: 63
+      id: 5204
+    - huntingZoneId: 63
+      id: 5205
+    - huntingZoneId: 63
+      id: 5206
+    - huntingZoneId: 63
+      id: 5207
+    - huntingZoneId: 63
+      id: 5209
+    - huntingZoneId: 63
+      id: 5210
+    - huntingZoneId: 63
+      id: 5211
+    - huntingZoneId: 63
+      id: 5212
+    - huntingZoneId: 63
+      id: 5214
+    - huntingZoneId: 63
+      id: 6001
+    - huntingZoneId: 63
+      id: 6112
+    - huntingZoneId: 63
+      id: 7001
+    - huntingZoneId: 63
+      id: 7002
+    - huntingZoneId: 63
+      id: 8001
+    - huntingZoneId: 63
+      id: 8002
+    - huntingZoneId: 63
+      id: 9780
+    - huntingZoneId: 63
+      id: 9805
+    - huntingZoneId: 63
+      id: 9981
+    - huntingZoneId: 63
+      id: 20000
+    - huntingZoneId: 63
+      id: 20001
+    - huntingZoneId: 63
+      id: 20002
+    - huntingZoneId: 63
+      id: 20003
+    - huntingZoneId: 63
+      id: 20004
+    - huntingZoneId: 63
+      id: 20005
+    - huntingZoneId: 63
+      id: 20006
+    - huntingZoneId: 63
+      id: 20007
+    - huntingZoneId: 63
+      id: 20008
+    - huntingZoneId: 63
+      id: 30002
+    - huntingZoneId: 63
+      id: 30003
+    - huntingZoneId: 63
+      id: 200000
+    - huntingZoneId: 63
+      id: 200001
+    - huntingZoneId: 63
+      id: 200002
+    - huntingZoneId: 63
+      id: 200003
+    - huntingZoneId: 63
+      id: 200004
+    - huntingZoneId: 63
+      id: 200014
+    - huntingZoneId: 63
+      id: 200019
+    - huntingZoneId: 63
+      id: 200020
+    - huntingZoneId: 63
+      id: 200021
+    - huntingZoneId: 63
+      id: 210000
+    - huntingZoneId: 63
+      id: 40009600
+    - huntingZoneId: 63
+      id: 40009618
+    # hunting zone 202
+    - huntingZoneId: 202
+      id: 1053
+    # hunting zone 203
+    - huntingZoneId: 203
+      id: 1036
+    - huntingZoneId: 203
+      id: 1037
+    - huntingZoneId: 203
+      id: 1038
+    - huntingZoneId: 203
+      id: 1039
+    - huntingZoneId: 203
+      id: 1040
+    - huntingZoneId: 203
+      id: 1041
+    - huntingZoneId: 203
+      id: 1042
+    - huntingZoneId: 203
+      id: 1043
+    - huntingZoneId: 203
+      id: 1044
+    - huntingZoneId: 203
+      id: 1045
+    - huntingZoneId: 203
+      id: 1046
+    - huntingZoneId: 203
+      id: 1048
+    - huntingZoneId: 203
+      id: 1049
+    - huntingZoneId: 203
+      id: 1502
+    - huntingZoneId: 203
+      id: 1503
+    - huntingZoneId: 203
+      id: 1504
+    # hunting zone 207
+    - huntingZoneId: 207
+      id: 6000
+    - huntingZoneId: 207
+      id: 6001
+    - huntingZoneId: 207
+      id: 6002
+    - huntingZoneId: 207
+      id: 6003
+    - huntingZoneId: 207
+      id: 6004
+    - huntingZoneId: 207
+      id: 6005
+    - huntingZoneId: 207
+      id: 6006
+    - huntingZoneId: 207
+      id: 6009
+    - huntingZoneId: 207
+      id: 9805
+    - huntingZoneId: 207
+      id: 9902
+    - huntingZoneId: 207
+      id: 9903
+    - huntingZoneId: 207
+      id: 9904
+    - huntingZoneId: 207
+      id: 9905
+  upsert:
+    # hunting zone 63
+    - huntingZoneId: 63
+      id: 1151
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          endSocial: 0
+          pages:
+            - social: 0
+              voiceTypeId: 0
+              text: "(You can craft weapons and armor on this workbench.)"
+    - huntingZoneId: 63
+      id: 1152
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          endSocial: 0
+          pages:
+            - social: 0
+              voiceTypeId: 0
+              text: "(You can craft armor on this workbench.)"
+    - huntingZoneId: 63
+      id: 1153
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          endSocial: 0
+          pages:
+            - social: 0
+              voiceTypeId: 0
+              text: "(You can use this alembic for alchemy or etching.)"
