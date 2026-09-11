@@ -36,7 +36,9 @@ quests:
           journalText: "@quest:701003"
           hasReward: false
           body:
-            npcId: "60,1014"
+            npcId:
+              huntingZone: 60
+              templateId: 1014
             dialogueId: 3
             completionButtonText: "@quest:701002"
             visitCinematicId: 0
@@ -49,7 +51,9 @@ quests:
           journalText: "@quest:701005"
           hasReward: false
           body:
-            npcId: "207,1005"
+            npcId:
+              huntingZone: 207
+              templateId: 1005
             dialogueId: 4
             completionButtonText: "@quest:701004"
             visitCinematicId: 0
@@ -62,7 +66,9 @@ quests:
           journalText: "@quest:701006"
           body:
             targets:
-              - templateId: "7,1000"
+              - npc:
+                  huntingZone: 7
+                  templateId: 1000
                 killCount: 1
         - taskId: 4
           type: "VisitTask"
@@ -71,7 +77,9 @@ quests:
           journalText: "@quest:701008"
           hasReward: false
           body:
-            npcId: "207,1005"
+            npcId:
+              huntingZone: 207
+              templateId: 1005
             dialogueId: 5
             completionButtonText: "@quest:701007"
             visitCinematicId: 0
@@ -82,7 +90,9 @@ quests:
           journalText: "@quest:701010"
           hasReward: false
           body:
-            npcId: "207,1009"
+            npcId:
+              huntingZone: 207
+              templateId: 1009
             dialogueId: 6
             completionButtonText: "@quest:701009"
             visitCinematicId: 0
@@ -99,10 +109,14 @@ quests:
             targetCount: 1
             itemId: 38
             targets:
-              - templateId: "7,2000"
+              - npc:
+                  huntingZone: 7
+                  templateId: 2000
                 grantRate: 100
             sequentialDistribution: "미적용"
-            targetNpc: "207,1009"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1009
             completionDialogue: 7
             incompleteDialogue: 8
             completionButtonText: "@quest:701014"
@@ -120,7 +134,9 @@ quests:
             deliveryItems:
               - itemId: 9107
                 quantity: 5
-            targetNpc: "207,1009"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1009
             completionDialogue: 9
             incompleteDialogue: 10
             completionButtonText: "@quest:701015"
@@ -131,7 +147,9 @@ quests:
           journalText: "@quest:701019"
           hasReward: false
           body:
-            npcId: "207,1009"
+            npcId:
+              huntingZone: 207
+              templateId: 1009
             dialogueId: 11
             completionButtonText: "@quest:701018"
             visitCinematicId: 0
@@ -142,7 +160,9 @@ quests:
           journalText: "@quest:701020"
           body:
             targets:
-              - templateId: "7,100"
+              - npc:
+                  huntingZone: 7
+                  templateId: 100
                 killCount: 4
         - taskId: 10
           type: "VisitTask"
@@ -151,7 +171,9 @@ quests:
           journalText: "@quest:701022"
           hasReward: false
           body:
-            npcId: "207,1009"
+            npcId:
+              huntingZone: 207
+              templateId: 1009
             dialogueId: 12
             completionButtonText: "@quest:701021"
             visitCinematicId: 0
@@ -167,7 +189,9 @@ quests:
             flagItemName: "@quest:701024"
             iconId: 98
             deliveryQuantity: 1
-            targetNpc: "207,1001"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1001
             dialogue: 13
             completionButtonText: "@quest:701026"
     - id: 702
@@ -185,7 +209,9 @@ quests:
         questType: "Mission"
         repeatType: "OneTime"
         cancellable: "Forbidden"
-        giverNpc: "207,1001"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1001
       requirements:
         minLevel: 21
         prerequisites: [701]
@@ -199,7 +225,9 @@ quests:
           journalText: "@quest:702003"
           hasReward: false
           body:
-            npcId: "207,1044"
+            npcId:
+              huntingZone: 207
+              templateId: 1044
             dialogueId: 3
             completionButtonText: "@quest:702002"
             visitCinematicId: 0
@@ -222,7 +250,9 @@ quests:
           journalText: "@quest:702006"
           hasReward: false
           body:
-            npcId: "207,1044"
+            npcId:
+              huntingZone: 207
+              templateId: 1044
             dialogueId: 4
             completionButtonText: "@quest:702005"
             visitCinematicId: 0
@@ -244,7 +274,9 @@ quests:
           journalScript: 4
           journalText: "@quest:702010"
           body:
-            targetNpc: "207,1044"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1044
             preBranchDialogue: 5
             branchType: "manual"
             completionButtonText: "@quest:702011"
@@ -268,7 +300,9 @@ quests:
             - itemId: 5025
               quantity: 1
           body:
-            npcId: "207,1044"
+            npcId:
+              huntingZone: 207
+              templateId: 1044
             dialogueId: 8
             completionButtonText: "@quest:702012"
             visitCinematicId: 0
@@ -289,7 +323,9 @@ quests:
           body:
             itemId: 5026
             itemCount: 5
-            targetNpc: "207,1044"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1044
             completionDialogue: 9
             incompleteDialogue: 10
             completionButtonText: "@quest:702014"
@@ -300,7 +336,9 @@ quests:
           journalText: "@quest:702017"
           body:
             targets:
-              - templateId: "7,102"
+              - npc:
+                  huntingZone: 7
+                  templateId: 102
                 killCount: 1
         - taskId: 9
           type: "VisitTask"
@@ -309,7 +347,9 @@ quests:
           journalText: "@quest:702019"
           hasReward: false
           body:
-            npcId: "207,1044"
+            npcId:
+              huntingZone: 207
+              templateId: 1044
             dialogueId: 11
             completionButtonText: "@quest:702018"
             visitCinematicId: 0
@@ -320,7 +360,9 @@ quests:
           journalText: "@quest:702021"
           hasReward: false
           body:
-            npcId: "207,1001"
+            npcId:
+              huntingZone: 207
+              templateId: 1001
             dialogueId: 12
             completionButtonText: "@quest:702020"
             visitCinematicId: 0
@@ -332,7 +374,9 @@ quests:
           dungeonId: 9019
           timeLimit: [0, 5]
           body:
-            npcId: "419,99"
+            npcId:
+              huntingZone: 419
+              templateId: 99
             aggroInterval: 1
             aggroAmount: 1
             aggroRange: 300
@@ -346,7 +390,9 @@ quests:
           journalText: "@quest:702025"
           hasReward: true
           body:
-            npcId: "419,99"
+            npcId:
+              huntingZone: 419
+              templateId: 99
             dialogueId: 13
             completionButtonText: "@quest:702024"
             visitCinematicId: 0
@@ -368,7 +414,9 @@ quests:
         startItems:
           - itemId: 5063
             quantity: 1
-        giverNpc: "207,1001"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1001
       requirements:
         minLevel: 21
         prerequisites: [702]
@@ -380,7 +428,9 @@ quests:
           journalText: "@quest:704003"
           hasReward: false
           body:
-            npcId: "63,1160"
+            npcId:
+              huntingZone: 63
+              templateId: 1160
             dialogueId: 3
             completionButtonText: "@quest:704002"
             visitCinematicId: 0
@@ -398,7 +448,9 @@ quests:
           body:
             itemId: 5063
             itemCount: 1
-            targetNpc: "63,1137"
+            targetNpc:
+              huntingZone: 63
+              templateId: 1137
             completionDialogue: 4
             incompleteDialogue: 5
             completionButtonText: "@quest:704004"
@@ -412,7 +464,9 @@ quests:
             - itemId: 5063
               quantity: 1
           body:
-            npcId: "63,1138"
+            npcId:
+              huntingZone: 63
+              templateId: 1138
             dialogueId: 6
             completionButtonText: "@quest:704007"
             visitCinematicId: 0
@@ -432,7 +486,9 @@ quests:
             - itemId: 5063
               quantity: 1
           body:
-            npcId: "63,1138"
+            npcId:
+              huntingZone: 63
+              templateId: 1138
             dialogueId: 7
             completionButtonText: "@quest:704009"
             visitCinematicId: 0
@@ -444,21 +500,13 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "You helped Mysterium researchers discover how the Scions of Lok were controlling the kumases."
+            - content: "You helped Mysterium researchers discover how the Scions of Lok were controlling the kumases."
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Mission Orders<BR><BR>Reinforcements required in the Celestial Hills. Soldiers available for reassignment should report to Prefect Daven in Lumbertown at once."
+            - content: "Mission Orders<BR><BR>Reinforcements required in the Celestial Hills. Soldiers available for reassignment should report to Prefect Daven in Lumbertown at once."
         - id: 3
           npcZoneId: 60
           prevId: 2
@@ -498,8 +546,7 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1009
           pages:
-            - social: 0
-              content: "Blast and damnation! It's just one kumas. You've killed so many already. I just want you to kill one more, and bring me its amulet. Please, hurry!"
+            - content: "Blast and damnation! It's just one kumas. You've killed so many already. I just want you to kill one more, and bring me its amulet. Please, hurry!"
         - id: 9
           npcZoneId: 207
           prevId: 7
@@ -511,8 +558,7 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1009
           pages:
-            - social: 0
-              content: "No, no, you need to bring me some baetylith shards to compare the amulet against. A hypothesis needs to be tested!"
+            - content: "No, no, you need to bring me some baetylith shards to compare the amulet against. A hypothesis needs to be tested!"
         - id: 11
           npcZoneId: 207
           prevId: 9
@@ -539,15 +585,12 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
           villagerId: 1001
           pages:
-            - social: 0
-              content: "The Mysterium sought your help to foil the research the Scions of Lok were conducting. You found references to an ancient fountain, but stopped the Scions' leader—Tezluar—before they could finish what they were doing. Unfortunately, the Scions reacted forcefully and launched a massive assault on the Sanctum Mysterium. You protected Mattin as he brought magical shields to bear and saved the sanctum."
+            - content: "The Mysterium sought your help to foil the research the Scions of Lok were conducting. You found references to an ancient fountain, but stopped the Scions' leader—Tezluar—before they could finish what they were doing. Unfortunately, the Scions reacted forcefully and launched a massive assault on the Sanctum Mysterium. You protected Mattin as he brought magical shields to bear and saved the sanctum."
         - id: 2
           npcZoneId: 207
           villagerId: 1001
@@ -580,15 +623,13 @@ questDialogs:
           prevId: 4
           villagerId: 1044
           pages:
-            - social: 0
-              content: "You lost it?<BR><BR>Now what am I gonna do? Oh! Wait a minute, <PCNAME>."
+            - content: "You lost it?<BR><BR>Now what am I gonna do? Oh! Wait a minute, <PCNAME>."
         - id: 7
           npcZoneId: 207
           prevId: 4
           villagerId: 1044
           pages:
-            - social: 0
-              content: "Come on, I want to see the ENTIRE decrypted message."
+            - content: "Come on, I want to see the ENTIRE decrypted message."
         - id: 8
           npcZoneId: 207
           prevId: 5
@@ -607,8 +648,7 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1044
           pages:
-            - social: 0
-              content: "The {@LinkCreature:7#13#Lokian berserkers} must have some way to read the cryptographs. They don't have enough brains to do it themselves!"
+            - content: "The {@LinkCreature:7#13#Lokian berserkers} must have some way to read the cryptographs. They don't have enough brains to do it themselves!"
         - id: 11
           npcZoneId: 207
           prevId: 9
@@ -635,15 +675,12 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
           villagerId: 1001
           pages:
-            - social: 0
-              content: "General Samael taught you how to use glyphs as a reward for your achievements in the Celestial Hills."
+            - content: "General Samael taught you how to use glyphs as a reward for your achievements in the Celestial Hills."
         - id: 2
           npcZoneId: 207
           villagerId: 1001
@@ -668,8 +705,7 @@ questDialogs:
           npcZoneId: 63
           villagerId: 1137
           pages:
-            - social: 0
-              content: "Do you have something to report?"
+            - content: "Do you have something to report?"
         - id: 6
           npcZoneId: 63
           prevId: 4

@@ -7,9 +7,10 @@
 #
 # A gate is a PAIR, and the server counts the quest ids against the task ids and
 # refuses the whole NpcData file when they disagree. So a cleared quest id must have
-# its task id cleared in the same op, and the cleared form is the attribute PRESENT
-# AND EMPTY. It is not `0`: a `hideQuestId` of `0` paired with a `hideQuestTaskId` of
-# `0` appears nowhere in the data the server accepts, and it is refused.
+# its task id cleared in the same op. `default` is the only spelling that clears one:
+# naming the attribute under `changes` can only set it to a value, and `0` is a value.
+# A `hideQuestId` of `0` paired with a `hideQuestTaskId` of `0` appears nowhere in the
+# data the server accepts.
 #
 # provenance: ported-from-v31
 
@@ -23,22 +24,22 @@ npcs:
       id: 1138            # Samael
       changes:
         questVillager: true
-        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+        default: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
     - huntingZoneId: 63
       id: 1166            # Elleon
       changes:
         questVillager: true
-        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+        default: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
     - huntingZoneId: 63
       id: 1167            # Ciebel
       changes:
-        empty: [hideQuestId, hideQuestTaskId]
+        default: [hideQuestId, hideQuestTaskId]
     - huntingZoneId: 203
       id: 1013            # Chama
       changes:
-        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+        default: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
     - huntingZoneId: 203
       id: 1030            # Kantusa
       changes:
         questVillager: true
-        empty: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]
+        default: [appearQuestId, appearQuestTaskId, hideQuestId, hideQuestTaskId]

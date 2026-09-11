@@ -25,7 +25,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "202,1041"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1041
       requirements:
         minLevel: 10
         maxLevel: 17
@@ -44,14 +46,18 @@ quests:
             deliveryQuantity: 10
             iconId: 119
             targets:
-              - templateId: "2,4"
+              - npc:
+                  huntingZone: 2
+                  templateId: 4
                 grantRate: 70
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "202,1041"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1041
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:291003"
@@ -69,7 +75,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "202,1034"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1034
       requirements:
         minLevel: 10
         maxLevel: 19
@@ -88,16 +96,22 @@ quests:
             deliveryQuantity: 10
             iconId: 87
             targets:
-              - templateId: "2,6"
+              - npc:
+                  huntingZone: 2
+                  templateId: 6
                 grantRate: 46
-              - templateId: "2,56"
+              - npc:
+                  huntingZone: 2
+                  templateId: 56
                 grantRate: 80
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "202,1034"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1034
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:293003"
@@ -117,7 +131,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1004"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1004
       requirements:
         minLevel: 13
       tasks:
@@ -134,10 +150,14 @@ quests:
             targetCount: 6
             itemId: 89
             targets:
-              - templateId: "3,1"
+              - npc:
+                  huntingZone: 3
+                  templateId: 1
                 grantRate: 40
             sequentialDistribution: "미적용"
-            targetNpc: "203,1004"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1004
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:321007"
@@ -157,7 +177,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "59,1009"
+        giverNpc:
+          huntingZone: 59
+          templateId: 1009
       requirements:
         minLevel: 14
       tasks:
@@ -168,7 +190,9 @@ quests:
           journalText: "@quest:326006"
           timeLimit: [0, 10]
           body:
-            npcId: "3,24"
+            npcId:
+              huntingZone: 3
+              templateId: 24
             escortCount: 1
             aggroInterval: 1
             aggroAmount: 1
@@ -178,7 +202,9 @@ quests:
             postEscortCinematicId: 10003041
             aiSettings: 33
             postEscortDialogue: "@quest:326005"
-            areaId: "203,20300026"
+            areaId:
+              huntingZone: 203
+              territory: 20300026
         - taskId: 2
           type: "VisitTask"
           nextTaskId: 0
@@ -186,7 +212,9 @@ quests:
           journalText: "@quest:326008"
           hasReward: true
           body:
-            npcId: "59,1009"
+            npcId:
+              huntingZone: 59
+              templateId: 1009
             dialogueId: 4
             completionButtonText: "@quest:326007"
             visitCinematicId: 0
@@ -206,7 +234,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1021"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1021
       requirements:
         minLevel: 14
         prerequisites: [331]
@@ -227,7 +257,9 @@ quests:
           journalText: "@quest:332006"
           body:
             targets:
-              - templateId: "3,4"
+              - npc:
+                  huntingZone: 3
+                  templateId: 4
                 killCount: 1
                 encounterDialogue: "@quest:332005"
         - taskId: 3
@@ -237,7 +269,9 @@ quests:
           journalText: "@quest:332008"
           hasReward: true
           body:
-            npcId: "203,1021"
+            npcId:
+              huntingZone: 203
+              templateId: 1021
             dialogueId: 3
             completionButtonText: "@quest:332007"
             visitCinematicId: 0
@@ -255,7 +289,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1020"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1020
       requirements:
         minLevel: 16
         maxLevel: 22
@@ -274,16 +310,22 @@ quests:
             deliveryQuantity: 10
             iconId: 78
             targets:
-              - templateId: "6,1061"
+              - npc:
+                  huntingZone: 6
+                  templateId: 1061
                 grantRate: 90
-              - templateId: "6,1062"
+              - npc:
+                  huntingZone: 6
+                  templateId: 1062
                 grantRate: 90
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "206,1020"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1020
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:691003"
@@ -301,7 +343,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1022"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1022
       requirements:
         minLevel: 16
         maxLevel: 24
@@ -320,16 +364,22 @@ quests:
             deliveryQuantity: 10
             iconId: 25
             targets:
-              - templateId: "6,3031"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3031
                 grantRate: 90
-              - templateId: "6,3032"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3032
                 grantRate: 90
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "206,1022"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1022
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:692003"
@@ -347,7 +397,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1021"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1021
       requirements:
         minLevel: 16
         maxLevel: 23
@@ -366,14 +418,18 @@ quests:
             deliveryQuantity: 6
             iconId: 36
             targets:
-              - templateId: "6,2041"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2041
                 grantRate: 90
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 60
             sequentialDistribution: "적용"
-            targetNpc: "206,1009"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1009
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:693003"
@@ -393,7 +449,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1006"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1006
       requirements:
         minLevel: 21
       tasks:
@@ -404,7 +462,9 @@ quests:
           journalText: "@quest:722004"
           body:
             targets:
-              - templateId: "7,9"
+              - npc:
+                  huntingZone: 7
+                  templateId: 9
                 killCount: 30
         - taskId: 2
           type: "VisitTask"
@@ -413,7 +473,9 @@ quests:
           journalText: "@quest:722006"
           hasReward: true
           body:
-            npcId: "207,1006"
+            npcId:
+              huntingZone: 207
+              templateId: 1006
             dialogueId: 3
             completionButtonText: "@quest:722005"
             visitCinematicId: 0
@@ -433,7 +495,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1007"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1007
       requirements:
         minLevel: 21
       tasks:
@@ -451,7 +515,9 @@ quests:
             deliveryItems:
               - itemId: 9000
                 quantity: 5
-            targetNpc: "207,1007"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1007
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:723004"
@@ -471,7 +537,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1013"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1013
       requirements:
         minLevel: 21
       tasks:
@@ -482,9 +550,13 @@ quests:
           journalText: "@quest:725004"
           body:
             targets:
-              - templateId: "7,7"
+              - npc:
+                  huntingZone: 7
+                  templateId: 7
                 killCount: 12
-              - templateId: "7,8"
+              - npc:
+                  huntingZone: 7
+                  templateId: 8
                 killCount: 30
         - taskId: 2
           type: "VisitTask"
@@ -493,7 +565,9 @@ quests:
           journalText: "@quest:725006"
           hasReward: true
           body:
-            npcId: "207,1013"
+            npcId:
+              huntingZone: 207
+              templateId: 1013
             dialogueId: 3
             completionButtonText: "@quest:725005"
             visitCinematicId: 0
@@ -513,7 +587,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1005"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1005
       requirements:
         minLevel: 21
         prerequisites: [725]
@@ -525,7 +601,9 @@ quests:
           journalText: "@quest:726005"
           hasReward: true
           body:
-            npcId: "207,1001"
+            npcId:
+              huntingZone: 207
+              templateId: 1001
             dialogueId: 3
             completionButtonText: "@quest:726004"
             visitCinematicId: 0
@@ -545,7 +623,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1018"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1018
       requirements:
         minLevel: 21
       tasks:
@@ -556,7 +636,9 @@ quests:
           journalText: "@quest:727004"
           body:
             targets:
-              - templateId: "7,3"
+              - npc:
+                  huntingZone: 7
+                  templateId: 3
                 killCount: 1
         - taskId: 2
           type: "VisitTask"
@@ -565,7 +647,9 @@ quests:
           journalText: "@quest:727006"
           hasReward: true
           body:
-            npcId: "207,1018"
+            npcId:
+              huntingZone: 207
+              templateId: 1018
             dialogueId: 3
             completionButtonText: "@quest:727005"
             visitCinematicId: 0
@@ -585,7 +669,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1100"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1100
       requirements:
         minLevel: 21
         prerequisites: [727]
@@ -603,10 +689,14 @@ quests:
             targetCount: 2
             itemId: 96
             targets:
-              - templateId: "7,4"
+              - npc:
+                  huntingZone: 7
+                  templateId: 4
                 grantRate: 100
             sequentialDistribution: "미적용"
-            targetNpc: "207,1100"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1100
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:728007"
@@ -626,7 +716,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1005"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1005
       requirements:
         minLevel: 21
       tasks:
@@ -642,7 +734,9 @@ quests:
             flagItemName: "@quest:729005"
             iconId: 104
             deliveryQuantity: 1
-            targetNpc: "207,1009"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1009
             dialogue: 3
             completionButtonText: "@quest:729007"
     - id: 791
@@ -659,7 +753,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "60,1013"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1013
       requirements:
         minLevel: 21
         maxLevel: 27
@@ -678,16 +774,22 @@ quests:
             deliveryQuantity: 10
             iconId: 36
             targets:
-              - templateId: "7,5"
+              - npc:
+                  huntingZone: 7
+                  templateId: 5
                 grantRate: 90
-              - templateId: "7,6"
+              - npc:
+                  huntingZone: 7
+                  templateId: 6
                 grantRate: 90
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "207,1006"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1006
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:791003"
@@ -705,7 +807,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "60,1013"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1013
       requirements:
         minLevel: 21
         maxLevel: 28
@@ -724,14 +828,18 @@ quests:
             deliveryQuantity: 10
             iconId: 117
             targets:
-              - templateId: "7,7"
+              - npc:
+                  huntingZone: 7
+                  templateId: 7
                 grantRate: 90
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "207,1005"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1005
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:792003"
@@ -749,7 +857,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "60,1013"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1013
       requirements:
         minLevel: 21
         maxLevel: 28
@@ -768,16 +878,22 @@ quests:
             deliveryQuantity: 3
             iconId: 109
             targets:
-              - templateId: "7,3"
+              - npc:
+                  huntingZone: 7
+                  templateId: 3
                 grantRate: 90
-              - templateId: "7,4"
+              - npc:
+                  huntingZone: 7
+                  templateId: 4
                 grantRate: 100
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 30
             sequentialDistribution: "미적용"
-            targetNpc: "207,1005"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1005
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:793003"
@@ -795,7 +911,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "60,1013"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1013
       requirements:
         minLevel: 21
         maxLevel: 29
@@ -814,16 +932,22 @@ quests:
             deliveryQuantity: 10
             iconId: 78
             targets:
-              - templateId: "7,12"
+              - npc:
+                  huntingZone: 7
+                  templateId: 12
                 grantRate: 90
-              - templateId: "7,13"
+              - npc:
+                  huntingZone: 7
+                  templateId: 13
                 grantRate: 90
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 100
             sequentialDistribution: "적용"
-            targetNpc: "207,1016"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1016
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:794003"
@@ -841,7 +965,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "60,1013"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1013
       requirements:
         minLevel: 21
         maxLevel: 29
@@ -860,14 +986,18 @@ quests:
             deliveryQuantity: 3
             iconId: 25
             targets:
-              - templateId: "7,23"
+              - npc:
+                  huntingZone: 7
+                  templateId: 23
                 grantRate: 100
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 30
             sequentialDistribution: "미적용"
-            targetNpc: "207,1016"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1016
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:795003"
@@ -885,7 +1015,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "60,1013"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1013
       requirements:
         minLevel: 21
         maxLevel: 28
@@ -904,14 +1036,18 @@ quests:
             deliveryQuantity: 3
             iconId: 25
             targets:
-              - templateId: "7,1"
+              - npc:
+                  huntingZone: 7
+                  templateId: 1
                 grantRate: 100
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 30
             sequentialDistribution: "미적용"
-            targetNpc: "207,1005"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1005
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:796003"
@@ -923,8 +1059,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 202
@@ -935,8 +1069,7 @@ questDialogs:
           npcZoneId: 202
           villagerId: 1041
           pages:
-            - social: 0
-              content: "Mission Orders<BR><BR>Hunt the sabertooths that threaten efforts to subdue the Fey Forest.<BR><BR>Kill the {@LinkCreature:2#4#slinking sabertooths}.<BR><BR>Report to Reindal when mission is complete."
+            - content: "Mission Orders<BR><BR>Hunt the sabertooths that threaten efforts to subdue the Fey Forest.<BR><BR>Kill the {@LinkCreature:2#4#slinking sabertooths}.<BR><BR>Report to Reindal when mission is complete."
         - id: 3
           npcZoneId: 202
           prevId: 2
@@ -948,15 +1081,12 @@ questDialogs:
           npcZoneId: 202
           villagerId: 1041
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 2
       id: 93
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 202
@@ -967,8 +1097,7 @@ questDialogs:
           npcZoneId: 202
           villagerId: 1034
           pages:
-            - social: 0
-              content: "Mission Orders<BR><BR>The unicorns continue to attack federation personnel in the Fey Forest.<BR><BR>Kill the {@LinkCreature:2#6#sullen unicorns} and {@LinkCreature:2#56#feral unicorns}.<BR><BR>Report to Aeir at the Faerie Pond when mission is complete."
+            - content: "Mission Orders<BR><BR>The unicorns continue to attack federation personnel in the Fey Forest.<BR><BR>Kill the {@LinkCreature:2#6#sullen unicorns} and {@LinkCreature:2#56#feral unicorns}.<BR><BR>Report to Aeir at the Faerie Pond when mission is complete."
         - id: 3
           npcZoneId: 202
           prevId: 2
@@ -980,15 +1109,12 @@ questDialogs:
           npcZoneId: 202
           villagerId: 1034
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 3
       id: 21
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 203
@@ -1012,15 +1138,12 @@ questDialogs:
           npcZoneId: 203
           villagerId: 1004
           pages:
-            - social: 0
-              content: "Don't worry. They're harmless. Well, mostly harmless. Go get 'em."
+            - content: "Don't worry. They're harmless. Well, mostly harmless. Go get 'em."
     - huntingZoneId: 3
       id: 26
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 59
@@ -1037,8 +1160,7 @@ questDialogs:
           npcZoneId: 3
           villagerId: 26
           pages:
-            - social: 0
-              content: "I'll do my best. Just don't leave me, okay?"
+            - content: "I'll do my best. Just don't leave me, okay?"
         - id: 4
           npcZoneId: 59
           prevId: 2
@@ -1051,8 +1173,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 203
@@ -1072,381 +1192,11 @@ questDialogs:
           pages:
             - social: 4
               content: "I was right. The devas created a nexus spirit, which drew the other souls back from the afterlife and imprisoned them in their bodies or infected the earth spirits.<BR><BR>Thanks to you, that shouldn't be much of a problem in the future."
-    - huntingZoneId: 3
-      id: 61
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine pair of swords...these are true adventurer's weapons!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep these swords? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 62
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a lance...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this lance? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 63
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine greatsword...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this greatsword? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 64
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine axe...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this greataxe? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 65
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine disc...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this disc? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 66
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine bow...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this bow? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 67
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine staff...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this staff? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
-    - huntingZoneId: 3
-      id: 68
-      voiceTypeId: 0
-      texts:
-        - id: 1
-          npcZoneId: 0
-          villagerId: 0
-          pages: []
-        - id: 100
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Avatar Weapon Mission Quest"
-        - id: 2
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Rumor has it that the trap hunter in Crescentia, Roson, recently discovered an ancient relic with a magical power.<BR><BR>No one goes into detail about it, though! What's that about? You can't just throw out phrases like \"magical relic\" and then not give any more information!<BR><BR>Tell you what: Go to the source for me. Talk to Roson, ask her what's really going on with that relic."
-        - id: 3
-          npcZoneId: 59
-          prevId: 2
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "What? They're saying I have a relic? How ridiculous!<BR><BR>Let this be a lesson to you: People talk before they know the whole story, and they repeat things before they ask for all the facts.<BR><BR>What I have is the general area to find pieces of relics. One piece doesn't really do anything. You have to gather a bunch of them.<NEXTPAGEBUTTON>&quot;But...gather them for what?&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I've recently uncovered an ancient legend about the gods and their relics.<BR><BR>If you collect enough pieces to make a whole relic, you can create an amazing weapon and acquire the power of the gods! An avatar weapon.<NEXTPAGEBUTTON>&quot;That sounds...fake.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "I know! But that's what my studies suggest. That's why I'm hunting for relics—I need to test this theory and see if what they say is true.<BR><BR>Except I'm having a hard time getting the relics. I've never been much of a fighter, and the relic pieces are usually found on monsters attracted to the relic energy. I'm a much better researcher.<BR><BR>But...you're an experienced fighter, right? Maybe you could...y'know. And then come back and show me what you've found?"
-        - id: 4
-          npcZoneId: 59
-          prevId: 3
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Did you find it? Is it true?<BR><BR>Oh, was my theory correct? I have to know!<NEXTPAGEBUTTON>&quot;Look at this.&quot;</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Oh my...that's incredible! Such a fine scepter...this is a true adventurer's weapon!<BR><BR>And you've confirmed my research! Thank you!<BR><BR>In return, why don't you keep this scepter? I think you would have much more use for it than I ever would.<BR><BR>There are supposed to be more relics hidden across the continent! I'll bet it wouldn't be hard for someone like you to find them all. Keep looking, and good luck on your future travels!"
-        - id: 5
-          npcZoneId: 59
-          villagerId: 1031
-          pages:
-            - social: 0
-              content: "Oh no, could you not find them? Was my theory all wrong?<BR><BR>Oh, please look again! I want so much to find some proof to this."
     - huntingZoneId: 6
       id: 91
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
@@ -1457,8 +1207,7 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1020
           pages:
-            - social: 0
-              content: "The Gutrend tribe is wreaking havoc in the ruins of Colchester. You're to put a stop to it.<BR><BR>Kill the {@LinkCreature:6#1062#Gutrend pillagers} and {@LinkCreature:6#1061#brigands} in Colchester.<BR><BR>Report to Dakona north of Echo Ranch when your mission is complete."
+            - content: "The Gutrend tribe is wreaking havoc in the ruins of Colchester. You're to put a stop to it.<BR><BR>Kill the {@LinkCreature:6#1062#Gutrend pillagers} and {@LinkCreature:6#1061#brigands} in Colchester.<BR><BR>Report to Dakona north of Echo Ranch when your mission is complete."
         - id: 3
           npcZoneId: 206
           prevId: 2
@@ -1470,15 +1219,12 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1020
           pages:
-            - social: 0
-              content: "I would love to reward you. Unfortunately, you have to do something useful first.<BR><BR>Come back when you have."
+            - content: "I would love to reward you. Unfortunately, you have to do something useful first.<BR><BR>Come back when you have."
     - huntingZoneId: 6
       id: 92
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
@@ -1489,8 +1235,7 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1022
           pages:
-            - social: 0
-              content: "The Scions of Lok have established a foothold and erected the Valselok Shrine. They must be stopped, or at least slowed.<BR><BR>Hunt down the {@LinkCreature:6#3031#Lokian reavers} and {@LinkCreature:6#3032#mystics} around the shrine.<BR><BR>Report to Embarr near the shrine when your mission is complete."
+            - content: "The Scions of Lok have established a foothold and erected the Valselok Shrine. They must be stopped, or at least slowed.<BR><BR>Hunt down the {@LinkCreature:6#3031#Lokian reavers} and {@LinkCreature:6#3032#mystics} around the shrine.<BR><BR>Report to Embarr near the shrine when your mission is complete."
         - id: 3
           npcZoneId: 206
           prevId: 2
@@ -1502,15 +1247,12 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1022
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 6
       id: 93
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
@@ -1521,8 +1263,7 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1021
           pages:
-            - social: 0
-              content: "The bear population is becoming, well, unbearable. They've got to go.<BR><BR>Hunt some {@LinkCreature:6#2041#ravenous bears} and thin out their numbers.<BR><BR>Report to Miljean at Vindicator Camp when your mission is complete."
+            - content: "The bear population is becoming, well, unbearable. They've got to go.<BR><BR>Hunt some {@LinkCreature:6#2041#ravenous bears} and thin out their numbers.<BR><BR>Report to Miljean at Vindicator Camp when your mission is complete."
         - id: 3
           npcZoneId: 206
           prevId: 2
@@ -1534,15 +1275,12 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1009
           pages:
-            - social: 0
-              content: "It doesn't look like you've completed your mission yet."
+            - content: "It doesn't look like you've completed your mission yet."
     - huntingZoneId: 7
       id: 22
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1567,8 +1305,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1592,15 +1328,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1007
           pages:
-            - social: 0
-              content: "Let those cursed orcans snap and snarl at each other for awhile. Fetch me their food sacks and we'll see who laughs last!"
+            - content: "Let those cursed orcans snap and snarl at each other for awhile. Fetch me their food sacks and we'll see who laughs last!"
     - huntingZoneId: 7
       id: 25
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1625,8 +1358,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1651,8 +1382,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1677,8 +1406,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1702,15 +1429,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1100
           pages:
-            - social: 0
-              content: "Do you have the cores? These Mysterium folk are breathing down my neck."
+            - content: "Do you have the cores? These Mysterium folk are breathing down my neck."
     - huntingZoneId: 7
       id: 29
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 207
@@ -1735,8 +1459,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 60
@@ -1747,8 +1469,7 @@ questDialogs:
           npcZoneId: 60
           villagerId: 1013
           pages:
-            - social: 0
-              content: "Those blasted Red Fangs are pushing us too hard. I'm too pretty to fight, so I'm sending you.<BR><BR>Hunt down the {@LinkCreature:7#5#Red Fang orcans} and {@LinkCreature:7#6#fighters}.<BR><BR>Report to Kieran at Casidhe's Stand when your mission is complete."
+            - content: "Those blasted Red Fangs are pushing us too hard. I'm too pretty to fight, so I'm sending you.<BR><BR>Hunt down the {@LinkCreature:7#5#Red Fang orcans} and {@LinkCreature:7#6#fighters}.<BR><BR>Report to Kieran at Casidhe's Stand when your mission is complete."
         - id: 3
           npcZoneId: 207
           prevId: 2
@@ -1760,15 +1481,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1006
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 7
       id: 92
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 60
@@ -1779,8 +1497,7 @@ questDialogs:
           npcZoneId: 60
           villagerId: 1013
           pages:
-            - social: 0
-              content: "The Red Fangs are making their push for control by starving what's left of our people in the Celestial Hills. Mostly, they're raiding our last farm.<BR><BR>Hunt down the {@LinkCreature:7#7#Red Fang ragers} and kill them.<BR><BR>Report to Heroth at Godric's Farm when you're finished."
+            - content: "The Red Fangs are making their push for control by starving what's left of our people in the Celestial Hills. Mostly, they're raiding our last farm.<BR><BR>Hunt down the {@LinkCreature:7#7#Red Fang ragers} and kill them.<BR><BR>Report to Heroth at Godric's Farm when you're finished."
         - id: 3
           npcZoneId: 207
           prevId: 2
@@ -1792,15 +1509,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1005
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 7
       id: 93
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 60
@@ -1811,8 +1525,7 @@ questDialogs:
           npcZoneId: 60
           villagerId: 1013
           pages:
-            - social: 0
-              content: "The kumases have claimed the Omphalos Plains and challenge our control of the region.<BR><BR>You are to slay {@LinkCreature:7#3#indolent} and {@LinkCreature:7#4#torpid kumases} to establish our dominance.<BR><BR>Report to Heroth at Godric's Farm when you're successful."
+            - content: "The kumases have claimed the Omphalos Plains and challenge our control of the region.<BR><BR>You are to slay {@LinkCreature:7#3#indolent} and {@LinkCreature:7#4#torpid kumases} to establish our dominance.<BR><BR>Report to Heroth at Godric's Farm when you're successful."
         - id: 3
           npcZoneId: 207
           prevId: 2
@@ -1824,15 +1537,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1005
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 7
       id: 94
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 60
@@ -1843,8 +1553,7 @@ questDialogs:
           npcZoneId: 60
           villagerId: 1013
           pages:
-            - social: 0
-              content: "Our efforts to stop the Scions of Lok are hampered by their guardians. You are to take the fight to them.<BR><BR>Kill the {@LinkCreature:7#12#Lokian lancers} and {@LinkCreature:7#13#berserkers} in the Cardovek Remnants.<BR><BR>Report to Prefect Nale at the Sanctum Mysterium when your mission is complete."
+            - content: "Our efforts to stop the Scions of Lok are hampered by their guardians. You are to take the fight to them.<BR><BR>Kill the {@LinkCreature:7#12#Lokian lancers} and {@LinkCreature:7#13#berserkers} in the Cardovek Remnants.<BR><BR>Report to Prefect Nale at the Sanctum Mysterium when your mission is complete."
         - id: 3
           npcZoneId: 207
           prevId: 2
@@ -1856,15 +1565,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1016
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 7
       id: 95
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 60
@@ -1875,8 +1581,7 @@ questDialogs:
           npcZoneId: 60
           villagerId: 1013
           pages:
-            - social: 0
-              content: "The Scions of Lok have reinforced their position with juggernaut mercs. You're to ensure they wasted their money.<BR><BR>Eliminate the {@LinkCreature:7#23#juggernaut mercenaries} in the eastern Cardovek Remnants.<BR><BR>Report to Prefect Nale at the Sanctum Mysterium when your mission is complete."
+            - content: "The Scions of Lok have reinforced their position with juggernaut mercs. You're to ensure they wasted their money.<BR><BR>Eliminate the {@LinkCreature:7#23#juggernaut mercenaries} in the eastern Cardovek Remnants.<BR><BR>Report to Prefect Nale at the Sanctum Mysterium when your mission is complete."
         - id: 3
           npcZoneId: 207
           prevId: 2
@@ -1888,15 +1593,12 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1016
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
     - huntingZoneId: 7
       id: 96
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 60
@@ -1907,8 +1609,7 @@ questDialogs:
           npcZoneId: 60
           villagerId: 1013
           pages:
-            - social: 0
-              content: "The nagas are working for the kumases in the Omphalos Plains. We're culling their numbers.<BR><BR>Take out the {@LinkCreature:7#1#naga mercenaries}.<BR><BR>Report to Heroth at Godric's Farm when you're successful."
+            - content: "The nagas are working for the kumases in the Omphalos Plains. We're culling their numbers.<BR><BR>Take out the {@LinkCreature:7#1#naga mercenaries}.<BR><BR>Report to Heroth at Godric's Farm when you're successful."
         - id: 3
           npcZoneId: 207
           prevId: 2
@@ -1920,8 +1621,7 @@ questDialogs:
           npcZoneId: 207
           villagerId: 1005
           pages:
-            - social: 0
-              content: "It looks like you haven't completed your mission yet."
+            - content: "It looks like you haven't completed your mission yet."
 
 questStrings:
   upsert:
@@ -1991,102 +1691,6 @@ questStrings:
       string: "\"For the federation!\""
     - id: 332008
       string: "Report to Neria at the Vanguard Outpost."
-    - id: 361001
-      string: "Arms of the Avatar"
-    - id: 361002
-      string: "\"Of course I'll help.\""
-    - id: 361003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 361004
-      string: "\"Thanks for letting me know!\""
-    - id: 361005
-      string: "Collect 10 of Isren's relics and make an Isren's Bestowal weapon."
-    - id: 361006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 362001
-      string: "Arms of the Avatar"
-    - id: 362002
-      string: "\"Of course I'll help.\""
-    - id: 362003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 362004
-      string: "\"Thanks for letting me know!\""
-    - id: 362005
-      string: "Collect 10 of Isren's relics and make an Isren's Bestowal weapon."
-    - id: 362006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 363001
-      string: "Arms of the Avatar"
-    - id: 363002
-      string: "\"Of course I'll help.\""
-    - id: 363003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 363004
-      string: "\"Thanks for letting me know!\""
-    - id: 363005
-      string: "Collect 10 of Isren's relics and make an Isren's Bestowal weapon."
-    - id: 363006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 364001
-      string: "Arms of the Avatar"
-    - id: 364002
-      string: "\"Of course I'll help.\""
-    - id: 364003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 364004
-      string: "\"Thanks for letting me know!\""
-    - id: 364005
-      string: "Collect 10 pieces of Isren's relic to create a weapon imbued with the goddess's power."
-    - id: 364006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 365001
-      string: "Arms of the Avatar"
-    - id: 365002
-      string: "\"Of course I'll help.\""
-    - id: 365003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 365004
-      string: "\"Thanks for letting me know!\""
-    - id: 365005
-      string: "Collect 10 pieces of Isren's relic to create a weapon imbued with the goddess's power."
-    - id: 365006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 366001
-      string: "Arms of the Avatar"
-    - id: 366002
-      string: "\"Of course I'll help.\""
-    - id: 366003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 366004
-      string: "\"Thanks for letting me know!\""
-    - id: 366005
-      string: "Collect 10 pieces of Isren's relic to create a weapon imbued with the goddess's power."
-    - id: 366006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 367001
-      string: "Arms of the Avatar"
-    - id: 367002
-      string: "\"Of course I'll help.\""
-    - id: 367003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 367004
-      string: "\"Thanks for letting me know!\""
-    - id: 367005
-      string: "Collect 10 pieces of Isren's relic to create a weapon imbued with the goddess's power."
-    - id: 367006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
-    - id: 368001
-      string: "Arms of the Avatar"
-    - id: 368002
-      string: "\"Of course I'll help.\""
-    - id: 368003
-      string: "Find {@linkcreature:59#1031} in Crescentia, and ask about her relic."
-    - id: 368004
-      string: "\"Thanks for letting me know!\""
-    - id: 368005
-      string: "Collect 10 pieces of Isren's relic to create a weapon imbued with the goddess's power."
-    - id: 368006
-      string: "Show your new weapon to {@linkcreature:59#1031}."
     - id: 691001
       string: "Suppression Orders: Gutrends"
     - id: 691002

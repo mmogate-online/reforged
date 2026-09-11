@@ -37,7 +37,9 @@ quests:
           journalText: "@quest:6362003"
           hasReward: false
           body:
-            npcId: "63,1160"
+            npcId:
+              huntingZone: 63
+              templateId: 1160
             dialogueId: 3
             completionButtonText: "@quest:6362002"
             visitCinematicId: 0
@@ -48,7 +50,9 @@ quests:
           journalText: "@quest:6362005"
           hasReward: true
           body:
-            npcId: "60,1909"
+            npcId:
+              huntingZone: 60
+              templateId: 1909
             dialogueId: 4
             completionButtonText: "@quest:6362004"
             visitCinematicId: 0
@@ -90,7 +94,9 @@ quests:
           journalText: "@quest:6386005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:6386004"
             visitCinematicId: 0
@@ -132,7 +138,9 @@ quests:
           journalText: "@quest:6387005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:6387004"
             visitCinematicId: 0
@@ -174,7 +182,9 @@ quests:
           journalText: "@quest:6388005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:6388004"
             visitCinematicId: 0
@@ -203,7 +213,9 @@ quests:
           journalText: "@quest:6389003"
           hasReward: false
           body:
-            npcId: "63,1260"
+            npcId:
+              huntingZone: 63
+              templateId: 1260
             dialogueId: 3
             completionButtonText: "@quest:6389002"
             visitCinematicId: 0
@@ -214,7 +226,9 @@ quests:
           journalText: "@quest:6389005"
           hasReward: true
           body:
-            npcId: "63,1260"
+            npcId:
+              huntingZone: 63
+              templateId: 1260
             dialogueId: 4
             completionButtonText: "@quest:6389004"
             visitCinematicId: 0
@@ -226,53 +240,37 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "[Recall Order] <BR><BR>{@Rgn:63009} is supplying experienced soldiers with war horses. All soldiers who receive this message are to return to {@Rgn:63009}.<BR><BR>Consul {@LinkCreature:63#1160}"
+            - content: "[Recall Order] <BR><BR>{@Rgn:63009} is supplying experienced soldiers with war horses. All soldiers who receive this message are to return to {@Rgn:63009}.<BR><BR>Consul {@LinkCreature:63#1160}"
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1160
           pages:
-            - social: 0
-              content: "Welcome back, <PCNAME>. We figured it’s not right to let an experienced soldier like you continue walking around on foot.<BR><BR>Providing those who serve the Valkyon Federation with the supplies they need is the least we can do. Wait here. I will make the necessary arrangements for you to claim your war horse."
+            - content: "Welcome back, <PCNAME>. We figured it’s not right to let an experienced soldier like you continue walking around on foot.<BR><BR>Providing those who serve the Valkyon Federation with the supplies they need is the least we can do. Wait here. I will make the necessary arrangements for you to claim your war horse."
         - id: 4
           npcZoneId: 60
           prevId: 3
           villagerId: 1909
           pages:
-            - social: 0
-              content: "Are you the <PCNAME> {@Creature:63#1160} mentioned? I’ve prepared a gift for you, in the stable here. You can choose from Brownie, the bay gelding; Ash, the Arcadian dapple; or Grey, the Velikan gray. They're all good breeds, and will serve you well."
+            - content: "Are you the <PCNAME> {@Creature:63#1160} mentioned? I’ve prepared a gift for you, in the stable here. You can choose from Brownie, the bay gelding; Ash, the Arcadian dapple; or Grey, the Velikan gray. They're all good breeds, and will serve you well."
     - huntingZoneId: 63
       id: 86
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
+            - content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
         - id: 3
           npcZoneId: 63
           prevId: 2
@@ -285,20 +283,13 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
+            - content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
         - id: 3
           npcZoneId: 63
           prevId: 2
@@ -311,20 +302,13 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
+            - content: "Do you know what our problem is? No, not argons. Pirates!<BR><BR>The sneaky bastards are stealing our supplies and killing good soldiers. We have to stop this.<BR><BR>The only way to deal with pirates is to think like a pirate. Join a team in Corsairs' Stronghold, and learn how those sea robbers act!<BR><BR>[Corsairs' Stronghold is accessible through the Battleground Matching system.]"
         - id: 3
           npcZoneId: 63
           prevId: 2
@@ -337,38 +321,27 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "[Mysterious Summons]<BR><BR>If you would live your life on your terms, not those dictated by the weak, meet {@LinkCreature:63#1260} in Velika."
+            - content: "[Mysterious Summons]<BR><BR>If you would live your life on your terms, not those dictated by the weak, meet {@LinkCreature:63#1260} in Velika."
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1260
           pages:
-            - social: 0
-              content: "I sense you have quite a few battles under your belt.<BR><BR>If you've the temerity to be bold, to ignore the fears of the inferior, and to strike when you wish to, speak with me again.<BR><BR>I'll guide your next steps when you're ready."
+            - content: "I sense you have quite a few battles under your belt.<BR><BR>If you've the temerity to be bold, to ignore the fears of the inferior, and to strike when you wish to, speak with me again.<BR><BR>I'll guide your next steps when you're ready."
         - id: 4
           npcZoneId: 63
           prevId: 3
           villagerId: 1260
           pages:
-            - social: 0
-              content: "Law and order are structures designed by the sheep to keep the wolves at bay. The sheep are content with their lot in life. Are you?<NEXTPAGEBUTTON>\"I'm certainly no sheep.\"</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Well then, seize your destiny, my friend—by force if necessary.<BR><BR>By making the <font color='#FF0000'>Outlaw Declaration</font>, you'll tell the world that you choose your own path to power.<BR><BR>Once the declaration is made, you will become an outlaw. You will be able to attack others, and they can attack you. The gods protect the truly weak, but what would be the point of troubling yourself with them?<NEXTPAGEBUTTON>\"I like real challenges.\"</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Be warned, my friend—the more you fight, the more your infamy grows. Depending on how infamous you get, you might end up drawing the wrath of the gods.<BR><BR>Trifling restrictions, really, and a small price to pay for freedom, I say.<BR><BR>The choice is yours...."
+            - content: "Law and order are structures designed by the sheep to keep the wolves at bay. The sheep are content with their lot in life. Are you?<NEXTPAGEBUTTON>\"I'm certainly no sheep.\"</NEXTPAGEBUTTON>"
+            - content: "Well then, seize your destiny, my friend—by force if necessary.<BR><BR>By making the <font color='#FF0000'>Outlaw Declaration</font>, you'll tell the world that you choose your own path to power.<BR><BR>Once the declaration is made, you will become an outlaw. You will be able to attack others, and they can attack you. The gods protect the truly weak, but what would be the point of troubling yourself with them?<NEXTPAGEBUTTON>\"I like real challenges.\"</NEXTPAGEBUTTON>"
+            - content: "Be warned, my friend—the more you fight, the more your infamy grows. Depending on how infamous you get, you might end up drawing the wrath of the gods.<BR><BR>Trifling restrictions, really, and a small price to pay for freedom, I say.<BR><BR>The choice is yours...."
 
 questStrings:
   upsert:

@@ -44,7 +44,9 @@ quests:
           journalText: "@quest:201003"
           hasReward: false
           body:
-            npcId: "63,1137"
+            npcId:
+              huntingZone: 63
+              templateId: 1137
             dialogueId: 3
             completionButtonText: "@quest:201002"
             visitCinematicId: 0
@@ -55,7 +57,9 @@ quests:
           journalText: "@quest:201005"
           hasReward: false
           body:
-            npcId: "63,1107"
+            npcId:
+              huntingZone: 63
+              templateId: 1107
             dialogueId: 4
             completionButtonText: "@quest:201004"
             visitCinematicId: 0
@@ -66,7 +70,9 @@ quests:
           journalText: "@quest:201007"
           hasReward: false
           body:
-            npcId: "63,1009"
+            npcId:
+              huntingZone: 63
+              templateId: 1009
             dialogueId: 5
             completionButtonText: "@quest:201006"
             visitCinematicId: 0
@@ -77,7 +83,9 @@ quests:
           journalText: "@quest:201009"
           hasReward: false
           body:
-            npcId: "60,1014"
+            npcId:
+              huntingZone: 60
+              templateId: 1014
             dialogueId: 6
             completionButtonText: "@quest:201008"
             visitCinematicId: 0
@@ -88,7 +96,9 @@ quests:
           journalText: "@quest:201011"
           hasReward: false
           body:
-            npcId: "60,1039"
+            npcId:
+              huntingZone: 60
+              templateId: 1039
             dialogueId: 7
             completionButtonText: "@quest:201010"
             visitCinematicId: 0
@@ -106,7 +116,9 @@ quests:
             deliveryItems:
               - itemId: 9106
                 quantity: 1
-            targetNpc: "60,1039"
+            targetNpc:
+              huntingZone: 60
+              templateId: 1039
             completionDialogue: 8
             incompleteDialogue: 9
             completionButtonText: "@quest:201012"
@@ -120,7 +132,9 @@ quests:
             - itemId: 5049
               quantity: 4
           body:
-            npcId: "60,1039"
+            npcId:
+              huntingZone: 60
+              templateId: 1039
             dialogueId: 10
             completionButtonText: "@quest:201015"
             visitCinematicId: 0
@@ -134,7 +148,9 @@ quests:
             - itemId: 5049
               quantity: 1
           body:
-            npcId: "60,1040"
+            npcId:
+              huntingZone: 60
+              templateId: 1040
             dialogueId: 11
             completionButtonText: "@quest:201017"
             visitCinematicId: 106010401
@@ -148,7 +164,9 @@ quests:
             - itemId: 5049
               quantity: 1
           body:
-            npcId: "60,1041"
+            npcId:
+              huntingZone: 60
+              templateId: 1041
             dialogueId: 12
             completionButtonText: "@quest:201019"
             visitCinematicId: 106010411
@@ -162,7 +180,9 @@ quests:
             - itemId: 5049
               quantity: 1
           body:
-            npcId: "60,1042"
+            npcId:
+              huntingZone: 60
+              templateId: 1042
             dialogueId: 13
             completionButtonText: "@quest:201021"
             visitCinematicId: 106010421
@@ -176,7 +196,9 @@ quests:
             - itemId: 5049
               quantity: 1
           body:
-            npcId: "60,1043"
+            npcId:
+              huntingZone: 60
+              templateId: 1043
             dialogueId: 14
             completionButtonText: "@quest:201023"
             visitCinematicId: 106010431
@@ -187,7 +209,9 @@ quests:
           journalText: "@quest:201026"
           hasReward: false
           body:
-            npcId: "60,1039"
+            npcId:
+              huntingZone: 60
+              templateId: 1039
             dialogueId: 15
             completionButtonText: "@quest:201025"
             visitCinematicId: 0
@@ -203,7 +227,9 @@ quests:
             flagItemName: "@quest:201028"
             iconId: 113
             deliveryQuantity: 1
-            targetNpc: "202,1004"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1004
             dialogue: 16
             completionButtonText: "@quest:201030"
     - id: 202
@@ -221,7 +247,9 @@ quests:
         questType: "Mission"
         repeatType: "OneTime"
         cancellable: "Forbidden"
-        giverNpc: "202,1004"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1004
       requirements:
         minLevel: 11
         prerequisites: [201]
@@ -238,7 +266,9 @@ quests:
             flagItemName: "@quest:202003"
             iconId: 132
             deliveryQuantity: 1
-            targetNpc: "202,1020"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1020
             dialogue: 3
             completionButtonText: "@quest:202005"
         - taskId: 2
@@ -253,7 +283,9 @@ quests:
             flagItemName: "@quest:202007"
             iconId: 132
             deliveryQuantity: 1
-            targetNpc: "202,1002"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1002
             dialogue: 4
             completionButtonText: "@quest:202009"
         - taskId: 3
@@ -269,7 +301,9 @@ quests:
           journalText: "@quest:202010"
           body:
             targets:
-              - templateId: "2,206"
+              - npc:
+                  huntingZone: 2
+                  templateId: 206
                 killCount: 1
         - taskId: 5
           type: "VisitTask"
@@ -278,7 +312,9 @@ quests:
           journalText: "@quest:202012"
           hasReward: false
           body:
-            npcId: "202,1037"
+            npcId:
+              huntingZone: 202
+              templateId: 1037
             dialogueId: 5
             completionButtonText: "@quest:202011"
             visitCinematicId: 0
@@ -294,7 +330,9 @@ quests:
             flagItemName: "@quest:202014"
             iconId: 96
             deliveryQuantity: 1
-            targetNpc: "202,1012"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1012
             dialogue: 6
             completionButtonText: "@quest:202016"
     - id: 203
@@ -312,7 +350,9 @@ quests:
         questType: "Mission"
         repeatType: "OneTime"
         cancellable: "Forbidden"
-        giverNpc: "202,1011"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1011
       requirements:
         minLevel: 11
         prerequisites: [202]
@@ -324,7 +364,9 @@ quests:
           journalText: "@quest:203003"
           hasReward: false
           body:
-            npcId: "202,1024"
+            npcId:
+              huntingZone: 202
+              templateId: 1024
             dialogueId: 3
             completionButtonText: "@quest:203002"
             visitCinematicId: 0
@@ -370,7 +412,9 @@ quests:
           body:
             itemId: 5050
             itemCount: 1
-            targetNpc: "202,1024"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1024
             completionDialogue: 4
             incompleteDialogue: 5
             completionButtonText: "@quest:203006"
@@ -390,7 +434,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "202,1001"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1001
       requirements:
         minLevel: 10
       tasks:
@@ -408,7 +454,9 @@ quests:
             deliveryItems:
               - itemId: 9045
                 quantity: 3
-            targetNpc: "202,1001"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1001
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:222004"
@@ -431,7 +479,9 @@ quests:
         startItems:
           - itemId: 5028
             quantity: 5
-        giverNpc: "202,1031"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1031
       requirements:
         minLevel: 10
         prerequisites: [223]
@@ -448,7 +498,9 @@ quests:
             - itemId: 5029
               quantity: 5
           body:
-            npcId: "202,1004"
+            npcId:
+              huntingZone: 202
+              templateId: 1004
             dialogueId: 3
             completionButtonText: "@quest:224004"
             visitCinematicId: 0
@@ -464,7 +516,9 @@ quests:
           body:
             itemId: 5030
             itemCount: 5
-            targetNpc: "202,1043"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1043
             completionDialogue: 4
             incompleteDialogue: 5
             completionButtonText: "@quest:224006"
@@ -484,7 +538,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "202,1045"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1045
       requirements:
         minLevel: 10
         prerequisites: [9999]
@@ -496,7 +552,9 @@ quests:
           journalText: "@quest:233006"
           body:
             targets:
-              - templateId: "2,203"
+              - npc:
+                  huntingZone: 2
+                  templateId: 203
                 killCount: 1
                 encounterDialogue: "@quest:233004"
                 deathDialogue: "@quest:233005"
@@ -507,7 +565,9 @@ quests:
           journalText: "@quest:233008"
           hasReward: true
           body:
-            npcId: "202,1045"
+            npcId:
+              huntingZone: 202
+              templateId: 1045
             dialogueId: 3
             completionButtonText: "@quest:233007"
             visitCinematicId: 0
@@ -525,7 +585,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "202,1019"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1019
       requirements:
         minLevel: 10
       tasks:
@@ -543,7 +605,9 @@ quests:
             deliveryItems:
               - itemId: 9003
                 quantity: 10
-            targetNpc: "202,1007"
+            targetNpc:
+              huntingZone: 202
+              templateId: 1007
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:235002"
@@ -563,7 +627,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "202,1009"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1009
       requirements:
         minLevel: 10
       tasks:
@@ -574,7 +640,9 @@ quests:
           journalText: "@quest:238004"
           body:
             targets:
-              - templateId: "2,5"
+              - npc:
+                  huntingZone: 2
+                  templateId: 5
                 killCount: 7
         - taskId: 2
           type: "VisitTask"
@@ -583,7 +651,9 @@ quests:
           journalText: "@quest:238006"
           hasReward: true
           body:
-            npcId: "202,1009"
+            npcId:
+              huntingZone: 202
+              templateId: 1009
             dialogueId: 3
             completionButtonText: "@quest:238005"
             visitCinematicId: 0
@@ -614,7 +684,9 @@ quests:
           journalText: "@quest:301004"
           hasReward: false
           body:
-            npcId: "60,1014"
+            npcId:
+              huntingZone: 60
+              templateId: 1014
             dialogueId: 3
             completionButtonText: "@quest:301003"
             visitCinematicId: 0
@@ -627,7 +699,9 @@ quests:
           journalText: "@quest:301006"
           hasReward: false
           body:
-            npcId: "60,1007"
+            npcId:
+              huntingZone: 60
+              templateId: 1007
             dialogueId: 4
             completionButtonText: "@quest:301005"
             visitCinematicId: 0
@@ -638,7 +712,9 @@ quests:
           journalText: "@quest:301008"
           hasReward: false
           body:
-            npcId: "203,1004"
+            npcId:
+              huntingZone: 203
+              templateId: 1004
             dialogueId: 5
             completionButtonText: "@quest:301007"
             visitCinematicId: 0
@@ -651,7 +727,9 @@ quests:
           journalText: "@quest:301010"
           hasReward: false
           body:
-            npcId: "203,1013"
+            npcId:
+              huntingZone: 203
+              templateId: 1013
             dialogueId: 6
             completionButtonText: "@quest:301009"
             visitCinematicId: 0
@@ -662,7 +740,9 @@ quests:
           journalText: "@quest:301013"
           body:
             targets:
-              - templateId: "3,12"
+              - npc:
+                  huntingZone: 3
+                  templateId: 12
                 killCount: 1
                 encounterDialogue: "@quest:301011"
                 deathDialogue: "@quest:301012"
@@ -673,7 +753,9 @@ quests:
           journalText: "@quest:301015"
           hasReward: false
           body:
-            npcId: "203,1004"
+            npcId:
+              huntingZone: 203
+              templateId: 1004
             dialogueId: 7
             completionButtonText: "@quest:301014"
             visitCinematicId: 0
@@ -684,7 +766,9 @@ quests:
           journalText: "@quest:301017"
           hasReward: true
           body:
-            npcId: "59,1009"
+            npcId:
+              huntingZone: 59
+              templateId: 1009
             dialogueId: 8
             completionButtonText: "@quest:301016"
             visitCinematicId: 0
@@ -705,7 +789,9 @@ quests:
         questType: "Mission"
         repeatType: "OneTime"
         cancellable: "Forbidden"
-        giverNpc: "59,1009"
+        giverNpc:
+          huntingZone: 59
+          templateId: 1009
       requirements:
         minLevel: 13
         prerequisites: [301]
@@ -722,7 +808,9 @@ quests:
             - itemId: 5051
               quantity: 1
           body:
-            npcId: "59,1001"
+            npcId:
+              huntingZone: 59
+              templateId: 1001
             dialogueId: 3
             completionButtonText: "@quest:302004"
             visitCinematicId: 0
@@ -738,7 +826,9 @@ quests:
           body:
             itemId: 5051
             itemCount: 1
-            targetNpc: "59,1009"
+            targetNpc:
+              huntingZone: 59
+              templateId: 1009
             completionDialogue: 4
             incompleteDialogue: 5
             completionButtonText: "@quest:302006"
@@ -749,7 +839,9 @@ quests:
           journalText: "@quest:302010"
           hasReward: false
           body:
-            npcId: "203,1007"
+            npcId:
+              huntingZone: 203
+              templateId: 1007
             dialogueId: 6
             completionButtonText: "@quest:302009"
             visitCinematicId: 0
@@ -762,7 +854,9 @@ quests:
           journalText: "@quest:302012"
           hasReward: false
           body:
-            npcId: "203,1030"
+            npcId:
+              huntingZone: 203
+              templateId: 1030
             dialogueId: 7
             completionButtonText: "@quest:302011"
             visitCinematicId: 0
@@ -779,7 +873,9 @@ quests:
           journalText: "@quest:302014"
           hasReward: false
           body:
-            npcId: "203,1030"
+            npcId:
+              huntingZone: 203
+              templateId: 1030
             dialogueId: 8
             completionButtonText: "@quest:302013"
             visitCinematicId: 120310301
@@ -799,7 +895,9 @@ quests:
           journalText: "@quest:302018"
           body:
             targets:
-              - templateId: "3,7"
+              - npc:
+                  huntingZone: 3
+                  templateId: 7
                 killCount: 1
                 encounterDialogue: "@quest:302016"
                 deathDialogue: "@quest:302017"
@@ -810,7 +908,9 @@ quests:
           journalText: "@quest:302020"
           hasReward: true
           body:
-            npcId: "203,1007"
+            npcId:
+              huntingZone: 203
+              templateId: 1007
             dialogueId: 9
             completionButtonText: "@quest:302019"
             visitCinematicId: 0
@@ -830,7 +930,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1013"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1013
       requirements:
         minLevel: 13
       tasks:
@@ -847,18 +949,30 @@ quests:
             targetCount: 7
             itemId: 156
             targets:
-              - templateId: "3,300142"
+              - npc:
+                  huntingZone: 3
+                  templateId: 300142
                 grantRate: 40
-              - templateId: "3,300140"
+              - npc:
+                  huntingZone: 3
+                  templateId: 300140
                 grantRate: 45
-              - templateId: "3,300161"
+              - npc:
+                  huntingZone: 3
+                  templateId: 300161
                 grantRate: 45
-              - templateId: "3,17"
+              - npc:
+                  huntingZone: 3
+                  templateId: 17
                 grantRate: 90
-              - templateId: "3,19"
+              - npc:
+                  huntingZone: 3
+                  templateId: 19
                 grantRate: 90
             sequentialDistribution: "미적용"
-            targetNpc: "203,1013"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1013
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:322007"
@@ -874,7 +988,9 @@ quests:
             flagItemName: "@quest:322009"
             iconId: 156
             deliveryQuantity: 7
-            targetNpc: "203,1005"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1005
             dialogue: 5
             completionButtonText: "@quest:322011"
     - id: 323
@@ -893,7 +1009,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1005"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1005
       requirements:
         minLevel: 13
       tasks:
@@ -911,7 +1029,9 @@ quests:
             deliveryItems:
               - itemId: 9008
                 quantity: 6
-            targetNpc: "203,1005"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1005
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:323004"
@@ -931,7 +1051,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1004"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1004
       requirements:
         minLevel: 13
       tasks:
@@ -947,7 +1069,9 @@ quests:
           body:
             itemId: 1001
             itemCount: 6
-            targetNpc: "203,1004"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1004
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:324004"
@@ -967,7 +1091,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "59,1001"
+        giverNpc:
+          huntingZone: 59
+          templateId: 1001
       requirements:
         minLevel: 14
       tasks:
@@ -978,7 +1104,9 @@ quests:
           journalText: "@quest:327005"
           hasReward: false
           body:
-            npcId: "59,1012"
+            npcId:
+              huntingZone: 59
+              templateId: 1012
             dialogueId: 3
             completionButtonText: "@quest:327004"
             visitCinematicId: 0
@@ -994,7 +1122,9 @@ quests:
             flagItemName: "@quest:327007"
             iconId: 155
             deliveryQuantity: 1
-            targetNpc: "203,1025"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1025
             dialogue: 4
             completionButtonText: "@quest:327009"
         - taskId: 3
@@ -1009,7 +1139,9 @@ quests:
             flagItemName: "@quest:327011"
             iconId: 154
             deliveryQuantity: 1
-            targetNpc: "59,1001"
+            targetNpc:
+              huntingZone: 59
+              templateId: 1001
             dialogue: 5
             completionButtonText: "@quest:327013"
     - id: 328
@@ -1028,7 +1160,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "59,1001"
+        giverNpc:
+          huntingZone: 59
+          templateId: 1001
       requirements:
         minLevel: 14
       tasks:
@@ -1045,14 +1179,22 @@ quests:
             targetCount: 10
             itemId: 121
             targets:
-              - templateId: "3,300611"
+              - npc:
+                  huntingZone: 3
+                  templateId: 300611
                 grantRate: 90
-              - templateId: "3,301080"
+              - npc:
+                  huntingZone: 3
+                  templateId: 301080
                 grantRate: 16
-              - templateId: "3,16"
+              - npc:
+                  huntingZone: 3
+                  templateId: 16
                 grantRate: 16
             sequentialDistribution: "미적용"
-            targetNpc: "59,1001"
+            targetNpc:
+              huntingZone: 59
+              templateId: 1001
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:328007"
@@ -1072,7 +1214,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "59,1012"
+        giverNpc:
+          huntingZone: 59
+          templateId: 1012
       requirements:
         minLevel: 14
       tasks:
@@ -1089,10 +1233,14 @@ quests:
             targetCount: 7
             itemId: 63
             targets:
-              - templateId: "3,2"
+              - npc:
+                  huntingZone: 3
+                  templateId: 2
                 grantRate: 100
             sequentialDistribution: "미적용"
-            targetNpc: "59,1012"
+            targetNpc:
+              huntingZone: 59
+              templateId: 1012
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:330007"
@@ -1112,7 +1260,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "59,1012"
+        giverNpc:
+          huntingZone: 59
+          templateId: 1012
       requirements:
         minLevel: 14
         prerequisites: [330]
@@ -1124,7 +1274,9 @@ quests:
           journalText: "@quest:331005"
           hasReward: false
           body:
-            npcId: "203,1014"
+            npcId:
+              huntingZone: 203
+              templateId: 1014
             dialogueId: 3
             completionButtonText: "@quest:331004"
             visitCinematicId: 0
@@ -1140,7 +1292,9 @@ quests:
             flagItemName: "@quest:331007"
             iconId: 112
             deliveryQuantity: 1
-            targetNpc: "203,1021"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1021
             dialogue: 4
             completionButtonText: "@quest:331009"
     - id: 333
@@ -1159,7 +1313,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1007"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1007
       requirements:
         minLevel: 14
       tasks:
@@ -1176,14 +1332,20 @@ quests:
             targetCount: 6
             itemId: 163
             targets:
-              - templateId: "3,14"
+              - npc:
+                  huntingZone: 3
+                  templateId: 14
                 grantRate: 75
                 encounterDialogue: "@quest:333005"
-              - templateId: "3,15"
+              - npc:
+                  huntingZone: 3
+                  templateId: 15
                 grantRate: 75
                 encounterDialogue: "@quest:333006"
             sequentialDistribution: "미적용"
-            targetNpc: "203,1007"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1007
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:333009"
@@ -1203,7 +1365,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1008"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1008
       requirements:
         minLevel: 14
       tasks:
@@ -1220,14 +1384,22 @@ quests:
             targetCount: 7
             itemId: 41
             targets:
-              - templateId: "3,300160"
+              - npc:
+                  huntingZone: 3
+                  templateId: 300160
                 grantRate: 50
-              - templateId: "3,23"
+              - npc:
+                  huntingZone: 3
+                  templateId: 23
                 grantRate: 45
-              - templateId: "3,20"
+              - npc:
+                  huntingZone: 3
+                  templateId: 20
                 grantRate: 100
             sequentialDistribution: "미적용"
-            targetNpc: "203,1008"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1008
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:334007"
@@ -1247,7 +1419,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1007"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1007
       requirements:
         minLevel: 14
       tasks:
@@ -1258,7 +1432,9 @@ quests:
           journalText: "@quest:335005"
           hasReward: true
           body:
-            npcId: "203,1011"
+            npcId:
+              huntingZone: 203
+              templateId: 1011
             dialogueId: 3
             completionButtonText: "@quest:335004"
             visitCinematicId: 0
@@ -1278,7 +1454,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1011"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1011
       requirements:
         minLevel: 14
       tasks:
@@ -1295,14 +1473,22 @@ quests:
             targetCount: 6
             itemId: 66
             targets:
-              - templateId: "3,300141"
+              - npc:
+                  huntingZone: 3
+                  templateId: 300141
                 grantRate: 50
-              - templateId: "3,18"
+              - npc:
+                  huntingZone: 3
+                  templateId: 18
                 grantRate: 100
-              - templateId: "3,19"
+              - npc:
+                  huntingZone: 3
+                  templateId: 19
                 grantRate: 90
             sequentialDistribution: "미적용"
-            targetNpc: "203,1011"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1011
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:337007"
@@ -1322,7 +1508,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1011"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1011
       requirements:
         minLevel: 13
       tasks:
@@ -1340,7 +1528,9 @@ quests:
             deliveryItems:
               - itemId: 9085
                 quantity: 5
-            targetNpc: "203,1011"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1011
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:338004"
@@ -1360,7 +1550,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1011"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1011
       requirements:
         minLevel: 13
       tasks:
@@ -1376,7 +1568,9 @@ quests:
             flagItemName: "@quest:339005"
             iconId: 113
             deliveryQuantity: 1
-            targetNpc: "203,1010"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1010
             dialogue: 3
             completionButtonText: "@quest:339007"
         - taskId: 2
@@ -1386,7 +1580,9 @@ quests:
           journalText: "@quest:339009"
           hasReward: false
           body:
-            npcId: "203,1029"
+            npcId:
+              huntingZone: 203
+              templateId: 1029
             dialogueId: 4
             completionButtonText: "@quest:339008"
             visitCinematicId: 0
@@ -1402,7 +1598,9 @@ quests:
             flagItemName: "@quest:339011"
             iconId: 38
             deliveryQuantity: 1
-            targetNpc: "203,1010"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1010
             dialogue: 5
             completionButtonText: "@quest:339013"
     - id: 341
@@ -1421,7 +1619,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1009"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1009
       requirements:
         minLevel: 19
       tasks:
@@ -1439,7 +1639,9 @@ quests:
             deliveryItems:
               - itemId: 9007
                 quantity: 5
-            targetNpc: "203,1009"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1009
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:341004"
@@ -1455,7 +1657,9 @@ quests:
             flagItemName: "@quest:341008"
             iconId: 113
             deliveryQuantity: 1
-            targetNpc: "203,1023"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1023
             dialogue: 5
             completionButtonText: "@quest:341010"
         - taskId: 3
@@ -1465,7 +1669,9 @@ quests:
           journalText: "@quest:341012"
           hasReward: false
           body:
-            npcId: "203,1024"
+            npcId:
+              huntingZone: 203
+              templateId: 1024
             dialogueId: 6
             completionButtonText: "@quest:341011"
             visitCinematicId: 0
@@ -1481,7 +1687,9 @@ quests:
             flagItemName: "@quest:341014"
             iconId: 121
             deliveryQuantity: 1
-            targetNpc: "203,1009"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1009
             dialogue: 7
             completionButtonText: "@quest:341016"
     - id: 523
@@ -1500,7 +1708,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "205,1001"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1001
       requirements:
         minLevel: 19
       tasks:
@@ -1511,7 +1721,9 @@ quests:
           journalText: "@quest:523004"
           body:
             targets:
-              - templateId: "5,14"
+              - npc:
+                  huntingZone: 5
+                  templateId: 14
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -1520,7 +1732,9 @@ quests:
           journalText: "@quest:523006"
           hasReward: true
           body:
-            npcId: "205,1001"
+            npcId:
+              huntingZone: 205
+              templateId: 1001
             dialogueId: 3
             completionButtonText: "@quest:523005"
             visitCinematicId: 0
@@ -1540,7 +1754,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "205,1001"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1001
       requirements:
         minLevel: 19
       tasks:
@@ -1551,9 +1767,13 @@ quests:
           journalText: "@quest:524004"
           body:
             targets:
-              - templateId: "5,15"
+              - npc:
+                  huntingZone: 5
+                  templateId: 15
                 killCount: 4
-              - templateId: "5,16"
+              - npc:
+                  huntingZone: 5
+                  templateId: 16
                 killCount: 4
         - taskId: 2
           type: "VisitTask"
@@ -1562,7 +1782,9 @@ quests:
           journalText: "@quest:524006"
           hasReward: true
           body:
-            npcId: "205,1001"
+            npcId:
+              huntingZone: 205
+              templateId: 1001
             dialogueId: 3
             completionButtonText: "@quest:524005"
             visitCinematicId: 0
@@ -1585,7 +1807,9 @@ quests:
         startItems:
           - itemId: 5031
             quantity: 1
-        giverNpc: "205,1002"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1002
       requirements:
         minLevel: 19
         prerequisites: [525]
@@ -1610,7 +1834,9 @@ quests:
             - itemId: 5031
               quantity: 1
           body:
-            npcId: "205,1004"
+            npcId:
+              huntingZone: 205
+              templateId: 1004
             dialogueId: 3
             completionButtonText: "@quest:526006"
             visitCinematicId: 0
@@ -1621,7 +1847,9 @@ quests:
           journalText: "@quest:526009"
           hasReward: false
           body:
-            npcId: "205,1020"
+            npcId:
+              huntingZone: 205
+              templateId: 1020
             dialogueId: 4
             completionButtonText: "@quest:526008"
             visitCinematicId: 0
@@ -1632,7 +1860,9 @@ quests:
           journalText: "@quest:526011"
           hasReward: true
           body:
-            npcId: "205,1004"
+            npcId:
+              huntingZone: 205
+              templateId: 1004
             dialogueId: 5
             completionButtonText: "@quest:526010"
             visitCinematicId: 0
@@ -1652,7 +1882,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "205,1006"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1006
       requirements:
         minLevel: 19
       tasks:
@@ -1670,7 +1902,9 @@ quests:
             deliveryItems:
               - itemId: 9002
                 quantity: 6
-            targetNpc: "205,1006"
+            targetNpc:
+              huntingZone: 205
+              templateId: 1006
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:529004"
@@ -1690,7 +1924,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "205,1003"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1003
       requirements:
         minLevel: 19
         prerequisites: [533]
@@ -1702,7 +1938,9 @@ quests:
           journalText: "@quest:534004"
           body:
             targets:
-              - templateId: "5,13"
+              - npc:
+                  huntingZone: 5
+                  templateId: 13
                 killCount: 8
         - taskId: 2
           type: "VisitTask"
@@ -1711,7 +1949,9 @@ quests:
           journalText: "@quest:534006"
           hasReward: true
           body:
-            npcId: "205,1003"
+            npcId:
+              huntingZone: 205
+              templateId: 1003
             dialogueId: 3
             completionButtonText: "@quest:534005"
             visitCinematicId: 0
@@ -1731,7 +1971,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "205,1022"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1022
       requirements:
         minLevel: 19
       tasks:
@@ -1747,7 +1989,9 @@ quests:
           body:
             itemId: 1003
             itemCount: 6
-            targetNpc: "205,1022"
+            targetNpc:
+              huntingZone: 205
+              templateId: 1022
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:535004"
@@ -1767,7 +2011,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "205,1015"
+        giverNpc:
+          huntingZone: 205
+          templateId: 1015
       requirements:
         minLevel: 19
       tasks:
@@ -1778,7 +2024,9 @@ quests:
           journalText: "@quest:540004"
           body:
             targets:
-              - templateId: "5,12"
+              - npc:
+                  huntingZone: 5
+                  templateId: 12
                 killCount: 5
         - taskId: 2
           type: "VisitTask"
@@ -1787,7 +2035,9 @@ quests:
           journalText: "@quest:540006"
           hasReward: true
           body:
-            npcId: "205,1015"
+            npcId:
+              huntingZone: 205
+              templateId: 1015
             dialogueId: 3
             completionButtonText: "@quest:540005"
             visitCinematicId: 0
@@ -1818,7 +2068,9 @@ quests:
           journalText: "@quest:601003"
           hasReward: false
           body:
-            npcId: "60,1014"
+            npcId:
+              huntingZone: 60
+              templateId: 1014
             dialogueId: 3
             completionButtonText: "@quest:601002"
             visitCinematicId: 0
@@ -1831,7 +2083,9 @@ quests:
           journalText: "@quest:601005"
           hasReward: false
           body:
-            npcId: "206,1010"
+            npcId:
+              huntingZone: 206
+              templateId: 1010
             dialogueId: 4
             completionButtonText: "@quest:601004"
             visitCinematicId: 0
@@ -1844,7 +2098,9 @@ quests:
           journalText: "@quest:601006"
           body:
             targets:
-              - templateId: "6,7051"
+              - npc:
+                  huntingZone: 6
+                  templateId: 7051
                 killCount: 1
         - taskId: 4
           type: "VisitTask"
@@ -1853,7 +2109,9 @@ quests:
           journalText: "@quest:601008"
           hasReward: false
           body:
-            npcId: "206,1010"
+            npcId:
+              huntingZone: 206
+              templateId: 1010
             dialogueId: 5
             completionButtonText: "@quest:601007"
             visitCinematicId: 0
@@ -1864,7 +2122,9 @@ quests:
           journalText: "@quest:601010"
           hasReward: false
           body:
-            npcId: "206,1005"
+            npcId:
+              huntingZone: 206
+              templateId: 1005
             dialogueId: 6
             completionButtonText: "@quest:601009"
             visitCinematicId: 0
@@ -1875,7 +2135,9 @@ quests:
           journalText: "@quest:601012"
           hasReward: false
           body:
-            npcId: "206,1003"
+            npcId:
+              huntingZone: 206
+              templateId: 1003
             dialogueId: 7
             completionButtonText: "@quest:601011"
             visitCinematicId: 0
@@ -1886,7 +2148,9 @@ quests:
           journalText: "@quest:601015"
           timeLimit: [0, 10]
           body:
-            npcId: "206,1040"
+            npcId:
+              huntingZone: 206
+              templateId: 1040
             escortCount: 2
             aggroInterval: 1
             aggroAmount: 1
@@ -1896,7 +2160,9 @@ quests:
             postEscortCinematicId: 120610401
             aiSettings: 101
             postEscortDialogue: "@quest:601014"
-            areaId: "206,20600031"
+            areaId:
+              huntingZone: 206
+              territory: 20600031
         - taskId: 8
           type: "VisitTask"
           nextTaskId: 0
@@ -1904,7 +2170,9 @@ quests:
           journalText: "@quest:601017"
           hasReward: true
           body:
-            npcId: "206,1003"
+            npcId:
+              huntingZone: 206
+              templateId: 1003
             dialogueId: 9
             completionButtonText: "@quest:601016"
             visitCinematicId: 0
@@ -1923,7 +2191,9 @@ quests:
         questType: "Mission"
         repeatType: "OneTime"
         cancellable: "Forbidden"
-        giverNpc: "206,1003"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1003
       requirements:
         minLevel: 15
         prerequisites: [601]
@@ -1937,7 +2207,9 @@ quests:
           journalText: "@quest:602003"
           hasReward: false
           body:
-            npcId: "206,1041"
+            npcId:
+              huntingZone: 206
+              templateId: 1041
             dialogueId: 3
             completionButtonText: "@quest:602002"
             visitCinematicId: 0
@@ -1954,12 +2226,18 @@ quests:
             targetCount: 6
             itemId: 142
             targets:
-              - templateId: "6,2061"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2061
                 grantRate: 80
-              - templateId: "6,2051"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2051
                 grantRate: 80
             sequentialDistribution: "미적용"
-            targetNpc: "206,1041"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1041
             completionDialogue: 4
             incompleteDialogue: 5
             completionButtonText: "@quest:602007"
@@ -1970,7 +2248,9 @@ quests:
           journalText: "@quest:602009"
           hasReward: false
           body:
-            npcId: "206,1006"
+            npcId:
+              huntingZone: 206
+              templateId: 1006
             dialogueId: 6
             completionButtonText: "@quest:602008"
             visitCinematicId: 0
@@ -2010,7 +2290,9 @@ quests:
           body:
             itemId: 5052
             itemCount: 1
-            targetNpc: "206,1006"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1006
             completionDialogue: 7
             incompleteDialogue: 8
             completionButtonText: "@quest:602012"
@@ -2029,7 +2311,9 @@ quests:
           body:
             itemId: 5052
             itemCount: 1
-            targetNpc: "206,1021"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1021
             completionDialogue: 9
             incompleteDialogue: 10
             completionButtonText: "@quest:602015"
@@ -2051,7 +2335,9 @@ quests:
         startItems:
           - itemId: 5052
             quantity: 1
-        giverNpc: "206,1021"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1021
       requirements:
         minLevel: 15
         prerequisites: [602]
@@ -2070,7 +2356,9 @@ quests:
           body:
             itemId: 5052
             itemCount: 1
-            targetNpc: "206,1042"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1042
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:603002"
@@ -2081,15 +2369,21 @@ quests:
           journalText: "@quest:603011"
           body:
             targets:
-              - templateId: "6,3011"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3011
                 killCount: 5
                 encounterDialogue: "@quest:603005"
                 deathDialogue: "@quest:603006"
-              - templateId: "6,3031"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3031
                 killCount: 5
                 encounterDialogue: "@quest:603007"
                 deathDialogue: "@quest:603008"
-              - templateId: "6,3032"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3032
                 killCount: 5
                 encounterDialogue: "@quest:603009"
                 deathDialogue: "@quest:603010"
@@ -2100,7 +2394,9 @@ quests:
           journalText: "@quest:603013"
           hasReward: true
           body:
-            npcId: "206,1042"
+            npcId:
+              huntingZone: 206
+              templateId: 1042
             dialogueId: 5
             completionButtonText: "@quest:603012"
             visitCinematicId: 0
@@ -2119,7 +2415,9 @@ quests:
         questType: "Mission"
         repeatType: "OneTime"
         cancellable: "Forbidden"
-        giverNpc: "206,1042"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1042
       requirements:
         minLevel: 15
         prerequisites: [603]
@@ -2133,7 +2431,9 @@ quests:
           journalText: "@quest:604002"
           body:
             targets:
-              - templateId: "6,7041"
+              - npc:
+                  huntingZone: 6
+                  templateId: 7041
                 killCount: 1
         - taskId: 2
           type: "ObjectActionTask"
@@ -2162,15 +2462,21 @@ quests:
           hasReward: false
           body:
             visits:
-              - npcId: "420,1002"
+              - npcId:
+                  huntingZone: 420
+                  templateId: 1002
                 dialogueId: 3
                 completionButtonText: "@quest:604006"
                 cinematicId: 0
-              - npcId: "420,1003"
+              - npcId:
+                  huntingZone: 420
+                  templateId: 1003
                 dialogueId: 4
                 completionButtonText: "@quest:604007"
                 cinematicId: 0
-              - npcId: "420,1004"
+              - npcId:
+                  huntingZone: 420
+                  templateId: 1004
                 dialogueId: 5
                 completionButtonText: "@quest:604008"
                 cinematicId: 0
@@ -2184,7 +2490,9 @@ quests:
           journalText: "@quest:604011"
           hasReward: false
           body:
-            npcId: "420,1005"
+            npcId:
+              huntingZone: 420
+              templateId: 1005
             dialogueId: 6
             completionButtonText: "@quest:604010"
             visitCinematicId: 0
@@ -2199,7 +2507,9 @@ quests:
             - itemId: 5053
               quantity: 1
           body:
-            npcId: "420,1006"
+            npcId:
+              huntingZone: 420
+              templateId: 1006
             dialogueId: 7
             completionButtonText: "@quest:604012"
             visitCinematicId: 0
@@ -2231,7 +2541,9 @@ quests:
           journalText: "@quest:605004"
           hasReward: false
           body:
-            npcId: "60,1014"
+            npcId:
+              huntingZone: 60
+              templateId: 1014
             dialogueId: 3
             completionButtonText: "@quest:605003"
             visitCinematicId: 0
@@ -2244,7 +2556,9 @@ quests:
           journalText: "@quest:605006"
           hasReward: false
           body:
-            npcId: "203,1007"
+            npcId:
+              huntingZone: 203
+              templateId: 1007
             dialogueId: 4
             completionButtonText: "@quest:605005"
             visitCinematicId: 0
@@ -2256,15 +2570,21 @@ quests:
           hasReward: false
           body:
             visits:
-              - npcId: "203,1026"
+              - npcId:
+                  huntingZone: 203
+                  templateId: 1026
                 dialogueId: 5
                 completionButtonText: "@quest:605007"
                 cinematicId: 0
-              - npcId: "203,1027"
+              - npcId:
+                  huntingZone: 203
+                  templateId: 1027
                 dialogueId: 6
                 completionButtonText: "@quest:605008"
                 cinematicId: 0
-              - npcId: "203,1034"
+              - npcId:
+                  huntingZone: 203
+                  templateId: 1034
                 dialogueId: 7
                 completionButtonText: "@quest:605009"
                 cinematicId: 0
@@ -2278,7 +2598,9 @@ quests:
             - itemId: 5062
               quantity: 1
           body:
-            npcId: "203,1033"
+            npcId:
+              huntingZone: 203
+              templateId: 1033
             dialogueId: 8
             completionButtonText: "@quest:605011"
             visitCinematicId: 0
@@ -2294,7 +2616,9 @@ quests:
           body:
             itemId: 5062
             itemCount: 1
-            targetNpc: "203,1007"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1007
             completionDialogue: 9
             incompleteDialogue: 10
             completionButtonText: "@quest:605013"
@@ -2314,7 +2638,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1011"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1011
       requirements:
         minLevel: 16
       tasks:
@@ -2330,7 +2656,9 @@ quests:
           body:
             itemId: 1002
             itemCount: 10
-            targetNpc: "206,1011"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1011
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:622004"
@@ -2350,7 +2678,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1018"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1018
       requirements:
         minLevel: 16
       tasks:
@@ -2368,7 +2698,9 @@ quests:
             deliveryItems:
               - itemId: 9004
                 quantity: 3
-            targetNpc: "206,1018"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1018
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:623004"
@@ -2388,7 +2720,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1016"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1016
       requirements:
         minLevel: 16
       tasks:
@@ -2399,7 +2733,9 @@ quests:
           journalText: "@quest:624004"
           body:
             targets:
-              - templateId: "6,1011"
+              - npc:
+                  huntingZone: 6
+                  templateId: 1011
                 killCount: 10
         - taskId: 2
           type: "VisitTask"
@@ -2408,7 +2744,9 @@ quests:
           journalText: "@quest:624006"
           hasReward: true
           body:
-            npcId: "206,1016"
+            npcId:
+              huntingZone: 206
+              templateId: 1016
             dialogueId: 3
             completionButtonText: "@quest:624005"
             visitCinematicId: 0
@@ -2428,7 +2766,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1001"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1001
       requirements:
         minLevel: 16
       tasks:
@@ -2439,9 +2779,13 @@ quests:
           journalText: "@quest:626004"
           body:
             targets:
-              - templateId: "6,1031"
+              - npc:
+                  huntingZone: 6
+                  templateId: 1031
                 killCount: 10
-              - templateId: "6,1032"
+              - npc:
+                  huntingZone: 6
+                  templateId: 1032
                 killCount: 10
         - taskId: 2
           type: "VisitTask"
@@ -2450,7 +2794,9 @@ quests:
           journalText: "@quest:626006"
           hasReward: true
           body:
-            npcId: "206,1001"
+            npcId:
+              huntingZone: 206
+              templateId: 1001
             dialogueId: 3
             completionButtonText: "@quest:626005"
             visitCinematicId: 0
@@ -2470,7 +2816,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1008"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1008
       requirements:
         minLevel: 16
       tasks:
@@ -2484,7 +2832,9 @@ quests:
             - itemId: 5034
               quantity: 1
           body:
-            npcId: "206,1038"
+            npcId:
+              huntingZone: 206
+              templateId: 1038
             dialogueId: 3
             completionButtonText: "@quest:627004"
             visitCinematicId: 0
@@ -2498,7 +2848,9 @@ quests:
             - itemId: 5035
               quantity: 1
           body:
-            npcId: "206,1036"
+            npcId:
+              huntingZone: 206
+              templateId: 1036
             dialogueId: 4
             completionButtonText: "@quest:627006"
             visitCinematicId: 0
@@ -2512,7 +2864,9 @@ quests:
             - itemId: 5036
               quantity: 1
           body:
-            npcId: "206,1037"
+            npcId:
+              huntingZone: 206
+              templateId: 1037
             dialogueId: 5
             completionButtonText: "@quest:627008"
             visitCinematicId: 0
@@ -2533,7 +2887,9 @@ quests:
                 quantity: 1
               - itemId: 5036
                 quantity: 1
-            targetNpc: "206,1008"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1008
             completionDialogue: 6
             incompleteDialogue: 7
             completionButtonText: "@quest:627010"
@@ -2553,7 +2909,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1005"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1005
       requirements:
         minLevel: 16
       tasks:
@@ -2564,7 +2922,9 @@ quests:
           journalText: "@quest:630004"
           body:
             targets:
-              - templateId: "6,1081"
+              - npc:
+                  huntingZone: 6
+                  templateId: 1081
                 killCount: 4
         - taskId: 2
           type: "VisitTask"
@@ -2573,7 +2933,9 @@ quests:
           journalText: "@quest:630006"
           hasReward: true
           body:
-            npcId: "206,1005"
+            npcId:
+              huntingZone: 206
+              templateId: 1005
             dialogueId: 3
             completionButtonText: "@quest:630005"
             visitCinematicId: 0
@@ -2593,7 +2955,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1020"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1020
       requirements:
         minLevel: 16
         prerequisites: [629]
@@ -2605,7 +2969,9 @@ quests:
           journalText: "@quest:631005"
           hasReward: false
           body:
-            npcId: "206,1003"
+            npcId:
+              huntingZone: 206
+              templateId: 1003
             dialogueId: 3
             completionButtonText: "@quest:631004"
             visitCinematicId: 0
@@ -2623,7 +2989,9 @@ quests:
             deliveryItems:
               - itemId: 9005
                 quantity: 5
-            targetNpc: "206,1003"
+            targetNpc:
+              huntingZone: 206
+              templateId: 1003
             completionDialogue: 4
             incompleteDialogue: 5
             completionButtonText: "@quest:631006"
@@ -2643,7 +3011,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1019"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1019
       requirements:
         minLevel: 16
       tasks:
@@ -2654,9 +3024,13 @@ quests:
           journalText: "@quest:635004"
           body:
             targets:
-              - templateId: "6,2051"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2051
                 killCount: 6
-              - templateId: "6,2061"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2061
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -2665,7 +3039,9 @@ quests:
           journalText: "@quest:635006"
           hasReward: true
           body:
-            npcId: "206,1019"
+            npcId:
+              huntingZone: 206
+              templateId: 1019
             dialogueId: 3
             completionButtonText: "@quest:635005"
             visitCinematicId: 0
@@ -2685,7 +3061,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1034"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1034
       requirements:
         minLevel: 16
       tasks:
@@ -2696,9 +3074,13 @@ quests:
           journalText: "@quest:636004"
           body:
             targets:
-              - templateId: "6,2011"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2011
                 killCount: 6
-              - templateId: "6,2031"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2031
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -2707,7 +3089,9 @@ quests:
           journalText: "@quest:636006"
           hasReward: true
           body:
-            npcId: "206,1034"
+            npcId:
+              huntingZone: 206
+              templateId: 1034
             dialogueId: 3
             completionButtonText: "@quest:636005"
             visitCinematicId: 0
@@ -2727,7 +3111,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1022"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1022
       requirements:
         minLevel: 16
         prerequisites: [639]
@@ -2739,9 +3125,13 @@ quests:
           journalText: "@quest:640004"
           body:
             targets:
-              - templateId: "6,3031"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3031
                 killCount: 6
-              - templateId: "6,3032"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3032
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -2750,7 +3140,9 @@ quests:
           journalText: "@quest:640006"
           hasReward: true
           body:
-            npcId: "206,1022"
+            npcId:
+              huntingZone: 206
+              templateId: 1022
             dialogueId: 3
             completionButtonText: "@quest:640005"
             visitCinematicId: 0
@@ -2770,7 +3162,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1022"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1022
       requirements:
         minLevel: 16
         prerequisites: [639]
@@ -2782,7 +3176,9 @@ quests:
           journalText: "@quest:641004"
           body:
             targets:
-              - templateId: "6,3011"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3011
                 killCount: 8
         - taskId: 2
           type: "VisitTask"
@@ -2791,7 +3187,9 @@ quests:
           journalText: "@quest:641006"
           hasReward: true
           body:
-            npcId: "206,1022"
+            npcId:
+              huntingZone: 206
+              templateId: 1022
             dialogueId: 3
             completionButtonText: "@quest:641005"
             visitCinematicId: 0
@@ -2811,7 +3209,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1013"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1013
       requirements:
         minLevel: 16
         prerequisites: [639]
@@ -2823,9 +3223,13 @@ quests:
           journalText: "@quest:642004"
           body:
             targets:
-              - templateId: "6,3041"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3041
                 killCount: 4
-              - templateId: "6,3042"
+              - npc:
+                  huntingZone: 6
+                  templateId: 3042
                 killCount: 4
         - taskId: 2
           type: "VisitTask"
@@ -2834,7 +3238,9 @@ quests:
           journalText: "@quest:642006"
           hasReward: true
           body:
-            npcId: "206,1013"
+            npcId:
+              huntingZone: 206
+              templateId: 1013
             dialogueId: 3
             completionButtonText: "@quest:642005"
             visitCinematicId: 0
@@ -2854,7 +3260,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1023"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1023
       requirements:
         minLevel: 16
       tasks:
@@ -2865,7 +3273,9 @@ quests:
           journalText: "@quest:643004"
           body:
             targets:
-              - templateId: "6,2041"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2041
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -2874,7 +3284,9 @@ quests:
           journalText: "@quest:643006"
           hasReward: true
           body:
-            npcId: "206,1023"
+            npcId:
+              huntingZone: 206
+              templateId: 1023
             dialogueId: 3
             completionButtonText: "@quest:643005"
             visitCinematicId: 0
@@ -2894,7 +3306,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "206,1023"
+        giverNpc:
+          huntingZone: 206
+          templateId: 1023
       requirements:
         minLevel: 16
       tasks:
@@ -2905,7 +3319,9 @@ quests:
           journalText: "@quest:644004"
           body:
             targets:
-              - templateId: "6,2021"
+              - npc:
+                  huntingZone: 6
+                  templateId: 2021
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -2914,7 +3330,9 @@ quests:
           journalText: "@quest:644006"
           hasReward: true
           body:
-            npcId: "206,1023"
+            npcId:
+              huntingZone: 206
+              templateId: 1023
             dialogueId: 3
             completionButtonText: "@quest:644005"
             visitCinematicId: 0
@@ -2934,7 +3352,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1008"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1008
       requirements:
         minLevel: 21
       tasks:
@@ -2945,7 +3365,9 @@ quests:
           journalText: "@quest:730004"
           body:
             targets:
-              - templateId: "7,1"
+              - npc:
+                  huntingZone: 7
+                  templateId: 1
                 killCount: 1
         - taskId: 2
           type: "VisitTask"
@@ -2954,7 +3376,9 @@ quests:
           journalText: "@quest:730006"
           hasReward: true
           body:
-            npcId: "207,1008"
+            npcId:
+              huntingZone: 207
+              templateId: 1008
             dialogueId: 3
             completionButtonText: "@quest:730005"
             visitCinematicId: 0
@@ -2974,7 +3398,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1019"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1019
       requirements:
         minLevel: 21
       tasks:
@@ -2985,7 +3411,9 @@ quests:
           journalText: "@quest:733004"
           body:
             targets:
-              - templateId: "7,10"
+              - npc:
+                  huntingZone: 7
+                  templateId: 10
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -2994,7 +3422,9 @@ quests:
           journalText: "@quest:733006"
           hasReward: true
           body:
-            npcId: "207,1019"
+            npcId:
+              huntingZone: 207
+              templateId: 1019
             dialogueId: 3
             completionButtonText: "@quest:733005"
             visitCinematicId: 0
@@ -3014,7 +3444,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1003"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1003
       requirements:
         minLevel: 21
       tasks:
@@ -3025,7 +3457,9 @@ quests:
           journalText: "@quest:734004"
           body:
             targets:
-              - templateId: "7,11"
+              - npc:
+                  huntingZone: 7
+                  templateId: 11
                 killCount: 12
         - taskId: 2
           type: "VisitTask"
@@ -3034,7 +3468,9 @@ quests:
           journalText: "@quest:734006"
           hasReward: true
           body:
-            npcId: "207,1003"
+            npcId:
+              huntingZone: 207
+              templateId: 1003
             dialogueId: 3
             completionButtonText: "@quest:734005"
             visitCinematicId: 0
@@ -3054,7 +3490,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1010"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1010
       requirements:
         minLevel: 21
       tasks:
@@ -3072,7 +3510,9 @@ quests:
             deliveryItems:
               - itemId: 9030
                 quantity: 5
-            targetNpc: "207,1010"
+            targetNpc:
+              huntingZone: 207
+              templateId: 1010
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:735004"
@@ -3092,7 +3532,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1019"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1019
       requirements:
         minLevel: 21
       tasks:
@@ -3103,9 +3545,13 @@ quests:
           journalText: "@quest:736004"
           body:
             targets:
-              - templateId: "7,12"
+              - npc:
+                  huntingZone: 7
+                  templateId: 12
                 killCount: 6
-              - templateId: "7,13"
+              - npc:
+                  huntingZone: 7
+                  templateId: 13
                 killCount: 6
         - taskId: 2
           type: "VisitTask"
@@ -3114,7 +3560,9 @@ quests:
           journalText: "@quest:736006"
           hasReward: true
           body:
-            npcId: "207,1019"
+            npcId:
+              huntingZone: 207
+              templateId: 1019
             dialogueId: 3
             completionButtonText: "@quest:736005"
             visitCinematicId: 0
@@ -3134,7 +3582,9 @@ quests:
         questType: "General"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "207,1016"
+        giverNpc:
+          huntingZone: 207
+          templateId: 1016
       requirements:
         minLevel: 21
       tasks:
@@ -3145,7 +3595,9 @@ quests:
           journalText: "@quest:737004"
           body:
             targets:
-              - templateId: "7,23"
+              - npc:
+                  huntingZone: 7
+                  templateId: 23
                 killCount: 2
         - taskId: 2
           type: "VisitTask"
@@ -3154,7 +3606,9 @@ quests:
           journalText: "@quest:737006"
           hasReward: true
           body:
-            npcId: "207,1016"
+            npcId:
+              huntingZone: 207
+              templateId: 1016
             dialogueId: 3
             completionButtonText: "@quest:737005"
             visitCinematicId: 0
@@ -3189,7 +3643,9 @@ quests:
           body:
             itemId: 305
             itemCount: 1
-            targetNpc: "63,1160"
+            targetNpc:
+              huntingZone: 63
+              templateId: 1160
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:738002"
@@ -3201,21 +3657,13 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "The devas of Oblivion Woods were seizing control of roads and threatening the town of Crescentia. Prefect Daven sent you from Lumbertown to help protect merchants and locals from the well-armed devan brigands. You defeated the deva's assault leader, Tuebenius, and secured the trade routes."
+            - content: "The devas of Oblivion Woods were seizing control of roads and threatening the town of Crescentia. Prefect Daven sent you from Lumbertown to help protect merchants and locals from the well-armed devan brigands. You defeated the deva's assault leader, Tuebenius, and secured the trade routes."
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Mission Orders<BR><BR>Reinforcements required in Oblivion Woods to repel devan encroachment. Soldiers available for reassignment should report to Prefect Daven in Lumbertown at once."
+            - content: "Mission Orders<BR><BR>Reinforcements required in Oblivion Woods to repel devan encroachment. Soldiers available for reassignment should report to Prefect Daven in Lumbertown at once."
         - id: 3
           npcZoneId: 60
           prevId: 2
@@ -3263,15 +3711,12 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 59
           villagerId: 1009
           pages:
-            - social: 0
-              content: "You were called upon to kill a devan warlord named Dakanius and find a young scout named Kantusa, who'd infiltrated devan territory.<BR><BR>You found Kantusa gravely wounded. She told you the devas were working with the Scions of Lok. You ventured into Deva Silva and killed Dakanius and encountered the same group you faced in Scarwood and the Island of Dawn—though you still don't know what they're after."
+            - content: "You were called upon to kill a devan warlord named Dakanius and find a young scout named Kantusa, who'd infiltrated devan territory.<BR><BR>You found Kantusa gravely wounded. She told you the devas were working with the Scions of Lok. You ventured into Deva Silva and killed Dakanius and encountered the same group you faced in Scarwood and the Island of Dawn—though you still don't know what they're after."
         - id: 2
           npcZoneId: 59
           villagerId: 1009
@@ -3296,8 +3741,7 @@ questDialogs:
           npcZoneId: 59
           villagerId: 1009
           pages:
-            - social: 0
-              content: "I hear Magistrate Corann's got information about this Dakanius. I'd like to take a look at it. Bring it by, will you?"
+            - content: "I hear Magistrate Corann's got information about this Dakanius. I'd like to take a look at it. Bring it by, will you?"
         - id: 6
           npcZoneId: 203
           prevId: 4
@@ -3333,8 +3777,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 205
@@ -3345,35 +3787,29 @@ questDialogs:
           npcZoneId: 205
           villagerId: 1022
           pages:
-            - social: 0
-              content: "Will you help us?<BR><BR>Pangari is great magician, very powerful, but without the <FONT COLOR='#660000'>sun essences</FONT>, for his potions, he can do nothing!<BR><BR>Sun essences can be found all around—even some monsters carry them. If you can't find any out in the field, then you might be able to buy them, but they're so expensive!"
+            - content: "Will you help us?<BR><BR>Pangari is great magician, very powerful, but without the <FONT COLOR='#660000'>sun essences</FONT>, for his potions, he can do nothing!<BR><BR>Sun essences can be found all around—even some monsters carry them. If you can't find any out in the field, then you might be able to buy them, but they're so expensive!"
         - id: 3
           npcZoneId: 205
           prevId: 2
           villagerId: 1022
           pages:
-            - social: 0
-              content: "Yay! Done, and quickly! This will help Pangari greatly.<BR><BR>Thank you, thank you!"
+            - content: "Yay! Done, and quickly! This will help Pangari greatly.<BR><BR>Thank you, thank you!"
         - id: 4
           npcZoneId: 205
           villagerId: 1022
           pages:
-            - social: 0
-              content: "Ingredients? Where are the sun essences? Did you collect them?"
+            - content: "Ingredients? Where are the sun essences? Did you collect them?"
     - huntingZoneId: 6
       id: 2
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
           villagerId: 1003
           pages:
-            - social: 0
-              content: "After discovering devas at Mags Kulkar, you defeated Gutrend Chief Krashar and retrieved a Lok token. Now you have proof that the devas and the Scions of Lok are somehow involved with the recent Gutrend invasion."
+            - content: "After discovering devas at Mags Kulkar, you defeated Gutrend Chief Krashar and retrieved a Lok token. Now you have proof that the devas and the Scions of Lok are somehow involved with the recent Gutrend invasion."
         - id: 2
           npcZoneId: 206
           villagerId: 1003
@@ -3398,8 +3834,7 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1041
           pages:
-            - social: 0
-              content: "Let's look at weapons from a different group this time.<BR><BR>Bring them from the Gutrend {@LinkCreature:6#2061#sentries} and {@LinkCreature:6#2051#reapers}."
+            - content: "Let's look at weapons from a different group this time.<BR><BR>Bring them from the Gutrend {@LinkCreature:6#2061#sentries} and {@LinkCreature:6#2051#reapers}."
         - id: 6
           npcZoneId: 206
           prevId: 4
@@ -3416,14 +3851,12 @@ questDialogs:
           pages:
             - social: 4
               content: "Devas? The crates were full of devas? And Krashar's dead? Fine with me, as long as you got the information I need.<NEXTPAGEBUTTON>\"This is what I found.\"</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "A crest? I don't know of any Gutrend crests...<BR><BR>It's one of Lok's! The Gutrends aren't associated with Lok—or, they weren't.<BR><BR>Hurry. Vindicator Camp needs to know that devas and Scions of Lok are involved with the Gutrends! Take this to Crevan there."
+            - content: "A crest? I don't know of any Gutrend crests...<BR><BR>It's one of Lok's! The Gutrends aren't associated with Lok—or, they weren't.<BR><BR>Hurry. Vindicator Camp needs to know that devas and Scions of Lok are involved with the Gutrends! Take this to Crevan there."
         - id: 8
           npcZoneId: 206
           villagerId: 1006
           pages:
-            - social: 0
-              content: "Have you found anything? We have to find out what's going on!"
+            - content: "Have you found anything? We have to find out what's going on!"
         - id: 9
           npcZoneId: 206
           prevId: 7
@@ -3435,22 +3868,18 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1021
           pages:
-            - social: 0
-              content: "Have you found out anything about those Gutrends?"
+            - content: "Have you found out anything about those Gutrends?"
     - huntingZoneId: 6
       id: 3
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
           villagerId: 1021
           pages:
-            - social: 0
-              content: "With the kulkari threat blunted, the federation turned its attention to an outpost controlled by the Scions of Lok.<BR><BR>Isla, who's kept tabs on the Scions, ordered you to hurt the local Scion garrison and take out their justicars, reavers, and mystics. You did so and returned to Isla, who postulated that the Scions of Lok are gathering power for a specific purpose—one that remains a mystery."
+            - content: "With the kulkari threat blunted, the federation turned its attention to an outpost controlled by the Scions of Lok.<BR><BR>Isla, who's kept tabs on the Scions, ordered you to hurt the local Scion garrison and take out their justicars, reavers, and mystics. You did so and returned to Isla, who postulated that the Scions of Lok are gathering power for a specific purpose—one that remains a mystery."
         - id: 2
           npcZoneId: 206
           villagerId: 1021
@@ -3464,14 +3893,12 @@ questDialogs:
           pages:
             - social: 4
               content: "These Scions are keeping busy. They've blocked this pass for nearly a week. Whatever they're doing inside, they don't want others to see it.<NEXTPAGEBUTTON>\"We must get in there!\"</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "Agreed, but we need to do more than gather information. Kill any {@LinkCreature:6#3011#Scion justicars}, and {@LinkCreature:6#3031#Lokian reavers} and {@LinkCreature:6#3032#mystics}.<BR><BR>Weakening their forces now can only help us. After all, at some point we're going to have to dig them out of this little grotto.<BR><BR>Take the field!"
+            - content: "Agreed, but we need to do more than gather information. Kill any {@LinkCreature:6#3011#Scion justicars}, and {@LinkCreature:6#3031#Lokian reavers} and {@LinkCreature:6#3032#mystics}.<BR><BR>Weakening their forces now can only help us. After all, at some point we're going to have to dig them out of this little grotto.<BR><BR>Take the field!"
         - id: 4
           npcZoneId: 206
           villagerId: 1042
           pages:
-            - social: 0
-              content: "Did you get through to the shrine? Did you thin out their ranks?"
+            - content: "Did you get through to the shrine? Did you thin out their ranks?"
         - id: 5
           npcZoneId: 206
           prevId: 3
@@ -3484,15 +3911,12 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
           villagerId: 1042
           pages:
-            - social: 0
-              content: "Isla asked you to kill Dakarius—a Scion leader—and recover any clues about the location of the Scion stronghold. You killed Dakarius and recovered some Scion records that talk about using the teleportal.<BR><BR>You used the teleportal and found yourself in the Bastion of Lok's armory—in Oblivion Woods! You talked with several cultists and learned that the Scions are stockpiling weapons and energy. They think they can resurrect Lok himself! You gave the information to Isla, who took it to Daven personally."
+            - content: "Isla asked you to kill Dakarius—a Scion leader—and recover any clues about the location of the Scion stronghold. You killed Dakarius and recovered some Scion records that talk about using the teleportal.<BR><BR>You used the teleportal and found yourself in the Bastion of Lok's armory—in Oblivion Woods! You talked with several cultists and learned that the Scions are stockpiling weapons and energy. They think they can resurrect Lok himself! You gave the information to Isla, who took it to Daven personally."
         - id: 2
           npcZoneId: 206
           villagerId: 1042
@@ -3506,22 +3930,19 @@ questDialogs:
           prevId: 2
           villagerId: 1002
           pages:
-            - social: 0
-              content: "Who are you? I haven't seen you around here before.<BR><BR>Ah, you must've come through the teleportal. Are those federation fools still flailing about? Hah! They've no idea we're in Oblivion Woods.<BR><BR>Things on our end go well. We're stocking arms and troops at a record pace and our arcanists are collecting energy at an unprecedented rate. We might be ahead of schedule!"
+            - content: "Who are you? I haven't seen you around here before.<BR><BR>Ah, you must've come through the teleportal. Are those federation fools still flailing about? Hah! They've no idea we're in Oblivion Woods.<BR><BR>Things on our end go well. We're stocking arms and troops at a record pace and our arcanists are collecting energy at an unprecedented rate. We might be ahead of schedule!"
         - id: 4
           npcZoneId: 420
           prevId: 2
           villagerId: 1003
           pages:
-            - social: 0
-              content: "Hey, keener! What took you so long? Tetra is furious!<BR><BR>You don't want to anger her. Nothing says we have to gather vitae from others. Your blood can power the magic just as well...."
+            - content: "Hey, keener! What took you so long? Tetra is furious!<BR><BR>You don't want to anger her. Nothing says we have to gather vitae from others. Your blood can power the magic just as well...."
         - id: 5
           npcZoneId: 420
           prevId: 2
           villagerId: 1004
           pages:
-            - social: 0
-              content: "Our forces gather in the Bastion of Lok, away from prying eyes, but soon we'll have no need to hide.<BR><BR>Our illustrious 'ally' has kept his word and left our enemies vulnerable. If all goes well, Arcadia will be the first province to destabilize.<BR><BR>Perhaps then our prayers will be answered and Lok will be resurrected. Imagine the eternal gratitude of a god!"
+            - content: "Our forces gather in the Bastion of Lok, away from prying eyes, but soon we'll have no need to hide.<BR><BR>Our illustrious 'ally' has kept his word and left our enemies vulnerable. If all goes well, Arcadia will be the first province to destabilize.<BR><BR>Perhaps then our prayers will be answered and Lok will be resurrected. Imagine the eternal gratitude of a god!"
         - id: 6
           npcZoneId: 420
           prevId: 3
@@ -3529,8 +3950,7 @@ questDialogs:
           pages:
             - social: 4
               content: "Why the disgusting disguises? Never mind. Why are there two keeners here? I've never seen your dumb face before and the other one before looked even dumber. We need to start recruiting a better class of believers.<NEXTPAGEBUTTON>\"What other one?\"</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "What? You didn't come with her? Over near the teleportal. She's gawking at everything like it's a mystery to her how it came to be here.<BR><BR>Get her where she needs to be. I don't have time to play nursemaid to you all! Blast and damnation, what do they see in you fools?"
+            - content: "What? You didn't come with her? Over near the teleportal. She's gawking at everything like it's a mystery to her how it came to be here.<BR><BR>Get her where she needs to be. I don't have time to play nursemaid to you all! Blast and damnation, what do they see in you fools?"
         - id: 7
           npcZoneId: 420
           prevId: 6
@@ -3538,25 +3958,17 @@ questDialogs:
           pages:
             - social: 4
               content: "You took so long that I got worried, so I followed you. I watched you go through the teleportal. This place is incredible. What secrets does it hold?<NEXTPAGEBUTTON>\"Here's what I've learned...\"</NEXTPAGEBUTTON>"
-            - social: 0
-              content: "They're gathering power? Why?<BR><BR>You must be joking. Surely they don't actually think they can resurrect Lok! That's ludicrous. It would take an obscene amount of power—literally a divine amount—to do such a thing.<BR><BR>Still, they're amassing arms for something. They certainly think a fight is coming. We must be ready. I'll report this to Daven. Wish me luck!"
+            - content: "They're gathering power? Why?<BR><BR>You must be joking. Surely they don't actually think they can resurrect Lok! That's ludicrous. It would take an obscene amount of power—literally a divine amount—to do such a thing.<BR><BR>Still, they're amassing arms for something. They certainly think a fight is coming. We must be ready. I'll report this to Daven. Wish me luck!"
     - huntingZoneId: 6
       id: 5
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "You were sent to Oblivion Woods to help scout out the Bastion of Lok. You were late, however, and Hendry had already dispatched the team. You hurried to catch up, only to encounter the slain bodies of the scouting party—and one survivor.<BR><BR>The mission had failed, but the scout gave you his notes before swearing never to return to service. Hendry accepted the notes gratefully and decided to let the deserter go in peace."
+            - content: "You were sent to Oblivion Woods to help scout out the Bastion of Lok. You were late, however, and Hendry had already dispatched the team. You hurried to catch up, only to encounter the slain bodies of the scouting party—and one survivor.<BR><BR>The mission had failed, but the scout gave you his notes before swearing never to return to service. Hendry accepted the notes gratefully and decided to let the deserter go in peace."
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 4
               content: "Mission Orders<BR><BR>We've made the decision to take out the Bastion of Lok and hopefully put an end to their necromantic plot.<BR><BR>Report to Prefect Daven in Lumbertown."
@@ -3579,22 +3991,19 @@ questDialogs:
           prevId: 4
           villagerId: 1026
           pages:
-            - social: 0
-              content: "(This is one of the scouts.<BR><BR>You see signs of an intense struggle.)"
+            - content: "(This is one of the scouts.<BR><BR>You see signs of an intense struggle.)"
         - id: 6
           npcZoneId: 203
           prevId: 4
           villagerId: 1027
           pages:
-            - social: 0
-              content: "(It's another scout.<BR><BR>Ugly wounds cover the corpse.)"
+            - content: "(It's another scout.<BR><BR>Ugly wounds cover the corpse.)"
         - id: 7
           npcZoneId: 203
           prevId: 4
           villagerId: 1034
           pages:
-            - social: 0
-              content: "(Another dead scout.<BR><BR>Spattered blood surrounds the body.)"
+            - content: "(Another dead scout.<BR><BR>Spattered blood surrounds the body.)"
         - id: 8
           npcZoneId: 203
           prevId: 5
@@ -3615,15 +4024,12 @@ questDialogs:
           npcZoneId: 203
           villagerId: 1007
           pages:
-            - social: 0
-              content: "Hmm?"
+            - content: "Hmm?"
     - huntingZoneId: 6
       id: 22
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 206
@@ -3647,8 +4053,7 @@ questDialogs:
           npcZoneId: 206
           villagerId: 1011
           pages:
-            - social: 0
-              content: "Please—without that ore, our soldiers can't fight!"
+            - content: "Please—without that ore, our soldiers can't fight!"
 
 questStrings:
   upsert:

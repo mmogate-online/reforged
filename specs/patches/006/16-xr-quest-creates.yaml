@@ -37,7 +37,9 @@ quests:
           journalText: "@quest:1501003"
           hasReward: false
           body:
-            npcId: "63,1137"
+            npcId:
+              huntingZone: 63
+              templateId: 1137
             dialogueId: 3
             completionButtonText: "@quest:1501002"
             visitCinematicId: 0
@@ -50,7 +52,9 @@ quests:
           journalText: "@quest:1501005"
           hasReward: false
           body:
-            npcId: "67,1007"
+            npcId:
+              huntingZone: 67
+              templateId: 1007
             dialogueId: 4
             completionButtonText: "@quest:1501004"
             visitCinematicId: 0
@@ -63,7 +67,9 @@ quests:
           journalText: "@quest:1501007"
           hasReward: false
           body:
-            npcId: "215,1019"
+            npcId:
+              huntingZone: 215
+              templateId: 1019
             dialogueId: 5
             completionButtonText: "@quest:1501006"
             visitCinematicId: 0
@@ -76,7 +82,9 @@ quests:
           journalText: "@quest:1501008"
           body:
             targets:
-              - templateId: "15,6"
+              - npc:
+                  huntingZone: 15
+                  templateId: 6
                 killCount: 5
         - taskId: 5
           type: "VisitTask"
@@ -85,7 +93,9 @@ quests:
           journalText: "@quest:1501010"
           hasReward: false
           body:
-            npcId: "215,1019"
+            npcId:
+              huntingZone: 215
+              templateId: 1019
             dialogueId: 6
             completionButtonText: "@quest:1501009"
             visitCinematicId: 0
@@ -96,7 +106,9 @@ quests:
           journalText: "@quest:1501012"
           hasReward: false
           body:
-            npcId: "215,1010"
+            npcId:
+              huntingZone: 215
+              templateId: 1010
             dialogueId: 7
             completionButtonText: "@quest:1501011"
             visitCinematicId: 0
@@ -107,7 +119,9 @@ quests:
           journalText: "@quest:1501014"
           hasReward: false
           body:
-            npcId: "215,1027"
+            npcId:
+              huntingZone: 215
+              templateId: 1027
             dialogueId: 8
             completionButtonText: "@quest:1501013"
             visitCinematicId: 0
@@ -123,7 +137,9 @@ quests:
           journalScript: 8
           journalText: "@quest:1501015"
           body:
-            npcId: "439,2000"
+            npcId:
+              huntingZone: 439
+              templateId: 2000
             targetId: 15011
         - taskId: 10
           type: "GuardianTask"
@@ -133,7 +149,9 @@ quests:
           dungeonId: 9039
           timeLimit: [0, 4]
           body:
-            npcId: "439,1001"
+            npcId:
+              huntingZone: 439
+              templateId: 1001
             aggroInterval: 10
             aggroAmount: 30
             aggroRange: 500
@@ -146,7 +164,9 @@ quests:
           journalText: "@quest:1501018"
           hasReward: false
           body:
-            npcId: "215,1027"
+            npcId:
+              huntingZone: 215
+              templateId: 1027
             dialogueId: 9
             completionButtonText: "@quest:1501017"
             visitCinematicId: 0
@@ -163,10 +183,14 @@ quests:
             targetCount: 10
             itemId: 29
             targets:
-              - templateId: "15,14"
+              - npc:
+                  huntingZone: 15
+                  templateId: 14
                 grantRate: 70
             sequentialDistribution: "미적용"
-            targetNpc: "215,1027"
+            targetNpc:
+              huntingZone: 215
+              templateId: 1027
             completionDialogue: 10
             incompleteDialogue: 11
             completionButtonText: "@quest:1501022"
@@ -177,7 +201,9 @@ quests:
           journalText: "@quest:1501024"
           hasReward: true
           body:
-            npcId: "215,1027"
+            npcId:
+              huntingZone: 215
+              templateId: 1027
             dialogueId: 12
             completionButtonText: "@quest:1501023"
             visitCinematicId: 0
@@ -207,7 +233,9 @@ quests:
           journalText: "@quest:2301003"
           hasReward: false
           body:
-            npcId: "63,1102"
+            npcId:
+              huntingZone: 63
+              templateId: 1102
             dialogueId: 3
             completionButtonText: "@quest:2301002"
             visitCinematicId: 0
@@ -220,7 +248,9 @@ quests:
           journalText: "@quest:2301005"
           hasReward: false
           body:
-            npcId: "68,1007"
+            npcId:
+              huntingZone: 68
+              templateId: 1007
             dialogueId: 4
             completionButtonText: "@quest:2301004"
             visitCinematicId: 0
@@ -233,7 +263,9 @@ quests:
           journalText: "@quest:2301007"
           hasReward: false
           body:
-            npcId: "223,1002"
+            npcId:
+              huntingZone: 223
+              templateId: 1002
             dialogueId: 5
             completionButtonText: "@quest:2301006"
             visitCinematicId: 0
@@ -244,7 +276,9 @@ quests:
           journalText: "@quest:2301009"
           hasReward: false
           body:
-            npcId: "223,1002"
+            npcId:
+              huntingZone: 223
+              templateId: 1002
             dialogueId: 6
             completionButtonText: "@quest:2301008"
             visitCinematicId: 0
@@ -262,7 +296,9 @@ quests:
             deliveryItems:
               - itemId: 9108
                 quantity: 5
-            targetNpc: "223,1002"
+            targetNpc:
+              huntingZone: 223
+              templateId: 1002
             completionDialogue: 7
             incompleteDialogue: 8
             completionButtonText: "@quest:2301010"
@@ -276,7 +312,9 @@ quests:
             - itemId: 5079
               quantity: 1
           body:
-            npcId: "223,1042"
+            npcId:
+              huntingZone: 223
+              templateId: 1042
             dialogueId: 9
             completionButtonText: "@quest:2301013"
             visitCinematicId: 0
@@ -292,7 +330,9 @@ quests:
           body:
             itemId: 5079
             itemCount: 1
-            targetNpc: "223,1002"
+            targetNpc:
+              huntingZone: 223
+              templateId: 1002
             completionDialogue: 10
             incompleteDialogue: 11
             completionButtonText: "@quest:2301015"
@@ -311,7 +351,9 @@ quests:
         questType: "Alliance"
         repeatType: "Repeatable"
         cancellable: "Allowed"
-        giverNpc: "63,22002"
+        giverNpc:
+          huntingZone: 63
+          templateId: 22002
       requirements:
         minLevel: 60
         maxLevel: 65
@@ -332,16 +374,26 @@ quests:
             targetCount: 1
             itemId: 1400
             targets:
-              - templateId: "425,8005"
+              - npc:
+                  huntingZone: 425
+                  templateId: 8005
                 grantRate: 100
-              - templateId: "825,6000"
+              - npc:
+                  huntingZone: 825
+                  templateId: 6000
                 grantRate: 100
-              - templateId: "426,20000"
+              - npc:
+                  huntingZone: 426
+                  templateId: 20000
                 grantRate: 100
-              - templateId: "727,2007"
+              - npc:
+                  huntingZone: 727
+                  templateId: 2007
                 grantRate: 100
             sequentialDistribution: "미적용"
-            targetNpc: "63,22002"
+            targetNpc:
+              huntingZone: 63
+              templateId: 22002
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:12116005"
@@ -360,7 +412,9 @@ quests:
         questType: "Alliance"
         repeatType: "Repeatable"
         cancellable: "Allowed"
-        giverNpc: "63,22008"
+        giverNpc:
+          huntingZone: 63
+          templateId: 22008
       requirements:
         minLevel: 65
         maxLevel: 65
@@ -381,38 +435,70 @@ quests:
             targetCount: 1
             itemId: 1401
             targets:
-              - templateId: "124,102"
+              - npc:
+                  huntingZone: 124
+                  templateId: 102
                 grantRate: 100
-              - templateId: "124,103"
+              - npc:
+                  huntingZone: 124
+                  templateId: 103
                 grantRate: 100
-              - templateId: "124,104"
+              - npc:
+                  huntingZone: 124
+                  templateId: 104
                 grantRate: 100
-              - templateId: "124,105"
+              - npc:
+                  huntingZone: 124
+                  templateId: 105
                 grantRate: 100
-              - templateId: "124,106"
+              - npc:
+                  huntingZone: 124
+                  templateId: 106
                 grantRate: 100
-              - templateId: "125,102"
+              - npc:
+                  huntingZone: 125
+                  templateId: 102
                 grantRate: 100
-              - templateId: "125,103"
+              - npc:
+                  huntingZone: 125
+                  templateId: 103
                 grantRate: 100
-              - templateId: "125,104"
+              - npc:
+                  huntingZone: 125
+                  templateId: 104
                 grantRate: 100
-              - templateId: "125,105"
+              - npc:
+                  huntingZone: 125
+                  templateId: 105
                 grantRate: 100
-              - templateId: "125,106"
+              - npc:
+                  huntingZone: 125
+                  templateId: 106
                 grantRate: 100
-              - templateId: "126,102"
+              - npc:
+                  huntingZone: 126
+                  templateId: 102
                 grantRate: 100
-              - templateId: "126,103"
+              - npc:
+                  huntingZone: 126
+                  templateId: 103
                 grantRate: 100
-              - templateId: "126,104"
+              - npc:
+                  huntingZone: 126
+                  templateId: 104
                 grantRate: 100
-              - templateId: "126,105"
+              - npc:
+                  huntingZone: 126
+                  templateId: 105
                 grantRate: 100
-              - templateId: "126,106"
+              - npc:
+                  huntingZone: 126
+                  templateId: 106
                 grantRate: 100
             sequentialDistribution: "미적용"
-            targetNpc: "63,22008"
+            targetNpc:
+              huntingZone: 63
+              templateId: 22008
             completionDialogue: 3
             incompleteDialogue: 4
             completionButtonText: "@quest:12117005"
@@ -442,7 +528,9 @@ quests:
           journalScript: 2
           journalText: "@quest:15103005"
           body:
-            targetNpc: "151,1003"
+            targetNpc:
+              huntingZone: 151
+              templateId: 1003
             preBranchDialogue: 3
             branchType: "manual"
             completionButtonText: "@quest:15103006"
@@ -463,7 +551,9 @@ quests:
           journalText: "@quest:15103008"
           hasReward: true
           body:
-            npcId: "63,220044"
+            npcId:
+              huntingZone: 63
+              templateId: 220044
             dialogueId: 7
             completionButtonText: "@quest:15103007"
             visitCinematicId: 0
@@ -474,7 +564,9 @@ quests:
           journalText: "@quest:15103010"
           hasReward: true
           body:
-            npcId: "72,220046"
+            npcId:
+              huntingZone: 72
+              templateId: 220046
             dialogueId: 8
             completionButtonText: "@quest:15103009"
             visitCinematicId: 0
@@ -485,7 +577,9 @@ quests:
           journalText: "@quest:15103012"
           hasReward: true
           body:
-            npcId: "84,220045"
+            npcId:
+              huntingZone: 84
+              templateId: 220045
             dialogueId: 9
             completionButtonText: "@quest:15103011"
             visitCinematicId: 0
@@ -506,7 +600,9 @@ quests:
         startItems:
           - itemId: 5067
             quantity: 1
-        giverNpc: "203,1006"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1006
       requirements:
         minLevel: 20
         prerequisites: [605]
@@ -518,7 +614,9 @@ quests:
           journalText: "@quest:48702002"
           body:
             targets:
-              - templateId: "487,102"
+              - npc:
+                  huntingZone: 487
+                  templateId: 102
                 killCount: 10
         - taskId: 2
           type: "VisitTask"
@@ -530,7 +628,9 @@ quests:
             - itemId: 5067
               quantity: 1
           body:
-            npcId: "203,1007"
+            npcId:
+              huntingZone: 203
+              templateId: 1007
             dialogueId: 3
             completionButtonText: "@quest:48702003"
             visitCinematicId: 0
@@ -548,7 +648,9 @@ quests:
         questType: "Repeatable"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1032"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1032
       requirements:
         minLevel: 20
         maxLevel: 25
@@ -567,20 +669,30 @@ quests:
             deliveryQuantity: 35
             iconId: 25
             targets:
-              - templateId: "487,1001"
+              - npc:
+                  huntingZone: 487
+                  templateId: 1001
                 grantRate: 80
-              - templateId: "487,1002"
+              - npc:
+                  huntingZone: 487
+                  templateId: 1002
                 grantRate: 80
-              - templateId: "487,1003"
+              - npc:
+                  huntingZone: 487
+                  templateId: 1003
                 grantRate: 80
-              - templateId: "487,1004"
+              - npc:
+                  huntingZone: 487
+                  templateId: 1004
                 grantRate: 80
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 350
             sequentialDistribution: "미적용"
-            targetNpc: "203,1032"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1032
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:48791003"
@@ -598,7 +710,9 @@ quests:
         questType: "Repeatable"
         repeatType: "OneTime"
         cancellable: "Allowed"
-        giverNpc: "203,1032"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1032
       requirements:
         minLevel: 20
         maxLevel: 25
@@ -617,22 +731,34 @@ quests:
             deliveryQuantity: 8
             iconId: 25
             targets:
-              - templateId: "487,2002"
+              - npc:
+                  huntingZone: 487
+                  templateId: 2002
                 grantRate: 100
-              - templateId: "487,2003"
+              - npc:
+                  huntingZone: 487
+                  templateId: 2003
                 grantRate: 100
-              - templateId: "487,2004"
+              - npc:
+                  huntingZone: 487
+                  templateId: 2004
                 grantRate: 100
-              - templateId: "487,3001"
+              - npc:
+                  huntingZone: 487
+                  templateId: 3001
                 grantRate: 66
-              - templateId: "487,3002"
+              - npc:
+                  huntingZone: 487
+                  templateId: 3002
                 grantRate: 66
             repeatMethod: "무한"
             repeatTarget: "사냥"
             repeatCount: 1
             maxFlagCount: 80
             sequentialDistribution: "미적용"
-            targetNpc: "203,1032"
+            targetNpc:
+              huntingZone: 203
+              templateId: 1032
             normalDialogue: 3
             incompleteDialogue: 4
             rewardChoiceText: "@quest:48792003"
@@ -674,7 +800,9 @@ quests:
           journalText: "@quest:90101005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:90101004"
             visitCinematicId: 0
@@ -716,7 +844,9 @@ quests:
           journalText: "@quest:90102005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:90102004"
             visitCinematicId: 0
@@ -757,7 +887,9 @@ quests:
           journalText: "@quest:90104005"
           hasReward: true
           body:
-            npcId: "63,9005"
+            npcId:
+              huntingZone: 63
+              templateId: 9005
             dialogueId: 3
             completionButtonText: "@quest:90104004"
             visitCinematicId: 0
@@ -797,7 +929,9 @@ quests:
           journalText: "@quest:90109005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:90109004"
             visitCinematicId: 0
@@ -839,7 +973,9 @@ quests:
           journalText: "@quest:90110005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:90110004"
             visitCinematicId: 0
@@ -881,7 +1017,9 @@ quests:
           journalText: "@quest:90112005"
           hasReward: true
           body:
-            npcId: "63,1256"
+            npcId:
+              huntingZone: 63
+              templateId: 1256
             dialogueId: 3
             completionButtonText: "@quest:90112004"
             visitCinematicId: 0
@@ -893,21 +1031,13 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "General Samael dispatched you to Popolion to investigate some wild rumors. Unchecked aggression raged across the landscape and bizarre aberrations attacked the locals.<BR><BR>You encountered a pair of baraka scholars, Bedoram and Brohua, who investigated the source of the trouble. Bedoram traced the problem to a relic known as a dementalith, but warned you that such a device is a massive investment and that the danger was greater than it first appeared."
+            - content: "General Samael dispatched you to Popolion to investigate some wild rumors. Unchecked aggression raged across the landscape and bizarre aberrations attacked the locals.<BR><BR>You encountered a pair of baraka scholars, Bedoram and Brohua, who investigated the source of the trouble. Bedoram traced the problem to a relic known as a dementalith, but warned you that such a device is a massive investment and that the danger was greater than it first appeared."
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Mission Orders<BR><BR>Report to General Samael at once. All other orders rescinded."
+            - content: "Mission Orders<BR><BR>Report to General Samael at once. All other orders rescinded."
         - id: 3
           npcZoneId: 63
           prevId: 2
@@ -970,8 +1100,7 @@ questDialogs:
           npcZoneId: 215
           villagerId: 1027
           pages:
-            - social: 0
-              content: "I still need that blood, <PCNAME>. Those {@LinkCreature:15#14#blood fiends} are the key.<BR><BR>I've asked for the bare minimum sufficient for my tests!"
+            - content: "I still need that blood, <PCNAME>. Those {@LinkCreature:15#14#blood fiends} are the key.<BR><BR>I've asked for the bare minimum sufficient for my tests!"
         - id: 12
           npcZoneId: 215
           prevId: 10
@@ -986,21 +1115,13 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "The elin princesses Rida and Arin were locked in a feud over heraldry. The dispute over the new design for a Poporia Kingdom flag got ugly when Rida fled Pora Elinu and raised an army.<BR><BR>Lienyn recruited you to resolve the dispute as the queen was unavailable. Princess Arin wanted your help to brew a draught to compel Rida back to her side."
+            - content: "The elin princesses Rida and Arin were locked in a feud over heraldry. The dispute over the new design for a Poporia Kingdom flag got ugly when Rida fled Pora Elinu and raised an army.<BR><BR>Lienyn recruited you to resolve the dispute as the queen was unavailable. Princess Arin wanted your help to brew a draught to compel Rida back to her side."
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Mission Orders<BR><BR>The Kingdom of Poporia, a vital part of the Valkyon Federation, requests assistance in Pora Elinu.<BR><BR>Report to Commander Seir in Velika for further details."
+            - content: "Mission Orders<BR><BR>The Kingdom of Poporia, a vital part of the Valkyon Federation, requests assistance in Pora Elinu.<BR><BR>Report to Commander Seir in Velika for further details."
         - id: 3
           npcZoneId: 63
           prevId: 2
@@ -1050,8 +1171,7 @@ questDialogs:
           npcZoneId: 223
           villagerId: 1002
           pages:
-            - social: 0
-              content: "I just need those dewdrop buds, and this whole sordid affair is behind us! Now, off with you."
+            - content: "I just need those dewdrop buds, and this whole sordid affair is behind us! Now, off with you."
         - id: 9
           npcZoneId: 223
           prevId: 7
@@ -1078,8 +1198,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 63
@@ -1103,15 +1221,12 @@ questDialogs:
           npcZoneId: 63
           villagerId: 22002
           pages:
-            - social: 0
-              content: "For profit!"
+            - content: "For profit!"
     - huntingZoneId: 121
       id: 17
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 63
@@ -1135,28 +1250,19 @@ questDialogs:
           npcZoneId: 63
           villagerId: 22008
           pages:
-            - social: 0
-              content: "For the Free Traders Collective!"
+            - content: "For the Free Traders Collective!"
     - huntingZoneId: 151
       id: 3
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "As you show an interest in alliances, Korino introduces you to the alliance recruiters."
+            - content: "As you show an interest in alliances, Korino introduces you to the alliance recruiters."
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Like most secrets, everyone knows about our secret research territory. So now some powerhouses have made alliances outside the federation's rule to control the mining and distribution of noctenium.<BR><BR>These powerhouses desire a pocket realm with their own access to noctenium. No one's tried to seize this one, so they must have found pocket realms of their own."
+            - content: "Like most secrets, everyone knows about our secret research territory. So now some powerhouses have made alliances outside the federation's rule to control the mining and distribution of noctenium.<BR><BR>These powerhouses desire a pocket realm with their own access to noctenium. No one's tried to seize this one, so they must have found pocket realms of their own."
         - id: 3
           npcZoneId: 151
           prevId: 2
@@ -1211,8 +1317,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 203
@@ -1237,8 +1341,6 @@ questDialogs:
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 203
@@ -1262,15 +1364,12 @@ questDialogs:
           npcZoneId: 203
           villagerId: 1032
           pages:
-            - social: 0
-              content: "The sooner you get down there, the sooner the Scions stop breathing."
+            - content: "The sooner you get down there, the sooner the Scions stop breathing."
     - huntingZoneId: 487
       id: 92
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
           npcZoneId: 203
@@ -1294,164 +1393,115 @@ questDialogs:
           npcZoneId: 203
           villagerId: 1032
           pages:
-            - social: 0
-              content: "Don't come back until you've got enough badges to make me proud."
+            - content: "Don't come back until you've got enough badges to make me proud."
     - huntingZoneId: 901
       id: 1
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "You're quite the swashbuckling <PCCLASS:lcase>.<BR><BR>Are you ready to take on the pirate's life again?"
+            - content: "You're quite the swashbuckling <PCCLASS:lcase>.<BR><BR>Are you ready to take on the pirate's life again?"
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1256
           pages:
-            - social: 0
-              content: "You're quite good at this! I expected no less."
+            - content: "You're quite good at this! I expected no less."
     - huntingZoneId: 901
       id: 2
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "I've been waiting for you, <PCNAME>!<BR><BR>I knew great heroes like you wouldn't miss a chance to prove their strength and honor. Ha ha!<BR><BR>Welcome to Fraywind Canyon, where heroes become legends."
+            - content: "I've been waiting for you, <PCNAME>!<BR><BR>I knew great heroes like you wouldn't miss a chance to prove their strength and honor. Ha ha!<BR><BR>Welcome to Fraywind Canyon, where heroes become legends."
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1256
           pages:
-            - social: 0
-              content: "You're quite good at this! I expected no less."
+            - content: "You're quite good at this! I expected no less."
     - huntingZoneId: 901
       id: 4
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Hey, <PCName>!<BR><BR>If you win in the Wintera snowfield, I'll give you a special gift!"
+            - content: "Hey, <PCName>!<BR><BR>If you win in the Wintera snowfield, I'll give you a special gift!"
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 9005
           pages:
-            - social: 0
-              content: "Congratulations! You won!<BR><BR>I hope you enjoyed the game.<BR><BR>Come back soon and bring more friends—Wintera only lasts so long!"
+            - content: "Congratulations! You won!<BR><BR>I hope you enjoyed the game.<BR><BR>Come back soon and bring more friends—Wintera only lasts so long!"
     - huntingZoneId: 901
       id: 9
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "There's never been a \"true hero\" born. Soldiers rush into battle, and fate hands them a choice. The ones that make the right choice, they're the ones who get to be heroes.<BR><BR>Onward to glory!"
+            - content: "There's never been a \"true hero\" born. Soldiers rush into battle, and fate hands them a choice. The ones that make the right choice, they're the ones who get to be heroes.<BR><BR>Onward to glory!"
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1256
           pages:
-            - social: 0
-              content: "You did a hero's work out there, <PCNAME>. Allies and enemies alike are going to remember you for a long time."
+            - content: "You did a hero's work out there, <PCNAME>. Allies and enemies alike are going to remember you for a long time."
     - huntingZoneId: 901
       id: 10
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "You're quite the swashbuckling <PCCLASS:lcase>.<BR><BR>Are you ready to take on the pirate's life again?"
+            - content: "You're quite the swashbuckling <PCCLASS:lcase>.<BR><BR>Are you ready to take on the pirate's life again?"
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1256
           pages:
-            - social: 0
-              content: "You're quite good at this! I expected no less."
+            - content: "You're quite good at this! I expected no less."
     - huntingZoneId: 901
       id: 12
       voiceTypeId: 0
       texts:
         - id: 1
-          npcZoneId: 0
-          villagerId: 0
           pages: []
         - id: 100
-          npcZoneId: 0
-          villagerId: 0
           pages:
             - social: 0
         - id: 2
-          npcZoneId: 0
-          villagerId: 0
           pages:
-            - social: 0
-              content: "Everybody knows of the values of rock candies, by now. Cutthroat Harbor is packed with treasurehunters, despite the fact not all could return safely.<BR><BR><PCNAME>, are you also seeking the treasure?<BR>If you obtain some of them, could you, please, let me have a look?<BR><BR>I will surely reciprocate!"
+            - content: "Everybody knows of the values of rock candies, by now. Cutthroat Harbor is packed with treasurehunters, despite the fact not all could return safely.<BR><BR><PCNAME>, are you also seeking the treasure?<BR>If you obtain some of them, could you, please, let me have a look?<BR><BR>I will surely reciprocate!"
         - id: 3
           npcZoneId: 63
           prevId: 2
           villagerId: 1256
           pages:
-            - social: 0
-              content: "You came back safely, what a relief. So how abou them rock candies?<BR><BR>From the looks on your face, it didn't go all too well, did it?<BR>Well, no worries. We should all glad to be alive.<BR><BR>I sincerely thank you for showing me those treasures.<BR>After all, it is not an everyday sight to see, when you can't leave the post like myself."
+            - content: "You came back safely, what a relief. So how abou them rock candies?<BR><BR>From the looks on your face, it didn't go all too well, did it?<BR>Well, no worries. We should all glad to be alive.<BR><BR>I sincerely thank you for showing me those treasures.<BR>After all, it is not an everyday sight to see, when you can't leave the post like myself."
 
 questStrings:
   upsert:
