@@ -5,6 +5,10 @@
 # where the shipped client carried English. These updates put the client's own text on the
 # server rows, so the projection changes memberships and nothing a player sees.
 #
+# The festival story groups are absent on purpose. Seasonal event content stays exactly as
+# the live server ships it, its journal text included, so no row keyed to a festival quest
+# is restated here.
+#
 # provenance: policy
 
 spec:
@@ -1060,21 +1064,6 @@ questStoryGroups:
     - id: 7010
       changes:
         name: "[Battleground] To the Battlegrounds"
-    - id: 7011
-      changes:
-        name: "[Festival] Festival of the Sun"
-    - id: 7012
-      changes:
-        name: "[Festival] Banquet of Blood"
-    - id: 7013
-      changes:
-        name: "[Festival] Beach Party"
-    - id: 7021
-      changes:
-        name: "[Festival] Rootstock"
-    - id: 7022
-      changes:
-        name: "[Festival] Pond Faire"
   upsertQuests:
     - storyGroupId: 0
       quests:
@@ -1664,93 +1653,3 @@ questStoryGroups:
           dec: "[Battleground] Road to Triumph"
         - id: 18378
           dec: "[Battleground] To the Gridiron"
-    - storyGroupId: 7011
-      quests:
-        - id: 70101
-          dec: "[Event] Holy Responsibilities"
-        - id: 70102
-          dec: "[Event] Attending Services"
-        - id: 70103
-          dec: "[Event] Keep the Fires Burning"
-        - id: 70104
-          dec: "[Event] Ice to Meet You"
-        - id: 70105
-          dec: "[Event—Daily] Combating Sloth"
-        - id: 70106
-          dec: "[Event—Daily] Taking Out the Trash"
-        - id: 70107
-          dec: "[Event—Daily] Dust Never Sleeps"
-        - id: 70108
-          dec: "[Event—Daily] Icing on the Cake"
-        - id: 70109
-          dec: "[Event—Daily] Skyrockets in Flight"
-    - storyGroupId: 7012
-      quests:
-        - id: 70111
-          dec: "[Event] Carnival of Carnivores"
-        - id: 70112
-          dec: "[Event—Daily] Off the Menu"
-        - id: 70113
-          dec: "[Event—Daily] The Party's Over"
-        - id: 70114
-          dec: "[Event—Daily] The Party. Is. Over."
-    - storyGroupId: 7013
-      quests:
-        - id: 70115
-          dec: "[Event] Life's a Beach"
-        - id: 70116
-          dec: "[Event] Would You Like to Play a Game"
-        - id: 70117
-          dec: "[Event—Daily] Splash Cannon"
-        - id: 70118
-          dec: "[Event—Daily] Blind Melon Bash"
-        - id: 70119
-          dec: "[Event—Daily] Sand Castles in the Sand"
-        - id: 70120
-          dec: "[Event—Daily] The Horn Carver's Concerns"
-        - id: 70121
-          dec: "[Event—Daily] Beauty at the Beach"
-        - id: 70122
-          dec: "[Event] Ramsay's New Hobby"
-    - storyGroupId: 7021
-      quests:
-        - id: 70201
-          dec: "[Rootstock] Going to the Fair"
-        - id: 70202
-          dec: "[Rootstock] Get Back to Your Roots"
-        - id: 70203
-          dec: "[Rootstock] Create a Farmer's Almanac"
-        - id: 70204
-          dec: "[Rootstock] Down on the Farm"
-        - id: 70205
-          dec: "[Rootstock-Daily] Dish Delivery"
-        - id: 70206
-          dec: "[Rootstock-Daily] Kick-Bale"
-        - id: 70207
-          dec: "[Rootstock-Daily] Sheep Herding"
-        - id: 70208
-          dec: "[Rootstock-Daily] Ranch Management"
-        - id: 70209
-          dec: "[Rootstock-Daily] Higgledy-Piggledy"
-        - id: 70219
-          dec: "[Rootstock] Freeholds Special Blend"
-        - id: 70220
-          dec: "[Rootstock-Daily] Freeholds Special Blend"
-    - storyGroupId: 7022
-      quests:
-        - id: 70211
-          dec: "[Pond Faire] Pond Life"
-        - id: 70212
-          dec: "[Pond Faire] Prepare for the Faire"
-        - id: 70213
-          dec: "[Pond Faire] Lilies and Drums"
-        - id: 70214
-          dec: "[Pond Faire] Hide-n-Seek"
-        - id: 70215
-          dec: "[Pond Faire—Daily] Slay the Dragons"
-        - id: 70216
-          dec: "[Pond Faire—Daily] Drumline"
-        - id: 70217
-          dec: "[Pond Faire—Daily] Floral Attraction"
-        - id: 70218
-          dec: "[Pond Faire—Daily] And the Beat Goes On"
