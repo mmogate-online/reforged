@@ -1,0 +1,64 @@
+# An ObjectAction task names a work object by TEMPLATE id, and the object only becomes
+# usable when its own row names that same quest and task range back. Both halves have to
+# agree or the task cannot be completed, and neither half errors when they do not: the
+# object simply never offers its prompt, and any NPC its WorkGroup would spawn never
+# appears. Three quests in this region were stranded that way.
+#
+# Quest 701 task 9 hunts four Dark Imp that exist nowhere as a standing spawn. They live
+# in a type="quest" territory, and the only thing that activates it is the Sparking
+# Baetylith, work object 45, whose gate had been renumbered onto a quest this server does
+# not carry. Quests 302 task 7 and 332 task 1 name work objects 32 and 3, whose single
+# placements had been dropped from their zones, leaving the task pointing at an object
+# that stands nowhere.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+workObjects:
+  update:
+    # Sparking Baetylith. Its WorkGroup spawns hunting zone 7 territory 700355, the four
+    # Dark Imp that quest 701 task 9 requires.
+    - templateId: 45
+      changes:
+        isForQuestId: 701
+
+workObjectTerritories:
+  upsert:
+    # Quest 332 task 1, A Duty Most Grave. Spawns hunting zone 3 territory 320421.
+    - huntingZoneId: 3
+      templateId: 3
+      pos: "102837.0000,19338.0000,3171.0000"
+      dir: 0
+      type: normal
+      spawnNum: 1
+      respawnTimeMin: 1000
+      respawnTimeMax: 10000
+
+    # Quest 302 task 7, Pulling Back the Veil. Spawns hunting zone 3 territory 320578.
+    - huntingZoneId: 203
+      templateId: 32
+      pos: "119515.7656,8093.7612,2765.2129"
+      dir: 0
+      type: normal
+      spawnNum: 1
+      respawnTimeMin: 0
+      respawnTimeMax: 0
+
+    # The sixth Sparking Baetylith, at its classic position.
+    - huntingZoneId: 207
+      templateId: 45
+      pos: "67477.6484,3664.0703,653.8457"
+      dir: 300
+      type: normal
+      spawnNum: 1
+      respawnTimeMin: 0
+      respawnTimeMax: 0
+
+  delete:
+    # The same baetylith where this server had moved it.
+    - huntingZoneId: 207
+      templateId: 45
+      pos: "59101.28515625,7593.75830078,1616.94531250"
