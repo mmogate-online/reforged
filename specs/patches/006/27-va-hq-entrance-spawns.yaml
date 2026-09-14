@@ -1,0 +1,51 @@
+# The three placements at the entrance of the Valkyon Federation Headquarters in
+# Velika: the guide Uriela and the two guards flanking the door. The classic data
+# stands them 30 to 130 units away from where the live server does and 6 to 7
+# units higher, and at the classic coordinates none of the three spawns: a
+# placement the current terrain cannot seat is dropped without a diagnostic. The
+# live coordinates stay, and the quest-marker pins follow the spawns.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territorySpawns:
+  update:
+    - huntingZoneId: 63
+      groupId: 6300006
+      territoryId: 6300101
+      npcInstanceId: 6300237    # guard, template 2002
+      changes:
+        pos: [-748.42266846, 10438.34277344, 2175.98632813]
+    - huntingZoneId: 63
+      groupId: 6300006
+      territoryId: 6300101
+      npcInstanceId: 6300238    # guard, template 2008
+      changes:
+        pos: [-939.51745605, 10231.92285156, 2175.98437500]
+    - huntingZoneId: 63
+      groupId: 6300006
+      territoryId: 6300101
+      npcInstanceId: 6300420    # Uriela, template 1101
+      changes:
+        pos: [-829.76153564, 10315.98632813, 2180.43554688]
+
+npcLocStrings:
+  upsert:
+    - huntingZoneId: 63
+      templateId: 2002
+      continent: 7005
+      markers:
+        - [-748, 10438, 2176]
+    - huntingZoneId: 63
+      templateId: 2008
+      continent: 7005
+      markers:
+        - [-940, 10232, 2176]
+    - huntingZoneId: 63
+      templateId: 1101
+      continent: 7005
+      markers:
+        - [-830, 10316, 2180]
