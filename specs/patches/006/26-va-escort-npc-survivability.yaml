@@ -1,0 +1,26 @@
+# The Celestial Hills escort NPC, made survivable against this zone's monsters.
+#
+# The escorted researcher carries the health and defence of the classic era, and
+# the monsters that attack him during the escort do not: their attack in this zone
+# is roughly thirty times what the classic values were, while every villager
+# template in the same file is untouched. The escort cannot be completed at the
+# shipped health, and the mismatch is not visible in either row on its own.
+#
+# The health here restores the ratio between the two, so the escort is as
+# survivable as it was designed to be rather than merely easier. The monsters are
+# deliberately left alone: lowering them would also remove the threat to the
+# player, who is meant to be fighting for the NPC's life.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcs:
+  update:
+    - huntingZoneId: 419
+      id: 99              # the escorted researcher
+      changes:
+        stat:
+          maxHp: 112313.75

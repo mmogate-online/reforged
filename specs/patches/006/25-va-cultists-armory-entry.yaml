@@ -1,0 +1,410 @@
+# The Celestial Hills escort instance, restored to the quest it hosts.
+#
+# The instance names its quest in four places: the restore target, both quest
+# entry conditions, and the questId on every event group that scripts the escort.
+# The live server had re-scripted the continent for a later story chain, and this
+# patch restores the classic one, so all four must move together. They are also
+# the only gate: an entrant whose quest does not match is refused with no message
+# of any kind, so a half-moved gate reads in game as a teleport that does nothing.
+#
+# The event groups are restated whole because a dungeon's nested collections are
+# replaced wholesale rather than merged. There is no way to edit one attribute of
+# one event in place, so the unchanged groups are carried here verbatim.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9019
+      restoreTargetQuests:
+        - id: "702"
+      conditions:
+        - type: party
+          value: "1"
+        - type: levelOver
+          value: "21"
+        - type: progressQuest
+          value: "702"
+          taskId: "11"
+        - type: completeQuest
+          value: "702"
+        - type: maxMemberCount
+          value: "5"
+      eventGroups:
+        - type: talkNpc
+          uniqueId: "419,99"
+          events:
+            - textId: "2"
+              taskId: "11"
+              questId: "702"
+              eventTaskGroups:
+                - eventTasks:
+                    - type: "playMovie"
+                      id: 8
+                      next: "time"
+                      nextValue: "10"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900002"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "10"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900003"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "10"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900004"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "14"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900005"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "11"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900006"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "8"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900007"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "8"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900008"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "6"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900009"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "6"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900010"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "5"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900011"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "5"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900012"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "4"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900013"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "4"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900014"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "3"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900015"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "3"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900016"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "2"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900017"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "2"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900018"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "10"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900019"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "7"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900020"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "7"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900021"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "6"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900022"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "6"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900023"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "17"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900024"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "6"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900025"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "5"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900026"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "4"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900027"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "3"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900028"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "10"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900029"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "13"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900030"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "7"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900031"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "8"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900012"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "4"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900013"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "4"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900014"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "3"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900015"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "3"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900016"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "2"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900017"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "2"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900024"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "6"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900025"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "5"
+                    - type: "spawn"
+                      huntingZoneId: 419
+                      territoryId: "41900026"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      startAggro: 1
+                      next: "time"
+                      nextValue: "4"
+            - textId: "2"
+              questId: "702"
+              taskId: "11"
+              eventTaskGroups:
+                - eventTasks:
+                    - type: "timerUi"
+                      time: 300
+                      next: "time"
+                      nextValue: "1"
+                    - type: "message"
+                      string: "@dungeon:9019006"
+                      style: "default"
+                      next: "time"
+                      nextValue: "3"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019001"
+                      next: "time"
+                      nextValue: "111"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019002"
+                      next: "time"
+                      nextValue: "66"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019003"
+                      next: "time"
+                      nextValue: "45"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019004"
+                      next: "time"
+                      nextValue: "20"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019005"
+                      next: "time"
+                      nextValue: "55"
+                    - type: "message"
+                      string: "@dungeon:9019007"
+                      style: "default"
+                      next: "none"
+        - type: npcHp
+          uniqueId: "419,99"
+          value: "70"
+          events:
+            - eventTaskGroups:
+                - eventTasks:
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019008"
+                      next: "npcHp"
+                      nextValue: "50"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019009"
+                      next: "npcHp"
+                      nextValue: "30"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019010"
+                      next: "npcHp"
+                      nextValue: "10"
+                    - type: "message"
+                      targetNpcId: { huntingZone: 419, templateId: 99 }
+                      string: "@dungeon:9019011"
+                      next: "npcHp"
+                      nextValue: "0"
+                    - type: "message"
+                      string: "@dungeon:9019012"
+                      style: "default"
+                      next: "none"
+        - type: questFail
+          events:
+            - questId: "702"
+              taskId: "11"
+              eventTaskGroups:
+                - eventTasks:
+                    - type: "message"
+                      string: "@dungeon:9019020"
+                      style: "alert"
+                      next: "time"
+                      nextValue: "3"
+                    - type: "teleport"
+                      continentId: 7001
+                      pos: [37966, -1375, 518]
+                      next: "none"
