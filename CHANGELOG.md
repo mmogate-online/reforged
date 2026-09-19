@@ -10,6 +10,32 @@ what is on the test server rather than what is live today.
 
 Every change here comes from a spec in this repository, if you want the exact numbers.
 
+## [Patch 006] - 2026-09-19
+
+The quests of Velika and Arcadia are the classic ones again: the story spine, the zone quest
+chains and their rewards as the early game had them, with the quests added later removed.
+
+### Added
+
+- The classic quest chains of Fey Forest, Oblivion Woods, Tuwangi Mire, Valley of Titans and Celestial Hills are back, including the chains whose opening quests had been cut off and the quests that had been removed from the game entirely.
+- The Celestial Hills story is back in full, including the escort into the Sanctum Mysterium Forecourt.
+- The pegasus flight from the Island of Dawn to Velika is open again, so the story carries on from the island into the city.
+- Quest rewards in these zones pay classic experience, gold and items, and every class is offered its own gear where a reward depends on class, including Brawler, Gunner, Ninja and Valkyrie.
+- The quest devices of Fey Forest, Oblivion Woods and Celestial Hills stand where the classic game placed them, and the Sparking Baetyliths summon their Dark Imps again.
+- The villagers of these zones speak their classic lines.
+
+### Changed
+
+- Santia's Workshop, the crafting introduction in Velika, is offered at level 15 again.
+- Quests in these zones lead to the camps and creatures that are actually there.
+- The Sanctum Mysterium Forecourt admits a party of five, and the researcher you escort through it survives the fight.
+- Uriela and the Federation headquarters guards stand at the entrance in Velika, so the story that sends you there can continue.
+
+### Removed
+
+- The Vanguard Initiative request board no longer offers daily quests in Velika and Arcadia; the Vanguard system leaves the region.
+- The quests added to these zones after the classic era, including the level 60 dailies that hunted the wildlife outside Velika's walls.
+
 ## [Patch 005] - 2026-09-07
 
 The creatures, camps and merchants of Velika and Arcadia are back where the classic game
