@@ -1,0 +1,292 @@
+# Classic kill loot for hunting zone 63, ported whole from the classic
+# environment compensation table. Generated, do not hand-edit.
+#
+# Rows only the live server has are deleted, and so is a live row whose classic
+# counterpart carries no bags. A shared row is deleted and then restated whole, because an
+# upsert onto an existing row merges its bags with the live ones, and the DSL runs deletes
+# before upserts whatever their order in this file. Items 70116, 70117 and 90012 are left
+# out of every bag, and a bag they leave empty is dropped. Names keep their internal
+# labels; templateId is the key.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  delete:
+    - huntingZoneId: 63
+      npcTemplateId: 1509
+    - huntingZoneId: 63
+      npcTemplateId: 2011
+  upsert:
+    - huntingZoneId: 63
+      npcTemplateId: 1509
+      npcName: 단단한 밑동 길리두
+      goldBags:
+        - bagName: 골드
+          probability: 0.7
+          min: 1174
+          max: 15596
+          wValue: 0.09464
+      itemBags:
+        - id: 1
+          bagName: 재료B
+          probability: 0.436751408404
+          wValue: "0.0025"
+          items:
+            - templateId: 1020
+              name: 단단한 가죽
+              min: 1
+              max: 1
+              probability: 1
+        - id: 3
+          bagName: 전투성수
+          probability: 0.0021706545
+          wValue: "0.00105"
+          items:
+            - templateId: 129
+              name: 활력의 성수
+              min: 1
+              max: 1
+              probability: 1
+        - id: 4
+          bagName: 전투부적
+          probability: 0.009985010699
+          wValue: "0.00161"
+          items:
+            - templateId: 178
+              name: 의문의 부적 - 힘 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 179
+              name: 의문의 부적 - 치명타 발생 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 180
+              name: 의문의 부적 - 공격 속도 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 181
+              name: 의문의 부적 - 다운 발생 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 182
+              name: 신비한 부적 - 맷집 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 183
+              name: 신비한 부적 - 치명타 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 184
+              name: 신비한 부적 - 다운 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 185
+              name: 신비한 부적 - 상태 약화 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 186
+              name: 신비한 부적 - 지속 피해 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 187
+              name: 신비한 부적 - 행동 불능 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 188
+              name: 신비한 부적 - 데미지 되돌림
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 189
+              name: 이상한 부적 - 최대 HP 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 190
+              name: 이상한 부적 - 최대 MP 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 191
+              name: 이상한 부적 - HP 지속 회복
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 192
+              name: 이상한 부적 - MP 지속 회복
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 193
+              name: 이상한 부적 - 이동 속도 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+        - id: 5
+          bagName: 전투회복구슬
+          probability: 0.299550320968
+          wValue: "0.0483"
+          items:
+            - templateId: 8000
+              name: 회복 구슬
+              min: 1
+              max: 1
+              probability: 0.5
+            - templateId: 8005
+              name: 강력 회복 구슬
+              min: 1
+              max: 1
+              probability: 0.5
+    - huntingZoneId: 63
+      npcTemplateId: 1510
+      npcName: 단단한 나무 정령
+      goldBags:
+        - bagName: 골드
+          probability: 0.7
+          min: 391
+          max: 5199
+          wValue: 0.09464
+    - huntingZoneId: 63
+      npcTemplateId: 2011
+      npcName: 굶주린 벨리카 곰
+      goldBags:
+        - bagName: 골드
+          probability: 0.7
+          min: 1174
+          max: 15596
+          wValue: 0.09464
+      itemBags:
+        - id: 1
+          bagName: 재료B
+          probability: 0.436751408404
+          wValue: "0.0025"
+          items:
+            - templateId: 1020
+              name: 단단한 가죽
+              min: 1
+              max: 1
+              probability: 1
+        - id: 3
+          bagName: 전투성수
+          probability: 0.0021706545
+          wValue: "0.00105"
+          items:
+            - templateId: 129
+              name: 활력의 성수
+              min: 1
+              max: 1
+              probability: 1
+        - id: 4
+          bagName: 전투부적
+          probability: 0.009985010699
+          wValue: "0.00161"
+          items:
+            - templateId: 178
+              name: 의문의 부적 - 힘 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 179
+              name: 의문의 부적 - 치명타 발생 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 180
+              name: 의문의 부적 - 공격 속도 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 181
+              name: 의문의 부적 - 다운 발생 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 182
+              name: 신비한 부적 - 맷집 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 183
+              name: 신비한 부적 - 치명타 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 184
+              name: 신비한 부적 - 다운 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 185
+              name: 신비한 부적 - 상태 약화 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 186
+              name: 신비한 부적 - 지속 피해 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 187
+              name: 신비한 부적 - 행동 불능 저항 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 188
+              name: 신비한 부적 - 데미지 되돌림
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 189
+              name: 이상한 부적 - 최대 HP 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 190
+              name: 이상한 부적 - 최대 MP 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 191
+              name: 이상한 부적 - HP 지속 회복
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 192
+              name: 이상한 부적 - MP 지속 회복
+              min: 1
+              max: 1
+              probability: 0.0625
+            - templateId: 193
+              name: 이상한 부적 - 이동 속도 증가
+              min: 1
+              max: 1
+              probability: 0.0625
+        - id: 5
+          bagName: 전투회복구슬
+          probability: 0.299550320968
+          wValue: "0.0483"
+          items:
+            - templateId: 8000
+              name: 회복 구슬
+              min: 1
+              max: 1
+              probability: 0.5
+            - templateId: 8005
+              name: 강력 회복 구슬
+              min: 1
+              max: 1
+              probability: 0.5
