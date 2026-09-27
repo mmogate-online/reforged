@@ -1,0 +1,41 @@
+# Cultist's Armory (continent 9020) returned to its classic entry: level 15, quest
+# 604 at the task that sends you in, up to five players, and an exit onto the Valley
+# of Titans, where the classic entrance stands. `party` is the instance's mode, not
+# a headcount: a lone player still enters, and only `notSolo` would refuse one.
+# The live data had made it a solo instance entered from Oblivion Woods through two
+# dimensional stones of its own (hunting zone 203, templates 1503 and 1504). Their
+# spawns and menus are already gone; their teleport lists go here, so nothing still
+# points into the armory from that side. Each list held only the armory entry, so
+# it goes whole.
+#
+# The conditions are restated whole because a dungeon's nested collections are
+# replaced wholesale rather than merged. The event groups that script the interior
+# are left out on purpose, which leaves them exactly as they are.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9020
+      exitPos: [61477, 17155, 1874]
+      conditions:
+        - type: party
+          value: "1"
+        - type: levelOver
+          value: "15"
+        - type: progressQuest
+          value: "604"
+          taskId: "4"
+        - type: completeQuest
+          value: "604"
+        - type: maxMemberCount
+          value: "5"
+
+teleports:
+  delete:
+    - 2031503
+    - 2031504
