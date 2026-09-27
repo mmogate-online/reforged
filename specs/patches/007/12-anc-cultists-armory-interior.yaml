@@ -1,0 +1,31 @@
+# Cultist's Armory (continent 9020) interior returned to its classic shape: the Lok
+# Believers, the Watcher, Isla and the exit stone stand from the moment the instance
+# opens, and the dungeon runs no scripted events.
+#
+# A "quest" territory spawns only when a dungeon event names it, and no event names this
+# one, so the live data opened the armory empty once the entry moved to the quest's fourth
+# step. Its four event groups belong to the solo design entered at the first step: the
+# pair keyed to the third step never fires now, and the pair keyed to the fifth spawns a
+# second exit stone beside the classic one. The classic dungeon carries no events at all.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territories:
+  update:
+    - huntingZoneId: 420
+      groupId: 42000002
+      territoryId: 42000002
+      changes:
+        type: normal
+
+dungeonDatas:
+  update:
+    - continentId: 9020
+      changes:
+        removeEventGroups:
+          - type: questProgress
+          - type: flag
