@@ -1,0 +1,31 @@
+# Woodland Path (continent 9090) gated on the quest it hosts. The entry conditions
+# of both the classic and the live data name quest 268, and neither era defines a
+# quest 268, so the instance could never be entered. Everything else in the file
+# belongs to quest 244, The Faerie Emissary: the escort scripting, the fail handler
+# and the journal. The gate now names that quest, at the task that sends the player
+# to the escort NPC inside.
+#
+# The conditions are restated whole because a dungeon's nested collections are
+# replaced wholesale rather than merged. The party cap is carried over unchanged.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+dungeonDatas:
+  upsert:
+    - continentId: 9090
+      conditions:
+        - type: party
+          value: "1"
+        - type: levelOver
+          value: "10"
+        - type: progressQuest
+          value: "244"
+          taskId: "2"
+        - type: completeQuest
+          value: "244"
+        - type: maxMemberCount
+          value: "5"
