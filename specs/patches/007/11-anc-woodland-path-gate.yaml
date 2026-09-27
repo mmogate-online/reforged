@@ -2,8 +2,9 @@
 # of both the classic and the live data name quest 268, and neither era defines a
 # quest 268, so the instance could never be entered. Everything else in the file
 # belongs to quest 244, The Faerie Emissary: the escort scripting, the fail handler
-# and the journal. The gate now names that quest, at the task that sends the player
-# to the escort NPC inside.
+# and the journal. The gate now names that quest at its first task, the escort, which
+# is played inside the dungeon: the escorted NPC stands in the instance and the fail
+# handler is keyed to that task, so a later task would lock the player out of it.
 #
 # The conditions are restated whole because a dungeon's nested collections are
 # replaced wholesale rather than merged. The party cap is carried over unchanged.
@@ -24,7 +25,7 @@ dungeonDatas:
           value: "10"
         - type: progressQuest
           value: "244"
-          taskId: "2"
+          taskId: "1"
         - type: completeQuest
           value: "244"
         - type: maxMemberCount
