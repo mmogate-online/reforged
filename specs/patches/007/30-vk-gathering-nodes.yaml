@@ -1,0 +1,68 @@
+# Classic gathering nodes for VK_P (CollectionTerritory_7005_VK_P). Every classic
+# territory is restated whole, spawns included, so the live spawn set is replaced;
+# territories only the live file has are deleted, and collections only the live file has
+# inside a shared territory are removed. A spawn carries a direction and a collection a
+# lawlessExtractorPriority only where the classic data does.
+# Velika is continent 1 in the classic data and 7005 here; the port lands in the 7005 file.
+# Node type 352 exists only on the live server; its node goes, its global
+# definition stays in the collection file untouched.
+# The collections block returns the node types this file uses to their classic definition
+# where the live one differs.
+#
+# Generated, do not hand-edit.
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+collections:
+  update:
+    - collectionId: 400
+      changes:
+        abnormalityList: [99003200, 99003400, 99003500, 99003600, 99003700]
+
+collectionTerritories:
+  target: "7005_VK_P"
+  delete:
+    - 2
+  upsert:
+    - territoryId: 1
+      desc: 새 채집테리토리(1)
+      collections:
+        - collectionsId: 1
+          desc: 당근
+          typeId: 400
+          giftNum: 400
+          spawnNum: 20
+          respawnTime: 30
+          spawns:
+            - pos: [-13158.8906, -6237.9141, 538.9968]
+            - pos: [-12317.8076, -5773.1475, 523.7305]
+            - pos: [-11601.168, -4967.6382, 499.6152]
+            - pos: [-10665.9004, -5715.0771, 516.1006]
+            - pos: [-9461.4404, -6020.9473, 583.8789]
+            - pos: [-10104.4854, -6433.8672, 574.8474]
+            - pos: [-9592.125, -7217.874, 595.0422]
+            - pos: [-10502.2783, -8233.1182, 600.2166]
+            - pos: [-11363.8291, -8798.5732, 631.105]
+            - pos: [-12306.4863, -8499.1514, 415.7549]
+            - pos: [-12899.0693, -9459.0234, 312.8359]
+            - pos: [-12935.1816, -10254.8906, 305.8491]
+            - pos: [-13773.4717, -10134.2207, 344.1318]
+            - pos: [-13824.374, -9288.0615, 357.8594]
+            - pos: [-13339.7295, -8665.25, 381.8167]
+            - pos: [-13474.2637, -7715.9634, 576.9011]
+            - pos: [-12556.8643, -7637.6914, 438.8193]
+            - pos: [-11446.6631, -9462.7813, 668.8796]
+            - pos: [-11306.1104, -7977.6284, 519.7632]
+            - pos: [-9434.7041, -8550.4883, 578.3613]
+            - pos: [-8600.3857, -8001.2476, 579.6992]
+            - pos: [-8915.0781, -7447.9902, 609.1638]
+            - pos: [-8079.0811, -6560.1191, 553.2544]
+            - pos: [-7624.9668, -7504.3657, 550.1311]
+            - pos: [-6628.9751, -6974.9819, 488.3152]
+            - pos: [-6066.7866, -7690.0747, 478.981]
+            - pos: [-5854.5728, -6657.5508, 490.1453]
+            - pos: [-11591.9141, -5585.4146, 537.5745]
+            - pos: [-8663.8506, -6725.6777, 567.7134]
