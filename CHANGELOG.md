@@ -10,6 +10,31 @@ what is on the test server rather than what is live today.
 
 Every change here comes from a spec in this repository, if you want the exact numbers.
 
+## [Patch 007] - 2026-09-28
+
+Cultist's Armory, creature loot and gathering in Velika and Arcadia are classic again. This
+completes the restoration of the region's content.
+
+### Added
+
+- Cultist's Armory is entered from the Valley of Titans again, at level 15, alone or with up to five players, while on the step of From the Mouths of Scions that sends you in.
+- Inside, the Lok Believers and Isla are waiting from the moment the instance opens, and From the Mouths of Scions is finished inside. The Exit Teleportal returns you to the Vindicator Camp.
+- Leaving Cultist's Armory before the quest is done puts it back one step, so you can walk in again and carry on.
+
+### Changed
+
+- Creatures in Fey Forest, Oblivion Woods, Tuwangi Mire, Valley of Titans, Celestial Hills, Bastion of Lok, Woodland Path, the Sanctum Mysterium Forecourt and Velika drop what they dropped in the classic game.
+- Gathering nodes in Velika and Arcadia stand at their classic positions.
+- The Baetylith nodes and Merchant's Chests of Oblivion Woods are back to their classic spread and respawn timers.
+- Quest map markers for gathering objectives point at where the nodes actually stand.
+- Harvesting a basic plant, ore or essence node can grant the classic gathering buffs, in every region including the Island of Dawn.
+
+### Removed
+
+- Crystal boxes, cabochon structures, alkahest and infusion boxes no longer drop from creatures in these zones.
+- The Mock Rock nodes at Woodcutter Palisade in Fey Forest, and a Sorrow Flower cluster in Oblivion Woods that no quest used.
+- Paesyn's Files, Emberbloom and Herbaceous Extrusion no longer grow outside Velika's walls until the level cap rises.
+
 ## [Patch 006] - 2026-09-19
 
 The quests of Velika and Arcadia are the classic ones again: the story spine, the zone quest
