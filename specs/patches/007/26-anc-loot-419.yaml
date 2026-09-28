@@ -1,0 +1,1530 @@
+# Classic kill loot for hunting zone 419, ported whole from the classic
+# class compensation table. Generated, do not hand-edit.
+#
+# Rows only the live server has are deleted, and so is a live row whose classic
+# counterpart carries no bags. A shared row is deleted and then restated whole, because an
+# upsert onto an existing row merges its bags with the live ones, and the DSL runs deletes
+# before upserts whatever their order in this file. Items 70116, 70117 and 90012 are left
+# out of every bag, and a bag they leave empty is dropped. Names keep their internal
+# labels; templateId is the key.
+#
+# A class branch pays nothing to a class it does not name, so each row's branch is
+# copied for the four classes that postdate the classic data. The `_classBag_*` bases
+# hold each distinct branch body; a branch states its class name only.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _classBag_0:
+    itemBags:
+      - probability: 0
+        items:
+          - templateId: 8000
+            name: 회복 구슬_솔로
+            min: 1
+            max: 1
+            probability: 0.5
+          - templateId: 8005
+            name: 강력 회복 구슬_솔로
+            min: 1
+            max: 1
+            probability: 0.5
+
+cCompensations:
+  delete:
+    - huntingZoneId: 419
+      npcTemplateId: 99
+    - huntingZoneId: 419
+      npcTemplateId: 1025
+    - huntingZoneId: 419
+      npcTemplateId: 1026
+    - huntingZoneId: 419
+      npcTemplateId: 1027
+    - huntingZoneId: 419
+      npcTemplateId: 1028
+    - huntingZoneId: 419
+      npcTemplateId: 3005000
+    - huntingZoneId: 419
+      npcTemplateId: 3005001
+    - huntingZoneId: 419
+      npcTemplateId: 3006501
+  upsert:
+    - huntingZoneId: 419
+      npcTemplateId: 99
+      npcName: 켈림 화이트리버
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+        - probability: 0
+          items:
+            - templateId: 7203
+              name: 폭탄 IV
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 1025
+      npcName: 알트 카일룸
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+        - probability: 0
+          items:
+            - templateId: 7203
+              name: 폭탄 IV
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 1026
+      npcName: 낸시 밀러
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+        - probability: 0
+          items:
+            - templateId: 7203
+              name: 폭탄 IV
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 1027
+      npcName: 네일 아들렘
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+        - probability: 0
+          items:
+            - templateId: 7203
+              name: 폭탄 IV
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 1028
+      npcName: 세담 콜베일
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+        - probability: 0
+          items:
+            - templateId: 7203
+              name: 폭탄 IV
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 3005000
+      npcName: 코볼트 패잔병
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.07
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.07
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.07
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.09
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+        - probability: 0
+          items:
+            - templateId: 7202
+              name: 폭탄 III
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 3005001
+      npcName: 코볼트 패잔병 대장
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.07
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.07
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.07
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.09
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.1
+        - probability: 0
+          items:
+            - templateId: 7202
+              name: 폭탄 III
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 3006501
+      npcName: 붉은이빨 부족 오칸 소대장
+      classBranches:
+        - className: Warrior
+          $extends: _classBag_0
+        - className: Lancer
+          $extends: _classBag_0
+        - className: Slayer
+          $extends: _classBag_0
+        - className: Berserker
+          $extends: _classBag_0
+        - className: Sorcerer
+          $extends: _classBag_0
+        - className: Archer
+          $extends: _classBag_0
+        - className: engineer
+          $extends: _classBag_0
+        - className: fighter
+          $extends: _classBag_0
+        - className: assassin
+          $extends: _classBag_0
+        - className: glaiver
+          $extends: _classBag_0
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_일반_풀베기
+              min: 1
+              max: 1
+              probability: 0.12
+        - probability: 0
+          items:
+            - templateId: 7202
+              name: 폭탄 III
+              min: 1
+              max: 1
+              probability: 1
+    - huntingZoneId: 419
+      npcTemplateId: 3006711
+      npcName: 약화된 쿠마스
+      itemBags:
+        - probability: 0
+          items:
+            - templateId: 98
+              name: 모닥불_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 160
+              name: 마을 귀환 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 8007
+              name: 신속의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 7214
+              name: 부활 주문서_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 129
+              name: 활력의 성수_12레벨
+              min: 1
+              max: 1
+              probability: 1
+        - probability: 0
+          items:
+            - templateId: 6066
+              name: 마력의 물약 II
+              min: 1
+              max: 1
+              probability: 0.7
+            - templateId: 6068
+              name: 마력의 물약 III
+              min: 1
+              max: 1
+              probability: 0.3
+        - probability: 0
+          items:
+            - templateId: 7101
+              name: 의문의 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.34
+            - templateId: 7105
+              name: 신비한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+            - templateId: 7109
+              name: 이상한 부적 II_12레벨
+              min: 1
+              max: 1
+              probability: 0.33
+        - probability: 0
+          items:
+            - templateId: 8207
+              name: 강화 크리스탈 - 필사의 일격 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8219
+              name: 강화 크리스탈 - 필사의 반격 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8249
+              name: 강화 크리스탈 - 분노의 종결자 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8261
+              name: 강화 크리스탈 - 맹독의 칼날 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8273
+              name: 강화 크리스탈 - 무자비 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8285
+              name: 강화 크리스탈 - 기회 포착 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8297
+              name: 강화 크리스탈 - 약점 강타 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8573
+              name: 강화 크리스탈 - 전사의 사슬 II
+              min: 1
+              max: 1
+              probability: 0.125
+        - probability: 0
+          items:
+            - templateId: 8321
+              name: 강화 크리스탈 - 비열한 일격 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8339
+              name: 강화 크리스탈 - 각성 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8351
+              name: 강화 크리스탈 - 반격 준비 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8363
+              name: 강화 크리스탈 - 몰아치기 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8375
+              name: 강화 크리스탈 - 전투의 속도 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8387
+              name: 강화 크리스탈 - 마나의 흐름 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8399
+              name: 강화 크리스탈 - 최후의 저항 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8537
+              name: 강화 크리스탈 - 정밀 타격 II
+              min: 1
+              max: 1
+              probability: 0.125
+        - probability: 0
+          items:
+            - templateId: 8411
+              name: 강화 크리스탈 - 최후의 의지 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8441
+              name: 강화 크리스탈 - 냉철한 의지 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8453
+              name: 강화 크리스탈 - 냉철한 대응 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8465
+              name: 강화 크리스탈 - 구원의 축복 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8477
+              name: 강화 크리스탈 - 구원의 손길 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8501
+              name: 강화 크리스탈 - 인내 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8513
+              name: 강화 크리스탈 - 평화의 속도 II
+              min: 1
+              max: 1
+              probability: 0.125
+            - templateId: 8525
+              name: 강화 크리스탈 - 회복의 흐름 II
+              min: 1
+              max: 1
+              probability: 0.125
+        - probability: 0
+          items:
+            - templateId: 8237
+              name: 강화 크리스탈 - 도전자의 위용 II_중형
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8303
+              name: 강화 크리스탈 - 도전자의 분노 II_중형
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8423
+              name: 강화 크리스탈 - 도전자의 의지 II_중형
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8429
+              name: 강화 크리스탈 - 도전자의 저력 II_중형
+              min: 1
+              max: 1
+              probability: 0.05
+            - templateId: 8309
+              name: 강화 크리스탈 - 집행자의 분노 II_중형
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8327
+              name: 강화 크리스탈 - 집행자의 위용 II_중형
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8483
+              name: 강화 크리스탈 - 집행자의 의지 II_중형
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8489
+              name: 강화 크리스탈 - 집행자의 희망 II_중형
+              min: 1
+              max: 1
+              probability: 0.11
+            - templateId: 8225
+              name: 강화 크리스탈 - 학살자의 분노 II_중형
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8231
+              name: 강화 크리스탈 - 학살자의 위용 II_중형
+              min: 1
+              max: 1
+              probability: 0.12
+            - templateId: 8417
+              name: 강화 크리스탈 - 학살자의 의지 II_중형
+              min: 1
+              max: 1
+              probability: 0.12
