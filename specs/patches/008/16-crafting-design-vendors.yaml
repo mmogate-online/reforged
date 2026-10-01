@@ -1,0 +1,23 @@
+# Velika's light-armor and robe design vendors return to the classic stores 192 and 193.
+# All three armor design stores open the same four tabs, so the goods do not change; the
+# store each vendor opens decides the title the player sees.
+#
+# villagerMenus upsert replaces the whole menu list, so each row states every menu the
+# vendor offers.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 63
+      npcTemplateId: [1202, 1203, 1204]
+      menus:
+        - { type: Merchant, id: 192 }
+    - huntingZoneId: 63
+      npcTemplateId: [1222, 1223, 1224]
+      menus:
+        - { type: Merchant, id: 193 }

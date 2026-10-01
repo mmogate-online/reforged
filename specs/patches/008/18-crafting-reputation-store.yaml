@@ -1,0 +1,16 @@
+# Binds the classic battleground reputation store (menu 142) back onto its two Velika
+# villagers. Their rows exist but carry no menu, so the store and the crafting materials it
+# sells were unreachable.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 63
+      npcTemplateId: [1263, 50019]
+      menus:
+        - { type: BattleFieldStore, id: 142 }

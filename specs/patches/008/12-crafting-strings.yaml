@@ -1,0 +1,285 @@
+# Classic crafting window texts: profession names, category headings and promotion test
+# texts. Ids 50 and 51 keep their current text: the success popup reads them with a
+# {level} placeholder the classic text lacks. Cooking's test title moves to its own id.
+# provenance: ported-from-v31
+spec:
+  version: "1.0"
+  schema: v92
+
+artisanStrings:
+  update:
+    - id: 6
+      changes: { default: [toolTip] }
+    - id: 21
+      changes: { string: "Weaponcrafting", default: [toolTip] }
+    - id: 22
+      changes: { string: "Armorcrafting", default: [toolTip] }
+    - id: 23
+      changes: { default: [toolTip] }
+    - id: 11001
+      changes: { string: "Refining" }
+    - id: 11002
+      changes: { string: "Scythes" }
+    - id: 11003
+      changes: { string: "Twin Swords" }
+    - id: 11004
+      changes: { string: "Lances" }
+    - id: 11005
+      changes: { string: "Greatswords" }
+    - id: 12001
+      changes: { string: "Refining" }
+    - id: 12002
+      changes: { string: "Hauberks" }
+    - id: 12003
+      changes: { string: "Gauntlets" }
+    - id: 12004
+      changes: { string: "Greaves" }
+    - id: 13001
+      changes: { string: "Refining" }
+    - id: 13002
+      changes: { string: "HP Alchemical Liquids" }
+    - id: 13003
+      changes: { string: "MP Alchemical Liquids" }
+    - id: 13004
+      changes: { string: "Other Alchemical Liquids" }
+    - id: 13005
+      changes: { string: "Onslaught Scrolls" }
+    - id: 14001
+      changes: { string: "Refining" }
+    - id: 14002
+      changes: { string: "Weapon Etchings [Master]" }
+    - id: 14003
+      changes: { string: "Armor Etchings [Master]" }
+    - id: 14004
+      changes: { string: "Gloves Etchings [Master]" }
+    - id: 14005
+      changes: { string: "Footwear Etchings [Master]" }
+    - id: 60000
+      changes: { string: "Artisan Alchemy Test" }
+    - id: 60001
+      changes: { string: "Craft alchemical liquids (skill 1-200) " }
+    - id: 60002
+      changes: { string: "Craft alchemical liquids (skill 201-499) " }
+    - id: 210001
+      changes: { string: "Ore Refining (skill 1-499)" }
+    - id: 210002
+      changes: { string: "Essence Refining (skill 1-499)" }
+    - id: 220001
+      changes: { string: "Ore Refining (skill 1-499)" }
+    - id: 220002
+      changes: { string: "Leather Refining (skill 1-499)" }
+    - id: 230001
+      changes: { string: "Craft Straw Scarab Powder" }
+    - id: 230002
+      changes: { string: "Craft Elemental Scarab Powder" }
+    - id: 913004
+      changes: { string: "Other Alchemical Liquids [Master]" }
+    - id: 913005
+      changes: { string: "Onslaught Scrolls [Master]" }
+    - id: 913101
+      changes: { string: "Refining [Artisan]" }
+    - id: 913102
+      changes: { string: "HP Alchemical Liquids [Artisan]" }
+    - id: 913103
+      changes: { string: "MP Alchemical Liquids [Artisan]" }
+    - id: 913106
+      changes: { string: "Mobility Scrolls [Artisan]" }
+    - id: 913108
+      changes: { string: "Other Scrolls [Artisan]" }
+    - id: 913201
+      changes: { string: "Refining [Basic]" }
+    - id: 913202
+      changes: { string: "HP Alchemical Liquids [Basic]" }
+    - id: 913203
+      changes: { string: "MP Alchemical Liquids [Basic]" }
+    - id: 913204
+      changes: { string: "Other Alchemical Liquids [Basic]" }
+    - id: 913205
+      changes: { string: "Onslaught Scrolls [Basic]" }
+    - id: 913206
+      changes: { string: "Mobility Scrolls [Basic]" }
+    - id: 913207
+      changes: { string: "Resistance Scrolls [Basic]" }
+    - id: 913208
+      changes: { string: "Other Scrolls [Basic]" }
+  upsert:
+    - { id: 1, string: "Weaponsmithing" }
+    - { id: 2, string: "Focuscrafting" }
+    - { id: 3, string: "Armorsmithing" }
+    - { id: 4, string: "Leatherworking" }
+    - { id: 5, string: "Tailoring" }
+    - { id: 7, string: "Alliance Supplies" }
+    - { id: 11, string: "Cloth Extraction" }
+    - { id: 12, string: "Metal Extraction" }
+    - { id: 13, string: "Alchemy Extraction" }
+    - { id: 14, string: "Leather Extraction" }
+    - { id: 52, string: "<font color = '#ffff00'>Master Level Up</font>" }
+    - { id: 53, string: "<br><br>[ You can acquire new recipes for master crafting. ]" }
+    - { id: 1000, string: "Components" }
+    - { id: 1001, string: "Twin Swordsmithing" }
+    - { id: 1002, string: "Lancesmithing" }
+    - { id: 1003, string: "Greatswordsmithing" }
+    - { id: 1004, string: "Axesmithing" }
+    - { id: 1005, string: "Disc Crafting" }
+    - { id: 1006, string: "Bow Crafting" }
+    - { id: 1007, string: "Staff Crafting" }
+    - { id: 1008, string: "Scepter Crafting" }
+    - { id: 1009, string: "Armorsmithing" }
+    - { id: 1010, string: "Leatherworking" }
+    - { id: 1011, string: "Tailoring" }
+    - { id: 1012, string: "Crafting" }
+    - { id: 1013, string: "Artisan" }
+    - { id: 1014, string: "Master" }
+    - { id: 11000, string: "Master" }
+    - { id: 11006, string: "Axes" }
+    - { id: 11007, string: "Discs" }
+    - { id: 11008, string: "Bows" }
+    - { id: 11009, string: "Staves" }
+    - { id: 11010, string: "Scepters" }
+    - { id: 11011, string: "Arcannon" }
+    - { id: 11012, string: "Accessory" }
+    - { id: 11100, string: "Artisan" }
+    - { id: 11101, string: "Refining" }
+    - { id: 11102, string: "Scythes" }
+    - { id: 11103, string: "Twin Swords" }
+    - { id: 11104, string: "Lances" }
+    - { id: 11105, string: "Greatswords" }
+    - { id: 11106, string: "Axes" }
+    - { id: 11107, string: "Discs" }
+    - { id: 11108, string: "Bows" }
+    - { id: 11109, string: "Staves" }
+    - { id: 11110, string: "Scepters" }
+    - { id: 11111, string: "Arcannon" }
+    - { id: 11112, string: "Accessory" }
+    - { id: 11200, string: "Basic" }
+    - { id: 11201, string: "Refining" }
+    - { id: 11202, string: "Twin Swords" }
+    - { id: 11203, string: "Lances" }
+    - { id: 11204, string: "Greatswords" }
+    - { id: 11205, string: "Axes" }
+    - { id: 11206, string: "Discs" }
+    - { id: 11207, string: "Bows" }
+    - { id: 11208, string: "Staves" }
+    - { id: 11209, string: "Scepters" }
+    - { id: 11210, string: "Scythes" }
+    - { id: 11211, string: "Arcannon" }
+    - { id: 11300, string: "Quests" }
+    - { id: 12000, string: "Master" }
+    - { id: 12005, string: "Cuirasses" }
+    - { id: 12006, string: "Gloves" }
+    - { id: 12007, string: "Boots" }
+    - { id: 12008, string: "Robes" }
+    - { id: 12009, string: "Sleeves" }
+    - { id: 12010, string: "Shoes" }
+    - { id: 12011, string: "Accessories" }
+    - { id: 12100, string: "Artisan" }
+    - { id: 12101, string: "Refining" }
+    - { id: 12102, string: "Hauberks" }
+    - { id: 12103, string: "Gauntlets" }
+    - { id: 12104, string: "Greaves" }
+    - { id: 12105, string: "Cuirasses" }
+    - { id: 12106, string: "Gloves" }
+    - { id: 12107, string: "Boots" }
+    - { id: 12108, string: "Robes" }
+    - { id: 12109, string: "Sleeves" }
+    - { id: 12110, string: "Shoes" }
+    - { id: 12111, string: "Accessories" }
+    - { id: 12200, string: "Basic" }
+    - { id: 12201, string: "Refining" }
+    - { id: 12202, string: "Hauberks (metal)" }
+    - { id: 12203, string: "Gauntlets (metal)" }
+    - { id: 12204, string: "Greaves (metal)" }
+    - { id: 12205, string: "Cuirasses (leather)" }
+    - { id: 12206, string: "Gloves (leather)" }
+    - { id: 12207, string: "Boots (leather)" }
+    - { id: 12208, string: "Robes (cloth)" }
+    - { id: 12209, string: "Sleeves (cloth)" }
+    - { id: 12210, string: "Shoes (cloth)" }
+    - { id: 12300, string: "Quests" }
+    - { id: 13000, string: "Master" }
+    - { id: 13006, string: "Mobility Scrolls" }
+    - { id: 13007, string: "Resistance Scrolls" }
+    - { id: 13008, string: "Other Scrolls" }
+    - { id: 13009, string: "Etc." }
+    - { id: 13100, string: "Artisan" }
+    - { id: 13101, string: "Refining" }
+    - { id: 13102, string: "HP Alchemical Liquids" }
+    - { id: 13103, string: "MP Alchemical Liquids" }
+    - { id: 13104, string: "Other Alchemical Liquids" }
+    - { id: 13105, string: "Onslaught Scrolls" }
+    - { id: 13106, string: "Mobility Scrolls" }
+    - { id: 13107, string: "Resistance Scrolls" }
+    - { id: 13108, string: "Other Scrolls" }
+    - { id: 13200, string: "Basic" }
+    - { id: 13201, string: "Refining" }
+    - { id: 13202, string: "HP Alchemical Liquids" }
+    - { id: 13203, string: "MP Alchemical Liquids" }
+    - { id: 13204, string: "Other Alchemical Liquids" }
+    - { id: 13205, string: "Onslaught Scrolls" }
+    - { id: 13206, string: "Mobility Scrolls" }
+    - { id: 13207, string: "Resistance Scrolls" }
+    - { id: 13208, string: "Other Scrolls" }
+    - { id: 13300, string: "Quests" }
+    - { id: 14000, string: "Master" }
+    - { id: 14100, string: "Artisan" }
+    - { id: 14101, string: "Refining [Artisan]" }
+    - { id: 14102, string: "Weapon Etchings [Artisan]" }
+    - { id: 14103, string: "Armor Etchings [Artisan]" }
+    - { id: 14104, string: "Gloves Etchings [Artisan]" }
+    - { id: 14105, string: "Footwear Etchings [Artisan]" }
+    - { id: 14200, string: "Basic" }
+    - { id: 14201, string: "Refining" }
+    - { id: 14202, string: "Weapon Etchings" }
+    - { id: 14203, string: "Armor Etchings" }
+    - { id: 14204, string: "Gloves Etchings" }
+    - { id: 14205, string: "Footwear Etchings" }
+    - { id: 14300, string: "Quests" }
+    - { id: 15000, string: "Master" }
+    - { id: 15100, string: "Artisan" }
+    - { id: 15200, string: "Basic" }
+    - { id: 15201, string: "Combat Supplies" }
+    - { id: 60003, string: "Craft scroll (skill 1-200)" }
+    - { id: 60004, string: "Craft scroll (skill 201-499)" }
+    - { id: 60005, string: "Crit in alchemy" }
+    - { id: 60100, string: "Master Alchemy Test" }
+    - { id: 60101, string: "Craft alchemical liquids (skill 1-499)" }
+    - { id: 60102, string: "Craft scrolls (skill 1-499)" }
+    - { id: 60103, string: "Craft hijka oil" }
+    - { id: 60104, string: "Crit on artisan scrolls" }
+    - { id: 60105, string: "Crit on artisan nostrom, elixir, or potion" }
+    - { id: 60106, string: "Crit on artisan restorative or draught" }
+    - { id: 210000, string: "Artisan Weaponcrafting Test" }
+    - { id: 210003, string: "Weaponcrafting (skill 1-200)" }
+    - { id: 210004, string: "Weaponcrafting (skill 201-499)" }
+    - { id: 210005, string: "Crit in weaponcrafting" }
+    - { id: 210100, string: "Master Weaponcrafting Test" }
+    - { id: 210101, string: "Weaponcrafting (skill 1-200)" }
+    - { id: 210102, string: "Weaponcrafting (skill 201-499)" }
+    - { id: 210103, string: "Craft Spellcatch Bijou" }
+    - { id: 210104, string: "Craft Empyrspade" }
+    - { id: 210105, string: "Craft Ostatak Oil" }
+    - { id: 210106, string: "Weaponcrafting (500)" }
+    - { id: 210107, string: "Weaponcrafting (650)" }
+    - { id: 220000, string: "Artisan Armorcrafting Test" }
+    - { id: 220003, string: "Fiber Refining (skill 1-499)" }
+    - { id: 220004, string: "Armorcrafting (skill 1-200)" }
+    - { id: 220005, string: "Armorcrafting (skill 201-499)" }
+    - { id: 220006, string: "Crit in armorcrafting" }
+    - { id: 220100, string: "Master Armorcrafting Test" }
+    - { id: 220101, string: "Armorcrafting (skill 1-200)" }
+    - { id: 220102, string: "Armorcrafting (skill 201-499)" }
+    - { id: 220103, string: "Craft Spellcatch Bijou" }
+    - { id: 220104, string: "Craft Empyrplate" }
+    - { id: 220105, string: "Craft Aterstod Oil" }
+    - { id: 220106, string: "Armorcrafting (500)" }
+    - { id: 220107, string: "Armorcrafting (650)" }
+    - { id: 230000, string: "Artisan Etching Test" }
+    - { id: 230003, string: "Craft Aurora Scarab Powder" }
+    - { id: 230004, string: "Crit in etching" }
+    - { id: 230100, string: "Master Etching Test" }
+    - { id: 230101, string: "Craft Titan's Fire" }
+    - { id: 230102, string: "Craft Titan's Peace" }
+    - { id: 230103, string: "Craft Marabca Oil" }
+    - { id: 230104, string: "Crit on weapon or armor etchings." }
+    - { id: 230105, string: "Crit on glove or footwear etchings." }
+    - { id: 240000, string: "Promotion Test" }

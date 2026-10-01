@@ -1,0 +1,29 @@
+# Classic titles and tab labels for the design stores 190 to 193, whose tabs already hold
+# the classic catalogues. The store title and each tab label resolve through the NPC string
+# table by the store's stringId and each tab's stringed, so the labels must match the goods
+# behind them. The creature titles are the design vendors' nameplates in Velika.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcStrings:
+  upsert:
+    - { id: 190, string: "Weapon Designs" }
+    - { id: 191, string: "Armor Designs" }
+    - { id: 192, string: "Armor Designs" }
+    - { id: 193, string: "Armor Designs" }
+    - { id: 1901, string: "Melee Weapons" }
+    - { id: 1902, string: "Magic Weapons" }
+    - { id: 1903, string: "Artisan" }
+    - { id: 1911, string: "Chest Armor" }
+    - { id: 1912, string: "Gloves/Shoes" }
+    - { id: 1913, string: "Artisan" }
+
+creatureStrings:
+  update:
+    - { huntingZoneId: 63, templateId: [1195, 1196, 1197], changes: { title: "Weaponcrafting Designs" } }
+    - { huntingZoneId: 63, templateId: [1198, 1199, 1200, 1202, 1203, 1204, 1222, 1223, 1224], changes: { title: "Armorcrafting Designs" } }
+    - { huntingZoneId: 63, templateId: 1263, changes: { title: "Killing Spree Quartermaster" } }

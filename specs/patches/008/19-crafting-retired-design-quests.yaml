@@ -1,0 +1,32 @@
+# Retired crafting designs lose their quest start-item sources.
+# The start-item block is replace-all, so each quest restates its surviving items.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    - id: 10062
+      changes:
+        header:
+          startItems:
+            - itemId: 206818
+              quantity: 10
+            - itemId: 206819
+              quantity: 10
+            - itemId: 206820
+              quantity: 10
+    - id: 10063
+      changes:
+        header:
+          startItems:
+            - itemId: 206823
+              quantity: 1
+            - itemId: 206824
+              quantity: 1
+            - itemId: 206825
+              quantity: 1
+            - itemId: 6335
+              quantity: 3

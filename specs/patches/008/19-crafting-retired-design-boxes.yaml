@@ -1,0 +1,433 @@
+# Retired crafting designs lose their box, conversion and token-exchange sources.
+# Gacha groups keep their odds summing to 1 by rescaling the survivors (normalize).
+# Groups, conversions and result sets holding only retired designs are removed whole;
+# a conversion whose result sets are identical in every attribute is restated in full.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+gachaItems:
+  update:
+    - itemTemplateId: 9365
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+              - itemTemplateId: 28607
+            normalize: true
+    - itemTemplateId: 98579
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+              - itemTemplateId: 28607
+            normalize: true
+    - itemTemplateId: 98580
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28602
+            normalize: true
+    - itemTemplateId: 98581
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28606
+            normalize: true
+    - itemTemplateId: 98591
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28601
+              - itemTemplateId: 28602
+              - itemTemplateId: 28603
+              - itemTemplateId: 28606
+              - itemTemplateId: 28607
+            normalize: true
+    - itemTemplateId: 101380
+      changes:
+        randomRewards: []
+    - itemTemplateId: 101848
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+                expect: 2
+            normalize: true
+    - itemTemplateId: 143190
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28602
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+            normalize: true
+    - itemTemplateId: 155957
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28602
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+            normalize: true
+    - itemTemplateId: 183778
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 97806
+              - itemTemplateId: 97807
+            normalize: true
+    - itemTemplateId: 216596
+      changes:
+        randomRewards: []
+    - itemTemplateId: 216872
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28601
+              - itemTemplateId: 28602
+              - itemTemplateId: 28603
+            normalize: true
+    - itemTemplateId: 216874
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28606
+              - itemTemplateId: 28607
+            normalize: true
+    - itemTemplateId: 216876
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28620
+            normalize: true
+    - itemTemplateId: 219011
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+            normalize: true
+    - itemTemplateId: 856389
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28602
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+            normalize: true
+    - itemTemplateId: 222815
+      changes:
+        updateRandomRewards:
+          - expect: 1
+            removeRewards:
+              - itemTemplateId: 28600
+              - itemTemplateId: 28602
+              - itemTemplateId: 28601
+              - itemTemplateId: 28603
+            normalize: true
+
+itemConversions:
+  update:
+    - itemTemplateId: 97909
+      changes:
+        removeResultItems:
+          - templateId: 97870
+          - templateId: 97871
+          - templateId: 97872
+          - templateId: 97873
+          - templateId: 97874
+          - templateId: 97875
+          - templateId: 97876
+          - templateId: 97877
+          - templateId: 97878
+          - templateId: 97879
+          - templateId: 97880
+          - templateId: 97881
+          - templateId: 97882
+          - templateId: 97883
+          - templateId: 97884
+          - templateId: 97885
+          - templateId: 97886
+          - templateId: 97887
+          - templateId: 97888
+          - templateId: 97889
+          - templateId: 97890
+          - templateId: 97891
+          - templateId: 97892
+          - templateId: 97893
+          - templateId: 97894
+          - templateId: 97895
+          - templateId: 97896
+          - templateId: 97897
+          - templateId: 97898
+          - templateId: 97899
+          - templateId: 97900
+    - itemTemplateId: 97910
+      changes:
+        removeResultItems:
+          - templateId: 97903
+          - templateId: 97904
+          - templateId: 97905
+          - templateId: 97906
+          - templateId: 97907
+          - templateId: 97908
+    - itemTemplateId: 20988
+      changes:
+        removeResultItems:
+          - templateId: 20976
+          - templateId: 20977
+          - templateId: 20978
+          - templateId: 20979
+          - templateId: 20980
+          - templateId: 20981
+    - itemTemplateId: 21294
+      changes:
+        removeResultItems:
+          - templateId: 21338
+    - itemTemplateId: 206864
+      changes:
+        updateResultItemSets:
+          - probability: 0.2
+            at: 0
+            removeResultItems:
+              - templateId: 28620
+          - probability: 0.2
+            at: 1
+            removeResultItems:
+              - templateId: 28620
+          - probability: 0.2
+            at: 2
+            removeResultItems:
+              - templateId: 28620
+          - probability: 0.2
+            at: 3
+            removeResultItems:
+              - templateId: 28620
+          - probability: 0.2
+            at: 4
+            removeResultItems:
+              - templateId: 28620
+    - itemTemplateId: 206873
+      changes:
+        resultItemSets:
+          - probability: 0.26
+            resultItems:
+              - templateId: 368
+                name: "에메랄드"
+                min: 1
+                max: 3
+              - templateId: 369
+                name: "다이아몬드"
+                min: 1
+                max: 1
+          - probability: 0.26
+            resultItems:
+              - templateId: 98501
+                name: "아르보레아의 금빛 조각"
+                min: 16
+                max: 32
+              - templateId: 98515
+                name: "아르보레아의 은빛 조각"
+                min: 4
+                max: 8
+              - templateId: 98502
+                name: "아르보레아의 금빛 판금"
+                min: 16
+                max: 32
+              - templateId: 98516
+                name: "아르보레아의 은빛 판금"
+                min: 4
+                max: 8
+          - probability: 0.26
+            resultItems:
+              - templateId: 98653
+                name: "고급 금속물"
+                min: 15
+                max: 30
+              - templateId: 98523
+                name: "변화의 증거"
+                min: 10000
+                max: 20000
+          - probability: 0.13
+            resultItems:
+              - templateId: 88997
+                name: "녹슨 맹세의 장비 교환권"
+                min: 2
+                max: 3
+          - probability: 0.03
+            resultItems:
+              - templateId: 98650
+                name: "시작의 가면 교환권"
+                min: 1
+                max: 1
+          - probability: 0.01
+            resultItems:
+              - templateId: 98651
+                name: "무한의 가면 교환권"
+                min: 1
+                max: 1
+  delete:
+    - 21304
+    - 216503
+
+exchanges:
+  delete:
+    - itemId: 84340
+      medalItemId: 84322
+    - itemId: 21338
+      medalItemId: 21332
+    - itemId: 204100
+      medalItemId: 204051
+    - itemId: 204101
+      medalItemId: 204051
+    - itemId: 204102
+      medalItemId: 204051
+    - itemId: 204103
+      medalItemId: 204051
+    - itemId: 204200
+      medalItemId: 204051
+    - itemId: 204201
+      medalItemId: 204051
+    - itemId: 204202
+      medalItemId: 204051
+    - itemId: 204203
+      medalItemId: 204051
+    - itemId: 204204
+      medalItemId: 204051
+    - itemId: 204251
+      medalItemId: 204051
+    - itemId: 204252
+      medalItemId: 204051
+    - itemId: 204253
+      medalItemId: 204051
+    - itemId: 204254
+      medalItemId: 204051
+    - itemId: 204255
+      medalItemId: 204051
+    - itemId: 24189
+      medalItemId: 98306
+    - itemId: 59705
+      medalItemId: 98306
+    - itemId: 56012
+      medalItemId: 98306
+    - itemId: 24187
+      medalItemId: 98310
+    - itemId: 24187
+      medalItemId: 98301
+    - itemId: 59703
+      medalItemId: 98310
+    - itemId: 59703
+      medalItemId: 98301
+    - itemId: 56010
+      medalItemId: 98310
+    - itemId: 56010
+      medalItemId: 98301
+    - itemId: 24188
+      medalItemId: 98313
+    - itemId: 24188
+      medalItemId: 98303
+    - itemId: 59704
+      medalItemId: 98313
+    - itemId: 59704
+      medalItemId: 98303
+    - itemId: 56010
+      medalItemId: 98313
+    - itemId: 56010
+      medalItemId: 98303
+    - itemId: 24189
+      medalItemId: 98315
+    - itemId: 24189
+      medalItemId: 98305
+    - itemId: 59705
+      medalItemId: 98315
+    - itemId: 59705
+      medalItemId: 98305
+    - itemId: 56012
+      medalItemId: 98315
+    - itemId: 56012
+      medalItemId: 98305
+    - itemId: 97840
+      medalItemId: 222318
+    - itemId: 97841
+      medalItemId: 222318
+    - itemId: 97842
+      medalItemId: 222318
+    - itemId: 97843
+      medalItemId: 222318
+    - itemId: 97844
+      medalItemId: 222318
+    - itemId: 97845
+      medalItemId: 222318
+    - itemId: 97846
+      medalItemId: 222318
+    - itemId: 97847
+      medalItemId: 222318
+    - itemId: 97848
+      medalItemId: 222318
+    - itemId: 97849
+      medalItemId: 222318
+    - itemId: 97850
+      medalItemId: 222318
+    - itemId: 97851
+      medalItemId: 222318
+    - itemId: 97852
+      medalItemId: 222318
+    - itemId: 97853
+      medalItemId: 222318
+    - itemId: 97854
+      medalItemId: 222318
+    - itemId: 97855
+      medalItemId: 222318
+    - itemId: 97856
+      medalItemId: 222318
+    - itemId: 97857
+      medalItemId: 222318
+    - itemId: 97858
+      medalItemId: 222318
+    - itemId: 97859
+      medalItemId: 222318
+    - itemId: 97860
+      medalItemId: 222318
+    - itemId: 97861
+      medalItemId: 222318
+    - itemId: 97862
+      medalItemId: 222318
+    - itemId: 97863
+      medalItemId: 222318
+    - itemId: 97864
+      medalItemId: 222318
+    - itemId: 97865
+      medalItemId: 222318
+    - itemId: 97866
+      medalItemId: 222318
+    - itemId: 97867
+      medalItemId: 222318
+    - itemId: 97868
+      medalItemId: 222318
+    - itemId: 97869
+      medalItemId: 222318

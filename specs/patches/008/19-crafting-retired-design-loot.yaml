@@ -1,0 +1,1179 @@
+# Retired crafting designs lose their kill-loot sources.
+# Bags holding only retired designs are removed whole; mixed bags lose just the
+# retired items and keep every other row as it was.
+# Selectors name each bag by id and bagName, which is unique within its compensation.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 4
+      npcTemplateId: 5011
+      changes:
+        removeItemBags:
+          - id: 31
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 32
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 33
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 10
+      npcTemplateId: 99
+      changes:
+        removeItemBags:
+          - id: 31
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 32
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 33
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 38
+      npcTemplateId: 35
+      changes:
+        removeItemBags:
+          - id: 31
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 32
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 33
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 51
+      npcTemplateId: 7011
+      changes:
+        removeItemBags:
+          - id: 31
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 32
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 33
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 52
+      npcTemplateId: 9050
+      changes:
+        removeItemBags:
+          - id: 31
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 32
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 33
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 57
+      npcTemplateId: 33
+      changes:
+        removeItemBags:
+          - id: 31
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 32
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 33
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 126
+      npcTemplateId: 107
+      changes:
+        removeItemBags:
+          - id: 7
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 7
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 7
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 152
+      npcTemplateId: 1001
+      changes:
+        removeItemBags:
+          - id: 18
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 19
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 20
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 21
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 152
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 18
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 19
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 20
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 21
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 152
+      npcTemplateId: 1003
+      changes:
+        removeItemBags:
+          - id: 15
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 16
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 17
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 17
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 429
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 13
+            bagName: "제작도안: 상급 신발 레시피"
+          - id: 12
+            bagName: "제작도안: (구)최상급 무기/신발 레시피"
+    - huntingZoneId: 431
+      npcTemplateId: 5005
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "제작 도안- 악세 II"
+    - huntingZoneId: 432
+      npcTemplateId: 101
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "제작 도안"
+    - huntingZoneId: 454
+      npcTemplateId: 907
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 454
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 456
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안: 켈리반 판금 도안"
+    - huntingZoneId: 457
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 7
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 457
+      npcTemplateId: 1003
+      changes:
+        removeItemBags:
+          - id: 7
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 457
+      npcTemplateId: 1004
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 459
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 459
+      npcTemplateId: 1003
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 460
+      npcTemplateId: 1000
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 460
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 466
+      npcTemplateId: 46601
+      changes:
+        removeItemBags:
+          - id: 6
+            bagName: "가공 도안:재료 가공 도안"
+          - id: 6
+            bagName: "제작도안: (구)최상급 무기/신발 레시피"
+          - id: 6
+            bagName: "제작 도안: (구)최상급 갑옷/장갑 레시피"
+    - huntingZoneId: 466
+      npcTemplateId: 46613
+      changes:
+        removeItemBags:
+          - id: 11
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+          - id: 11
+            bagName: "제작 도안: 최상급 무기/신발 레시피"
+        updateItemBags:
+          - id: 13
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 467
+      npcTemplateId: 46703
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 467
+      npcTemplateId: 46704
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+    - huntingZoneId: 468
+      npcTemplateId: 2999
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안 : 재료 가공 도안"
+    - huntingZoneId: 468
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 12
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+    - huntingZoneId: 511
+      npcTemplateId: 81102
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "중급 무기 레시피"
+    - huntingZoneId: 611
+      npcTemplateId: 81101
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+          - id: 16
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 643
+      npcTemplateId: 1003
+      changes:
+        removeItemBags:
+          - id: 6
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 643
+      npcTemplateId: 1005
+      changes:
+        removeItemBags:
+          - id: 11
+            bagName: "제작도안: 최상급 무기/갑옷/장갑/신발 레시피"
+    - huntingZoneId: 710
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 12
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 14
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 15
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 716
+      npcTemplateId: 1000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 16
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 17
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 720
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 735
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 16
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 17
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 739
+      npcTemplateId: 3001
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 16
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 17
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 750
+      npcTemplateId: 1003
+      changes:
+        updateItemBags:
+          - id: 8
+            bagName: "제작: 무기 레시피"
+            expect: 1
+            removeItems:
+              - templateId: 56016
+              - templateId: 56017
+              - templateId: 56018
+    - huntingZoneId: 754
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 10
+            bagName: "제작도안: 상급 갑옷 레시피"
+          - id: 11
+            bagName: "제작 도안: (구)최상급 갑옷/장갑 레시피"
+    - huntingZoneId: 756
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 756
+      npcTemplateId: 1003
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+    - huntingZoneId: 757
+      npcTemplateId: 1004
+      changes:
+        removeItemBags:
+          - id: 15
+            bagName: "제작 도안: 아케론 장비 레시피"
+    - huntingZoneId: 759
+      npcTemplateId: 1002
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 759
+      npcTemplateId: 1003
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 무기/갑옷/장갑/신발 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 무기/갑옷/장갑/신발 레시피"
+        updateItemBags:
+          - id: 4
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 760
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 11
+            bagName: "제작 도안 - 악세 각인 II"
+          - id: 12
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 13
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 767
+      npcTemplateId: 46704
+      changes:
+        removeItemBags:
+          - id: 10
+            bagName: "제작도안: 상급 장갑 레시피"
+          - id: 11
+            bagName: "제작 도안: (구)최상급 갑옷/장갑 레시피"
+    - huntingZoneId: 768
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 12
+            bagName: "제작도안: 상급 갑옷 레시피"
+          - id: 12
+            bagName: "제작도안: (구)최상급 갑옷/장갑 레시피"
+    - huntingZoneId: 769
+      npcTemplateId: 76903
+      changes:
+        removeItemBags:
+          - id: 11
+            bagName: "제작 도안 - 악세 각인 II"
+          - id: 12
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 13
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 770
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 16
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 17
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 777
+      npcTemplateId: 77732
+      changes:
+        removeItemBags:
+          - id: 10
+            bagName: "제작 도안: 중급 장갑/신발 레시피"
+    - huntingZoneId: 780
+      npcTemplateId: 2000
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공도안: 재료 가공 도안"
+          - id: 5
+            bagName: "(구)가공도안: 재료 가공 도안"
+    - huntingZoneId: 780
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 7
+            bagName: "제작 도안: 상급 무기 레시피"
+          - id: 11
+            bagName: "제작 도안: (구)최상급 무기/신발 레시피"
+    - huntingZoneId: 781
+      npcTemplateId: 2000
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 781
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+        updateItemBags:
+          - id: 4
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 794
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 11
+            bagName: "제작 도안 - 악세 각인 II"
+          - id: 12
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 13
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 916
+      npcTemplateId: 91606
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안 : 재료 가공 도안"
+    - huntingZoneId: 916
+      npcTemplateId: 1000
+      changes:
+        removeItemBags:
+          - id: 12
+            bagName: "제작도안: 최상급 갑옷/장갑 레시피"
+    - huntingZoneId: 920
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 935
+      npcTemplateId: 5000
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 935
+      npcTemplateId: 5001
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 939
+      npcTemplateId: 3001
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 950
+      npcTemplateId: 9500
+      changes:
+        removeItemBags:
+          - id: 18
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 19
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 20
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 21
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 950
+      npcTemplateId: 9501
+      changes:
+        removeItemBags:
+          - id: 18
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 19
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 20
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 21
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 950
+      npcTemplateId: 9502
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 950
+      npcTemplateId: 9503
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 969
+      npcTemplateId: 76903
+      changes:
+        removeItemBags:
+          - id: 12
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 14
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 15
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 970
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 20
+            bagName: "제작 도안 - 악세 각인 IV"
+          - id: 21
+            bagName: "제작 도안 - 장비 각인 IV"
+          - id: 22
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 23
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620
+    - huntingZoneId: 980
+      npcTemplateId: 2000
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 980
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 무기/신발 레시피"
+        updateItemBags:
+          - id: 5
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 981
+      npcTemplateId: 2000
+      changes:
+        removeItemBags:
+          - id: 5
+            bagName: "가공 도안:재료 가공 도안"
+    - huntingZoneId: 981
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 14
+            bagName: "제작도안: 최상급 무기/갑옷/장갑/신발 레시피"
+          - id: 15
+            bagName: "제작도안: 최상급 무기/갑옷/장갑/신발 레시피"
+        updateItemBags:
+          - id: 4
+            bagName: "(구)서클릿 재료"
+            expect: 1
+            removeItems:
+              - templateId: 84340
+          - id: 19
+            bagName: "서클릿"
+            expect: 1
+            removeItems:
+              - templateId: 21338
+    - huntingZoneId: 994
+      npcTemplateId: 3000
+      changes:
+        removeItemBags:
+          - id: 12
+            bagName: "제작 도안 - 악세 각인 III"
+          - id: 14
+            bagName: "가공 도안 - 보석"
+        updateItemBags:
+          - id: 15
+            bagName: "가공 도안 - 각인 재료"
+            expect: 1
+            removeItems:
+              - templateId: 28610
+              - templateId: 28611
+              - templateId: 28612
+              - templateId: 28613
+              - templateId: 28614
+              - templateId: 28615
+              - templateId: 28616
+              - templateId: 28617
+              - templateId: 28618
+              - templateId: 28619
+              - templateId: 28620

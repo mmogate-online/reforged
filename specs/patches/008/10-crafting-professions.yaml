@@ -1,0 +1,21 @@
+# The classic professions: Alchemy (6), Alliance Supplies (7), Weaponcrafting (21),
+# Armorcrafting (22) and Etching (23), plus Cooking (24). Professions 25 to 28 leave play.
+# Alliance Supplies has no promotion test, so its master icon never shows; the file
+# requires one on every profession.
+# provenance: ported-from-v31
+spec:
+  version: "1.0"
+  schema: v92
+
+artisanConfig:
+  removeProduceSkills: [{ id: 25 }, { id: 26 }, { id: 27 }, { id: 28 }]
+  upsertProduceSkills:
+    - id: 7
+      nameId: 7
+      iconPackageName: Icon_Skills.Produce_icon_Union_Tex
+      progressSocial: 11
+      masterIcon: Icon_System.artisanMaster_Potion_Tex
+      categories:
+        - { grade: 0, maxSkillProf: 500 }
+        - { grade: 1, maxSkillProf: 800 }
+        - { grade: 2, maxSkillProf: 800 }

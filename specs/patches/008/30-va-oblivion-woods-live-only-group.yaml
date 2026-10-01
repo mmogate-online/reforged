@@ -1,0 +1,14 @@
+# Removes the live-only territory group 20300007 from Oblivion Woods: one placement of a
+# placeholder NPC that the classic zone never had. The live file carried this id on two
+# groups; the classic restoration removed the first, and this removes the one left.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territoryGroups:
+  delete:
+    - huntingZoneId: 203
+      groupId: 20300007
