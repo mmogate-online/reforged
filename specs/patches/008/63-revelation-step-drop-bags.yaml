@@ -1,0 +1,26 @@
+# Kugai to Revelation drops: each source monster of the Fey Forest gains one bag that always
+# drops, holding its evolution material. A bag rolls for each party member, so every member
+# gets the material on every kill. The rows already repeat bag ids, so each new bag carries a
+# name of its own for the next spec to select it by.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: [3, 13]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Centaur Shield Scrap", probability: 1.0 }
+    - huntingZoneId: 2
+      npcTemplateId: [4, 5]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Slinking Sabertooth Fang", probability: 1.0 }
+    - huntingZoneId: 2
+      npcTemplateId: [7, 57, 507]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Warthog Rawhide", probability: 1.0 }

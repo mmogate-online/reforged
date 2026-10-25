@@ -1,0 +1,50 @@
+# Kugai to Revelation drops: the material inside each bag the previous spec adds, in a fixed
+# amount per kill. A bag and its items cannot be added in one entry, because the bag must exist
+# before an item is selected into it.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: 3
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "Centaur Shield Scrap"
+            expect: 1
+            addItems: [{ templateId: 920284, name: "Centaur Shield Scrap", min: 6, max: 6, probability: 1.0 }]
+    - huntingZoneId: 2
+      npcTemplateId: 13
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "Centaur Shield Scrap"
+            expect: 1
+            addItems: [{ templateId: 920284, name: "Centaur Shield Scrap", min: 4, max: 4, probability: 1.0 }]
+    - huntingZoneId: 2
+      npcTemplateId: [4, 5]
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "Slinking Sabertooth Fang"
+            expect: 1
+            addItems: [{ templateId: 920001, name: "Slinking Sabertooth Fang", min: 4, max: 4, probability: 1.0 }]
+    - huntingZoneId: 2
+      npcTemplateId: [7, 57]
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "Warthog Rawhide"
+            expect: 1
+            addItems: [{ templateId: 920286, name: "Warthog Rawhide", min: 4, max: 4, probability: 1.0 }]
+    - huntingZoneId: 2
+      npcTemplateId: 507
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "Warthog Rawhide"
+            expect: 1
+            addItems: [{ templateId: 920286, name: "Warthog Rawhide", min: 20, max: 20, probability: 1.0 }]

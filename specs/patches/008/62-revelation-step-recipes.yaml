@@ -1,0 +1,14 @@
+# Kugai to Revelation gear part recipes: the Outrider's Ferrule on Weaponcrafting and the
+# Outrider's Lining on Armorcrafting, one part per craft whatever slot spends it. A recipe's id
+# equals the id of the design item that teaches it. The loader refuses a recipe that names a
+# critical result with a zero critical rate, so the rate is set and the critical result is the
+# same single part.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+itemProduceRecipes:
+  upsert:
+    - { id: 920290, recipeItemId: 920290, obtainable: true, needSkillId: 21, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1,exp: 9, categoryId: 1201, subFatiguePoint: 2, addOnSuccessProf: 1, result: { id: 920283, count: 1, criticalItemId: 920283, criticalItemCount: 1 }, materials: [{ id: 920284, count: 9 }] }
+    - { id: 920291, recipeItemId: 920291, obtainable: true, needSkillId: 22, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1,exp: 9, categoryId: 2201, subFatiguePoint: 2, addOnSuccessProf: 1, result: { id: 920285, count: 1, criticalItemId: 920285, criticalItemCount: 1 }, materials: [{ id: 920286, count: 9 }, { id: 920287, count: 3 }] }

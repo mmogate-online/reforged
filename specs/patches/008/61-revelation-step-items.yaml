@@ -1,0 +1,184 @@
+# Kugai to Revelation evolution items: the sabertooth fang, the Lumbertown writ, the two raw
+# materials and two gear parts of the step, and the two designs that craft the parts.
+#
+# Every stackable row carries boundType None: the loader refuses the whole item file when a
+# stackable item names any other binding. The drop model and sounds of each kind come from a
+# vanilla item of the same subtype, so nothing new is rendered or played.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _Material:
+    level: 1
+    rareGrade: 1
+    combatItemType: NO_COMBAT
+    requiredLevel: 1
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10000
+    maxDropUnit: 9999
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 50
+    sellPrice: 5
+
+  # Hide and plant materials, from Simple Salts (534).
+  _HideMaterial:
+    $extends: _Material
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherCue
+
+  # Metal materials, from Paverune of Shara (501).
+  _MetalMaterial:
+    $extends: _Material
+    combatItemSubType: weaponMaterial
+    category: weaponMaterial
+    dropSilhouette: Item_Drop.SM.Weaponstone_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_WeaponStoneCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_OreCue
+
+  # Quest token. Tradable, unlike the progression currency it is shaped after.
+  _Writ:
+    combatItemType: NO_COMBAT
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 3
+    level: 1
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 2
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 99999
+    slotLimit: 0
+    coolTimeGroup: 0
+    itemUseCount: 0
+    maxDropUnit: 9999
+    enchantEnable: false
+    tradable: true
+    boundType: None
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
+    defaultValue: 0
+
+  # Designs, from Weaponcrafting Design: Krysteel Ingot (23001). A gold store charges the
+  # item's own buyPrice.
+  _Design:
+    level: 11
+    rareGrade: 1
+    combatItemType: RECIPE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 10000
+    sellPrice: 1000
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+
+items:
+  upsert:
+    - { $extends: _HideMaterial, id: 920001, name: evo_sabertooth_fang, icon: Icon_Items.evo_va_sabertooth_fang_Tex }
+    - { $extends: _Writ, id: 920005, name: evo_lumbertown_mission_writ, icon: Icon_Items.evo_va_lumbertown_mission_writ_Tex }
+    - { $extends: _MetalMaterial, id: 920283, name: evo_outriders_ferrule, icon: Icon_Items.evo_va_outriders_ferrule_Tex }
+    - { $extends: _MetalMaterial, id: 920284, name: evo_centaur_shield_scrap, icon: Icon_Items.evo_va_centaur_shield_scrap_Tex }
+    - { $extends: _HideMaterial, id: 920285, name: evo_outriders_lining, icon: Icon_Items.evo_va_outriders_lining_Tex }
+    - { $extends: _HideMaterial, id: 920286, name: evo_warthog_rawhide, icon: Icon_Items.evo_va_warthog_rawhide_Tex }
+    - { $extends: _HideMaterial, id: 920287, name: evo_palisade_tanbark, icon: Icon_Items.evo_va_palisade_tanbark_Tex }
+    - { $extends: _Design, id: 920290, name: evo_recipe_outriders_ferrule, icon: Icon_Items.evo_recipe_outriders_ferrule_Tex }
+    - { $extends: _Design, id: 920291, name: evo_recipe_outriders_lining, icon: Icon_Items.evo_recipe_outriders_lining_Tex }
+
+itemStrings:
+  upsert:
+    - id: 920001
+      name: "Slinking Sabertooth Fang"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Taken from Slinking and Hulking Sabertooths in the Fey Forest. Spent to evolve Kugai gear into Revelation."
+    - id: 920005
+      name: "Lumbertown Mission Writ"
+      toolTip: "<font color = '#2478FF'>[Quest Item]</font> Issued in Lumbertown to those who carry out its orders. Spent to evolve Kugai gear into Revelation."
+    - id: 920283
+      name: "Outrider's Ferrule"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Forged by weaponsmiths from Centaur Shield Scrap. Spent to evolve a Kugai weapon into Revelation."
+    - id: 920284
+      name: "Centaur Shield Scrap"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Torn from the shields of Centaurs and Centaur Insurgents in the Fey Forest. Weaponsmiths forge it into an Outrider's Ferrule."
+    - id: 920285
+      name: "Outrider's Lining"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Stitched by armorsmiths from Warthog Rawhide and Palisade Tanbark. Spent to evolve Kugai armor into Revelation."
+    - id: 920286
+      name: "Warthog Rawhide"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Skinned from the Warthogs of the Fey Forest. Armorsmiths stitch it with Palisade Tanbark into an Outrider's Lining."
+    - id: 920287
+      name: "Palisade Tanbark"
+      toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Stripped from plants of the Fey Forest. Armorsmiths tan Warthog Rawhide with it into an Outrider's Lining."
+    - { id: 920290, name: "Recipe: Outrider's Ferrule", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 920291, name: "Recipe: Outrider's Lining", toolTip: "Use this design to learn the corresponding crafting skill." }
