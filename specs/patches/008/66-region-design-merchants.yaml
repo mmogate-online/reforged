@@ -1,0 +1,315 @@
+# Region design merchants: Bram in Lumbertown and Ysolde in Crescentia, both opening one
+# shared store of the region's evolution designs. A design added to the town design stores
+# would be sold in every town that shares them, so these designs get a store of their own.
+#
+# A shop NPC needs a VillagerData condition file and a VillagerDialog entry besides its
+# template: the shop menu is drawn inside the dialog window, so without them the NPC cannot be
+# clicked. A gold store charges the item's own buyPrice, so the price lives on the item. The
+# store title and the tab label resolve through the NPC string table by the store's stringId
+# and the tab's stringed. A villagerMenus upsert replaces the villager's whole menu list.
+#
+# dir is degrees, counter-clockwise from +x. This spec adds spawn points, so the npc location
+# prune belongs after the apply.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Villager envelope; aiid 100 is the villager idle AI, so neither merchant wanders.
+  _designMerchant:
+    villager: true
+    invincible: true
+    aiid: 100
+    scale: 1
+    size: medium
+    resourceType: medium
+    resourceSize: 100
+    class: ""
+    collideOnMove: false
+    isObjectNpc: false
+    isWideBroadcaster: false
+    isFreeNamed: false
+    isLightParty: false
+    elite: false
+    showAggroTarget: false
+    showShorttermTarget: false
+    dontTurn: false
+    partyMember: 0
+    spawnScriptId: 0
+    despawnScriptId: 0
+    pcDespawnScriptId: 0
+    villagerVolumeOffset: ""
+    villagerVolumeActiveRange: 0
+    villagerVolumeHalfHeight: 0
+    villagerVolumeInteractionDist: 0
+    race: Human
+    namePlate:
+      deathNameplateHeight: 0
+    abnormalityResistanceOverride:
+      resetTime: 60000
+    stat:
+      maxHp: 10000
+      walkSpeed: 60
+      runSpeed: 110
+      atk: 100
+      def: 2000
+      exp: 1
+      level: 40
+    npcOnly:
+      onDeathSkill: 0
+    anger:
+      gaugeSize: 403799
+      time: 16633
+      moveSpeedUpRate: 1.6
+      accumRateWhenHpLow: 1.0
+      accumRateWhenHpMed: 1
+      accumRateWhenHpHigh: 1.0
+      modeOnProbabilityWhenPartyMemberDead: 0.2
+    critical:
+      str: 30
+      res: 180
+      powRate: 1.5
+    criticalAdjust:
+      front: 1
+      right: 1.2
+      left: 1.2
+      back: 1.6
+    reaction:
+      statStr: 40
+      statRes: 150
+      miniRes: 100
+      basicRes: 100
+      basicIncRes: 0
+      basicGaugeResetTime: 20000
+      maxBasicGauge: 2000
+      maxAdditionalGauge: 600000
+    abnormality:
+      strA: 50
+      resA: 40
+      strB: 50
+      resB: 40
+      strC: 50
+      resC: 40
+      strD: 50
+      resD: 40
+    aggro:
+      hateSkillCategoryName: ""
+      viewRadius: 200
+      viewAngle: 360
+      sightRangeAggroWeight: 1.3
+      hateSkillAggroWeight: 1
+      bigReactionAggroWeight: 0.5
+      aggroSendToClanDistance: 300
+      clanName: ""
+      aggroSendToPartyDistance: 400
+      aggroSendRate: 1
+      aggroSendStackRate: 0.1
+      aggroSendStackRateWhenFirstAttacked: 2
+      aggroReceiveOnlyInSight: false
+      aggroReceiveRate: 0.5
+    skillList: {}
+    stackPoint:
+      maxStackPoint: 10
+      minStackPointRequire: 3
+      stackPointPeriod: 8000
+
+  _villagerSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  _villagerTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+npcs:
+  upsert:
+    - huntingZoneId: 60
+      id: 1100
+      $extends: _designMerchant
+      name: "Design Merchant Bram"
+      shapeId: 500095                       # Royer 60,1057
+      basicActionId: 5000800
+      gender: male
+    - huntingZoneId: 59
+      id: 1100
+      $extends: _designMerchant
+      name: "Design Merchant Ysolde"
+      shapeId: 500127                       # Sadma 60,1059
+      basicActionId: 5001200
+      gender: female
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      desc: "Reforged Vendors, Lumbertown"
+    - huntingZoneId: 59
+      groupId: 5900006
+      desc: "Reforged Vendors, Crescentia"
+
+territories:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000039
+      $extends: _villagerTerritory
+      desc: "Design Merchant, Lumbertown"
+      fences:
+        - [88029, -2503, 724]
+        - [88329, -2503, 724]
+        - [88329, -2203, 724]
+        - [88029, -2203, 724]
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900032
+      $extends: _villagerTerritory
+      desc: "Design Merchant, Crescentia"
+      fences:
+        - [94568, 15419, 2691]
+        - [94868, 15419, 2691]
+        - [94868, 15719, 2691]
+        - [94568, 15719, 2691]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000039
+      npcInstanceId: 6004053
+      npcTemplateId: 1100
+      $extends: _villagerSpawn
+      desc: "Design Merchant Bram"
+      pos: [88179, -2353, 724]
+      dir: 270
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900032
+      npcInstanceId: 5900418
+      npcTemplateId: 1100
+      $extends: _villagerSpawn
+      desc: "Design Merchant Ysolde"
+      pos: [94718, 15569, 2691]
+      dir: 35
+
+creatureStrings:
+  upsert:
+    - { huntingZoneId: 60, templateId: 1100, name: "Bram", gender: male, race: Human, title: "Design Merchant" }
+    - { huntingZoneId: 59, templateId: 1100, name: "Ysolde", gender: female, race: Human, title: "Design Merchant" }
+
+speechConditions:
+  upsert:
+    - huntingZoneId: 60
+      templateId: 1100
+      note: "Design Merchant Bram"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 59
+      templateId: 1100
+      note: "Design Merchant Ysolde"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+# voiceTypeId is the voice of the NPC whose model was copied.
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 60
+      id: 1100
+      voiceTypeId: 27
+      texts:
+        - id: 1
+          huntingZoneId: 60
+          villagerId: 1100
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Outriders ride the timber road on gear made from what the forest gives up. I sell the designs, <PCNAME>. The hunting is yours."
+    - huntingZoneId: 59
+      id: 1100
+      voiceTypeId: 32
+      texts:
+        - id: 1
+          huntingZoneId: 59
+          villagerId: 1100
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Every region keeps its own patterns, and Crescentia keeps them here. Bring the materials and a smith will do the rest."
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 60
+      npcTemplateId: 1100
+      menus:
+        - { type: Merchant, id: 920 }
+    - huntingZoneId: 59
+      npcTemplateId: 1100
+      menus:
+        - { type: Merchant, id: 920 }
+
+buyMenuLists:
+  upsert:
+    - id: 920
+      stringId: 920
+      desc: "Regional Designs"
+      itemLists:
+        - id: 9200
+          stringed: 9200
+
+buyLists:
+  upsert:
+    - id: 9200
+      desc: "Outrider Designs"
+      items:
+        - { itemId: 920290, priceRevision: 1 }
+        - { itemId: 920291, priceRevision: 1 }
+
+npcStrings:
+  upsert:
+    - { id: 920, string: "Regional Designs" }
+    - { id: 9200, string: "Outrider Designs" }
