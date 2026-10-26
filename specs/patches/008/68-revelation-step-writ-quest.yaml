@@ -1,0 +1,160 @@
+# Orders for the Timber Road (quest 204): a repeatable timber run that pays three Lumbertown
+# Mission Writs. Daven gives the orders, the player hauls timber from the felled stacks of
+# collection 444 to Lennert, who books the haul as three loads, and Daven seals one writ per
+# load.
+#
+# The quest takes an id in quest group 2 because rewards are filed per quest group: group
+# 2's reward table already exists on both server and client, and a new group would need a
+# client reward shard that does not exist.
+#
+# A repeatable quest can be re-accepted without limit, so it keeps a hard level cap and pays
+# only the writ, a token scoped to this region's gear step.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+variables:
+  WRIT: 920005                   # Lumbertown Mission Writ
+  TIMBER: 9045                   # Timber, from collection 444
+
+quests:
+  upsert:
+    - id: 204
+      header:
+        questNumber: 204
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:204001"
+        designersNote: ""
+        startPopup: "@quest:204002"
+        endPopup: "@quest:204003"
+        questType: "General"
+        repeatType: "Repeatable"
+        cancellable: "Allowed"
+        giverNpc:
+          huntingZone: 60
+          templateId: 1014       # Daven, Lumbertown
+      requirements:
+        minLevel: 10
+        maxLevel: 17
+      tasks:
+        - taskId: 1
+          type: "CollectTask"
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:204005"
+          journalText2: "@quest:204006"
+          hasReward: false
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 444
+            deliveryItems:
+              - itemId: $TIMBER
+                quantity: 5
+            targetNpc:
+              huntingZone: 60
+              templateId: 1019   # Lennert, Lumbertown
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:204004"
+        - taskId: 2
+          type: "VisitTask"
+          nextTaskId: 0
+          journalScript: 3
+          journalText: "@quest:204007"
+          hasReward: true
+          body:
+            npcId:
+              huntingZone: 60
+              templateId: 1014
+            dialogueId: 5
+            completionButtonText: "@quest:204008"
+            visitCinematicId: 0
+
+questStrings:
+  upsert:
+    - id: 204001
+      string: "Orders for the Timber Road"
+    - id: 204002
+      string: "Haul timber to Lennert"
+    - id: 204003
+      string: "Three loads are booked and the writs are sealed."
+    - id: 204004
+      string: '"It''s all there."'
+    - id: 204005
+      string: "Gather timber from the {@Collection:444} stacks on the road to Woodcutter Palisade."
+    - id: 204006
+      string: "Deliver the timber to Lennert in Lumbertown."
+    - id: 204007
+      string: "Report to Daven in Lumbertown."
+    - id: 204008
+      string: '"All three loads are booked."'
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 2
+      id: 4
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        # Text 100 is the quest log summary panel.
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1014
+          pages:
+            - social: 0
+              content: "Daven has issued Mission Orders: haul timber from the felled stacks to Lennert, who books it as three loads, then return to Daven for a sealed writ per load."
+        # Text 2: the accept dialog, at Daven.
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "Velika wants its timber, and I don't have a single soldier to spare for the logging road.<BR><BR>The last crews left their cut timber in the stacks on the road to Woodcutter Palisade. Haul it to Lennert. That cut timber is dense; he'll book a haul like that as three loads against his quota.<BR><BR>When he has, come back to me. I'll seal you a Mission Writ for every load booked, and the garrison stores will honor them."
+        # Text 3: the hand-in, at Lennert, when the player carries the timber.
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1019
+          pages:
+            - social: 4
+              content: "Now that's a haul! One, two, three loads. Finally, something I can write down.<BR><BR>Tell Daven all three are booked. And tell him the quota still isn't met, so I'll be seeing you again."
+        # Text 4: Lennert, before the player has the timber.
+        - id: 4
+          npcZoneId: 60
+          villagerId: 1019
+          pages:
+            - social: 0
+              content: "That's not a load, that's kindling. The stacks are on the road to the palisade.<BR><BR>No excuses this time."
+        # Text 5: the reward, at Daven.
+        - id: 5
+          npcZoneId: 60
+          prevId: 3
+          villagerId: 1014
+          pages:
+            - social: 4
+              content: "Lennert booked three loads? Good.<BR><BR>Here are your writs, one sealed for each load. Any garrison store will honor them.<BR><BR>The timber never stops being needed, <PCNAME>. Neither do you."
+
+questCompensations:
+  upsert:
+    - questId: 204
+      huntingZoneId: 2
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 0
+          itemBag: "allpay"
+          items:
+            - templateId: $WRIT
+              quantity: 3
