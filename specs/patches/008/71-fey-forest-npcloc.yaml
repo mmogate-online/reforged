@@ -1,0 +1,246 @@
+# StrSheet_NpcLoc quest-marker registry for hunting zones 202.
+#
+# GENERATED FILE. Do not hand-edit: regenerate with
+#   python tools/dc-restore/gen_npcloc.py --zones 202 --continent 7001 --out <this file> --prune
+#
+# Derived from the CURRENT server TerritoryData, which is v31-authoritative
+# under the classic-restoration doctrine. One row per (huntingZoneId,
+# templateId); the value is the pipe-joined list of that template's spawn
+# positions on continent 7001. A spawn stored as the 0,0,0 random-in-fence
+# sentinel contributes its territory's fence centroid instead, so no dead
+# '7001#0,0,0' link target is ever emitted. Mode: prune (replace-by-zone).
+#
+# Waypoints use the TYPED form (`continent` + `markers`) rather than a packed
+# `string`. Both are supported and the raw form is what the DSL docs call the
+# generator default, but a packed payload runs to thousands of characters, so a
+# spawn change shows up as one enormous changed line. Typed markers diff one
+# waypoint at a time, which is what this project's regression-diff discipline
+# needs. `markers` replaces the whole list and is sequence-exact, so repeated
+# waypoints are preserved as written.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcLocStrings:
+  upsert:
+    - huntingZoneId: 202
+      templateId: 1001
+      continent: 7001
+      markers:
+        - [96899, -10440, 972]
+    - huntingZoneId: 202
+      templateId: 1002
+      continent: 7001
+      markers:
+        - [110519, -10051, 2872]
+    - huntingZoneId: 202
+      templateId: 1004
+      continent: 7001
+      markers:
+        - [96877, -11151, 975]
+    - huntingZoneId: 202
+      templateId: 1007
+      continent: 7001
+      markers:
+        - [109994, -10399, 2893]
+    - huntingZoneId: 202
+      templateId: 1009
+      continent: 7001
+      markers:
+        - [110026, -10258, 2884]
+    - huntingZoneId: 202
+      templateId: 1010
+      continent: 7001
+      markers:
+        - [110063, -10615, 2893]
+    - huntingZoneId: 202
+      templateId: 1011
+      continent: 7001
+      markers:
+        - [119089, -3566, 3122]
+    - huntingZoneId: 202
+      templateId: 1012
+      continent: 7001
+      markers:
+        - [119043, -3305, 3097]
+    - huntingZoneId: 202
+      templateId: 1015
+      continent: 7001
+      markers:
+        - [100286, -16117, 2187]
+    - huntingZoneId: 202
+      templateId: 1017
+      continent: 7001
+      markers:
+        - [110369, -10233, 2884]
+    - huntingZoneId: 202
+      templateId: 1018
+      continent: 7001
+      markers:
+        - [96622, -5387, 265]
+    - huntingZoneId: 202
+      templateId: 1019
+      continent: 7001
+      markers:
+        - [100237, -16192, 2190]
+    - huntingZoneId: 202
+      templateId: 1020
+      continent: 7001
+      markers:
+        - [100208, -21787, 2310]
+    - huntingZoneId: 202
+      templateId: 1021
+      continent: 7001
+      markers:
+        - [100048, -22011, 2300]
+    - huntingZoneId: 202
+      templateId: 1022
+      continent: 7001
+      markers:
+        - [114654, -15467, 3519]
+    - huntingZoneId: 202
+      templateId: 1023
+      continent: 7001
+      markers:
+        - [114309, -15668, 3535]
+    - huntingZoneId: 202
+      templateId: 1024
+      continent: 7001
+      markers:
+        - [114691, -15743, 3493]
+    - huntingZoneId: 202
+      templateId: 1025
+      continent: 7001
+      markers:
+        - [110513, -10143, 2884]
+    - huntingZoneId: 202
+      templateId: 1028
+      continent: 7001
+      markers:
+        - [109242, -19693, 3516]
+    - huntingZoneId: 202
+      templateId: 1029
+      continent: 7001
+      markers:
+        - [97856, -5782, 218]
+        - [100966, -4584, 468]
+        - [95975, -4306, 355]
+        - [98964, -10531, 883]
+    - huntingZoneId: 202
+      templateId: 1031
+      continent: 7001
+      markers:
+        - [96678, -11190, 975]
+    - huntingZoneId: 202
+      templateId: 1033
+      continent: 7001
+      markers:
+        - [119449, -3649, 3160]
+    - huntingZoneId: 202
+      templateId: 1034
+      continent: 7001
+      markers:
+        - [119172, -3798, 3128]
+    - huntingZoneId: 202
+      templateId: 1037
+      continent: 7001
+      markers:
+        - [117515, -5079, 3108]
+    - huntingZoneId: 202
+      templateId: 1038
+      continent: 7001
+      markers:
+        - [99798, -20580, 2186]
+    - huntingZoneId: 202
+      templateId: 1040
+      continent: 7001
+      markers:
+        - [100347, -21898, 2314]
+        - [100310, -21639, 2309]
+        - [100117, -21977, 2310]
+        - [100219, -21755, 2309]
+        - [100166, -21658, 2306]
+    - huntingZoneId: 202
+      templateId: 1041
+      continent: 7001
+      markers:
+        - [100113, -22232, 2311]
+    - huntingZoneId: 202
+      templateId: 1042
+      continent: 7001
+      markers:
+        - [114092, -16119, 3489]
+    - huntingZoneId: 202
+      templateId: 1043
+      continent: 7001
+      markers:
+        - [96673, -10476, 973]
+    - huntingZoneId: 202
+      templateId: 1044
+      continent: 7001
+      markers:
+        - [114498, -16195, 3457]
+    - huntingZoneId: 202
+      templateId: 1049
+      continent: 7001
+      markers:
+        - [98302, -4839, 322]
+        - [100624, -4024, 534]
+        - [96127, -4273, 364]
+    - huntingZoneId: 202
+      templateId: 1050
+      continent: 7001
+      markers:
+        - [98648, -5043, 241]
+        - [100928, -4071, 537]
+        - [100190, -9538, 549]
+    - huntingZoneId: 202
+      templateId: 1052
+      continent: 7001
+      markers:
+        - [96462, -11152, 973]
+        - [110420, -10491, 2902]
+        - [99637, -22235, 2246]
+    - huntingZoneId: 202
+      templateId: 1100
+      continent: 7001
+      markers:
+        - [100172, -22421, 2316]
+    - huntingZoneId: 202
+      templateId: 1700
+      continent: 7001
+      markers:
+        - [96967, -10900, 973]
+        - [110257, -10539, 2902.5]
+        - [115010, -15928, 3421]
+    - huntingZoneId: 202
+      templateId: 1900
+      continent: 7001
+      markers:
+        - [92419.5, -5592, 509]
+        - [95629, -3899, 341]
+        - [95850, -10857, 988]
+        - [87367, -15306, 1195]
+        - [82390, -19893, 1476]
+        - [88485, -24231, 1500]
+        - [94249, -20747, 1687]
+        - [100164, -21826, 2327]
+        - [110400, -9696, 2818]
+        - [110264, -9814, 2831]
+        - [110744, -2322, 3033]
+        - [119758, -10434, 3554]
+    - huntingZoneId: 202
+      templateId: 1901
+      continent: 7001
+      markers:
+        - [96919, -5966, 227]
+        - [96367, -5886, 265]
+        - [96409, -5800, 259]
+        - [96409, -5800, 259]
+        - [97350, -5194, 260]
+        - [97350, -5194, 260]
+        - [95419, -7171, 261]
+        - [100355, -21779, 2331]
+        - [100086, -22189, 2301]
+        - [100304, -21942, 2311]

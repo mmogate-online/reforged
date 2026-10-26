@@ -1,0 +1,348 @@
+# Hesketh the tanner at Maon's Cabin, and his one-time quest Bark for the Tannery (215): an
+# optional pointer to the Verdra Plants on the slopes around the cabin, the only plants in
+# the Fey Forest that carry Palisade Tanbark. The quest asks for one gather's worth of bark
+# and pays it back, so it costs the player nothing but the walk.
+#
+# A villager needs a VillagerData condition file and a VillagerDialog entry besides its
+# template, or it cannot be clicked. dir is degrees, counter-clockwise from +x; Hesketh faces
+# the way Reindal does. This spec adds a spawn point, so the npc location prune belongs after
+# the apply.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+variables:
+  TANBARK: 920287                # Palisade Tanbark
+
+definitions:
+  # Villager envelope; aiid 100 is the villager idle AI, so the tanner does not wander.
+  _guideVillager:
+    villager: true
+    invincible: true
+    aiid: 100
+    scale: 1
+    size: medium
+    resourceType: medium
+    resourceSize: 100
+    class: ""
+    collideOnMove: false
+    isObjectNpc: false
+    isWideBroadcaster: false
+    isFreeNamed: false
+    isLightParty: false
+    elite: false
+    showAggroTarget: false
+    showShorttermTarget: false
+    dontTurn: false
+    partyMember: 0
+    spawnScriptId: 0
+    despawnScriptId: 0
+    pcDespawnScriptId: 0
+    villagerVolumeOffset: ""
+    villagerVolumeActiveRange: 0
+    villagerVolumeHalfHeight: 0
+    villagerVolumeInteractionDist: 0
+    race: Human
+    namePlate:
+      deathNameplateHeight: 0
+    abnormalityResistanceOverride:
+      resetTime: 60000
+    stat:
+      maxHp: 10000
+      walkSpeed: 60
+      runSpeed: 110
+      atk: 100
+      def: 2000
+      exp: 1
+      level: 40
+    npcOnly:
+      onDeathSkill: 0
+    anger:
+      gaugeSize: 403799
+      time: 16633
+      moveSpeedUpRate: 1.6
+      accumRateWhenHpLow: 1.0
+      accumRateWhenHpMed: 1
+      accumRateWhenHpHigh: 1.0
+      modeOnProbabilityWhenPartyMemberDead: 0.2
+    critical:
+      str: 30
+      res: 180
+      powRate: 1.5
+    criticalAdjust:
+      front: 1
+      right: 1.2
+      left: 1.2
+      back: 1.6
+    reaction:
+      statStr: 40
+      statRes: 150
+      miniRes: 100
+      basicRes: 100
+      basicIncRes: 0
+      basicGaugeResetTime: 20000
+      maxBasicGauge: 2000
+      maxAdditionalGauge: 600000
+    abnormality:
+      strA: 50
+      resA: 40
+      strB: 50
+      resB: 40
+      strC: 50
+      resC: 40
+      strD: 50
+      resD: 40
+    aggro:
+      hateSkillCategoryName: ""
+      viewRadius: 200
+      viewAngle: 360
+      sightRangeAggroWeight: 1.3
+      hateSkillAggroWeight: 1
+      bigReactionAggroWeight: 0.5
+      aggroSendToClanDistance: 300
+      clanName: ""
+      aggroSendToPartyDistance: 400
+      aggroSendRate: 1
+      aggroSendStackRate: 0.1
+      aggroSendStackRateWhenFirstAttacked: 2
+      aggroReceiveOnlyInSight: false
+      aggroReceiveRate: 0.5
+    skillList: {}
+    stackPoint:
+      maxStackPoint: 10
+      minStackPointRequire: 3
+      stackPointPeriod: 8000
+
+  _villagerSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  _villagerTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+npcs:
+  upsert:
+    - huntingZoneId: 202
+      id: 1100
+      $extends: _guideVillager
+      name: "Tanner Hesketh"
+      shapeId: 500092                       # Bod Mill 202,1008
+      basicActionId: 5000800
+      gender: male
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 202
+      groupId: 20200009
+      desc: "Reforged Guides, Fey Forest"
+
+territories:
+  upsert:
+    - huntingZoneId: 202
+      groupId: 20200009
+      territoryId: 20200039
+      $extends: _villagerTerritory
+      desc: "Tanner, Maon's Cabin"
+      fences:
+        - [100022, -22571, 2316]
+        - [100322, -22571, 2316]
+        - [100322, -22271, 2316]
+        - [100022, -22271, 2316]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 202
+      groupId: 20200009
+      territoryId: 20200039
+      npcInstanceId: 20200120
+      npcTemplateId: 1100
+      $extends: _villagerSpawn
+      desc: "Tanner Hesketh"
+      pos: [100172, -22421, 2316]
+      dir: 191                              # Reindal 202,1041
+
+creatureStrings:
+  upsert:
+    - { huntingZoneId: 202, templateId: 1100, name: "Hesketh", gender: male, race: Human, title: "Tanner" }
+
+speechConditions:
+  upsert:
+    - huntingZoneId: 202
+      templateId: 1100
+      note: "Tanner Hesketh"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+# voiceTypeId is the voice of the NPC whose model was copied.
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 202
+      id: 1100
+      voiceTypeId: 24
+      texts:
+        - id: 1
+          huntingZoneId: 202
+          villagerId: 1100
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Every outrider who rides out of here wants a lining, and every lining wants good bark. The Verdra Plants on these slopes carry it. The ones down by the palisade don't."
+
+quests:
+  upsert:
+    - id: 215
+      header:
+        questNumber: 215
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:215001"
+        designersNote: ""
+        startPopup: "@quest:215002"
+        endPopup: "@quest:215003"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc:
+          huntingZone: 202
+          templateId: 1100       # Hesketh, Maon's Cabin
+      requirements:
+        minLevel: 10
+      tasks:
+        - taskId: 1
+          type: "CollectTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:215005"
+          journalText2: "@quest:215006"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 2              # Verdra Plant, the Fey Forest slopes
+            deliveryItems:
+              - itemId: $TANBARK
+                quantity: 2
+            targetNpc:
+              huntingZone: 202
+              templateId: 1100
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:215004"
+
+questStrings:
+  upsert:
+    - id: 215001
+      string: "Bark for the Tannery"
+    - id: 215002
+      string: "Bring Palisade Tanbark to Hesketh"
+    - id: 215003
+      string: "Hesketh knows good bark when he sees it."
+    - id: 215004
+      string: '"Fresh off the slope."'
+    - id: 215005
+      string: "Gather a {@Collection:2} on the slopes around Maon's Cabin and strip its Palisade Tanbark."
+    - id: 215006
+      string: "Bring the Palisade Tanbark to Hesketh at Maon's Cabin."
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 2
+      id: 15
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        # Text 100 is the quest log summary panel.
+        - id: 100
+          npcZoneId: 202
+          prevId: 0
+          villagerId: 1100
+          pages:
+            - social: 0
+              content: "Hesketh the tanner says the Verdra Plants on the slopes around Maon's Cabin carry Palisade Tanbark. He wants to see it for himself."
+        # Text 2: the accept dialog, at Hesketh.
+        - id: 2
+          npcZoneId: 202
+          prevId: 0
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "Outriders come to me for their linings, and a lining is only as good as the bark that tans it.<BR><BR>Palisade Tanbark. You strip it from the Verdra Plants on these slopes, all around the cabin. Not the ones down by the palisade, mind. Those are too young to have any.<BR><BR>Go and gather one, and bring me what you get. I'll tell you if it's worth anything."
+        # Text 3: the hand-in, when the player carries the bark.
+        - id: 3
+          npcZoneId: 202
+          prevId: 2
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "That's the stuff. Smell it.<BR><BR>Keep it, I've no use for a handful. A lining takes three of these, so you'll want more than one plant's worth. Now you know where they grow."
+        # Text 4: Hesketh, before the player has the bark.
+        - id: 4
+          npcZoneId: 202
+          villagerId: 1100
+          pages:
+            - social: 0
+              content: "The Verdra Plants on these slopes, around the cabin. Strip one and come back."
+
+questCompensations:
+  upsert:
+    - questId: 215
+      huntingZoneId: 2
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 0
+          itemBag: "allpay"
+          items:
+            - templateId: $TANBARK
+              quantity: 2

@@ -1,0 +1,24 @@
+# Palisade Tanbark on the Verdra Plants of the Fey Forest (gift table 2): every gather pays
+# its ordinary plant yield and, from a bag of its own, a fixed amount of tanbark.
+#
+# Inside one bag a gather pays a single item chosen by weight, so the tanbark cannot join the
+# plant's existing bag without turning a guaranteed yield into a chance. A second bag rolls on
+# its own. Gift table 1 is shared with other regions and must not carry tanbark.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+variables:
+  TANBARK: 920287                # Palisade Tanbark
+
+collectionGifts:
+  update:
+    - giftNum: 2
+      changes:
+        dropBags:
+          - containing: $TANBARK
+            dropRate: 1
+            dropItems:
+              - { itemTemplateId: $TANBARK, dropRate: 1, minNum: 2, maxNum: 2 }
