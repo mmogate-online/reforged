@@ -1,0 +1,27 @@
+# Joining the Ranks (quest 6305) and its required prerequisite Ride Off into the Sunset
+# (quest 1317, level 10, 2000 experience) together pay enough experience to finish level 10
+# from its first point, so every player who reached level 10 is level 11 when 6305 is
+# handed in. The next
+# story quests, Strife in the Fey Forest and Saddle Up, require level 11, and Velika has no
+# monsters to make up a shortfall.
+#
+# A compensations block is replaced whole, so the rest of the reward is restated unchanged.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+questCompensations:
+  update:
+    - questId: 6305
+      huntingZoneId: 63
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 17795              # with quest 1317's 2000, finishes level 10
+            gold: 1500
+            npcGuildId: 605
+            reputationExp: 100
+            reputationPoint: 5
