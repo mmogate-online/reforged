@@ -1,5 +1,5 @@
 # Region design merchants: Bram in Lumbertown and Ysolde in Crescentia, both opening one
-# shared store of the region's evolution designs. A design added to the town design stores
+# shared store of the region's designs. A design added to the town design stores
 # would be sold in every town that shares them, so these designs get a store of their own.
 #
 # A shop NPC needs a VillagerData condition file and a VillagerDialog entry besides its
@@ -292,6 +292,9 @@ villagerMenus:
       menus:
         - { type: Merchant, id: 920 }
 
+# One tab for the designs of crafted materials, then one tab per gear set the region sells, its
+# twelve class weapons first and its armor after. The title already says designs, so a set's tab
+# carries the set name alone. A store holds at most five tabs.
 buyMenuLists:
   upsert:
     - id: 920
@@ -300,16 +303,43 @@ buyMenuLists:
       itemLists:
         - id: 9200
           stringed: 9200
+        - id: 9201
+          stringed: 9201
 
 buyLists:
   upsert:
     - id: 9200
-      desc: "Outrider Designs"
+      desc: "Materials"
       items:
         - { itemId: 920290, priceRevision: 1 }
         - { itemId: 920291, priceRevision: 1 }
+    - id: 9201
+      desc: "Revelation"
+      items:
+        - { itemId: 921021, priceRevision: 1 }
+        - { itemId: 921022, priceRevision: 1 }
+        - { itemId: 921023, priceRevision: 1 }
+        - { itemId: 921024, priceRevision: 1 }
+        - { itemId: 921025, priceRevision: 1 }
+        - { itemId: 921026, priceRevision: 1 }
+        - { itemId: 921027, priceRevision: 1 }
+        - { itemId: 921028, priceRevision: 1 }
+        - { itemId: 921029, priceRevision: 1 }
+        - { itemId: 921030, priceRevision: 1 }
+        - { itemId: 921031, priceRevision: 1 }
+        - { itemId: 921032, priceRevision: 1 }
+        - { itemId: 921033, priceRevision: 1 }
+        - { itemId: 921034, priceRevision: 1 }
+        - { itemId: 921035, priceRevision: 1 }
+        - { itemId: 921036, priceRevision: 1 }
+        - { itemId: 921037, priceRevision: 1 }
+        - { itemId: 921038, priceRevision: 1 }
+        - { itemId: 921039, priceRevision: 1 }
+        - { itemId: 921040, priceRevision: 1 }
+        - { itemId: 921041, priceRevision: 1 }
 
 npcStrings:
   upsert:
     - { id: 920, string: "Regional Designs" }
-    - { id: 9200, string: "Outrider Designs" }
+    - { id: 9200, string: "Materials" }
+    - { id: 9201, string: "Revelation" }

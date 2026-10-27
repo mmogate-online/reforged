@@ -1,0 +1,81 @@
+# Town merchants stop selling items that do nothing on this server: the Tier 3 to Tier 6
+# Alkahests, which no enchant an item can reach asks for, the Ranger's and Energy nostrums,
+# which the permanent nostrum buff replaces, and the enigmatic and identification scrolls. Two items of the
+# Russian region, a pet treat and a skill manual, leave too: they have no English text. The
+# general merchant sells Refined Alkahest instead, at the markup price on the item, and the
+# Potential Unlock Scroll, the one unlock item for every leveling tier.
+#
+# The general goods lists (two copies), the combat list and the arcane supplies list are each
+# shared by many towns' merchants, so every change applies in every town. Shop item lists are
+# replace-all, so each list is restated with its other items in their original order.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyLists:
+  update:
+    # General Goods, both copies.
+    - id: 1601
+      changes:
+        items:
+          - { itemId: 446, priceRevision: 1 }      # Refined Alkahest
+          - { itemId: 90, priceRevision: 1 }       # Potential Unlock Scroll
+          - { itemId: 200001, priceRevision: 1 }
+          - { itemId: 98, priceRevision: 1 }
+          - { itemId: 99, priceRevision: 1 }
+    - id: 80001
+      changes:
+        items:
+          - { itemId: 446, priceRevision: 1 }      # Refined Alkahest
+          - { itemId: 90, priceRevision: 1 }       # Potential Unlock Scroll
+          - { itemId: 200001, priceRevision: 1 }
+          - { itemId: 98, priceRevision: 1 }
+          - { itemId: 99, priceRevision: 1 }
+    # Combat, every general merchant.
+    - id: 1602
+      changes:
+        items:
+          - { itemId: 125, priceRevision: 1 }
+          - { itemId: 126, priceRevision: 1 }
+          - { itemId: 127, priceRevision: 1 }
+          - { itemId: 128, priceRevision: 1 }
+          - { itemId: 7154, priceRevision: 1 }
+          - { itemId: 7155, priceRevision: 1 }
+    # Arcane Supplies, every specialty store.
+    - id: 2502
+      changes:
+        items:
+          - { itemId: 178, priceRevision: 1 }
+          - { itemId: 179, priceRevision: 1 }
+          - { itemId: 180, priceRevision: 1 }
+          - { itemId: 181, priceRevision: 1 }
+          - { itemId: 182, priceRevision: 1 }
+          - { itemId: 183, priceRevision: 1 }
+          - { itemId: 184, priceRevision: 1 }
+          - { itemId: 185, priceRevision: 1 }
+          - { itemId: 186, priceRevision: 1 }
+          - { itemId: 187, priceRevision: 1 }
+          - { itemId: 188, priceRevision: 1 }
+          - { itemId: 189, priceRevision: 1 }
+          - { itemId: 190, priceRevision: 1 }
+          - { itemId: 191, priceRevision: 1 }
+          - { itemId: 192, priceRevision: 1 }
+          - { itemId: 193, priceRevision: 1 }
+          - { itemId: 70019, priceRevision: 1 }
+          - { itemId: 70020, priceRevision: 1 }
+          - { itemId: 70021, priceRevision: 1 }
+          - { itemId: 70022, priceRevision: 1 }
+          - { itemId: 70023, priceRevision: 1 }
+          - { itemId: 70024, priceRevision: 1 }
+          - { itemId: 70025, priceRevision: 1 }
+          - { itemId: 70026, priceRevision: 1 }
+          - { itemId: 70027, priceRevision: 1 }
+          - { itemId: 70028, priceRevision: 1 }
+          - { itemId: 70029, priceRevision: 1 }
+          - { itemId: 70030, priceRevision: 1 }
+          - { itemId: 70031, priceRevision: 1 }
+          - { itemId: 70032, priceRevision: 1 }
+          - { itemId: 70033, priceRevision: 1 }
+          - { itemId: 70034, priceRevision: 1 }

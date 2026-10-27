@@ -1,0 +1,92 @@
+# Revelation gear designs: one per piece, twelve class weapons and the three armor weights' body,
+# hands and feet. The region design merchants sell them for gold, and a gold store charges the
+# item's own buyPrice.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # From Weaponcrafting Design: Krysteel Ingot (23001), as the Outrider part designs.
+  _Design:
+    level: 11
+    rareGrade: 1
+    combatItemType: RECIPE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 50000
+    sellPrice: 5000
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+
+items:
+  upsert:
+    - { $extends: _Design, id: 921021, name: evo_design_disclose_divulge, icon: Icon_Items.recipeweapon_dual_Tex }
+    - { $extends: _Design, id: 921022, name: evo_design_revelation_tree, icon: Icon_Items.recipeweapon_lance_Tex }
+    - { $extends: _Design, id: 921023, name: evo_design_incisive_greatsword, icon: Icon_Items.recipeweapon_twohand_Tex }
+    - { $extends: _Design, id: 921024, name: evo_design_axe_of_manifesto, icon: Icon_Items.recipeweapon_axe_Tex }
+    - { $extends: _Design, id: 921025, name: evo_design_darkseeing_lens, icon: Icon_Items.recipeweapon_circle_Tex }
+    - { $extends: _Design, id: 921026, name: evo_design_revealing_arc, icon: Icon_Items.recipeweapon_bow_Tex }
+    - { $extends: _Design, id: 921027, name: evo_design_praesto_staff, icon: Icon_Items.recipeweapon_staff_Tex }
+    - { $extends: _Design, id: 921028, name: evo_design_rod_of_revelation, icon: Icon_Items.recipeweapon_rod_Tex }
+    - { $extends: _Design, id: 921029, name: evo_design_see_shooter, icon: Icon_Items.recipeweapon_blaster_Tex }
+    - { $extends: _Design, id: 921030, name: evo_design_feather_dusters, icon: Icon_Items.recipeweapon_gauntlet_Tex }
+    - { $extends: _Design, id: 921031, name: evo_design_tattlebriar, icon: Icon_Items.recipeweapon_shuriken_Tex }
+    - { $extends: _Design, id: 921032, name: evo_design_reconglaive, icon: Icon_Items.recipeweapon_glaiver_Tex }
+    - { $extends: _Design, id: 921033, name: evo_design_outriders_chestpiece, icon: Icon_Items.recipearmor_bodymail_Tex }
+    - { $extends: _Design, id: 921034, name: evo_design_demonslayer_fists, icon: Icon_Items.recipearmor_handmail_Tex }
+    - { $extends: _Design, id: 921035, name: evo_design_decurions_greaves, icon: Icon_Items.recipearmor_feetmail_Tex }
+    - { $extends: _Design, id: 921036, name: evo_design_sentrys_jerkin, icon: Icon_Items.recipearmor_bodyleather_Tex }
+    - { $extends: _Design, id: 921037, name: evo_design_demonslayer_mitts, icon: Icon_Items.recipearmor_handleather_Tex }
+    - { $extends: _Design, id: 921038, name: evo_design_decurions_boots, icon: Icon_Items.recipearmor_feetleather_Tex }
+    - { $extends: _Design, id: 921039, name: evo_design_outriders_robes, icon: Icon_Items.recipearmor_bodyrobe_Tex }
+    - { $extends: _Design, id: 921040, name: evo_design_demonslayer_handwraps, icon: Icon_Items.recipearmor_handrobe_Tex }
+    - { $extends: _Design, id: 921041, name: evo_design_decurions_shoes, icon: Icon_Items.recipearmor_feetrobe_Tex }
+
+itemStrings:
+  upsert:
+    - { id: 921021, name: "Design: Disclose & Divulge", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921022, name: "Design: Revelation Tree", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921023, name: "Design: Incisive Greatsword", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921024, name: "Design: Axe of Manifesto", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921025, name: "Design: Darkseeing Lens", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921026, name: "Design: Revealing Arc", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921027, name: "Design: Praesto Staff", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921028, name: "Design: Rod of Revelation", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921029, name: "Design: See Shooter", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921030, name: "Design: Feather Dusters", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921031, name: "Design: Tattlebriar", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921032, name: "Design: Reconglaive", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921033, name: "Design: Outrider's Chestpiece", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921034, name: "Design: Demonslayer Fists", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921035, name: "Design: Decurion's Greaves", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921036, name: "Design: Sentry's Jerkin", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921037, name: "Design: Demonslayer Mitts", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921038, name: "Design: Decurion's Boots", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921039, name: "Design: Outrider's Robes", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921040, name: "Design: Demonslayer Handwraps", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921041, name: "Design: Decurion's Shoes", toolTip: "Use this design to learn the corresponding crafting skill." }

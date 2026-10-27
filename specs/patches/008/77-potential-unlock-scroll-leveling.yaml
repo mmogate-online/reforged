@@ -1,0 +1,28 @@
+# The Potential Unlock Scroll is the one unlock item for every leveling tier, sold by the
+# general merchant: it always succeeds and it trades. The success chance lives on the token's
+# inheritance entry, not on the item, so the entry's probability changes and its pairs stay.
+# A gold store charges the item's own buyPrice.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  update:
+    - id: 90
+      changes:
+        buyPrice: 500000
+        tradable: true
+
+itemStrings:
+  update:
+    - id: 90
+      changes:
+        toolTip: "Use on eligible equipment to unlock its full potential.$BR$BR<font color = '#41FF3A'>Always succeeds.</font>$BRUnlocked gear gains access to an alternate upgrade path."
+
+equipmentInheritance:
+  update:
+    - templateId: 90
+      changes:
+        probability: 1.0
