@@ -1,0 +1,83 @@
+# Service icons for the crafting route's sellers: the round icon over a villager's nameplate.
+#
+# The chain is VillagerMenu guideEffectId -> GuideEffect row -> its condition's EffectData row ->
+# that row's particle system. The particle systems live in the client package
+# FX_J_Hotfix_151231, so these rows show nothing on a client without that package's additions.
+# Each row copies a shipped service icon (GuideEffect 102, EffectData 7406) and changes only its
+# id and what it points at. The villagerMenus rows that set guideEffectId stay in the specs that
+# own those villagers.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+effectData:
+  upsert:
+    # Design Merchant
+    - id: 7429
+      type: casting
+      scale: 0.55
+      posX: 0
+      posY: 0
+      posZ: 0
+      rotX: 0
+      rotY: 0
+      rotZ: 0
+      startTime: 0
+      bGround: false
+      boneName: S1TitlePlateController
+      detach: false
+      playRate: 1
+      rescaleMethod: fixed
+      resource: FX_J_Hotfix_151231.PS.RF_NpcIcon01_PS
+      scaleX: 1
+      scaleY: 1
+      scaleZ: 1
+      bNamePlateBased: true
+      worldSpawn: false
+    # Blacksmith
+    - id: 7433
+      type: casting
+      scale: 0.55
+      posX: 0
+      posY: 0
+      posZ: 0
+      rotX: 0
+      rotY: 0
+      rotZ: 0
+      startTime: 0
+      bGround: false
+      boneName: S1TitlePlateController
+      detach: false
+      playRate: 1
+      rescaleMethod: fixed
+      resource: FX_J_Hotfix_151231.PS.RF_NpcIcon02_PS
+      scaleX: 1
+      scaleY: 1
+      scaleZ: 1
+      bNamePlateBased: true
+      worldSpawn: false
+
+guideEffects:
+  upsert:
+    # Design Merchant
+    - id: 118
+      type: Villager
+      distFromObject: 100
+      notCareOption: true
+      conditions:
+        - effectId: 7429
+          condition: Default
+          cameraOriented: false
+          relatePos: [0, 0, 30]
+    # Blacksmith
+    - id: 119
+      type: Villager
+      distFromObject: 100
+      notCareOption: true
+      conditions:
+        - effectId: 7433
+          condition: Default
+          cameraOriented: false
+          relatePos: [0, 0, 30]
