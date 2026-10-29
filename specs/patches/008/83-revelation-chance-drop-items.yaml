@@ -1,0 +1,134 @@
+# Revelation drop route: the pieces inside each bag the previous spec appends, every piece of
+# the slot equally likely. A bag and its items cannot be added in one entry, because the bag
+# must exist before an item is selected into it. Shares are written to the datasheet's 1e-8
+# resolution with the remainder on the last item, so each bag sums to exactly 1.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: 5
+      changes:
+        updateItemBags:
+          - id: 103
+            bagName: "revelation-drop-weapon"
+            expect: 1
+            addItems:
+              - { templateId: 10593, name: "Disclose & Divulge", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10594, name: "Revelation Tree", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10595, name: "Incisive Greatsword", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10596, name: "Axe of Manifesto", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10597, name: "Darkseeing Lens", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10598, name: "Revealing Arc", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10599, name: "Praesto Staff", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10600, name: "Rod of Revelation", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 55079, name: "See Shooter", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 58245, name: "Tattlebriar", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 59127, name: "Reconglaive", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 82079, name: "Feather Dusters", min: 1, max: 1, probability: 0.08333337 }
+          - id: 104
+            bagName: "revelation-drop-body"
+            expect: 1
+            addItems:
+              - { templateId: 15667, name: "Outrider's Chestpiece", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15670, name: "Sentry's Jerkin", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15673, name: "Outrider's Robes", min: 1, max: 1, probability: 0.33333334 }
+          - id: 105
+            bagName: "revelation-drop-hand"
+            expect: 1
+            addItems:
+              - { templateId: 15668, name: "Demonslayer Fists", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15671, name: "Demonslayer Mitts", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15674, name: "Demonslayer Handwraps", min: 1, max: 1, probability: 0.33333334 }
+          - id: 106
+            bagName: "revelation-drop-feet"
+            expect: 1
+            addItems:
+              - { templateId: 15669, name: "Decurion's Greaves", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15672, name: "Decurion's Boots", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15675, name: "Decurion's Shoes", min: 1, max: 1, probability: 0.33333334 }
+    - huntingZoneId: 2
+      npcTemplateId: 6
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "revelation-drop-weapon"
+            expect: 1
+            addItems:
+              - { templateId: 10593, name: "Disclose & Divulge", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10594, name: "Revelation Tree", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10595, name: "Incisive Greatsword", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10596, name: "Axe of Manifesto", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10597, name: "Darkseeing Lens", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10598, name: "Revealing Arc", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10599, name: "Praesto Staff", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10600, name: "Rod of Revelation", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 55079, name: "See Shooter", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 58245, name: "Tattlebriar", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 59127, name: "Reconglaive", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 82079, name: "Feather Dusters", min: 1, max: 1, probability: 0.08333337 }
+          - id: 103
+            bagName: "revelation-drop-body"
+            expect: 1
+            addItems:
+              - { templateId: 15667, name: "Outrider's Chestpiece", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15670, name: "Sentry's Jerkin", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15673, name: "Outrider's Robes", min: 1, max: 1, probability: 0.33333334 }
+          - id: 104
+            bagName: "revelation-drop-hand"
+            expect: 1
+            addItems:
+              - { templateId: 15668, name: "Demonslayer Fists", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15671, name: "Demonslayer Mitts", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15674, name: "Demonslayer Handwraps", min: 1, max: 1, probability: 0.33333334 }
+          - id: 105
+            bagName: "revelation-drop-feet"
+            expect: 1
+            addItems:
+              - { templateId: 15669, name: "Decurion's Greaves", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15672, name: "Decurion's Boots", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15675, name: "Decurion's Shoes", min: 1, max: 1, probability: 0.33333334 }
+    - huntingZoneId: 2
+      npcTemplateId: 56
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "revelation-drop-weapon"
+            expect: 1
+            addItems:
+              - { templateId: 10593, name: "Disclose & Divulge", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10594, name: "Revelation Tree", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10595, name: "Incisive Greatsword", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10596, name: "Axe of Manifesto", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10597, name: "Darkseeing Lens", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10598, name: "Revealing Arc", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10599, name: "Praesto Staff", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 10600, name: "Rod of Revelation", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 55079, name: "See Shooter", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 58245, name: "Tattlebriar", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 59127, name: "Reconglaive", min: 1, max: 1, probability: 0.08333333 }
+              - { templateId: 82079, name: "Feather Dusters", min: 1, max: 1, probability: 0.08333337 }
+          - id: 103
+            bagName: "revelation-drop-body"
+            expect: 1
+            addItems:
+              - { templateId: 15667, name: "Outrider's Chestpiece", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15670, name: "Sentry's Jerkin", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15673, name: "Outrider's Robes", min: 1, max: 1, probability: 0.33333334 }
+          - id: 104
+            bagName: "revelation-drop-hand"
+            expect: 1
+            addItems:
+              - { templateId: 15668, name: "Demonslayer Fists", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15671, name: "Demonslayer Mitts", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15674, name: "Demonslayer Handwraps", min: 1, max: 1, probability: 0.33333334 }
+          - id: 105
+            bagName: "revelation-drop-feet"
+            expect: 1
+            addItems:
+              - { templateId: 15669, name: "Decurion's Greaves", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15672, name: "Decurion's Boots", min: 1, max: 1, probability: 0.33333333 }
+              - { templateId: 15675, name: "Decurion's Shoes", min: 1, max: 1, probability: 0.33333334 }

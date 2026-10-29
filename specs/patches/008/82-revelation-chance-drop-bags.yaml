@@ -1,0 +1,81 @@
+# Revelation drop route: each chance mob of the Fey Forest gains one bag per gear slot,
+# each rolled once per kill at the slot's own chance. The rows already repeat bag ids, so each
+# new bag carries a name of its own for the next spec to select it by. A mob that has no loot
+# row at all gets its whole row here, bags filled in place, since an update matches nothing.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: 5
+      changes:
+        addItemBags:
+          - { id: 103, bagName: "revelation-drop-weapon", probability: 0.00539523 }
+          - { id: 104, bagName: "revelation-drop-body", probability: 0.00179841 }
+          - { id: 105, bagName: "revelation-drop-hand", probability: 0.00269762 }
+          - { id: 106, bagName: "revelation-drop-feet", probability: 0.00269762 }
+    - huntingZoneId: 2
+      npcTemplateId: 6
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "revelation-drop-weapon", probability: 0.00438882 }
+          - { id: 103, bagName: "revelation-drop-body", probability: 0.00146294 }
+          - { id: 104, bagName: "revelation-drop-hand", probability: 0.00219441 }
+          - { id: 105, bagName: "revelation-drop-feet", probability: 0.00219441 }
+    - huntingZoneId: 2
+      npcTemplateId: 56
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "revelation-drop-weapon", probability: 0.005701 }
+          - { id: 103, bagName: "revelation-drop-body", probability: 0.00190033 }
+          - { id: 104, bagName: "revelation-drop-hand", probability: 0.0028505 }
+          - { id: 105, bagName: "revelation-drop-feet", probability: 0.0028505 }
+  upsert:
+    - huntingZoneId: 2
+      npcTemplateId: 206
+      npcName: "Seravy"
+      itemBags:
+        - id: 101
+          bagName: "revelation-drop-weapon"
+          probability: 0.00756575
+          equalProbability: true
+          items:
+            - { templateId: 10593, name: "Disclose & Divulge", min: 1, max: 1 }
+            - { templateId: 10594, name: "Revelation Tree", min: 1, max: 1 }
+            - { templateId: 10595, name: "Incisive Greatsword", min: 1, max: 1 }
+            - { templateId: 10596, name: "Axe of Manifesto", min: 1, max: 1 }
+            - { templateId: 10597, name: "Darkseeing Lens", min: 1, max: 1 }
+            - { templateId: 10598, name: "Revealing Arc", min: 1, max: 1 }
+            - { templateId: 10599, name: "Praesto Staff", min: 1, max: 1 }
+            - { templateId: 10600, name: "Rod of Revelation", min: 1, max: 1 }
+            - { templateId: 55079, name: "See Shooter", min: 1, max: 1 }
+            - { templateId: 58245, name: "Tattlebriar", min: 1, max: 1 }
+            - { templateId: 59127, name: "Reconglaive", min: 1, max: 1 }
+            - { templateId: 82079, name: "Feather Dusters", min: 1, max: 1 }
+        - id: 102
+          bagName: "revelation-drop-body"
+          probability: 0.00252192
+          equalProbability: true
+          items:
+            - { templateId: 15667, name: "Outrider's Chestpiece", min: 1, max: 1 }
+            - { templateId: 15670, name: "Sentry's Jerkin", min: 1, max: 1 }
+            - { templateId: 15673, name: "Outrider's Robes", min: 1, max: 1 }
+        - id: 103
+          bagName: "revelation-drop-hand"
+          probability: 0.00378288
+          equalProbability: true
+          items:
+            - { templateId: 15668, name: "Demonslayer Fists", min: 1, max: 1 }
+            - { templateId: 15671, name: "Demonslayer Mitts", min: 1, max: 1 }
+            - { templateId: 15674, name: "Demonslayer Handwraps", min: 1, max: 1 }
+        - id: 104
+          bagName: "revelation-drop-feet"
+          probability: 0.00378288
+          equalProbability: true
+          items:
+            - { templateId: 15669, name: "Decurion's Greaves", min: 1, max: 1 }
+            - { templateId: 15672, name: "Decurion's Boots", min: 1, max: 1 }
+            - { templateId: 15675, name: "Decurion's Shoes", min: 1, max: 1 }
