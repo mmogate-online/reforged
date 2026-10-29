@@ -1,0 +1,72 @@
+# Fey Forest: Garash Bloodtusk and Tradon become frequent rare spawns.
+#
+# Each keeps its one classic position and its one-member party. The respawn keeps the
+# classic shape, a base plus a random addition of half the base: Garash returns in 24 to
+# 36 minutes, Tradon in 48 to 72. The party carries its own respawn pair, and both the
+# party and its member must change, or the slower one wins. Values are milliseconds.
+#
+# Health is ten times the current value, so each is a clear step above the field
+# monsters around it; attack is unchanged.
+#
+# TRAP: `multiply` is a delta from the file's current values. It is safe under a
+# whole-patch migrate, which reads the committed baseline; a bare single-spec apply
+# against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - FF_GARASH_BLOODTUSK
+        - FF_TRADON
+
+balanceProfiles:
+  - name: FeyForestRareBosses
+    npcFilter:
+      huntingZoneId: 2
+      id:
+        - $FF_GARASH_BLOODTUSK
+        - $FF_TRADON
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+
+territoryParties:
+  update:
+    - huntingZoneId: 2
+      groupId: 200014
+      territoryId: 200722
+      partyId: 200272
+      changes:
+        partyRespawnTime: 1440000
+        partyRespawnRandomTime: 720000
+    - huntingZoneId: 2
+      groupId: 200014
+      territoryId: 200723
+      partyId: 200273
+      changes:
+        partyRespawnTime: 2880000
+        partyRespawnRandomTime: 1440000
+
+territorySpawns:
+  update:
+    - huntingZoneId: 2
+      groupId: 200014
+      territoryId: 200722
+      partyId: 200272
+      npcInstanceId: 203080
+      changes:
+        respawnTime: 1440000
+        respawnRandomTime: "720000"
+    - huntingZoneId: 2
+      groupId: 200014
+      territoryId: 200723
+      partyId: 200273
+      npcInstanceId: 203081
+      changes:
+        respawnTime: 2880000
+        respawnRandomTime: "1440000"

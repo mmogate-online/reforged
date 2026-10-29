@@ -1,7 +1,9 @@
-# Revelation drop route: each chance mob of the Fey Forest gains one bag per gear slot,
-# each rolled once per kill at the slot's own chance. The rows already repeat bag ids, so each
-# new bag carries a name of its own for the next spec to select it by. A mob that has no loot
-# row at all gets its whole row here, bags filled in place, since an update matches nothing.
+# Revelation drop route. Each chance mob of the Fey Forest gains one bag per gear slot, rolled
+# once per kill at the slot's own chance. Each rare boss gains three bags of its whole pool,
+# rolled once per kill at 1, 0.5 and 0.25, so every kill pays at least one piece. The rows
+# already repeat bag ids, so each new bag carries a name of its own for the next spec to select
+# it by. A mob that has no loot row at all gets its whole row here, bags filled in place, since
+# an update matches nothing.
 # provenance: policy
 spec:
   version: "1.0"
@@ -33,6 +35,20 @@ eCompensations:
           - { id: 103, bagName: "revelation-drop-body", probability: 0.00190033 }
           - { id: 104, bagName: "revelation-drop-hand", probability: 0.0028505 }
           - { id: 105, bagName: "revelation-drop-feet", probability: 0.0028505 }
+    - huntingZoneId: 2
+      npcTemplateId: 507
+      changes:
+        addItemBags:
+          - { id: 103, bagName: "revelation-armor-1", probability: 1.0 }
+          - { id: 104, bagName: "revelation-armor-2", probability: 0.5 }
+          - { id: 105, bagName: "revelation-armor-3", probability: 0.25 }
+    - huntingZoneId: 2
+      npcTemplateId: 510
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "revelation-weapon-1", probability: 1.0 }
+          - { id: 103, bagName: "revelation-weapon-2", probability: 0.5 }
+          - { id: 104, bagName: "revelation-weapon-3", probability: 0.25 }
   upsert:
     - huntingZoneId: 2
       npcTemplateId: 206
