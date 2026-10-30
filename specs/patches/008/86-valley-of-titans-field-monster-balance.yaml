@@ -1,0 +1,103 @@
+# Valley of Titans (zone 6): raise the field monsters' maxHp x5 and atk x5 over their current
+# values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
+# as the Oblivion Woods rescale does for the zone before it.
+#
+# Scope: the zone's spawned field monsters take both. Its named monsters take maxHp x5 only:
+# their attack was already authored at or above the rescaled field monsters'. The three
+# twelve-hour bosses of the Arakia party, the Arcadia guards and the villagers are left out.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - VT_GRAZING_NORUK
+        - VT_STOMPING_NORUK
+        - VT_RAVENOUS_HYENA
+        - VT_STARVING_HYENA
+        - VT_GUTREND_KULKARI
+        - VT_GUTREND_HYENA_1
+        - VT_GUTREND_CLAWTAMER
+        - VT_GUTREND_HYENA_2
+        - VT_GUTREND_BRIGAND
+        - VT_GUTREND_PILLAGER
+        - VT_GUTREND_RAIDER
+        - VT_GUTREND_SKULLCRUSHER
+        - VT_HYENA_STALKER
+        - VT_HILLWALKER_WARTHOG
+        - VT_GREAT_TUSK_WARTHOG
+        - VT_SCAVENGING_BEAR
+        - VT_RAVENOUS_BEAR
+        - VT_GUTREND_REAPER
+        - VT_GUTREND_SENTRY
+        - VT_GUTREND_SEER
+        - VT_GUTREND_JUGGERNAUT
+        - VT_SCION_JUSTICAR
+        - VT_LOKIAN_BATTLERAGER
+        - VT_LOKIAN_REAVER
+        - VT_LOKIAN_MYSTIC
+        - VT_LOKIAN_DARKCALLER
+        - VT_LOKIAN_REAPMASTER
+        - VT_KRASHAR
+        - VT_LAKRAX
+        - VT_TORAX
+        - VT_DAKARIUS
+        - VT_SMULCH
+
+balanceProfiles:
+  - name: ValleyOfTitansFieldMonsters
+    npcFilter:
+      huntingZoneId: 6
+      id:
+        - $VT_GRAZING_NORUK
+        - $VT_STOMPING_NORUK
+        - $VT_RAVENOUS_HYENA
+        - $VT_STARVING_HYENA
+        - $VT_GUTREND_KULKARI
+        - $VT_GUTREND_HYENA_1
+        - $VT_GUTREND_CLAWTAMER
+        - $VT_GUTREND_HYENA_2
+        - $VT_GUTREND_BRIGAND
+        - $VT_GUTREND_PILLAGER
+        - $VT_GUTREND_RAIDER
+        - $VT_GUTREND_SKULLCRUSHER
+        - $VT_HYENA_STALKER
+        - $VT_HILLWALKER_WARTHOG
+        - $VT_GREAT_TUSK_WARTHOG
+        - $VT_SCAVENGING_BEAR
+        - $VT_RAVENOUS_BEAR
+        - $VT_GUTREND_REAPER
+        - $VT_GUTREND_SENTRY
+        - $VT_GUTREND_SEER
+        - $VT_GUTREND_JUGGERNAUT
+        - $VT_SCION_JUSTICAR
+        - $VT_LOKIAN_BATTLERAGER
+        - $VT_LOKIAN_REAVER
+        - $VT_LOKIAN_MYSTIC
+        - $VT_LOKIAN_DARKCALLER
+        - $VT_LOKIAN_REAPMASTER
+    npc:
+      stat:
+        maxHp: { multiply: 5 }
+        atk:   { multiply: 5 }
+
+  - name: ValleyOfTitansNamedMonsters
+    npcFilter:
+      huntingZoneId: 6
+      id:
+        - $VT_KRASHAR
+        - $VT_LAKRAX
+        - $VT_TORAX
+        - $VT_DAKARIUS
+        - $VT_SMULCH
+    npc:
+      stat:
+        maxHp: { multiply: 5 }

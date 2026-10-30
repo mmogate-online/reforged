@@ -1,0 +1,100 @@
+# Oblivion Woods (zone 3): raise the field monsters' maxHp x5 and atk x5 over their current
+# values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
+# as the Fey Forest rescale does for the zone before it.
+#
+# Scope: the zone's spawned field monsters take both. Its named and quest monsters take maxHp x5
+# only: their attack was already authored at or above the rescaled field monsters'. The two
+# hour-respawn bosses, the basilisk, the camp guards, the villagers and the ambient creature are
+# left out.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - OW_STONEBEAK_SCAVENGER
+        - OW_AGITATED_SPOREWALKER
+        - OW_MOSSY_GHILLIEDHU
+        - OW_REAVER_OF_RESURRECTION
+        - OW_EBONHEART_SORCERER
+        - OW_FALLEN_DEFENDER
+        - OW_DEVAN_ROBBER
+        - OW_DEVAN_SCRAPPER
+        - OW_DEVAN_BRIGAND
+        - OW_AGGRAVATED_SPOREWALKER
+        - OW_STONEBEAK_SOLDIER
+        - OW_STONEBEAK_FIGHTER
+        - OW_DEVAN_BANDIT
+        - OW_DEVAN_BLADEMASTER
+        - OW_DEVAN_WARRIOR
+        - OW_DEVAN_ARCANIST
+        - OW_DEVAN_CHANTER
+        - OW_FURIOUS_DRAGOON
+        - OW_FALLEN_SOLDIER
+        - OW_GRAYAL
+        - OW_SKELETAL_RETAINER
+        - OW_SKELETAL_SOLDIER
+        - OW_DAKANIUS
+        - OW_DEVAN_ARCHPRIEST
+        - OW_DEVAN_WARLORD
+        - OW_DARK_MAIDEN
+        - OW_KULSILVA
+        - OW_DAKANIUSS_GUARD_1
+        - OW_DAKANIUSS_GUARD_2
+        - OW_DEVAN_WATCHER
+
+balanceProfiles:
+  - name: OblivionWoodsFieldMonsters
+    npcFilter:
+      huntingZoneId: 3
+      id:
+        - $OW_STONEBEAK_SCAVENGER
+        - $OW_AGITATED_SPOREWALKER
+        - $OW_MOSSY_GHILLIEDHU
+        - $OW_REAVER_OF_RESURRECTION
+        - $OW_EBONHEART_SORCERER
+        - $OW_FALLEN_DEFENDER
+        - $OW_DEVAN_ROBBER
+        - $OW_DEVAN_SCRAPPER
+        - $OW_DEVAN_BRIGAND
+        - $OW_AGGRAVATED_SPOREWALKER
+        - $OW_STONEBEAK_SOLDIER
+        - $OW_STONEBEAK_FIGHTER
+        - $OW_DEVAN_BANDIT
+        - $OW_DEVAN_BLADEMASTER
+        - $OW_DEVAN_WARRIOR
+        - $OW_DEVAN_ARCANIST
+        - $OW_DEVAN_CHANTER
+        - $OW_FURIOUS_DRAGOON
+        - $OW_FALLEN_SOLDIER
+    npc:
+      stat:
+        maxHp: { multiply: 5 }
+        atk:   { multiply: 5 }
+
+  - name: OblivionWoodsNamedMonsters
+    npcFilter:
+      huntingZoneId: 3
+      id:
+        - $OW_GRAYAL
+        - $OW_SKELETAL_RETAINER
+        - $OW_SKELETAL_SOLDIER
+        - $OW_DAKANIUS
+        - $OW_DEVAN_ARCHPRIEST
+        - $OW_DEVAN_WARLORD
+        - $OW_DARK_MAIDEN
+        - $OW_KULSILVA
+        - $OW_DAKANIUSS_GUARD_1
+        - $OW_DAKANIUSS_GUARD_2
+        - $OW_DEVAN_WATCHER
+    npc:
+      stat:
+        maxHp: { multiply: 5 }
