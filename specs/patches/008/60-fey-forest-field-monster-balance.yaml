@@ -1,0 +1,100 @@
+# Fey Forest (zone 2): raise the field monsters' maxHp x5 and atk x5 over their current values,
+# so that combat in the zone keeps pace with the gear formula's lift on player equipment, as the
+# Island of Dawn rescale does for its own zone.
+#
+# Scope: the zone's spawned field monsters take both. Its named and quest monsters take maxHp x5
+# only: their attack was already authored at or above the rescaled field monsters'. The two
+# free-roaming named bosses keep their own hand-set values, and villagers and the ambient creature
+# are left out.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - FF_REDCAP
+        - FF_FURIOUS_FAERIE
+        - FF_CENTAUR
+        - FF_SLINKING_SABERTOOTH
+        - FF_HULKING_SABERTOOTH
+        - FF_SULLEN_UNICORN
+        - FF_WARTHOG_BRUTE
+        - FF_HOGLING
+        - FF_MERCILESS_JALMARAK
+        - FF_CENTAUR_INSURGENT
+        - FF_LUMBERING_SPOREWALKER
+        - FF_FEISTY_TERRON
+        - FF_BLOATED_SPOREWALKER
+        - FF_TERRON_LUNATIC
+        - FF_SABERTOOTH
+        - FF_FAERIE_VIGILANTE
+        - FF_FERAL_UNICORN
+        - FF_LONG_TUSK_WARTHOG
+        - FF_ARMORED_HOGLING
+        - FF_RUNAWAY_PIGLING
+        - FF_FAERIE_REBEL
+        - FF_FAERIE_RENEGADE
+        - FF_FAERIE_INSURGENT
+        - FF_DARK_SORCERER
+        - FF_CRUEL_SORCERER_1
+        - FF_FAERIE_GUARDIANS
+        - FF_LIKHAN
+        - FF_SERAVY
+        - FF_GARKIOR
+        - FF_CRUEL_SORCERER_2
+
+balanceProfiles:
+  - name: FeyForestFieldMonsters
+    npcFilter:
+      huntingZoneId: 2
+      id:
+        - $FF_REDCAP
+        - $FF_FURIOUS_FAERIE
+        - $FF_CENTAUR
+        - $FF_SLINKING_SABERTOOTH
+        - $FF_HULKING_SABERTOOTH
+        - $FF_SULLEN_UNICORN
+        - $FF_WARTHOG_BRUTE
+        - $FF_HOGLING
+        - $FF_MERCILESS_JALMARAK
+        - $FF_CENTAUR_INSURGENT
+        - $FF_LUMBERING_SPOREWALKER
+        - $FF_FEISTY_TERRON
+        - $FF_BLOATED_SPOREWALKER
+        - $FF_TERRON_LUNATIC
+        - $FF_SABERTOOTH
+        - $FF_FAERIE_VIGILANTE
+        - $FF_FERAL_UNICORN
+        - $FF_LONG_TUSK_WARTHOG
+        - $FF_ARMORED_HOGLING
+        - $FF_RUNAWAY_PIGLING
+        - $FF_FAERIE_REBEL
+        - $FF_FAERIE_RENEGADE
+        - $FF_FAERIE_INSURGENT
+        - $FF_DARK_SORCERER
+        - $FF_CRUEL_SORCERER_1
+    npc:
+      stat:
+        maxHp: { multiply: 5 }
+        atk:   { multiply: 5 }
+
+  - name: FeyForestNamedMonsters
+    npcFilter:
+      huntingZoneId: 2
+      id:
+        - $FF_FAERIE_GUARDIANS
+        - $FF_LIKHAN
+        - $FF_SERAVY
+        - $FF_GARKIOR
+        - $FF_CRUEL_SORCERER_2
+    npc:
+      stat:
+        maxHp: { multiply: 5 }
