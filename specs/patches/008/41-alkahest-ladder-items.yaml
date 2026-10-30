@@ -1,0 +1,144 @@
+# Alkahest ladder items: the four alkahest powders, the seven Alchemy formulas, and dismantling.
+#
+# Every alkahest but Premium dismantles into the powder of its own tier, and three powders of a
+# tier brew two alkahest of the next. Dismantling needs both dismantlable and a decompositionId,
+# and the client renders a dismantle line from the decompositionId alone, so Premium loses its
+# link rather than keep a line it cannot honour. Extensive and Premium live in regional item
+# files; an item update finds a row in whichever file holds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _Powder:
+    level: 1
+    rareGrade: 1
+    combatItemType: NO_COMBAT
+    combatItemSubType: alchemyMaterial
+    category: alchemyMaterial
+    requiredLevel: 1
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10000
+    maxDropUnit: 9999
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+
+  _Formula:
+    level: 11
+    rareGrade: 1
+    combatItemType: RECIPE
+    combatItemSubType: combatRecipe
+    category: recipe
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    icon: Icon_Items.scroll_alchemy_powder_Tex
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+
+items:
+  upsert:
+    # Powders, tier 1 to 4
+    - { $extends: _Powder, id: 602203, name: alkahest_powder_1, icon: Icon_Items.magicpowder1_Tex, buyPrice: 100, sellPrice: 10 }
+    - { $extends: _Powder, id: 602204, name: alkahest_powder_2, icon: Icon_Items.magicpowder2_Tex, buyPrice: 200, sellPrice: 20 }
+    - { $extends: _Powder, id: 602205, name: alkahest_powder_3, icon: Icon_Items.magicpowder3_Tex, buyPrice: 300, sellPrice: 30 }
+    - { $extends: _Powder, id: 602206, name: alkahest_powder_4, icon: Icon_Items.magicpowder4_Tex, buyPrice: 400, sellPrice: 40 }
+    # Ladder formulas: Refined, Masterwork, Extensive, Premium Alkahest
+    - { $extends: _Formula, id: 602207, name: alkahest_formula_2, buyPrice: 1000, sellPrice: 100 }
+    - { $extends: _Formula, id: 602208, name: alkahest_formula_3, buyPrice: 5000, sellPrice: 500 }
+    - { $extends: _Formula, id: 602209, name: alkahest_formula_4, buyPrice: 20000, sellPrice: 2000 }
+    - { $extends: _Formula, id: 602210, name: alkahest_formula_5, buyPrice: 50000, sellPrice: 5000 }
+    # Refining formulas: powders of tier 2, 3, 4
+    - { $extends: _Formula, id: 602211, name: alkahest_refining_2, buyPrice: 2000, sellPrice: 200 }
+    - { $extends: _Formula, id: 602212, name: alkahest_refining_3, buyPrice: 8000, sellPrice: 800 }
+    - { $extends: _Formula, id: 602213, name: alkahest_refining_4, buyPrice: 30000, sellPrice: 3000 }
+
+  update:
+    # A dropped Alkahest must not be a gold source, and Refined Alkahest is sold at a markup and
+    # sells back for less than the materials that brew it.
+    # Alkahest drops as the powder pouch the other tiers use, not as a scroll.
+    - id: 15
+      changes: { sellPrice: 20, dismantlable: true, decompositionId: 15, dropSilhouette: "DropItem.SM.Item_Drop_Chest_SM" }
+    - id: 446
+      changes: { buyPrice: 5000, sellPrice: 100, dismantlable: true, decompositionId: 446 }
+    - id: 21351
+      changes: { dismantlable: true, decompositionId: 21351 }
+    - id: 70102
+      changes: { dismantlable: true, decompositionId: 70102 }
+    - id: 180859
+      changes:
+        default: [decompositionId]
+
+decompositions:
+  upsert:
+    - { id: 15, fixedOutputs: [{ enchantStep: 0, outputs: [{ templateId: 602203, amount: 1 }] }] }
+    - { id: 446, fixedOutputs: [{ enchantStep: 0, outputs: [{ templateId: 602204, amount: 1 }] }] }
+    - { id: 21351, fixedOutputs: [{ enchantStep: 0, outputs: [{ templateId: 602205, amount: 1 }] }] }
+    - { id: 70102, fixedOutputs: [{ enchantStep: 0, outputs: [{ templateId: 602206, amount: 1 }] }] }
+  delete: [180859]
+
+itemStrings:
+  upsert:
+    - id: 602203
+      name: "Alkahest Powder"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Dismantled from Alkahest. Alchemists brew three of it with an Apprentice Alchemical Kit into two Refined Alkahest."
+    - id: 602204
+      name: "Refined Alkahest Powder"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Dismantled from Refined Alkahest, or refined by alchemists from ore, fibers and essence. Three of it with a Journeyman Alchemical Kit brew two Masterwork Alkahest."
+    - id: 602205
+      name: "Masterwork Alkahest Powder"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Dismantled from Masterwork Alkahest, or refined by alchemists from ore, fibers and essence. Three of it with a Professional Alchemical Kit brew two Extensive Alkahest."
+    - id: 602206
+      name: "Extensive Alkahest Powder"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Dismantled from Extensive Alkahest, or refined by alchemists from ore, fibers and essence. Three of it with a Classical Alchemical Kit brew two Premium Alkahest."
+    - { id: 602207, name: "Recipe: Refined Alkahest", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 602208, name: "Recipe: Masterwork Alkahest", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 602209, name: "Recipe: Extensive Alkahest", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 602210, name: "Recipe: Premium Alkahest", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 602211, name: "Recipe: Refined Alkahest Powder", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 602212, name: "Recipe: Masterwork Alkahest Powder", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 602213, name: "Recipe: Extensive Alkahest Powder", toolTip: "Use this design to learn the corresponding crafting skill." }
+  update:
+    - id: 602202
+      changes:
+        toolTip: "A sealed supply cache the Valkyon Federation issues to volunteers of the alpha expedition, packed by a quartermaster with no eye for matching sets.$BR$BR<font color = '#2478FF'>Opens for one reward: a head accessory, a body costume, alkahest, an infusion cache or a crystal cache.</font>$BR<font color = '#FF0000'>Everything drawn from this cache belongs to the alpha expedition alone and does not carry into the launch build.</font>"

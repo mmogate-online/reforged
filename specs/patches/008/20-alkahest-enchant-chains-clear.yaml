@@ -1,0 +1,24 @@
+# Alkahest ladder: clear the enchant chains the next spec rebuilds.
+#
+# An upsert of an existing chain merges its materials by id instead of replacing them, so
+# rebuilding a chain over its old self would list both the old alkahest and the new one. Deleting
+# the chains first leaves the next spec writing each one whole. The ids are every chain the enchant
+# generator owns; nothing else writes MaterialEnchantData.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+materialEnchants:
+  delete: [
+    20001, 20002, 20101, 20102, 21002, 21102, 22002, 22003, 22102, 22103,
+    23003, 23004, 23005, 23006, 23007, 23008, 23009, 23010, 23011, 23012,
+    23013, 23014, 23015, 23016, 23017, 23018, 23019, 23020, 23021, 23022,
+    23103, 23104, 23105, 23106, 23107, 23108, 23109, 23110, 23111, 23112,
+    23113, 23114, 23115, 23116, 23117, 23118, 23119, 23120, 23121, 23122,
+    30001, 30002, 30101, 30102, 31002, 31102, 32002, 32003, 32102, 32103,
+    33003, 33004, 33005, 33006, 33007, 33008, 33009, 33010, 33011, 33012,
+    33013, 33014, 33015, 33016, 33017, 33018, 33019, 33020, 33021, 33022,
+    33103, 33104, 33105, 33106, 33107, 33108, 33109, 33110, 33111, 33112,
+    33113, 33114, 33115, 33116, 33117, 33118, 33119, 33120, 33121, 33122
+  ]

@@ -1,0 +1,19 @@
+# Alkahest ladder recipes, on Alchemy. Three powders of a tier and one Alchemical Kit brew two
+# alkahest of the next tier, one kit rank per hundred points of proficiency, as the classic
+# dust-and-kit recipes do. The refining recipes turn gathered ore, fibers and essence into the
+# powders above the first, so the upper tiers can be brewed without dismantling anything. A
+# recipe's id equals the id of the formula item that teaches it.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+itemProduceRecipes:
+  upsert:
+    - { id: 602207, recipeItemId: 602207, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.05, exp: 95, categoryId: 3301, subFatiguePoint: 10, addOnSuccessProf: 4, result: { id: 446, count: 2, criticalItemId: 446, criticalItemCount: 3 }, materials: [{ id: 602203, count: 3 }, { id: 1616, count: 1 }] }
+    - { id: 602208, recipeItemId: 602208, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 100, maxSkillProf: 200, produceCriticalRate: 0.05, exp: 528, categoryId: 3301, subFatiguePoint: 15, addOnSuccessProf: 4, result: { id: 21351, count: 2, criticalItemId: 21351, criticalItemCount: 3 }, materials: [{ id: 602204, count: 3 }, { id: 1617, count: 1 }] }
+    - { id: 602209, recipeItemId: 602209, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 200, maxSkillProf: 300, produceCriticalRate: 0.05, exp: 2213, categoryId: 3301, subFatiguePoint: 25, addOnSuccessProf: 4, result: { id: 70102, count: 2, criticalItemId: 70102, criticalItemCount: 3 }, materials: [{ id: 602205, count: 3 }, { id: 1618, count: 1 }] }
+    - { id: 602210, recipeItemId: 602210, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 300, maxSkillProf: 400, produceCriticalRate: 0.05, exp: 12631, categoryId: 3301, subFatiguePoint: 50, addOnSuccessProf: 4, result: { id: 180859, count: 2, criticalItemId: 180859, criticalItemCount: 3 }, materials: [{ id: 602206, count: 3 }, { id: 1619, count: 1 }] }
+    - { id: 602211, recipeItemId: 602211, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.05, exp: 95, categoryId: 3302, subFatiguePoint: 5, addOnSuccessProf: 1, result: { id: 602204, count: 1, criticalItemId: 602204, criticalItemCount: 2 }, materials: [{ id: 1002, count: 8 }, { id: 1001, count: 8 }, { id: 1003, count: 8 }, { id: 1631, count: 2 }] }
+    - { id: 602212, recipeItemId: 602212, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 100, maxSkillProf: 200, produceCriticalRate: 0.05, exp: 528, categoryId: 3302, subFatiguePoint: 10, addOnSuccessProf: 1, result: { id: 602205, count: 1, criticalItemId: 602205, criticalItemCount: 2 }, materials: [{ id: 1006, count: 8 }, { id: 1005, count: 8 }, { id: 1007, count: 8 }, { id: 1632, count: 2 }] }
+    - { id: 602213, recipeItemId: 602213, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 200, maxSkillProf: 300, produceCriticalRate: 0.05, exp: 2213, categoryId: 3302, subFatiguePoint: 20, addOnSuccessProf: 1, result: { id: 602206, count: 1, criticalItemId: 602206, criticalItemCount: 2 }, materials: [{ id: 1006, count: 16 }, { id: 1005, count: 16 }, { id: 1007, count: 16 }, { id: 1633, count: 2 }] }

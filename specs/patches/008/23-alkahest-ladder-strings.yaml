@@ -1,0 +1,41 @@
+# Alkahest ladder tooltips.
+#
+# The enchant window always lists plain Alkahest; the server then uses the best alkahest the
+# player carries in the full amount the attempt needs. The player has no choice of tier, so each
+# tooltip states the rule and the tier's bonus. Names are left as shipped.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    - id: 15
+      changes:
+        toolTip: "A catalyst consumed with feedstock on every enchanting attempt. If you carry enough of a higher-grade alkahest for the attempt, the best one is used instead and raises the success chance."
+    - id: 446
+      changes:
+        toolTip: "A refined catalyst for enchanting. Used in place of Alkahest when you carry enough for the attempt and no better alkahest. Raises the enchanting success chance by 1%."
+    - id: 21351
+      changes:
+        toolTip: "A masterwork catalyst for enchanting. Used in place of Alkahest when you carry enough for the attempt and no better alkahest. Raises the enchanting success chance by 5%."
+    - id: 70102
+      changes:
+        toolTip: "An extensive catalyst for enchanting. Used in place of Alkahest when you carry enough for the attempt and no better alkahest. Raises the enchanting success chance by 10%."
+    - id: 180859
+      changes:
+        toolTip: "The finest catalyst for enchanting. Used in place of Alkahest whenever you carry enough for the attempt. Raises the enchanting success chance by 20%."
+
+    # The retired tier alkahests point players at the base the enchant window lists.
+    - id: 94201
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Alkahest."
+    - id: 94202
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Alkahest."
+    - id: 94203
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Alkahest."
+    - id: 94204
+      changes:
+        toolTip: "<font color = '#2478FF'>[Not Usable]</font> This item is no longer usable. Enchanting now uses Alkahest."

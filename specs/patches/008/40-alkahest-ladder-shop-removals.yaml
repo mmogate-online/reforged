@@ -1,0 +1,32 @@
+# Alkahest ladder: token shops stop selling Masterwork Alkahest.
+#
+# Masterwork Alkahest and every tier above it come from crafting only, and no token shop sells
+# them. Shop item lists are replace-all, so each list is restated with its other items in their
+# original order. A medal-priced shop item also needs its exchange row, so both go together.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyLists:
+  update:
+    - id: 99990083
+      changes:
+        items:
+          - itemId: 94101
+            priceRevision: 1
+    - id: 99990121
+      changes:
+        items:
+          - itemId: 94101
+            priceRevision: 1
+          - itemId: 399
+            priceRevision: 1
+
+exchanges:
+  delete:
+    - itemId: 21351
+      medalItemId: 95216
+    - itemId: 21351
+      medalItemId: 95217

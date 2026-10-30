@@ -1,0 +1,26 @@
+# Alkahest ladder: the enchant success bonus of each alkahest tier.
+#
+# A row with revisionEnchantProb 0 marks the material every enchant step lists (Alkahest 15) as
+# replaceable. For each enchant, the server swaps in the highest-bonus tier the player holds in the
+# step's full amount and adds that bonus to the step's chance. No step or rank window is set: every
+# tier is usable at every enchant step. The bonus is a fraction on the same scale as enchantProb.
+# These rows are server-only; the client WorldData has no ScrollItemRevision.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+worldData:
+  enchantIni:
+    scrollItemRevision:
+      upsert:
+        - itemTemplateId: 15
+          revisionEnchantProb: 0
+        - itemTemplateId: 446
+          revisionEnchantProb: 0.01
+        - itemTemplateId: 21351
+          revisionEnchantProb: 0.05
+        - itemTemplateId: 70102
+          revisionEnchantProb: 0.10
+        - itemTemplateId: 180859
+          revisionEnchantProb: 0.20

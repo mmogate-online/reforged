@@ -1,0 +1,22 @@
+# Alkahest ladder: two Alchemy headings in the crafting window, one for the alkahest formulas and
+# one for refining their powders from gathered materials. A recipe's categoryId must name a
+# category its profession's group carries, or the window lists the recipe under no heading.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+artisanCategories:
+  upsertCategories:
+    - id: 6
+      categories:
+        - { id: 3301, pos: 1, stringId: 913301 }
+        - { id: 3302, pos: 1, stringId: 913302 }
+
+artisanStrings:
+  upsert:
+    - id: 913301
+      string: "Alkahest"
+    - id: 913302
+      string: "Alkahest Refining"
