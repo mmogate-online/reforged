@@ -1,0 +1,83 @@
+# QA loadouts for the Slayer along the gear spine, one tier per set:
+# 0 Kugai, 1 Revelation, 2 Nightshimmer, 3 Bastion, 4 Demonia.
+# The command reads tiers 0 to 4 only, so the spine replaces the Slayer's level 65 tiers.
+# The enchant level is the command's second argument, not part of the row.
+# Every set shares one roll pool per slot, so each tier pins the same lines: passive1 is
+# the item's base roll, passive2 to passive4 its three enchant rolls.
+# Accessories are the common-grade ring, earring and necklace at the set's level.
+# A tier row is dropped unless its item links an equipment record, so a crystal on a tier row
+# never arrives. Crystals are inventory rows instead, which the command adds to the bag as they
+# are, with their amount. The inventory rows are granted on every call whatever the tier, so
+# they carry the crystals of every tier, and the tester slots the grade of the set worn.
+# An equipment row's amount other than 2 delivers one item.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+qaLoadouts:
+  update:
+    - classType: 2
+      changes:
+        inven:
+          - { id: 8530 }
+          - { id: 8314 }
+          - { id: 8290 }
+          - { id: 8242 }
+          - { id: 8135, amount: 4 }
+          - { id: 8531 }
+          - { id: 8315 }
+          - { id: 8291 }
+          - { id: 8243 }
+          - { id: 8136, amount: 4 }
+          - { id: 8532 }
+          - { id: 8316 }
+          - { id: 8292 }
+          - { id: 8244 }
+          - { id: 8137, amount: 4 }
+        replaceStatuses:
+          - status: 0
+            equipment:
+              - { id: 12139, passive1: 1410000, passive2: 1510005, passive3: 1510002, passive4: 1510003 }
+              - { id: 17416, passive1: 1420080, passive2: 1510021, passive3: 1510022, passive4: 1510023 }
+              - { id: 17417, passive1: 1323030, passive2: 1510043, passive3: 1510041, passive4: 1510042 }
+              - { id: 17418, passive1: 1324060, passive2: 1510061, passive3: 1510062, passive4: 1510063 }
+              - { id: 20033, amount: 2 }
+              - { id: 20333, amount: 2 }
+              - { id: 20633 }
+          - status: 1
+            equipment:
+              - { id: 10595, passive1: 1410000, passive2: 1510005, passive3: 1510002, passive4: 1510003 }
+              - { id: 15670, passive1: 1420080, passive2: 1510021, passive3: 1510022, passive4: 1510023 }
+              - { id: 15671, passive1: 1323030, passive2: 1510043, passive3: 1510041, passive4: 1510042 }
+              - { id: 15672, passive1: 1324060, passive2: 1510061, passive3: 1510062, passive4: 1510063 }
+              - { id: 20034, amount: 2 }
+              - { id: 20334, amount: 2 }
+              - { id: 20634 }
+          - status: 2
+            equipment:
+              - { id: 10123, passive1: 1410000, passive2: 1510005, passive3: 1510002, passive4: 1510003 }
+              - { id: 15139, passive1: 1420080, passive2: 1510021, passive3: 1510022, passive4: 1510023 }
+              - { id: 15140, passive1: 1323030, passive2: 1510043, passive3: 1510041, passive4: 1510042 }
+              - { id: 15141, passive1: 1324060, passive2: 1510061, passive3: 1510062, passive4: 1510063 }
+              - { id: 20036, amount: 2 }
+              - { id: 20336, amount: 2 }
+              - { id: 20636 }
+          - status: 3
+            equipment:
+              - { id: 12267, passive1: 1410000, passive2: 1510005, passive3: 1510002, passive4: 1510003 }
+              - { id: 17560, passive1: 1420080, passive2: 1510021, passive3: 1510022, passive4: 1510023 }
+              - { id: 17561, passive1: 1323030, passive2: 1510043, passive3: 1510041, passive4: 1510042 }
+              - { id: 17562, passive1: 1324060, passive2: 1510061, passive3: 1510062, passive4: 1510063 }
+              - { id: 20037, amount: 2 }
+              - { id: 20337, amount: 2 }
+              - { id: 20637 }
+          - status: 4
+            equipment:
+              - { id: 12275, passive1: 1410000, passive2: 1510005, passive3: 1510002, passive4: 1510003 }
+              - { id: 17569, passive1: 1420080, passive2: 1510021, passive3: 1510022, passive4: 1510023 }
+              - { id: 17570, passive1: 1323030, passive2: 1510043, passive3: 1510041, passive4: 1510042 }
+              - { id: 17571, passive1: 1324060, passive2: 1510061, passive3: 1510062, passive4: 1510063 }
+              - { id: 20039, amount: 2 }
+              - { id: 20339, amount: 2 }
+              - { id: 20639 }
