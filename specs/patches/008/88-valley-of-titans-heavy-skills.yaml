@@ -1,0 +1,418 @@
+# Valley of Titans (zone 6): every field monster's long telegraphed attacks hit hard enough to
+# punish a player who does not dodge them, by the same rule as the Oblivion Woods spec. Their quick
+# attacks and their base attack are left as they are.
+#
+# How hard follows how long the attack takes to play: the skill's animation length in
+# AnimationData over its timeRate (the AnimSeq duration on monster rows is 0). An attack of four
+# seconds or more aims at about two thirds of the arriving player's health per landed use, one of
+# three to four seconds at about half. A critical hit multiplies either by one and a half, which
+# is why neither aims at a full health bar. A factor only ever raises; an attack already at its
+# target is left alone, and so is any skill named as a buff.
+#
+# Each normal skill and its enraged twin (id + 1000) take the same factor. These are absolute
+# values: totalAtk on each row is the vanilla value times the factor. A row that another template
+# reads through shareId carries the change to that template too, as the comments name.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcSkills:
+  update:
+    # Grazing Noruk: skill 1102 (6.8 s), x1.1.
+    - huntingZoneId: 6
+      templateId: 1011
+      skillId: 1102
+      changes:
+        totalAtk: 68067.38
+    - huntingZoneId: 6
+      templateId: 1011
+      skillId: 2102
+      changes:
+        totalAtk: 73739.71
+    # Grazing Noruk: skill 1103 (4.6 s), x2.2.
+    - huntingZoneId: 6
+      templateId: 1011
+      skillId: 1103
+      changes:
+        totalAtk: 68815.43
+    - huntingZoneId: 6
+      templateId: 1011
+      skillId: 2103
+      changes:
+        totalAtk: 74550.05
+    # Stomping Noruk: skill 1103 (4.6 s), x2.0.
+    - huntingZoneId: 6
+      templateId: 1021
+      skillId: 1103
+      changes:
+        totalAtk: 71289.66
+    - huntingZoneId: 6
+      templateId: 1021
+      skillId: 2103
+      changes:
+        totalAtk: 77230.46
+    # Ravenous Hyena, Hyena Stalker: skill 1103 (5.7 s), x2.3.
+    - huntingZoneId: 6
+      templateId: 1031
+      skillId: 1103
+      changes:
+        totalAtk: 103412.90
+    - huntingZoneId: 6
+      templateId: 1031
+      skillId: 2103
+      changes:
+        totalAtk: 91803.12
+    # Starving Hyena: skill 1103 (5.7 s), x2.0.
+    - huntingZoneId: 6
+      templateId: 1032
+      skillId: 1103
+      changes:
+        totalAtk: 102473.19
+    - huntingZoneId: 6
+      templateId: 1032
+      skillId: 2103
+      changes:
+        totalAtk: 90968.91
+    # Gutrend Kulkari: skill 1102 (5.7 s), x1.9.
+    - huntingZoneId: 6
+      templateId: 1041
+      skillId: 1102
+      changes:
+        totalAtk: 86690.14
+    - huntingZoneId: 6
+      templateId: 1041
+      skillId: 2102
+      changes:
+        totalAtk: 93914.29
+    # Gutrend Kulkari: skill 1103 (4.5 s), x2.6.
+    - huntingZoneId: 6
+      templateId: 1041
+      skillId: 1103
+      changes:
+        totalAtk: 101904.64
+    - huntingZoneId: 6
+      templateId: 1041
+      skillId: 2103
+      changes:
+        totalAtk: 110396.61
+    # Gutrend Hyena (the Kulkari's): skill 1103 (5.7 s), x2.0.
+    - huntingZoneId: 6
+      templateId: 1042
+      skillId: 1103
+      changes:
+        totalAtk: 102473.19
+    - huntingZoneId: 6
+      templateId: 1042
+      skillId: 2103
+      changes:
+        totalAtk: 90968.91
+    # Gutrend Clawtamer: skill 1102 (4.5 s), x1.6.
+    - huntingZoneId: 6
+      templateId: 1051
+      skillId: 1102
+      changes:
+        totalAtk: 101828.68
+    - huntingZoneId: 6
+      templateId: 1051
+      skillId: 2102
+      changes:
+        totalAtk: 105729.82
+    # Gutrend Hyena (the Clawtamer's): skill 1103 (5.7 s), x2.0.
+    - huntingZoneId: 6
+      templateId: 1052
+      skillId: 1103
+      changes:
+        totalAtk: 102473.19
+    - huntingZoneId: 6
+      templateId: 1052
+      skillId: 2103
+      changes:
+        totalAtk: 90968.91
+    # Gutrend Brigand: skill 1102 (5.7 s), x1.9.
+    - huntingZoneId: 6
+      templateId: 1061
+      skillId: 1102
+      changes:
+        totalAtk: 86690.14
+    - huntingZoneId: 6
+      templateId: 1061
+      skillId: 2102
+      changes:
+        totalAtk: 93914.29
+    # Gutrend Brigand: skill 1103 (4.5 s), x2.6.
+    - huntingZoneId: 6
+      templateId: 1061
+      skillId: 1103
+      changes:
+        totalAtk: 101904.64
+    - huntingZoneId: 6
+      templateId: 1061
+      skillId: 2103
+      changes:
+        totalAtk: 110396.61
+    # Gutrend Pillager: skill 1102 (4.5 s), x1.4.
+    - huntingZoneId: 6
+      templateId: 1062
+      skillId: 1102
+      changes:
+        totalAtk: 101534.01
+    - huntingZoneId: 6
+      templateId: 1062
+      skillId: 2102
+      changes:
+        totalAtk: 105423.87
+    # Gutrend Raider: skill 1102 (4.5 s), x1.1.
+    - huntingZoneId: 6
+      templateId: 1071
+      skillId: 1102
+      changes:
+        totalAtk: 70007.21
+    - huntingZoneId: 6
+      templateId: 1071
+      skillId: 2102
+      changes:
+        totalAtk: 72689.25
+    # Gutrend Skullcrusher: skill 1102 (5.7 s), x1.3.
+    - huntingZoneId: 6
+      templateId: 1081
+      skillId: 1102
+      changes:
+        totalAtk: 59314.30
+    - huntingZoneId: 6
+      templateId: 1081
+      skillId: 2102
+      changes:
+        totalAtk: 64257.14
+    # Gutrend Skullcrusher: skill 1103 (4.5 s), x1.8.
+    - huntingZoneId: 6
+      templateId: 1081
+      skillId: 1103
+      changes:
+        totalAtk: 70549.37
+    - huntingZoneId: 6
+      templateId: 1081
+      skillId: 2103
+      changes:
+        totalAtk: 76428.43
+    # Hillwalker Warthog: skill 1102 (5.7 s), x1.7.
+    - huntingZoneId: 6
+      templateId: 2011
+      skillId: 1102
+      changes:
+        totalAtk: 68845.83
+    - huntingZoneId: 6
+      templateId: 2011
+      skillId: 2102
+      changes:
+        totalAtk: 86681.69
+    # Great Tusk Warthog: skill 1102 (5.7 s), x1.5.
+    - huntingZoneId: 6
+      templateId: 2021
+      skillId: 1102
+      changes:
+        totalAtk: 70007.14
+    - huntingZoneId: 6
+      templateId: 2021
+      skillId: 2102
+      changes:
+        totalAtk: 88143.85
+    # Scavenging Bear: skill 1104 (4.0 s), x1.3.
+    - huntingZoneId: 6
+      templateId: 2031
+      skillId: 1104
+      changes:
+        totalAtk: 52701.05
+    - huntingZoneId: 6
+      templateId: 2031
+      skillId: 2104
+      changes:
+        totalAtk: 57092.75
+    # Ravenous Bear: skill 1104 (4.0 s), x1.2.
+    - huntingZoneId: 6
+      templateId: 2041
+      skillId: 1104
+      changes:
+        totalAtk: 55564.11
+    - huntingZoneId: 6
+      templateId: 2041
+      skillId: 2104
+      changes:
+        totalAtk: 61130.66
+    # Gutrend Reaper: skill 1102 (5.7 s), x1.1.
+    - huntingZoneId: 6
+      templateId: 2051
+      skillId: 1102
+      changes:
+        totalAtk: 57192.91
+    - huntingZoneId: 6
+      templateId: 2051
+      skillId: 2102
+      changes:
+        totalAtk: 61958.96
+    # Gutrend Reaper: skill 1103 (4.5 s), x1.6.
+    - huntingZoneId: 6
+      templateId: 2051
+      skillId: 1103
+      changes:
+        totalAtk: 71461.81
+    - huntingZoneId: 6
+      templateId: 2051
+      skillId: 2103
+      changes:
+        totalAtk: 77416.90
+    # Gutrend Seer: skill 1101 (4.5 s), x2.5.
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 1101
+      changes:
+        totalAtk: 100165.67
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 2101
+      changes:
+        totalAtk: 105498.47
+    # Gutrend Seer: skill 1103 (4.5 s), x2.5.
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 1103
+      changes:
+        totalAtk: 100165.67
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 2103
+      changes:
+        totalAtk: 105498.47
+    # Gutrend Seer: skill 1104 (4.5 s), x2.5.
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 1104
+      changes:
+        totalAtk: 100165.67
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 2104
+      changes:
+        totalAtk: 105498.47
+    # Gutrend Seer: skill 1105 (4.5 s), x2.1.
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 1105
+      changes:
+        totalAtk: 100966.99
+    - huntingZoneId: 6
+      templateId: 2081
+      skillId: 2105
+      changes:
+        totalAtk: 106342.46
+    # Gutrend Juggernaut: skill 1102 (4.5 s), x1.1.
+    - huntingZoneId: 6
+      templateId: 2082
+      skillId: 1102
+      changes:
+        totalAtk: 105355.17
+    - huntingZoneId: 6
+      templateId: 2082
+      skillId: 2102
+      changes:
+        totalAtk: 109391.42
+    # Scion Justicar: skill 1105 (4.5 s), x1.5.
+    - huntingZoneId: 6
+      templateId: 3011
+      skillId: 1105
+      changes:
+        totalAtk: 68507.73
+    - huntingZoneId: 6
+      templateId: 3011
+      skillId: 2105
+      changes:
+        totalAtk: 74216.65
+    # Scion Justicar: skill 1106 (3.4 s), x1.2.
+    - huntingZoneId: 6
+      templateId: 3011
+      skillId: 1106
+      changes:
+        totalAtk: 53000.45
+    - huntingZoneId: 6
+      templateId: 3011
+      skillId: 2106
+      changes:
+        totalAtk: 57417.16
+    # Lokian Battlerager: skill 1104 (4.0 s), x1.2.
+    - huntingZoneId: 6
+      templateId: 3021
+      skillId: 1104
+      changes:
+        totalAtk: 53403.46
+    - huntingZoneId: 6
+      templateId: 3021
+      skillId: 2104
+      changes:
+        totalAtk: 57545.38
+    # Lokian Battlerager: skill 1105 (4.6 s), x1.2.
+    - huntingZoneId: 6
+      templateId: 3021
+      skillId: 1105
+      changes:
+        totalAtk: 68843.08
+    - huntingZoneId: 6
+      templateId: 3021
+      skillId: 2105
+      changes:
+        totalAtk: 73440.67
+    # Lokian Battlerager: skill 1110 (4.0 s), x1.5.
+    - huntingZoneId: 6
+      templateId: 3021
+      skillId: 1110
+      changes:
+        totalAtk: 54853.26
+    - huntingZoneId: 6
+      templateId: 3021
+      skillId: 2110
+      changes:
+        totalAtk: 59846.47
+    # Lokian Reaver: skill 1103 (5.1 s), x1.8.
+    - huntingZoneId: 6
+      templateId: 3031
+      skillId: 1103
+      changes:
+        totalAtk: 100545.42
+    - huntingZoneId: 6
+      templateId: 3031
+      skillId: 2103
+      changes:
+        totalAtk: 108924.29
+    # Lokian Reaver: skill 1104 (4.9 s), x1.5.
+    - huntingZoneId: 6
+      templateId: 3031
+      skillId: 1104
+      changes:
+        totalAtk: 103799.57
+    - huntingZoneId: 6
+      templateId: 3031
+      skillId: 2104
+      changes:
+        totalAtk: 112449.45
+    # Lokian Reapmaster: skill 1103 (5.1 s), x1.8.
+    - huntingZoneId: 6
+      templateId: 3042
+      skillId: 1103
+      changes:
+        totalAtk: 100545.42
+    - huntingZoneId: 6
+      templateId: 3042
+      skillId: 2103
+      changes:
+        totalAtk: 108924.29
+    # Lokian Reapmaster: skill 1104 (4.9 s), x1.5.
+    - huntingZoneId: 6
+      templateId: 3042
+      skillId: 1104
+      changes:
+        totalAtk: 103799.57
+    - huntingZoneId: 6
+      templateId: 3042
+      skillId: 2104
+      changes:
+        totalAtk: 112449.45
