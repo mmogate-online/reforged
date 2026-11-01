@@ -1,8 +1,8 @@
-# Oblivion Woods (zone 3): raise the field monsters' maxHp x5 and atk x5 over their current
+# Oblivion Woods (zone 3): raise the field monsters' maxHp x7 and atk x7 over their current
 # values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
 # as the Fey Forest rescale does for the zone before it.
 #
-# Scope: the zone's spawned field monsters take both. Its named and quest monsters take maxHp x5
+# Scope: the zone's spawned field monsters take both. Its named and quest monsters take maxHp x7
 # only: their attack was already authored at or above the rescaled field monsters'. The two
 # hour-respawn bosses, the basilisk, the camp guards, the villagers and the ambient creature are
 # left out.
@@ -77,8 +77,8 @@ balanceProfiles:
         - $OW_FALLEN_SOLDIER
     npc:
       stat:
-        maxHp: { multiply: 5 }
-        atk:   { multiply: 5 }
+        maxHp: { multiply: 7 }
+        atk:   { multiply: 7 }
 
   - name: OblivionWoodsNamedMonsters
     npcFilter:
@@ -97,4 +97,4 @@ balanceProfiles:
         - $OW_DEVAN_WATCHER
     npc:
       stat:
-        maxHp: { multiply: 5 }
+        maxHp: { multiply: 7 }

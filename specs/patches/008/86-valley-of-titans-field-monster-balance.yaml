@@ -1,8 +1,8 @@
-# Valley of Titans (zone 6): raise the field monsters' maxHp x5 and atk x5 over their current
+# Valley of Titans (zone 6): raise the field monsters' maxHp x7 and atk x7 over their current
 # values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
 # as the Oblivion Woods rescale does for the zone before it.
 #
-# Scope: the zone's spawned field monsters take both. Its named monsters take maxHp x5 only:
+# Scope: the zone's spawned field monsters take both. Its named monsters take maxHp x7 only:
 # their attack was already authored at or above the rescaled field monsters'. The three
 # twelve-hour bosses of the Arakia party, the Arcadia guards and the villagers are left out.
 #
@@ -86,8 +86,8 @@ balanceProfiles:
         - $VT_LOKIAN_REAPMASTER
     npc:
       stat:
-        maxHp: { multiply: 5 }
-        atk:   { multiply: 5 }
+        maxHp: { multiply: 7 }
+        atk:   { multiply: 7 }
 
   - name: ValleyOfTitansNamedMonsters
     npcFilter:
@@ -100,4 +100,4 @@ balanceProfiles:
         - $VT_SMULCH
     npc:
       stat:
-        maxHp: { multiply: 5 }
+        maxHp: { multiply: 7 }
