@@ -1,0 +1,117 @@
+# Oblivion Woods (zone 3): the field monsters' long telegraphed attacks hit hard enough to punish a
+# player who does not dodge them. Their quick attacks are left as they are.
+#
+# How hard follows how long the attack takes to play: the skill's animation length in
+# AnimationData over its timeRate. An attack of four seconds or more aims at about two thirds of a
+# player's health per landed use, one of three to four seconds at about half. A critical hit
+# multiplies either by one and a half, which is why neither aims at a full health bar.
+#
+# Several templates read their skills from another's rows: the Devan Scrapper from the
+# Blademaster's, the Devan Brigand and one of Dakanius's guards from 300150's, the other guard
+# from the Arcanist's, and both sporewalkers from the Agitated Sporewalker's. Each change here
+# reaches all of them.
+#
+# Each normal skill and its enraged twin (id + 1000) take the same factor. These are absolute
+# values: totalAtk on each row is the vanilla value times the factor.
+#
+# The Arcanist's nuke is raised with its blast, although the common Arcanist's AI never chooses
+# it; on the Devan model only the captains cast it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - OW_DEVAN_ARCANIST
+        - OW_DEVAN_BLADEMASTER
+        - OW_AGITATED_SPOREWALKER
+
+npcSkills:
+  update:
+    # Arcanist ranged nuke (5.7 s), x1.8.
+    - huntingZoneId: 3
+      templateId: $OW_DEVAN_ARCANIST
+      skillId: 1106
+      changes:
+        totalAtk: 71966.08
+    - huntingZoneId: 3
+      templateId: $OW_DEVAN_ARCANIST
+      skillId: 2106
+      changes:
+        totalAtk: 77817.53
+
+    # Arcanist self-centred blast (4.5 s), x2.3.
+    - huntingZoneId: 3
+      templateId: $OW_DEVAN_ARCANIST
+      skillId: 1105
+      changes:
+        totalAtk: 73685.92
+    - huntingZoneId: 3
+      templateId: $OW_DEVAN_ARCANIST
+      skillId: 2105
+      changes:
+        totalAtk: 79677.20
+
+    # Blademaster two-hit combo (5.0 s), x1.8.
+    - huntingZoneId: 3
+      templateId: $OW_DEVAN_BLADEMASTER
+      skillId: 1105
+      changes:
+        totalAtk: 73107.60
+    - huntingZoneId: 3
+      templateId: $OW_DEVAN_BLADEMASTER
+      skillId: 2105
+      changes:
+        totalAtk: 79199.91
+
+    # Devan spear brandish (3.8 s), x2.6. Template 300150 holds the rows the Brigand reads.
+    - huntingZoneId: 3
+      templateId: 300150
+      skillId: 1103
+      changes:
+        totalAtk: 47340.43
+    - huntingZoneId: 3
+      templateId: 300150
+      skillId: 2103
+      changes:
+        totalAtk: 54223.84
+
+    # Devan spear throw (3.2 s), x4.5.
+    - huntingZoneId: 3
+      templateId: 300150
+      skillId: 1101
+      changes:
+        totalAtk: 68423.72
+    - huntingZoneId: 3
+      templateId: 300150
+      skillId: 2101
+      changes:
+        totalAtk: 78372.80
+
+    # Sporewalker mud shake (5.1 s), x2.4. It ticks three times, so the target is the sum.
+    - huntingZoneId: 3
+      templateId: $OW_AGITATED_SPOREWALKER
+      skillId: 1103
+      changes:
+        totalAtk: 69049.77
+    - huntingZoneId: 3
+      templateId: $OW_AGITATED_SPOREWALKER
+      skillId: 2103
+      changes:
+        totalAtk: 74664.09
+
+    # Sporewalker jump slam (3.0 s), x3.1.
+    - huntingZoneId: 3
+      templateId: $OW_AGITATED_SPOREWALKER
+      skillId: 1101
+      changes:
+        totalAtk: 53123.99
+    - huntingZoneId: 3
+      templateId: $OW_AGITATED_SPOREWALKER
+      skillId: 2101
+      changes:
+        totalAtk: 57443.42
