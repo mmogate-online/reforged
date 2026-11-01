@@ -8,290 +8,258 @@
 # is why neither aims at a full health bar. A factor only ever raises; an attack already at its
 # target is left alone, and so is any skill named as a buff.
 #
-# Each normal skill and its enraged twin (id + 1000) take the same factor. These are absolute
-# values: totalAtk on each row is the vanilla value times the factor. A row that another template
-# reads through shareId carries the change to that template too, as the comments name.
+# Each entry names a monster (npc-ids) and one of its attacks (npc-skill-ids): the skill rows of
+# the normal skill and of its enraged form. A monster with no rows of its own casts its shareId
+# template's, so the change lands there, and any other template that casts those rows takes it
+# too. Rows are named by id, never by animation: one monster's attacks share animations (a combo
+# reuses its opening move), so an animation can reach a second attack. `expect` pins each entry to
+# the rows it names.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
 # provenance: policy
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - OW_AGITATED_SPOREWALKER
+        - OW_AGGRAVATED_SPOREWALKER
+        - OW_MOSSY_GHILLIEDHU
+        - OW_REAVER_OF_RESURRECTION
+        - OW_DEVAN_BLADEMASTER
+        - OW_DEVAN_SCRAPPER
+        - OW_DEVAN_WARRIOR
+        - OW_DEVAN_BRIGAND
+        - OW_DEVAN_ARCANIST
+        - OW_DEVAN_CHANTER
+        - OW_FALLEN_SOLDIER
+        - OW_FALLEN_DEFENDER
+  - from: npc-skill-ids
+    use:
+      variables:
+        - OW_AGITATED_SPOREWALKER_JUMP_SLAM
+        - OW_AGITATED_SPOREWALKER_ROLLING_ATTACK
+        - OW_AGITATED_SPOREWALKER_MUD_SHAKE
+        - OW_MOSSY_GHILLIEDHU_SMASH
+        - OW_MOSSY_GHILLIEDHU_POUNCE
+        - OW_MOSSY_GHILLIEDHU_STOMP
+        - OW_MOSSY_GHILLIEDHU_CHARGED_SMASH
+        - OW_REAVER_OF_RESURRECTION_WEAPON_BASH
+        - OW_REAVER_OF_RESURRECTION_BLAST_SLASH
+        - OW_REAVER_OF_RESURRECTION_COMBO_2
+        - OW_DEVAN_BLADEMASTER_ADVANCE_ATK06
+        - OW_DEVAN_BLADEMASTER_TWO_HIT_COMBO
+        - OW_DEVAN_BLADEMASTER_ADVANCE_ATK05
+        - OW_DEVAN_WARRIOR_ADVANCE_ATK06
+        - OW_DEVAN_WARRIOR_TWO_HIT_COMBO
+        - OW_DEVAN_WARRIOR_ADVANCE_ATK05
+        - OW_DEVAN_BRIGAND_SPEAR_THROW
+        - OW_DEVAN_BRIGAND_BRANDISH
+        - OW_DEVAN_BRIGAND_THROW
+        - OW_DEVAN_ARCANIST_BLAST
+        - OW_DEVAN_ARCANIST_NUKE
+        - OW_DEVAN_CHANTER_BLAST
+        - OW_DEVAN_CHANTER_NUKE
+        - OW_FALLEN_SOLDIER_RANGED_ATTACK
+
 npcSkills:
-  update:
-    # Agitated Sporewalker, Aggravated Sporewalker: skill 1101 (3.0 s), x3.1.
-    - huntingZoneId: 3
-      templateId: 2
-      skillId: 1101
+  updateWhere:
+    # Skill 1101, atk01 (3.0 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
+        id: $OW_AGITATED_SPOREWALKER_JUMP_SLAM
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 53123.99
-    - huntingZoneId: 3
-      templateId: 2
-      skillId: 2101
+        totalAtk: { multiply: 3.1 }
+    # Skill 1102, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
+        id: $OW_AGITATED_SPOREWALKER_ROLLING_ATTACK
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 57443.42
-    # Agitated Sporewalker, Aggravated Sporewalker: skill 1102 (5.7 s), x2.1.
-    - huntingZoneId: 3
-      templateId: 2
-      skillId: 1102
+        totalAtk: { multiply: 2.1 }
+    # Skill 1103, atk02 (5.1 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
+        id: $OW_AGITATED_SPOREWALKER_MUD_SHAKE
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 68146.68
-    - huntingZoneId: 3
-      templateId: 2
-      skillId: 2102
+        totalAtk: { multiply: 2.4 }
+    # Skill 1103, atk02 (3.8 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_MOSSY_GHILLIEDHU
+        id: $OW_MOSSY_GHILLIEDHU_SMASH
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 73987.82
-    # Agitated Sporewalker, Aggravated Sporewalker: skill 1103 (5.1 s), x2.4.
-    - huntingZoneId: 3
-      templateId: 2
-      skillId: 1103
+        totalAtk: { multiply: 1.4 }
+    # Skill 1104, atk03 (5.6 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_MOSSY_GHILLIEDHU
+        id: $OW_MOSSY_GHILLIEDHU_POUNCE
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 69049.77
-    - huntingZoneId: 3
-      templateId: 2
-      skillId: 2103
+        totalAtk: { multiply: 1.2 }
+    # Skill 1106, UltraAtk01 (3.4 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_MOSSY_GHILLIEDHU
+        id: $OW_MOSSY_GHILLIEDHU_STOMP
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 74664.09
-    # Mossy Ghilliedhu: skill 1103 (3.8 s), x1.4.
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 1103
+        totalAtk: { multiply: 1.5 }
+    # Skills 1107 and 1108, UltraAtk02 (4.6 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_MOSSY_GHILLIEDHU
+        id: $OW_MOSSY_GHILLIEDHU_CHARGED_SMASH
+      expect: { min: 4, max: 4 }
       changes:
-        totalAtk: 56144.08
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 2103
+        totalAtk: { multiply: 1.3 }
+    # Skill 1104, bash (4.0 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_REAVER_OF_RESURRECTION
+        id: $OW_REAVER_OF_RESURRECTION_WEAPON_BASH
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 61012.82
-    # Mossy Ghilliedhu: skill 1104 (5.6 s), x1.2.
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 1104
+        totalAtk: { multiply: 1.4 }
+    # Skill 1105, blastSlashStart (4.6 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_REAVER_OF_RESURRECTION
+        id: $OW_REAVER_OF_RESURRECTION_BLAST_SLASH
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 71988.36
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 2104
+        totalAtk: { multiply: 1.4 }
+    # Skill 1110, combo2R (4.0 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_REAVER_OF_RESURRECTION
+        id: $OW_REAVER_OF_RESURRECTION_COMBO_2
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 78231.10
-    # Mossy Ghilliedhu: skill 1106 (3.4 s), x1.5.
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 1106
+        totalAtk: { multiply: 1.7 }
+    # Skill 1102, atk06 (4.6 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_DEVAN_BLADEMASTER, $OW_DEVAN_SCRAPPER]
+        id: $OW_DEVAN_BLADEMASTER_ADVANCE_ATK06
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 53720.11
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 2106
+        totalAtk: { multiply: 1.8 }
+    # Skill 1105, atk04 (5.0 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_DEVAN_BLADEMASTER, $OW_DEVAN_SCRAPPER]
+        id: $OW_DEVAN_BLADEMASTER_TWO_HIT_COMBO
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 49882.95
-    # Mossy Ghilliedhu: skill 1107 (4.6 s), x1.3.
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 1107
+        totalAtk: { multiply: 1.8 }
+    # Skill 1106, atk05 (3.8 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_DEVAN_BLADEMASTER, $OW_DEVAN_SCRAPPER]
+        id: $OW_DEVAN_BLADEMASTER_ADVANCE_ATK05
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 63155.44
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 2107
+        totalAtk: { multiply: 1.7 }
+    # Skill 1102, atk06 (3.7 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_WARRIOR
+        id: $OW_DEVAN_WARRIOR_ADVANCE_ATK06
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 58644.33
-    # Mossy Ghilliedhu: skill 1108 (4.6 s), x1.3.
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 1108
+        totalAtk: { multiply: 2.8 }
+    # Skill 1105, atk04 (4.0 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_WARRIOR
+        id: $OW_DEVAN_WARRIOR_TWO_HIT_COMBO
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 63155.44
-    - huntingZoneId: 3
-      templateId: 3
-      skillId: 2108
+        totalAtk: { multiply: 3.4 }
+    # Skill 1106, atk05 (3.1 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_WARRIOR
+        id: $OW_DEVAN_WARRIOR_ADVANCE_ATK05
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 58644.33
-    # Reaver of Resurrection: skill 1104 (4.0 s), x1.4.
-    - huntingZoneId: 3
-      templateId: 14
-      skillId: 1104
+        totalAtk: { multiply: 3.5 }
+    # Skill 1101, atk02 (3.2 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_BRIGAND
+        id: $OW_DEVAN_BRIGAND_SPEAR_THROW
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 54369.94
-    - huntingZoneId: 3
-      templateId: 14
-      skillId: 2104
+        totalAtk: { multiply: 4.5 }
+    # Skill 1103, atk03 (3.8 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_BRIGAND
+        id: $OW_DEVAN_BRIGAND_BRANDISH
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 58586.82
-    # Reaver of Resurrection: skill 1105 (4.6 s), x1.4.
-    - huntingZoneId: 3
-      templateId: 14
-      skillId: 1105
+        totalAtk: { multiply: 2.6 }
+    # Skill 1104, atk04 (3.6 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_BRIGAND
+        id: $OW_DEVAN_BRIGAND_THROW
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 70088.98
-    - huntingZoneId: 3
-      templateId: 14
-      skillId: 2105
+        totalAtk: { multiply: 2.2 }
+    # Skill 1105, atk04 (4.5 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_ARCANIST
+        id: $OW_DEVAN_ARCANIST_BLAST
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 74769.78
-    # Reaver of Resurrection: skill 1110 (4.0 s), x1.7.
-    - huntingZoneId: 3
-      templateId: 14
-      skillId: 1110
+        totalAtk: { multiply: 2.3 }
+    # Skill 1106, atk05 (5.7 s). The common Arcanist's AI never chooses it; on this model only the
+    # captains cast it.
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_ARCANIST
+        id: $OW_DEVAN_ARCANIST_NUKE
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 54250.37
-    - huntingZoneId: 3
-      templateId: 14
-      skillId: 2110
+        totalAtk: { multiply: 1.8 }
+    # Skill 1105, atk04 (4.5 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_CHANTER
+        id: $OW_DEVAN_CHANTER_BLAST
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 59188.70
-    # Devan Blademaster, Devan Scrapper: skill 1102 (4.6 s), x1.8.
-    - huntingZoneId: 3
-      templateId: 300141
-      skillId: 1102
+        totalAtk: { multiply: 4.0 }
+    # Skill 1106, atk05 (5.7 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: $OW_DEVAN_CHANTER
+        id: $OW_DEVAN_CHANTER_NUKE
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 67071.20
-    - huntingZoneId: 3
-      templateId: 300141
-      skillId: 2102
+        totalAtk: { multiply: 3.2 }
+    # Skill 1103, atk02 (3.4 s).
+    - filter:
+        huntingZoneId: 3
+        npc.id: [$OW_FALLEN_SOLDIER, $OW_FALLEN_DEFENDER]
+        id: $OW_FALLEN_SOLDIER_RANGED_ATTACK
+      expect: { min: 2, max: 2 }
       changes:
-        totalAtk: 72660.46
-    # Devan Blademaster, Devan Scrapper: skill 1105 (5.0 s), x1.8.
-    - huntingZoneId: 3
-      templateId: 300141
-      skillId: 1105
-      changes:
-        totalAtk: 73107.60
-    - huntingZoneId: 3
-      templateId: 300141
-      skillId: 2105
-      changes:
-        totalAtk: 79199.91
-    # Devan Blademaster, Devan Scrapper: skill 1106 (3.8 s), x1.7.
-    - huntingZoneId: 3
-      templateId: 300141
-      skillId: 1106
-      changes:
-        totalAtk: 52490.76
-    - huntingZoneId: 3
-      templateId: 300141
-      skillId: 2106
-      changes:
-        totalAtk: 56865.00
-    # Devan Warrior: skill 1102 (3.7 s), x2.8.
-    - huntingZoneId: 3
-      templateId: 300142
-      skillId: 1102
-      changes:
-        totalAtk: 51354.87
-    - huntingZoneId: 3
-      templateId: 300142
-      skillId: 2102
-      changes:
-        totalAtk: 47686.66
-    # Devan Warrior: skill 1105 (4.0 s), x3.4.
-    - huntingZoneId: 3
-      templateId: 300142
-      skillId: 1105
-      changes:
-        totalAtk: 67971.84
-    - huntingZoneId: 3
-      templateId: 300142
-      skillId: 2105
-      changes:
-        totalAtk: 63116.71
-    # Devan Warrior: skill 1106 (3.1 s), x3.5.
-    - huntingZoneId: 3
-      templateId: 300142
-      skillId: 1106
-      changes:
-        totalAtk: 53193.93
-    - huntingZoneId: 3
-      templateId: 300142
-      skillId: 2106
-      changes:
-        totalAtk: 49394.36
-    # Devan Brigand: skill 1101 (3.2 s), x4.5.
-    - huntingZoneId: 3
-      templateId: 300150
-      skillId: 1101
-      changes:
-        totalAtk: 68423.72
-    - huntingZoneId: 3
-      templateId: 300150
-      skillId: 2101
-      changes:
-        totalAtk: 78372.80
-    # Devan Brigand: skill 1103 (3.8 s), x2.6.
-    - huntingZoneId: 3
-      templateId: 300150
-      skillId: 1103
-      changes:
-        totalAtk: 47340.43
-    - huntingZoneId: 3
-      templateId: 300150
-      skillId: 2103
-      changes:
-        totalAtk: 54223.84
-    # Devan Brigand: skill 1104 (3.6 s), x2.2.
-    - huntingZoneId: 3
-      templateId: 300150
-      skillId: 1104
-      changes:
-        totalAtk: 52986.58
-    - huntingZoneId: 3
-      templateId: 300150
-      skillId: 2104
-      changes:
-        totalAtk: 43350.63
-    # Devan Arcanist: skill 1105 (4.5 s), x2.3.
-    - huntingZoneId: 3
-      templateId: 300160
-      skillId: 1105
-      changes:
-        totalAtk: 73685.92
-    - huntingZoneId: 3
-      templateId: 300160
-      skillId: 2105
-      changes:
-        totalAtk: 79677.20
-    # Devan Arcanist: skill 1106 (5.7 s), x1.8. The common Arcanist's AI never chooses it; on
-    # this model only the captains cast it.
-    - huntingZoneId: 3
-      templateId: 300160
-      skillId: 1106
-      changes:
-        totalAtk: 71966.08
-    - huntingZoneId: 3
-      templateId: 300160
-      skillId: 2106
-      changes:
-        totalAtk: 77817.53
-    # Devan Chanter: skill 1105 (4.5 s), x4.0.
-    - huntingZoneId: 3
-      templateId: 300161
-      skillId: 1105
-      changes:
-        totalAtk: 102389.04
-    - huntingZoneId: 3
-      templateId: 300161
-      skillId: 2105
-      changes:
-        totalAtk: 110714.13
-    # Devan Chanter: skill 1106 (5.7 s), x3.2.
-    - huntingZoneId: 3
-      templateId: 300161
-      skillId: 1106
-      changes:
-        totalAtk: 102221.48
-    - huntingZoneId: 3
-      templateId: 300161
-      skillId: 2106
-      changes:
-        totalAtk: 110532.94
-    # Fallen Soldier, Fallen Defender: skill 1103 (3.4 s), x12.7.
-    - huntingZoneId: 3
-      templateId: 301080
-      skillId: 1103
-      changes:
-        totalAtk: 81492.97
-    - huntingZoneId: 3
-      templateId: 301080
-      skillId: 2103
-      changes:
-        totalAtk: 67348.12
+        totalAtk: { multiply: 12.7 }

@@ -9,410 +9,359 @@
 # is why neither aims at a full health bar. A factor only ever raises; an attack already at its
 # target is left alone, and so is any skill named as a buff.
 #
-# Each normal skill and its enraged twin (id + 1000) take the same factor. These are absolute
-# values: totalAtk on each row is the vanilla value times the factor. A row that another template
-# reads through shareId carries the change to that template too, as the comments name.
+# Each entry names a monster (npc-ids) and one of its attacks (npc-skill-ids): the skill rows of
+# the normal skill and of its enraged form. A monster with no rows of its own casts its shareId
+# template's, so the change lands there, and any other template that casts those rows takes it
+# too. Rows are named by id, never by animation: one monster's attacks share animations (a combo
+# reuses its opening move), so an animation can reach a second attack. `expect` pins each entry to
+# the rows it names.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
 # provenance: policy
 
 spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - VT_GRAZING_NORUK
+        - VT_STOMPING_NORUK
+        - VT_RAVENOUS_HYENA
+        - VT_HYENA_STALKER
+        - VT_STARVING_HYENA
+        - VT_GUTREND_KULKARI
+        - VT_GUTREND_HYENA_1
+        - VT_GUTREND_CLAWTAMER
+        - VT_GUTREND_HYENA_2
+        - VT_GUTREND_BRIGAND
+        - VT_GUTREND_PILLAGER
+        - VT_GUTREND_RAIDER
+        - VT_GUTREND_SKULLCRUSHER
+        - VT_HILLWALKER_WARTHOG
+        - VT_GREAT_TUSK_WARTHOG
+        - VT_SCAVENGING_BEAR
+        - VT_RAVENOUS_BEAR
+        - VT_GUTREND_REAPER
+        - VT_GUTREND_SEER
+        - VT_GUTREND_JUGGERNAUT
+        - VT_SCION_JUSTICAR
+        - VT_LOKIAN_BATTLERAGER
+        - VT_LOKIAN_REAVER
+        - VT_LOKIAN_REAPMASTER
+  - from: npc-skill-ids
+    use:
+      variables:
+        - VT_GRAZING_NORUK_DASH_ATTACK
+        - VT_GRAZING_NORUK_DOUBLE_UPPERCUT
+        - VT_STOMPING_NORUK_DOUBLE_UPPERCUT
+        - VT_RAVENOUS_HYENA_DASH_ATTACK
+        - VT_STARVING_HYENA_DASH_ATTACK
+        - VT_GUTREND_KULKARI_SPIN_ATTACK
+        - VT_GUTREND_KULKARI_CLAW
+        - VT_GUTREND_HYENA_1_DASH_ATTACK
+        - VT_GUTREND_CLAWTAMER_SHIELD_CHARGE
+        - VT_GUTREND_HYENA_2_DASH_ATTACK
+        - VT_GUTREND_BRIGAND_SPIN_ATTACK
+        - VT_GUTREND_BRIGAND_CLAW
+        - VT_GUTREND_PILLAGER_SHIELD_CHARGE
+        - VT_GUTREND_RAIDER_SHIELD_CHARGE
+        - VT_GUTREND_SKULLCRUSHER_SPIN_ATTACK
+        - VT_GUTREND_SKULLCRUSHER_CLAW
+        - VT_HILLWALKER_WARTHOG_CHARGE
+        - VT_GREAT_TUSK_WARTHOG_CHARGE
+        - VT_SCAVENGING_BEAR_POUNCE
+        - VT_RAVENOUS_BEAR_POUNCE
+        - VT_GUTREND_REAPER_SPIN_ATTACK
+        - VT_GUTREND_REAPER_CLAW
+        - VT_GUTREND_SEER_GRENADES
+        - VT_GUTREND_SEER_DEBUFF_ATTACK
+        - VT_GUTREND_JUGGERNAUT_SHIELD_CHARGE
+        - VT_SCION_JUSTICAR_TWO_HIT_COMBO
+        - VT_SCION_JUSTICAR_ADVANCE_ATK05
+        - VT_LOKIAN_BATTLERAGER_WEAPON_BASH
+        - VT_LOKIAN_BATTLERAGER_BLAST_SLASH
+        - VT_LOKIAN_BATTLERAGER_COMBO_2
+        - VT_LOKIAN_REAVER_CONCENTRATE_ATTACK
+        - VT_LOKIAN_REAVER_DUAL_SWORD_DANCE
+        - VT_LOKIAN_REAPMASTER_CONCENTRATE_ATTACK
+        - VT_LOKIAN_REAPMASTER_DUAL_SWORD_DANCE
+
 npcSkills:
-  update:
-    # Grazing Noruk: skill 1102 (6.8 s), x1.1.
-    - huntingZoneId: 6
-      templateId: 1011
-      skillId: 1102
-      changes:
-        totalAtk: 68067.38
-    - huntingZoneId: 6
-      templateId: 1011
-      skillId: 2102
-      changes:
-        totalAtk: 73739.71
-    # Grazing Noruk: skill 1103 (4.6 s), x2.2.
-    - huntingZoneId: 6
-      templateId: 1011
-      skillId: 1103
-      changes:
-        totalAtk: 68815.43
-    - huntingZoneId: 6
-      templateId: 1011
-      skillId: 2103
-      changes:
-        totalAtk: 74550.05
-    # Stomping Noruk: skill 1103 (4.6 s), x2.0.
-    - huntingZoneId: 6
-      templateId: 1021
-      skillId: 1103
-      changes:
-        totalAtk: 71289.66
-    - huntingZoneId: 6
-      templateId: 1021
-      skillId: 2103
-      changes:
-        totalAtk: 77230.46
-    # Ravenous Hyena, Hyena Stalker: skill 1103 (5.7 s), x2.3.
-    - huntingZoneId: 6
-      templateId: 1031
-      skillId: 1103
-      changes:
-        totalAtk: 103412.90
-    - huntingZoneId: 6
-      templateId: 1031
-      skillId: 2103
-      changes:
-        totalAtk: 91803.12
-    # Starving Hyena: skill 1103 (5.7 s), x2.0.
-    - huntingZoneId: 6
-      templateId: 1032
-      skillId: 1103
-      changes:
-        totalAtk: 102473.19
-    - huntingZoneId: 6
-      templateId: 1032
-      skillId: 2103
-      changes:
-        totalAtk: 90968.91
-    # Gutrend Kulkari: skill 1102 (5.7 s), x1.9.
-    - huntingZoneId: 6
-      templateId: 1041
-      skillId: 1102
-      changes:
-        totalAtk: 86690.14
-    - huntingZoneId: 6
-      templateId: 1041
-      skillId: 2102
-      changes:
-        totalAtk: 93914.29
-    # Gutrend Kulkari: skill 1103 (4.5 s), x2.6.
-    - huntingZoneId: 6
-      templateId: 1041
-      skillId: 1103
-      changes:
-        totalAtk: 101904.64
-    - huntingZoneId: 6
-      templateId: 1041
-      skillId: 2103
-      changes:
-        totalAtk: 110396.61
-    # Gutrend Hyena (the Kulkari's): skill 1103 (5.7 s), x2.0.
-    - huntingZoneId: 6
-      templateId: 1042
-      skillId: 1103
-      changes:
-        totalAtk: 102473.19
-    - huntingZoneId: 6
-      templateId: 1042
-      skillId: 2103
-      changes:
-        totalAtk: 90968.91
-    # Gutrend Clawtamer: skill 1102 (4.5 s), x1.6.
-    - huntingZoneId: 6
-      templateId: 1051
-      skillId: 1102
-      changes:
-        totalAtk: 101828.68
-    - huntingZoneId: 6
-      templateId: 1051
-      skillId: 2102
-      changes:
-        totalAtk: 105729.82
-    # Gutrend Hyena (the Clawtamer's): skill 1103 (5.7 s), x2.0.
-    - huntingZoneId: 6
-      templateId: 1052
-      skillId: 1103
-      changes:
-        totalAtk: 102473.19
-    - huntingZoneId: 6
-      templateId: 1052
-      skillId: 2103
-      changes:
-        totalAtk: 90968.91
-    # Gutrend Brigand: skill 1102 (5.7 s), x1.9.
-    - huntingZoneId: 6
-      templateId: 1061
-      skillId: 1102
-      changes:
-        totalAtk: 86690.14
-    - huntingZoneId: 6
-      templateId: 1061
-      skillId: 2102
-      changes:
-        totalAtk: 93914.29
-    # Gutrend Brigand: skill 1103 (4.5 s), x2.6.
-    - huntingZoneId: 6
-      templateId: 1061
-      skillId: 1103
-      changes:
-        totalAtk: 101904.64
-    - huntingZoneId: 6
-      templateId: 1061
-      skillId: 2103
-      changes:
-        totalAtk: 110396.61
-    # Gutrend Pillager: skill 1102 (4.5 s), x1.4.
-    - huntingZoneId: 6
-      templateId: 1062
-      skillId: 1102
-      changes:
-        totalAtk: 101534.01
-    - huntingZoneId: 6
-      templateId: 1062
-      skillId: 2102
-      changes:
-        totalAtk: 105423.87
-    # Gutrend Raider: skill 1102 (4.5 s), x1.1.
-    - huntingZoneId: 6
-      templateId: 1071
-      skillId: 1102
-      changes:
-        totalAtk: 70007.21
-    - huntingZoneId: 6
-      templateId: 1071
-      skillId: 2102
-      changes:
-        totalAtk: 72689.25
-    # Gutrend Skullcrusher: skill 1102 (5.7 s), x1.3.
-    - huntingZoneId: 6
-      templateId: 1081
-      skillId: 1102
-      changes:
-        totalAtk: 59314.30
-    - huntingZoneId: 6
-      templateId: 1081
-      skillId: 2102
-      changes:
-        totalAtk: 64257.14
-    # Gutrend Skullcrusher: skill 1103 (4.5 s), x1.8.
-    - huntingZoneId: 6
-      templateId: 1081
-      skillId: 1103
-      changes:
-        totalAtk: 70549.37
-    - huntingZoneId: 6
-      templateId: 1081
-      skillId: 2103
-      changes:
-        totalAtk: 76428.43
-    # Hillwalker Warthog: skill 1102 (5.7 s), x1.7.
-    - huntingZoneId: 6
-      templateId: 2011
-      skillId: 1102
-      changes:
-        totalAtk: 68845.83
-    - huntingZoneId: 6
-      templateId: 2011
-      skillId: 2102
-      changes:
-        totalAtk: 86681.69
-    # Great Tusk Warthog: skill 1102 (5.7 s), x1.5.
-    - huntingZoneId: 6
-      templateId: 2021
-      skillId: 1102
-      changes:
-        totalAtk: 70007.14
-    - huntingZoneId: 6
-      templateId: 2021
-      skillId: 2102
-      changes:
-        totalAtk: 88143.85
-    # Scavenging Bear: skill 1104 (4.0 s), x1.3.
-    - huntingZoneId: 6
-      templateId: 2031
-      skillId: 1104
-      changes:
-        totalAtk: 52701.05
-    - huntingZoneId: 6
-      templateId: 2031
-      skillId: 2104
-      changes:
-        totalAtk: 57092.75
-    # Ravenous Bear: skill 1104 (4.0 s), x1.2.
-    - huntingZoneId: 6
-      templateId: 2041
-      skillId: 1104
-      changes:
-        totalAtk: 55564.11
-    - huntingZoneId: 6
-      templateId: 2041
-      skillId: 2104
-      changes:
-        totalAtk: 61130.66
-    # Gutrend Reaper: skill 1102 (5.7 s), x1.1.
-    - huntingZoneId: 6
-      templateId: 2051
-      skillId: 1102
-      changes:
-        totalAtk: 57192.91
-    - huntingZoneId: 6
-      templateId: 2051
-      skillId: 2102
-      changes:
-        totalAtk: 61958.96
-    # Gutrend Reaper: skill 1103 (4.5 s), x1.6.
-    - huntingZoneId: 6
-      templateId: 2051
-      skillId: 1103
-      changes:
-        totalAtk: 71461.81
-    - huntingZoneId: 6
-      templateId: 2051
-      skillId: 2103
-      changes:
-        totalAtk: 77416.90
-    # Gutrend Seer: skill 1101 (4.5 s), x2.5.
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 1101
-      changes:
-        totalAtk: 100165.67
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 2101
-      changes:
-        totalAtk: 105498.47
-    # Gutrend Seer: skill 1103 (4.5 s), x2.5.
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 1103
-      changes:
-        totalAtk: 100165.67
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 2103
-      changes:
-        totalAtk: 105498.47
-    # Gutrend Seer: skill 1104 (4.5 s), x2.5.
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 1104
-      changes:
-        totalAtk: 100165.67
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 2104
-      changes:
-        totalAtk: 105498.47
-    # Gutrend Seer: skill 1105 (4.5 s), x2.1.
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 1105
-      changes:
-        totalAtk: 100966.99
-    - huntingZoneId: 6
-      templateId: 2081
-      skillId: 2105
-      changes:
-        totalAtk: 106342.46
-    # Gutrend Juggernaut: skill 1102 (4.5 s), x1.1.
-    - huntingZoneId: 6
-      templateId: 2082
-      skillId: 1102
-      changes:
-        totalAtk: 105355.17
-    - huntingZoneId: 6
-      templateId: 2082
-      skillId: 2102
-      changes:
-        totalAtk: 109391.42
-    # Scion Justicar: skill 1105 (4.5 s), x1.5.
-    - huntingZoneId: 6
-      templateId: 3011
-      skillId: 1105
-      changes:
-        totalAtk: 68507.73
-    - huntingZoneId: 6
-      templateId: 3011
-      skillId: 2105
-      changes:
-        totalAtk: 74216.65
-    # Scion Justicar: skill 1106 (3.4 s), x1.2.
-    - huntingZoneId: 6
-      templateId: 3011
-      skillId: 1106
-      changes:
-        totalAtk: 53000.45
-    - huntingZoneId: 6
-      templateId: 3011
-      skillId: 2106
-      changes:
-        totalAtk: 57417.16
-    # Lokian Battlerager: skill 1104 (4.0 s), x1.2.
-    - huntingZoneId: 6
-      templateId: 3021
-      skillId: 1104
-      changes:
-        totalAtk: 53403.46
-    - huntingZoneId: 6
-      templateId: 3021
-      skillId: 2104
-      changes:
-        totalAtk: 57545.38
-    # Lokian Battlerager: skill 1105 (4.6 s), x1.2.
-    - huntingZoneId: 6
-      templateId: 3021
-      skillId: 1105
-      changes:
-        totalAtk: 68843.08
-    - huntingZoneId: 6
-      templateId: 3021
-      skillId: 2105
-      changes:
-        totalAtk: 73440.67
-    # Lokian Battlerager: skill 1110 (4.0 s), x1.5.
-    - huntingZoneId: 6
-      templateId: 3021
-      skillId: 1110
-      changes:
-        totalAtk: 54853.26
-    - huntingZoneId: 6
-      templateId: 3021
-      skillId: 2110
-      changes:
-        totalAtk: 59846.47
-    # Lokian Reaver: skill 1103 (5.1 s), x1.8.
-    - huntingZoneId: 6
-      templateId: 3031
-      skillId: 1103
-      changes:
-        totalAtk: 100545.42
-    - huntingZoneId: 6
-      templateId: 3031
-      skillId: 2103
-      changes:
-        totalAtk: 108924.29
-    # Lokian Reaver: skill 1104 (4.9 s), x1.5.
-    - huntingZoneId: 6
-      templateId: 3031
-      skillId: 1104
-      changes:
-        totalAtk: 103799.57
-    - huntingZoneId: 6
-      templateId: 3031
-      skillId: 2104
-      changes:
-        totalAtk: 112449.45
-    # Lokian Reapmaster: skill 1103 (5.1 s), x1.8.
-    - huntingZoneId: 6
-      templateId: 3042
-      skillId: 1103
-      changes:
-        totalAtk: 100545.42
-    - huntingZoneId: 6
-      templateId: 3042
-      skillId: 2103
-      changes:
-        totalAtk: 108924.29
-    # Lokian Reapmaster: skill 1104 (4.9 s), x1.5.
-    - huntingZoneId: 6
-      templateId: 3042
-      skillId: 1104
-      changes:
-        totalAtk: 103799.57
-    - huntingZoneId: 6
-      templateId: 3042
-      skillId: 2104
-      changes:
-        totalAtk: 112449.45
+  updateWhere:
+    # Skill 1102, atk03 (6.8 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GRAZING_NORUK
+        id: $VT_GRAZING_NORUK_DASH_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.1 }
+    # Skill 1103, atk02 (4.6 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GRAZING_NORUK
+        id: $VT_GRAZING_NORUK_DOUBLE_UPPERCUT
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.2 }
+    # Skill 1103, atk02 (4.6 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_STOMPING_NORUK
+        id: $VT_STOMPING_NORUK_DOUBLE_UPPERCUT
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.0 }
+    # Skill 1103, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: [$VT_RAVENOUS_HYENA, $VT_HYENA_STALKER]
+        id: $VT_RAVENOUS_HYENA_DASH_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.3 }
+    # Skill 1103, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_STARVING_HYENA
+        id: $VT_STARVING_HYENA_DASH_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.0 }
+    # Skill 1102, atk02 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_KULKARI
+        id: $VT_GUTREND_KULKARI_SPIN_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.9 }
+    # Skill 1103, atk03 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_KULKARI
+        id: $VT_GUTREND_KULKARI_CLAW
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.6 }
+    # Skill 1103, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_HYENA_1
+        id: $VT_GUTREND_HYENA_1_DASH_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.0 }
+    # Skill 1102, atk02 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_CLAWTAMER
+        id: $VT_GUTREND_CLAWTAMER_SHIELD_CHARGE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.6 }
+    # Skill 1103, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_HYENA_2
+        id: $VT_GUTREND_HYENA_2_DASH_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.0 }
+    # Skill 1102, atk02 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_BRIGAND
+        id: $VT_GUTREND_BRIGAND_SPIN_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.9 }
+    # Skill 1103, atk03 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_BRIGAND
+        id: $VT_GUTREND_BRIGAND_CLAW
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.6 }
+    # Skill 1102, atk02 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_PILLAGER
+        id: $VT_GUTREND_PILLAGER_SHIELD_CHARGE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.4 }
+    # Skill 1102, atk02 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_RAIDER
+        id: $VT_GUTREND_RAIDER_SHIELD_CHARGE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.1 }
+    # Skill 1102, atk02 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_SKULLCRUSHER
+        id: $VT_GUTREND_SKULLCRUSHER_SPIN_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.3 }
+    # Skill 1103, atk03 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_SKULLCRUSHER
+        id: $VT_GUTREND_SKULLCRUSHER_CLAW
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.8 }
+    # Skill 1102, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_HILLWALKER_WARTHOG
+        id: $VT_HILLWALKER_WARTHOG_CHARGE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.7 }
+    # Skill 1102, atk03 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GREAT_TUSK_WARTHOG
+        id: $VT_GREAT_TUSK_WARTHOG_CHARGE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.5 }
+    # Skill 1104, atk03 (4.0 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_SCAVENGING_BEAR
+        id: $VT_SCAVENGING_BEAR_POUNCE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.3 }
+    # Skill 1104, atk03 (4.0 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_RAVENOUS_BEAR
+        id: $VT_RAVENOUS_BEAR_POUNCE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.2 }
+    # Skill 1102, atk02 (5.7 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_REAPER
+        id: $VT_GUTREND_REAPER_SPIN_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.1 }
+    # Skill 1103, atk03 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_REAPER
+        id: $VT_GUTREND_REAPER_CLAW
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.6 }
+    # Skills 1101 and 1103 and 1104, atk01 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_SEER
+        id: $VT_GUTREND_SEER_GRENADES
+      expect: { min: 6, max: 6 }
+      changes:
+        totalAtk: { multiply: 2.5 }
+    # Skill 1105, atk02 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_SEER
+        id: $VT_GUTREND_SEER_DEBUFF_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 2.1 }
+    # Skill 1102, atk02 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_GUTREND_JUGGERNAUT
+        id: $VT_GUTREND_JUGGERNAUT_SHIELD_CHARGE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.1 }
+    # Skill 1105, atk04 (4.5 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_SCION_JUSTICAR
+        id: $VT_SCION_JUSTICAR_TWO_HIT_COMBO
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.5 }
+    # Skill 1106, atk05 (3.4 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_SCION_JUSTICAR
+        id: $VT_SCION_JUSTICAR_ADVANCE_ATK05
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.2 }
+    # Skill 1104, bash (4.0 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_BATTLERAGER
+        id: $VT_LOKIAN_BATTLERAGER_WEAPON_BASH
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.2 }
+    # Skill 1105, blastSlashStart (4.6 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_BATTLERAGER
+        id: $VT_LOKIAN_BATTLERAGER_BLAST_SLASH
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.2 }
+    # Skill 1110, combo2R (4.0 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_BATTLERAGER
+        id: $VT_LOKIAN_BATTLERAGER_COMBO_2
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.5 }
+    # Skill 1103, pointAttack1 (5.1 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_REAVER
+        id: $VT_LOKIAN_REAVER_CONCENTRATE_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.8 }
+    # Skill 1104, nanmu1 (4.9 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_REAVER
+        id: $VT_LOKIAN_REAVER_DUAL_SWORD_DANCE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.5 }
+    # Skill 1103, pointAttack1 (5.1 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_REAPMASTER
+        id: $VT_LOKIAN_REAPMASTER_CONCENTRATE_ATTACK
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.8 }
+    # Skill 1104, nanmu1 (4.9 s).
+    - filter:
+        huntingZoneId: 6
+        npc.id: $VT_LOKIAN_REAPMASTER
+        id: $VT_LOKIAN_REAPMASTER_DUAL_SWORD_DANCE
+      expect: { min: 2, max: 2 }
+      changes:
+        totalAtk: { multiply: 1.5 }
