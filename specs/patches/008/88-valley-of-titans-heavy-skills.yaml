@@ -14,7 +14,7 @@
 # casts its shareId template's, so the change lands there, and any other template that casts those
 # rows takes it too. Rows are named by id, never by animation: one monster's attacks share
 # animations (a combo reuses its opening move), so an animation can reach a second attack.
-# `expect` pins each entry to the rows it names.
+# `strict` fails the apply when any named monster or row is missing.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -85,211 +85,187 @@ imports:
 
 npcSkills:
   updateWhere:
-    # Skill 1102, atk03 (6.8 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GRAZING_NORUK
-        id: $VT_GRAZING_NORUK_DASH_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1103, atk02 (4.6 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GRAZING_NORUK
-        id: $VT_GRAZING_NORUK_DOUBLE_UPPERCUT
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1103, atk02 (4.6 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_STOMPING_NORUK
-        id: $VT_STOMPING_NORUK_DOUBLE_UPPERCUT
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1103, atk03 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: [$VT_RAVENOUS_HYENA, $VT_HYENA_STALKER]
-        id: $VT_RAVENOUS_HYENA_DASH_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1103, atk03 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_STARVING_HYENA
-        id: $VT_STARVING_HYENA_DASH_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk02 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_KULKARI
-        id: $VT_GUTREND_KULKARI_SPIN_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1103, atk03 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_KULKARI
-        id: $VT_GUTREND_KULKARI_CLAW
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1103, atk03 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_HYENA_1
-        id: $VT_GUTREND_HYENA_1_DASH_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk02 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_CLAWTAMER
-        id: $VT_GUTREND_CLAWTAMER_SHIELD_CHARGE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1103, atk03 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_HYENA_2
-        id: $VT_GUTREND_HYENA_2_DASH_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk02 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_BRIGAND
-        id: $VT_GUTREND_BRIGAND_SPIN_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1103, atk03 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_BRIGAND
-        id: $VT_GUTREND_BRIGAND_CLAW
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1102, atk02 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_PILLAGER
-        id: $VT_GUTREND_PILLAGER_SHIELD_CHARGE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk02 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_RAIDER
-        id: $VT_GUTREND_RAIDER_SHIELD_CHARGE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1102 atk02 (5.7 s), 1103 atk03 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_SKULLCRUSHER
-        id: $VT_GUTREND_SKULLCRUSHER_HEAVY
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk03 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_HILLWALKER_WARTHOG
-        id: $VT_HILLWALKER_WARTHOG_CHARGE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk03 (5.7 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GREAT_TUSK_WARTHOG
-        id: $VT_GREAT_TUSK_WARTHOG_CHARGE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1104, atk03 (4.0 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_SCAVENGING_BEAR
-        id: $VT_SCAVENGING_BEAR_POUNCE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1104, atk03 (4.0 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_RAVENOUS_BEAR
-        id: $VT_RAVENOUS_BEAR_POUNCE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1102 atk02 (5.7 s), 1103 atk03 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_REAPER
-        id: $VT_GUTREND_REAPER_HEAVY
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1101, 1103 and 1104 atk01 (4.5 s), 1105 atk02 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_SEER
-        id: $VT_GUTREND_SEER_HEAVY
-      expect: { min: 8, max: 8 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1102, atk02 (4.5 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_GUTREND_JUGGERNAUT
-        id: $VT_GUTREND_JUGGERNAUT_SHIELD_CHARGE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1105 atk04 (4.5 s), 1106 atk05 (3.4 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_SCION_JUSTICAR
-        id: $VT_SCION_JUSTICAR_HEAVY
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1104 bash (4.0 s), 1105 blastSlashStart (4.6 s), 1110 combo2R (4.0 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_LOKIAN_BATTLERAGER
-        id: $VT_LOKIAN_BATTLERAGER_HEAVY
-      expect: { min: 6, max: 6 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1103 pointAttack1 (5.1 s), 1104 nanmu1 (4.9 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_LOKIAN_REAVER
-        id: $VT_LOKIAN_REAVER_HEAVY
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1103 pointAttack1 (5.1 s), 1104 nanmu1 (4.9 s).
-    - filter:
-        huntingZoneId: 6
-        npc.id: $VT_LOKIAN_REAPMASTER
-        id: $VT_LOKIAN_REAPMASTER_HEAVY
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 2 }
+    strict: true
+    entries:
+      # Skill 1102, atk03 (6.8 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GRAZING_NORUK
+          id: $VT_GRAZING_NORUK_DASH_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk02 (4.6 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GRAZING_NORUK
+          id: $VT_GRAZING_NORUK_DOUBLE_UPPERCUT
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1103, atk02 (4.6 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_STOMPING_NORUK
+          id: $VT_STOMPING_NORUK_DOUBLE_UPPERCUT
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: [$VT_RAVENOUS_HYENA, $VT_HYENA_STALKER]
+          id: $VT_RAVENOUS_HYENA_DASH_ATTACK
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1103, atk03 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_STARVING_HYENA
+          id: $VT_STARVING_HYENA_DASH_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk02 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_KULKARI
+          id: $VT_GUTREND_KULKARI_SPIN_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_KULKARI
+          id: $VT_GUTREND_KULKARI_CLAW
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1103, atk03 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_HYENA_1
+          id: $VT_GUTREND_HYENA_1_DASH_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk02 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_CLAWTAMER
+          id: $VT_GUTREND_CLAWTAMER_SHIELD_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_HYENA_2
+          id: $VT_GUTREND_HYENA_2_DASH_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk02 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_BRIGAND
+          id: $VT_GUTREND_BRIGAND_SPIN_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_BRIGAND
+          id: $VT_GUTREND_BRIGAND_CLAW
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1102, atk02 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_PILLAGER
+          id: $VT_GUTREND_PILLAGER_SHIELD_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk02 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_RAIDER
+          id: $VT_GUTREND_RAIDER_SHIELD_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1102 atk02 (5.7 s), 1103 atk03 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_SKULLCRUSHER
+          id: $VT_GUTREND_SKULLCRUSHER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk03 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_HILLWALKER_WARTHOG
+          id: $VT_HILLWALKER_WARTHOG_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk03 (5.7 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GREAT_TUSK_WARTHOG
+          id: $VT_GREAT_TUSK_WARTHOG_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1104, atk03 (4.0 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_SCAVENGING_BEAR
+          id: $VT_SCAVENGING_BEAR_POUNCE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1104, atk03 (4.0 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_RAVENOUS_BEAR
+          id: $VT_RAVENOUS_BEAR_POUNCE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1102 atk02 (5.7 s), 1103 atk03 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_REAPER
+          id: $VT_GUTREND_REAPER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1101, 1103 and 1104 atk01 (4.5 s), 1105 atk02 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_SEER
+          id: $VT_GUTREND_SEER_HEAVY
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1102, atk02 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_JUGGERNAUT
+          id: $VT_GUTREND_JUGGERNAUT_SHIELD_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1105 atk04 (4.5 s), 1106 atk05 (3.4 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_SCION_JUSTICAR
+          id: $VT_SCION_JUSTICAR_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1104 bash (4.0 s), 1105 blastSlashStart (4.6 s), 1110 combo2R (4.0 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_LOKIAN_BATTLERAGER
+          id: $VT_LOKIAN_BATTLERAGER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1103 pointAttack1 (5.1 s), 1104 nanmu1 (4.9 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_LOKIAN_REAVER
+          id: $VT_LOKIAN_REAVER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1103 pointAttack1 (5.1 s), 1104 nanmu1 (4.9 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_LOKIAN_REAPMASTER
+          id: $VT_LOKIAN_REAPMASTER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }

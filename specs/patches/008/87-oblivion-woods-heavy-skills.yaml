@@ -13,7 +13,7 @@
 # casts its shareId template's, so the change lands there, and any other template that casts those
 # rows takes it too. Rows are named by id, never by animation: one monster's attacks share
 # animations (a combo reuses its opening move), so an animation can reach a second attack.
-# `expect` pins each entry to the rows it names.
+# `strict` fails the apply when any named monster or row is missing.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -59,109 +59,98 @@ imports:
 
 npcSkills:
   updateWhere:
-    # Skill 1101, atk01 (3.0 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
-        id: $OW_AGITATED_SPOREWALKER_JUMP_SLAM
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 4 }
-    # Skills 1102 atk03 (5.7 s), 1103 atk02 (5.1 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
-        id: $OW_AGITATED_SPOREWALKER_ROLLING_ATTACK_MUD_SHAKE
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skills 1103 atk02 (3.8 s), 1104 atk03 (5.6 s), 1106 UltraAtk01 (3.4 s), 1107 and 1108
-    # UltraAtk02 (4.6 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_MOSSY_GHILLIEDHU
-        id: $OW_MOSSY_GHILLIEDHU_HEAVY
-      expect: { min: 10, max: 10 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1104 bash (4.0 s), 1105 blastSlashStart (4.6 s), 1110 combo2R (4.0 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_REAVER_OF_RESURRECTION
-        id: $OW_REAVER_OF_RESURRECTION_HEAVY
-      expect: { min: 6, max: 6 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1102 atk06 (4.6 s), 1105 atk04 (5.0 s), 1106 atk05 (3.8 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: [$OW_DEVAN_BLADEMASTER, $OW_DEVAN_SCRAPPER]
-        id: $OW_DEVAN_BLADEMASTER_HEAVY
-      expect: { min: 6, max: 6 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skill 1102, atk06 (3.7 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_WARRIOR
-        id: $OW_DEVAN_WARRIOR_ADVANCE_ATK06
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skills 1105 atk04 (4.0 s), 1106 atk05 (3.1 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_WARRIOR
-        id: $OW_DEVAN_WARRIOR_TWO_HIT_COMBO_ADVANCE_ATK05
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 4 }
-    # Skill 1101, atk02 (3.2 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_BRIGAND
-        id: $OW_DEVAN_BRIGAND_SPEAR_THROW
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 5 }
-    # Skills 1103 atk03 (3.8 s), 1104 atk04 (3.6 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_BRIGAND
-        id: $OW_DEVAN_BRIGAND_BRANDISH_THROW
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1105, atk04 (4.5 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_ARCANIST
-        id: $OW_DEVAN_ARCANIST_BLAST
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 3 }
-    # Skill 1106, atk05 (5.7 s). The common Arcanist's AI never chooses it; on this model only the
-    # captains cast it.
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_ARCANIST
-        id: $OW_DEVAN_ARCANIST_NUKE
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 2 }
-    # Skills 1105 atk04 (4.5 s), 1106 atk05 (5.7 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: $OW_DEVAN_CHANTER
-        id: $OW_DEVAN_CHANTER_HEAVY
-      expect: { min: 4, max: 4 }
-      changes:
-        totalAtk: { multiply: 4 }
-    # Skill 1103, atk02 (3.4 s).
-    - filter:
-        huntingZoneId: 3
-        npc.id: [$OW_FALLEN_SOLDIER, $OW_FALLEN_DEFENDER]
-        id: $OW_FALLEN_SOLDIER_RANGED_ATTACK
-      expect: { min: 2, max: 2 }
-      changes:
-        totalAtk: { multiply: 13 }
+    strict: true
+    entries:
+      # Skill 1101, atk01 (3.0 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
+          id: $OW_AGITATED_SPOREWALKER_JUMP_SLAM
+        changes:
+          totalAtk: { multiply: 4 }
+      # Skills 1102 atk03 (5.7 s), 1103 atk02 (5.1 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: [$OW_AGITATED_SPOREWALKER, $OW_AGGRAVATED_SPOREWALKER]
+          id: $OW_AGITATED_SPOREWALKER_ROLLING_ATTACK_MUD_SHAKE
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skills 1103 atk02 (3.8 s), 1104 atk03 (5.6 s), 1106 UltraAtk01 (3.4 s), 1107 and 1108
+      # UltraAtk02 (4.6 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_MOSSY_GHILLIEDHU
+          id: $OW_MOSSY_GHILLIEDHU_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1104 bash (4.0 s), 1105 blastSlashStart (4.6 s), 1110 combo2R (4.0 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_REAVER_OF_RESURRECTION
+          id: $OW_REAVER_OF_RESURRECTION_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1102 atk06 (4.6 s), 1105 atk04 (5.0 s), 1106 atk05 (3.8 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: [$OW_DEVAN_BLADEMASTER, $OW_DEVAN_SCRAPPER]
+          id: $OW_DEVAN_BLADEMASTER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1102, atk06 (3.7 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_WARRIOR
+          id: $OW_DEVAN_WARRIOR_ADVANCE_ATK06
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skills 1105 atk04 (4.0 s), 1106 atk05 (3.1 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_WARRIOR
+          id: $OW_DEVAN_WARRIOR_TWO_HIT_COMBO_ADVANCE_ATK05
+        changes:
+          totalAtk: { multiply: 4 }
+      # Skill 1101, atk02 (3.2 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_BRIGAND
+          id: $OW_DEVAN_BRIGAND_SPEAR_THROW
+        changes:
+          totalAtk: { multiply: 5 }
+      # Skills 1103 atk03 (3.8 s), 1104 atk04 (3.6 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_BRIGAND
+          id: $OW_DEVAN_BRIGAND_BRANDISH_THROW
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1105, atk04 (4.5 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_ARCANIST
+          id: $OW_DEVAN_ARCANIST_BLAST
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1106, atk05 (5.7 s). The common Arcanist's AI never chooses it; on this model only the
+      # captains cast it.
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_ARCANIST
+          id: $OW_DEVAN_ARCANIST_NUKE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1105 atk04 (4.5 s), 1106 atk05 (5.7 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DEVAN_CHANTER
+          id: $OW_DEVAN_CHANTER_HEAVY
+        changes:
+          totalAtk: { multiply: 4 }
+      # Skill 1103, atk02 (3.4 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: [$OW_FALLEN_SOLDIER, $OW_FALLEN_DEFENDER]
+          id: $OW_FALLEN_SOLDIER_RANGED_ATTACK
+        changes:
+          totalAtk: { multiply: 13 }
