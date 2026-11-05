@@ -1,4 +1,4 @@
-# Valley of Titans (zone 6): every field monster's long telegraphed attacks hit hard enough to
+# Valley of Titans (zone 6): every hostile monster's long telegraphed attacks hit hard enough to
 # punish a player who does not dodge them, by the same rule as the Oblivion Woods spec. Their quick
 # attacks and their base attack are left as they are.
 #
@@ -53,6 +53,8 @@ imports:
         - VT_LOKIAN_BATTLERAGER
         - VT_LOKIAN_REAVER
         - VT_LOKIAN_REAPMASTER
+        - VT_LAKRAX
+        - VT_TORAX
   - from: npc-skill-ids
     use:
       variables:
@@ -82,6 +84,7 @@ imports:
         - VT_LOKIAN_BATTLERAGER_HEAVY
         - VT_LOKIAN_REAVER_HEAVY
         - VT_LOKIAN_REAPMASTER_HEAVY
+        - VT_LAKRAX_CLAW
 
 npcSkills:
   updateWhere:
@@ -267,5 +270,12 @@ npcSkills:
           huntingZoneId: 6
           npc.id: $VT_LOKIAN_REAPMASTER
           id: $VT_LOKIAN_REAPMASTER_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (4.5 s).
+      - filter:
+          huntingZoneId: 6
+          npc.id: [$VT_LAKRAX, $VT_TORAX]
+          id: $VT_LAKRAX_CLAW
         changes:
           totalAtk: { multiply: 2 }

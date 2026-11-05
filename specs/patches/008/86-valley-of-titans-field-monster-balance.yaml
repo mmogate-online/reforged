@@ -1,10 +1,9 @@
-# Valley of Titans (zone 6): raise the field monsters' maxHp x7 and atk x7 over their current
+# Valley of Titans (zone 6): raise every hostile monster's maxHp x7 and atk x7 over its current
 # values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
 # as the Oblivion Woods rescale does for the zone before it.
 #
-# Scope: the zone's spawned field monsters take both. Its named monsters take maxHp x7 only:
-# their attack was already authored at or above the rescaled field monsters'. The three
-# twelve-hour bosses of the Arakia party, the Arcadia guards and the villagers are left out.
+# Scope: one factor for every hostile monster the zone spawns, field, named, quest and rare
+# alike. Only the Arcadia guards, which fight on the player's side, are left out.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -51,9 +50,12 @@ imports:
         - VT_TORAX
         - VT_DAKARIUS
         - VT_SMULCH
+        - VT_CRISAKA
+        - VT_ABRATA
+        - VT_ARAKIA
 
 balanceProfiles:
-  - name: ValleyOfTitansFieldMonsters
+  - name: ValleyOfTitansMonsters
     npcFilter:
       huntingZoneId: 6
       id:
@@ -84,20 +86,15 @@ balanceProfiles:
         - $VT_LOKIAN_MYSTIC
         - $VT_LOKIAN_DARKCALLER
         - $VT_LOKIAN_REAPMASTER
-    npc:
-      stat:
-        maxHp: { multiply: 7 }
-        atk:   { multiply: 7 }
-
-  - name: ValleyOfTitansNamedMonsters
-    npcFilter:
-      huntingZoneId: 6
-      id:
         - $VT_KRASHAR
         - $VT_LAKRAX
         - $VT_TORAX
         - $VT_DAKARIUS
         - $VT_SMULCH
+        - $VT_CRISAKA
+        - $VT_ABRATA
+        - $VT_ARAKIA
     npc:
       stat:
         maxHp: { multiply: 7 }
+        atk:   { multiply: 7 }

@@ -1,4 +1,4 @@
-# Oblivion Woods (zone 3): every field monster's long telegraphed attacks hit hard enough to punish
+# Oblivion Woods (zone 3): every hostile monster's long telegraphed attacks hit hard enough to punish
 # a player who does not dodge them. Their quick attacks and their base attack are left as they are.
 #
 # How hard follows how long the attack takes to play: the skill's animation length in
@@ -40,6 +40,9 @@ imports:
         - OW_DEVAN_CHANTER
         - OW_FALLEN_SOLDIER
         - OW_FALLEN_DEFENDER
+        - OW_SKELETAL_RETAINER
+        - OW_SKELETAL_SOLDIER
+        - OW_DARK_MAIDEN
   - from: npc-skill-ids
     use:
       variables:
@@ -56,6 +59,9 @@ imports:
         - OW_DEVAN_ARCANIST_NUKE
         - OW_DEVAN_CHANTER_HEAVY
         - OW_FALLEN_SOLDIER_RANGED_ATTACK
+        - OW_SKELETAL_RETAINER_RANGED_ATTACK
+        - OW_SKELETAL_SOLDIER_RANGED_ATTACK
+        - OW_DARK_MAIDEN_HEAVY
 
 npcSkills:
   updateWhere:
@@ -154,3 +160,24 @@ npcSkills:
           id: $OW_FALLEN_SOLDIER_RANGED_ATTACK
         changes:
           totalAtk: { multiply: 13 }
+      # Skill 1103, atk02 (3.4 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_SKELETAL_RETAINER
+          id: $OW_SKELETAL_RETAINER_RANGED_ATTACK
+        changes:
+          totalAtk: { multiply: 32 }
+      # Skill 1103, atk02 (3.4 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_SKELETAL_SOLDIER
+          id: $OW_SKELETAL_SOLDIER_RANGED_ATTACK
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1102 atk06 (4.6 s), 1105 atk04 (5.0 s), 1106 atk05 (3.8 s).
+      - filter:
+          huntingZoneId: 3
+          npc.id: $OW_DARK_MAIDEN
+          id: $OW_DARK_MAIDEN_HEAVY
+        changes:
+          totalAtk: { multiply: 3 }

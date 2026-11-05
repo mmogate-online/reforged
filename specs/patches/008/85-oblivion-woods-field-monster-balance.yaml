@@ -1,11 +1,10 @@
-# Oblivion Woods (zone 3): raise the field monsters' maxHp x7 and atk x7 over their current
+# Oblivion Woods (zone 3): raise every hostile monster's maxHp x7 and atk x7 over its current
 # values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
 # as the Fey Forest rescale does for the zone before it.
 #
-# Scope: the zone's spawned field monsters take both. Its named and quest monsters take maxHp x7
-# only: their attack was already authored at or above the rescaled field monsters'. The two
-# hour-respawn bosses, the basilisk, the camp guards, the villagers and the ambient creature are
-# left out.
+# Scope: one factor for every hostile monster the zone spawns, field, named, quest and rare
+# alike, with one attack exception below. The ambient creature, the quest villager and the
+# notice board are left out.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -50,9 +49,12 @@ imports:
         - OW_DAKANIUSS_GUARD_1
         - OW_DAKANIUSS_GUARD_2
         - OW_DEVAN_WATCHER
+        - OW_DUR_BARAK
+        - OW_LANOK
+        - OW_BASILISK
 
 balanceProfiles:
-  - name: OblivionWoodsFieldMonsters
+  - name: OblivionWoodsMonsters
     npcFilter:
       huntingZoneId: 3
       id:
@@ -75,15 +77,6 @@ balanceProfiles:
         - $OW_DEVAN_CHANTER
         - $OW_FURIOUS_DRAGOON
         - $OW_FALLEN_SOLDIER
-    npc:
-      stat:
-        maxHp: { multiply: 7 }
-        atk:   { multiply: 7 }
-
-  - name: OblivionWoodsNamedMonsters
-    npcFilter:
-      huntingZoneId: 3
-      id:
         - $OW_GRAYAL
         - $OW_SKELETAL_RETAINER
         - $OW_SKELETAL_SOLDIER
@@ -91,10 +84,25 @@ balanceProfiles:
         - $OW_DEVAN_ARCHPRIEST
         - $OW_DEVAN_WARLORD
         - $OW_DARK_MAIDEN
-        - $OW_KULSILVA
         - $OW_DAKANIUSS_GUARD_1
         - $OW_DAKANIUSS_GUARD_2
         - $OW_DEVAN_WATCHER
+        - $OW_DUR_BARAK
+        - $OW_LANOK
+        - $OW_BASILISK
     npc:
       stat:
         maxHp: { multiply: 7 }
+        atk:   { multiply: 7 }
+
+  # Kulsilva's authored attack is thirteen times the Devan Arcanist's on the same model, so the
+  # zone's attack factor would let her quick attacks kill in two hits. She takes a smaller one.
+  - name: OblivionWoodsKulsilva
+    npcFilter:
+      huntingZoneId: 3
+      id:
+        - $OW_KULSILVA
+    npc:
+      stat:
+        maxHp: { multiply: 7 }
+        atk:   { multiply: 4 }
