@@ -1,0 +1,62 @@
+# Oblivion Woods: the three Devan captains Tuebenius, Basenius and Kulsilva return in 20 to 22
+# seconds, so the captain fight that pays a full set of Hornmasks is never a wait.
+#
+# A captain in a party carries the party's respawn pair and its own, and every member its own;
+# all of them must change, or the slower one wins. Basenius's paired Arcanist already returns in
+# 20 to 22 seconds. Values are milliseconds.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territoryParties:
+  update:
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320464
+      partyId: 300052
+      changes:
+        partyRespawnTime: 20000
+        partyRespawnRandomTime: 2000
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320738
+      partyId: 300185
+      changes:
+        partyRespawnTime: 20000
+        partyRespawnRandomTime: 2000
+
+territorySpawns:
+  update:
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320464
+      partyId: 300052
+      npcInstanceId: 322181
+      changes:
+        respawnTime: 20000
+        respawnRandomTime: "2000"
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320464
+      partyId: 300052
+      npcInstanceId: 322185
+      changes:
+        respawnTime: 20000
+        respawnRandomTime: "2000"
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320738
+      partyId: 300185
+      npcInstanceId: 322694
+      changes:
+        respawnTime: 20000
+        respawnRandomTime: "2000"
+    - huntingZoneId: 3
+      groupId: 300010
+      territoryId: 321082
+      npcInstanceId: 323334
+      changes:
+        respawnTime: 20000
+        respawnRandomTime: "2000"

@@ -1,0 +1,184 @@
+# Revelation to Nightshimmer items: the step's three dropped materials, its two raw materials
+# and gathered flax, its two gear parts, the two designs that craft the parts, and one design per
+# Nightshimmer piece.
+#
+# Every stackable row carries boundType None: the loader refuses the whole item file when a
+# stackable item names any other binding. The drop model and sounds of each kind come from a
+# vanilla item of the same subtype, so nothing new is rendered or played. A gold store charges
+# a design's own buyPrice.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _Material:
+    level: 1
+    rareGrade: 1
+    combatItemType: NO_COMBAT
+    requiredLevel: 1
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10000
+    maxDropUnit: 9999
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 50
+    sellPrice: 5
+
+  # Hide, bone, wood and fiber materials, from Simple Salts (534).
+  _HideMaterial:
+    $extends: _Material
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherCue
+
+  # Metal materials, from Paverune of Shara (501).
+  _MetalMaterial:
+    $extends: _Material
+    combatItemSubType: weaponMaterial
+    category: weaponMaterial
+    dropSilhouette: Item_Drop.SM.Weaponstone_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_WeaponStoneCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_OreCue
+
+  # Designs, from Weaponcrafting Design: Krysteel Ingot (23001).
+  _Design:
+    level: 11
+    rareGrade: 1
+    combatItemType: RECIPE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 10000
+    sellPrice: 1000
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+
+  _GearDesign:
+    $extends: _Design
+    buyPrice: 50000
+    sellPrice: 5000
+
+items:
+  upsert:
+    - { $extends: _MetalMaterial, id: 920253, name: evo_devan_crookblade, icon: Icon_Items.evo_va_devan_crookblade_Tex }
+    - { $extends: _HideMaterial, id: 920254, name: evo_berzerad_spinecoil, icon: Icon_Items.evo_va_berzerad_spinecoil_Tex }
+    - { $extends: _HideMaterial, id: 920255, name: evo_devan_captains_hornmask, icon: Icon_Items.evo_va_devan_captains_hornmask_Tex }
+    - { $extends: _HideMaterial, id: 920292, name: evo_nightshimmer_grip_core, icon: Icon_Items.evo_va_nightshimmer_grip_core_Tex }
+    - { $extends: _HideMaterial, id: 920293, name: evo_sporewalker_rootwood, icon: Icon_Items.evo_va_sporewalker_rootwood_Tex }
+    - { $extends: _HideMaterial, id: 920294, name: evo_nightshimmer_thread, icon: Icon_Items.evo_va_nightshimmer_thread_Tex }
+    - { $extends: _HideMaterial, id: 920295, name: evo_scion_ritual_cord, icon: Icon_Items.evo_va_scion_ritual_cord_Tex }
+    - { $extends: _HideMaterial, id: 920296, name: evo_oblivion_shadeflax, icon: Icon_Items.evo_va_oblivion_shadeflax_Tex }
+    - { $extends: _Design, id: 920300, name: evo_recipe_nightshimmer_grip_core, icon: Icon_Items.evo_recipe_nightshimmer_grip_core_Tex }
+    - { $extends: _Design, id: 920301, name: evo_recipe_nightshimmer_thread, icon: Icon_Items.evo_recipe_nightshimmer_thread_Tex }
+    - { $extends: _GearDesign, id: 921042, name: evo_design_pathfinder_pair, icon: Icon_Items.recipeweapon_dual_Tex }
+    - { $extends: _GearDesign, id: 921043, name: evo_design_dutys_lance, icon: Icon_Items.recipeweapon_lance_Tex }
+    - { $extends: _GearDesign, id: 921044, name: evo_design_pathsweeper, icon: Icon_Items.recipeweapon_twohand_Tex }
+    - { $extends: _GearDesign, id: 921045, name: evo_design_chopper, icon: Icon_Items.recipeweapon_axe_Tex }
+    - { $extends: _GearDesign, id: 921046, name: evo_design_harvest_focus, icon: Icon_Items.recipeweapon_circle_Tex }
+    - { $extends: _GearDesign, id: 921047, name: evo_design_arrowsvine, icon: Icon_Items.recipeweapon_bow_Tex }
+    - { $extends: _GearDesign, id: 921048, name: evo_design_staff_of_redemption, icon: Icon_Items.recipeweapon_staff_Tex }
+    - { $extends: _GearDesign, id: 921049, name: evo_design_wand_of_the_frond, icon: Icon_Items.recipeweapon_rod_Tex }
+    - { $extends: _GearDesign, id: 921059, name: evo_design_nobleshot, icon: Icon_Items.recipeweapon_blaster_Tex }
+    - { $extends: _GearDesign, id: 921062, name: evo_design_warfists, icon: Icon_Items.recipeweapon_gauntlet_Tex }
+    - { $extends: _GearDesign, id: 921060, name: evo_design_trailcover, icon: Icon_Items.recipeweapon_shuriken_Tex }
+    - { $extends: _GearDesign, id: 921061, name: evo_design_pathdancer, icon: Icon_Items.recipeweapon_glaiver_Tex }
+    - { $extends: _GearDesign, id: 921050, name: evo_design_nightshimmer_chestplate, icon: Icon_Items.recipearmor_bodymail_Tex }
+    - { $extends: _GearDesign, id: 921051, name: evo_design_duskweaver_gauntlets, icon: Icon_Items.recipearmor_handmail_Tex }
+    - { $extends: _GearDesign, id: 921052, name: evo_design_hit_kickers, icon: Icon_Items.recipearmor_feetmail_Tex }
+    - { $extends: _GearDesign, id: 921053, name: evo_design_moonrise_vest, icon: Icon_Items.recipearmor_bodyleather_Tex }
+    - { $extends: _GearDesign, id: 921054, name: evo_design_nightfists, icon: Icon_Items.recipearmor_handleather_Tex }
+    - { $extends: _GearDesign, id: 921055, name: evo_design_tenebral_boots, icon: Icon_Items.recipearmor_feetleather_Tex }
+    - { $extends: _GearDesign, id: 921056, name: evo_design_nightswift_gown, icon: Icon_Items.recipearmor_bodyrobe_Tex }
+    - { $extends: _GearDesign, id: 921057, name: evo_design_somnus_sleeves, icon: Icon_Items.recipearmor_handrobe_Tex }
+    - { $extends: _GearDesign, id: 921058, name: evo_design_umbral_slippers, icon: Icon_Items.recipearmor_feetrobe_Tex }
+
+itemStrings:
+  upsert:
+    - id: 920253
+      name: "Devan Crookblade"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Taken from the Devan raiders of Oblivion Woods. Spent to evolve Revelation gear into Nightshimmer."
+    - id: 920254
+      name: "Berzerad Spinecoil"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Torn from the Furious Dragoons and Fallen Defenders of Berzerad Cemetery in Oblivion Woods. Spent to evolve Revelation gear into Nightshimmer."
+    - id: 920255
+      name: "Devan Captain's Hornmask"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Taken from the Devan captains Tuebenius, Basenius and Kulsilva in Oblivion Woods. Spent to evolve Revelation gear into Nightshimmer."
+    - id: 920292
+      name: "Nightshimmer Grip Core"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Carved by weaponsmiths from Sporewalker Rootwood. Spent to evolve a Revelation weapon into Nightshimmer."
+    - id: 920293
+      name: "Sporewalker Rootwood"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Cut from the Agitated Sporewalkers of Oblivion Woods. Weaponsmiths carve it into a Nightshimmer Grip Core."
+    - id: 920294
+      name: "Nightshimmer Thread"
+      toolTip: "<font color = '#2478FF'>[Processed Material]</font> Spun by armorsmiths from Scion Ritual Cord and Oblivion Shadeflax. Spent to evolve Revelation armor into Nightshimmer."
+    - id: 920295
+      name: "Scion Ritual Cord"
+      toolTip: "<font color = '#2478FF'>[Dropped Material]</font> Unpicked from the garb of the Scion Justicars at Valselok Shrine in the Valley of Titans. Armorsmiths spin it with Oblivion Shadeflax into Nightshimmer Thread."
+    - id: 920296
+      name: "Oblivion Shadeflax"
+      toolTip: "<font color = '#2478FF'>[Gathered Material]</font> Pulled from the Verdra Plants of Oblivion Woods. Armorsmiths spin Scion Ritual Cord with it into Nightshimmer Thread."
+    - { id: 920300, name: "Recipe: Nightshimmer Grip Core", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 920301, name: "Recipe: Nightshimmer Thread", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921042, name: "Design: Pathfinder Pair", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921043, name: "Design: Duty's Lance", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921044, name: "Design: Pathsweeper", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921045, name: "Design: Chopper", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921046, name: "Design: Harvest Focus", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921047, name: "Design: Arrowsvine", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921048, name: "Design: Staff of Redemption", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921049, name: "Design: Wand of the Frond", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921059, name: "Design: Nobleshot", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921062, name: "Design: Warfists", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921060, name: "Design: Trailcover", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921061, name: "Design: Pathdancer", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921050, name: "Design: Nightshimmer Chestplate", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921051, name: "Design: Duskweaver Gauntlets", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921052, name: "Design: Hit Kickers", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921053, name: "Design: Moonrise Vest", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921054, name: "Design: Nightfists", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921055, name: "Design: Tenebral Boots", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921056, name: "Design: Nightswift Gown", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921057, name: "Design: Somnus Sleeves", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 921058, name: "Design: Umbral Slippers", toolTip: "Use this design to learn the corresponding crafting skill." }

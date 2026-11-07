@@ -1,0 +1,54 @@
+# Revelation to Nightshimmer drops: each source monster gains the bags of its material, each bag
+# its own ground pile, so a party shares a kill without splitting a stack. A field source rolls
+# one guaranteed bag and two at half chance; the Fallen Defender, a light source beside the
+# Furious Dragoon, rolls one chance bag; each captain pays the full set's count in guaranteed,
+# locked bags. The rows already repeat bag ids, so each new bag carries a name of its own for the
+# next spec to select it by.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 3
+      npcTemplateId: [18, 19, 300141, 300142, 300160]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Devan Crookblade-1", probability: 1.0 }
+          - { id: 103, bagName: "Devan Crookblade-2", probability: 0.5 }
+          - { id: 104, bagName: "Devan Crookblade-3", probability: 0.5 }
+    - huntingZoneId: 3
+      npcTemplateId: 300611
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Berzerad Spinecoil-1", probability: 1.0 }
+          - { id: 103, bagName: "Berzerad Spinecoil-2", probability: 0.5 }
+          - { id: 104, bagName: "Berzerad Spinecoil-3", probability: 0.5 }
+    - huntingZoneId: 3
+      npcTemplateId: 16
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Berzerad Spinecoil-1", probability: 0.45 }
+    - huntingZoneId: 3
+      npcTemplateId: [9, 12, 20]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Devan Captain's Hornmask-1", probability: 1.0, lockProbAndAmount: true }
+          - { id: 103, bagName: "Devan Captain's Hornmask-2", probability: 1.0, lockProbAndAmount: true }
+          - { id: 104, bagName: "Devan Captain's Hornmask-3", probability: 1.0, lockProbAndAmount: true }
+          - { id: 105, bagName: "Devan Captain's Hornmask-4", probability: 1.0, lockProbAndAmount: true }
+    - huntingZoneId: 3
+      npcTemplateId: 2
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Sporewalker Rootwood-1", probability: 1.0 }
+          - { id: 103, bagName: "Sporewalker Rootwood-2", probability: 0.5 }
+          - { id: 104, bagName: "Sporewalker Rootwood-3", probability: 0.5 }
+    - huntingZoneId: 6
+      npcTemplateId: 3011
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Scion Ritual Cord-1", probability: 1.0 }
+          - { id: 103, bagName: "Scion Ritual Cord-2", probability: 0.5 }
+          - { id: 104, bagName: "Scion Ritual Cord-3", probability: 0.5 }
