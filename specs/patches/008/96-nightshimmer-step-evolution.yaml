@@ -1,0 +1,148 @@
+# Revelation to Nightshimmer evolution: Revelation +9 to +12 evolves into its Nightshimmer piece
+# for Devan Crookblades, Berzerad Spinecoils, Devan Captain's Hornmasks and the gear part of its
+# slot, instead of runes. Weapon, body, hands and feet ask 4 : 3 : 2 : 2 of every count. An
+# upsert merges its materials into the existing condition, so each Revelation entry is deleted
+# first; otherwise the runes stay beside the new materials.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: evolution-base
+    use:
+      variables:
+        - EVOLUTION_COST
+        - EVOLUTION_PROB
+      definitions:
+        - EvolutionItem
+
+variables:
+  CROOKBLADE: 920253             # Devan Crookblade
+  SPINECOIL: 920254              # Berzerad Spinecoil
+  HORNMASK: 920255               # Devan Captain's Hornmask
+  GRIP_CORE: 920292              # Nightshimmer Grip Core
+  THREAD: 920294                 # Nightshimmer Thread
+
+  # ── Source Gear (Revelation) ──
+  SOURCE_WEAPON_DUAL: 10593
+  SOURCE_WEAPON_LANCE: 10594
+  SOURCE_WEAPON_TWOHAND: 10595
+  SOURCE_WEAPON_AXE: 10596
+  SOURCE_WEAPON_CIRCLE: 10597
+  SOURCE_WEAPON_BOW: 10598
+  SOURCE_WEAPON_STAFF: 10599
+  SOURCE_WEAPON_ROD: 10600
+  SOURCE_WEAPON_BLASTER: 55079
+  SOURCE_WEAPON_GAUNTLET: 82079
+  SOURCE_WEAPON_SHURIKEN: 58245
+  SOURCE_WEAPON_GLAIVE: 59127
+  SOURCE_BODYMAIL: 15667
+  SOURCE_HANDMAIL: 15668
+  SOURCE_FEETMAIL: 15669
+  SOURCE_BODYLEATHER: 15670
+  SOURCE_HANDLEATHER: 15671
+  SOURCE_FEETLEATHER: 15672
+  SOURCE_BODYROBE: 15673
+  SOURCE_HANDROBE: 15674
+  SOURCE_FEETROBE: 15675
+
+  # ── Result Gear (Nightshimmer) ──
+  TARGET_WEAPON_DUAL: 10121
+  TARGET_WEAPON_LANCE: 10122
+  TARGET_WEAPON_TWOHAND: 10123
+  TARGET_WEAPON_AXE: 10124
+  TARGET_WEAPON_CIRCLE: 10125
+  TARGET_WEAPON_BOW: 10126
+  TARGET_WEAPON_STAFF: 10127
+  TARGET_WEAPON_ROD: 10128
+  TARGET_WEAPON_BLASTER: 55020
+  TARGET_WEAPON_GAUNTLET: 82020
+  TARGET_WEAPON_SHURIKEN: 58186
+  TARGET_WEAPON_GLAIVE: 59068
+  TARGET_BODYMAIL: 15136
+  TARGET_HANDMAIL: 15137
+  TARGET_FEETMAIL: 15138
+  TARGET_BODYLEATHER: 15139
+  TARGET_HANDLEATHER: 15140
+  TARGET_FEETLEATHER: 15141
+  TARGET_BODYROBE: 15142
+  TARGET_HANDROBE: 15143
+  TARGET_FEETROBE: 15144
+
+definitions:
+  _NightshimmerPath:
+    awaken: false
+    masterpiece: false
+    evolutionProb: $EVOLUTION_PROB
+    requiredMoney: $EVOLUTION_COST
+
+  NightshimmerWeaponPath:
+    $extends: _NightshimmerPath
+    materials:
+      - { id: $CROOKBLADE, amount: 32, type: item }
+      - { id: $SPINECOIL, amount: 20, type: item }
+      - { id: $HORNMASK, amount: 4, type: item }
+      - { id: $GRIP_CORE, amount: 4, type: item }
+
+  NightshimmerBodyPath:
+    $extends: _NightshimmerPath
+    materials:
+      - { id: $CROOKBLADE, amount: 24, type: item }
+      - { id: $SPINECOIL, amount: 15, type: item }
+      - { id: $HORNMASK, amount: 3, type: item }
+      - { id: $THREAD, amount: 3, type: item }
+
+  NightshimmerHandFeetPath:
+    $extends: _NightshimmerPath
+    materials:
+      - { id: $CROOKBLADE, amount: 16, type: item }
+      - { id: $SPINECOIL, amount: 10, type: item }
+      - { id: $HORNMASK, amount: 2, type: item }
+      - { id: $THREAD, amount: 2, type: item }
+
+evolutionPaths:
+  delete:
+    - { targetTemplateId: $SOURCE_WEAPON_DUAL }
+    - { targetTemplateId: $SOURCE_WEAPON_LANCE }
+    - { targetTemplateId: $SOURCE_WEAPON_TWOHAND }
+    - { targetTemplateId: $SOURCE_WEAPON_AXE }
+    - { targetTemplateId: $SOURCE_WEAPON_CIRCLE }
+    - { targetTemplateId: $SOURCE_WEAPON_BOW }
+    - { targetTemplateId: $SOURCE_WEAPON_STAFF }
+    - { targetTemplateId: $SOURCE_WEAPON_ROD }
+    - { targetTemplateId: $SOURCE_WEAPON_BLASTER }
+    - { targetTemplateId: $SOURCE_WEAPON_GAUNTLET }
+    - { targetTemplateId: $SOURCE_WEAPON_SHURIKEN }
+    - { targetTemplateId: $SOURCE_WEAPON_GLAIVE }
+    - { targetTemplateId: $SOURCE_BODYMAIL }
+    - { targetTemplateId: $SOURCE_HANDMAIL }
+    - { targetTemplateId: $SOURCE_FEETMAIL }
+    - { targetTemplateId: $SOURCE_BODYLEATHER }
+    - { targetTemplateId: $SOURCE_HANDLEATHER }
+    - { targetTemplateId: $SOURCE_FEETLEATHER }
+    - { targetTemplateId: $SOURCE_BODYROBE }
+    - { targetTemplateId: $SOURCE_HANDROBE }
+    - { targetTemplateId: $SOURCE_FEETROBE }
+  upsert:
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_DUAL, TARGET: $TARGET_WEAPON_DUAL, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_LANCE, TARGET: $TARGET_WEAPON_LANCE, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_TWOHAND, TARGET: $TARGET_WEAPON_TWOHAND, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_AXE, TARGET: $TARGET_WEAPON_AXE, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_CIRCLE, TARGET: $TARGET_WEAPON_CIRCLE, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_BOW, TARGET: $TARGET_WEAPON_BOW, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_STAFF, TARGET: $TARGET_WEAPON_STAFF, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_ROD, TARGET: $TARGET_WEAPON_ROD, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_BLASTER, TARGET: $TARGET_WEAPON_BLASTER, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_GAUNTLET, TARGET: $TARGET_WEAPON_GAUNTLET, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_SHURIKEN, TARGET: $TARGET_WEAPON_SHURIKEN, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_WEAPON_GLAIVE, TARGET: $TARGET_WEAPON_GLAIVE, PATH_DEF: NightshimmerWeaponPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_BODYMAIL, TARGET: $TARGET_BODYMAIL, PATH_DEF: NightshimmerBodyPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_HANDMAIL, TARGET: $TARGET_HANDMAIL, PATH_DEF: NightshimmerHandFeetPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_FEETMAIL, TARGET: $TARGET_FEETMAIL, PATH_DEF: NightshimmerHandFeetPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_BODYLEATHER, TARGET: $TARGET_BODYLEATHER, PATH_DEF: NightshimmerBodyPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_HANDLEATHER, TARGET: $TARGET_HANDLEATHER, PATH_DEF: NightshimmerHandFeetPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_FEETLEATHER, TARGET: $TARGET_FEETLEATHER, PATH_DEF: NightshimmerHandFeetPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_BODYROBE, TARGET: $TARGET_BODYROBE, PATH_DEF: NightshimmerBodyPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_HANDROBE, TARGET: $TARGET_HANDROBE, PATH_DEF: NightshimmerHandFeetPath } }
+    - { $extends: EvolutionItem, $with: { SOURCE: $SOURCE_FEETROBE, TARGET: $TARGET_FEETROBE, PATH_DEF: NightshimmerHandFeetPath } }
