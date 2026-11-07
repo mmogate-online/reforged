@@ -3,7 +3,7 @@
 # as the Fey Forest rescale does for the zone before it.
 #
 # Scope: one factor for every hostile monster the zone spawns, field, named, quest and rare
-# alike, with one attack exception below. The ambient creature, the quest villager and the
+# alike, with the attack exceptions below. The ambient creature, the quest villager and the
 # notice board are left out.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
@@ -81,7 +81,6 @@ balanceProfiles:
         - $OW_SKELETAL_RETAINER
         - $OW_SKELETAL_SOLDIER
         - $OW_DAKANIUS
-        - $OW_DEVAN_ARCHPRIEST
         - $OW_DEVAN_WARLORD
         - $OW_DARK_MAIDEN
         - $OW_DAKANIUSS_GUARD_1
@@ -95,12 +94,14 @@ balanceProfiles:
         maxHp: { multiply: 7 }
         atk:   { multiply: 7 }
 
-  # Kulsilva's authored attack is thirteen times the Devan Arcanist's on the same model, so the
-  # zone's attack factor would let her quick attacks kill in two hits. She takes a smaller one.
-  - name: OblivionWoodsKulsilva
+  # Kulsilva's authored attack is thirteen times the Devan Arcanist's on the same model, and
+  # Basenius's skill rows are authored several times above the other captains', so the zone's
+  # attack factor would let their quick attacks kill in two hits. They take a smaller one.
+  - name: OblivionWoodsCasterCaptains
     npcFilter:
       huntingZoneId: 3
       id:
+        - $OW_DEVAN_ARCHPRIEST
         - $OW_KULSILVA
     npc:
       stat:
