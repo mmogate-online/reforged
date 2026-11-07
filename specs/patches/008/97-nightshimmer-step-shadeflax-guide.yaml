@@ -1,0 +1,129 @@
+# Neacal's one-time quest Where the Shadeflax Grows (307) at Bulwark Camp: it names what
+# Nightshimmer gear is evolved and crafted from and where each piece of it is taken, then points
+# at the Verdra Plants of Oblivion Woods, the only plants that carry Oblivion Shadeflax. The quest
+# asks for one gather's worth of flax and pays it back, so it costs the player nothing but the
+# walk. Neacal already stands at the camp, so no villager is added.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+variables:
+  SHADEFLAX: 920296              # Oblivion Shadeflax
+
+quests:
+  upsert:
+    - id: 307
+      header:
+        questNumber: 307
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 13
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:307001"
+        designersNote: ""
+        startPopup: "@quest:307002"
+        endPopup: "@quest:307003"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc:
+          huntingZone: 203
+          templateId: 1004       # Neacal, Bulwark Camp
+      requirements:
+        minLevel: 12
+      tasks:
+        - taskId: 1
+          type: "CollectTask"
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:307005"
+          journalText2: "@quest:307006"
+          hasReward: true
+          cinematicId: 0
+          timeLimitSetting: [0, 0]
+          body:
+            itemId: 3              # Verdra Plant, Oblivion Woods
+            deliveryItems:
+              - itemId: $SHADEFLAX
+                quantity: 2
+            targetNpc:
+              huntingZone: 203
+              templateId: 1004
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:307004"
+
+questStrings:
+  upsert:
+    - id: 307001
+      string: "Where the Shadeflax Grows"
+    - id: 307002
+      string: "Bring Oblivion Shadeflax to Neacal"
+    - id: 307003
+      string: "Neacal knows what the woods give up, and where."
+    - id: 307004
+      string: '"Straight from the plant."'
+    - id: 307005
+      string: "Gather a {@Collection:3} around Bulwark Camp and pull its Oblivion Shadeflax."
+    - id: 307006
+      string: "Bring the Oblivion Shadeflax to Neacal at Bulwark Camp."
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 3
+      id: 7
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        # Text 100 is the quest log summary panel.
+        - id: 100
+          npcZoneId: 203
+          prevId: 0
+          villagerId: 1004
+          pages:
+            - social: 0
+              content: "Neacal says the Verdra Plants around Bulwark Camp carry Oblivion Shadeflax, the flax armorsmiths spin into Nightshimmer Thread. He wants to see it for himself."
+        # Text 2: the accept dialog, at Neacal.
+        - id: 2
+          npcZoneId: 203
+          prevId: 0
+          villagerId: 1004
+          pages:
+            - social: 4
+              content: "You're wearing Revelation gear. Good. The smiths in Crescentia can take it further, to Nightshimmer, if you bring them what these woods give up.<BR><BR>Crookblades off the Devans of Blood Run and Deva Silva. Spinecoils off the Furious Dragoons in Berzerad Cemetery. And a Hornmask off one of their captains: Tuebenius, Basenius or Kulsilva. A weaponsmith carves a grip core from the rootwood of the Agitated Sporewalkers. An armorsmith spins thread from the cords of the Scion Justicars at Valselok Shrine, in the Valley of Titans, and from Oblivion Shadeflax."
+            - social: 4
+              content: "The flax is the easy part, and nobody tells the recruits. It grows on the Verdra Plants all around this camp, and on every Verdra Plant in these woods. The ones in the Fey Forest look the same and have none.<BR><BR>Go and gather one, and bring me what you get."
+        # Text 3: the hand-in, when the player carries the flax.
+        - id: 3
+          npcZoneId: 203
+          prevId: 2
+          villagerId: 1004
+          pages:
+            - social: 4
+              content: "That's shadeflax. Keep it, I've no use for a handful.<BR><BR>A spool of thread takes three of these, so you'll want more than one plant's worth. Now you know where they grow."
+        # Text 4: Neacal, before the player has the flax.
+        - id: 4
+          npcZoneId: 203
+          villagerId: 1004
+          pages:
+            - social: 0
+              content: "The Verdra Plants around the camp. Pull one and come back."
+
+questCompensations:
+  upsert:
+    - questId: 307
+      huntingZoneId: 3
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 0
+          itemBag: "allpay"
+          items:
+            - templateId: $SHADEFLAX
+              quantity: 2

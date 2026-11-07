@@ -1,0 +1,24 @@
+# Oblivion Shadeflax on the Verdra Plants of Oblivion Woods (gift table 3): every gather pays
+# its ordinary plant yield and, from a bag of its own, a fixed amount of flax.
+#
+# Inside one bag a gather pays a single item chosen by weight, so the flax cannot join the
+# plant's existing bag without turning a guaranteed yield into a chance. A second bag rolls on
+# its own. Gift table 3 is paid by no territory outside Oblivion Woods.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+variables:
+  SHADEFLAX: 920296              # Oblivion Shadeflax
+
+collectionGifts:
+  update:
+    - giftNum: 3
+      changes:
+        dropBags:
+          - containing: $SHADEFLAX
+            dropRate: 1
+            dropItems:
+              - { itemTemplateId: $SHADEFLAX, dropRate: 1, minNum: 2, maxNum: 2 }
