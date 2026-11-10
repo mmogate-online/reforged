@@ -86,7 +86,6 @@ balanceProfiles:
         - $OW_DAKANIUSS_GUARD_1
         - $OW_DAKANIUSS_GUARD_2
         - $OW_DEVAN_WATCHER
-        - $OW_DUR_BARAK
         - $OW_LANOK
         - $OW_BASILISK
     npc:
@@ -107,3 +106,15 @@ balanceProfiles:
       stat:
         maxHp: { multiply: 7 }
         atk:   { multiply: 4 }
+
+  # Dur Barak's authored base attack is seventeen times a Devan field monster's, so any raise
+  # lets his two-hit slash kill an arriving player in one use. His attack stays at its own value.
+  - name: OblivionWoodsDurBarak
+    npcFilter:
+      huntingZoneId: 3
+      id:
+        - $OW_DUR_BARAK
+    npc:
+      stat:
+        maxHp: { multiply: 7 }
+        atk:   { multiply: 1 }

@@ -1,0 +1,271 @@
+# Oblivion Woods: Dur Barak fights with his slash, his horn charge and his bite.
+#
+# In vanilla AI 30 he only slashed. His horn charge is the wind-up 1203 chained into 1102, and
+# the Work starting it was gated on GetPcCountInAttackRange(1), whose argument names neither a
+# skill nor a Work of his, so it never passed; it is ungated as on his model's other templates.
+# His four-part bite (1103 and 2103, played in place) had no Work and totalAtk 0; it gains both.
+# The slash, the charge and the bite are weighted evenly and the slash is on a 6 s cooldown.
+# AI 30 is his alone, so it is changed in place.
+#
+# He is sized large, as every boss of his rank is: the server refuses any air launch on a
+# large template, while knockdowns still roll against the skills' large-target rates.
+#
+# Trap: a new AI record cannot be authored for him instead. An AI with a CombatState carries
+# Cooperation's WorkList and ReceiveOrderList and ShorttermTarget's StWorkList, even empty, and
+# an empty list writes no element; without them the world server crashes loading AI data. An
+# update that names only the attack subtree leaves those elements as they are.
+#
+# The bite ticks every 200 ms at Effect atk 0.3 per tick, so its totalAtk is set against the
+# slash's from the ratio the same model carries where the bite has damage. Its hit area is a
+# ring centred 450 units behind him, reaching about 80 units in front, but the vanilla row cast
+# it at a target 300 to 500 units away, where it plays in place and cannot connect. Its cast
+# range is brought to its reach.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  Work:
+    normalBehaviorId: 1101
+    normalBehaviorType: skill
+    offFlockOnNormalMode: true
+    angerBehaviorId: 2101
+    angerBehaviorType: skill
+    offFlockOnAngerMode: true
+    preProcess: 1
+    distanceType: 1
+    distanceRate: 0.8
+    coolTime: 6000
+    isDirectionRevision: true
+    msgImmediately: false
+    msg: [0]
+    msgProb: 0.0
+  Info:
+    workId: 201
+    prob: 0.0
+    distanceRate: 0.8
+
+ai:
+  update:
+    - huntingZoneId: 3
+      id: 30
+      changes:
+        combatState:
+          attack:
+            tensionList:
+              - id: 1
+                infos:
+                  - $extends: Info
+                  - $extends: Info
+                    workId: 202
+                  - $extends: Info
+                    workId: 207
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 208
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 204
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 206
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 251
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 101
+                    prob: 0.3
+                  - $extends: Info
+                    workId: 102
+                    prob: 0.3
+                  - $extends: Info
+                    workId: 103
+                    prob: 0.3
+                  - $extends: Info
+                    workId: 312
+                  - $extends: Info
+                    workId: 327
+                    prob: 0.15
+                  - $extends: Info
+                    workId: 328
+                    prob: 0.15
+                  - $extends: Info
+                    workId: 999
+              - id: 2
+                infos:
+                  - $extends: Info
+                  - $extends: Info
+                    workId: 202
+                  - $extends: Info
+                    workId: 102
+                    prob: 0.5
+                  - $extends: Info
+                    workId: 101
+                    prob: 0.3
+                  - $extends: Info
+                    workId: 103
+                    prob: 0.4
+                  - $extends: Info
+                    workId: 204
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 206
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 207
+                  - $extends: Info
+                    workId: 208
+                  - $extends: Info
+                    workId: 251
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 312
+                  - $extends: Info
+                    workId: 327
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 328
+                    prob: 0.1
+                  - $extends: Info
+                    workId: 999
+            workList:
+              - $extends: Work
+                id: 101
+                desc: 일반공격1
+                distanceType: 2
+                distanceRate: 1.0
+                nextAttackProb: [0.1]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 102
+                desc: 강력한공격 전에 하는 사전동작
+                normalBehaviorId: 1203
+                angerBehaviorId: 2203
+                distanceType: 2
+                nextAttackProb: [1.0]
+                nextAttackId: [312]
+              - $extends: Work
+                id: 103
+                desc: 울트라 어택
+                normalBehaviorId: 1103
+                angerBehaviorId: 2103
+                distanceType: 2
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 201
+                desc: 헉헉 모션 50
+                normalBehaviorId: 1201
+                angerBehaviorId: 1201
+                preProcess: GetHpRatio() < 0.5 AND GetHpRatio() > 0.2
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 202
+                desc: 헉헉 모션 20
+                normalBehaviorId: 1202
+                angerBehaviorId: 1202
+                preProcess: GetHpRatio() < 0.2
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 204
+                desc: 어그로 체인지
+                normalBehaviorId: 1204
+                angerBehaviorId: 2204
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 206
+                desc: 회피이동
+                normalBehaviorId: 1206
+                angerBehaviorId: 2206
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 207
+                desc: 사이드워크(좌)_1
+                normalBehaviorId: 1207
+                angerBehaviorId: 2207
+                preProcess: GetTargetDistance() > 200
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 208
+                desc: 사이드워크(우)_1
+                normalBehaviorId: 1208
+                angerBehaviorId: 2208
+                preProcess: GetTargetDistance() > 200
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 251
+                desc: 접근하는 ActiveMove
+                normalBehaviorId: 1
+                normalBehaviorType: activeMove
+                angerBehaviorId: 1
+                angerBehaviorType: activeMove
+                distanceType: 2
+                distanceRate: 1.0
+                nextAttackProb: [0.5]
+                nextAttackId: [101]
+              - $extends: Work
+                id: 312
+                desc: 사전동작에 이어지는 강력한공격
+                normalBehaviorId: 1102
+                angerBehaviorId: 2102
+                distanceType: 2
+                distanceRate: 1.0
+                nextAttackProb: [0.0]
+                nextAttackId: [0]
+              - $extends: Work
+                id: 327
+                desc: 사이드워크(좌)_2
+                normalBehaviorId: 1207
+                angerBehaviorId: 2207
+                nextAttackProb: [0.8]
+                nextAttackId: [101]
+              - $extends: Work
+                id: 328
+                desc: 사이드워크(우)_2
+                normalBehaviorId: 1208
+                angerBehaviorId: 2208
+                nextAttackProb: [0.8]
+                nextAttackId: [101]
+              - $extends: Work
+                id: 999
+                desc: 무조건 나가는 공격
+                distanceType: 2
+                coolTime: 3000
+                nextAttackProb: [0.3]
+                nextAttackId: [101]
+
+npcs:
+  update:
+    - huntingZoneId: 3
+      id: 21
+      changes:
+        size: large
+
+npcSkills:
+  update:
+    - huntingZoneId: 3
+      templateId: 21
+      skillId: 1103
+      changes:
+        totalAtk: 48374.0
+        attackRange: 80.0
+        attackRangeMin: 0.0
+        attackRangeMax: 0.0
+    - huntingZoneId: 3
+      templateId: 21
+      skillId: 2103
+      changes:
+        totalAtk: 53877.0
+        attackRange: 80.0
+        attackRangeMin: 0.0
+        attackRangeMax: 0.0
