@@ -10,11 +10,6 @@
 # He is sized large, as every boss of his rank is: the server refuses any air launch on a
 # large template, while knockdowns still roll against the skills' large-target rates.
 #
-# Trap: a new AI record cannot be authored for him instead. An AI with a CombatState carries
-# Cooperation's WorkList and ReceiveOrderList and ShorttermTarget's StWorkList, even empty, and
-# an empty list writes no element; without them the world server crashes loading AI data. An
-# update that names only the attack subtree leaves those elements as they are.
-#
 # The bite ticks every 200 ms at Effect atk 0.3 per tick, so its totalAtk is set against the
 # slash's from the ratio the same model carries where the bite has damage. Its hit area is a
 # ring centred 450 units behind him, reaching about 80 units in front, but the vanilla row cast
