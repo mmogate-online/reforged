@@ -1,0 +1,76 @@
+# Arcadia hunts: the rare named monsters of Oblivion Woods, Tuwangi Mire, the Valley of Titans
+# and the Celestial Hills return on the hunt tiers. Dur Barak, Garangka and the Crisaka and
+# Abrata pair return in 25 to 30 minutes; Lanok, Arakia and Barraq in 50 to 60.
+#
+# The respawn is a base plus a random addition, so the window sits below its ceiling. Crisaka
+# and Abrata share a party, which carries its own respawn pair; the party and both members must
+# change together, or the slower one wins. Values are milliseconds.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+territoryParties:
+  update:
+    - huntingZoneId: 6
+      groupId: 600036
+      territoryId: 600641
+      partyId: 600406
+      changes:
+        partyRespawnTime: 1500000
+        partyRespawnRandomTime: 300000
+
+territorySpawns:
+  update:
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320413
+      npcInstanceId: 321970
+      changes:
+        respawnTime: 1500000
+        respawnRandomTime: "300000"
+    - huntingZoneId: 3
+      groupId: 300006
+      territoryId: 320712
+      npcInstanceId: 322657
+      changes:
+        respawnTime: 3000000
+        respawnRandomTime: "600000"
+    - huntingZoneId: 5
+      groupId: 500006
+      territoryId: 520293
+      npcInstanceId: 522598
+      changes:
+        respawnTime: 1500000
+        respawnRandomTime: "300000"
+    - huntingZoneId: 6
+      groupId: 600036
+      territoryId: 600641
+      partyId: 600406
+      npcInstanceId: 622135
+      changes:
+        respawnTime: 1500000
+        respawnRandomTime: "300000"
+    - huntingZoneId: 6
+      groupId: 600036
+      territoryId: 600641
+      partyId: 600406
+      npcInstanceId: 622136
+      changes:
+        respawnTime: 1500000
+        respawnRandomTime: "300000"
+    - huntingZoneId: 6
+      groupId: 600036
+      territoryId: 600642
+      npcInstanceId: 622137
+      changes:
+        respawnTime: 3000000
+        respawnRandomTime: "600000"
+    - huntingZoneId: 7
+      groupId: 700022
+      territoryId: 700484
+      npcInstanceId: 752920
+      changes:
+        respawnTime: 3000000
+        respawnRandomTime: "600000"

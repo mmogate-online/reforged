@@ -1,0 +1,24 @@
+# Arcadia hunts: a signature accessory on the ground shows a light beam, seen only by the party
+# that owns the drop.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: drop-effects
+    use:
+      definitions:
+        - SignatureDropBeam
+
+items:
+  update:
+    - { id: 20066, changes: { $extends: SignatureDropBeam } }
+    - { id: 20366, changes: { $extends: SignatureDropBeam } }
+    - { id: 20068, changes: { $extends: SignatureDropBeam } }
+    - { id: 20368, changes: { $extends: SignatureDropBeam } }
+    - { id: 20666, changes: { $extends: SignatureDropBeam } }
+    - { id: 20067, changes: { $extends: SignatureDropBeam } }
+    - { id: 20367, changes: { $extends: SignatureDropBeam } }
+    - { id: 20667, changes: { $extends: SignatureDropBeam } }

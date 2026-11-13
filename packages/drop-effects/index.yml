@@ -1,0 +1,20 @@
+# Drop Effects
+#
+# Item field sets that change how an item looks while it lies on the ground. Apply one
+# with `$extends` on an item entry, or inside `changes` on an item update.
+#
+# SignatureDropBeam: a light beam over a rare drop, shown only to the party that owns the
+# drop, so it is not lost in a loot pile and does not advertise itself to everyone nearby.
+# Used for the signature accessories of region hunt monsters.
+
+spec:
+  version: "1.0"
+
+definitions:
+  SignatureDropBeam:
+    dropEffect: "FX_N_Hotfix_180813.ps.DropBoxFX_01_PS"
+    dropEffectOnlyWhenMine: true
+
+exports:
+  definitions:
+    - SignatureDropBeam

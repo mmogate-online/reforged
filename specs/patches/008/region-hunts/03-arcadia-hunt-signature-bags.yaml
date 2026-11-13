@@ -1,0 +1,70 @@
+# Arcadia hunts: each hunt monster's signature accessories, one bag per item, so each item rolls
+# on its own. Every signature item drops from its own monster and nowhere else. The chance is set
+# from the respawn tier so each item reaches about the same supply per day whatever the tier:
+# 0.05 on the 10 minute tier, 0.15 on the 30 minute tier, 0.3 on the 1 hour tier.
+#
+# The old signature bag is removed and a new one added, because a bag's own chance can only be
+# rewritten by restating the whole bag list. An added bag is empty; the next spec fills it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - FF_GARASH_BLOODTUSK
+        - FF_TRADON
+        - OW_LANOK
+        - TM_GARANGKA
+        - VT_ARAKIA
+        - CH_BARRAQ
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: $FF_GARASH_BLOODTUSK
+      changes:
+        removeItemBags:
+          - { id: 7, bagName: "네임드 반지", expect: 1 }
+        addItemBags:
+          - { id: 106, bagName: "hunt-signature-ring", probability: 0.05 }
+    - huntingZoneId: 2
+      npcTemplateId: $FF_TRADON
+      changes:
+        removeItemBags:
+          - { id: 2, bagName: "네임드 귀걸이", expect: 1 }
+        addItemBags:
+          - { id: 105, bagName: "hunt-signature-earring", probability: 0.15 }
+    - huntingZoneId: 5
+      npcTemplateId: $TM_GARANGKA
+      changes:
+        removeItemBags:
+          - { id: 5, bagName: "반지", expect: 1 }
+        addItemBags:
+          - { id: 102, bagName: "hunt-signature-ring", probability: 0.15 }
+    - huntingZoneId: 3
+      npcTemplateId: $OW_LANOK
+      changes:
+        removeItemBags:
+          - { id: 2, bagName: "귀걸이", expect: 1 }
+        addItemBags:
+          - { id: 102, bagName: "hunt-signature-earring", probability: 0.3 }
+    - huntingZoneId: 6
+      npcTemplateId: $VT_ARAKIA
+      changes:
+        removeItemBags:
+          - { id: 5, bagName: "목걸이", expect: 1 }
+        addItemBags:
+          - { id: 102, bagName: "hunt-signature-necklace", probability: 0.3 }
+          - { id: 103, bagName: "hunt-signature-ring", probability: 0.3 }
+          - { id: 104, bagName: "hunt-signature-earring", probability: 0.3 }
+    - huntingZoneId: 7
+      npcTemplateId: $CH_BARRAQ
+      changes:
+        removeItemBags:
+          - { id: 6, bagName: "목걸이", expect: 1 }
+        addItemBags:
+          - { id: 102, bagName: "hunt-signature-necklace", probability: 0.3 }

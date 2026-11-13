@@ -1,0 +1,78 @@
+# Arcadia hunts: the item inside each signature bag the previous spec adds. A bag and its items
+# cannot be added in one entry, because the bag must exist before an item is selected into it.
+# Arakia, a giant spider, carries the whole web set: chain, band and earring.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - FF_GARASH_BLOODTUSK
+        - FF_TRADON
+        - OW_LANOK
+        - TM_GARANGKA
+        - VT_ARAKIA
+        - CH_BARRAQ
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: $FF_GARASH_BLOODTUSK
+      changes:
+        updateItemBags:
+          - id: 106
+            bagName: "hunt-signature-ring"
+            expect: 1
+            addItems: [{ templateId: 20066, name: "Boarlord's Signet", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 2
+      npcTemplateId: $FF_TRADON
+      changes:
+        updateItemBags:
+          - id: 105
+            bagName: "hunt-signature-earring"
+            expect: 1
+            addItems: [{ templateId: 20366, name: "Faerie's Hum", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 5
+      npcTemplateId: $TM_GARANGKA
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "hunt-signature-ring"
+            expect: 1
+            addItems: [{ templateId: 20068, name: "Frog King's Ring", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 3
+      npcTemplateId: $OW_LANOK
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "hunt-signature-earring"
+            expect: 1
+            addItems: [{ templateId: 20368, name: "Enormous Gaudy Earring", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 6
+      npcTemplateId: $VT_ARAKIA
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "hunt-signature-necklace"
+            expect: 1
+            addItems: [{ templateId: 20666, name: "Spiderweave Chain", min: 1, max: 1, probability: 1.0 }]
+          - id: 103
+            bagName: "hunt-signature-ring"
+            expect: 1
+            addItems: [{ templateId: 20067, name: "Spiderweave Band", min: 1, max: 1, probability: 1.0 }]
+          - id: 104
+            bagName: "hunt-signature-earring"
+            expect: 1
+            addItems: [{ templateId: 20367, name: "Iceweb Earring", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 7
+      npcTemplateId: $CH_BARRAQ
+      changes:
+        updateItemBags:
+          - id: 102
+            bagName: "hunt-signature-necklace"
+            expect: 1
+            addItems: [{ templateId: 20667, name: "Thunderchain", min: 1, max: 1, probability: 1.0 }]

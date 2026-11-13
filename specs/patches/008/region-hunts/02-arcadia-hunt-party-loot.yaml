@@ -1,0 +1,38 @@
+# Arcadia hunts: every party that fights a hunt monster earns its own reward pass, rolled at its
+# share of the damage. One party alone sees no change; on a shared kill the parties' shares add
+# up to one full roll.
+#
+# TRAP: `itemRewardToAll` is not the same thing. It forces every bag to drop for every party, so
+# a single hit would guarantee the whole table. Bags on these monsters must stay unlocked
+# (`lockProbAndAmount`), or each pass rolls at the full chance.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - FF_GARASH_BLOODTUSK
+        - FF_TRADON
+        - OW_DUR_BARAK
+        - OW_LANOK
+        - TM_GARANGKA
+        - VT_CRISAKA
+        - VT_ABRATA
+        - VT_ARAKIA
+        - CH_BARRAQ
+
+npcs:
+  update:
+    - { huntingZoneId: 2, id: $FF_GARASH_BLOODTUSK, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 2, id: $FF_TRADON, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 3, id: $OW_DUR_BARAK, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 3, id: $OW_LANOK, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 5, id: $TM_GARANGKA, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 6, id: $VT_CRISAKA, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 6, id: $VT_ABRATA, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 6, id: $VT_ARAKIA, changes: { expRewardToAll: true } }
+    - { huntingZoneId: 7, id: $CH_BARRAQ, changes: { expRewardToAll: true } }
