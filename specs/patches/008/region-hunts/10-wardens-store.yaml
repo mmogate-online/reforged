@@ -1,0 +1,100 @@
+# Arcadian Wardens store: three accessories sold for faction points, and the faction's grade
+# table, which also holds the grade gate of the gear design tabs in the region design store.
+#
+# A list gated by a faction needs a ReputationItem row under that faction for every item it
+# sells, or the server refuses to start; a row with grade or points 0 is dropped. A PointStore
+# charges the row's points. A Merchant menu charges gold and only checks the grade, so the design
+# rows carry points by convention. The rows replace the faction's whole table, so every 618 row
+# lives here.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyMenuLists:
+  upsert:
+    - id: 9380
+      stringId: 9380
+      desc: "Arcadian Wardens"
+      itemLists:
+        - id: 9381
+          stringed: 9381
+
+buyLists:
+  upsert:
+    - id: 9381
+      desc: "Arcadian Wardens Accessories"
+      needPointNpcGuildId: 618
+      items:
+        - { itemId: 20042, priceRevision: 1 }   # Band of Brothers
+        - { itemId: 20342, priceRevision: 1 }   # Whisper of Doom
+        - { itemId: 20642, priceRevision: 1 }   # Finely Crafted Cameo of Lok
+
+npcStrings:
+  upsert:
+    - { id: 9380, string: "Arcadian Wardens" }
+    - { id: 9381, string: "Accessories" }
+
+# Bought for points, so they are worth nothing to a vendor and may change hands.
+items:
+  update:
+    - id: 20042
+      changes: { tradable: true, sellPrice: 0 }
+    - id: 20342
+      changes: { tradable: true, sellPrice: 0 }
+    - id: 20642
+      changes: { tradable: true, sellPrice: 0 }
+
+reputationItems:
+  upsert:
+    - npcGuildId: 618
+      items:
+        # Store 9381
+        - { id: 20042, grade: 2, reputationPoint: 25 }
+        - { id: 20342, grade: 2, reputationPoint: 25 }
+        - { id: 20642, grade: 2, reputationPoint: 25 }
+        # Region design store, Revelation tab
+        - { id: 921021, grade: 2, reputationPoint: 1500 }
+        - { id: 921022, grade: 2, reputationPoint: 1500 }
+        - { id: 921023, grade: 2, reputationPoint: 1500 }
+        - { id: 921024, grade: 2, reputationPoint: 1500 }
+        - { id: 921025, grade: 2, reputationPoint: 1500 }
+        - { id: 921026, grade: 2, reputationPoint: 1500 }
+        - { id: 921027, grade: 2, reputationPoint: 1500 }
+        - { id: 921028, grade: 2, reputationPoint: 1500 }
+        - { id: 921029, grade: 2, reputationPoint: 1500 }
+        - { id: 921030, grade: 2, reputationPoint: 1500 }
+        - { id: 921031, grade: 2, reputationPoint: 1500 }
+        - { id: 921032, grade: 2, reputationPoint: 1500 }
+        - { id: 921033, grade: 2, reputationPoint: 1500 }
+        - { id: 921034, grade: 2, reputationPoint: 1500 }
+        - { id: 921035, grade: 2, reputationPoint: 1500 }
+        - { id: 921036, grade: 2, reputationPoint: 1500 }
+        - { id: 921037, grade: 2, reputationPoint: 1500 }
+        - { id: 921038, grade: 2, reputationPoint: 1500 }
+        - { id: 921039, grade: 2, reputationPoint: 1500 }
+        - { id: 921040, grade: 2, reputationPoint: 1500 }
+        - { id: 921041, grade: 2, reputationPoint: 1500 }
+        # Region design store, Nightshimmer tab
+        - { id: 921042, grade: 2, reputationPoint: 1500 }
+        - { id: 921043, grade: 2, reputationPoint: 1500 }
+        - { id: 921044, grade: 2, reputationPoint: 1500 }
+        - { id: 921045, grade: 2, reputationPoint: 1500 }
+        - { id: 921046, grade: 2, reputationPoint: 1500 }
+        - { id: 921047, grade: 2, reputationPoint: 1500 }
+        - { id: 921048, grade: 2, reputationPoint: 1500 }
+        - { id: 921049, grade: 2, reputationPoint: 1500 }
+        - { id: 921050, grade: 2, reputationPoint: 1500 }
+        - { id: 921051, grade: 2, reputationPoint: 1500 }
+        - { id: 921052, grade: 2, reputationPoint: 1500 }
+        - { id: 921053, grade: 2, reputationPoint: 1500 }
+        - { id: 921054, grade: 2, reputationPoint: 1500 }
+        - { id: 921055, grade: 2, reputationPoint: 1500 }
+        - { id: 921056, grade: 2, reputationPoint: 1500 }
+        - { id: 921057, grade: 2, reputationPoint: 1500 }
+        - { id: 921058, grade: 2, reputationPoint: 1500 }
+        - { id: 921059, grade: 2, reputationPoint: 1500 }
+        - { id: 921060, grade: 2, reputationPoint: 1500 }
+        - { id: 921061, grade: 2, reputationPoint: 1500 }
+        - { id: 921062, grade: 2, reputationPoint: 1500 }

@@ -310,6 +310,8 @@ buyMenuLists:
         - id: 9202
           stringed: 9202
 
+# The gear tabs open at Arcadian Wardens grade 2; their grade rows live with the faction's store.
+# Material designs are never grade gated.
 buyLists:
   upsert:
     - id: 9200
@@ -321,6 +323,7 @@ buyLists:
         - { itemId: 920301, priceRevision: 1 }
     - id: 9201
       desc: "Revelation"
+      needPointNpcGuildId: 618
       items:
         - { itemId: 921021, priceRevision: 1 }
         - { itemId: 921022, priceRevision: 1 }
@@ -345,6 +348,7 @@ buyLists:
         - { itemId: 921041, priceRevision: 1 }
     - id: 9202
       desc: "Nightshimmer"
+      needPointNpcGuildId: 618
       items:
         - { itemId: 921042, priceRevision: 1 }
         - { itemId: 921043, priceRevision: 1 }

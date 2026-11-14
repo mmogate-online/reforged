@@ -1,0 +1,2012 @@
+# Arcadian Wardens dailies: fifteen faction 618 daily quests and the faction's daily pool.
+# Garrick in Lumbertown and Sylvara in Crescentia each give and take back their own dailies;
+# a quest can name only one giver, so no daily is offered in both towns.
+#
+# Grade 1 already lists quests, because the faction starts at grade 1 and standing comes
+# from these dailies alone. Higher grades widen the pool rather than gate single quests, so
+# every quest asks only for grade 1.
+#
+# The server loader refuses the whole pool file, and stops the boot, when a grade's weights
+# do not sum to exactly 100 or its giveCount exceeds the quests it lists. Validation checks
+# neither: recount both by hand after any edit to the pool.
+#
+# The pair under questPool is the quest id and its weight, under the names groupId and index.
+# A hunt-and-deliver task takes its delivery count from targetCount.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  upsert:
+    # 1. Tusks at the Treeline
+    - id: 6061
+      header:
+        questNumber: 6061
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6061001"
+        designersNote: ""
+        startPopup: "@quest:6061002"
+        endPopup: "@quest:6061003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6061005"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 2, templateId: 57 }
+                killCount: 8
+              - npc: { huntingZone: 2, templateId: 7 }
+                killCount: 2
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6061006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:6061004"
+            visitCinematicId: 0
+    # 2. Faerie Mischief
+    - id: 6062
+      header:
+        questNumber: 6062
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6062001"
+        designersNote: ""
+        startPopup: "@quest:6062002"
+        endPopup: "@quest:6062003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6062005"
+          journalText2: "@quest:6062006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6062007"
+            itemId: 140
+            targetCount: 5
+            targets:
+              - npc: { huntingZone: 2, templateId: 152 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 60, templateId: 1101 }
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6062004"
+    # 3. Centaur Warbands
+    - id: 6063
+      header:
+        questNumber: 6063
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 12
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6063001"
+        designersNote: ""
+        startPopup: "@quest:6063002"
+        endPopup: "@quest:6063003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6063005"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 2, templateId: 3 }
+                killCount: 4
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6063006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:6063004"
+            visitCinematicId: 0
+    # 4. Logging Crew Patrol
+    - id: 6064
+      header:
+        questNumber: 6064
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 12
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6064001"
+        designersNote: ""
+        startPopup: "@quest:6064002"
+        endPopup: "@quest:6064003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: BranchTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6064006"
+          body:
+            targetNpc: { huntingZone: 60, templateId: 1101 }
+            preBranchDialogue: 2
+            branchType: auto
+            completionButtonText: "@quest:6064008"
+            choices:
+              - text: "@quest:6064015"
+                postChoiceDialogue: 11
+                nextTaskId: 2
+                rate: 50
+              - text: "@quest:6064025"
+                postChoiceDialogue: 21
+                nextTaskId: 3
+                rate: 50
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 4
+          journalScript: 11
+          journalText: "@quest:6064015"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 2, templateId: 4 }
+                killCount: 5
+        - taskId: 3
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 21
+          journalText: "@quest:6064025"
+          journalText2: "@quest:6064006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6064027"
+            itemId: 67
+            targetCount: 3
+            targets:
+              - npc: { huntingZone: 2, templateId: 13 }
+                grantRate: 100
+              - npc: { huntingZone: 2, templateId: 34 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 60, templateId: 1101 }
+            completionDialogue: 22
+            incompleteDialogue: 23
+            completionButtonText: "@quest:6064024"
+        - taskId: 4
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 11
+          journalText: "@quest:6064006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 12
+            completionButtonText: "@quest:6064014"
+            visitCinematicId: 0
+    # 5. Beasts of the Northern Forest
+    - id: 6065
+      header:
+        questNumber: 6065
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 14
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6065001"
+        designersNote: ""
+        startPopup: "@quest:6065002"
+        endPopup: "@quest:6065003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6065005"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 2, templateId: 5 }
+                killCount: 4
+              - npc: { huntingZone: 2, templateId: 56 }
+                killCount: 6
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6065006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:6065004"
+            visitCinematicId: 0
+    # 6. Stonebeak Warband
+    - id: 6066
+      header:
+        questNumber: 6066
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 15
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6066001"
+        designersNote: ""
+        startPopup: "@quest:6066002"
+        endPopup: "@quest:6066003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 59, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6066005"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 3, templateId: 1001 }
+                killCount: 3
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6066006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:6066004"
+            visitCinematicId: 0
+    # 7. Scarwood Blight
+    - id: 6067
+      header:
+        questNumber: 6067
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 14
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6067001"
+        designersNote: ""
+        startPopup: "@quest:6067002"
+        endPopup: "@quest:6067003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6067005"
+          journalText2: "@quest:6067006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6067007"
+            itemId: 29
+            targetCount: 4
+            targets:
+              - npc: { huntingZone: 2, templateId: 32 }
+                grantRate: 100
+              - npc: { huntingZone: 2, templateId: 10 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 60, templateId: 1101 }
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6067004"
+    # 8. Devan Dispatches
+    - id: 6068
+      header:
+        questNumber: 6068
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 15
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6068001"
+        designersNote: ""
+        startPopup: "@quest:6068002"
+        endPopup: "@quest:6068003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 59, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6068005"
+          journalText2: "@quest:6068006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6068007"
+            itemId: 98
+            targetCount: 5
+            targets:
+              - npc: { huntingZone: 3, templateId: 17 }
+                grantRate: 100
+              - npc: { huntingZone: 3, templateId: 18 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6068004"
+    # 9. Oblivion Woods Sweep
+    - id: 6069
+      header:
+        questNumber: 6069
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 16
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6069001"
+        designersNote: ""
+        startPopup: "@quest:6069002"
+        endPopup: "@quest:6069003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 59, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: BranchTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6069006"
+          body:
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            preBranchDialogue: 2
+            branchType: auto
+            completionButtonText: "@quest:6069008"
+            choices:
+              - text: "@quest:6069015"
+                postChoiceDialogue: 11
+                nextTaskId: 2
+                rate: 34
+              - text: "@quest:6069025"
+                postChoiceDialogue: 21
+                nextTaskId: 3
+                rate: 33
+              - text: "@quest:6069035"
+                postChoiceDialogue: 31
+                nextTaskId: 4
+                rate: 33
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 5
+          journalScript: 11
+          journalText: "@quest:6069015"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 3, templateId: 19 }
+                killCount: 6
+        - taskId: 3
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 21
+          journalText: "@quest:6069025"
+          journalText2: "@quest:6069006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6069027"
+            itemId: 63
+            targetCount: 4
+            targets:
+              - npc: { huntingZone: 3, templateId: 2 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            completionDialogue: 22
+            incompleteDialogue: 23
+            completionButtonText: "@quest:6069024"
+        - taskId: 4
+          type: HuntTask
+          nextTaskId: 6
+          journalScript: 31
+          journalText: "@quest:6069035"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 3, templateId: 300160 }
+                killCount: 5
+        - taskId: 5
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 11
+          journalText: "@quest:6069006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 12
+            completionButtonText: "@quest:6069014"
+            visitCinematicId: 0
+        - taskId: 6
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 31
+          journalText: "@quest:6069006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 32
+            completionButtonText: "@quest:6069034"
+            visitCinematicId: 0
+    # 10. Gutrend War Tokens
+    - id: 6070
+      header:
+        questNumber: 6070
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 16
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6070001"
+        designersNote: ""
+        startPopup: "@quest:6070002"
+        endPopup: "@quest:6070003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 59, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6070005"
+          journalText2: "@quest:6070006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6070007"
+            itemId: 119
+            targetCount: 4
+            targets:
+              - npc: { huntingZone: 6, templateId: 1041 }
+                grantRate: 100
+              - npc: { huntingZone: 6, templateId: 1051 }
+                grantRate: 100
+              - npc: { huntingZone: 6, templateId: 1061 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6070004"
+    # 11. Refugee Camp Watch
+    - id: 6071
+      header:
+        questNumber: 6071
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 16
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6071001"
+        designersNote: ""
+        startPopup: "@quest:6071002"
+        endPopup: "@quest:6071003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6071005"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 6, templateId: 1071 }
+                killCount: 5
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6071006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:6071004"
+            visitCinematicId: 0
+    # 12. Crescentia's Outskirts
+    - id: 6072
+      header:
+        questNumber: 6072
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 17
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6072001"
+        designersNote: ""
+        startPopup: "@quest:6072002"
+        endPopup: "@quest:6072003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 59, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: BranchTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6072006"
+          body:
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            preBranchDialogue: 2
+            branchType: auto
+            completionButtonText: "@quest:6072008"
+            choices:
+              - text: "@quest:6072015"
+                postChoiceDialogue: 11
+                nextTaskId: 2
+                rate: 50
+              - text: "@quest:6072025"
+                postChoiceDialogue: 21
+                nextTaskId: 3
+                rate: 50
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 4
+          journalScript: 11
+          journalText: "@quest:6072015"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 3, templateId: 300611 }
+                killCount: 4
+        - taskId: 3
+          type: HuntTask
+          nextTaskId: 5
+          journalScript: 21
+          journalText: "@quest:6072025"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 6, templateId: 1032 }
+                killCount: 6
+        - taskId: 4
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 11
+          journalText: "@quest:6072006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 12
+            completionButtonText: "@quest:6072014"
+            visitCinematicId: 0
+        - taskId: 5
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 21
+          journalText: "@quest:6072006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 22
+            completionButtonText: "@quest:6072024"
+            visitCinematicId: 0
+    # 13. Gutrend Southern Camp
+    - id: 6073
+      header:
+        questNumber: 6073
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 18
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6073001"
+        designersNote: ""
+        startPopup: "@quest:6073002"
+        endPopup: "@quest:6073003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 59, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: BranchTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6073006"
+          body:
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            preBranchDialogue: 2
+            branchType: auto
+            completionButtonText: "@quest:6073008"
+            choices:
+              - text: "@quest:6073015"
+                postChoiceDialogue: 11
+                nextTaskId: 2
+                rate: 34
+              - text: "@quest:6073025"
+                postChoiceDialogue: 21
+                nextTaskId: 3
+                rate: 33
+              - text: "@quest:6073035"
+                postChoiceDialogue: 31
+                nextTaskId: 4
+                rate: 33
+        - taskId: 2
+          type: HuntTask
+          nextTaskId: 5
+          journalScript: 11
+          journalText: "@quest:6073015"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 6, templateId: 2081 }
+                killCount: 4
+        - taskId: 3
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 21
+          journalText: "@quest:6073025"
+          journalText2: "@quest:6073006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6073027"
+            itemId: 119
+            targetCount: 5
+            targets:
+              - npc: { huntingZone: 6, templateId: 2011 }
+                grantRate: 100
+              - npc: { huntingZone: 6, templateId: 2021 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 59, templateId: 1101 }
+            completionDialogue: 22
+            incompleteDialogue: 23
+            completionButtonText: "@quest:6073024"
+        - taskId: 4
+          type: HuntTask
+          nextTaskId: 6
+          journalScript: 31
+          journalText: "@quest:6073035"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 6, templateId: 2031 }
+                killCount: 5
+        - taskId: 5
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 11
+          journalText: "@quest:6073006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 12
+            completionButtonText: "@quest:6073014"
+            visitCinematicId: 0
+        - taskId: 6
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 31
+          journalText: "@quest:6073006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 32
+            completionButtonText: "@quest:6073034"
+            visitCinematicId: 0
+    # 14. Survey of the Mire
+    - id: 6074
+      header:
+        questNumber: 6074
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 20
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6074001"
+        designersNote: ""
+        startPopup: "@quest:6074002"
+        endPopup: "@quest:6074003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntAndDeliverTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6074005"
+          journalText2: "@quest:6074006"
+          hasReward: true
+          cinematicId: 0
+          timeLimit: [0, 0]
+          body:
+            flagItemName: "@quest:6074007"
+            itemId: 96
+            targetCount: 5
+            targets:
+              - npc: { huntingZone: 5, templateId: 14 }
+                grantRate: 100
+              - npc: { huntingZone: 5, templateId: 13 }
+                grantRate: 100
+            sequentialDistribution: "미적용"
+            targetNpc: { huntingZone: 60, templateId: 1101 }
+            completionDialogue: 3
+            incompleteDialogue: 4
+            completionButtonText: "@quest:6074004"
+    # 15. Red Fang Raiders
+    - id: 6075
+      header:
+        questNumber: 6075
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 22
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:6075001"
+        designersNote: ""
+        startPopup: "@quest:6075002"
+        endPopup: "@quest:6075003"
+        questType: Daily
+        repeatType: OneTime
+        cancellable: Allowed
+        giverNpc: { huntingZone: 60, templateId: 1101 }
+      requirements:
+        minLevel: 11
+        reputation: [618, 1]
+      tasks:
+        - taskId: 1
+          type: HuntTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:6075005"
+          hasReward: false
+          timeLimit: [0, 0]
+          body:
+            targets:
+              - npc: { huntingZone: 7, templateId: 5 }
+                killCount: 4
+              - npc: { huntingZone: 7, templateId: 10 }
+                killCount: 5
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:6075006"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:6075004"
+            visitCinematicId: 0
+
+questStrings:
+  upsert:
+    - id: 6061001
+      string: "Tusks at the Treeline"
+    - id: 6061002
+      string: "Meat for the refugee kitchens."
+    - id: 6061003
+      string: "The kitchens eat tonight."
+    - id: 6061004
+      string: "\"The haulers can go.\""
+    - id: 6061005
+      string: "Kill Long Tusk Warthogs and Warthog Brutes in the Fey Forest outside Lumbertown."
+    - id: 6061006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6062001
+      string: "Faerie Mischief"
+    - id: 6062002
+      string: "Not every faerie is an enemy. These are."
+    - id: 6062003
+      string: "Out of rebel hands."
+    - id: 6062004
+      string: "\"Here is the dust.\""
+    - id: 6062005
+      string: "Take Stolen Faerie Dust from Faerie Insurgents in the Fey Forest."
+    - id: 6062006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6062007
+      string: "Stolen Faerie Dust"
+    - id: 6063001
+      string: "Centaur Warbands"
+    - id: 6063002
+      string: "Some centaurs never heard the peace."
+    - id: 6063003
+      string: "The crews can work again."
+    - id: 6063004
+      string: "\"Their bands are broken.\""
+    - id: 6063005
+      string: "Kill Centaurs in the Fey Forest."
+    - id: 6063006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6064001
+      string: "Logging Crew Patrol"
+    - id: 6064002
+      string: "The crews asked for an escort. You will do."
+    - id: 6064003
+      string: "The crews can work tomorrow."
+    - id: 6064006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6064008
+      string: "\"What do you need today?\""
+    - id: 6064014
+      string: "\"The crews' ground is clear.\""
+    - id: 6064015
+      string: "Kill Slinking Sabertooths in the Fey Forest."
+    - id: 6064024
+      string: "\"Here are the axes.\""
+    - id: 6064025
+      string: "Recover Abandoned Felling Axes from Centaur Insurgents and Sabertooths in the Fey Forest."
+    - id: 6064027
+      string: "Abandoned Felling Axe"
+    - id: 6065001
+      string: "Beasts of the Northern Forest"
+    - id: 6065002
+      string: "One hunt, and one mercy."
+    - id: 6065003
+      string: "Necessary. Not pleasant."
+    - id: 6065004
+      string: "\"It was done cleanly.\""
+    - id: 6065005
+      string: "Kill Hulking Sabertooths and Feral Unicorns in the northern Fey Forest."
+    - id: 6065006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6066001
+      string: "Stonebeak Warband"
+    - id: 6066002
+      string: "Take the leaders. The flock will scatter."
+    - id: 6066003
+      string: "Blood Run is quieter."
+    - id: 6066004
+      string: "\"The Fighters are down.\""
+    - id: 6066005
+      string: "Kill Stonebeak Fighters in Blood Run."
+    - id: 6066006
+      string: "Report to Sylvara in Crescentia."
+    - id: 6067001
+      string: "Scarwood Blight"
+    - id: 6067002
+      string: "Klaon wants to know what is still wrong."
+    - id: 6067003
+      string: "Handle the samples with care."
+    - id: 6067004
+      string: "\"Here are the samples.\""
+    - id: 6067005
+      string: "Collect Scarwood Blight Samples from Bloated Sporewalkers and Merciless Jalmaraks in Scarwood."
+    - id: 6067006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6067007
+      string: "Scarwood Blight Sample"
+    - id: 6068001
+      string: "Devan Dispatches"
+    - id: 6068002
+      string: "Their raids are planned. Find the plans."
+    - id: 6068003
+      string: "The next caravan takes another road."
+    - id: 6068004
+      string: "\"These were on them.\""
+    - id: 6068005
+      string: "Take Devan Raid Orders from Devan Robbers and Devan Scrappers in Oblivion Woods."
+    - id: 6068006
+      string: "Report to Sylvara in Crescentia."
+    - id: 6068007
+      string: "Devan Raid Orders"
+    - id: 6069001
+      string: "Oblivion Woods Sweep"
+    - id: 6069002
+      string: "The devas want the woods back."
+    - id: 6069003
+      string: "One less hold on Oblivion Woods."
+    - id: 6069006
+      string: "Report to Sylvara in Crescentia."
+    - id: 6069008
+      string: "\"Where am I needed?\""
+    - id: 6069014
+      string: "\"The Brigands are dealt with.\""
+    - id: 6069015
+      string: "Kill Devan Brigands in Oblivion Woods."
+    - id: 6069024
+      string: "\"Here are the caps.\""
+    - id: 6069025
+      string: "Collect Soulbound Spore Caps from Agitated Sporewalkers in Oblivion Woods."
+    - id: 6069027
+      string: "Soulbound Spore Cap"
+    - id: 6069034
+      string: "\"The amulets are broken.\""
+    - id: 6069035
+      string: "Kill Devan Arcanists in Deva Silva."
+    - id: 6070001
+      string: "Gutrend War Tokens"
+    - id: 6070002
+      string: "Each token is a raid."
+    - id: 6070003
+      string: "Counted, then burned."
+    - id: 6070004
+      string: "\"Every token I found.\""
+    - id: 6070005
+      string: "Take Gutrend War Tokens from Gutrend Kulkaris, Gutrend Clawtamers and Gutrend Brigands in the Valley of Titans."
+    - id: 6070006
+      string: "Report to Sylvara in Crescentia."
+    - id: 6070007
+      string: "Gutrend War Token"
+    - id: 6071001
+      string: "Refugee Camp Watch"
+    - id: 6071002
+      string: "They lost everything once."
+    - id: 6071003
+      string: "Blankets go out with the next wagon."
+    - id: 6071004
+      string: "\"The camp is safe for now.\""
+    - id: 6071005
+      string: "Kill Gutrend Raiders around the refugee camp in the northern Valley of Titans."
+    - id: 6071006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6072001
+      string: "Crescentia's Outskirts"
+    - id: 6072002
+      string: "The town fears its own edges."
+    - id: 6072003
+      string: "One edge is quiet tonight."
+    - id: 6072006
+      string: "Report to Sylvara in Crescentia."
+    - id: 6072008
+      string: "\"Where am I needed?\""
+    - id: 6072014
+      string: "\"They rest now.\""
+    - id: 6072015
+      string: "Kill Furious Dragoons in Berzerad Cemetery."
+    - id: 6072024
+      string: "\"The packs are thinner.\""
+    - id: 6072025
+      string: "Kill Starving Hyenas near the farms of the Valley of Titans."
+    - id: 6073001
+      string: "Gutrend Southern Camp"
+    - id: 6073002
+      string: "Weaken the camp before it moves."
+    - id: 6073003
+      string: "The southern camp is weaker."
+    - id: 6073006
+      string: "Report to Sylvara in Crescentia."
+    - id: 6073008
+      string: "\"Where am I needed?\""
+    - id: 6073014
+      string: "\"The Seers are dead.\""
+    - id: 6073015
+      string: "Kill Gutrend Seers in the Valley of Titans."
+    - id: 6073024
+      string: "\"Here are the tusks.\""
+    - id: 6073025
+      string: "Collect Warthog Tusks from Hillwalker Warthogs and Great Tusk Warthogs in the Valley of Titans."
+    - id: 6073027
+      string: "Warthog Tusk"
+    - id: 6073034
+      string: "\"The bears are dealt with.\""
+    - id: 6073035
+      string: "Kill Scavenging Bears in the Valley of Titans."
+    - id: 6074001
+      string: "Survey of the Mire"
+    - id: 6074002
+      string: "Ackerly is still waiting on his survey."
+    - id: 6074003
+      string: "A clear path for the surveyor."
+    - id: 6074004
+      string: "\"Here are the specimens.\""
+    - id: 6074005
+      string: "Collect Mire Specimens from Muddy Sporewalkers and Inky Sabertooths in Tuwangi Mire."
+    - id: 6074006
+      string: "Report to Garrick in Lumbertown."
+    - id: 6074007
+      string: "Mire Specimen"
+    - id: 6075001
+      string: "Red Fang Raiders"
+    - id: 6075002
+      string: "Arn pays for orcans. I pay for both."
+    - id: 6075003
+      string: "Casidhe's Stand still holds."
+    - id: 6075004
+      string: "\"The Stand still holds.\""
+    - id: 6075005
+      string: "Kill Red Fang Orcans and Lean Hyenas in the Celestial Hills."
+    - id: 6075006
+      string: "Report to Garrick in Lumbertown."
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 60
+      id: 61
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Refugees keep coming in from the forest and over the hill, and the kitchens are short again. Some of them are boiling tree bark for soup.<BR><BR>The Long Tusk Warthogs at the edge of the forest are fat and close. They are also aggressive, and the Warthog Brutes are worse. Bring down both."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Good. I'll send the haulers out for the carcasses.<BR><BR>One more line for the ledger: the kitchens stayed open another day."
+    - huntingZoneId: 60
+      id: 62
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Not every faerie in this forest is our enemy. The ones at the Faerie Pond kept faith. The Faerie Insurgents did not.<BR><BR>The insurgents hoard faerie dust, and they steal what they cannot gather. I want that dust out of rebel hands."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "That is a good haul of dust.<BR><BR>It stays under lock in my store until someone at the Faerie Pond can say whose it was."
+        - id: 4
+          npcZoneId: 60
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "Nothing yet? The insurgents are all over the forest. They are not hard to find."
+    - huntingZoneId: 60
+      id: 63
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Volos gave his word that the centaurs would keep the peace, and most of them do.<BR><BR>The Centaurs who ride with the faerie vigilantes do not. They have trampled logging crews before, and they will do it again. Break up their bands."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Good. Volos may not thank us for it, but the loggers will."
+    - huntingZoneId: 60
+      id: 64
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "A runner came from the logging crews this morning. They want an escort, and I have no escort to give them.<BR><BR>So you walk the forest where they work instead. This is what the runner told me."
+        - id: 11
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Slinking Sabertooths. They used to hunt warthogs. Now they wait for the loggers. Kill them before they learn when the crews go out."
+        - id: 12
+          npcZoneId: 60
+          prevId: 11
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "No more sabertooths where the crews work? I'll tell them they can go back out tomorrow."
+        - id: 21
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "A crew dropped their tools and ran. Centaur Insurgents took the axes, and Sabertooths prowl the ground where the crew fell back. Bring those axes home. A logger without an axe is just one more refugee."
+        - id: 22
+          npcZoneId: 60
+          prevId: 21
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "These still have an edge on them. The crew will be back at the stacks before noon."
+        - id: 23
+          npcZoneId: 60
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "The crew is still sitting idle. They need those axes."
+    - huntingZoneId: 60
+      id: 65
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Two jobs in the north of the forest, and I won't pretend they are the same. The Hulking Sabertooths near Faevine Vale Camp kill loggers. Those you hunt.<BR><BR>The Feral Unicorns are different. The ill wind took them, and Aeir asked that they be put down as a mercy. Do it cleanly."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "It's done, then.<BR><BR>Teroz will call it a good day. I'll write it down as a necessary one."
+    - huntingZoneId: 60
+      id: 66
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Niralia says that when a monster that came now and then starts coming every day, something is pushing it. The Stonebeaks in Blood Run come every day now.<BR><BR>They are a distraction more than a danger, but they move in bands behind a Stonebeak Fighter. Kill the Fighters."
+        - id: 3
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Without their Fighters the bands drift apart. The soldiers in Blood Run can watch the road again instead of the sky."
+    - huntingZoneId: 60
+      id: 67
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Garkior is dead, but Scarwood has not healed. Klaon wants to know why.<BR><BR>The Bloated Sporewalkers and the Merciless Jalmaraks that lead the faerie renegades there are soaked in whatever is wrong with that ground. Bring back samples of it."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Careful, it stains.<BR><BR>I'll take these to Klaon myself. If he learns anything, the Wardens will hear it first."
+        - id: 4
+          npcZoneId: 60
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "Klaon has asked me twice today. He needs those samples."
+    - huntingZoneId: 60
+      id: 68
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The road to Crescentia is open again, but the devas still raid it. They just choose their caravans more carefully now.<BR><BR>The Devan Robbers and Devan Scrappers carry written orders. Bring me those orders and I will know which caravans they want."
+        - id: 3
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Routes, times, and marks on a map. They knew more than I would like.<BR><BR>The next caravan takes a different road."
+        - id: 4
+          npcZoneId: 59
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "The next caravan leaves soon. I need those orders before it does."
+    - huntingZoneId: 60
+      id: 69
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The devas overran these woods once, and they act as though they mean to do it again.<BR><BR>Here is today's trouble."
+        - id: 11
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Devan Brigands stole supplies from Crescentia's families, and they are not finished. Every one you stop is one raid fewer on a family's stores."
+        - id: 12
+          npcZoneId: 59
+          prevId: 11
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The families will sleep easier tonight. So will I."
+        - id: 21
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Agitated Sporewalkers carry spores fused with the souls of the dead. Esedran wants samples. I want them gone. Do both."
+        - id: 22
+          npcZoneId: 59
+          prevId: 21
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "They are warm. They should not be warm. Esedran will want these at once."
+        - id: 23
+          npcZoneId: 59
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "Esedran keeps asking. He wants them fresh."
+        - id: 31
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Devan Arcanists hold their ground with dark magic, and their amulets carry it. Kill them and break the amulets where they fall."
+        - id: 32
+          npcZoneId: 59
+          prevId: 31
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Good. Each arcanist gone loosens their hold on the woods."
+    - huntingZoneId: 60
+      id: 70
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Gutrends wiped out Colchester, the whole village. Crescentia has not forgotten, and neither have the Wardens who came from the valley.<BR><BR>In the northern camp every band follows a Gutrend Kulkari, a Gutrend Clawtamer or a Gutrend Brigand, and each of them wears a token for every raid. Take the tokens."
+        - id: 3
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "So many.<BR><BR>I will count them tonight, for the ones who fell. Then I will burn them."
+        - id: 4
+          npcZoneId: 59
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "The tokens, please. Each one is a raid that already happened."
+    - huntingZoneId: 60
+      id: 71
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Not every refugee from the valley made it over the hill to us. Some live in the camps up north, with nothing left.<BR><BR>Gutrend Raiders circle those camps looking for anyone too weak to run. Walk the camp edges and put them down."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Good. I'll send what blankets we can spare with the next wagon.<BR><BR>They lost everything once. Not again, if I can help it."
+    - huntingZoneId: 60
+      id: 72
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Two kinds of trouble come to the edges of Crescentia, and the town fears both.<BR><BR>Here is where I need you today."
+        - id: 11
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The dead in Berzerad Cemetery still walk. The devas' nexus spirit called them back, and the Furious Dragoons lead them. They served Crescentia in life. Give them rest."
+        - id: 12
+          npcZoneId: 59
+          prevId: 11
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Thank you. I hope they find peace this time."
+        - id: 21
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Hyenas are coming down to the farms near the Valley of Titans. They have already killed animals at Echo Ranch. Thin out the Starving Hyenas before they take more than animals."
+        - id: 22
+          npcZoneId: 59
+          prevId: 21
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The farmers keep their herds tonight, and those herds feed this town."
+    - huntingZoneId: 60
+      id: 73
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 59
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Gutrends in the southern camp are gathering strength. I would rather they did not.<BR><BR>Today you take some of it away from them."
+        - id: 11
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Gutrend Seers are the hardest of them to deal with, and the bands follow them. Kill the Seers."
+        - id: 12
+          npcZoneId: 59
+          prevId: 11
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Without their Seers the bands will argue among themselves. Good."
+        - id: 21
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Gutrends keep their strength up by eating warthogs. Hunt the Hillwalker Warthogs and Great Tusk Warthogs around their camp, and bring me tusks so I know the herds are thinned, not just scattered."
+        - id: 22
+          npcZoneId: 59
+          prevId: 21
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Hungry Gutrends make poor raiders. Mirim had the right idea."
+        - id: 23
+          npcZoneId: 59
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "Scattered herds come back. Bring me the tusks."
+        - id: 31
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "The Gutrends eat Scavenging Bears when they can, and drive them at our camps when they cannot. Either way, fewer bears is better for us."
+        - id: 32
+          npcZoneId: 59
+          prevId: 31
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "One less thing the Gutrends can use against us."
+    - huntingZoneId: 60
+      id: 74
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Ackerly is still waiting on his survey of Tuwangi Mire, and the surveyor cannot work. Muddy Sporewalkers block every path he tries.<BR><BR>Inky Sabertooths attack anyone who goes in, our people and the friendly tuwangis alike. Kill both, and bring specimens. The survey needs to know what it is up against."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Specimens, and a clear path. Ackerly will be pleased, which is rare.<BR><BR>The tuwangis who help us will be glad of it too."
+        - id: 4
+          npcZoneId: 60
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: "Ackerly asked me again this morning. I had nothing to show him."
+    - huntingZoneId: 60
+      id: 75
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 0
+              content: ""
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Magistrate Arn keeps sending soldiers into the Celestial Hills, and it is never enough. The Red Fang Orcans are massing against Casidhe's Stand.<BR><BR>Go and help. Kill the Lean Hyenas along the way too. They hunt the road the Mysterium researchers use east of the Sanctum."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Back from the hills in one piece. Good.<BR><BR>Casidhe held that ground with her life. It is good to see someone still holding it."
+
+questCompensations:
+  upsert:
+    - questId: 6061
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6062
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6063
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6064
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6065
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6066
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6067
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6068
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6069
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6070
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6071
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6072
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6073
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6074
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+    - questId: 6075
+      huntingZoneId: 60
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 43200
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 600
+          reputationPoint: 20
+
+dailyQuests:
+  upsert:
+    - reputationQuestId: 618
+      name: "@npcguild:618"
+      questGiveMethod: random
+      resetHour: 7
+      resetIntervalDay: 1
+      quests:
+        - grade: 1
+          name: "@reputation:1"
+          giveCount: 2
+          questPool:
+            - { groupId: 6061, index: 16 }
+            - { groupId: 6062, index: 17 }
+            - { groupId: 6063, index: 16 }
+            - { groupId: 6064, index: 17 }
+            - { groupId: 6065, index: 17 }
+            - { groupId: 6066, index: 17 }
+        - grade: 2
+          name: "@reputation:2"
+          giveCount: 2
+          questPool:
+            - { groupId: 6061, index: 16 }
+            - { groupId: 6062, index: 17 }
+            - { groupId: 6063, index: 16 }
+            - { groupId: 6064, index: 17 }
+            - { groupId: 6065, index: 17 }
+            - { groupId: 6066, index: 17 }
+        - grade: 3
+          name: "@reputation:3"
+          giveCount: 2
+          questPool:
+            - { groupId: 6061, index: 16 }
+            - { groupId: 6062, index: 17 }
+            - { groupId: 6063, index: 16 }
+            - { groupId: 6064, index: 17 }
+            - { groupId: 6065, index: 17 }
+            - { groupId: 6066, index: 17 }
+        - grade: 4
+          name: "@reputation:4"
+          giveCount: 3
+          questPool:
+            - { groupId: 6061, index: 10 }
+            - { groupId: 6062, index: 10 }
+            - { groupId: 6063, index: 10 }
+            - { groupId: 6064, index: 12 }
+            - { groupId: 6065, index: 11 }
+            - { groupId: 6066, index: 11 }
+            - { groupId: 6067, index: 12 }
+            - { groupId: 6068, index: 12 }
+            - { groupId: 6069, index: 12 }
+        - grade: 5
+          name: "@reputation:5"
+          giveCount: 3
+          questPool:
+            - { groupId: 6061, index: 10 }
+            - { groupId: 6062, index: 10 }
+            - { groupId: 6063, index: 10 }
+            - { groupId: 6064, index: 12 }
+            - { groupId: 6065, index: 11 }
+            - { groupId: 6066, index: 11 }
+            - { groupId: 6067, index: 12 }
+            - { groupId: 6068, index: 12 }
+            - { groupId: 6069, index: 12 }
+        - grade: 6
+          name: "@reputation:6"
+          giveCount: 4
+          questPool:
+            - { groupId: 6061, index: 7 }
+            - { groupId: 6062, index: 7 }
+            - { groupId: 6063, index: 7 }
+            - { groupId: 6064, index: 7 }
+            - { groupId: 6065, index: 8 }
+            - { groupId: 6066, index: 8 }
+            - { groupId: 6067, index: 10 }
+            - { groupId: 6068, index: 8 }
+            - { groupId: 6069, index: 8 }
+            - { groupId: 6070, index: 10 }
+            - { groupId: 6071, index: 10 }
+            - { groupId: 6072, index: 10 }
+        - grade: 7
+          name: "@reputation:7"
+          giveCount: 4
+          questPool:
+            - { groupId: 6061, index: 7 }
+            - { groupId: 6062, index: 7 }
+            - { groupId: 6063, index: 7 }
+            - { groupId: 6064, index: 7 }
+            - { groupId: 6065, index: 8 }
+            - { groupId: 6066, index: 8 }
+            - { groupId: 6067, index: 10 }
+            - { groupId: 6068, index: 8 }
+            - { groupId: 6069, index: 8 }
+            - { groupId: 6070, index: 10 }
+            - { groupId: 6071, index: 10 }
+            - { groupId: 6072, index: 10 }
+        - grade: 8
+          name: "@reputation:8"
+          giveCount: 5
+          questPool:
+            - { groupId: 6061, index: 6 }
+            - { groupId: 6062, index: 6 }
+            - { groupId: 6063, index: 6 }
+            - { groupId: 6064, index: 6 }
+            - { groupId: 6065, index: 6 }
+            - { groupId: 6066, index: 7 }
+            - { groupId: 6067, index: 7 }
+            - { groupId: 6068, index: 7 }
+            - { groupId: 6069, index: 7 }
+            - { groupId: 6070, index: 7 }
+            - { groupId: 6071, index: 7 }
+            - { groupId: 6072, index: 7 }
+            - { groupId: 6073, index: 7 }
+            - { groupId: 6074, index: 7 }
+            - { groupId: 6075, index: 7 }
+        - grade: 9
+          name: "@reputation:9"
+          giveCount: 5
+          questPool:
+            - { groupId: 6061, index: 6 }
+            - { groupId: 6062, index: 6 }
+            - { groupId: 6063, index: 6 }
+            - { groupId: 6064, index: 6 }
+            - { groupId: 6065, index: 6 }
+            - { groupId: 6066, index: 7 }
+            - { groupId: 6067, index: 7 }
+            - { groupId: 6068, index: 7 }
+            - { groupId: 6069, index: 7 }
+            - { groupId: 6070, index: 7 }
+            - { groupId: 6071, index: 7 }
+            - { groupId: 6072, index: 7 }
+            - { groupId: 6073, index: 7 }
+            - { groupId: 6074, index: 7 }
+            - { groupId: 6075, index: 7 }

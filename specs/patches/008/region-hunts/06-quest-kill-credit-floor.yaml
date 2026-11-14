@@ -1,0 +1,15 @@
+# Quest kill credit floor: every party that deals at least 1% of a monster's damage gets credit.
+#
+# A kill task credits a taker only when its damage share reaches this world-wide floor. With
+# expRewardToAll each attacking party is its own taker, so at the shipped 0.51 a shared kill
+# credits at most one party, and a kill split three ways credits none. The floor is server-wide:
+# it applies to every hunting, delivery, collecting and loop task, not only the region hunts.
+# Server-only; the client WorldData has no Quest element.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+worldData:
+  quest:
+    minContributionRatioForNpcKillFlag: 0.01

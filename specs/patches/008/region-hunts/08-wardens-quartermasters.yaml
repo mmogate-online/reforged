@@ -1,0 +1,284 @@
+# Arcadian Wardens quartermasters: Garrick in Lumbertown and Sylvara in Crescentia. Each opens
+# the faction point store and gives the faction's daily quests.
+#
+# A daily giver needs nothing on the villager beyond what any clickable villager has: the quest
+# names its giver by template, and that is the whole link. A villagerMenus upsert replaces the
+# villager's whole menu list. The spawns join the region vendor groups, so the npc location
+# prune belongs after the apply. dir is degrees, counter-clockwise from +x.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Villager envelope; aiid 100 is the villager idle AI, so neither quartermaster wanders.
+  _quartermaster:
+    villager: true
+    invincible: true
+    aiid: 100
+    size: medium
+    resourceType: medium
+    resourceSize: 100
+    class: ""
+    collideOnMove: false
+    isObjectNpc: false
+    isWideBroadcaster: false
+    isFreeNamed: false
+    isLightParty: false
+    elite: false
+    showAggroTarget: false
+    showShorttermTarget: false
+    dontTurn: false
+    partyMember: 0
+    spawnScriptId: 0
+    despawnScriptId: 0
+    pcDespawnScriptId: 0
+    villagerVolumeOffset: ""
+    villagerVolumeActiveRange: 0
+    villagerVolumeHalfHeight: 0
+    villagerVolumeInteractionDist: 0
+    namePlate:
+      deathNameplateHeight: 0
+    abnormalityResistanceOverride:
+      resetTime: 60000
+    stat:
+      maxHp: 10000
+      walkSpeed: 60
+      runSpeed: 110
+      atk: 100
+      def: 2000
+      exp: 1
+      level: 40
+    npcOnly:
+      onDeathSkill: 0
+    anger:
+      gaugeSize: 403799
+      time: 16633
+      moveSpeedUpRate: 1.6
+      accumRateWhenHpLow: 1.0
+      accumRateWhenHpMed: 1
+      accumRateWhenHpHigh: 1.0
+      modeOnProbabilityWhenPartyMemberDead: 0.2
+    critical:
+      str: 30
+      res: 180
+      powRate: 1.5
+    criticalAdjust:
+      front: 1
+      right: 1.2
+      left: 1.2
+      back: 1.6
+    reaction:
+      statStr: 40
+      statRes: 150
+      miniRes: 100
+      basicRes: 100
+      basicIncRes: 0
+      basicGaugeResetTime: 20000
+      maxBasicGauge: 2000
+      maxAdditionalGauge: 600000
+    abnormality:
+      strA: 50
+      resA: 40
+      strB: 50
+      resB: 40
+      strC: 50
+      resC: 40
+      strD: 50
+      resD: 40
+    aggro:
+      hateSkillCategoryName: ""
+      viewRadius: 200
+      viewAngle: 360
+      sightRangeAggroWeight: 1.3
+      hateSkillAggroWeight: 1
+      bigReactionAggroWeight: 0.5
+      aggroSendToClanDistance: 300
+      clanName: ""
+      aggroSendToPartyDistance: 400
+      aggroSendRate: 1
+      aggroSendStackRate: 0.1
+      aggroSendStackRateWhenFirstAttacked: 2
+      aggroReceiveOnlyInSight: false
+      aggroReceiveRate: 0.5
+    skillList: {}
+    stackPoint:
+      maxStackPoint: 10
+      minStackPointRequire: 3
+      stackPointPeriod: 8000
+
+  _villagerSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  _villagerTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+npcs:
+  upsert:
+    - huntingZoneId: 60
+      id: 1101
+      $extends: _quartermaster
+      name: "Wardens Quartermaster Garrick"
+      shapeId: 530950                       # Arro 3020,6101
+      basicActionId: 5309500
+      scale: 1.2
+      race: Human
+      gender: male
+    - huntingZoneId: 59
+      id: 1101
+      $extends: _quartermaster
+      name: "Wardens Quartermaster Sylvara"
+      shapeId: 533002                       # Jelena 2001,20410
+      basicActionId: 5210100
+      scale: 1
+      race: Castanic
+      gender: female
+
+territories:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000040
+      $extends: _villagerTerritory
+      desc: "Wardens Quartermaster, Lumbertown"
+      fences:
+        - [89210, -3851, 842]
+        - [89510, -3851, 842]
+        - [89510, -3551, 842]
+        - [89210, -3551, 842]
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900034
+      $extends: _villagerTerritory
+      desc: "Wardens Quartermaster, Crescentia"
+      fences:
+        - [96049, 17045, 2892]
+        - [96349, 17045, 2892]
+        - [96349, 17345, 2892]
+        - [96049, 17345, 2892]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000040
+      npcInstanceId: 6004054
+      npcTemplateId: 1101
+      $extends: _villagerSpawn
+      desc: "Wardens Quartermaster Garrick"
+      pos: [89360.09, -3700.51, 842.37]
+      dir: 3
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900034
+      npcInstanceId: 5900420
+      npcTemplateId: 1101
+      $extends: _villagerSpawn
+      desc: "Wardens Quartermaster Sylvara"
+      pos: [96199.38, 17194.55, 2892.37]
+      dir: 89
+
+creatureStrings:
+  upsert:
+    - { huntingZoneId: 60, templateId: 1101, name: "Garrick", gender: male, race: Human, title: "Arcadian Wardens Quartermaster" }
+    - { huntingZoneId: 59, templateId: 1101, name: "Sylvara", gender: female, race: Castanic, title: "Arcadian Wardens Quartermaster" }
+
+speechConditions:
+  upsert:
+    - huntingZoneId: 60
+      templateId: 1101
+      note: "Wardens Quartermaster Garrick"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 59
+      templateId: 1101
+      note: "Wardens Quartermaster Sylvara"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+# voiceTypeId is the voice of the NPC whose model was copied.
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 60
+      id: 1101
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          huntingZoneId: 60
+          villagerId: 1101
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Every name in this ledger belongs to a volunteer. I mean to keep it that way, so come back alive."
+    - huntingZoneId: 59
+      id: 1101
+      voiceTypeId: 95
+      texts:
+        - id: 1
+          huntingZoneId: 59
+          villagerId: 1101
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Read the tracks before you read the map. The tracks are newer."
+
+# guideEffectId 104 is the icon every vanilla reputation quartermaster wears.
+villagerMenus:
+  upsert:
+    - huntingZoneId: 60
+      npcTemplateId: 1101
+      guideEffectId: 104
+      menus:
+        - { type: PointStore, id: 9380 }
+    - huntingZoneId: 59
+      npcTemplateId: 1101
+      guideEffectId: 104
+      menus:
+        - { type: PointStore, id: 9380 }

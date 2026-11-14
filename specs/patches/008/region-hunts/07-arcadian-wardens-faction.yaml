@@ -1,0 +1,35 @@
+# Arcadian Wardens: Arcadia's reputation faction.
+#
+# The kill list is deliberately empty: standing comes from the faction's dailies alone, so that
+# every character earns grade at the same pace and no hunt kill pays faction points. The
+# faction starts at grade 1, so the first grade gate opens after a day of dailies rather than
+# at unlock. It uses the shared grade scale.
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcGuilds:
+  upsert:
+    - id: 618
+      stringId: 618
+      groupId: 3
+      reputationId: 1
+      startGrade: 1
+      maxPoint: 3000
+      resetReputationPoint: false
+      realms:
+        - { id: 1, huntingZoneId: 2 }
+        - { id: 2, huntingZoneId: 3 }
+        - { id: 3, huntingZoneId: 5 }
+        - { id: 4, huntingZoneId: 6 }
+        - { id: 5, huntingZoneId: 7 }
+      targets: []
+      appearCondition:
+        requiredLevel: { value: 11 }
+
+npcGuildStrings:
+  upsert:
+    - id: 618
+      string: "Arcadian Wardens"
+      toolTip: "A band of Arcadian outriders, militia, hunters, and loggers, sanctioned by Lumbertown and Crescentia to patrol the wilds the army cannot reach."
