@@ -1,0 +1,16 @@
+# Region hunt token IDs
+#
+# Each region's hunt has its own token, paid by the region's hunting quests and spent at the
+# region's hunt token vendor. A token is locked to the character and never converts into gold.
+#
+# Reserved range: 95314 to 95333, one id per region, allocated in the order regions get hunts.
+
+spec:
+  version: "1.0"
+
+variables:
+  ARCADIA_HUNT_TOKEN: 95314
+
+exports:
+  variables:
+    - ARCADIA_HUNT_TOKEN

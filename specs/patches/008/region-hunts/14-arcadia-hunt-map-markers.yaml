@@ -1,0 +1,116 @@
+# Arcadia hunts: map markers for every place a hunt monster can appear.
+#
+# Each hunt monster spawns at one random candidate point of its territory, so its quest link
+# lists every candidate rather than the single spawn point the generated registry carries.
+# A player learns where the monster may be, never where it stands now. The points are the
+# territory's random spawn candidates, rounded to whole units. Crisaka and Abrata spawn as one
+# party, so they share one list.
+#
+# A markers list replaces the row's whole list. Any generated marker spec that covers these
+# zones must sort before this one, or it puts the single spawn point back.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcLocStrings:
+  upsert:
+    # Garash Bloodtusk
+    - huntingZoneId: 2
+      templateId: 507
+      continent: 7001
+      markers:
+        - [112675, -2414, 2994]
+        - [119727, -4278, 3195]
+        - [119014, -10352, 3448]
+        - [114427, -11677, 3300]
+        - [118662, -10736, 3417]
+        - [119626, -4572, 3191]
+        - [112802, -2039, 3047]
+        - [112014, -11064, 3012]
+    # Tradon
+    - huntingZoneId: 2
+      templateId: 510
+      continent: 7001
+      markers:
+        - [114823, -22838, 4038]
+        - [109962, -25022, 3727]
+        - [109848, -18784, 3464]
+        - [117941, -14893, 3785]
+    # Dur Barak
+    - huntingZoneId: 3
+      templateId: 21
+      continent: 7001
+      markers:
+        - [105638, 20960, 3116]
+    # Lanok
+    - huntingZoneId: 3
+      templateId: 22
+      continent: 7001
+      markers:
+        - [117771, 27247, 3148]
+        - [122164, 17324, 2586]
+    # Garangka
+    - huntingZoneId: 5
+      templateId: 17
+      continent: 7001
+      markers:
+        - [59247, -6351, -12]
+        - [55853, -4179, -31]
+        - [56990, -12311, 64]
+        - [51419, -8842, -180]
+        - [63358, -6138, -55]
+        - [54816, -8734, 133]
+    # Crisaka
+    - huntingZoneId: 6
+      templateId: 5001
+      continent: 7001
+      markers:
+        - [70537, 30008, 3793]
+        - [66894, 31758, 3779]
+        - [64676, 33974, 3890]
+        - [68508, 34810, 4225]
+        - [56493, 19359, 2235]
+        - [51853, 18276, 2491]
+        - [49478, 18490, 2722]
+        - [48906, 18843, 2722]
+        - [49614, 23536, 2396]
+        - [52971, 22279, 2354]
+    # Abrata
+    - huntingZoneId: 6
+      templateId: 5002
+      continent: 7001
+      markers:
+        - [70537, 30008, 3793]
+        - [66894, 31758, 3779]
+        - [64676, 33974, 3890]
+        - [68508, 34810, 4225]
+        - [56493, 19359, 2235]
+        - [51853, 18276, 2491]
+        - [49478, 18490, 2722]
+        - [48906, 18843, 2722]
+        - [49614, 23536, 2396]
+        - [52971, 22279, 2354]
+    # Arakia
+    - huntingZoneId: 6
+      templateId: 5003
+      continent: 7001
+      markers:
+        - [76112, 14665, 1833]
+        - [82397, 3477, 903]
+        - [82131, 14990, 2138]
+        - [78613, 25571, 2785]
+        - [74186, 18511, 1946]
+    # Barraq
+    - huntingZoneId: 7
+      templateId: 101
+      continent: 7001
+      markers:
+        - [40182, 4900, 545]
+        - [39841, 6117, 540]
+        - [39139, 4721, 465]
+        - [37859, 3619, 428]
+        - [35466, 3635, 498]
+        - [34674, 4573, 413]
+        - [34557, 3260, 603]

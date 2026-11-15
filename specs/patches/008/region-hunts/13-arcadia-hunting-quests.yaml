@@ -1,0 +1,750 @@
+# Arcadia hunting quests: per hunt encounter, a one-time discovery quest and a repeatable
+# hunting quest it unlocks, both paying the Arcadia Hunt Mark and nothing else.
+#
+# A quest with no giver (the 0,0 start NPC) lists on the chapter house board of every hub
+# city, under its quest group's region heading, and any reward officer takes the turn-in. That
+# is why the text names the officer by city and never a single NPC, and why each quest sits in
+# its monster's own zone group.
+#
+# Both quests use the board's repeat task. The repeatable one loops without end inside a quest
+# taken once, as the vanilla suppression orders do; the discovery quest runs the same task for
+# one finite round, so it completes and unlocks the repeatable one. Crisaka and Abrata spawn as
+# one party, so a kill of either credits their quests.
+#
+# Trap: the dungeon entry trigger is written as 0 on purpose. The server leaves that field
+# unset when the element is absent, and a leftover non-zero value makes the quest count as
+# dungeon-triggered, so it silently drops off the board.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: region-hunt-tokens
+    use:
+      variables:
+        - ARCADIA_HUNT_TOKEN
+
+definitions:
+  _huntQuest:
+    header:
+      startTaskId: 1
+      linkedQuest: 101
+      recommendedPartySize: 1
+      questDialogue: 2
+      summaryInfo: 100
+      designersNote: ""
+      questType: Guild
+      repeatType: OneTime
+      cancellable: Allowed
+      assemblyCategory: 0
+      giverNpc: { huntingZone: 0, templateId: 0 }
+      dungeonEntryTrigger: 0
+    requirements:
+      minLevel: 11
+      maxLevel: 70
+  _huntTask:
+    taskId: 1
+    type: RepeatTask
+    nextTaskId: 0
+    journalScript: 2
+    hasReward: true
+    cinematicId: 0
+    body:
+      repeatTarget: "사냥"
+      repeatCount: 1
+      deliveryQuantity: 1
+      iconId: 119
+      sequentialDistribution: "미적용"
+      targetNpc: { huntingZone: 0, templateId: 0 }
+      normalDialogue: 3
+      incompleteDialogue: 4
+  _discoveryTask:
+    $extends: _huntTask
+    body:
+      repeatMethod: "유한"
+      maxFlagCount: 1
+  _repeatableTask:
+    $extends: _huntTask
+    body:
+      repeatMethod: "무한"
+      maxFlagCount: 10
+  _boardText:
+    npcZoneId: 0
+    villagerId: 0
+
+quests:
+  upsert:
+    # Garash Bloodtusk
+    - id: 251
+      $extends: _huntQuest
+      header: { questNumber: 251, questTitle: "@quest:251001", recommendedLevel: 15 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:251004"
+          journalText2: "@quest:251005"
+          body:
+            flagItemName: "@quest:251002"
+            rewardChoiceText: "@quest:251003"
+            targets: [{ npc: { huntingZone: 2, templateId: 507 }, grantRate: 100 }]
+    - id: 252
+      $extends: _huntQuest
+      header: { questNumber: 252, questTitle: "@quest:252001", recommendedLevel: 15 }
+      requirements: { prerequisites: [251] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:252004"
+          journalText2: "@quest:252005"
+          body:
+            flagItemName: "@quest:252002"
+            rewardChoiceText: "@quest:252003"
+            targets: [{ npc: { huntingZone: 2, templateId: 507 }, grantRate: 100 }]
+    # Tradon
+    - id: 253
+      $extends: _huntQuest
+      header: { questNumber: 253, questTitle: "@quest:253001", recommendedLevel: 15 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:253004"
+          journalText2: "@quest:253005"
+          body:
+            flagItemName: "@quest:253002"
+            rewardChoiceText: "@quest:253003"
+            targets: [{ npc: { huntingZone: 2, templateId: 510 }, grantRate: 100 }]
+    - id: 254
+      $extends: _huntQuest
+      header: { questNumber: 254, questTitle: "@quest:254001", recommendedLevel: 15 }
+      requirements: { prerequisites: [253] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:254004"
+          journalText2: "@quest:254005"
+          body:
+            flagItemName: "@quest:254002"
+            rewardChoiceText: "@quest:254003"
+            targets: [{ npc: { huntingZone: 2, templateId: 510 }, grantRate: 100 }]
+    # Dur Barak
+    - id: 351
+      $extends: _huntQuest
+      header: { questNumber: 351, questTitle: "@quest:351001", recommendedLevel: 18 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:351004"
+          journalText2: "@quest:351005"
+          body:
+            flagItemName: "@quest:351002"
+            rewardChoiceText: "@quest:351003"
+            targets: [{ npc: { huntingZone: 3, templateId: 21 }, grantRate: 100 }]
+    - id: 352
+      $extends: _huntQuest
+      header: { questNumber: 352, questTitle: "@quest:352001", recommendedLevel: 18 }
+      requirements: { prerequisites: [351] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:352004"
+          journalText2: "@quest:352005"
+          body:
+            flagItemName: "@quest:352002"
+            rewardChoiceText: "@quest:352003"
+            targets: [{ npc: { huntingZone: 3, templateId: 21 }, grantRate: 100 }]
+    # Lanok
+    - id: 353
+      $extends: _huntQuest
+      header: { questNumber: 353, questTitle: "@quest:353001", recommendedLevel: 21 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:353004"
+          journalText2: "@quest:353005"
+          body:
+            flagItemName: "@quest:353002"
+            rewardChoiceText: "@quest:353003"
+            targets: [{ npc: { huntingZone: 3, templateId: 22 }, grantRate: 100 }]
+    - id: 354
+      $extends: _huntQuest
+      header: { questNumber: 354, questTitle: "@quest:354001", recommendedLevel: 21 }
+      requirements: { prerequisites: [353] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:354004"
+          journalText2: "@quest:354005"
+          body:
+            flagItemName: "@quest:354002"
+            rewardChoiceText: "@quest:354003"
+            targets: [{ npc: { huntingZone: 3, templateId: 22 }, grantRate: 100 }]
+    # Garangka
+    - id: 551
+      $extends: _huntQuest
+      header: { questNumber: 551, questTitle: "@quest:551001", recommendedLevel: 23 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:551004"
+          journalText2: "@quest:551005"
+          body:
+            flagItemName: "@quest:551002"
+            rewardChoiceText: "@quest:551003"
+            targets: [{ npc: { huntingZone: 5, templateId: 17 }, grantRate: 100 }]
+    - id: 552
+      $extends: _huntQuest
+      header: { questNumber: 552, questTitle: "@quest:552001", recommendedLevel: 23 }
+      requirements: { prerequisites: [551] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:552004"
+          journalText2: "@quest:552005"
+          body:
+            flagItemName: "@quest:552002"
+            rewardChoiceText: "@quest:552003"
+            targets: [{ npc: { huntingZone: 5, templateId: 17 }, grantRate: 100 }]
+    # Crisaka and Abrata
+    - id: 651
+      $extends: _huntQuest
+      header: { questNumber: 651, questTitle: "@quest:651001", recommendedLevel: 20 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:651004"
+          journalText2: "@quest:651005"
+          body:
+            flagItemName: "@quest:651002"
+            rewardChoiceText: "@quest:651003"
+            targets:
+              - { npc: { huntingZone: 6, templateId: 5001 }, grantRate: 100 }
+              - { npc: { huntingZone: 6, templateId: 5002 }, grantRate: 100 }
+    - id: 652
+      $extends: _huntQuest
+      header: { questNumber: 652, questTitle: "@quest:652001", recommendedLevel: 20 }
+      requirements: { prerequisites: [651] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:652004"
+          journalText2: "@quest:652005"
+          body:
+            flagItemName: "@quest:652002"
+            rewardChoiceText: "@quest:652003"
+            targets:
+              - { npc: { huntingZone: 6, templateId: 5001 }, grantRate: 100 }
+              - { npc: { huntingZone: 6, templateId: 5002 }, grantRate: 100 }
+    # Arakia
+    - id: 653
+      $extends: _huntQuest
+      header: { questNumber: 653, questTitle: "@quest:653001", recommendedLevel: 20 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:653004"
+          journalText2: "@quest:653005"
+          body:
+            flagItemName: "@quest:653002"
+            rewardChoiceText: "@quest:653003"
+            targets: [{ npc: { huntingZone: 6, templateId: 5003 }, grantRate: 100 }]
+    - id: 654
+      $extends: _huntQuest
+      header: { questNumber: 654, questTitle: "@quest:654001", recommendedLevel: 20 }
+      requirements: { prerequisites: [653] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:654004"
+          journalText2: "@quest:654005"
+          body:
+            flagItemName: "@quest:654002"
+            rewardChoiceText: "@quest:654003"
+            targets: [{ npc: { huntingZone: 6, templateId: 5003 }, grantRate: 100 }]
+    # Barraq
+    - id: 751
+      $extends: _huntQuest
+      header: { questNumber: 751, questTitle: "@quest:751001", recommendedLevel: 25 }
+      tasks:
+        - $extends: _discoveryTask
+          journalText: "@quest:751004"
+          journalText2: "@quest:751005"
+          body:
+            flagItemName: "@quest:751002"
+            rewardChoiceText: "@quest:751003"
+            targets: [{ npc: { huntingZone: 7, templateId: 101 }, grantRate: 100 }]
+    - id: 752
+      $extends: _huntQuest
+      header: { questNumber: 752, questTitle: "@quest:752001", recommendedLevel: 25 }
+      requirements: { prerequisites: [751] }
+      tasks:
+        - $extends: _repeatableTask
+          journalText: "@quest:752004"
+          journalText2: "@quest:752005"
+          body:
+            flagItemName: "@quest:752002"
+            rewardChoiceText: "@quest:752003"
+            targets: [{ npc: { huntingZone: 7, templateId: 101 }, grantRate: 100 }]
+
+questStrings:
+  upsert:
+    - { id: 251001, string: "Sighted: Garash Bloodtusk" }
+    - { id: 251002, string: "Proof of Kill: Garash Bloodtusk" }
+    - { id: 251003, string: '"The Boarlord is down."' }
+    - { id: 251004, string: "Hunt down Garash Bloodtusk in the Fey Forest." }
+    - { id: 251005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 252001, string: "Hunting Orders: Garash Bloodtusk" }
+    - { id: 252002, string: "Proof of Kill: Garash Bloodtusk" }
+    - { id: 252003, string: '"Reporting in!"' }
+    - { id: 252004, string: "Hunt down Garash Bloodtusk in the Fey Forest." }
+    - { id: 252005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 253001, string: "Sighted: Tradon" }
+    - { id: 253002, string: "Proof of Kill: Tradon" }
+    - { id: 253003, string: '"The guardian is at rest."' }
+    - { id: 253004, string: "Put Tradon to rest in the Fey Forest." }
+    - { id: 253005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 254001, string: "Hunting Orders: Tradon" }
+    - { id: 254002, string: "Proof of Kill: Tradon" }
+    - { id: 254003, string: '"Reporting in!"' }
+    - { id: 254004, string: "Put Tradon to rest in the Fey Forest." }
+    - { id: 254005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 351001, string: "Sighted: Dur Barak" }
+    - { id: 351002, string: "Proof of Kill: Dur Barak" }
+    - { id: 351003, string: '"The Doommaster has fallen."' }
+    - { id: 351004, string: "Cut down Dur Barak in Berzerad Cemetery." }
+    - { id: 351005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 352001, string: "Hunting Orders: Dur Barak" }
+    - { id: 352002, string: "Proof of Kill: Dur Barak" }
+    - { id: 352003, string: '"Reporting in!"' }
+    - { id: 352004, string: "Cut down Dur Barak in Berzerad Cemetery." }
+    - { id: 352005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 353001, string: "Sighted: Lanok" }
+    - { id: 353002, string: "Proof of Kill: Lanok" }
+    - { id: 353003, string: '"The giant is down."' }
+    - { id: 353004, string: "Destroy Lanok in Oblivion Woods." }
+    - { id: 353005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 354001, string: "Hunting Orders: Lanok" }
+    - { id: 354002, string: "Proof of Kill: Lanok" }
+    - { id: 354003, string: '"Reporting in!"' }
+    - { id: 354004, string: "Destroy Lanok in Oblivion Woods." }
+    - { id: 354005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 551001, string: "Sighted: Garangka" }
+    - { id: 551002, string: "Proof of Kill: Garangka" }
+    - { id: 551003, string: '"The Frog King is dead."' }
+    - { id: 551004, string: "Slay Garangka in Tuwangi Mire." }
+    - { id: 551005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 552001, string: "Hunting Orders: Garangka" }
+    - { id: 552002, string: "Proof of Kill: Garangka" }
+    - { id: 552003, string: '"Reporting in!"' }
+    - { id: 552004, string: "Slay Garangka in Tuwangi Mire." }
+    - { id: 552005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 651001, string: "Sighted: Crisaka and Abrata" }
+    - { id: 651002, string: "Proof of Kill: Scions of Lok" }
+    - { id: 651003, string: '"The Scions are broken."' }
+    - { id: 651004, string: "Defeat Crisaka or Abrata in the Valley of Titans." }
+    - { id: 651005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 652001, string: "Hunting Orders: Crisaka and Abrata" }
+    - { id: 652002, string: "Proof of Kill: Scions of Lok" }
+    - { id: 652003, string: '"Reporting in!"' }
+    - { id: 652004, string: "Defeat Crisaka or Abrata in the Valley of Titans." }
+    - { id: 652005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 653001, string: "Sighted: Arakia" }
+    - { id: 653002, string: "Proof of Kill: Arakia" }
+    - { id: 653003, string: '"The roads are clear."' }
+    - { id: 653004, string: "Slay Arakia in the Valley of Titans." }
+    - { id: 653005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 654001, string: "Hunting Orders: Arakia" }
+    - { id: 654002, string: "Proof of Kill: Arakia" }
+    - { id: 654003, string: '"Reporting in!"' }
+    - { id: 654004, string: "Slay Arakia in the Valley of Titans." }
+    - { id: 654005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 751001, string: "Sighted: Barraq" }
+    - { id: 751002, string: "Proof of Kill: Barraq" }
+    - { id: 751003, string: '"The Thunderwalker has fallen."' }
+    - { id: 751004, string: "Slay Barraq in the Celestial Hills." }
+    - { id: 751005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+    - { id: 752001, string: "Hunting Orders: Barraq" }
+    - { id: 752002, string: "Proof of Kill: Barraq" }
+    - { id: 752003, string: '"Reporting in!"' }
+    - { id: 752004, string: "Slay Barraq in the Celestial Hills." }
+    - { id: 752005, string: "Report to the mission officer in Lumbertown or Crescentia." }
+
+# Text 2 is the briefing the board shows, 3 the turn-in, 4 the reply while the kill is
+# outstanding. The board speaks for no NPC, so every text names the 0,0 speaker.
+questDialogs:
+  upsert:
+    - huntingZoneId: 2
+      id: 51
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>Loggers coming back from the Fey Forest swear the Long Tusk herds have a lord now: a warthog the size of a hay cart that the camps call the Boarlord. The refugee kitchens need those herds, and the herds will not come near the treeline while he leads them.<BR><BR>Find {@LinkCreature:2#507#Garash Bloodtusk} and bring him down.<BR><BR>The marks on your map show every place he has been sighted. He walks only one of them at a time. Each party that fights him takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "So the Boarlord bleeds like any other boar. Good.<BR><BR>He will be back; beasts like him always are. When he is, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 2
+      id: 52
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:2#507#Garash Bloodtusk} has taken the Long Tusk herds again. Every time he returns, the loggers lose another day at the treeline.<BR><BR>These orders stand for as long as he keeps coming back. Bring him down, report in, and take the orders again.<BR><BR>The marks on your map show where he has been sighted, not where he stands now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "Another day for the loggers. Your marks, as promised."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 2
+      id: 53
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>Faeries from the Faerie Pond came to Lumbertown with a warning. {@LinkCreature:2#510#Tradon} was once one of their guardians. The ill wind took him as it took the unicorns, and now he strikes at anyone who walks the forest, fey or human.<BR><BR>The loyal faeries cannot bring themselves to do it. Put him to rest.<BR><BR>The marks on your map show every place he has been sighted. He walks only one of them at a time. Each party that fights him takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The faeries asked to be told when it was done. I will send word to the pond.<BR><BR>If the ill wind raises him again, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 2
+      id: 54
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:2#510#Tradon} walks the Fey Forest again. Whatever the ill wind is, it is not finished with him.<BR><BR>These orders stand for as long as he returns. Put him to rest again, report in, and take the orders again.<BR><BR>The marks on your map show where he has been sighted, not where he stands now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "Rest again, guardian. Your marks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 3
+      id: 51
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>The dead of Berzerad Cemetery were honored soldiers once. Since the devas' nexus spirit pulled them back, they march again, and the Furious Dragoons march behind one of their own: {@LinkCreature:3#21#Dur Barak}, the Dragoon Doommaster.<BR><BR>Cut down the one who leads them, and the dragoons lose their order for a time.<BR><BR>The marks on your map show every place he has been sighted. Each party that fights him takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "Crescentia will sleep easier tonight.<BR><BR>The dead do not stay down in that cemetery, and neither will he. When he rises, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 3
+      id: 52
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:3#21#Dur Barak} has risen again in Berzerad Cemetery, and his dragoons are forming ranks behind him.<BR><BR>These orders stand for as long as the dead keep rising. Cut him down, report in, and take the orders again.<BR><BR>The marks on your map show where he has been sighted.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "Down again. Your marks, and the cemetery's thanks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 3
+      id: 53
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>Something older than the devas walks Oblivion Woods. The scouts call it {@LinkCreature:3#22#Lanok}, the Forgotten Destroyer: a giant that attacks everything in sight and leaves nothing standing on the caravan route.<BR><BR>The federation wants it destroyed at all costs. Take a party; you will want one.<BR><BR>The marks on your map show every place it has been sighted. It walks only one of them at a time. Each party that fights it takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "You brought down the Forgotten Destroyer. Few in Crescentia will believe it until they see the road open.<BR><BR>Giants like that do not stay gone. When it returns, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 3
+      id: 54
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:3#22#Lanok} is back in Oblivion Woods, and the caravans have stopped again.<BR><BR>These orders stand for as long as it returns. Destroy it, report in, and take the orders again.<BR><BR>The marks on your map show where it has been sighted, not where it stands now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The road is open again, for now. Your marks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 5
+      id: 51
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>The tuwangi overseers ride garangkas into battle, but the largest of them answers to no rider. Ackerly's surveyors call it the Frog King, {@LinkCreature:5#17#Garangka}, and it has swallowed more of their gear than the swamp has.<BR><BR>The survey of Tuwangi Mire cannot go on while it hunts the marsh. End it.<BR><BR>The marks on your map show every place it has been sighted. It walks only one of them at a time. Each party that fights it takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The surveyors will want to see the size of it before they believe you. Let them.<BR><BR>The mire will crown its king again soon enough. When it does, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 5
+      id: 52
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>The Frog King is back. {@LinkCreature:5#17#Garangka} rules the Tuwangi Mire again, and the surveyors have pulled back to the edge of the marsh.<BR><BR>These orders stand for as long as it returns. End it, report in, and take the orders again.<BR><BR>The marks on your map show where it has been sighted, not where it stands now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The survey moves again. Your marks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 6
+      id: 51
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>The Gutrends of the Valley of Titans fight with weapons they never forged, and the crest of Lok was found on their chieftain. Two Scions of Lok, {@LinkCreature:6#5001#Crisaka} and {@LinkCreature:6#5002#Abrata}, ride the valley together, and wherever they pass, the Gutrends grow bolder.<BR><BR>Bring them down. The fall of either one is proof enough for these orders.<BR><BR>The marks on your map show every place they have been sighted. They walk only one of them at a time. Each party that fights them takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "One less pair of hands arming the Gutrends.<BR><BR>The Scions will send them back; they always do. When they return, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 6
+      id: 52
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:6#5001#Crisaka} and {@LinkCreature:6#5002#Abrata} ride the Valley of Titans again, and the Gutrend camps are restless.<BR><BR>These orders stand for as long as the Scions send them. Bring them down, report in, and take the orders again. The fall of either one is proof enough.<BR><BR>The marks on your map show where they have been sighted, not where they stand now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The camps will be quieter for a while. Your marks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 6
+      id: 53
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>Refugees on the roads of the Valley of Titans have one more thing to fear than the Gutrends. {@LinkCreature:6#5003#Arakia}, a spider larger than a wagon, stalks the roads and takes travelers where they walk.<BR><BR>Hunt her down and kill her.<BR><BR>The marks on your map show every place she has been sighted. She walks only one of them at a time. Each party that fights her takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The roads are safer tonight. Not safe; the valley is never safe.<BR><BR>When she returns, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 6
+      id: 54
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:6#5003#Arakia} is stalking the valley roads again, and another wagon did not arrive.<BR><BR>These orders stand for as long as she returns. Kill her, report in, and take the orders again.<BR><BR>The marks on your map show where she has been sighted, not where she stands now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The roads are open again. Your marks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 7
+      id: 51
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>The kumases of the Celestial Hills have come for the old magic of the ruins, and the Scions of Lok are behind them. The strongest of them, {@LinkCreature:7#101#Barraq} the Thunderwalker, guards the ruins as if the stones were already his.<BR><BR>Those secrets must not fall to the Scions. Find Barraq and kill him. He is beyond most soldiers in Arcadia; do not go alone.<BR><BR>The marks on your map show every place he has been sighted. He walks only one of them at a time. Each party that fights him takes its own share of the spoils.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The Thunderwalker has fallen. The Mysterium will want to hear of it, and so will the Scions, which is less welcome.<BR><BR>They will send him back. When they do, the standing orders are yours to take."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+    - huntingZoneId: 7
+      id: 52
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Hunting Orders<BR><BR>{@LinkCreature:7#101#Barraq} walks the Celestial Hills again, and the kumases are digging in the ruins.<BR><BR>These orders stand for as long as he returns. Kill him, report in, and take the orders again.<BR><BR>The marks on your map show where he has been sighted, not where he stands now.<BR><BR>Report to the mission officer in Lumbertown or Crescentia when the hunt is done."
+        - $extends: _boardText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 5
+              content: "The ruins keep their secrets a while longer. Your marks."
+        - $extends: _boardText
+          id: 4
+          pages:
+            - social: 0
+              content: "These orders stand until the kill is made. Come back with proof."
+
+# Tokens only: no exp, no gold and no faction pay on any hunt source.
+questCompensations:
+  upsert:
+    - { questId: 251, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 252, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 2 }] }] }
+    - { questId: 253, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 254, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 351, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 352, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 353, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 354, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 12 }] }] }
+    - { questId: 551, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 552, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 651, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 652, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 653, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 654, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 12 }] }] }
+    - { questId: 751, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
+    - { questId: 752, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 12 }] }] }
