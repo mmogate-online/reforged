@@ -10,6 +10,10 @@
 # do not sum to exactly 100 or its giveCount exceeds the quests it lists. Validation checks
 # neither: recount both by hand after any edit to the pool.
 #
+# A daily is offered only from the pool whose id equals its quest group (the id divided by
+# 100), so every quest here sits in group 618, the faction's own id. A daily in any other
+# group is never startable, however the pool lists it.
+#
 # The pair under questPool is the quest id and its weight, under the names groupId and index.
 # A hunt-and-deliver task takes its delivery count from targetCount.
 # provenance: policy
@@ -21,19 +25,19 @@ spec:
 quests:
   upsert:
     # 1. Tusks at the Treeline
-    - id: 6061
+    - id: 61802
       header:
-        questNumber: 6061
+        questNumber: 61802
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 11
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6061001"
+        questTitle: "@quest:61802001"
         designersNote: ""
-        startPopup: "@quest:6061002"
-        endPopup: "@quest:6061003"
+        startPopup: "@quest:61802002"
+        endPopup: "@quest:61802003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -46,7 +50,7 @@ quests:
           type: HuntTask
           nextTaskId: 2
           journalScript: 2
-          journalText: "@quest:6061005"
+          journalText: "@quest:61802005"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -59,27 +63,27 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6061006"
+          journalText: "@quest:61802006"
           hasReward: true
           body:
             npcId: { huntingZone: 60, templateId: 1101 }
             dialogueId: 3
-            completionButtonText: "@quest:6061004"
+            completionButtonText: "@quest:61802004"
             visitCinematicId: 0
     # 2. Faerie Mischief
-    - id: 6062
+    - id: 61803
       header:
-        questNumber: 6062
+        questNumber: 61803
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 11
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6062001"
+        questTitle: "@quest:61803001"
         designersNote: ""
-        startPopup: "@quest:6062002"
-        endPopup: "@quest:6062003"
+        startPopup: "@quest:61803002"
+        endPopup: "@quest:61803003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -92,13 +96,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6062005"
-          journalText2: "@quest:6062006"
+          journalText: "@quest:61803005"
+          journalText2: "@quest:61803006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6062007"
+            flagItemName: "@quest:61803007"
             itemId: 140
             targetCount: 5
             targets:
@@ -108,21 +112,21 @@ quests:
             targetNpc: { huntingZone: 60, templateId: 1101 }
             completionDialogue: 3
             incompleteDialogue: 4
-            completionButtonText: "@quest:6062004"
+            completionButtonText: "@quest:61803004"
     # 3. Centaur Warbands
-    - id: 6063
+    - id: 61804
       header:
-        questNumber: 6063
+        questNumber: 61804
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 12
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6063001"
+        questTitle: "@quest:61804001"
         designersNote: ""
-        startPopup: "@quest:6063002"
-        endPopup: "@quest:6063003"
+        startPopup: "@quest:61804002"
+        endPopup: "@quest:61804003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -135,7 +139,7 @@ quests:
           type: HuntTask
           nextTaskId: 2
           journalScript: 2
-          journalText: "@quest:6063005"
+          journalText: "@quest:61804005"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -146,27 +150,27 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6063006"
+          journalText: "@quest:61804006"
           hasReward: true
           body:
             npcId: { huntingZone: 60, templateId: 1101 }
             dialogueId: 3
-            completionButtonText: "@quest:6063004"
+            completionButtonText: "@quest:61804004"
             visitCinematicId: 0
     # 4. Logging Crew Patrol
-    - id: 6064
+    - id: 61805
       header:
-        questNumber: 6064
+        questNumber: 61805
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 12
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6064001"
+        questTitle: "@quest:61805001"
         designersNote: ""
-        startPopup: "@quest:6064002"
-        endPopup: "@quest:6064003"
+        startPopup: "@quest:61805002"
+        endPopup: "@quest:61805003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -179,18 +183,18 @@ quests:
           type: BranchTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6064006"
+          journalText: "@quest:61805006"
           body:
             targetNpc: { huntingZone: 60, templateId: 1101 }
             preBranchDialogue: 2
             branchType: auto
-            completionButtonText: "@quest:6064008"
+            completionButtonText: "@quest:61805008"
             choices:
-              - text: "@quest:6064015"
+              - text: "@quest:61805015"
                 postChoiceDialogue: 11
                 nextTaskId: 2
                 rate: 50
-              - text: "@quest:6064025"
+              - text: "@quest:61805025"
                 postChoiceDialogue: 21
                 nextTaskId: 3
                 rate: 50
@@ -198,7 +202,7 @@ quests:
           type: HuntTask
           nextTaskId: 4
           journalScript: 11
-          journalText: "@quest:6064015"
+          journalText: "@quest:61805015"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -209,13 +213,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 21
-          journalText: "@quest:6064025"
-          journalText2: "@quest:6064006"
+          journalText: "@quest:61805025"
+          journalText2: "@quest:61805006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6064027"
+            flagItemName: "@quest:61805027"
             itemId: 67
             targetCount: 3
             targets:
@@ -227,32 +231,32 @@ quests:
             targetNpc: { huntingZone: 60, templateId: 1101 }
             completionDialogue: 22
             incompleteDialogue: 23
-            completionButtonText: "@quest:6064024"
+            completionButtonText: "@quest:61805024"
         - taskId: 4
           type: VisitTask
           nextTaskId: 0
           journalScript: 11
-          journalText: "@quest:6064006"
+          journalText: "@quest:61805006"
           hasReward: true
           body:
             npcId: { huntingZone: 60, templateId: 1101 }
             dialogueId: 12
-            completionButtonText: "@quest:6064014"
+            completionButtonText: "@quest:61805014"
             visitCinematicId: 0
     # 5. Beasts of the Northern Forest
-    - id: 6065
+    - id: 61806
       header:
-        questNumber: 6065
+        questNumber: 61806
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 14
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6065001"
+        questTitle: "@quest:61806001"
         designersNote: ""
-        startPopup: "@quest:6065002"
-        endPopup: "@quest:6065003"
+        startPopup: "@quest:61806002"
+        endPopup: "@quest:61806003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -265,7 +269,7 @@ quests:
           type: HuntTask
           nextTaskId: 2
           journalScript: 2
-          journalText: "@quest:6065005"
+          journalText: "@quest:61806005"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -278,27 +282,27 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6065006"
+          journalText: "@quest:61806006"
           hasReward: true
           body:
             npcId: { huntingZone: 60, templateId: 1101 }
             dialogueId: 3
-            completionButtonText: "@quest:6065004"
+            completionButtonText: "@quest:61806004"
             visitCinematicId: 0
     # 6. Stonebeak Warband
-    - id: 6066
+    - id: 61807
       header:
-        questNumber: 6066
+        questNumber: 61807
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 15
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6066001"
+        questTitle: "@quest:61807001"
         designersNote: ""
-        startPopup: "@quest:6066002"
-        endPopup: "@quest:6066003"
+        startPopup: "@quest:61807002"
+        endPopup: "@quest:61807003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -311,7 +315,7 @@ quests:
           type: HuntTask
           nextTaskId: 2
           journalScript: 2
-          journalText: "@quest:6066005"
+          journalText: "@quest:61807005"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -322,27 +326,27 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6066006"
+          journalText: "@quest:61807006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 3
-            completionButtonText: "@quest:6066004"
+            completionButtonText: "@quest:61807004"
             visitCinematicId: 0
     # 7. Scarwood Blight
-    - id: 6067
+    - id: 61808
       header:
-        questNumber: 6067
+        questNumber: 61808
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 14
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6067001"
+        questTitle: "@quest:61808001"
         designersNote: ""
-        startPopup: "@quest:6067002"
-        endPopup: "@quest:6067003"
+        startPopup: "@quest:61808002"
+        endPopup: "@quest:61808003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -355,13 +359,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6067005"
-          journalText2: "@quest:6067006"
+          journalText: "@quest:61808005"
+          journalText2: "@quest:61808006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6067007"
+            flagItemName: "@quest:61808007"
             itemId: 29
             targetCount: 4
             targets:
@@ -373,21 +377,21 @@ quests:
             targetNpc: { huntingZone: 60, templateId: 1101 }
             completionDialogue: 3
             incompleteDialogue: 4
-            completionButtonText: "@quest:6067004"
+            completionButtonText: "@quest:61808004"
     # 8. Devan Dispatches
-    - id: 6068
+    - id: 61809
       header:
-        questNumber: 6068
+        questNumber: 61809
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 15
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6068001"
+        questTitle: "@quest:61809001"
         designersNote: ""
-        startPopup: "@quest:6068002"
-        endPopup: "@quest:6068003"
+        startPopup: "@quest:61809002"
+        endPopup: "@quest:61809003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -400,13 +404,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6068005"
-          journalText2: "@quest:6068006"
+          journalText: "@quest:61809005"
+          journalText2: "@quest:61809006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6068007"
+            flagItemName: "@quest:61809007"
             itemId: 98
             targetCount: 5
             targets:
@@ -418,21 +422,21 @@ quests:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             completionDialogue: 3
             incompleteDialogue: 4
-            completionButtonText: "@quest:6068004"
+            completionButtonText: "@quest:61809004"
     # 9. Oblivion Woods Sweep
-    - id: 6069
+    - id: 61810
       header:
-        questNumber: 6069
+        questNumber: 61810
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 16
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6069001"
+        questTitle: "@quest:61810001"
         designersNote: ""
-        startPopup: "@quest:6069002"
-        endPopup: "@quest:6069003"
+        startPopup: "@quest:61810002"
+        endPopup: "@quest:61810003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -445,22 +449,22 @@ quests:
           type: BranchTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6069006"
+          journalText: "@quest:61810006"
           body:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             preBranchDialogue: 2
             branchType: auto
-            completionButtonText: "@quest:6069008"
+            completionButtonText: "@quest:61810008"
             choices:
-              - text: "@quest:6069015"
+              - text: "@quest:61810015"
                 postChoiceDialogue: 11
                 nextTaskId: 2
                 rate: 34
-              - text: "@quest:6069025"
+              - text: "@quest:61810025"
                 postChoiceDialogue: 21
                 nextTaskId: 3
                 rate: 33
-              - text: "@quest:6069035"
+              - text: "@quest:61810035"
                 postChoiceDialogue: 31
                 nextTaskId: 4
                 rate: 33
@@ -468,7 +472,7 @@ quests:
           type: HuntTask
           nextTaskId: 5
           journalScript: 11
-          journalText: "@quest:6069015"
+          journalText: "@quest:61810015"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -479,13 +483,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 21
-          journalText: "@quest:6069025"
-          journalText2: "@quest:6069006"
+          journalText: "@quest:61810025"
+          journalText2: "@quest:61810006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6069027"
+            flagItemName: "@quest:61810027"
             itemId: 63
             targetCount: 4
             targets:
@@ -495,12 +499,12 @@ quests:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             completionDialogue: 22
             incompleteDialogue: 23
-            completionButtonText: "@quest:6069024"
+            completionButtonText: "@quest:61810024"
         - taskId: 4
           type: HuntTask
           nextTaskId: 6
           journalScript: 31
-          journalText: "@quest:6069035"
+          journalText: "@quest:61810035"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -511,38 +515,38 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 11
-          journalText: "@quest:6069006"
+          journalText: "@quest:61810006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 12
-            completionButtonText: "@quest:6069014"
+            completionButtonText: "@quest:61810014"
             visitCinematicId: 0
         - taskId: 6
           type: VisitTask
           nextTaskId: 0
           journalScript: 31
-          journalText: "@quest:6069006"
+          journalText: "@quest:61810006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 32
-            completionButtonText: "@quest:6069034"
+            completionButtonText: "@quest:61810034"
             visitCinematicId: 0
     # 10. Gutrend War Tokens
-    - id: 6070
+    - id: 61811
       header:
-        questNumber: 6070
+        questNumber: 61811
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 16
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6070001"
+        questTitle: "@quest:61811001"
         designersNote: ""
-        startPopup: "@quest:6070002"
-        endPopup: "@quest:6070003"
+        startPopup: "@quest:61811002"
+        endPopup: "@quest:61811003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -555,13 +559,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6070005"
-          journalText2: "@quest:6070006"
+          journalText: "@quest:61811005"
+          journalText2: "@quest:61811006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6070007"
+            flagItemName: "@quest:61811007"
             itemId: 119
             targetCount: 4
             targets:
@@ -575,21 +579,21 @@ quests:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             completionDialogue: 3
             incompleteDialogue: 4
-            completionButtonText: "@quest:6070004"
+            completionButtonText: "@quest:61811004"
     # 11. Refugee Camp Watch
-    - id: 6071
+    - id: 61812
       header:
-        questNumber: 6071
+        questNumber: 61812
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 16
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6071001"
+        questTitle: "@quest:61812001"
         designersNote: ""
-        startPopup: "@quest:6071002"
-        endPopup: "@quest:6071003"
+        startPopup: "@quest:61812002"
+        endPopup: "@quest:61812003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -602,7 +606,7 @@ quests:
           type: HuntTask
           nextTaskId: 2
           journalScript: 2
-          journalText: "@quest:6071005"
+          journalText: "@quest:61812005"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -613,27 +617,27 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6071006"
+          journalText: "@quest:61812006"
           hasReward: true
           body:
             npcId: { huntingZone: 60, templateId: 1101 }
             dialogueId: 3
-            completionButtonText: "@quest:6071004"
+            completionButtonText: "@quest:61812004"
             visitCinematicId: 0
     # 12. Crescentia's Outskirts
-    - id: 6072
+    - id: 61813
       header:
-        questNumber: 6072
+        questNumber: 61813
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 17
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6072001"
+        questTitle: "@quest:61813001"
         designersNote: ""
-        startPopup: "@quest:6072002"
-        endPopup: "@quest:6072003"
+        startPopup: "@quest:61813002"
+        endPopup: "@quest:61813003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -646,18 +650,18 @@ quests:
           type: BranchTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6072006"
+          journalText: "@quest:61813006"
           body:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             preBranchDialogue: 2
             branchType: auto
-            completionButtonText: "@quest:6072008"
+            completionButtonText: "@quest:61813008"
             choices:
-              - text: "@quest:6072015"
+              - text: "@quest:61813015"
                 postChoiceDialogue: 11
                 nextTaskId: 2
                 rate: 50
-              - text: "@quest:6072025"
+              - text: "@quest:61813025"
                 postChoiceDialogue: 21
                 nextTaskId: 3
                 rate: 50
@@ -665,7 +669,7 @@ quests:
           type: HuntTask
           nextTaskId: 4
           journalScript: 11
-          journalText: "@quest:6072015"
+          journalText: "@quest:61813015"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -676,7 +680,7 @@ quests:
           type: HuntTask
           nextTaskId: 5
           journalScript: 21
-          journalText: "@quest:6072025"
+          journalText: "@quest:61813025"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -687,38 +691,38 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 11
-          journalText: "@quest:6072006"
+          journalText: "@quest:61813006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 12
-            completionButtonText: "@quest:6072014"
+            completionButtonText: "@quest:61813014"
             visitCinematicId: 0
         - taskId: 5
           type: VisitTask
           nextTaskId: 0
           journalScript: 21
-          journalText: "@quest:6072006"
+          journalText: "@quest:61813006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 22
-            completionButtonText: "@quest:6072024"
+            completionButtonText: "@quest:61813024"
             visitCinematicId: 0
     # 13. Gutrend Southern Camp
-    - id: 6073
+    - id: 61814
       header:
-        questNumber: 6073
+        questNumber: 61814
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 18
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6073001"
+        questTitle: "@quest:61814001"
         designersNote: ""
-        startPopup: "@quest:6073002"
-        endPopup: "@quest:6073003"
+        startPopup: "@quest:61814002"
+        endPopup: "@quest:61814003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -731,22 +735,22 @@ quests:
           type: BranchTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6073006"
+          journalText: "@quest:61814006"
           body:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             preBranchDialogue: 2
             branchType: auto
-            completionButtonText: "@quest:6073008"
+            completionButtonText: "@quest:61814008"
             choices:
-              - text: "@quest:6073015"
+              - text: "@quest:61814015"
                 postChoiceDialogue: 11
                 nextTaskId: 2
                 rate: 34
-              - text: "@quest:6073025"
+              - text: "@quest:61814025"
                 postChoiceDialogue: 21
                 nextTaskId: 3
                 rate: 33
-              - text: "@quest:6073035"
+              - text: "@quest:61814035"
                 postChoiceDialogue: 31
                 nextTaskId: 4
                 rate: 33
@@ -754,7 +758,7 @@ quests:
           type: HuntTask
           nextTaskId: 5
           journalScript: 11
-          journalText: "@quest:6073015"
+          journalText: "@quest:61814015"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -765,13 +769,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 21
-          journalText: "@quest:6073025"
-          journalText2: "@quest:6073006"
+          journalText: "@quest:61814025"
+          journalText2: "@quest:61814006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6073027"
+            flagItemName: "@quest:61814027"
             itemId: 119
             targetCount: 5
             targets:
@@ -783,12 +787,12 @@ quests:
             targetNpc: { huntingZone: 59, templateId: 1101 }
             completionDialogue: 22
             incompleteDialogue: 23
-            completionButtonText: "@quest:6073024"
+            completionButtonText: "@quest:61814024"
         - taskId: 4
           type: HuntTask
           nextTaskId: 6
           journalScript: 31
-          journalText: "@quest:6073035"
+          journalText: "@quest:61814035"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -799,38 +803,38 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 11
-          journalText: "@quest:6073006"
+          journalText: "@quest:61814006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 12
-            completionButtonText: "@quest:6073014"
+            completionButtonText: "@quest:61814014"
             visitCinematicId: 0
         - taskId: 6
           type: VisitTask
           nextTaskId: 0
           journalScript: 31
-          journalText: "@quest:6073006"
+          journalText: "@quest:61814006"
           hasReward: true
           body:
             npcId: { huntingZone: 59, templateId: 1101 }
             dialogueId: 32
-            completionButtonText: "@quest:6073034"
+            completionButtonText: "@quest:61814034"
             visitCinematicId: 0
     # 14. Survey of the Mire
-    - id: 6074
+    - id: 61815
       header:
-        questNumber: 6074
+        questNumber: 61815
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 20
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6074001"
+        questTitle: "@quest:61815001"
         designersNote: ""
-        startPopup: "@quest:6074002"
-        endPopup: "@quest:6074003"
+        startPopup: "@quest:61815002"
+        endPopup: "@quest:61815003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -843,13 +847,13 @@ quests:
           type: HuntAndDeliverTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6074005"
-          journalText2: "@quest:6074006"
+          journalText: "@quest:61815005"
+          journalText2: "@quest:61815006"
           hasReward: true
           cinematicId: 0
           timeLimit: [0, 0]
           body:
-            flagItemName: "@quest:6074007"
+            flagItemName: "@quest:61815007"
             itemId: 96
             targetCount: 5
             targets:
@@ -861,21 +865,21 @@ quests:
             targetNpc: { huntingZone: 60, templateId: 1101 }
             completionDialogue: 3
             incompleteDialogue: 4
-            completionButtonText: "@quest:6074004"
+            completionButtonText: "@quest:61815004"
     # 15. Red Fang Raiders
-    - id: 6075
+    - id: 61816
       header:
-        questNumber: 6075
+        questNumber: 61816
         linkedQuest: 101
         recommendedPartySize: 1
         recommendedLevel: 22
         questDialogue: 2
         startTaskId: 1
         summaryInfo: 100
-        questTitle: "@quest:6075001"
+        questTitle: "@quest:61816001"
         designersNote: ""
-        startPopup: "@quest:6075002"
-        endPopup: "@quest:6075003"
+        startPopup: "@quest:61816002"
+        endPopup: "@quest:61816003"
         questType: Daily
         repeatType: OneTime
         cancellable: Allowed
@@ -888,7 +892,7 @@ quests:
           type: HuntTask
           nextTaskId: 2
           journalScript: 2
-          journalText: "@quest:6075005"
+          journalText: "@quest:61816005"
           hasReward: false
           timeLimit: [0, 0]
           body:
@@ -901,249 +905,249 @@ quests:
           type: VisitTask
           nextTaskId: 0
           journalScript: 2
-          journalText: "@quest:6075006"
+          journalText: "@quest:61816006"
           hasReward: true
           body:
             npcId: { huntingZone: 60, templateId: 1101 }
             dialogueId: 3
-            completionButtonText: "@quest:6075004"
+            completionButtonText: "@quest:61816004"
             visitCinematicId: 0
 
 questStrings:
   upsert:
-    - id: 6061001
+    - id: 61802001
       string: "Tusks at the Treeline"
-    - id: 6061002
+    - id: 61802002
       string: "Meat for the refugee kitchens."
-    - id: 6061003
+    - id: 61802003
       string: "The kitchens eat tonight."
-    - id: 6061004
+    - id: 61802004
       string: "\"The haulers can go.\""
-    - id: 6061005
+    - id: 61802005
       string: "Kill Long Tusk Warthogs and Warthog Brutes in the Fey Forest outside Lumbertown."
-    - id: 6061006
+    - id: 61802006
       string: "Report to Garrick in Lumbertown."
-    - id: 6062001
+    - id: 61803001
       string: "Faerie Mischief"
-    - id: 6062002
+    - id: 61803002
       string: "Not every faerie is an enemy. These are."
-    - id: 6062003
+    - id: 61803003
       string: "Out of rebel hands."
-    - id: 6062004
+    - id: 61803004
       string: "\"Here is the dust.\""
-    - id: 6062005
+    - id: 61803005
       string: "Take Stolen Faerie Dust from Faerie Insurgents in the Fey Forest."
-    - id: 6062006
+    - id: 61803006
       string: "Report to Garrick in Lumbertown."
-    - id: 6062007
+    - id: 61803007
       string: "Stolen Faerie Dust"
-    - id: 6063001
+    - id: 61804001
       string: "Centaur Warbands"
-    - id: 6063002
+    - id: 61804002
       string: "Some centaurs never heard the peace."
-    - id: 6063003
+    - id: 61804003
       string: "The crews can work again."
-    - id: 6063004
+    - id: 61804004
       string: "\"Their bands are broken.\""
-    - id: 6063005
+    - id: 61804005
       string: "Kill Centaurs in the Fey Forest."
-    - id: 6063006
+    - id: 61804006
       string: "Report to Garrick in Lumbertown."
-    - id: 6064001
+    - id: 61805001
       string: "Logging Crew Patrol"
-    - id: 6064002
+    - id: 61805002
       string: "The crews asked for an escort. You will do."
-    - id: 6064003
+    - id: 61805003
       string: "The crews can work tomorrow."
-    - id: 6064006
+    - id: 61805006
       string: "Report to Garrick in Lumbertown."
-    - id: 6064008
+    - id: 61805008
       string: "\"What do you need today?\""
-    - id: 6064014
+    - id: 61805014
       string: "\"The crews' ground is clear.\""
-    - id: 6064015
+    - id: 61805015
       string: "Kill Slinking Sabertooths in the Fey Forest."
-    - id: 6064024
+    - id: 61805024
       string: "\"Here are the axes.\""
-    - id: 6064025
+    - id: 61805025
       string: "Recover Abandoned Felling Axes from Centaur Insurgents and Sabertooths in the Fey Forest."
-    - id: 6064027
+    - id: 61805027
       string: "Abandoned Felling Axe"
-    - id: 6065001
+    - id: 61806001
       string: "Beasts of the Northern Forest"
-    - id: 6065002
+    - id: 61806002
       string: "One hunt, and one mercy."
-    - id: 6065003
+    - id: 61806003
       string: "Necessary. Not pleasant."
-    - id: 6065004
+    - id: 61806004
       string: "\"It was done cleanly.\""
-    - id: 6065005
+    - id: 61806005
       string: "Kill Hulking Sabertooths and Feral Unicorns in the northern Fey Forest."
-    - id: 6065006
+    - id: 61806006
       string: "Report to Garrick in Lumbertown."
-    - id: 6066001
+    - id: 61807001
       string: "Stonebeak Warband"
-    - id: 6066002
+    - id: 61807002
       string: "Take the leaders. The flock will scatter."
-    - id: 6066003
+    - id: 61807003
       string: "Blood Run is quieter."
-    - id: 6066004
+    - id: 61807004
       string: "\"The Fighters are down.\""
-    - id: 6066005
+    - id: 61807005
       string: "Kill Stonebeak Fighters in Blood Run."
-    - id: 6066006
+    - id: 61807006
       string: "Report to Sylvara in Crescentia."
-    - id: 6067001
+    - id: 61808001
       string: "Scarwood Blight"
-    - id: 6067002
+    - id: 61808002
       string: "Klaon wants to know what is still wrong."
-    - id: 6067003
+    - id: 61808003
       string: "Handle the samples with care."
-    - id: 6067004
+    - id: 61808004
       string: "\"Here are the samples.\""
-    - id: 6067005
+    - id: 61808005
       string: "Collect Scarwood Blight Samples from Bloated Sporewalkers and Merciless Jalmaraks in Scarwood."
-    - id: 6067006
+    - id: 61808006
       string: "Report to Garrick in Lumbertown."
-    - id: 6067007
+    - id: 61808007
       string: "Scarwood Blight Sample"
-    - id: 6068001
+    - id: 61809001
       string: "Devan Dispatches"
-    - id: 6068002
+    - id: 61809002
       string: "Their raids are planned. Find the plans."
-    - id: 6068003
+    - id: 61809003
       string: "The next caravan takes another road."
-    - id: 6068004
+    - id: 61809004
       string: "\"These were on them.\""
-    - id: 6068005
+    - id: 61809005
       string: "Take Devan Raid Orders from Devan Robbers and Devan Scrappers in Oblivion Woods."
-    - id: 6068006
+    - id: 61809006
       string: "Report to Sylvara in Crescentia."
-    - id: 6068007
+    - id: 61809007
       string: "Devan Raid Orders"
-    - id: 6069001
+    - id: 61810001
       string: "Oblivion Woods Sweep"
-    - id: 6069002
+    - id: 61810002
       string: "The devas want the woods back."
-    - id: 6069003
+    - id: 61810003
       string: "One less hold on Oblivion Woods."
-    - id: 6069006
+    - id: 61810006
       string: "Report to Sylvara in Crescentia."
-    - id: 6069008
+    - id: 61810008
       string: "\"Where am I needed?\""
-    - id: 6069014
+    - id: 61810014
       string: "\"The Brigands are dealt with.\""
-    - id: 6069015
+    - id: 61810015
       string: "Kill Devan Brigands in Oblivion Woods."
-    - id: 6069024
+    - id: 61810024
       string: "\"Here are the caps.\""
-    - id: 6069025
+    - id: 61810025
       string: "Collect Soulbound Spore Caps from Agitated Sporewalkers in Oblivion Woods."
-    - id: 6069027
+    - id: 61810027
       string: "Soulbound Spore Cap"
-    - id: 6069034
+    - id: 61810034
       string: "\"The amulets are broken.\""
-    - id: 6069035
+    - id: 61810035
       string: "Kill Devan Arcanists in Deva Silva."
-    - id: 6070001
+    - id: 61811001
       string: "Gutrend War Tokens"
-    - id: 6070002
+    - id: 61811002
       string: "Each token is a raid."
-    - id: 6070003
+    - id: 61811003
       string: "Counted, then burned."
-    - id: 6070004
+    - id: 61811004
       string: "\"Every token I found.\""
-    - id: 6070005
+    - id: 61811005
       string: "Take Gutrend War Tokens from Gutrend Kulkaris, Gutrend Clawtamers and Gutrend Brigands in the Valley of Titans."
-    - id: 6070006
+    - id: 61811006
       string: "Report to Sylvara in Crescentia."
-    - id: 6070007
+    - id: 61811007
       string: "Gutrend War Token"
-    - id: 6071001
+    - id: 61812001
       string: "Refugee Camp Watch"
-    - id: 6071002
+    - id: 61812002
       string: "They lost everything once."
-    - id: 6071003
+    - id: 61812003
       string: "Blankets go out with the next wagon."
-    - id: 6071004
+    - id: 61812004
       string: "\"The camp is safe for now.\""
-    - id: 6071005
+    - id: 61812005
       string: "Kill Gutrend Raiders around the refugee camp in the northern Valley of Titans."
-    - id: 6071006
+    - id: 61812006
       string: "Report to Garrick in Lumbertown."
-    - id: 6072001
+    - id: 61813001
       string: "Crescentia's Outskirts"
-    - id: 6072002
+    - id: 61813002
       string: "The town fears its own edges."
-    - id: 6072003
+    - id: 61813003
       string: "One edge is quiet tonight."
-    - id: 6072006
+    - id: 61813006
       string: "Report to Sylvara in Crescentia."
-    - id: 6072008
+    - id: 61813008
       string: "\"Where am I needed?\""
-    - id: 6072014
+    - id: 61813014
       string: "\"They rest now.\""
-    - id: 6072015
+    - id: 61813015
       string: "Kill Furious Dragoons in Berzerad Cemetery."
-    - id: 6072024
+    - id: 61813024
       string: "\"The packs are thinner.\""
-    - id: 6072025
+    - id: 61813025
       string: "Kill Starving Hyenas near the farms of the Valley of Titans."
-    - id: 6073001
+    - id: 61814001
       string: "Gutrend Southern Camp"
-    - id: 6073002
+    - id: 61814002
       string: "Weaken the camp before it moves."
-    - id: 6073003
+    - id: 61814003
       string: "The southern camp is weaker."
-    - id: 6073006
+    - id: 61814006
       string: "Report to Sylvara in Crescentia."
-    - id: 6073008
+    - id: 61814008
       string: "\"Where am I needed?\""
-    - id: 6073014
+    - id: 61814014
       string: "\"The Seers are dead.\""
-    - id: 6073015
+    - id: 61814015
       string: "Kill Gutrend Seers in the Valley of Titans."
-    - id: 6073024
+    - id: 61814024
       string: "\"Here are the tusks.\""
-    - id: 6073025
+    - id: 61814025
       string: "Collect Warthog Tusks from Hillwalker Warthogs and Great Tusk Warthogs in the Valley of Titans."
-    - id: 6073027
+    - id: 61814027
       string: "Warthog Tusk"
-    - id: 6073034
+    - id: 61814034
       string: "\"The bears are dealt with.\""
-    - id: 6073035
+    - id: 61814035
       string: "Kill Scavenging Bears in the Valley of Titans."
-    - id: 6074001
+    - id: 61815001
       string: "Survey of the Mire"
-    - id: 6074002
+    - id: 61815002
       string: "Ackerly is still waiting on his survey."
-    - id: 6074003
+    - id: 61815003
       string: "A clear path for the surveyor."
-    - id: 6074004
+    - id: 61815004
       string: "\"Here are the specimens.\""
-    - id: 6074005
+    - id: 61815005
       string: "Collect Mire Specimens from Muddy Sporewalkers and Inky Sabertooths in Tuwangi Mire."
-    - id: 6074006
+    - id: 61815006
       string: "Report to Garrick in Lumbertown."
-    - id: 6074007
+    - id: 61815007
       string: "Mire Specimen"
-    - id: 6075001
+    - id: 61816001
       string: "Red Fang Raiders"
-    - id: 6075002
+    - id: 61816002
       string: "Arn pays for orcans. I pay for both."
-    - id: 6075003
+    - id: 61816003
       string: "Casidhe's Stand still holds."
-    - id: 6075004
+    - id: 61816004
       string: "\"The Stand still holds.\""
-    - id: 6075005
+    - id: 61816005
       string: "Kill Red Fang Orcans and Lean Hyenas in the Celestial Hills."
-    - id: 6075006
+    - id: 61816006
       string: "Report to Garrick in Lumbertown."
 
 questDialogs:
   upsert:
-    - huntingZoneId: 60
-      id: 61
+    - huntingZoneId: 618
+      id: 2
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1169,8 +1173,8 @@ questDialogs:
           pages:
             - social: 4
               content: "Good. I'll send the haulers out for the carcasses.<BR><BR>One more line for the ledger: the kitchens stayed open another day."
-    - huntingZoneId: 60
-      id: 62
+    - huntingZoneId: 618
+      id: 3
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1202,8 +1206,8 @@ questDialogs:
           pages:
             - social: 0
               content: "Nothing yet? The insurgents are all over the forest. They are not hard to find."
-    - huntingZoneId: 60
-      id: 63
+    - huntingZoneId: 618
+      id: 4
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1229,8 +1233,8 @@ questDialogs:
           pages:
             - social: 4
               content: "Good. Volos may not thank us for it, but the loggers will."
-    - huntingZoneId: 60
-      id: 64
+    - huntingZoneId: 618
+      id: 5
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1283,8 +1287,8 @@ questDialogs:
           pages:
             - social: 0
               content: "The crew is still sitting idle. They need those axes."
-    - huntingZoneId: 60
-      id: 65
+    - huntingZoneId: 618
+      id: 6
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1310,8 +1314,8 @@ questDialogs:
           pages:
             - social: 4
               content: "It's done, then.<BR><BR>Teroz will call it a good day. I'll write it down as a necessary one."
-    - huntingZoneId: 60
-      id: 66
+    - huntingZoneId: 618
+      id: 7
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1337,8 +1341,8 @@ questDialogs:
           pages:
             - social: 4
               content: "Without their Fighters the bands drift apart. The soldiers in Blood Run can watch the road again instead of the sky."
-    - huntingZoneId: 60
-      id: 67
+    - huntingZoneId: 618
+      id: 8
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1370,8 +1374,8 @@ questDialogs:
           pages:
             - social: 0
               content: "Klaon has asked me twice today. He needs those samples."
-    - huntingZoneId: 60
-      id: 68
+    - huntingZoneId: 618
+      id: 9
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1403,8 +1407,8 @@ questDialogs:
           pages:
             - social: 0
               content: "The next caravan leaves soon. I need those orders before it does."
-    - huntingZoneId: 60
-      id: 69
+    - huntingZoneId: 618
+      id: 10
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1471,8 +1475,8 @@ questDialogs:
           pages:
             - social: 4
               content: "Good. Each arcanist gone loosens their hold on the woods."
-    - huntingZoneId: 60
-      id: 70
+    - huntingZoneId: 618
+      id: 11
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1504,8 +1508,8 @@ questDialogs:
           pages:
             - social: 0
               content: "The tokens, please. Each one is a raid that already happened."
-    - huntingZoneId: 60
-      id: 71
+    - huntingZoneId: 618
+      id: 12
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1531,8 +1535,8 @@ questDialogs:
           pages:
             - social: 4
               content: "Good. I'll send what blankets we can spare with the next wagon.<BR><BR>They lost everything once. Not again, if I can help it."
-    - huntingZoneId: 60
-      id: 72
+    - huntingZoneId: 618
+      id: 13
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1579,8 +1583,8 @@ questDialogs:
           pages:
             - social: 4
               content: "The farmers keep their herds tonight, and those herds feed this town."
-    - huntingZoneId: 60
-      id: 73
+    - huntingZoneId: 618
+      id: 14
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1647,8 +1651,8 @@ questDialogs:
           pages:
             - social: 4
               content: "One less thing the Gutrends can use against us."
-    - huntingZoneId: 60
-      id: 74
+    - huntingZoneId: 618
+      id: 15
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1680,8 +1684,8 @@ questDialogs:
           pages:
             - social: 0
               content: "Ackerly asked me again this morning. I had nothing to show him."
-    - huntingZoneId: 60
-      id: 75
+    - huntingZoneId: 618
+      id: 16
       voiceTypeId: 0
       texts:
         - id: 1
@@ -1710,8 +1714,8 @@ questDialogs:
 
 questCompensations:
   upsert:
-    - questId: 6061
-      huntingZoneId: 60
+    - questId: 61802
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1721,8 +1725,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6062
-      huntingZoneId: 60
+    - questId: 61803
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1732,8 +1736,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6063
-      huntingZoneId: 60
+    - questId: 61804
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1743,8 +1747,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6064
-      huntingZoneId: 60
+    - questId: 61805
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1754,8 +1758,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6065
-      huntingZoneId: 60
+    - questId: 61806
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1765,8 +1769,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6066
-      huntingZoneId: 60
+    - questId: 61807
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1776,8 +1780,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6067
-      huntingZoneId: 60
+    - questId: 61808
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1787,8 +1791,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6068
-      huntingZoneId: 60
+    - questId: 61809
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1798,8 +1802,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6069
-      huntingZoneId: 60
+    - questId: 61810
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1809,8 +1813,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6070
-      huntingZoneId: 60
+    - questId: 61811
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1820,8 +1824,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6071
-      huntingZoneId: 60
+    - questId: 61812
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1831,8 +1835,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6072
-      huntingZoneId: 60
+    - questId: 61813
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1842,8 +1846,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6073
-      huntingZoneId: 60
+    - questId: 61814
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1853,8 +1857,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6074
-      huntingZoneId: 60
+    - questId: 61815
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1864,8 +1868,8 @@ questCompensations:
           npcGuildId: 618
           reputationExp: 600
           reputationPoint: 20
-    - questId: 6075
-      huntingZoneId: 60
+    - questId: 61816
+      huntingZoneId: 618
       compensations:
         - compensationId: 1
           type: "normal"
@@ -1888,125 +1892,125 @@ dailyQuests:
           name: "@reputation:1"
           giveCount: 2
           questPool:
-            - { groupId: 6061, index: 16 }
-            - { groupId: 6062, index: 17 }
-            - { groupId: 6063, index: 16 }
-            - { groupId: 6064, index: 17 }
-            - { groupId: 6065, index: 17 }
-            - { groupId: 6066, index: 17 }
+            - { groupId: 61802, index: 16 }
+            - { groupId: 61803, index: 17 }
+            - { groupId: 61804, index: 16 }
+            - { groupId: 61805, index: 17 }
+            - { groupId: 61806, index: 17 }
+            - { groupId: 61807, index: 17 }
         - grade: 2
           name: "@reputation:2"
           giveCount: 2
           questPool:
-            - { groupId: 6061, index: 16 }
-            - { groupId: 6062, index: 17 }
-            - { groupId: 6063, index: 16 }
-            - { groupId: 6064, index: 17 }
-            - { groupId: 6065, index: 17 }
-            - { groupId: 6066, index: 17 }
+            - { groupId: 61802, index: 16 }
+            - { groupId: 61803, index: 17 }
+            - { groupId: 61804, index: 16 }
+            - { groupId: 61805, index: 17 }
+            - { groupId: 61806, index: 17 }
+            - { groupId: 61807, index: 17 }
         - grade: 3
           name: "@reputation:3"
           giveCount: 2
           questPool:
-            - { groupId: 6061, index: 16 }
-            - { groupId: 6062, index: 17 }
-            - { groupId: 6063, index: 16 }
-            - { groupId: 6064, index: 17 }
-            - { groupId: 6065, index: 17 }
-            - { groupId: 6066, index: 17 }
+            - { groupId: 61802, index: 16 }
+            - { groupId: 61803, index: 17 }
+            - { groupId: 61804, index: 16 }
+            - { groupId: 61805, index: 17 }
+            - { groupId: 61806, index: 17 }
+            - { groupId: 61807, index: 17 }
         - grade: 4
           name: "@reputation:4"
           giveCount: 3
           questPool:
-            - { groupId: 6061, index: 10 }
-            - { groupId: 6062, index: 10 }
-            - { groupId: 6063, index: 10 }
-            - { groupId: 6064, index: 12 }
-            - { groupId: 6065, index: 11 }
-            - { groupId: 6066, index: 11 }
-            - { groupId: 6067, index: 12 }
-            - { groupId: 6068, index: 12 }
-            - { groupId: 6069, index: 12 }
+            - { groupId: 61802, index: 10 }
+            - { groupId: 61803, index: 10 }
+            - { groupId: 61804, index: 10 }
+            - { groupId: 61805, index: 12 }
+            - { groupId: 61806, index: 11 }
+            - { groupId: 61807, index: 11 }
+            - { groupId: 61808, index: 12 }
+            - { groupId: 61809, index: 12 }
+            - { groupId: 61810, index: 12 }
         - grade: 5
           name: "@reputation:5"
           giveCount: 3
           questPool:
-            - { groupId: 6061, index: 10 }
-            - { groupId: 6062, index: 10 }
-            - { groupId: 6063, index: 10 }
-            - { groupId: 6064, index: 12 }
-            - { groupId: 6065, index: 11 }
-            - { groupId: 6066, index: 11 }
-            - { groupId: 6067, index: 12 }
-            - { groupId: 6068, index: 12 }
-            - { groupId: 6069, index: 12 }
+            - { groupId: 61802, index: 10 }
+            - { groupId: 61803, index: 10 }
+            - { groupId: 61804, index: 10 }
+            - { groupId: 61805, index: 12 }
+            - { groupId: 61806, index: 11 }
+            - { groupId: 61807, index: 11 }
+            - { groupId: 61808, index: 12 }
+            - { groupId: 61809, index: 12 }
+            - { groupId: 61810, index: 12 }
         - grade: 6
           name: "@reputation:6"
           giveCount: 4
           questPool:
-            - { groupId: 6061, index: 7 }
-            - { groupId: 6062, index: 7 }
-            - { groupId: 6063, index: 7 }
-            - { groupId: 6064, index: 7 }
-            - { groupId: 6065, index: 8 }
-            - { groupId: 6066, index: 8 }
-            - { groupId: 6067, index: 10 }
-            - { groupId: 6068, index: 8 }
-            - { groupId: 6069, index: 8 }
-            - { groupId: 6070, index: 10 }
-            - { groupId: 6071, index: 10 }
-            - { groupId: 6072, index: 10 }
+            - { groupId: 61802, index: 7 }
+            - { groupId: 61803, index: 7 }
+            - { groupId: 61804, index: 7 }
+            - { groupId: 61805, index: 7 }
+            - { groupId: 61806, index: 8 }
+            - { groupId: 61807, index: 8 }
+            - { groupId: 61808, index: 10 }
+            - { groupId: 61809, index: 8 }
+            - { groupId: 61810, index: 8 }
+            - { groupId: 61811, index: 10 }
+            - { groupId: 61812, index: 10 }
+            - { groupId: 61813, index: 10 }
         - grade: 7
           name: "@reputation:7"
           giveCount: 4
           questPool:
-            - { groupId: 6061, index: 7 }
-            - { groupId: 6062, index: 7 }
-            - { groupId: 6063, index: 7 }
-            - { groupId: 6064, index: 7 }
-            - { groupId: 6065, index: 8 }
-            - { groupId: 6066, index: 8 }
-            - { groupId: 6067, index: 10 }
-            - { groupId: 6068, index: 8 }
-            - { groupId: 6069, index: 8 }
-            - { groupId: 6070, index: 10 }
-            - { groupId: 6071, index: 10 }
-            - { groupId: 6072, index: 10 }
+            - { groupId: 61802, index: 7 }
+            - { groupId: 61803, index: 7 }
+            - { groupId: 61804, index: 7 }
+            - { groupId: 61805, index: 7 }
+            - { groupId: 61806, index: 8 }
+            - { groupId: 61807, index: 8 }
+            - { groupId: 61808, index: 10 }
+            - { groupId: 61809, index: 8 }
+            - { groupId: 61810, index: 8 }
+            - { groupId: 61811, index: 10 }
+            - { groupId: 61812, index: 10 }
+            - { groupId: 61813, index: 10 }
         - grade: 8
           name: "@reputation:8"
           giveCount: 5
           questPool:
-            - { groupId: 6061, index: 6 }
-            - { groupId: 6062, index: 6 }
-            - { groupId: 6063, index: 6 }
-            - { groupId: 6064, index: 6 }
-            - { groupId: 6065, index: 6 }
-            - { groupId: 6066, index: 7 }
-            - { groupId: 6067, index: 7 }
-            - { groupId: 6068, index: 7 }
-            - { groupId: 6069, index: 7 }
-            - { groupId: 6070, index: 7 }
-            - { groupId: 6071, index: 7 }
-            - { groupId: 6072, index: 7 }
-            - { groupId: 6073, index: 7 }
-            - { groupId: 6074, index: 7 }
-            - { groupId: 6075, index: 7 }
+            - { groupId: 61802, index: 6 }
+            - { groupId: 61803, index: 6 }
+            - { groupId: 61804, index: 6 }
+            - { groupId: 61805, index: 6 }
+            - { groupId: 61806, index: 6 }
+            - { groupId: 61807, index: 7 }
+            - { groupId: 61808, index: 7 }
+            - { groupId: 61809, index: 7 }
+            - { groupId: 61810, index: 7 }
+            - { groupId: 61811, index: 7 }
+            - { groupId: 61812, index: 7 }
+            - { groupId: 61813, index: 7 }
+            - { groupId: 61814, index: 7 }
+            - { groupId: 61815, index: 7 }
+            - { groupId: 61816, index: 7 }
         - grade: 9
           name: "@reputation:9"
           giveCount: 5
           questPool:
-            - { groupId: 6061, index: 6 }
-            - { groupId: 6062, index: 6 }
-            - { groupId: 6063, index: 6 }
-            - { groupId: 6064, index: 6 }
-            - { groupId: 6065, index: 6 }
-            - { groupId: 6066, index: 7 }
-            - { groupId: 6067, index: 7 }
-            - { groupId: 6068, index: 7 }
-            - { groupId: 6069, index: 7 }
-            - { groupId: 6070, index: 7 }
-            - { groupId: 6071, index: 7 }
-            - { groupId: 6072, index: 7 }
-            - { groupId: 6073, index: 7 }
-            - { groupId: 6074, index: 7 }
-            - { groupId: 6075, index: 7 }
+            - { groupId: 61802, index: 6 }
+            - { groupId: 61803, index: 6 }
+            - { groupId: 61804, index: 6 }
+            - { groupId: 61805, index: 6 }
+            - { groupId: 61806, index: 6 }
+            - { groupId: 61807, index: 7 }
+            - { groupId: 61808, index: 7 }
+            - { groupId: 61809, index: 7 }
+            - { groupId: 61810, index: 7 }
+            - { groupId: 61811, index: 7 }
+            - { groupId: 61812, index: 7 }
+            - { groupId: 61813, index: 7 }
+            - { groupId: 61814, index: 7 }
+            - { groupId: 61815, index: 7 }
+            - { groupId: 61816, index: 7 }

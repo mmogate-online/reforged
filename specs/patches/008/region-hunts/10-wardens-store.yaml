@@ -45,6 +45,13 @@ items:
       changes: { tradable: true, sellPrice: 0 }
     - id: 20642
       changes: { tradable: true, sellPrice: 0 }
+  # A gold-priced row gated by a faction is drawn as locked only for an item flagged
+  # isReputation, as vanilla's grade-gated gold stores are.
+  updateWhere:
+    entries:
+      - filter: { id: 921021..921062 }
+        expect: { min: 42, max: 42 }
+        changes: { isReputation: true }
 
 reputationItems:
   upsert:
