@@ -1,0 +1,27 @@
+# Arcadia hunt token catalog: the crystals and the structure sold for hunt tokens are worth
+# nothing to a vendor and may change hands, so a token never turns into gold.
+#
+# The dyad structure was untradeable; it becomes a tradeable commodity like the Fine crystals
+# that already are.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  updateWhere:
+    strict: true
+    entries:
+      # Fine Cabochon crystals: 26 weapon, 16 body.
+      - filter:
+          id: [8108, 8122, 8150, 8164, 8207, 8219, 8225, 8231, 8237, 8249, 8261, 8273, 8285,
+               8297, 8303, 8309, 8321, 8327, 8339, 8351, 8363, 8375, 8387, 8537, 8549, 8573,
+               8136, 8399, 8411, 8417, 8423, 8429, 8441, 8453, 8465, 8477, 8483, 8489, 8501,
+               8513, 8525, 8561]
+        expect: { min: 42, max: 42 }
+        changes: { sellPrice: 0, storeSellable: false }
+      # Dyad Cabochon Structure
+      - filter: { id: 96109 }
+        expect: { min: 1, max: 1 }
+        changes: { tradable: true, sellPrice: 0, storeSellable: false }

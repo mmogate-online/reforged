@@ -1,0 +1,171 @@
+# Arcadia hunt token shop: what Tikat sells for the Arcadia hunt token (item 95314) in
+# Lumbertown and Crescentia. Both cities bind the same menu.
+#
+# The base catalog is the region's tier of chosen Fine crystals and the random dyad structures;
+# the featured tab holds the permanent Forest Keeper Kumas book. A menu has at most five tabs
+# and carries one currency.
+#
+# The price is buyPriceMedal in the exchange rows. priceRevision is a revision index that the
+# server never reads as a cost, and vanilla writes 1 there.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyMenuLists:
+  upsert:
+    - id: 9999020
+      stringId: 9999020
+      desc: "Arcadia Hunt Exchange"
+      itemLists:
+        - { id: 99990201, stringed: 99990201 }
+        - { id: 99990202, stringed: 99990202 }
+        - { id: 99990203, stringed: 99990203 }
+        - { id: 99990205, stringed: 99990205 }
+
+buyLists:
+  upsert:
+    - id: 99990201
+      desc: "Arcadia Hunt Fine Crystals"
+      needMedalItemId: 95314
+      items:
+        - { itemId: 8108, priceRevision: 1 }   # Fine Pounding Cabochon
+        - { itemId: 8122, priceRevision: 1 }   # Fine Bitter Cabochon
+        - { itemId: 8150, priceRevision: 1 }   # Fine Wrathful Cabochon
+        - { itemId: 8164, priceRevision: 1 }   # Fine Spiteful Cabochon
+        - { itemId: 8207, priceRevision: 1 }   # Fine Slaying Cabochon
+        - { itemId: 8219, priceRevision: 1 }   # Fine Furious Cabochon
+        - { itemId: 8225, priceRevision: 1 }   # Fine Squelching Cabochon
+        - { itemId: 8231, priceRevision: 1 }   # Fine Domineering Cabochon
+        - { itemId: 8237, priceRevision: 1 }   # Fine Mutinous Cabochon
+        - { itemId: 8249, priceRevision: 1 }   # Fine Focused Cabochon
+        - { itemId: 8261, priceRevision: 1 }   # Fine Virulent Cabochon
+        - { itemId: 8273, priceRevision: 1 }   # Fine Brutal Cabochon
+        - { itemId: 8285, priceRevision: 1 }   # Fine Cruel Cabochon
+        - { itemId: 8297, priceRevision: 1 }   # Fine Forceful Cabochon
+        - { itemId: 8303, priceRevision: 1 }   # Fine Acrimonious Cabochon
+        - { itemId: 8309, priceRevision: 1 }   # Fine Backbiting Cabochon
+        - { itemId: 8321, priceRevision: 1 }   # Fine Savage Cabochon
+        - { itemId: 8327, priceRevision: 1 }   # Fine Hunter's Cabochon
+        - { itemId: 8339, priceRevision: 1 }   # Fine Cunning Cabochon
+        - { itemId: 8351, priceRevision: 1 }   # Fine Infused Cabochon
+        - { itemId: 8363, priceRevision: 1 }   # Fine Glistening Cabochon
+        - { itemId: 8375, priceRevision: 1 }   # Fine Swift Cabochon
+        - { itemId: 8387, priceRevision: 1 }   # Fine Brilliant Cabochon
+        - { itemId: 8537, priceRevision: 1 }   # Fine Carving Cabochon
+        - { itemId: 8549, priceRevision: 1 }   # Fine Salivating Cabochon
+        - { itemId: 8573, priceRevision: 1 }   # Fine Threatening Cabochon
+        - { itemId: 8136, priceRevision: 1 }   # Fine Hardy Cabochon
+        - { itemId: 8399, priceRevision: 1 }   # Fine Protective Cabochon
+        - { itemId: 8411, priceRevision: 1 }   # Fine Resolute Cabochon
+        - { itemId: 8417, priceRevision: 1 }   # Fine Noblesse Cabochon
+        - { itemId: 8423, priceRevision: 1 }   # Fine Anarchic Cabochon
+        - { itemId: 8429, priceRevision: 1 }   # Fine Dauntless Cabochon
+        - { itemId: 8441, priceRevision: 1 }   # Fine Poised Cabochon
+        - { itemId: 8453, priceRevision: 1 }   # Fine Empyrean Cabochon
+        - { itemId: 8465, priceRevision: 1 }   # Fine Warding Cabochon
+        - { itemId: 8477, priceRevision: 1 }   # Fine Inspiring Cabochon
+        - { itemId: 8483, priceRevision: 1 }   # Fine Stalwart Cabochon
+        - { itemId: 8489, priceRevision: 1 }   # Fine Soothing Cabochon
+        - { itemId: 8501, priceRevision: 1 }   # Fine Relentless Cabochon
+        - { itemId: 8513, priceRevision: 1 }   # Fine Fleetfoot Cabochon
+        - { itemId: 8525, priceRevision: 1 }   # Fine Vigorous Cabochon
+        - { itemId: 8561, priceRevision: 1 }   # Fine Grieving Cabochon
+    - id: 99990202
+      desc: "Arcadia Hunt Accessory Crystals"
+      needMedalItemId: 95314
+      items:
+        - { itemId: 85063, priceRevision: 1 }   # Pristine Powerful Fyrn
+        - { itemId: 85064, priceRevision: 1 }   # Pristine Grounding Fyrn
+        - { itemId: 85065, priceRevision: 1 }   # Pristine Impacting Fyrn
+        - { itemId: 85066, priceRevision: 1 }   # Pristine Balancing Fyrn
+        - { itemId: 85067, priceRevision: 1 }   # Pristine Keen Fyrn
+        - { itemId: 85068, priceRevision: 1 }   # Pristine Unyielding Fyrn
+        - { itemId: 85069, priceRevision: 1 }   # Pristine Relentless Fyrn
+        - { itemId: 85070, priceRevision: 1 }   # Pristine Cunning Fyrn
+        - { itemId: 85071, priceRevision: 1 }   # Pristine Swift Fyrn
+        - { itemId: 85072, priceRevision: 1 }   # Pristine Griefing Fyrn
+        - { itemId: 85073, priceRevision: 1 }   # Pristine Indomitable Fyrn
+        - { itemId: 85074, priceRevision: 1 }   # Pristine Succoring Fyrn
+        - { itemId: 85075, priceRevision: 1 }   # Pristine Threatening Fyrn
+    - id: 99990203
+      desc: "Arcadia Hunt Structures"
+      needMedalItemId: 95314
+      items:
+        - { itemId: 96109, priceRevision: 1 }   # Dyad Cabochon Structure
+        - { itemId: 85256, priceRevision: 1 }   # Dyad Fyrn Structure
+    - id: 99990205
+      desc: "Arcadia Hunt Featured"
+      needMedalItemId: 95314
+      items:
+        - { itemId: 99006, priceRevision: 1 }   # Riding Skill: Forest Keeper Kumas, permanent
+
+exchanges:
+  upsert:
+    - { itemId: 8108, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8122, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8150, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8164, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8207, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8219, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8225, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8231, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8237, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8249, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8261, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8273, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8285, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8297, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8303, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8309, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8321, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8327, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8339, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8351, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8363, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8375, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8387, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8537, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8549, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8573, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8136, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8399, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8411, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8417, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8423, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8429, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8441, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8453, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8465, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8477, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8483, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8489, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8501, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8513, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8525, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 8561, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85063, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85064, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85065, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85066, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85067, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85068, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85069, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85070, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85071, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85072, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85073, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85074, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 85075, medalItemId: 95314, buyPriceMedal: 20 }
+    - { itemId: 96109, medalItemId: 95314, buyPriceMedal: 15 }
+    - { itemId: 85256, medalItemId: 95314, buyPriceMedal: 15 }
+    - { itemId: 99006, medalItemId: 95314, buyPriceMedal: 150 }
+
+npcStrings:
+  upsert:
+    - { id: 9999020, string: "Arcadia Hunt Exchange" }
+    - { id: 99990201, string: "Fine Crystals" }
+    - { id: 99990202, string: "Accessory Crystals" }
+    - { id: 99990203, string: "Structures" }
+    - { id: 99990205, string: "Featured" }

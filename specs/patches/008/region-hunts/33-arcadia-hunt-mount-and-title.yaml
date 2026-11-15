@@ -1,0 +1,33 @@
+# Forest Keeper Kumas and the Local Arborist title, sold through the Arcadia hunt token shop.
+#
+# The shop sells the permanent book. The engine grants a title only through an achievement, so
+# Local Arborist completes on obtaining that book, and the book is no longer the achievement's
+# reward. Condition 4030 counts an item obtained; 1074 looks alike but counts a received
+# abnormality, so it never fires on an item id.
+#
+# A time-limited book cannot share its skill with a permanent one: the loader refuses a skill
+# that one book teaches for good and another for a period. A timed book needs its own copy of
+# the mount skill, listed as time limited.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  update:
+    - id: 99006
+      changes: { sellPrice: 0, storeSellable: false }
+
+achievements:
+  update:
+    - id: 6230
+      changes:
+        upsertConditions:
+          - id: 0
+            type: check
+            templateId: 4030
+            value1: 99006
+            string: "@Achievement:6230800"
+        removeItemRewards:
+          - templateId: 99006

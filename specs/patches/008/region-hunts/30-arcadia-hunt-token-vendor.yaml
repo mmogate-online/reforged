@@ -1,0 +1,163 @@
+# Arcadia hunt token vendor: Tikat returns to his old posts in Lumbertown and Crescentia and
+# opens the hunt token shop.
+#
+# The template, its speech condition and its dialog record already exist in both zones; only
+# the spawn, the title, the dialog text and the menu are written here. A villagerMenus upsert
+# replaces the villager's whole menu list, which retires the old event exchange menu. The
+# spawns join the region vendor groups, and the location registry gets their two points.
+# dir is degrees, counter-clockwise from +x.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _villagerSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  _villagerTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+territories:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000033
+      $extends: _villagerTerritory
+      desc: "Hunt Token Vendor, Lumbertown"
+      fences:
+        - [89038.44, -3697.80, 842.89]
+        - [88941.62, -3764.40, 846.26]
+        - [89010.99, -3847.65, 850.92]
+        - [89075.09, -3801.64, 847.07]
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900024
+      $extends: _villagerTerritory
+      desc: "Hunt Token Vendor, Crescentia"
+      fences:
+        - [96254.62, 17027.38, 2891.37]
+        - [96125.45, 17030.20, 2888.44]
+        - [96110.14, 16951.48, 2887.66]
+        - [96189.91, 16851.25, 2883.66]
+        - [96290.21, 16894.44, 2887.06]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000033
+      npcInstanceId: 6004061
+      npcTemplateId: 9000
+      $extends: _villagerSpawn
+      desc: "Hunt Token Vendor Tikat"
+      pos: [89026.20, -3774.97, 846.18]
+      dir: -155
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900024
+      npcInstanceId: 5900431
+      npcTemplateId: 9000
+      $extends: _villagerSpawn
+      desc: "Hunt Token Vendor Tikat"
+      pos: [96140.53, 16986.53, 2888.25]
+      dir: -88
+
+creatureStrings:
+  upsert:
+    - { huntingZoneId: 60, templateId: 9000, name: "Tikat", gender: male, race: popori, title: "Hunt Token Exchange" }
+    - { huntingZoneId: 59, templateId: 9000, name: "Tikat", gender: male, race: popori, title: "Hunt Token Exchange" }
+
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 60
+      id: 9000
+      voiceTypeId: 167
+      texts:
+        - id: 1
+          huntingZoneId: 60
+          villagerId: 9000
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Velika counts timber, not beasts. I count beasts. Every hunt token you bring back is one less monster on the Timber Road, and I pay for that in crystals, structures and a Kumas who knows these woods better than you do."
+    - huntingZoneId: 59
+      id: 9000
+      voiceTypeId: 167
+      texts:
+        - id: 1
+          huntingZoneId: 59
+          villagerId: 9000
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "The things past the walls grow bigger every season, and the conscripts grow fewer. Bring down the worst of them, bring me your hunt tokens, and pick something worth the scars."
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 60
+      npcTemplateId: 9000
+      menus:
+        - { type: MedalStore, id: 9999020 }
+    - huntingZoneId: 59
+      npcTemplateId: 9000
+      menus:
+        - { type: MedalStore, id: 9999020 }
+
+npcLocStrings:
+  upsert:
+    - huntingZoneId: 60
+      templateId: 9000
+      continent: 7001
+      markers:
+        - [89026, -3775, 846]
+    - huntingZoneId: 59
+      templateId: 9000
+      continent: 7001
+      markers:
+        - [96141, 16987, 2888]
