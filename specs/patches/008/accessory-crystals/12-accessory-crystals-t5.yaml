@@ -1,0 +1,439 @@
+# Accessory crystals of tier 5 (Syrth): Common, Fine (Pristine) and Dyad.
+# Common and Fine are tradeable; a Dyad binds to the accessory it is socketed in.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: accessory-crystals
+
+items:
+  upsert:
+    - id: 85200
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Powerful
+      linkCustomizingId: 84200
+      conversionSmallGroup: 64
+      icon: Icon_Items.acc_customize3eg_Tex
+      strings:
+        name: "Powerful Syrth"
+        toolTip: "Increases Power by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85201
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Grounding
+      linkCustomizingId: 84201
+      conversionSmallGroup: 65
+      icon: Icon_Items.acc_customize4eg_Tex
+      strings:
+        name: "Grounding Syrth"
+        toolTip: "Increases Endurance by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85202
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Impacting
+      linkCustomizingId: 84202
+      conversionSmallGroup: 66
+      icon: Icon_Items.acc_customize11eg_Tex
+      strings:
+        name: "Impacting Syrth"
+        toolTip: "Increases Impact Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85203
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Balancing
+      linkCustomizingId: 84203
+      conversionSmallGroup: 67
+      icon: Icon_Items.acc_customize7eg_Tex
+      strings:
+        name: "Balancing Syrth"
+        toolTip: "Increases Balance Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85204
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Keen
+      linkCustomizingId: 84204
+      conversionSmallGroup: 68
+      icon: Icon_Items.acc_customize6eg_Tex
+      strings:
+        name: "Keen Syrth"
+        toolTip: "Increases Crit Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85205
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Unyielding
+      linkCustomizingId: 84205
+      conversionSmallGroup: 69
+      icon: Icon_Items.acc_customize14eg_Tex
+      strings:
+        name: "Unyielding Syrth"
+        toolTip: "Increases Crit Resist Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85206
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Relentless
+      linkCustomizingId: 84206
+      conversionSmallGroup: 70
+      icon: Icon_Items.acc_customize1eg_Tex
+      strings:
+        name: "Relentless Syrth"
+        toolTip: "Increases maximum HP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85207
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Cunning
+      linkCustomizingId: 84207
+      conversionSmallGroup: 71
+      icon: Icon_Items.acc_customize2eg_Tex
+      strings:
+        name: "Cunning Syrth"
+        toolTip: "Increases maximum MP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85208
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Swift
+      linkCustomizingId: 84208
+      conversionSmallGroup: 72
+      icon: Icon_Items.acc_customize12eg_Tex
+      strings:
+        name: "Swift Syrth"
+        toolTip: "Increases Attack Speed by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85209
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Griefing
+      linkCustomizingId: 84209
+      conversionSmallGroup: 73
+      icon: Icon_Items.acc_customize13eg_Tex
+      strings:
+        name: "Griefing Syrth"
+        toolTip: "Increases PvP Attack by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85210
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Indomitable
+      linkCustomizingId: 84210
+      conversionSmallGroup: 74
+      icon: Icon_Items.acc_customize9eg_Tex
+      strings:
+        name: "Indomitable Syrth"
+        toolTip: "Increases PvP Defense by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85211
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Succoring
+      linkCustomizingId: 84211
+      conversionSmallGroup: 86
+      icon: Icon_Items.acc_customize5eg_Tex
+      strings:
+        name: "Succoring Syrth"
+        toolTip: "Increases healing by $H_W_GOOD0.9%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85212
+      $extends: AccCrystalCommonT5
+      name: AccCrystal_T5_Common_Threatening
+      linkCustomizingId: 84212
+      conversionSmallGroup: 87
+      icon: Icon_Items.acc_customize8eg_Tex
+      strings:
+        name: "Threatening Syrth"
+        toolTip: "Increases aggro by $H_W_GOOD1.8%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85213
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Powerful
+      linkCustomizingId: 84213
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3eg_Tex
+      strings:
+        name: "Pristine Powerful Syrth"
+        toolTip: "Increases Power by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85214
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Grounding
+      linkCustomizingId: 84214
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4eg_Tex
+      strings:
+        name: "Pristine Grounding Syrth"
+        toolTip: "Increases Endurance by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85215
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Impacting
+      linkCustomizingId: 84215
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11eg_Tex
+      strings:
+        name: "Pristine Impacting Syrth"
+        toolTip: "Increases Impact Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85216
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Balancing
+      linkCustomizingId: 84216
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7eg_Tex
+      strings:
+        name: "Pristine Balancing Syrth"
+        toolTip: "Increases Balance Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85217
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Keen
+      linkCustomizingId: 84217
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6eg_Tex
+      strings:
+        name: "Pristine Keen Syrth"
+        toolTip: "Increases Crit Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85218
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Unyielding
+      linkCustomizingId: 84218
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14eg_Tex
+      strings:
+        name: "Pristine Unyielding Syrth"
+        toolTip: "Increases Crit Resist Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85219
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Relentless
+      linkCustomizingId: 84219
+      conversionSmallGroup: 81
+      icon: Icon_Items.acc_customize1eg_Tex
+      strings:
+        name: "Pristine Relentless Syrth"
+        toolTip: "Increases maximum HP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85220
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Cunning
+      linkCustomizingId: 84220
+      conversionSmallGroup: 82
+      icon: Icon_Items.acc_customize2eg_Tex
+      strings:
+        name: "Pristine Cunning Syrth"
+        toolTip: "Increases maximum MP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85221
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Swift
+      linkCustomizingId: 84221
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12eg_Tex
+      strings:
+        name: "Pristine Swift Syrth"
+        toolTip: "Increases Attack Speed by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85222
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Griefing
+      linkCustomizingId: 84222
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13eg_Tex
+      strings:
+        name: "Pristine Griefing Syrth"
+        toolTip: "Increases PvP Attack by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85223
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Indomitable
+      linkCustomizingId: 84223
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9eg_Tex
+      strings:
+        name: "Pristine Indomitable Syrth"
+        toolTip: "Increases PvP Defense by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85224
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Succoring
+      linkCustomizingId: 84224
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5eg_Tex
+      strings:
+        name: "Pristine Succoring Syrth"
+        toolTip: "Increases healing by $H_W_GOOD1.8%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85225
+      $extends: AccCrystalFineT5
+      name: AccCrystal_T5_Fine_Threatening
+      linkCustomizingId: 84225
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8eg_Tex
+      strings:
+        name: "Pristine Threatening Syrth"
+        toolTip: "Increases aggro by $H_W_GOOD2.7%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85226
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Powerful_Relentless
+      linkCustomizingId: 84226
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3eg_Tex
+      strings:
+        name: "Relentlessly Powerful Syrth"
+    - id: 85227
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Powerful_Cunning
+      linkCustomizingId: 84227
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3eg_Tex
+      strings:
+        name: "Cunningly Powerful Syrth"
+    - id: 85228
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Grounding_Relentless
+      linkCustomizingId: 84228
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4eg_Tex
+      strings:
+        name: "Relentlessly Grounding Syrth"
+    - id: 85229
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Grounding_Cunning
+      linkCustomizingId: 84229
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4eg_Tex
+      strings:
+        name: "Cunningly Grounding Syrth"
+    - id: 85230
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Impacting_Relentless
+      linkCustomizingId: 84230
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11eg_Tex
+      strings:
+        name: "Relentlessly Impacting Syrth"
+    - id: 85231
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Impacting_Cunning
+      linkCustomizingId: 84231
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11eg_Tex
+      strings:
+        name: "Cunningly Impacting Syrth"
+    - id: 85232
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Balancing_Relentless
+      linkCustomizingId: 84232
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7eg_Tex
+      strings:
+        name: "Relentlessly Balancing Syrth"
+    - id: 85233
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Balancing_Cunning
+      linkCustomizingId: 84233
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7eg_Tex
+      strings:
+        name: "Cunningly Balancing Syrth"
+    - id: 85234
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Keen_Relentless
+      linkCustomizingId: 84234
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6eg_Tex
+      strings:
+        name: "Relentlessly Keen Syrth"
+    - id: 85235
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Keen_Cunning
+      linkCustomizingId: 84235
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6eg_Tex
+      strings:
+        name: "Cunningly Keen Syrth"
+    - id: 85236
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Unyielding_Relentless
+      linkCustomizingId: 84236
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14eg_Tex
+      strings:
+        name: "Relentlessly Unyielding Syrth"
+    - id: 85237
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Unyielding_Cunning
+      linkCustomizingId: 84237
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14eg_Tex
+      strings:
+        name: "Cunningly Unyielding Syrth"
+    - id: 85238
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Relentless_Cunning
+      linkCustomizingId: 84238
+      conversionSmallGroup: 81
+      icon: Icon_Items.acc_customize1eg_Tex
+      strings:
+        name: "Cunningly Relentless Syrth"
+    - id: 85239
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Cunning_Relentless
+      linkCustomizingId: 84239
+      conversionSmallGroup: 82
+      icon: Icon_Items.acc_customize2eg_Tex
+      strings:
+        name: "Relentlessly Cunning Syrth"
+    - id: 85240
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Swift_Relentless
+      linkCustomizingId: 84240
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12eg_Tex
+      strings:
+        name: "Relentlessly Swift Syrth"
+    - id: 85241
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Swift_Cunning
+      linkCustomizingId: 84241
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12eg_Tex
+      strings:
+        name: "Cunningly Swift Syrth"
+    - id: 85242
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Griefing_Relentless
+      linkCustomizingId: 84242
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13eg_Tex
+      strings:
+        name: "Relentlessly Griefing Syrth"
+    - id: 85243
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Griefing_Cunning
+      linkCustomizingId: 84243
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13eg_Tex
+      strings:
+        name: "Cunningly Griefing Syrth"
+    - id: 85244
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Indomitable_Relentless
+      linkCustomizingId: 84244
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9eg_Tex
+      strings:
+        name: "Relentlessly Indomitable Syrth"
+    - id: 85245
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Indomitable_Cunning
+      linkCustomizingId: 84245
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9eg_Tex
+      strings:
+        name: "Cunningly Indomitable Syrth"
+    - id: 85246
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Succoring_Relentless
+      linkCustomizingId: 84246
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5eg_Tex
+      strings:
+        name: "Relentlessly Succoring Syrth"
+    - id: 85247
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Succoring_Cunning
+      linkCustomizingId: 84247
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5eg_Tex
+      strings:
+        name: "Cunningly Succoring Syrth"
+    - id: 85248
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Threatening_Relentless
+      linkCustomizingId: 84248
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8eg_Tex
+      strings:
+        name: "Relentlessly Threatening Syrth"
+    - id: 85249
+      $extends: AccCrystalDyadT5
+      name: AccCrystal_T5_Dyad_Threatening_Cunning
+      linkCustomizingId: 84249
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8eg_Tex
+      strings:
+        name: "Cunningly Threatening Syrth"

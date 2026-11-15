@@ -1,0 +1,439 @@
+# Accessory crystals of tier 1 (Lyrk): Common, Fine (Pristine) and Dyad.
+# Common and Fine are tradeable; a Dyad binds to the accessory it is socketed in.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: accessory-crystals
+
+items:
+  upsert:
+    - id: 85000
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Powerful
+      linkCustomizingId: 84000
+      conversionSmallGroup: 64
+      icon: Icon_Items.acc_customize3ag_Tex
+      strings:
+        name: "Powerful Lyrk"
+        toolTip: "Increases Power by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85001
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Grounding
+      linkCustomizingId: 84001
+      conversionSmallGroup: 65
+      icon: Icon_Items.acc_customize4ag_Tex
+      strings:
+        name: "Grounding Lyrk"
+        toolTip: "Increases Endurance by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85002
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Impacting
+      linkCustomizingId: 84002
+      conversionSmallGroup: 66
+      icon: Icon_Items.acc_customize11ag_Tex
+      strings:
+        name: "Impacting Lyrk"
+        toolTip: "Increases Impact Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85003
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Balancing
+      linkCustomizingId: 84003
+      conversionSmallGroup: 67
+      icon: Icon_Items.acc_customize7ag_Tex
+      strings:
+        name: "Balancing Lyrk"
+        toolTip: "Increases Balance Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85004
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Keen
+      linkCustomizingId: 84004
+      conversionSmallGroup: 68
+      icon: Icon_Items.acc_customize6ag_Tex
+      strings:
+        name: "Keen Lyrk"
+        toolTip: "Increases Crit Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85005
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Unyielding
+      linkCustomizingId: 84005
+      conversionSmallGroup: 69
+      icon: Icon_Items.acc_customize14ag_Tex
+      strings:
+        name: "Unyielding Lyrk"
+        toolTip: "Increases Crit Resist Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85006
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Relentless
+      linkCustomizingId: 84006
+      conversionSmallGroup: 70
+      icon: Icon_Items.acc_customize1ag_Tex
+      strings:
+        name: "Relentless Lyrk"
+        toolTip: "Increases maximum HP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85007
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Cunning
+      linkCustomizingId: 84007
+      conversionSmallGroup: 71
+      icon: Icon_Items.acc_customize2ag_Tex
+      strings:
+        name: "Cunning Lyrk"
+        toolTip: "Increases maximum MP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85008
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Swift
+      linkCustomizingId: 84008
+      conversionSmallGroup: 72
+      icon: Icon_Items.acc_customize12ag_Tex
+      strings:
+        name: "Swift Lyrk"
+        toolTip: "Increases Attack Speed by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85009
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Griefing
+      linkCustomizingId: 84009
+      conversionSmallGroup: 73
+      icon: Icon_Items.acc_customize13ag_Tex
+      strings:
+        name: "Griefing Lyrk"
+        toolTip: "Increases PvP Attack by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85010
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Indomitable
+      linkCustomizingId: 84010
+      conversionSmallGroup: 74
+      icon: Icon_Items.acc_customize9ag_Tex
+      strings:
+        name: "Indomitable Lyrk"
+        toolTip: "Increases PvP Defense by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85011
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Succoring
+      linkCustomizingId: 84011
+      conversionSmallGroup: 86
+      icon: Icon_Items.acc_customize5ag_Tex
+      strings:
+        name: "Succoring Lyrk"
+        toolTip: "Increases healing by $H_W_GOOD0.5%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85012
+      $extends: AccCrystalCommonT1
+      name: AccCrystal_T1_Common_Threatening
+      linkCustomizingId: 84012
+      conversionSmallGroup: 87
+      icon: Icon_Items.acc_customize8ag_Tex
+      strings:
+        name: "Threatening Lyrk"
+        toolTip: "Increases aggro by $H_W_GOOD1%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85013
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Powerful
+      linkCustomizingId: 84013
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3ag_Tex
+      strings:
+        name: "Pristine Powerful Lyrk"
+        toolTip: "Increases Power by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85014
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Grounding
+      linkCustomizingId: 84014
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4ag_Tex
+      strings:
+        name: "Pristine Grounding Lyrk"
+        toolTip: "Increases Endurance by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85015
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Impacting
+      linkCustomizingId: 84015
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11ag_Tex
+      strings:
+        name: "Pristine Impacting Lyrk"
+        toolTip: "Increases Impact Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85016
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Balancing
+      linkCustomizingId: 84016
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7ag_Tex
+      strings:
+        name: "Pristine Balancing Lyrk"
+        toolTip: "Increases Balance Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85017
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Keen
+      linkCustomizingId: 84017
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6ag_Tex
+      strings:
+        name: "Pristine Keen Lyrk"
+        toolTip: "Increases Crit Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85018
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Unyielding
+      linkCustomizingId: 84018
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14ag_Tex
+      strings:
+        name: "Pristine Unyielding Lyrk"
+        toolTip: "Increases Crit Resist Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85019
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Relentless
+      linkCustomizingId: 84019
+      conversionSmallGroup: 81
+      icon: Icon_Items.acc_customize1ag_Tex
+      strings:
+        name: "Pristine Relentless Lyrk"
+        toolTip: "Increases maximum HP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85020
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Cunning
+      linkCustomizingId: 84020
+      conversionSmallGroup: 82
+      icon: Icon_Items.acc_customize2ag_Tex
+      strings:
+        name: "Pristine Cunning Lyrk"
+        toolTip: "Increases maximum MP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85021
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Swift
+      linkCustomizingId: 84021
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12ag_Tex
+      strings:
+        name: "Pristine Swift Lyrk"
+        toolTip: "Increases Attack Speed by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85022
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Griefing
+      linkCustomizingId: 84022
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13ag_Tex
+      strings:
+        name: "Pristine Griefing Lyrk"
+        toolTip: "Increases PvP Attack by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85023
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Indomitable
+      linkCustomizingId: 84023
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9ag_Tex
+      strings:
+        name: "Pristine Indomitable Lyrk"
+        toolTip: "Increases PvP Defense by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85024
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Succoring
+      linkCustomizingId: 84024
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5ag_Tex
+      strings:
+        name: "Pristine Succoring Lyrk"
+        toolTip: "Increases healing by $H_W_GOOD1%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85025
+      $extends: AccCrystalFineT1
+      name: AccCrystal_T1_Fine_Threatening
+      linkCustomizingId: 84025
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8ag_Tex
+      strings:
+        name: "Pristine Threatening Lyrk"
+        toolTip: "Increases aggro by $H_W_GOOD1.5%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85026
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Powerful_Relentless
+      linkCustomizingId: 84026
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3ag_Tex
+      strings:
+        name: "Relentlessly Powerful Lyrk"
+    - id: 85027
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Powerful_Cunning
+      linkCustomizingId: 84027
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3ag_Tex
+      strings:
+        name: "Cunningly Powerful Lyrk"
+    - id: 85028
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Grounding_Relentless
+      linkCustomizingId: 84028
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4ag_Tex
+      strings:
+        name: "Relentlessly Grounding Lyrk"
+    - id: 85029
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Grounding_Cunning
+      linkCustomizingId: 84029
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4ag_Tex
+      strings:
+        name: "Cunningly Grounding Lyrk"
+    - id: 85030
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Impacting_Relentless
+      linkCustomizingId: 84030
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11ag_Tex
+      strings:
+        name: "Relentlessly Impacting Lyrk"
+    - id: 85031
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Impacting_Cunning
+      linkCustomizingId: 84031
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11ag_Tex
+      strings:
+        name: "Cunningly Impacting Lyrk"
+    - id: 85032
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Balancing_Relentless
+      linkCustomizingId: 84032
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7ag_Tex
+      strings:
+        name: "Relentlessly Balancing Lyrk"
+    - id: 85033
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Balancing_Cunning
+      linkCustomizingId: 84033
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7ag_Tex
+      strings:
+        name: "Cunningly Balancing Lyrk"
+    - id: 85034
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Keen_Relentless
+      linkCustomizingId: 84034
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6ag_Tex
+      strings:
+        name: "Relentlessly Keen Lyrk"
+    - id: 85035
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Keen_Cunning
+      linkCustomizingId: 84035
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6ag_Tex
+      strings:
+        name: "Cunningly Keen Lyrk"
+    - id: 85036
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Unyielding_Relentless
+      linkCustomizingId: 84036
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14ag_Tex
+      strings:
+        name: "Relentlessly Unyielding Lyrk"
+    - id: 85037
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Unyielding_Cunning
+      linkCustomizingId: 84037
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14ag_Tex
+      strings:
+        name: "Cunningly Unyielding Lyrk"
+    - id: 85038
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Relentless_Cunning
+      linkCustomizingId: 84038
+      conversionSmallGroup: 81
+      icon: Icon_Items.acc_customize1ag_Tex
+      strings:
+        name: "Cunningly Relentless Lyrk"
+    - id: 85039
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Cunning_Relentless
+      linkCustomizingId: 84039
+      conversionSmallGroup: 82
+      icon: Icon_Items.acc_customize2ag_Tex
+      strings:
+        name: "Relentlessly Cunning Lyrk"
+    - id: 85040
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Swift_Relentless
+      linkCustomizingId: 84040
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12ag_Tex
+      strings:
+        name: "Relentlessly Swift Lyrk"
+    - id: 85041
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Swift_Cunning
+      linkCustomizingId: 84041
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12ag_Tex
+      strings:
+        name: "Cunningly Swift Lyrk"
+    - id: 85042
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Griefing_Relentless
+      linkCustomizingId: 84042
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13ag_Tex
+      strings:
+        name: "Relentlessly Griefing Lyrk"
+    - id: 85043
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Griefing_Cunning
+      linkCustomizingId: 84043
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13ag_Tex
+      strings:
+        name: "Cunningly Griefing Lyrk"
+    - id: 85044
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Indomitable_Relentless
+      linkCustomizingId: 84044
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9ag_Tex
+      strings:
+        name: "Relentlessly Indomitable Lyrk"
+    - id: 85045
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Indomitable_Cunning
+      linkCustomizingId: 84045
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9ag_Tex
+      strings:
+        name: "Cunningly Indomitable Lyrk"
+    - id: 85046
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Succoring_Relentless
+      linkCustomizingId: 84046
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5ag_Tex
+      strings:
+        name: "Relentlessly Succoring Lyrk"
+    - id: 85047
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Succoring_Cunning
+      linkCustomizingId: 84047
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5ag_Tex
+      strings:
+        name: "Cunningly Succoring Lyrk"
+    - id: 85048
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Threatening_Relentless
+      linkCustomizingId: 84048
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8ag_Tex
+      strings:
+        name: "Relentlessly Threatening Lyrk"
+    - id: 85049
+      $extends: AccCrystalDyadT1
+      name: AccCrystal_T1_Dyad_Threatening_Cunning
+      linkCustomizingId: 84049
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8ag_Tex
+      strings:
+        name: "Cunningly Threatening Lyrk"

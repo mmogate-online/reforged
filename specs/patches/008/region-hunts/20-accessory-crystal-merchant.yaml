@@ -1,0 +1,52 @@
+# The low-level crystal merchants sell tier 2 Common accessory crystals for gold on a third
+# tab. A menu upsert replaces its whole tab list, so the weapon and armor tabs are restated
+# as they are. Menu 100 is shared by every merchant bound to it, so each gains the tab.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyMenuLists:
+  upsert:
+    - id: 100
+      stringId: 100
+      desc: "저렙 크리스탈  상점 !"
+      itemLists:
+        - id: 1001
+          stringed: 10001
+        - id: 1002
+          stringed: 10002
+        - id: 1003
+          stringed: 1433
+
+buyLists:
+  upsert:
+    - id: 1003
+      items:
+        - itemId: 85050   # Powerful Fyrn
+          priceRevision: 1
+        - itemId: 85051   # Grounding Fyrn
+          priceRevision: 1
+        - itemId: 85052   # Impacting Fyrn
+          priceRevision: 1
+        - itemId: 85053   # Balancing Fyrn
+          priceRevision: 1
+        - itemId: 85054   # Keen Fyrn
+          priceRevision: 1
+        - itemId: 85055   # Unyielding Fyrn
+          priceRevision: 1
+        - itemId: 85056   # Relentless Fyrn
+          priceRevision: 1
+        - itemId: 85057   # Cunning Fyrn
+          priceRevision: 1
+        - itemId: 85058   # Swift Fyrn
+          priceRevision: 1
+        - itemId: 85059   # Griefing Fyrn
+          priceRevision: 1
+        - itemId: 85060   # Indomitable Fyrn
+          priceRevision: 1
+        - itemId: 85061   # Succoring Fyrn
+          priceRevision: 1
+        - itemId: 85062   # Threatening Fyrn
+          priceRevision: 1

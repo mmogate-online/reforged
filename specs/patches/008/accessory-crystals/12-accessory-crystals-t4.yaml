@@ -1,0 +1,439 @@
+# Accessory crystals of tier 4 (Thyrl): Common, Fine (Pristine) and Dyad.
+# Common and Fine are tradeable; a Dyad binds to the accessory it is socketed in.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: accessory-crystals
+
+items:
+  upsert:
+    - id: 85150
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Powerful
+      linkCustomizingId: 84150
+      conversionSmallGroup: 64
+      icon: Icon_Items.acc_customize3dg_Tex
+      strings:
+        name: "Powerful Thyrl"
+        toolTip: "Increases Power by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85151
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Grounding
+      linkCustomizingId: 84151
+      conversionSmallGroup: 65
+      icon: Icon_Items.acc_customize4dg_Tex
+      strings:
+        name: "Grounding Thyrl"
+        toolTip: "Increases Endurance by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85152
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Impacting
+      linkCustomizingId: 84152
+      conversionSmallGroup: 66
+      icon: Icon_Items.acc_customize11dg_Tex
+      strings:
+        name: "Impacting Thyrl"
+        toolTip: "Increases Impact Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85153
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Balancing
+      linkCustomizingId: 84153
+      conversionSmallGroup: 67
+      icon: Icon_Items.acc_customize7dg_Tex
+      strings:
+        name: "Balancing Thyrl"
+        toolTip: "Increases Balance Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85154
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Keen
+      linkCustomizingId: 84154
+      conversionSmallGroup: 68
+      icon: Icon_Items.acc_customize6dg_Tex
+      strings:
+        name: "Keen Thyrl"
+        toolTip: "Increases Crit Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85155
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Unyielding
+      linkCustomizingId: 84155
+      conversionSmallGroup: 69
+      icon: Icon_Items.acc_customize14dg_Tex
+      strings:
+        name: "Unyielding Thyrl"
+        toolTip: "Increases Crit Resist Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85156
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Relentless
+      linkCustomizingId: 84156
+      conversionSmallGroup: 70
+      icon: Icon_Items.acc_customize1dg_Tex
+      strings:
+        name: "Relentless Thyrl"
+        toolTip: "Increases maximum HP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85157
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Cunning
+      linkCustomizingId: 84157
+      conversionSmallGroup: 71
+      icon: Icon_Items.acc_customize2dg_Tex
+      strings:
+        name: "Cunning Thyrl"
+        toolTip: "Increases maximum MP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85158
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Swift
+      linkCustomizingId: 84158
+      conversionSmallGroup: 72
+      icon: Icon_Items.acc_customize12dg_Tex
+      strings:
+        name: "Swift Thyrl"
+        toolTip: "Increases Attack Speed by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85159
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Griefing
+      linkCustomizingId: 84159
+      conversionSmallGroup: 73
+      icon: Icon_Items.acc_customize13dg_Tex
+      strings:
+        name: "Griefing Thyrl"
+        toolTip: "Increases PvP Attack by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85160
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Indomitable
+      linkCustomizingId: 84160
+      conversionSmallGroup: 74
+      icon: Icon_Items.acc_customize9dg_Tex
+      strings:
+        name: "Indomitable Thyrl"
+        toolTip: "Increases PvP Defense by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85161
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Succoring
+      linkCustomizingId: 84161
+      conversionSmallGroup: 86
+      icon: Icon_Items.acc_customize5dg_Tex
+      strings:
+        name: "Succoring Thyrl"
+        toolTip: "Increases healing by $H_W_GOOD0.8%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85162
+      $extends: AccCrystalCommonT4
+      name: AccCrystal_T4_Common_Threatening
+      linkCustomizingId: 84162
+      conversionSmallGroup: 87
+      icon: Icon_Items.acc_customize8dg_Tex
+      strings:
+        name: "Threatening Thyrl"
+        toolTip: "Increases aggro by $H_W_GOOD1.6%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85163
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Powerful
+      linkCustomizingId: 84163
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3dg_Tex
+      strings:
+        name: "Pristine Powerful Thyrl"
+        toolTip: "Increases Power by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85164
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Grounding
+      linkCustomizingId: 84164
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4dg_Tex
+      strings:
+        name: "Pristine Grounding Thyrl"
+        toolTip: "Increases Endurance by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85165
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Impacting
+      linkCustomizingId: 84165
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11dg_Tex
+      strings:
+        name: "Pristine Impacting Thyrl"
+        toolTip: "Increases Impact Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85166
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Balancing
+      linkCustomizingId: 84166
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7dg_Tex
+      strings:
+        name: "Pristine Balancing Thyrl"
+        toolTip: "Increases Balance Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85167
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Keen
+      linkCustomizingId: 84167
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6dg_Tex
+      strings:
+        name: "Pristine Keen Thyrl"
+        toolTip: "Increases Crit Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#FFBB00'>Tank Preference: High</font>$BR<font color = '#FFBB00'>DPS Preference: High</font>$BR<font color = '#FFBB00'>Healer Preference: High</font>"
+    - id: 85168
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Unyielding
+      linkCustomizingId: 84168
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14dg_Tex
+      strings:
+        name: "Pristine Unyielding Thyrl"
+        toolTip: "Increases Crit Resist Factor by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85169
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Relentless
+      linkCustomizingId: 84169
+      conversionSmallGroup: 81
+      icon: Icon_Items.acc_customize1dg_Tex
+      strings:
+        name: "Pristine Relentless Thyrl"
+        toolTip: "Increases maximum HP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85170
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Cunning
+      linkCustomizingId: 84170
+      conversionSmallGroup: 82
+      icon: Icon_Items.acc_customize2dg_Tex
+      strings:
+        name: "Pristine Cunning Thyrl"
+        toolTip: "Increases maximum MP by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85171
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Swift
+      linkCustomizingId: 84171
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12dg_Tex
+      strings:
+        name: "Pristine Swift Thyrl"
+        toolTip: "Increases Attack Speed by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85172
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Griefing
+      linkCustomizingId: 84172
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13dg_Tex
+      strings:
+        name: "Pristine Griefing Thyrl"
+        toolTip: "Increases PvP Attack by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85173
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Indomitable
+      linkCustomizingId: 84173
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9dg_Tex
+      strings:
+        name: "Pristine Indomitable Thyrl"
+        toolTip: "Increases PvP Defense by $H_W_GOOD$value$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85174
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Succoring
+      linkCustomizingId: 84174
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5dg_Tex
+      strings:
+        name: "Pristine Succoring Thyrl"
+        toolTip: "Increases healing by $H_W_GOOD1.6%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85175
+      $extends: AccCrystalFineT4
+      name: AccCrystal_T4_Fine_Threatening
+      linkCustomizingId: 84175
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8dg_Tex
+      strings:
+        name: "Pristine Threatening Thyrl"
+        toolTip: "Increases aggro by $H_W_GOOD2.4%$COLOR_END.$BR$BR<font color = '#4C4C4C'>Tank Preference: Low</font>$BR<font color = '#4C4C4C'>DPS Preference: Low</font>$BR<font color = '#4C4C4C'>Healer Preference: Low</font>"
+    - id: 85176
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Powerful_Relentless
+      linkCustomizingId: 84176
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3dg_Tex
+      strings:
+        name: "Relentlessly Powerful Thyrl"
+    - id: 85177
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Powerful_Cunning
+      linkCustomizingId: 84177
+      conversionSmallGroup: 75
+      icon: Icon_Items.acc_customize3dg_Tex
+      strings:
+        name: "Cunningly Powerful Thyrl"
+    - id: 85178
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Grounding_Relentless
+      linkCustomizingId: 84178
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4dg_Tex
+      strings:
+        name: "Relentlessly Grounding Thyrl"
+    - id: 85179
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Grounding_Cunning
+      linkCustomizingId: 84179
+      conversionSmallGroup: 76
+      icon: Icon_Items.acc_customize4dg_Tex
+      strings:
+        name: "Cunningly Grounding Thyrl"
+    - id: 85180
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Impacting_Relentless
+      linkCustomizingId: 84180
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11dg_Tex
+      strings:
+        name: "Relentlessly Impacting Thyrl"
+    - id: 85181
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Impacting_Cunning
+      linkCustomizingId: 84181
+      conversionSmallGroup: 77
+      icon: Icon_Items.acc_customize11dg_Tex
+      strings:
+        name: "Cunningly Impacting Thyrl"
+    - id: 85182
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Balancing_Relentless
+      linkCustomizingId: 84182
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7dg_Tex
+      strings:
+        name: "Relentlessly Balancing Thyrl"
+    - id: 85183
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Balancing_Cunning
+      linkCustomizingId: 84183
+      conversionSmallGroup: 78
+      icon: Icon_Items.acc_customize7dg_Tex
+      strings:
+        name: "Cunningly Balancing Thyrl"
+    - id: 85184
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Keen_Relentless
+      linkCustomizingId: 84184
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6dg_Tex
+      strings:
+        name: "Relentlessly Keen Thyrl"
+    - id: 85185
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Keen_Cunning
+      linkCustomizingId: 84185
+      conversionSmallGroup: 79
+      icon: Icon_Items.acc_customize6dg_Tex
+      strings:
+        name: "Cunningly Keen Thyrl"
+    - id: 85186
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Unyielding_Relentless
+      linkCustomizingId: 84186
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14dg_Tex
+      strings:
+        name: "Relentlessly Unyielding Thyrl"
+    - id: 85187
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Unyielding_Cunning
+      linkCustomizingId: 84187
+      conversionSmallGroup: 80
+      icon: Icon_Items.acc_customize14dg_Tex
+      strings:
+        name: "Cunningly Unyielding Thyrl"
+    - id: 85188
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Relentless_Cunning
+      linkCustomizingId: 84188
+      conversionSmallGroup: 81
+      icon: Icon_Items.acc_customize1dg_Tex
+      strings:
+        name: "Cunningly Relentless Thyrl"
+    - id: 85189
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Cunning_Relentless
+      linkCustomizingId: 84189
+      conversionSmallGroup: 82
+      icon: Icon_Items.acc_customize2dg_Tex
+      strings:
+        name: "Relentlessly Cunning Thyrl"
+    - id: 85190
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Swift_Relentless
+      linkCustomizingId: 84190
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12dg_Tex
+      strings:
+        name: "Relentlessly Swift Thyrl"
+    - id: 85191
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Swift_Cunning
+      linkCustomizingId: 84191
+      conversionSmallGroup: 83
+      icon: Icon_Items.acc_customize12dg_Tex
+      strings:
+        name: "Cunningly Swift Thyrl"
+    - id: 85192
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Griefing_Relentless
+      linkCustomizingId: 84192
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13dg_Tex
+      strings:
+        name: "Relentlessly Griefing Thyrl"
+    - id: 85193
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Griefing_Cunning
+      linkCustomizingId: 84193
+      conversionSmallGroup: 84
+      icon: Icon_Items.acc_customize13dg_Tex
+      strings:
+        name: "Cunningly Griefing Thyrl"
+    - id: 85194
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Indomitable_Relentless
+      linkCustomizingId: 84194
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9dg_Tex
+      strings:
+        name: "Relentlessly Indomitable Thyrl"
+    - id: 85195
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Indomitable_Cunning
+      linkCustomizingId: 84195
+      conversionSmallGroup: 85
+      icon: Icon_Items.acc_customize9dg_Tex
+      strings:
+        name: "Cunningly Indomitable Thyrl"
+    - id: 85196
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Succoring_Relentless
+      linkCustomizingId: 84196
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5dg_Tex
+      strings:
+        name: "Relentlessly Succoring Thyrl"
+    - id: 85197
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Succoring_Cunning
+      linkCustomizingId: 84197
+      conversionSmallGroup: 88
+      icon: Icon_Items.acc_customize5dg_Tex
+      strings:
+        name: "Cunningly Succoring Thyrl"
+    - id: 85198
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Threatening_Relentless
+      linkCustomizingId: 84198
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8dg_Tex
+      strings:
+        name: "Relentlessly Threatening Thyrl"
+    - id: 85199
+      $extends: AccCrystalDyadT4
+      name: AccCrystal_T4_Dyad_Threatening_Cunning
+      linkCustomizingId: 84199
+      conversionSmallGroup: 89
+      icon: Icon_Items.acc_customize8dg_Tex
+      strings:
+        name: "Cunningly Threatening Thyrl"

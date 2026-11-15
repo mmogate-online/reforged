@@ -1,0 +1,3721 @@
+# Accessory crystal effects, tiers 1 to 5. Common and Fine carry one effect, a Dyad
+# carries its primary and a flat max HP or max MP second effect. Every accessory
+# crystal effect has kind 0, so crystals of the same effect stack across sockets.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+passivities:
+  upsert:
+    - id: 81068
+      name: "AccCrystal_Common_Powerful_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81069
+      name: "AccCrystal_Common_Grounding_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81070
+      name: "AccCrystal_Common_Impacting_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81071
+      name: "AccCrystal_Common_Balancing_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81072
+      name: "AccCrystal_Common_Keen_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81073
+      name: "AccCrystal_Common_Unyielding_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81074
+      name: "AccCrystal_Common_Relentless_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 50
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81075
+      name: "AccCrystal_Common_Cunning_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 55
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81076
+      name: "AccCrystal_Common_Swift_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0025
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81077
+      name: "AccCrystal_Common_Griefing_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81078
+      name: "AccCrystal_Common_Indomitable_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81079
+      name: "AccCrystal_Common_Succoring_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81080
+      name: "AccCrystal_Common_Threatening_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.01
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81081
+      name: "AccCrystal_Fine_Powerful_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81082
+      name: "AccCrystal_Fine_Grounding_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81083
+      name: "AccCrystal_Fine_Impacting_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81084
+      name: "AccCrystal_Fine_Balancing_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81085
+      name: "AccCrystal_Fine_Keen_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81086
+      name: "AccCrystal_Fine_Unyielding_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81087
+      name: "AccCrystal_Fine_Relentless_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 67
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81088
+      name: "AccCrystal_Fine_Cunning_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 88
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81089
+      name: "AccCrystal_Fine_Swift_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81090
+      name: "AccCrystal_Fine_Griefing_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81091
+      name: "AccCrystal_Fine_Indomitable_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81092
+      name: "AccCrystal_Fine_Succoring_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.01
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81093
+      name: "AccCrystal_Fine_Threatening_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.015
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81094
+      name: "AccCrystal_Dyad_Powerful_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Powerful I"
+        tooltip: "Increases Power by $value."
+    - id: 81095
+      name: "AccCrystal_Dyad_Grounding_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grounding I"
+        tooltip: "Increases Endurance by $value."
+    - id: 81096
+      name: "AccCrystal_Dyad_Impacting_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Impacting I"
+        tooltip: "Increases Impact Factor by $value."
+    - id: 81097
+      name: "AccCrystal_Dyad_Balancing_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Balancing I"
+        tooltip: "Increases Balance Factor by $value."
+    - id: 81098
+      name: "AccCrystal_Dyad_Keen_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Keen I"
+        tooltip: "Increases Crit Factor by $value."
+    - id: 81099
+      name: "AccCrystal_Dyad_Unyielding_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Unyielding I"
+        tooltip: "Increases Crit Resist Factor by $value."
+    - id: 81100
+      name: "AccCrystal_Dyad_Relentless_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 79
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless I"
+        tooltip: "Increases maximum HP by $value."
+    - id: 81101
+      name: "AccCrystal_Dyad_Cunning_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 93
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning I"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81102
+      name: "AccCrystal_Dyad_Swift_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift I"
+        tooltip: "Increases Attack Speed by $value."
+    - id: 81103
+      name: "AccCrystal_Dyad_Griefing_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Griefing I"
+        tooltip: "Increases PvP Attack by $value."
+    - id: 81104
+      name: "AccCrystal_Dyad_Indomitable_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Indomitable I"
+        tooltip: "Increases PvP Defense by $value."
+    - id: 81105
+      name: "AccCrystal_Dyad_Succoring_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.0106
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Succoring I"
+        tooltip: "Increases healing by 1.06%."
+    - id: 81106
+      name: "AccCrystal_Dyad_Threatening_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.0159
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening I"
+        tooltip: "Increases aggro by 1.59%."
+    - id: 81107
+      name: "AccCrystal_Common_Powerful_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81108
+      name: "AccCrystal_Common_Grounding_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81109
+      name: "AccCrystal_Common_Impacting_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81110
+      name: "AccCrystal_Common_Balancing_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81111
+      name: "AccCrystal_Common_Keen_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81112
+      name: "AccCrystal_Common_Unyielding_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81113
+      name: "AccCrystal_Common_Relentless_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 87
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81114
+      name: "AccCrystal_Common_Cunning_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 66
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81115
+      name: "AccCrystal_Common_Swift_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0025
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81116
+      name: "AccCrystal_Common_Griefing_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81117
+      name: "AccCrystal_Common_Indomitable_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81118
+      name: "AccCrystal_Common_Succoring_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.006
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81119
+      name: "AccCrystal_Common_Threatening_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.012
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81120
+      name: "AccCrystal_Fine_Powerful_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81121
+      name: "AccCrystal_Fine_Grounding_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81122
+      name: "AccCrystal_Fine_Impacting_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81123
+      name: "AccCrystal_Fine_Balancing_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81124
+      name: "AccCrystal_Fine_Keen_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81125
+      name: "AccCrystal_Fine_Unyielding_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81126
+      name: "AccCrystal_Fine_Relentless_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 118
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81127
+      name: "AccCrystal_Fine_Cunning_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 106
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81128
+      name: "AccCrystal_Fine_Swift_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81129
+      name: "AccCrystal_Fine_Griefing_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81130
+      name: "AccCrystal_Fine_Indomitable_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81131
+      name: "AccCrystal_Fine_Succoring_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.012
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81132
+      name: "AccCrystal_Fine_Threatening_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.018
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81133
+      name: "AccCrystal_Dyad_Powerful_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Powerful II"
+        tooltip: "Increases Power by $value."
+    - id: 81134
+      name: "AccCrystal_Dyad_Grounding_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grounding II"
+        tooltip: "Increases Endurance by $value."
+    - id: 81135
+      name: "AccCrystal_Dyad_Impacting_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Impacting II"
+        tooltip: "Increases Impact Factor by $value."
+    - id: 81136
+      name: "AccCrystal_Dyad_Balancing_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Balancing II"
+        tooltip: "Increases Balance Factor by $value."
+    - id: 81137
+      name: "AccCrystal_Dyad_Keen_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Keen II"
+        tooltip: "Increases Crit Factor by $value."
+    - id: 81138
+      name: "AccCrystal_Dyad_Unyielding_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Unyielding II"
+        tooltip: "Increases Crit Resist Factor by $value."
+    - id: 81139
+      name: "AccCrystal_Dyad_Relentless_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 138
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless II"
+        tooltip: "Increases maximum HP by $value."
+    - id: 81140
+      name: "AccCrystal_Dyad_Cunning_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 112
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning II"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81141
+      name: "AccCrystal_Dyad_Swift_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0075
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift II"
+        tooltip: "Increases Attack Speed by $value."
+    - id: 81142
+      name: "AccCrystal_Dyad_Griefing_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Griefing II"
+        tooltip: "Increases PvP Attack by $value."
+    - id: 81143
+      name: "AccCrystal_Dyad_Indomitable_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Indomitable II"
+        tooltip: "Increases PvP Defense by $value."
+    - id: 81144
+      name: "AccCrystal_Dyad_Succoring_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.0127
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Succoring II"
+        tooltip: "Increases healing by 1.27%."
+    - id: 81145
+      name: "AccCrystal_Dyad_Threatening_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.0191
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening II"
+        tooltip: "Increases aggro by 1.91%."
+    - id: 81146
+      name: "AccCrystal_Common_Powerful_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81147
+      name: "AccCrystal_Common_Grounding_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81148
+      name: "AccCrystal_Common_Impacting_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81149
+      name: "AccCrystal_Common_Balancing_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81150
+      name: "AccCrystal_Common_Keen_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81151
+      name: "AccCrystal_Common_Unyielding_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81152
+      name: "AccCrystal_Common_Relentless_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 167
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81153
+      name: "AccCrystal_Common_Cunning_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 77
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81154
+      name: "AccCrystal_Common_Swift_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81155
+      name: "AccCrystal_Common_Griefing_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81156
+      name: "AccCrystal_Common_Indomitable_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81157
+      name: "AccCrystal_Common_Succoring_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.007
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81158
+      name: "AccCrystal_Common_Threatening_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.014
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81159
+      name: "AccCrystal_Fine_Powerful_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81160
+      name: "AccCrystal_Fine_Grounding_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81161
+      name: "AccCrystal_Fine_Impacting_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81162
+      name: "AccCrystal_Fine_Balancing_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81163
+      name: "AccCrystal_Fine_Keen_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81164
+      name: "AccCrystal_Fine_Unyielding_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81165
+      name: "AccCrystal_Fine_Relentless_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 226
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81166
+      name: "AccCrystal_Fine_Cunning_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 123
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81167
+      name: "AccCrystal_Fine_Swift_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81168
+      name: "AccCrystal_Fine_Griefing_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81169
+      name: "AccCrystal_Fine_Indomitable_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81170
+      name: "AccCrystal_Fine_Succoring_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.014
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81171
+      name: "AccCrystal_Fine_Threatening_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.021
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81172
+      name: "AccCrystal_Dyad_Powerful_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Powerful III"
+        tooltip: "Increases Power by $value."
+    - id: 81173
+      name: "AccCrystal_Dyad_Grounding_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grounding III"
+        tooltip: "Increases Endurance by $value."
+    - id: 81174
+      name: "AccCrystal_Dyad_Impacting_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Impacting III"
+        tooltip: "Increases Impact Factor by $value."
+    - id: 81175
+      name: "AccCrystal_Dyad_Balancing_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Balancing III"
+        tooltip: "Increases Balance Factor by $value."
+    - id: 81176
+      name: "AccCrystal_Dyad_Keen_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Keen III"
+        tooltip: "Increases Crit Factor by $value."
+    - id: 81177
+      name: "AccCrystal_Dyad_Unyielding_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Unyielding III"
+        tooltip: "Increases Crit Resist Factor by $value."
+    - id: 81178
+      name: "AccCrystal_Dyad_Relentless_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 264
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless III"
+        tooltip: "Increases maximum HP by $value."
+    - id: 81179
+      name: "AccCrystal_Dyad_Cunning_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 131
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning III"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81180
+      name: "AccCrystal_Dyad_Swift_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0075
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift III"
+        tooltip: "Increases Attack Speed by $value."
+    - id: 81181
+      name: "AccCrystal_Dyad_Griefing_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Griefing III"
+        tooltip: "Increases PvP Attack by $value."
+    - id: 81182
+      name: "AccCrystal_Dyad_Indomitable_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Indomitable III"
+        tooltip: "Increases PvP Defense by $value."
+    - id: 81183
+      name: "AccCrystal_Dyad_Succoring_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.0148
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Succoring III"
+        tooltip: "Increases healing by 1.48%."
+    - id: 81184
+      name: "AccCrystal_Dyad_Threatening_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.0223
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening III"
+        tooltip: "Increases aggro by 2.23%."
+    - id: 81185
+      name: "AccCrystal_Common_Powerful_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81186
+      name: "AccCrystal_Common_Grounding_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81187
+      name: "AccCrystal_Common_Impacting_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81188
+      name: "AccCrystal_Common_Balancing_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81189
+      name: "AccCrystal_Common_Keen_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81190
+      name: "AccCrystal_Common_Unyielding_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81191
+      name: "AccCrystal_Common_Relentless_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 320
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81192
+      name: "AccCrystal_Common_Cunning_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 88
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81193
+      name: "AccCrystal_Common_Swift_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81194
+      name: "AccCrystal_Common_Griefing_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81195
+      name: "AccCrystal_Common_Indomitable_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81196
+      name: "AccCrystal_Common_Succoring_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.008
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81197
+      name: "AccCrystal_Common_Threatening_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.016
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81198
+      name: "AccCrystal_Fine_Powerful_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81199
+      name: "AccCrystal_Fine_Grounding_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81200
+      name: "AccCrystal_Fine_Impacting_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81201
+      name: "AccCrystal_Fine_Balancing_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81202
+      name: "AccCrystal_Fine_Keen_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81203
+      name: "AccCrystal_Fine_Unyielding_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81204
+      name: "AccCrystal_Fine_Relentless_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 433
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81205
+      name: "AccCrystal_Fine_Cunning_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 141
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81206
+      name: "AccCrystal_Fine_Swift_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0075
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81207
+      name: "AccCrystal_Fine_Griefing_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81208
+      name: "AccCrystal_Fine_Indomitable_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81209
+      name: "AccCrystal_Fine_Succoring_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.016
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81210
+      name: "AccCrystal_Fine_Threatening_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.024
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81211
+      name: "AccCrystal_Dyad_Powerful_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Powerful IV"
+        tooltip: "Increases Power by $value."
+    - id: 81212
+      name: "AccCrystal_Dyad_Grounding_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grounding IV"
+        tooltip: "Increases Endurance by $value."
+    - id: 81213
+      name: "AccCrystal_Dyad_Impacting_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Impacting IV"
+        tooltip: "Increases Impact Factor by $value."
+    - id: 81214
+      name: "AccCrystal_Dyad_Balancing_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Balancing IV"
+        tooltip: "Increases Balance Factor by $value."
+    - id: 81215
+      name: "AccCrystal_Dyad_Keen_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Keen IV"
+        tooltip: "Increases Crit Factor by $value."
+    - id: 81216
+      name: "AccCrystal_Dyad_Unyielding_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Unyielding IV"
+        tooltip: "Increases Crit Resist Factor by $value."
+    - id: 81217
+      name: "AccCrystal_Dyad_Relentless_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 506
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless IV"
+        tooltip: "Increases maximum HP by $value."
+    - id: 81218
+      name: "AccCrystal_Dyad_Cunning_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 149
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning IV"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81219
+      name: "AccCrystal_Dyad_Swift_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0075
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift IV"
+        tooltip: "Increases Attack Speed by $value."
+    - id: 81220
+      name: "AccCrystal_Dyad_Griefing_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Griefing IV"
+        tooltip: "Increases PvP Attack by $value."
+    - id: 81221
+      name: "AccCrystal_Dyad_Indomitable_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Indomitable IV"
+        tooltip: "Increases PvP Defense by $value."
+    - id: 81222
+      name: "AccCrystal_Dyad_Succoring_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.017
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Succoring IV"
+        tooltip: "Increases healing by 1.7%."
+    - id: 81223
+      name: "AccCrystal_Dyad_Threatening_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.0254
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening IV"
+        tooltip: "Increases aggro by 2.54%."
+    - id: 81224
+      name: "AccCrystal_Common_Powerful_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81225
+      name: "AccCrystal_Common_Grounding_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81226
+      name: "AccCrystal_Common_Impacting_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81227
+      name: "AccCrystal_Common_Balancing_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81228
+      name: "AccCrystal_Common_Keen_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81229
+      name: "AccCrystal_Common_Unyielding_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81230
+      name: "AccCrystal_Common_Relentless_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 644
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81231
+      name: "AccCrystal_Common_Cunning_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 99
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81232
+      name: "AccCrystal_Common_Swift_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.005
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81233
+      name: "AccCrystal_Common_Griefing_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 1
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81234
+      name: "AccCrystal_Common_Indomitable_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81235
+      name: "AccCrystal_Common_Succoring_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.009
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81236
+      name: "AccCrystal_Common_Threatening_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.018
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81237
+      name: "AccCrystal_Fine_Powerful_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81238
+      name: "AccCrystal_Fine_Grounding_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81239
+      name: "AccCrystal_Fine_Impacting_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81240
+      name: "AccCrystal_Fine_Balancing_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81241
+      name: "AccCrystal_Fine_Keen_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81242
+      name: "AccCrystal_Fine_Unyielding_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 5
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81243
+      name: "AccCrystal_Fine_Relentless_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 870
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81244
+      name: "AccCrystal_Fine_Cunning_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 158
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81245
+      name: "AccCrystal_Fine_Swift_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.0075
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81246
+      name: "AccCrystal_Fine_Griefing_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81247
+      name: "AccCrystal_Fine_Indomitable_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81248
+      name: "AccCrystal_Fine_Succoring_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.018
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81249
+      name: "AccCrystal_Fine_Threatening_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.027
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+    - id: 81250
+      name: "AccCrystal_Dyad_Powerful_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 3
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Powerful V"
+        tooltip: "Increases Power by $value."
+    - id: 81251
+      name: "AccCrystal_Dyad_Grounding_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 4
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Grounding V"
+        tooltip: "Increases Endurance by $value."
+    - id: 81252
+      name: "AccCrystal_Dyad_Impacting_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 8
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Impacting V"
+        tooltip: "Increases Impact Factor by $value."
+    - id: 81253
+      name: "AccCrystal_Dyad_Balancing_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 9
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Balancing V"
+        tooltip: "Increases Balance Factor by $value."
+    - id: 81254
+      name: "AccCrystal_Dyad_Keen_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 6
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Keen V"
+        tooltip: "Increases Crit Factor by $value."
+    - id: 81255
+      name: "AccCrystal_Dyad_Unyielding_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 7
+      value: 5
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Unyielding V"
+        tooltip: "Increases Crit Resist Factor by $value."
+    - id: 81256
+      name: "AccCrystal_Dyad_Relentless_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 1018
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Relentless V"
+        tooltip: "Increases maximum HP by $value."
+    - id: 81257
+      name: "AccCrystal_Dyad_Cunning_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 168
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Cunning V"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81258
+      name: "AccCrystal_Dyad_Swift_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 25
+      value: 1.01
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Swift V"
+        tooltip: "Increases Attack Speed by $value."
+    - id: 81259
+      name: "AccCrystal_Dyad_Griefing_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 176
+      value: 2
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Griefing V"
+        tooltip: "Increases PvP Attack by $value."
+    - id: 81260
+      name: "AccCrystal_Dyad_Indomitable_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 113
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: player
+      condition: 15
+      conditionValue: 3
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Indomitable V"
+        tooltip: "Increases PvP Defense by $value."
+    - id: 81261
+      name: "AccCrystal_Dyad_Succoring_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 169
+      value: 1.0191
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Succoring V"
+        tooltip: "Increases healing by 1.91%."
+    - id: 81262
+      name: "AccCrystal_Dyad_Threatening_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 164
+      value: 1.0286
+      tickInterval: 0
+      method: 3
+      prob: 1
+      mobSize: all
+      condition: 25
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "First Effect - Threatening V"
+        tooltip: "Increases aggro by 2.86%."
+    - id: 81263
+      name: "AccDyadSec_Relentless_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 17
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless I"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81264
+      name: "AccDyadSec_Relentless_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 29
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless II"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81265
+      name: "AccDyadSec_Relentless_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 56
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless III"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81266
+      name: "AccDyadSec_Relentless_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 108
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless IV"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81267
+      name: "AccDyadSec_Relentless_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 1
+      value: 217
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Relentless V"
+        tooltip: "Increase maximum HP by $value."
+    - id: 81268
+      name: "AccDyadSec_Cunning_T1"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 3
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning I"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81269
+      name: "AccDyadSec_Cunning_T2"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 4
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning II"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81270
+      name: "AccDyadSec_Cunning_T3"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 8
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning III"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81271
+      name: "AccDyadSec_Cunning_T4"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 14
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning IV"
+        tooltip: "Increases maximum MP by $value."
+    - id: 81272
+      name: "AccDyadSec_Cunning_T5"
+      category: Equipment
+      kind: 0
+      judgmentOnce: false
+      balancedByTargetCount: false
+      type: 2
+      value: 19
+      tickInterval: 0
+      method: 2
+      prob: 1
+      mobSize: all
+      condition: 0
+      conditionValue: 0
+      conditionCategory: 0
+      abnormalityKind: 0
+      abnormalityCategory: 0
+      passivityStrings:
+        name: "Second Effect - Cunning V"
+        tooltip: "Increases maximum MP by $value."

@@ -1,0 +1,256 @@
+# Accessory-only fusion structures, tiers 1 to 5. A tier-up structure turns three
+# Pristine crystals of tier n into a random Pristine crystal of tier n + 1, read from
+# the accessory pool of that tier; a dyad structure turns three Pristine crystals of
+# tier n into a random Dyad of tier n. Neither is ever bought back for gold.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  accStructureBase:
+    name: RawStone
+    combatItemType: RAWSTONE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    rank: 0
+    sortingNumber: 1
+    maxStack: 100
+    maxDropUnit: 100
+    slotLimit: 0
+    coolTimeGroup: 0
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    boundType: None
+    destroyable: true
+    storeSellable: true
+    searchable: true
+    obtainable: true
+    relocatable: true
+    enchantEnable: false
+    dismantlable: false
+    artisanable: false
+    requiredEquipmentType: NO_COMBAT
+    requiredLevel: 1
+    sellPrice: 0
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_CustomizeStoneCue
+
+items:
+  upsert:
+    - id: 85250
+      $extends: accStructureBase
+      rareGrade: 1
+      level: 11
+      buyPrice: 830
+      defaultValue: 830
+      linkRawStoneId: 85250
+      icon: Icon_Items.RawCrystal01B_Tex
+      strings:
+        name: "Fyrn Structure"
+        toolTip: "May produce a random pristine fyrn when fused with three pristine lyrks."
+    - id: 85255
+      $extends: accStructureBase
+      rareGrade: 2
+      level: 1
+      buyPrice: 262
+      defaultValue: 262
+      linkRawStoneId: 85255
+      icon: Icon_Items.RawCrystal01A_Tex
+      strings:
+        name: "Dyad Lyrk Structure"
+        toolTip: "Fuse 3 pristine lyrks to produce a random dyad lyrk.\nSuccess Rate: 100%"
+    - id: 85251
+      $extends: accStructureBase
+      rareGrade: 1
+      level: 23
+      buyPrice: 5372
+      defaultValue: 5372
+      linkRawStoneId: 85251
+      icon: Icon_Items.RawCrystal01C_Tex
+      strings:
+        name: "Kyrsk Structure"
+        toolTip: "May produce a random pristine kyrsk when fused with three pristine fyrns."
+    - id: 85256
+      $extends: accStructureBase
+      rareGrade: 2
+      level: 11
+      buyPrice: 830
+      defaultValue: 830
+      linkRawStoneId: 85256
+      icon: Icon_Items.RawCrystal01B_Tex
+      strings:
+        name: "Dyad Fyrn Structure"
+        toolTip: "Fuse 3 pristine fyrns to produce a random dyad fyrn.\nSuccess Rate: 100%"
+    - id: 85252
+      $extends: accStructureBase
+      rareGrade: 1
+      level: 35
+      buyPrice: 16554
+      defaultValue: 16554
+      linkRawStoneId: 85252
+      icon: Icon_Items.RawCrystal01D_Tex
+      strings:
+        name: "Thyrl Structure"
+        toolTip: "May produce a random pristine thyrl when fused with three pristine kyrsks."
+    - id: 85257
+      $extends: accStructureBase
+      rareGrade: 2
+      level: 20
+      buyPrice: 5372
+      defaultValue: 5372
+      linkRawStoneId: 85257
+      icon: Icon_Items.RawCrystal01C_Tex
+      strings:
+        name: "Dyad Kyrsk Structure"
+        toolTip: "Fuse 3 pristine kyrsks to produce a random dyad kyrsk.\nSuccess Rate: 100%"
+    - id: 85253
+      $extends: accStructureBase
+      rareGrade: 1
+      level: 48
+      buyPrice: 60160
+      defaultValue: 60160
+      linkRawStoneId: 85253
+      icon: Icon_Items.RawCrystal01E_Tex
+      strings:
+        name: "Syrth Structure"
+        toolTip: "May produce a random pristine syrth when fused with three pristine thyrls."
+    - id: 85258
+      $extends: accStructureBase
+      rareGrade: 2
+      level: 32
+      buyPrice: 16554
+      defaultValue: 16554
+      linkRawStoneId: 85258
+      icon: Icon_Items.RawCrystal01D_Tex
+      strings:
+        name: "Dyad Thyrl Structure"
+        toolTip: "Fuse 3 pristine thyrls to produce a random dyad thyrl.\nSuccess Rate: 100%"
+    - id: 85254
+      $extends: accStructureBase
+      rareGrade: 1
+      level: 58
+      buyPrice: 108919
+      defaultValue: 108919
+      linkRawStoneId: 85254
+      icon: Icon_Items.RawCrystal01F_Tex
+      strings:
+        name: "Zyrk Structure"
+        toolTip: "May produce a random pristine zyrk when fused with three pristine syrths."
+    - id: 85259
+      $extends: accStructureBase
+      rareGrade: 2
+      level: 44
+      buyPrice: 60160
+      defaultValue: 60160
+      linkRawStoneId: 85259
+      icon: Icon_Items.RawCrystal01E_Tex
+      strings:
+        name: "Dyad Syrth Structure"
+        toolTip: "Fuse 3 pristine syrths to produce a random dyad syrth.\nSuccess Rate: 100%"
+
+rawStoneItems:
+  upsert:
+    - rawStoneItemId: 85250
+      type: TIERUP
+      useGambleItemGrade:
+        - 1
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 0.75
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85255
+      type: UPGRADE
+      useGambleItemGrade:
+        - 1
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85251
+      type: TIERUP
+      useGambleItemGrade:
+        - 2
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 0.65
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85256
+      type: UPGRADE
+      useGambleItemGrade:
+        - 2
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85252
+      type: TIERUP
+      useGambleItemGrade:
+        - 3
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 0.55
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85257
+      type: UPGRADE
+      useGambleItemGrade:
+        - 3
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85253
+      type: TIERUP
+      useGambleItemGrade:
+        - 4
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 0.45
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85258
+      type: UPGRADE
+      useGambleItemGrade:
+        - 4
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85254
+      type: TIERUP
+      useGambleItemGrade:
+        - 5
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 0.4
+      succeedRate: 0
+      needSameMaterial: false
+    - rawStoneItemId: 85259
+      type: UPGRADE
+      useGambleItemGrade:
+        - 5
+      useRareGrade: 1
+      useEquipmentType:
+        - EQUIP_ACCESSORY
+      rate: 1.0
+      succeedRate: 0
+      needSameMaterial: false
