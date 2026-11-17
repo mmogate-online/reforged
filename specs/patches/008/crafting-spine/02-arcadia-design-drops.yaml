@@ -1,0 +1,120 @@
+# Profession designs stop dropping in Arcadia. A design found in the field would let a crafter
+# level past the region's band, so designs come from the crafters' guild alone.
+#
+# Bags holding only designs are removed whole. Mixed bags lose just the designs and keep every
+# other row as it was. A bag is named by its id and bagName, which is unique within one
+# monster's loot; one bag id can hold different designs on different monsters of a zone.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    # Fey Forest
+    - huntingZoneId: 2
+      npcTemplateId: [3, 4, 5, 6, 7, 10, 13, 22, 32, 34, 56, 57, 203, 209, 210, 259]
+      changes:
+        removeItemBags:
+          - { id: 3, bagName: "도안" }
+          - { id: 10, bagName: "도안1" }
+
+    # Oblivion Woods
+    - huntingZoneId: 3
+      npcTemplateId: [2, 17, 19, 23, 32, 300140, 300142, 300161]
+      changes:
+        updateItemBags:
+          - id: 3
+            bagName: "도안"
+            expect: 1
+            removeItems:
+              - templateId: 23001
+              - templateId: 23002
+              - templateId: 23003
+              - templateId: 23004
+              - templateId: 23005
+    - huntingZoneId: 3
+      npcTemplateId: [2, 12, 13, 14, 15, 17, 18, 19, 20, 23, 30, 31, 300140, 300141, 300160, 300161, 300611]
+      changes:
+        removeItemBags:
+          - { id: 14, bagName: "도안1" }
+    - huntingZoneId: 3
+      npcTemplateId: [3, 4, 7, 9, 21]
+      changes:
+        removeItemBags:
+          - { id: 15, bagName: "도안1" }
+    - huntingZoneId: 3
+      npcTemplateId: [32, 300142]
+      changes:
+        removeItemBags:
+          - { id: 10, bagName: "도안1" }
+
+    # Tuwangi Mire
+    - huntingZoneId: 5
+      npcTemplateId: [4, 7, 18, 19, 20]
+      changes:
+        updateItemBags:
+          - id: 3
+            bagName: "도안"
+            expect: 1
+            removeItems:
+              - templateId: 23006
+              - templateId: 23007
+              - templateId: 23008
+              - templateId: 23009
+              - templateId: 23010
+    - huntingZoneId: 5
+      npcTemplateId: [1, 4, 7, 13, 14, 15, 16, 18, 19, 20]
+      changes:
+        removeItemBags:
+          - { id: 15, bagName: "도안1" }
+
+    # Valley of Titans
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1031, 1041, 1051, 1061, 1071, 1081]
+      changes:
+        removeItemBags:
+          - { id: 14, bagName: "도안1" }
+    - huntingZoneId: 6
+      npcTemplateId: [1021, 1032, 1042, 1052, 1062, 1091, 2011, 2021, 2031, 2041, 2051, 2061,
+                      2081, 2082, 3011, 3021, 3031, 3032, 3041, 3042, 5001, 5002, 7031, 7032,
+                      7033, 7041, 7051]
+      changes:
+        removeItemBags:
+          - { id: 15, bagName: "도안1" }
+
+    # Celestial Hills
+    - huntingZoneId: 7
+      npcTemplateId: [5, 6, 7, 10, 11, 12, 13, 14, 20, 100, 102]
+      changes:
+        updateItemBags:
+          - id: 3
+            bagName: "도안"
+            expect: 1
+            removeItems:
+              - templateId: 23006
+              - templateId: 23007
+              - templateId: 23008
+              - templateId: 23009
+              - templateId: 23010
+        removeItemBags:
+          - { id: 15, bagName: "도안1" }
+
+    # Bastion of Lok
+    - huntingZoneId: 487
+      npcTemplateId: [1001, 1002, 1003, 1004, 2002, 2003, 2004, 3001, 3002, 3003, 3004, 3005, 4002]
+      changes:
+        removeItemBags:
+          - { id: 15, bagName: "도안1" }
+    - huntingZoneId: 887
+      npcTemplateId: [1001, 1002, 1003, 1004, 2002, 2003, 2004, 3001, 3002, 3003, 3004, 3005, 4002]
+      changes:
+        removeItemBags:
+          - { id: 15, bagName: "도안1" }
+    - huntingZoneId: 887
+      npcTemplateId: [1006, 3006]
+      changes:
+        removeItemBags:
+          - { id: 24, bagName: "도안1" }

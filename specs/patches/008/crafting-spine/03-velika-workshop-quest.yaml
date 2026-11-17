@@ -1,0 +1,15 @@
+# Santia's Workshop is switched off. It hands the player a refining design and rewards a class
+# weapon design, and profession designs now come from the crafters' guild alone.
+#
+# A quest is switched off by an unsatisfiable prerequisite on quest 99999, written into the
+# datasheet as the ref 999,99. No other quest names this one as a prerequisite, so nothing
+# downstream is cut off.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    - { id: 6383, changes: { requirements: { prerequisites: [99999] } } }

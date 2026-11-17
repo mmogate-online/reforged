@@ -1,23 +1,34 @@
-# Velika's light-armor and robe design vendors return to the classic stores 192 and 193.
-# All three armor design stores open the same four tabs, so the goods do not change; the
-# store each vendor opens decides the title the player sees.
+# Velika's crafting design vendors close. Profession designs for this region are sold by the
+# crafters' guild instead, so a city store would let a crafter level past the region's band.
 #
-# villagerMenus upsert replaces the whole menu list, so each row states every menu the
-# vendor offers.
+# Each villager below opens one design store and nothing else. A villagerMenus row cannot hold
+# an empty menu list, so the whole row is deleted: the villager stays in town as a townsperson
+# with its spawn and dialog, and offers no store.
 #
-# provenance: ported-from-v31
+# provenance: policy
 
 spec:
   version: "1.0"
   schema: v92
 
 villagerMenus:
-  upsert:
-    - huntingZoneId: 63
-      npcTemplateId: [1202, 1203, 1204]
-      menus:
-        - { type: Merchant, id: 192 }
-    - huntingZoneId: 63
-      npcTemplateId: [1222, 1223, 1224]
-      menus:
-        - { type: Merchant, id: 193 }
+  delete:
+    # weapon designs, store 190
+    - { huntingZoneId: 63, npcTemplateId: 1195 }
+    - { huntingZoneId: 63, npcTemplateId: 1196 }
+    - { huntingZoneId: 63, npcTemplateId: 1197 }
+    # armor designs, stores 191, 192, 193
+    - { huntingZoneId: 63, npcTemplateId: 1198 }
+    - { huntingZoneId: 63, npcTemplateId: 1199 }
+    - { huntingZoneId: 63, npcTemplateId: 1200 }
+    - { huntingZoneId: 63, npcTemplateId: 1202 }
+    - { huntingZoneId: 63, npcTemplateId: 1203 }
+    - { huntingZoneId: 63, npcTemplateId: 1204 }
+    - { huntingZoneId: 63, npcTemplateId: 1222 }
+    - { huntingZoneId: 63, npcTemplateId: 1223 }
+    - { huntingZoneId: 63, npcTemplateId: 1224 }
+    # glyph designs, store 196
+    - { huntingZoneId: 63, npcTemplateId: 1214 }
+    # alchemy designs, store 195
+    - { huntingZoneId: 63, npcTemplateId: 1215 }
+    - { huntingZoneId: 63, npcTemplateId: 1254 }
