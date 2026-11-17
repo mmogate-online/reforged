@@ -1,0 +1,56 @@
+# Berlon's first two brewing quests ask for what the recipes now make: the healing and mana
+# designs brew the Major grade, so the batch delivered is five Major potions. Berlon still
+# rewards two of the town's ordinary potions.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  update:
+    - id: 1354
+      changes:
+        tasks:
+          - taskId: 1
+            type: DeliverItemTask
+            nextTaskId: 0
+            hasReward: true
+            journalScript: 2
+            journalText: "@quest:1354005"
+            journalText2: "@quest:1354006"
+            body:
+              itemId: 6001
+              itemCount: 5
+              targetNpc: { huntingZone: 64, templateId: 1011 }
+              completionDialogue: 3
+              incompleteDialogue: 4
+              completionButtonText: "@quest:1354004"
+    - id: 1356
+      changes:
+        tasks:
+          - taskId: 1
+            type: DeliverItemTask
+            nextTaskId: 0
+            hasReward: true
+            journalScript: 2
+            journalText: "@quest:1356005"
+            journalText2: "@quest:1356006"
+            body:
+              itemId: 6017
+              itemCount: 5
+              targetNpc: { huntingZone: 64, templateId: 1011 }
+              completionDialogue: 3
+              incompleteDialogue: 4
+              completionButtonText: "@quest:1356004"
+
+questStrings:
+  update:
+    - id: 1354005
+      changes: { string: "Craft Major Healing Potion I: open My Character, then Craft." }
+    - id: 1354006
+      changes: { string: "Deliver 5 Major Healing Potion I to {@LinkCreature:64#1011#Berlon} at the Tower Base." }
+    - id: 1356005
+      changes: { string: "Craft Major Mana Potion I: open My Character, then Craft." }
+    - id: 1356006
+      changes: { string: "Deliver 5 Major Mana Potion I to {@LinkCreature:64#1011#Berlon} at the Tower Base." }

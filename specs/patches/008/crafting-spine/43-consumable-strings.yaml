@@ -1,0 +1,73 @@
+# Classic consumables, tooltips: the classic text of every tier I to III potion, elixir,
+# draught and restorative, both grades, and of the tier I scrolls, bursts, Eclipse, Dash and
+# Heart, in place of the retirement notice. Names do not change.
+# Trap: the client renders $hpDiff as 0 in an item tooltip, while $mpDiff resolves. The
+# healing potions and draughts therefore state their heal as a number, which must match the
+# HpDiff of the item skill each one links to.
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    - { id: 6000, changes: { toolTip: "Immediately recovers 2110 HP." } }  # Healing Potion I
+    - { id: 6001, changes: { toolTip: "Immediately recovers 2360 HP." } }  # Major Healing Potion I
+    - { id: 6002, changes: { toolTip: "Immediately recovers 2540 HP." } }  # Healing Potion II
+    - { id: 6003, changes: { toolTip: "Immediately recovers 2840 HP." } }  # Major Healing Potion II
+    - { id: 6004, changes: { toolTip: "Immediately recovers 3220 HP." } }  # Healing Potion III
+    - { id: 6005, changes: { toolTip: "Immediately recovers 3590 HP." } }  # Major Healing Potion III
+    - { id: 6018, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Mana Potion II
+    - { id: 6019, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Major Mana Potion II
+    - { id: 6020, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Mana Potion III
+    - { id: 6021, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Major Mana Potion III
+    - { id: 6048, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Healing Elixir I
+    - { id: 6049, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Major Healing Elixir I
+    - { id: 6050, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Healing Elixir II
+    - { id: 6051, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Major Healing Elixir II
+    - { id: 6052, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Healing Elixir III
+    - { id: 6053, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Major Healing Elixir III
+    - { id: 6064, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Mana Elixir I
+    - { id: 6065, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Major Mana Elixir I
+    - { id: 6066, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Mana Elixir II
+    - { id: 6067, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Major Mana Elixir II
+    - { id: 6068, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Mana Elixir III
+    - { id: 6069, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Major Mana Elixir III
+    - { id: 6096, changes: { toolTip: "Immediately recovers 4230 HP." } }  # Healing Draught I
+    - { id: 6097, changes: { toolTip: "Immediately recovers 4720 HP." } }  # Major Healing Draught I
+    - { id: 6098, changes: { toolTip: "Immediately recovers 5090 HP." } }  # Healing Draught II
+    - { id: 6099, changes: { toolTip: "Immediately recovers 5670 HP." } }  # Major Healing Draught II
+    - { id: 6100, changes: { toolTip: "Immediately recovers 6440 HP." } }  # Healing Draught III
+    - { id: 6101, changes: { toolTip: "Immediately recovers 7170 HP." } }  # Major Healing Draught III
+    - { id: 6112, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Mana Draught I
+    - { id: 6113, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Major Mana Draught I
+    - { id: 6114, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Mana Draught II
+    - { id: 6115, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Major Mana Draught II
+    - { id: 6116, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Mana Draught III
+    - { id: 6117, changes: { toolTip: "Immediately replenishes $mpDiff MP." } }  # Major Mana Draught III
+    - { id: 6144, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Health Restorative I
+    - { id: 6145, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Major Health Restorative I
+    - { id: 6146, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Health Restorative II
+    - { id: 6147, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Major Health Restorative II
+    - { id: 6148, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Health Restorative III
+    - { id: 6149, changes: { toolTip: "Recovers $value HP every $tickInterval for $time." } }  # Major Health Restorative III
+    - { id: 6160, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Mana Restorative I
+    - { id: 6161, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Major Mana Restorative I
+    - { id: 6162, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Mana Restorative II
+    - { id: 6163, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Major Mana Restorative II
+    - { id: 6164, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Mana Restorative III
+    - { id: 6165, changes: { toolTip: "Replenishes $value MP every $tickInterval for $time." } }  # Major Mana Restorative III
+    - { id: 6192, changes: { toolTip: "Increases Crit Factor by $value for $time. This item's effect does not stack with that of the other onslaught scrolls." } }  # Onslaught Scroll: Crit Factor I
+    - { id: 6202, changes: { toolTip: "Increases Impact Factor by $value for $time. This item's effect does not stack with that of the other onslaught scrolls." } }  # Onslaught Scroll: Impact Factor I
+    - { id: 6207, changes: { toolTip: "Increases Attack Speed by $value for $time. This item's effect does not stack with that of the other onslaught scrolls." } }  # Onslaught Scroll: Attack Speed I
+    - { id: 6217, changes: { toolTip: "Absorbs $value damage for $time. Immune to knockdown and stagger while in effect. Ends when maximum damage is reached regardless of effect time." } }  # Warding Scroll I
+    - { id: 6222, changes: { toolTip: "Increases resistance to weakening effects by $value for $time. Up to three different resistance effects can be active at one time." } }  # Curative Scroll I
+    - { id: 6227, changes: { toolTip: "Increases resistance to stun by $value for $time. Up to three different resistance effects can be active at one time." } }  # Scroll of Tenacity I
+    - { id: 6232, changes: { toolTip: "Increases resistance to periodic damage by $value for $time. Up to three different resistance effects can be active at one time." } }  # Caduceus Scroll I
+    - { id: 6237, changes: { toolTip: "Increases resistance to weakening effects by $value for $time. Up to three different resistance effects can be active at one time. A burst effect replaces a scroll effect of the same type." } }  # Curative Burst I
+    - { id: 6242, changes: { toolTip: "Increases resistance to stun by $value for $time. Up to three different resistance effects can be active at one time. A burst effect replaces a scroll effect of the same type." } }  # Burst of Tenacity I
+    - { id: 6247, changes: { toolTip: "Increases resistance to periodic damage by $value for $time. Up to three different resistance effects can be active at one time. A burst effect replaces a scroll effect of the same type." } }  # Caduceus Burst I
+    - { id: 6252, changes: { toolTip: "Increases Movement Speed by $value for $time." } }  # Scroll of Dash I
+    - { id: 6255, changes: { toolTip: "Increases HP recovery from healing skills by $value for $time." } }  # Heart Potion I
+    - { id: 6263, changes: { toolTip: "Decreases aggro by $value for $time." } }  # Eclipse Potion I

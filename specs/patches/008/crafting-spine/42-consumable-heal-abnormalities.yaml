@@ -1,0 +1,107 @@
+# Classic consumables, heals over time: each elixir and restorative tick restores the classic
+# share of health or mana at its tier level, scaled like the instant heals. An effect list is
+# replaced whole on update, so each row restates every attribute it carries.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+abnormalities:
+  update:
+    - id: 2500  # Healing Elixir I
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "204", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom09 }
+    - id: 2515  # Major Healing Elixir I
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "275", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom10 }
+    - id: 2501  # Healing Elixir II
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "246", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom09 }
+    - id: 2516  # Major Healing Elixir II
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "331", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom10 }
+    - id: 2502  # Healing Elixir III
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "314", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom09 }
+    - id: 2517  # Major Healing Elixir III
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "419", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom10 }
+    - id: 2530  # Mana Elixir I
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "143", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2545  # Major Mana Elixir I
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "180", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2531  # Mana Elixir II
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "164", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2546  # Major Mana Elixir II
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "205", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2532  # Mana Elixir III
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "189", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2547  # Major Mana Elixir III
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "235", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2590  # Health Restorative I
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "292", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom13 }
+    - id: 2605  # Major Health Restorative I
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "395", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom14 }
+    - id: 2591  # Health Restorative II
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "353", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom13 }
+    - id: 2606  # Major Health Restorative II
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "473", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom14 }
+    - id: 2592  # Health Restorative III
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "446", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom13 }
+    - id: 2607  # Major Health Restorative III
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "598", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1, effectId: 50015, effectPart: FXBottom14 }
+    - id: 2620  # Mana Restorative I
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "286", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2635  # Major Mana Restorative I
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "363", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2621  # Mana Restorative II
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "325", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2636  # Major Mana Restorative II
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "413", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2622  # Mana Restorative III
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "375", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }
+    - id: 2637  # Major Mana Restorative III
+      changes:
+        effects:
+          - { type: 52, method: 2, value: "473", tickInterval: 1, variation: 0, min: 0, max: 1000000, defenceBonusRate: 1 }

@@ -1,0 +1,52 @@
+# Classic consumables, instant heals: each potion and draught restores the classic share of
+# a character's health or mana at its tier level, counting the gear a character wears there.
+# The heal sits on the item skill's first self area; the mana potions' projectile area is untouched.
+# The healing items' tooltips state these HP values as numbers; a change here changes them too.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  Hp:
+    targetingLists:
+      - targetings:
+          - areas:
+              - effect:
+                  hpDiff:
+                    value: $V
+  Mp:
+    targetingLists:
+      - targetings:
+          - areas:
+              - effect:
+                  mpDiff:
+                    value: $V
+
+commonSkills:
+  update:
+    - { category: Common, id: 60220100, changes: { $extends: Hp, $with: { V: 2110 } } }  # Healing Potion I: 600 -> 2110
+    - { category: Common, id: 60220150, changes: { $extends: Hp, $with: { V: 2360 } } }  # Major Healing Potion I: 670 -> 2360
+    - { category: Common, id: 60220101, changes: { $extends: Hp, $with: { V: 2540 } } }  # Healing Potion II: 930 -> 2540
+    - { category: Common, id: 60220151, changes: { $extends: Hp, $with: { V: 2840 } } }  # Major Healing Potion II: 1037 -> 2840
+    - { category: Common, id: 60220102, changes: { $extends: Hp, $with: { V: 3220 } } }  # Healing Potion III: 1436 -> 3220
+    - { category: Common, id: 60220152, changes: { $extends: Hp, $with: { V: 3590 } } }  # Major Healing Potion III: 1600 -> 3590
+    - { category: Common, id: 60220200, changes: { $extends: Mp, $with: { V: 1370 } } }  # Mana Potion I: 478 -> 1370
+    - { category: Common, id: 60220250, changes: { $extends: Mp, $with: { V: 1450 } } }  # Major Mana Potion I: 506 -> 1450
+    - { category: Common, id: 60220201, changes: { $extends: Mp, $with: { V: 1560 } } }  # Mana Potion II: 534 -> 1560
+    - { category: Common, id: 60220251, changes: { $extends: Mp, $with: { V: 1650 } } }  # Major Mana Potion II: 563 -> 1650
+    - { category: Common, id: 60220202, changes: { $extends: Mp, $with: { V: 1800 } } }  # Mana Potion III: 591 -> 1800
+    - { category: Common, id: 60220252, changes: { $extends: Mp, $with: { V: 1890 } } }  # Major Mana Potion III: 619 -> 1890
+    - { category: Common, id: 60221100, changes: { $extends: Hp, $with: { V: 4230 } } }  # Healing Draught I: 1201 -> 4230
+    - { category: Common, id: 60221150, changes: { $extends: Hp, $with: { V: 4720 } } }  # Major Healing Draught I: 1340 -> 4720
+    - { category: Common, id: 60221101, changes: { $extends: Hp, $with: { V: 5090 } } }  # Healing Draught II: 1860 -> 5090
+    - { category: Common, id: 60221151, changes: { $extends: Hp, $with: { V: 5670 } } }  # Major Healing Draught II: 2074 -> 5670
+    - { category: Common, id: 60221102, changes: { $extends: Hp, $with: { V: 6440 } } }  # Healing Draught III: 2872 -> 6440
+    - { category: Common, id: 60221152, changes: { $extends: Hp, $with: { V: 7170 } } }  # Major Healing Draught III: 3200 -> 7170
+    - { category: Common, id: 60221200, changes: { $extends: Mp, $with: { V: 2730 } } }  # Mana Draught I: 956 -> 2730
+    - { category: Common, id: 60221250, changes: { $extends: Mp, $with: { V: 2900 } } }  # Major Mana Draught I: 1013 -> 2900
+    - { category: Common, id: 60221201, changes: { $extends: Mp, $with: { V: 3130 } } }  # Mana Draught II: 1069 -> 3130
+    - { category: Common, id: 60221251, changes: { $extends: Mp, $with: { V: 3290 } } }  # Major Mana Draught II: 1125 -> 3290
+    - { category: Common, id: 60221202, changes: { $extends: Mp, $with: { V: 3600 } } }  # Mana Draught III: 1181 -> 3600
+    - { category: Common, id: 60221252, changes: { $extends: Mp, $with: { V: 3780 } } }  # Major Mana Draught III: 1238 -> 3780

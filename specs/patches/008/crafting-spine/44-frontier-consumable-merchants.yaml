@@ -1,0 +1,69 @@
+# Classic consumables at the frontier's general goods merchants: the lower grade of every
+# tier I to III potion, elixir, draught and restorative, on a Consumables tab of its own.
+# The Major grades are crafted only. Shop menus are replaced whole, so each menu restates its
+# three existing tabs before the new one.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyLists:
+  upsert:
+    - id: 16092
+      items:
+        - { itemId: 6000, priceRevision: 1 }  # Healing Potion I
+        - { itemId: 6002, priceRevision: 1 }  # Healing Potion II
+        - { itemId: 6004, priceRevision: 1 }  # Healing Potion III
+        - { itemId: 6016, priceRevision: 1 }  # Mana Potion I
+        - { itemId: 6018, priceRevision: 1 }  # Mana Potion II
+        - { itemId: 6020, priceRevision: 1 }  # Mana Potion III
+        - { itemId: 6048, priceRevision: 1 }  # Healing Elixir I
+        - { itemId: 6050, priceRevision: 1 }  # Healing Elixir II
+        - { itemId: 6052, priceRevision: 1 }  # Healing Elixir III
+        - { itemId: 6064, priceRevision: 1 }  # Mana Elixir I
+        - { itemId: 6066, priceRevision: 1 }  # Mana Elixir II
+        - { itemId: 6068, priceRevision: 1 }  # Mana Elixir III
+        - { itemId: 6096, priceRevision: 1 }  # Healing Draught I
+        - { itemId: 6098, priceRevision: 1 }  # Healing Draught II
+        - { itemId: 6100, priceRevision: 1 }  # Healing Draught III
+        - { itemId: 6112, priceRevision: 1 }  # Mana Draught I
+        - { itemId: 6114, priceRevision: 1 }  # Mana Draught II
+        - { itemId: 6116, priceRevision: 1 }  # Mana Draught III
+        - { itemId: 6144, priceRevision: 1 }  # Health Restorative I
+        - { itemId: 6146, priceRevision: 1 }  # Health Restorative II
+        - { itemId: 6148, priceRevision: 1 }  # Health Restorative III
+        - { itemId: 6160, priceRevision: 1 }  # Mana Restorative I
+        - { itemId: 6162, priceRevision: 1 }  # Mana Restorative II
+        - { itemId: 6164, priceRevision: 1 }  # Mana Restorative III
+
+buyMenuLists:
+  update:
+    - id: 16059
+      changes:
+        itemLists:
+          - { id: 1601, stringed: 1601 }
+          - { id: 1602, stringed: 1602 }
+          - { id: 16059, stringed: 1604 }
+          - { id: 16092, stringed: 1431 }
+    - id: 16060
+      changes:
+        itemLists:
+          - { id: 1601, stringed: 1601 }
+          - { id: 1602, stringed: 1602 }
+          - { id: 16060, stringed: 1604 }
+          - { id: 16092, stringed: 1431 }
+    - id: 16063
+      changes:
+        itemLists:
+          - { id: 80001, stringed: 80001 }
+          - { id: 1602, stringed: 1602 }
+          - { id: 16063, stringed: 1604 }
+          - { id: 16092, stringed: 1431 }
+    - id: 16087
+      changes:
+        itemLists:
+          - { id: 1601, stringed: 1601 }
+          - { id: 1602, stringed: 1602 }
+          - { id: 16087, stringed: 1604 }
+          - { id: 16092, stringed: 1431 }
