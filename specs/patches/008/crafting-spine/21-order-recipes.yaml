@@ -1,0 +1,40 @@
+# Valkyon Craftworks order recipes: one Trial piece per profession and band, under a Valkyon
+# Craftworks heading in each profession's crafting window. A band 1 recipe pays Crafting Skill
+# from 1 to 100 and a band 50 recipe from 50 to 150, so a crafter always has one that pays.
+#
+# Inputs are one Arcadia gathered material per profession and the profession's apprentice kit,
+# so the route needs no guild standing and no other profession. A craft costs few Production
+# Points and pays proficiency at the same rate per point. The loader refuses a recipe that names
+# a critical result with a zero critical rate. A recipe's id equals the id of its design item.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+artisanCategories:
+  upsertCategories:
+    - id: 6
+      categories:
+        - { id: 3303, pos: 1, stringId: 913303 }
+    - id: 21
+      categories:
+        - { id: 1301, pos: 1, stringId: 911301 }
+    - id: 22
+      categories:
+        - { id: 2301, pos: 1, stringId: 912301 }
+
+artisanStrings:
+  upsert:
+    - { id: 913303, string: "Valkyon Craftworks" }
+    - { id: 911301, string: "Valkyon Craftworks" }
+    - { id: 912301, string: "Valkyon Craftworks" }
+
+itemProduceRecipes:
+  upsert:
+    - { id: 925007, recipeItemId: 925007, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1, exp: 24, categoryId: 3303, subFatiguePoint: 5, addOnSuccessProf: 5, result: { id: 925001, count: 1, criticalItemId: 925001, criticalItemCount: 2 }, materials: [{ id: 1003, count: 5 }, { id: 1616, count: 1 }] }   # Trial Salve
+    - { id: 925008, recipeItemId: 925008, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 50, maxSkillProf: 150, produceCriticalRate: 0.1, exp: 69, categoryId: 3303, subFatiguePoint: 5, addOnSuccessProf: 5, result: { id: 925002, count: 1, criticalItemId: 925002, criticalItemCount: 2 }, materials: [{ id: 1003, count: 5 }, { id: 1616, count: 1 }] }   # Trial Tincture
+    - { id: 925009, recipeItemId: 925009, obtainable: true, needSkillId: 21, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1, exp: 24, categoryId: 1301, subFatiguePoint: 5, addOnSuccessProf: 5, result: { id: 925003, count: 1, criticalItemId: 925003, criticalItemCount: 2 }, materials: [{ id: 1002, count: 5 }, { id: 1621, count: 1 }] }   # Trial Blade Blank
+    - { id: 925010, recipeItemId: 925010, obtainable: true, needSkillId: 21, needGrade: 0, needSkillProf: 50, maxSkillProf: 150, produceCriticalRate: 0.1, exp: 69, categoryId: 1301, subFatiguePoint: 5, addOnSuccessProf: 5, result: { id: 925004, count: 1, criticalItemId: 925004, criticalItemCount: 2 }, materials: [{ id: 1002, count: 5 }, { id: 1621, count: 1 }] }   # Trial Greatsword Blank
+    - { id: 925011, recipeItemId: 925011, obtainable: true, needSkillId: 22, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1, exp: 24, categoryId: 2301, subFatiguePoint: 5, addOnSuccessProf: 5, result: { id: 925005, count: 1, criticalItemId: 925005, criticalItemCount: 2 }, materials: [{ id: 1001, count: 5 }, { id: 1622, count: 1 }] }   # Trial Leather Panel
+    - { id: 925012, recipeItemId: 925012, obtainable: true, needSkillId: 22, needGrade: 0, needSkillProf: 50, maxSkillProf: 150, produceCriticalRate: 0.1, exp: 69, categoryId: 2301, subFatiguePoint: 5, addOnSuccessProf: 5, result: { id: 925006, count: 1, criticalItemId: 925006, criticalItemCount: 2 }, materials: [{ id: 1001, count: 5 }, { id: 1622, count: 1 }] }   # Trial Mail Panel

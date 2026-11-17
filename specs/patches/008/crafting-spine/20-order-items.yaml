@@ -1,0 +1,131 @@
+# Valkyon Craftworks order items: one Trial piece per profession and band, and the design that
+# teaches it. A Trial piece exists only to be handed in for a Requisition, so it is crafted for
+# Crafting Skill, never sold.
+#
+# Both kinds stay with the character that made or earned them: no trade, no bank, no guild bank,
+# no vendor sale, and a price of zero. The loader refuses any bind type on a stackable item, so
+# the lock comes from those flags alone. The designs are paid by the guild's onboarding steps and
+# sold nowhere. A design teaches the recipe whose id equals its own.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _OrderItem:
+    combatItemType: NO_COMBAT
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 0
+    level: 11
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 0
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 1000
+    slotLimit: 0
+    coolTimeGroup: 0
+    itemUseCount: 0
+    maxDropUnit: 1000
+    enchantEnable: false
+    tradable: false
+    boundType: None
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: false
+    guildWarehouseStorable: false
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    dropSilhouette: Item_Drop.SM.Treasurebox_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ItemBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_MetalCue
+    defaultValue: 0
+  _OrderDesign:
+    level: 11
+    rareGrade: 0
+    combatItemType: RECIPE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: false
+    warehouseStorable: false
+    guildWarehouseStorable: false
+    storeSellable: false
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 0
+    sellPrice: 0
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+  _OrderRecipeDesign:
+    $extends: _OrderDesign
+    combatItemSubType: combatRecipe
+    category: recipe
+
+items:
+  upsert:
+    - { $extends: _OrderItem, id: 925001, name: craftworks_trial_salve, icon: Icon_Items.Salve_Tex }
+    - { $extends: _OrderItem, id: 925002, name: craftworks_trial_tincture, icon: Icon_Items.refine_chemical4_Tex }
+    - { $extends: _OrderItem, id: 925003, name: craftworks_trial_blade_blank, icon: Icon_Items.parts_lightweaponB1_Tex }
+    - { $extends: _OrderItem, id: 925004, name: craftworks_trial_greatsword_blank, icon: Icon_Items.parts_heavyweaponB1_Tex }
+    - { $extends: _OrderItem, id: 925005, name: craftworks_trial_leather_panel, icon: Icon_Items.parts_lightarmorB1_Tex }
+    - { $extends: _OrderItem, id: 925006, name: craftworks_trial_mail_panel, icon: Icon_Items.parts_heavyarmorA1_Tex }
+    - { $extends: _OrderRecipeDesign, id: 925007, name: craftworks_design_trial_salve, icon: Icon_Items.scroll_alchemy_salve_Tex }
+    - { $extends: _OrderRecipeDesign, id: 925008, name: craftworks_design_trial_tincture, icon: Icon_Items.scroll_alchemy_potion_Tex }
+    - { $extends: _OrderDesign, id: 925009, name: craftworks_design_trial_blade_blank, icon: Icon_Items.scroll_weapon_metal_Tex }
+    - { $extends: _OrderDesign, id: 925010, name: craftworks_design_trial_greatsword_blank, icon: Icon_Items.scroll_weapon_metal_Tex }
+    - { $extends: _OrderDesign, id: 925011, name: craftworks_design_trial_leather_panel, icon: Icon_Items.scroll_leather_leather_Tex }
+    - { $extends: _OrderDesign, id: 925012, name: craftworks_design_trial_mail_panel, icon: Icon_Items.scroll_mail_metal_Tex }
+
+itemStrings:
+  upsert:
+    - { id: 925001, name: "Trial Salve", toolTip: "A salve made for inspection by Valkyon Craftworks. For a Requisition, deliver it to the mission officer in Lumbertown or Crescentia." }
+    - { id: 925002, name: "Trial Tincture", toolTip: "A tincture made for inspection by Valkyon Craftworks. For a Requisition, deliver it to the mission officer in Lumbertown or Crescentia." }
+    - { id: 925003, name: "Trial Blade Blank", toolTip: "A blade blank made for inspection by Valkyon Craftworks. For a Requisition, deliver it to the mission officer in Lumbertown or Crescentia." }
+    - { id: 925004, name: "Trial Greatsword Blank", toolTip: "A greatsword blank made for inspection by Valkyon Craftworks. For a Requisition, deliver it to the mission officer in Lumbertown or Crescentia." }
+    - { id: 925005, name: "Trial Leather Panel", toolTip: "A leather armor panel made for inspection by Valkyon Craftworks. For a Requisition, deliver it to the mission officer in Lumbertown or Crescentia." }
+    - { id: 925006, name: "Trial Mail Panel", toolTip: "A mail armor panel made for inspection by Valkyon Craftworks. For a Requisition, deliver it to the mission officer in Lumbertown or Crescentia." }
+    - { id: 925007, name: "Recipe: Trial Salve", toolTip: "Use this alchemy recipe to learn the corresponding crafting skill." }
+    - { id: 925008, name: "Recipe: Trial Tincture", toolTip: "Use this alchemy recipe to learn the corresponding crafting skill." }
+    - { id: 925009, name: "Design: Trial Blade Blank", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 925010, name: "Design: Trial Greatsword Blank", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 925011, name: "Design: Trial Leather Panel", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 925012, name: "Design: Trial Mail Panel", toolTip: "Use this design to learn the corresponding crafting skill." }

@@ -1,0 +1,274 @@
+# Valkyon Craftworks onboarding steps: one per profession and band, taken once from the Crafting
+# tab of the chapter house board. Each sends the crafter to the guild supervisor its text names,
+# who pays the design of the band's Trial piece. A band 50 step requires the band 1 step of the
+# same profession.
+#
+# A quest with no giver (the 0,0 start NPC) lists on the board of every hub city; its tab is
+# the assembly category. The board bulletin speaks as nobody, and the visit's closing text is
+# spoken by the supervisor.
+#
+# Trap: the dungeon entry trigger is written as 0 on purpose. The server leaves that field
+# unset when the element is absent, and a leftover non-zero value makes the quest count as
+# dungeon-triggered, so it silently drops off the board.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _onboardingQuest:
+    header:
+      startTaskId: 1
+      linkedQuest: 101
+      recommendedPartySize: 1
+      recommendedLevel: 11
+      questDialogue: 2
+      summaryInfo: 100
+      designersNote: ""
+      questType: Guild
+      repeatType: OneTime
+      cancellable: Allowed
+      assemblyCategory: 2
+      giverNpc: { huntingZone: 0, templateId: 0 }
+      dungeonEntryTrigger: 0
+    requirements:
+      minLevel: 11
+      maxLevel: 70
+  _visitTask:
+    taskId: 1
+    type: VisitTask
+    nextTaskId: 0
+    journalScript: 2
+    hasReward: true
+    body:
+      dialogueId: 3
+      visitCinematicId: 0
+  _boardText:
+    npcZoneId: 0
+    villagerId: 0
+  _aldricText:
+    npcZoneId: 60
+    villagerId: 1103
+  _dharvaText:
+    npcZoneId: 59
+    villagerId: 1103
+
+quests:
+  upsert:
+    # Remedies for the Camps (Alchemy, band 1)
+    - id: 62108
+      $extends: _onboardingQuest
+      header: { questNumber: 62108, questTitle: "@quest:62108001", startPopup: "@quest:62108002", endPopup: "@quest:62108003" }
+      tasks:
+        - $extends: _visitTask
+          journalText: "@quest:62108005"
+          body:
+            npcId: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62108004"
+    # A Stronger Tincture (Alchemy, band 50)
+    - id: 62109
+      $extends: _onboardingQuest
+      header: { questNumber: 62109, questTitle: "@quest:62109001", startPopup: "@quest:62109002", endPopup: "@quest:62109003" }
+      requirements: { prerequisites: [62108] }
+      tasks:
+        - $extends: _visitTask
+          journalText: "@quest:62109005"
+          body:
+            npcId: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62109004"
+    # Arms for Crescentia (Weaponcrafting, band 1)
+    - id: 62110
+      $extends: _onboardingQuest
+      header: { questNumber: 62110, questTitle: "@quest:62110001", startPopup: "@quest:62110002", endPopup: "@quest:62110003" }
+      tasks:
+        - $extends: _visitTask
+          journalText: "@quest:62110005"
+          body:
+            npcId: { huntingZone: 59, templateId: 1103 }
+            completionButtonText: "@quest:62110004"
+    # Blades for the Slayers (Weaponcrafting, band 50)
+    - id: 62111
+      $extends: _onboardingQuest
+      header: { questNumber: 62111, questTitle: "@quest:62111001", startPopup: "@quest:62111002", endPopup: "@quest:62111003" }
+      requirements: { prerequisites: [62110] }
+      tasks:
+        - $extends: _visitTask
+          journalText: "@quest:62111005"
+          body:
+            npcId: { huntingZone: 59, templateId: 1103 }
+            completionButtonText: "@quest:62111004"
+    # Armor for Lumbertown (Armorcrafting, band 1)
+    - id: 62112
+      $extends: _onboardingQuest
+      header: { questNumber: 62112, questTitle: "@quest:62112001", startPopup: "@quest:62112002", endPopup: "@quest:62112003" }
+      tasks:
+        - $extends: _visitTask
+          journalText: "@quest:62112005"
+          body:
+            npcId: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62112004"
+    # Heavier Mail (Armorcrafting, band 50)
+    - id: 62113
+      $extends: _onboardingQuest
+      header: { questNumber: 62113, questTitle: "@quest:62113001", startPopup: "@quest:62113002", endPopup: "@quest:62113003" }
+      requirements: { prerequisites: [62112] }
+      tasks:
+        - $extends: _visitTask
+          journalText: "@quest:62113005"
+          body:
+            npcId: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62113004"
+
+questStrings:
+  upsert:
+    - { id: 62108001, string: "Remedies for the Camps" }
+    - { id: 62108002, string: "Alchemists are needed in Lumbertown." }
+    - { id: 62108003, string: "You can make Trial Salves now." }
+    - { id: 62108004, string: '"I''ll start brewing."' }
+    - { id: 62108005, string: "Report to Aldric in Lumbertown." }
+    - { id: 62109001, string: "A Stronger Tincture" }
+    - { id: 62109002, string: "The Guard needs something stronger." }
+    - { id: 62109003, string: "You can make Trial Tinctures now." }
+    - { id: 62109004, string: '"Harder is fine."' }
+    - { id: 62109005, string: "Report to Aldric in Lumbertown." }
+    - { id: 62110001, string: "Arms for Crescentia" }
+    - { id: 62110002, string: "Weaponcrafters are needed in Crescentia." }
+    - { id: 62110003, string: "You can make Trial Blade Blanks now." }
+    - { id: 62110004, string: '"I''ll start with the blank."' }
+    - { id: 62110005, string: "Report to Dharva in Crescentia." }
+    - { id: 62111001, string: "Blades for the Slayers" }
+    - { id: 62111002, string: "Crescentia needs heavier blades." }
+    - { id: 62111003, string: "You can make Trial Greatsword Blanks now." }
+    - { id: 62111004, string: '"Heavy and true."' }
+    - { id: 62111005, string: "Report to Dharva in Crescentia." }
+    - { id: 62112001, string: "Armor for Lumbertown" }
+    - { id: 62112002, string: "Armorcrafters are needed in Lumbertown." }
+    - { id: 62112003, string: "You can make Trial Leather Panels now." }
+    - { id: 62112004, string: '"Leather first."' }
+    - { id: 62112005, string: "Report to Aldric in Lumbertown." }
+    - { id: 62113001, string: "Heavier Mail" }
+    - { id: 62113002, string: "The Guard needs heavier mail." }
+    - { id: 62113003, string: "You can make Trial Mail Panels now." }
+    - { id: 62113004, string: '"Ring by ring."' }
+    - { id: 62113005, string: "Report to Aldric in Lumbertown." }
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 621
+      id: 8
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Valkyon Craftworks<BR><BR>Lumbertown is short of remedies for the sick and the wounded. Alchemists are needed.<BR><BR>Report to Aldric."
+        - $extends: _aldricText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 4
+              content: "Klaon keeps every sick refugee in this town alive on what he can brew, and it is never enough.<BR><BR>Take this recipe. Make Trial Salves until you know the work, and hand them to the mission officer. Each one is inspected before it goes out."
+    - huntingZoneId: 621
+      id: 9
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Valkyon Craftworks<BR><BR>Salves keep the refugees on their feet. The Arcadia Guard needs something stronger.<BR><BR>Report to Aldric."
+        - $extends: _aldricText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 4
+              content: "Your salves pass. The Arcadia Guard needs a tincture that lasts a whole patrol, not a salve that wears off on the road.<BR><BR>This recipe is harder. Make Trial Tinctures and send them through the mission officer, as before."
+    - huntingZoneId: 621
+      id: 10
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Valkyon Craftworks<BR><BR>Crescentia's defenders are short of weapons. Weaponcrafters are needed.<BR><BR>Report to Dharva."
+        - $extends: _dharvaText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 4
+              content: "Jodoc's young slayers are still waiting for proper blades.<BR><BR>Start with the blank. A flaw in the blank stays in the finished blade. Make Trial Blade Blanks and hand them to the mission officer for inspection."
+    - huntingZoneId: 621
+      id: 11
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Valkyon Craftworks<BR><BR>Crescentia needs heavier blades than a beginner can forge.<BR><BR>Report to Dharva."
+        - $extends: _dharvaText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 4
+              content: "Your blanks pass. Now make one heavy enough for a greatsword, and true enough that it does not bend on a deva's shield.<BR><BR>Make Trial Greatsword Blanks. The mission officer knows where to send them."
+    - huntingZoneId: 621
+      id: 12
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Valkyon Craftworks<BR><BR>Lumbertown's archers and guards are short of armor. Armorcrafters are needed.<BR><BR>Report to Aldric."
+        - $extends: _aldricText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 4
+              content: "Prefect Daven has more archers than armor to put on them.<BR><BR>Leather first. It forgives a beginner's mistakes. Make Trial Leather Panels and hand them to the mission officer for inspection."
+    - huntingZoneId: 621
+      id: 13
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - $extends: _boardText
+          id: 2
+          prevId: 0
+          pages:
+            - social: 5
+              content: "Valkyon Craftworks<BR><BR>The Arcadia Guard needs mail that holds against a centaur's charge.<BR><BR>Report to Aldric."
+        - $extends: _aldricText
+          id: 3
+          prevId: 2
+          pages:
+            - social: 4
+              content: "Your leather passes. Mail is slower work, and a bad ring costs a soldier more than a bad stitch.<BR><BR>Make Trial Mail Panels and send them through the mission officer."
+
+questCompensations:
+  upsert:
+    - { questId: 62108, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 0, itemBag: "allpay", items: [{ templateId: 925007, quantity: 1 }] }] }
+    - { questId: 62109, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 0, itemBag: "allpay", items: [{ templateId: 925008, quantity: 1 }] }] }
+    - { questId: 62110, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 0, itemBag: "allpay", items: [{ templateId: 925009, quantity: 1 }] }] }
+    - { questId: 62111, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 0, itemBag: "allpay", items: [{ templateId: 925010, quantity: 1 }] }] }
+    - { questId: 62112, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 0, itemBag: "allpay", items: [{ templateId: 925011, quantity: 1 }] }] }
+    - { questId: 62113, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 0, itemBag: "allpay", items: [{ templateId: 925012, quantity: 1 }] }] }
