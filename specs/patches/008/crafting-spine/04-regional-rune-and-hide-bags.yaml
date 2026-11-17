@@ -1,0 +1,342 @@
+# Arcadia's field monsters drop the classic crafting inputs often enough for a crafter. Lane gear
+# takes Paverune of Shara or Arun and a refined material, and leather takes its hide, so every
+# ordinary monster of a level band reaches one floor rate: monsters of levels 11 to 16 drop a
+# rune on a quarter of their kills and Dawnhide on a third, monsters of levels 17 to 22 a rune on
+# about a sixth and Dawnhide on close to half. A monster already above a floor keeps its rate.
+#
+# The vanilla bags stay as they are. Each monster below the floor gains a second bag holding the
+# difference, since two bags rolled on one kill add their rates. This spec adds the bags; the next
+# fills them, because a bag must exist before an item is selected into it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: [22, 56]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1336 }
+    - huntingZoneId: 2
+      npcTemplateId: [5]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1423 }
+    - huntingZoneId: 2
+      npcTemplateId: [4, 13]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1502 }
+    - huntingZoneId: 2
+      npcTemplateId: [7, 34, 57]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1618 }
+    - huntingZoneId: 2
+      npcTemplateId: [6, 10, 32]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.169 }
+    - huntingZoneId: 2
+      npcTemplateId: [203]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.175 }
+    - huntingZoneId: 2
+      npcTemplateId: [3]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1803 }
+    - huntingZoneId: 2
+      npcTemplateId: [259]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.2109 }
+    - huntingZoneId: 2
+      npcTemplateId: [209, 210]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.2165 }
+    - huntingZoneId: 3
+      npcTemplateId: [9]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.017 }
+    - huntingZoneId: 3
+      npcTemplateId: [14, 15, 20]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0288 }
+    - huntingZoneId: 3
+      npcTemplateId: [300611]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0707 }
+    - huntingZoneId: 3
+      npcTemplateId: [300141]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0969 }
+    - huntingZoneId: 3
+      npcTemplateId: [18]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1134 }
+    - huntingZoneId: 3
+      npcTemplateId: [2, 17, 19]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1241 }
+    - huntingZoneId: 3
+      npcTemplateId: [12, 13, 300160]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1815 }
+    - huntingZoneId: 3
+      npcTemplateId: [23, 300140, 300161]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1868 }
+    - huntingZoneId: 3
+      npcTemplateId: [300142]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1917 }
+    - huntingZoneId: 5
+      npcTemplateId: [1]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0335 }
+    - huntingZoneId: 6
+      npcTemplateId: [2021, 2041]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.004 }
+    - huntingZoneId: 6
+      npcTemplateId: [1021, 2011, 2031, 2051, 2061, 7051]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.017 }
+    - huntingZoneId: 6
+      npcTemplateId: [5001, 5002]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0455 }
+    - huntingZoneId: 6
+      npcTemplateId: [2082, 3031, 3032, 3041, 3042]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0773 }
+    - huntingZoneId: 6
+      npcTemplateId: [2081]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.0845 }
+    - huntingZoneId: 6
+      npcTemplateId: [1032, 1042, 1052, 1062, 1091]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.091 }
+    - huntingZoneId: 6
+      npcTemplateId: [7031]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1012 }
+    - huntingZoneId: 6
+      npcTemplateId: [7032, 7033]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1065 }
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1071, 1081]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1134 }
+    - huntingZoneId: 6
+      npcTemplateId: [1031, 1041, 1051, 1061]
+      changes:
+        addItemBags:
+          - { id: 110, bagName: "Regional Runes", probability: 0.1815 }
+    - huntingZoneId: 2
+      npcTemplateId: [507, 510]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.2937 }
+    - huntingZoneId: 2
+      npcTemplateId: [22, 56]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3063 }
+    - huntingZoneId: 2
+      npcTemplateId: [5]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.309 }
+    - huntingZoneId: 2
+      npcTemplateId: [4, 13]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3114 }
+    - huntingZoneId: 2
+      npcTemplateId: [7, 34, 57]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3149 }
+    - huntingZoneId: 2
+      npcTemplateId: [6, 10, 32]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3213 }
+    - huntingZoneId: 2
+      npcTemplateId: [203]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3228 }
+    - huntingZoneId: 2
+      npcTemplateId: [3]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3242 }
+    - huntingZoneId: 2
+      npcTemplateId: [259]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.33 }
+    - huntingZoneId: 2
+      npcTemplateId: [209, 210]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3317 }
+    - huntingZoneId: 3
+      npcTemplateId: [18]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3 }
+    - huntingZoneId: 3
+      npcTemplateId: [2, 17, 19]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3033 }
+    - huntingZoneId: 3
+      npcTemplateId: [12, 13, 300160]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.321 }
+    - huntingZoneId: 3
+      npcTemplateId: [23, 300140, 300161]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3226 }
+    - huntingZoneId: 3
+      npcTemplateId: [300142]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3241 }
+    - huntingZoneId: 3
+      npcTemplateId: [21]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3951 }
+    - huntingZoneId: 3
+      npcTemplateId: [3]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3981 }
+    - huntingZoneId: 3
+      npcTemplateId: [9]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4065 }
+    - huntingZoneId: 3
+      npcTemplateId: [14, 15, 20]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4101 }
+    - huntingZoneId: 3
+      npcTemplateId: [300611]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4278 }
+    - huntingZoneId: 3
+      npcTemplateId: [300141]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4311 }
+    - huntingZoneId: 5
+      npcTemplateId: [13]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3932 }
+    - huntingZoneId: 5
+      npcTemplateId: [14, 15, 16]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3981 }
+    - huntingZoneId: 5
+      npcTemplateId: [1]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4183 }
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1071, 1081]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3 }
+    - huntingZoneId: 6
+      npcTemplateId: [1031, 1041, 1051, 1061]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.321 }
+    - huntingZoneId: 6
+      npcTemplateId: [7041]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3932 }
+    - huntingZoneId: 6
+      npcTemplateId: [3011, 3021]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.3981 }
+    - huntingZoneId: 6
+      npcTemplateId: [2021, 2041]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4025 }
+    - huntingZoneId: 6
+      npcTemplateId: [1021, 2011, 2031, 2051, 2061, 7051]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4065 }
+    - huntingZoneId: 6
+      npcTemplateId: [5001, 5002]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4152 }
+    - huntingZoneId: 6
+      npcTemplateId: [2082, 3031, 3032, 3041, 3042]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.425 }
+    - huntingZoneId: 6
+      npcTemplateId: [2081]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4272 }
+    - huntingZoneId: 6
+      npcTemplateId: [1032, 1042, 1052, 1062, 1091]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4292 }
+    - huntingZoneId: 6
+      npcTemplateId: [7031]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.4324 }
+    - huntingZoneId: 6
+      npcTemplateId: [7032, 7033]
+      changes:
+        addItemBags:
+          - { id: 111, bagName: "Regional Dawnhide", probability: 0.434 }

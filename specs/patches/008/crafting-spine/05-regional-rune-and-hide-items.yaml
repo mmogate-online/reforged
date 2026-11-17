@@ -1,0 +1,75 @@
+# Arcadia's field monsters drop the classic crafting inputs: the items inside the bags the
+# previous spec adds. The rune bag gives Paverune of Shara or Paverune of Arun, one of the two at
+# even odds, as the vanilla rune bag does; the hide bag gives one Dawnhide.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 2
+      npcTemplateId: [3, 4, 5, 6, 7, 10, 13, 22, 32, 34, 56, 57, 203, 209, 210, 259]
+      changes:
+        updateItemBags:
+          - id: 110
+            bagName: "Regional Runes"
+            expect: 1
+            addItems: [{ templateId: 501, name: "Paverune of Shara", min: 1, max: 1, probability: 0.5 }, { templateId: 511, name: "Paverune of Arun", min: 1, max: 1, probability: 0.5 }]
+    - huntingZoneId: 3
+      npcTemplateId: [2, 9, 12, 13, 14, 15, 17, 18, 19, 20, 23, 300140, 300141, 300142, 300160, 300161, 300611]
+      changes:
+        updateItemBags:
+          - id: 110
+            bagName: "Regional Runes"
+            expect: 1
+            addItems: [{ templateId: 501, name: "Paverune of Shara", min: 1, max: 1, probability: 0.5 }, { templateId: 511, name: "Paverune of Arun", min: 1, max: 1, probability: 0.5 }]
+    - huntingZoneId: 5
+      npcTemplateId: [1]
+      changes:
+        updateItemBags:
+          - id: 110
+            bagName: "Regional Runes"
+            expect: 1
+            addItems: [{ templateId: 501, name: "Paverune of Shara", min: 1, max: 1, probability: 0.5 }, { templateId: 511, name: "Paverune of Arun", min: 1, max: 1, probability: 0.5 }]
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1021, 1031, 1032, 1041, 1042, 1051, 1052, 1061, 1062, 1071, 1081, 1091, 2011, 2021, 2031, 2041, 2051, 2061, 2081, 2082, 3031, 3032, 3041, 3042, 5001, 5002, 7031, 7032, 7033, 7051]
+      changes:
+        updateItemBags:
+          - id: 110
+            bagName: "Regional Runes"
+            expect: 1
+            addItems: [{ templateId: 501, name: "Paverune of Shara", min: 1, max: 1, probability: 0.5 }, { templateId: 511, name: "Paverune of Arun", min: 1, max: 1, probability: 0.5 }]
+    - huntingZoneId: 2
+      npcTemplateId: [3, 4, 5, 6, 7, 10, 13, 22, 32, 34, 56, 57, 203, 209, 210, 259, 507, 510]
+      changes:
+        updateItemBags:
+          - id: 111
+            bagName: "Regional Dawnhide"
+            expect: 1
+            addItems: [{ templateId: 1004, name: "Dawnhide", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 3
+      npcTemplateId: [2, 3, 9, 12, 13, 14, 15, 17, 18, 19, 20, 21, 23, 300140, 300141, 300142, 300160, 300161, 300611]
+      changes:
+        updateItemBags:
+          - id: 111
+            bagName: "Regional Dawnhide"
+            expect: 1
+            addItems: [{ templateId: 1004, name: "Dawnhide", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 5
+      npcTemplateId: [1, 13, 14, 15, 16]
+      changes:
+        updateItemBags:
+          - id: 111
+            bagName: "Regional Dawnhide"
+            expect: 1
+            addItems: [{ templateId: 1004, name: "Dawnhide", min: 1, max: 1, probability: 1.0 }]
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1021, 1031, 1032, 1041, 1042, 1051, 1052, 1061, 1062, 1071, 1081, 1091, 2011, 2021, 2031, 2041, 2051, 2061, 2081, 2082, 3011, 3021, 3031, 3032, 3041, 3042, 5001, 5002, 7031, 7032, 7033, 7041, 7051]
+      changes:
+        updateItemBags:
+          - id: 111
+            bagName: "Regional Dawnhide"
+            expect: 1
+            addItems: [{ templateId: 1004, name: "Dawnhide", min: 1, max: 1, probability: 1.0 }]
