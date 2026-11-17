@@ -1,0 +1,132 @@
+# Valkyon Craftworks turn-in items: the crafted goods the guild's dailies ask for, one per
+# profession and band, and the designs that teach them. A turn-in item is used for nothing but a
+# daily, so a crafter who levelled the recipe can sell it to a player who drew the daily.
+#
+# The goods trade freely and are worth nothing to a vendor, so a daily is their only sink. The
+# designs are sold for gold at the guild vendor, behind guild grade 2, and the isReputation flag
+# is what draws them locked below that grade. A design teaches the recipe whose id equals its
+# own.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _TurnInItem:
+    combatItemType: NO_COMBAT
+    combatItemSubType: etc
+    category: etc
+    rank: 0
+    rareGrade: 1
+    level: 11
+    requiredLevel: 1
+    searchable: true
+    conversion: false
+    sortingNumber: 0
+    dropType: 0
+    buyPrice: 0
+    sellPrice: 0
+    divide: 0
+    maxStack: 1000
+    slotLimit: 0
+    coolTimeGroup: 0
+    itemUseCount: 0
+    maxDropUnit: 1000
+    enchantEnable: false
+    tradable: true
+    boundType: None
+    destroyable: true
+    dismantlable: false
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: false
+    obtainable: true
+    relocatable: true
+    artisanable: false
+    unidentifiedItemGrade: 0
+    masterpieceRate: 0
+    linkEquipmentId: 0
+    linkLookInfoId: 0
+    changeLook: false
+    extractLook: false
+    changeColorEnable: false
+    requiredGuildMaster: false
+    requiredEquipmentType: NO_COMBAT
+    linkCrestId: 0
+    linkCustomizingId: 0
+    linkSkillId: 0
+    linkPetAdultId: 0
+    linkPetOrbId: 0
+    dropSilhouette: Item_Drop.SM.Treasurebox_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ItemBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_MetalCue
+    defaultValue: 0
+  _TurnInDesign:
+    level: 11
+    rareGrade: 0
+    combatItemType: RECIPE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 773
+    sellPrice: 77
+    isReputation: true
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+  _TurnInRecipeDesign:
+    $extends: _TurnInDesign
+    combatItemSubType: combatRecipe
+    category: recipe
+
+items:
+  upsert:
+    - { $extends: _TurnInItem, id: 925013, name: craftworks_field_salve_case, icon: Icon_Items.Salve_Of_Fairy_Tex }
+    - { $extends: _TurnInItem, id: 925014, name: craftworks_field_tonic_case, icon: Icon_Items.refine_chemical10_Tex }
+    - { $extends: _TurnInItem, id: 925015, name: craftworks_arrowhead_bundle, icon: Icon_Items.parts_lightweaponC1_Tex }
+    - { $extends: _TurnInItem, id: 925016, name: craftworks_spearhead_bundle, icon: Icon_Items.parts_heavyweaponC5_Tex }
+    - { $extends: _TurnInItem, id: 925017, name: craftworks_mail_ring_bundle, icon: Icon_Items.q_toolchain_Tex }
+    - { $extends: _TurnInItem, id: 925018, name: craftworks_riveted_plate_bundle, icon: Icon_Items.parts_heavyarmorC7_Tex }
+    - { $extends: _TurnInRecipeDesign, id: 925019, name: craftworks_design_field_salve_case, icon: Icon_Items.scroll_alchemy_salve_Tex }
+    - { $extends: _TurnInRecipeDesign, id: 925020, name: craftworks_design_field_tonic_case, icon: Icon_Items.scroll_alchemy_potion_Tex }
+    - { $extends: _TurnInDesign, id: 925021, name: craftworks_design_arrowhead_bundle, icon: Icon_Items.scroll_weapon_metal_Tex }
+    - { $extends: _TurnInDesign, id: 925022, name: craftworks_design_spearhead_bundle, icon: Icon_Items.scroll_weapon_metal_Tex }
+    - { $extends: _TurnInDesign, id: 925023, name: craftworks_design_mail_ring_bundle, icon: Icon_Items.scroll_mail_metal_Tex }
+    - { $extends: _TurnInDesign, id: 925024, name: craftworks_design_riveted_plate_bundle, icon: Icon_Items.scroll_mail_metal_Tex }
+
+itemStrings:
+  upsert:
+    - { id: 925013, name: "Field Salve Case", toolTip: "A sealed case of field salves for the sick and wounded. Wanted by Valkyon Craftworks in Lumbertown." }
+    - { id: 925014, name: "Field Tonic Case", toolTip: "A sealed case of tonics that keep a tired soldier awake. Wanted by Valkyon Craftworks in Crescentia." }
+    - { id: 925015, name: "Arrowhead Bundle", toolTip: "A bundle of forged arrowheads, ready for shafts. Wanted by Valkyon Craftworks in Crescentia." }
+    - { id: 925016, name: "Spearhead Bundle", toolTip: "A bundle of forged spearheads for town guards. Wanted by Valkyon Craftworks in Lumbertown." }
+    - { id: 925017, name: "Mail Ring Bundle", toolTip: "A bundle of riveted rings for mending torn mail. Wanted by Valkyon Craftworks in Lumbertown." }
+    - { id: 925018, name: "Riveted Plate Bundle", toolTip: "A bundle of riveted plates for reinforcing armor. Wanted by Valkyon Craftworks in Crescentia." }
+    - { id: 925019, name: "Recipe: Field Salve Case", toolTip: "Use this alchemy recipe to learn the corresponding crafting skill." }
+    - { id: 925020, name: "Recipe: Field Tonic Case", toolTip: "Use this alchemy recipe to learn the corresponding crafting skill." }
+    - { id: 925021, name: "Design: Arrowhead Bundle", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 925022, name: "Design: Spearhead Bundle", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 925023, name: "Design: Mail Ring Bundle", toolTip: "Use this design to learn the corresponding crafting skill." }
+    - { id: 925024, name: "Design: Riveted Plate Bundle", toolTip: "Use this design to learn the corresponding crafting skill." }

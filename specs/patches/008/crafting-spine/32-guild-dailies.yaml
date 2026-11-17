@@ -1,0 +1,316 @@
+# Valkyon Craftworks dailies: six faction 621 daily quests and the guild's daily pool, two a day
+# at every grade. Each asks for one crafted turn-in item, handed back to the supervisor who gave
+# it; Aldric in Lumbertown and Dharva in Crescentia each give three. Guild standing comes from
+# these dailies alone.
+#
+# A daily is offered only from the pool whose id equals its quest group (the id divided by 100),
+# so every quest here sits in group 621, the guild's own id. A delivery task needs its
+# completion button text, or the world server stops at boot.
+#
+# The server loader refuses the whole pool file, and stops the boot, when a grade's weights do
+# not sum to exactly 100 or its giveCount exceeds the quests it lists. Recount both by hand after
+# any edit to the pool. The pair under questPool is the quest id and its weight, under the names
+# groupId and index.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _dailyHeader:
+    linkedQuest: 101
+    recommendedPartySize: 1
+    recommendedLevel: 11
+    questDialogue: 2
+    startTaskId: 1
+    summaryInfo: 100
+    designersNote: ""
+    questType: Daily
+    repeatType: OneTime
+    cancellable: Allowed
+  _dailyRequirements:
+    minLevel: 11
+    reputation: [621, 1]
+  _deliverTask:
+    taskId: 1
+    type: DeliverItemTask
+    nextTaskId: 0
+    journalScript: 2
+    hasReward: true
+    cinematicId: 0
+    timeLimitSetting: [0, 0]
+    body:
+      itemCount: 1
+      completionDialogue: 3
+      incompleteDialogue: 4
+  _aldricText:
+    npcZoneId: 60
+    villagerId: 1103
+  _dharvaText:
+    npcZoneId: 59
+    villagerId: 1103
+  _guildReward:
+    compensationId: 1
+    type: "normal"
+    exp: 0
+    gold: 43200
+    itemBag: "allpay"
+    npcGuildId: 621
+    reputationExp: 600
+    reputationPoint: 20
+
+quests:
+  upsert:
+    # 1. Salve for the Refugees
+    - id: 62102
+      header:
+        $extends: _dailyHeader
+        questNumber: 62102
+        questTitle: "@quest:62102001"
+        startPopup: "@quest:62102002"
+        endPopup: "@quest:62102003"
+        giverNpc: { huntingZone: 60, templateId: 1103 }
+      requirements: { $extends: _dailyRequirements }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62102005"
+          journalText2: "@quest:62102005"
+          body:
+            itemId: 925013
+            targetNpc: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62102004"
+    # 2. Spears for the Guard
+    - id: 62103
+      header:
+        $extends: _dailyHeader
+        questNumber: 62103
+        questTitle: "@quest:62103001"
+        startPopup: "@quest:62103002"
+        endPopup: "@quest:62103003"
+        giverNpc: { huntingZone: 60, templateId: 1103 }
+      requirements: { $extends: _dailyRequirements }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62103005"
+          journalText2: "@quest:62103005"
+          body:
+            itemId: 925016
+            targetNpc: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62103004"
+    # 3. Mending the Guard's Mail
+    - id: 62104
+      header:
+        $extends: _dailyHeader
+        questNumber: 62104
+        questTitle: "@quest:62104001"
+        startPopup: "@quest:62104002"
+        endPopup: "@quest:62104003"
+        giverNpc: { huntingZone: 60, templateId: 1103 }
+      requirements: { $extends: _dailyRequirements }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62104005"
+          journalText2: "@quest:62104005"
+          body:
+            itemId: 925017
+            targetNpc: { huntingZone: 60, templateId: 1103 }
+            completionButtonText: "@quest:62104004"
+    # 4. Tonic for the Conscripts
+    - id: 62105
+      header:
+        $extends: _dailyHeader
+        questNumber: 62105
+        questTitle: "@quest:62105001"
+        startPopup: "@quest:62105002"
+        endPopup: "@quest:62105003"
+        giverNpc: { huntingZone: 59, templateId: 1103 }
+      requirements: { $extends: _dailyRequirements }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62105005"
+          journalText2: "@quest:62105005"
+          body:
+            itemId: 925014
+            targetNpc: { huntingZone: 59, templateId: 1103 }
+            completionButtonText: "@quest:62105004"
+    # 5. Arrows for the Vigilantes
+    - id: 62106
+      header:
+        $extends: _dailyHeader
+        questNumber: 62106
+        questTitle: "@quest:62106001"
+        startPopup: "@quest:62106002"
+        endPopup: "@quest:62106003"
+        giverNpc: { huntingZone: 59, templateId: 1103 }
+      requirements: { $extends: _dailyRequirements }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62106005"
+          journalText2: "@quest:62106005"
+          body:
+            itemId: 925015
+            targetNpc: { huntingZone: 59, templateId: 1103 }
+            completionButtonText: "@quest:62106004"
+    # 6. Plate for the Tribune
+    - id: 62107
+      header:
+        $extends: _dailyHeader
+        questNumber: 62107
+        questTitle: "@quest:62107001"
+        startPopup: "@quest:62107002"
+        endPopup: "@quest:62107003"
+        giverNpc: { huntingZone: 59, templateId: 1103 }
+      requirements: { $extends: _dailyRequirements }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62107005"
+          journalText2: "@quest:62107005"
+          body:
+            itemId: 925018
+            targetNpc: { huntingZone: 59, templateId: 1103 }
+            completionButtonText: "@quest:62107004"
+
+questStrings:
+  upsert:
+    - { id: 62102001, string: "Salve for the Refugees" }
+    - { id: 62102002, string: "Klaon's shelves are empty again." }
+    - { id: 62102003, string: "The shelves are stocked for another day." }
+    - { id: 62102004, string: '"The cases are here."' }
+    - { id: 62102005, string: "Deliver Field Salve Cases to Aldric in Lumbertown." }
+    - { id: 62103001, string: "Spears for the Guard" }
+    - { id: 62103002, string: "Arm the Arcadia Guard." }
+    - { id: 62103003, string: "The Guard is armed for another day." }
+    - { id: 62103004, string: '"Here are the spearheads."' }
+    - { id: 62103005, string: "Deliver Spearhead Bundles to Aldric in Lumbertown." }
+    - { id: 62104001, string: "Mending the Guard's Mail" }
+    - { id: 62104002, string: "Torn mail is not armor." }
+    - { id: 62104003, string: "The guards can mend their mail." }
+    - { id: 62104004, string: '"Here are the rings."' }
+    - { id: 62104005, string: "Deliver Mail Ring Bundles to Aldric in Lumbertown." }
+    - { id: 62105001, string: "Tonic for the Conscripts" }
+    - { id: 62105002, string: "The conscripts stand watch all night." }
+    - { id: 62105003, string: "The conscripts have tonic for tonight." }
+    - { id: 62105004, string: '"Here is the tonic."' }
+    - { id: 62105005, string: "Deliver Field Tonic Cases to Dharva in Crescentia." }
+    - { id: 62106001, string: "Arrows for the Vigilantes" }
+    - { id: 62106002, string: "Crescentia's vigilantes need more arrows." }
+    - { id: 62106003, string: "Full quivers for another night." }
+    - { id: 62106004, string: '"The arrowheads are here."' }
+    - { id: 62106005, string: "Deliver Arrowhead Bundles to Dharva in Crescentia." }
+    - { id: 62107001, string: "Plate for the Tribune" }
+    - { id: 62107002, string: "Jodoc has more volunteers than armor." }
+    - { id: 62107003, string: "Fitted by morning." }
+    - { id: 62107004, string: '"Here are the plates."' }
+    - { id: 62107005, string: "Deliver Riveted Plate Bundles to Dharva in Crescentia." }
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 621
+      id: 2
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _aldricText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _aldricText, id: 2, prevId: 0, pages: [{ social: 4, content: "Klaon needs more remedies for Lumbertown's sick refugees. His shelves are empty again.<BR><BR>Bring me Field Salve Cases, whether you make them or buy them. They must pass inspection." }] }
+        - { $extends: _aldricText, id: 3, prevId: 2, pages: [{ social: 4, content: "Sealed and sound. These go to Klaon tonight.<BR><BR>Valkyon Craftworks thanks you." }] }
+        - { $extends: _aldricText, id: 4, pages: [{ social: 0, content: "No cases yet? You can make Field Salve Cases or buy them from another crafter." }] }
+    - huntingZoneId: 621
+      id: 3
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _aldricText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _aldricText, id: 2, prevId: 0, pages: [{ social: 4, content: "Jaram says the army requisitions the axe heads. The Arcadia Guard still needs spears to protect Lumbertown.<BR><BR>Bring me Spearhead Bundles for the town's guards." }] }
+        - { $extends: _aldricText, id: 3, prevId: 2, pages: [{ social: 4, content: "Good steel. These go to the Guard tonight.<BR><BR>Valkyon Craftworks thanks you." }] }
+        - { $extends: _aldricText, id: 4, pages: [{ social: 0, content: "A guard cannot hold a street with a broken spear. Bring the bundles." }] }
+    - huntingZoneId: 621
+      id: 4
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _aldricText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _aldricText, id: 2, prevId: 0, pages: [{ social: 4, content: "The Arcadia Guard needs to repair damaged mail. Replacement armor is scarce.<BR><BR>Bring me Mail Ring Bundles so the guards can mend their armor." }] }
+        - { $extends: _aldricText, id: 3, prevId: 2, pages: [{ social: 4, content: "These rings are well made. The guards can use them to mend their mail.<BR><BR>Valkyon Craftworks thanks you." }] }
+        - { $extends: _aldricText, id: 4, pages: [{ social: 0, content: "Still no rings? The patrols go out either way." }] }
+    - huntingZoneId: 621
+      id: 5
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _dharvaText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _dharvaText, id: 2, prevId: 0, pages: [{ social: 4, content: "Crescentia's conscripts are tired from the night watch.<BR><BR>Bring me Field Tonic Cases to help them stay awake." }] }
+        - { $extends: _dharvaText, id: 3, prevId: 2, pages: [{ social: 4, content: "These tonics pass inspection. Jodoc will send them to the conscripts.<BR><BR>Valkyon Craftworks thanks you." }] }
+        - { $extends: _dharvaText, id: 4, pages: [{ social: 0, content: "The conscripts still need tonic for the night watch." }] }
+    - huntingZoneId: 621
+      id: 6
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _dharvaText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _dharvaText, id: 2, prevId: 0, pages: [{ social: 4, content: "Caravans near Crescentia are still raided. The vigilantes need more arrows.<BR><BR>Bring me Arrowhead Bundles to supply the town's defenders." }] }
+        - { $extends: _dharvaText, id: 3, prevId: 2, pages: [{ social: 4, content: "These arrowheads are well made. We will fit them to shafts tonight.<BR><BR>Valkyon Craftworks thanks you." }] }
+        - { $extends: _dharvaText, id: 4, pages: [{ social: 0, content: "The vigilantes need more arrows. Bring the arrowheads." }] }
+    - huntingZoneId: 621
+      id: 7
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _dharvaText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _dharvaText, id: 2, prevId: 0, pages: [{ social: 4, content: "Tribune Jodoc has more volunteers than armor.<BR><BR>Bring me Riveted Plate Bundles. We can use the plates to reinforce their armor." }] }
+        - { $extends: _dharvaText, id: 3, prevId: 2, pages: [{ social: 4, content: "These plates are well made. Jodoc will have them fitted by morning.<BR><BR>Valkyon Craftworks thanks you." }] }
+        - { $extends: _dharvaText, id: 4, pages: [{ social: 0, content: "The volunteers still need those plates to reinforce their armor." }] }
+
+questCompensations:
+  upsert:
+    - { questId: 62102, huntingZoneId: 621, compensations: [{ $extends: _guildReward }] }
+    - { questId: 62103, huntingZoneId: 621, compensations: [{ $extends: _guildReward }] }
+    - { questId: 62104, huntingZoneId: 621, compensations: [{ $extends: _guildReward }] }
+    - { questId: 62105, huntingZoneId: 621, compensations: [{ $extends: _guildReward }] }
+    - { questId: 62106, huntingZoneId: 621, compensations: [{ $extends: _guildReward }] }
+    - { questId: 62107, huntingZoneId: 621, compensations: [{ $extends: _guildReward }] }
+
+dailyQuests:
+  upsert:
+    - reputationQuestId: 621
+      name: "@npcguild:621"
+      questGiveMethod: random
+      resetHour: 7
+      resetIntervalDay: 1
+      quests:
+        - grade: 1
+          name: "@reputation:1"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 2
+          name: "@reputation:2"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 3
+          name: "@reputation:3"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 4
+          name: "@reputation:4"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 5
+          name: "@reputation:5"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 6
+          name: "@reputation:6"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 7
+          name: "@reputation:7"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 8
+          name: "@reputation:8"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]
+        - grade: 9
+          name: "@reputation:9"
+          giveCount: 2
+          questPool: [{ groupId: 62102, index: 16 }, { groupId: 62103, index: 17 }, { groupId: 62104, index: 16 }, { groupId: 62105, index: 17 }, { groupId: 62106, index: 17 }, { groupId: 62107, index: 17 }]

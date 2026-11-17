@@ -1,0 +1,22 @@
+# Valkyon Craftworks turn-in recipes: one per turn-in item, under the guild's heading in each
+# profession's crafting window, in the band of its daily. A band 1 recipe pays Crafting Skill
+# from 1 to 100 and a band 50 recipe from 50 to 150, at the rate of every recipe below 150.
+#
+# Inputs are the raw materials Arcadia's monsters and nodes yield beyond what the gear parts
+# need, plus the profession's apprentice kit, so a daily drains that surplus. The loader refuses
+# a recipe that names a critical result with a zero critical rate, so the rate is set and the
+# critical result is the same single item. A recipe's id equals the id of its design item.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemProduceRecipes:
+  upsert:
+    - { id: 925019, recipeItemId: 925019, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1, exp: 120, categoryId: 3303, subFatiguePoint: 25, addOnSuccessProf: 10, result: { id: 925013, count: 1, criticalItemId: 925013, criticalItemCount: 1 }, materials: [{ id: 920287, count: 3 }, { id: 1616, count: 1 }] }   # Field Salve Case
+    - { id: 925020, recipeItemId: 925020, obtainable: true, needSkillId: 6, needGrade: 0, needSkillProf: 50, maxSkillProf: 150, produceCriticalRate: 0.1, exp: 344, categoryId: 3303, subFatiguePoint: 25, addOnSuccessProf: 10, result: { id: 925014, count: 1, criticalItemId: 925014, criticalItemCount: 1 }, materials: [{ id: 920293, count: 3 }, { id: 1616, count: 1 }] }   # Field Tonic Case
+    - { id: 925021, recipeItemId: 925021, obtainable: true, needSkillId: 21, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1, exp: 120, categoryId: 1301, subFatiguePoint: 25, addOnSuccessProf: 10, result: { id: 925015, count: 1, criticalItemId: 925015, criticalItemCount: 1 }, materials: [{ id: 920284, count: 3 }, { id: 1621, count: 1 }] }   # Arrowhead Bundle
+    - { id: 925022, recipeItemId: 925022, obtainable: true, needSkillId: 21, needGrade: 0, needSkillProf: 50, maxSkillProf: 150, produceCriticalRate: 0.1, exp: 344, categoryId: 1301, subFatiguePoint: 25, addOnSuccessProf: 10, result: { id: 925016, count: 1, criticalItemId: 925016, criticalItemCount: 1 }, materials: [{ id: 920284, count: 6 }, { id: 1621, count: 1 }] }   # Spearhead Bundle
+    - { id: 925023, recipeItemId: 925023, obtainable: true, needSkillId: 22, needGrade: 0, needSkillProf: 1, maxSkillProf: 100, produceCriticalRate: 0.1, exp: 120, categoryId: 2301, subFatiguePoint: 25, addOnSuccessProf: 10, result: { id: 925017, count: 1, criticalItemId: 925017, criticalItemCount: 1 }, materials: [{ id: 920284, count: 3 }, { id: 920286, count: 3 }, { id: 1622, count: 1 }] }   # Mail Ring Bundle
+    - { id: 925024, recipeItemId: 925024, obtainable: true, needSkillId: 22, needGrade: 0, needSkillProf: 50, maxSkillProf: 150, produceCriticalRate: 0.1, exp: 344, categoryId: 2301, subFatiguePoint: 25, addOnSuccessProf: 10, result: { id: 925018, count: 1, criticalItemId: 925018, criticalItemCount: 1 }, materials: [{ id: 920284, count: 3 }, { id: 920296, count: 3 }, { id: 1622, count: 1 }] }   # Riveted Plate Bundle
