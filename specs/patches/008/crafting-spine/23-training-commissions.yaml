@@ -1,0 +1,215 @@
+# Valkyon Craftworks Requisitions: one repeatable board quest per Trial piece, each asking for
+# five of them and paying a little gold and no guild standing. Crafting the pieces is what levels
+# the profession. Each opens once its onboarding step is done.
+#
+# A quest with no giver (the 0,0 start NPC) lists on the Crafting tab of every hub city's board,
+# and a delivery to the 0,0 target is taken by any board reward officer, which is why the text
+# names the officer by city and the closing text names no speaker. A repeatable quest returns to
+# the board as soon as it is handed in.
+#
+# Trap: the dungeon entry trigger is written as 0 on purpose. The server leaves that field
+# unset when the element is absent, and a leftover non-zero value makes the quest count as
+# dungeon-triggered, so it silently drops off the board.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  _requisition:
+    header:
+      startTaskId: 1
+      linkedQuest: 101
+      recommendedPartySize: 1
+      recommendedLevel: 11
+      questDialogue: 2
+      summaryInfo: 100
+      designersNote: ""
+      questType: Guild
+      repeatType: Repeatable
+      cancellable: Allowed
+      assemblyCategory: 2
+      giverNpc: { huntingZone: 0, templateId: 0 }
+      dungeonEntryTrigger: 0
+    requirements:
+      minLevel: 11
+      maxLevel: 70
+  _deliverTask:
+    taskId: 1
+    type: DeliverItemTask
+    nextTaskId: 0
+    journalScript: 2
+    hasReward: true
+    cinematicId: 0
+    timeLimitSetting: [0, 0]
+    body:
+      itemCount: 5
+      targetNpc: { huntingZone: 0, templateId: 0 }
+      completionDialogue: 3
+      incompleteDialogue: 4
+  _boardText:
+    npcZoneId: 0
+    villagerId: 0
+
+quests:
+  upsert:
+    # Requisition: Trial Salve
+    - id: 62114
+      $extends: _requisition
+      header: { questNumber: 62114, questTitle: "@quest:62114001", startPopup: "@quest:62114002", endPopup: "@quest:62114003" }
+      requirements: { prerequisites: [62108] }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62114005"
+          journalText2: "@quest:62114005"
+          body: { itemId: 925001, completionButtonText: "@quest:62114004" }
+    # Requisition: Trial Tincture
+    - id: 62115
+      $extends: _requisition
+      header: { questNumber: 62115, questTitle: "@quest:62115001", startPopup: "@quest:62115002", endPopup: "@quest:62115003" }
+      requirements: { prerequisites: [62109] }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62115005"
+          journalText2: "@quest:62115005"
+          body: { itemId: 925002, completionButtonText: "@quest:62115004" }
+    # Requisition: Trial Blade Blank
+    - id: 62116
+      $extends: _requisition
+      header: { questNumber: 62116, questTitle: "@quest:62116001", startPopup: "@quest:62116002", endPopup: "@quest:62116003" }
+      requirements: { prerequisites: [62110] }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62116005"
+          journalText2: "@quest:62116005"
+          body: { itemId: 925003, completionButtonText: "@quest:62116004" }
+    # Requisition: Trial Greatsword Blank
+    - id: 62117
+      $extends: _requisition
+      header: { questNumber: 62117, questTitle: "@quest:62117001", startPopup: "@quest:62117002", endPopup: "@quest:62117003" }
+      requirements: { prerequisites: [62111] }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62117005"
+          journalText2: "@quest:62117005"
+          body: { itemId: 925004, completionButtonText: "@quest:62117004" }
+    # Requisition: Trial Leather Panel
+    - id: 62118
+      $extends: _requisition
+      header: { questNumber: 62118, questTitle: "@quest:62118001", startPopup: "@quest:62118002", endPopup: "@quest:62118003" }
+      requirements: { prerequisites: [62112] }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62118005"
+          journalText2: "@quest:62118005"
+          body: { itemId: 925005, completionButtonText: "@quest:62118004" }
+    # Requisition: Trial Mail Panel
+    - id: 62119
+      $extends: _requisition
+      header: { questNumber: 62119, questTitle: "@quest:62119001", startPopup: "@quest:62119002", endPopup: "@quest:62119003" }
+      requirements: { prerequisites: [62113] }
+      tasks:
+        - $extends: _deliverTask
+          journalText: "@quest:62119005"
+          journalText2: "@quest:62119005"
+          body: { itemId: 925006, completionButtonText: "@quest:62119004" }
+
+questStrings:
+  upsert:
+    - { id: 62114001, string: "Requisition: Trial Salve" }
+    - { id: 62114002, string: "Every piece is inspected." }
+    - { id: 62114003, string: "Sent for inspection." }
+    - { id: 62114004, string: '"Logged."' }
+    - { id: 62114005, string: "Deliver Trial Salves to the mission officer in Lumbertown or Crescentia. (Alchemy, Crafting Skill 1 to 100)" }
+    - { id: 62115001, string: "Requisition: Trial Tincture" }
+    - { id: 62115002, string: "Every piece is inspected." }
+    - { id: 62115003, string: "Sent for inspection." }
+    - { id: 62115004, string: '"Logged."' }
+    - { id: 62115005, string: "Deliver Trial Tinctures to the mission officer in Lumbertown or Crescentia. (Alchemy, Crafting Skill 50 to 150)" }
+    - { id: 62116001, string: "Requisition: Trial Blade Blank" }
+    - { id: 62116002, string: "Every piece is inspected." }
+    - { id: 62116003, string: "Sent for inspection." }
+    - { id: 62116004, string: '"Logged."' }
+    - { id: 62116005, string: "Deliver Trial Blade Blanks to the mission officer in Lumbertown or Crescentia. (Weaponcrafting, Crafting Skill 1 to 100)" }
+    - { id: 62117001, string: "Requisition: Trial Greatsword Blank" }
+    - { id: 62117002, string: "Every piece is inspected." }
+    - { id: 62117003, string: "Sent for inspection." }
+    - { id: 62117004, string: '"Logged."' }
+    - { id: 62117005, string: "Deliver Trial Greatsword Blanks to the mission officer in Lumbertown or Crescentia. (Weaponcrafting, Crafting Skill 50 to 150)" }
+    - { id: 62118001, string: "Requisition: Trial Leather Panel" }
+    - { id: 62118002, string: "Every piece is inspected." }
+    - { id: 62118003, string: "Sent for inspection." }
+    - { id: 62118004, string: '"Logged."' }
+    - { id: 62118005, string: "Deliver Trial Leather Panels to the mission officer in Lumbertown or Crescentia. (Armorcrafting, Crafting Skill 1 to 100)" }
+    - { id: 62119001, string: "Requisition: Trial Mail Panel" }
+    - { id: 62119002, string: "Every piece is inspected." }
+    - { id: 62119003, string: "Sent for inspection." }
+    - { id: 62119004, string: '"Logged."' }
+    - { id: 62119005, string: "Deliver Trial Mail Panels to the mission officer in Lumbertown or Crescentia. (Armorcrafting, Crafting Skill 50 to 150)" }
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 621
+      id: 14
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _boardText, id: 2, prevId: 0, pages: [{ social: 5, content: "Valkyon Craftworks<BR><BR>Trial Salves wanted for inspection. Alchemy, Crafting Skill 1 to 100.<BR><BR>Deliver to the mission officer in Lumbertown or Crescentia." }] }
+        - { $extends: _boardText, id: 3, prevId: 2, pages: [{ social: 5, content: "Logged for inspection. Valkyon Craftworks will take more whenever you have them." }] }
+        - { $extends: _boardText, id: 4, pages: [{ social: 0, content: "Every piece is inspected." }] }
+    - huntingZoneId: 621
+      id: 15
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _boardText, id: 2, prevId: 0, pages: [{ social: 5, content: "Valkyon Craftworks<BR><BR>Trial Tinctures wanted for inspection. Alchemy, Crafting Skill 50 to 150.<BR><BR>Deliver to the mission officer in Lumbertown or Crescentia." }] }
+        - { $extends: _boardText, id: 3, prevId: 2, pages: [{ social: 5, content: "Logged for inspection. Valkyon Craftworks will take more whenever you have them." }] }
+        - { $extends: _boardText, id: 4, pages: [{ social: 0, content: "Every piece is inspected." }] }
+    - huntingZoneId: 621
+      id: 16
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _boardText, id: 2, prevId: 0, pages: [{ social: 5, content: "Valkyon Craftworks<BR><BR>Trial Blade Blanks wanted for inspection. Weaponcrafting, Crafting Skill 1 to 100.<BR><BR>Deliver to the mission officer in Lumbertown or Crescentia." }] }
+        - { $extends: _boardText, id: 3, prevId: 2, pages: [{ social: 5, content: "Logged for inspection. Valkyon Craftworks will take more whenever you have them." }] }
+        - { $extends: _boardText, id: 4, pages: [{ social: 0, content: "Every piece is inspected." }] }
+    - huntingZoneId: 621
+      id: 17
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _boardText, id: 2, prevId: 0, pages: [{ social: 5, content: "Valkyon Craftworks<BR><BR>Trial Greatsword Blanks wanted for inspection. Weaponcrafting, Crafting Skill 50 to 150.<BR><BR>Deliver to the mission officer in Lumbertown or Crescentia." }] }
+        - { $extends: _boardText, id: 3, prevId: 2, pages: [{ social: 5, content: "Logged for inspection. Valkyon Craftworks will take more whenever you have them." }] }
+        - { $extends: _boardText, id: 4, pages: [{ social: 0, content: "Every piece is inspected." }] }
+    - huntingZoneId: 621
+      id: 18
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _boardText, id: 2, prevId: 0, pages: [{ social: 5, content: "Valkyon Craftworks<BR><BR>Trial Leather Panels wanted for inspection. Armorcrafting, Crafting Skill 1 to 100.<BR><BR>Deliver to the mission officer in Lumbertown or Crescentia." }] }
+        - { $extends: _boardText, id: 3, prevId: 2, pages: [{ social: 5, content: "Logged for inspection. Valkyon Craftworks will take more whenever you have them." }] }
+        - { $extends: _boardText, id: 4, pages: [{ social: 0, content: "Every piece is inspected." }] }
+    - huntingZoneId: 621
+      id: 19
+      voiceTypeId: 0
+      texts:
+        - { id: 1, pages: [] }
+        - { $extends: _boardText, id: 100, prevId: 0, pages: [{ social: 0, content: "" }] }
+        - { $extends: _boardText, id: 2, prevId: 0, pages: [{ social: 5, content: "Valkyon Craftworks<BR><BR>Trial Mail Panels wanted for inspection. Armorcrafting, Crafting Skill 50 to 150.<BR><BR>Deliver to the mission officer in Lumbertown or Crescentia." }] }
+        - { $extends: _boardText, id: 3, prevId: 2, pages: [{ social: 5, content: "Logged for inspection. Valkyon Craftworks will take more whenever you have them." }] }
+        - { $extends: _boardText, id: 4, pages: [{ social: 0, content: "Every piece is inspected." }] }
+
+questCompensations:
+  upsert:
+    - { questId: 62114, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 5000, itemBag: "allpay" }] }
+    - { questId: 62115, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 5000, itemBag: "allpay" }] }
+    - { questId: 62116, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 5000, itemBag: "allpay" }] }
+    - { questId: 62117, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 5000, itemBag: "allpay" }] }
+    - { questId: 62118, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 5000, itemBag: "allpay" }] }
+    - { questId: 62119, huntingZoneId: 621, compensations: [{ compensationId: 1, type: "normal", exp: 0, gold: 5000, itemBag: "allpay" }] }
