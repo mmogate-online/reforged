@@ -1,0 +1,198 @@
+# Valkyon Craftworks design vendor: the region's profession designs and the guild's turn-in
+# designs, one tab per profession, every row opening at guild grade 2. A Merchant menu charges
+# gold and only checks the grade. The turn-in designs carry their isReputation flag where they
+# are created, because they do not exist yet when this spec applies.
+#
+# A list gated by a faction needs a ReputationItem row under that faction for every item it
+# sells, or the server refuses to start; a row with grade or points 0 is dropped, so the rows
+# carry points by convention. The isReputation flag draws a row locked below its grade, and it
+# is global: a flagged item is refused below the grade in every store that sells it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyMenuLists:
+  upsert:
+    - id: 922
+      stringId: 922
+      desc: "Valkyon Craftworks Designs"
+      itemLists:
+        - { id: 9221, stringed: 9221 }
+        - { id: 9222, stringed: 9222 }
+        - { id: 9223, stringed: 9223 }
+
+buyLists:
+  upsert:
+    - id: 9221
+      desc: "Alchemy"
+      needPointNpcGuildId: 621
+      items:
+        - { itemId: 91213, priceRevision: 1 }   # Major Healing Potion I
+        - { itemId: 91214, priceRevision: 1 }   # Major Healing Potion II
+        - { itemId: 91215, priceRevision: 1 }   # Major Healing Potion III
+        - { itemId: 91221, priceRevision: 1 }   # Major Mana Potion I
+        - { itemId: 91222, priceRevision: 1 }   # Major Mana Potion II
+        - { itemId: 91223, priceRevision: 1 }   # Major Mana Potion III
+        - { itemId: 91229, priceRevision: 1 }   # Major Healing Elixir I
+        - { itemId: 91230, priceRevision: 1 }   # Major Healing Elixir II
+        - { itemId: 91231, priceRevision: 1 }   # Major Healing Elixir III
+        - { itemId: 91237, priceRevision: 1 }   # Major Mana Elixir I
+        - { itemId: 91238, priceRevision: 1 }   # Major Mana Elixir II
+        - { itemId: 91239, priceRevision: 1 }   # Major Mana Elixir III
+        - { itemId: 91246, priceRevision: 1 }   # Major Healing Draught I
+        - { itemId: 91248, priceRevision: 1 }   # Major Healing Draught II
+        - { itemId: 91250, priceRevision: 1 }   # Major Healing Draught III
+        - { itemId: 91262, priceRevision: 1 }   # Major Mana Draught I
+        - { itemId: 91264, priceRevision: 1 }   # Major Mana Draught II
+        - { itemId: 91266, priceRevision: 1 }   # Major Mana Draught III
+        - { itemId: 91245, priceRevision: 1 }   # Major Health Restorative I
+        - { itemId: 91247, priceRevision: 1 }   # Major Health Restorative II
+        - { itemId: 91249, priceRevision: 1 }   # Major Health Restorative III
+        - { itemId: 91261, priceRevision: 1 }   # Major Mana Restorative I
+        - { itemId: 91263, priceRevision: 1 }   # Major Mana Restorative II
+        - { itemId: 91265, priceRevision: 1 }   # Major Mana Restorative III
+        - { itemId: 91277, priceRevision: 1 }   # Onslaught Scroll: Crit Factor I
+        - { itemId: 91282, priceRevision: 1 }   # Onslaught Scroll: Crit Power I
+        - { itemId: 91287, priceRevision: 1 }   # Onslaught Scroll: Impact Factor I
+        - { itemId: 91292, priceRevision: 1 }   # Onslaught Scroll: Attack Speed I
+        - { itemId: 91297, priceRevision: 1 }   # Warding Scroll I
+        - { itemId: 91302, priceRevision: 1 }   # Curative Scroll I
+        - { itemId: 91307, priceRevision: 1 }   # Scroll of Tenacity I
+        - { itemId: 91312, priceRevision: 1 }   # Caduceus Scroll I
+        - { itemId: 26899, priceRevision: 1 }   # Curative Burst I
+        - { itemId: 26904, priceRevision: 1 }   # Burst of Tenacity I
+        - { itemId: 26909, priceRevision: 1 }   # Caduceus Burst I
+        - { itemId: 91326, priceRevision: 1 }   # Eclipse Potion I
+        - { itemId: 91317, priceRevision: 1 }   # Scroll of Dash I
+        - { itemId: 91320, priceRevision: 1 }   # Heart Potion I
+        - { itemId: 602207, priceRevision: 1 }   # Refined Alkahest
+        - { itemId: 925019, priceRevision: 1 }   # Field Salve Case
+        - { itemId: 925020, priceRevision: 1 }   # Field Tonic Case
+    - id: 9222
+      desc: "Weaponcrafting"
+      needPointNpcGuildId: 621
+      items:
+        - { itemId: 23001, priceRevision: 1 }   # Krysteel Ingot
+        - { itemId: 23004, priceRevision: 1 }   # Deosilex
+        - { itemId: 925021, priceRevision: 1 }   # Arrowhead Bundle
+        - { itemId: 925022, priceRevision: 1 }   # Spearhead Bundle
+    - id: 9223
+      desc: "Armorcrafting"
+      needPointNpcGuildId: 621
+      items:
+        - { itemId: 23002, priceRevision: 1 }   # Verdracloth
+        - { itemId: 23003, priceRevision: 1 }   # Krysteel Ingot (armor)
+        - { itemId: 23005, priceRevision: 1 }   # Zalisleather
+        - { itemId: 925023, priceRevision: 1 }   # Mail Ring Bundle
+        - { itemId: 925024, priceRevision: 1 }   # Riveted Plate Bundle
+
+npcStrings:
+  upsert:
+    - { id: 922, string: "Valkyon Craftworks Designs" }
+    - { id: 9221, string: "Alchemy" }
+    - { id: 9222, string: "Weaponcrafting" }
+    - { id: 9223, string: "Armorcrafting" }
+
+items:
+  update:
+    - { id: 91213, changes: { isReputation: true } }
+    - { id: 91214, changes: { isReputation: true } }
+    - { id: 91215, changes: { isReputation: true } }
+    - { id: 91221, changes: { isReputation: true } }
+    - { id: 91222, changes: { isReputation: true } }
+    - { id: 91223, changes: { isReputation: true } }
+    - { id: 91229, changes: { isReputation: true } }
+    - { id: 91230, changes: { isReputation: true } }
+    - { id: 91231, changes: { isReputation: true } }
+    - { id: 91237, changes: { isReputation: true } }
+    - { id: 91238, changes: { isReputation: true } }
+    - { id: 91239, changes: { isReputation: true } }
+    - { id: 91246, changes: { isReputation: true } }
+    - { id: 91248, changes: { isReputation: true } }
+    - { id: 91250, changes: { isReputation: true } }
+    - { id: 91262, changes: { isReputation: true } }
+    - { id: 91264, changes: { isReputation: true } }
+    - { id: 91266, changes: { isReputation: true } }
+    - { id: 91245, changes: { isReputation: true } }
+    - { id: 91247, changes: { isReputation: true } }
+    - { id: 91249, changes: { isReputation: true } }
+    - { id: 91261, changes: { isReputation: true } }
+    - { id: 91263, changes: { isReputation: true } }
+    - { id: 91265, changes: { isReputation: true } }
+    - { id: 91277, changes: { isReputation: true } }
+    - { id: 91282, changes: { isReputation: true } }
+    - { id: 91287, changes: { isReputation: true } }
+    - { id: 91292, changes: { isReputation: true } }
+    - { id: 91297, changes: { isReputation: true } }
+    - { id: 91302, changes: { isReputation: true } }
+    - { id: 91307, changes: { isReputation: true } }
+    - { id: 91312, changes: { isReputation: true } }
+    - { id: 26899, changes: { isReputation: true } }
+    - { id: 26904, changes: { isReputation: true } }
+    - { id: 26909, changes: { isReputation: true } }
+    - { id: 91326, changes: { isReputation: true } }
+    - { id: 91317, changes: { isReputation: true } }
+    - { id: 91320, changes: { isReputation: true } }
+    - { id: 602207, changes: { isReputation: true } }
+    - { id: 23001, changes: { isReputation: true } }
+    - { id: 23004, changes: { isReputation: true } }
+    - { id: 23002, changes: { isReputation: true } }
+    - { id: 23003, changes: { isReputation: true } }
+    - { id: 23005, changes: { isReputation: true } }
+
+reputationItems:
+  upsert:
+    - npcGuildId: 621
+      items:
+        - { id: 91213, grade: 2, reputationPoint: 1500 }
+        - { id: 91214, grade: 2, reputationPoint: 1500 }
+        - { id: 91215, grade: 2, reputationPoint: 1500 }
+        - { id: 91221, grade: 2, reputationPoint: 1500 }
+        - { id: 91222, grade: 2, reputationPoint: 1500 }
+        - { id: 91223, grade: 2, reputationPoint: 1500 }
+        - { id: 91229, grade: 2, reputationPoint: 1500 }
+        - { id: 91230, grade: 2, reputationPoint: 1500 }
+        - { id: 91231, grade: 2, reputationPoint: 1500 }
+        - { id: 91237, grade: 2, reputationPoint: 1500 }
+        - { id: 91238, grade: 2, reputationPoint: 1500 }
+        - { id: 91239, grade: 2, reputationPoint: 1500 }
+        - { id: 91246, grade: 2, reputationPoint: 1500 }
+        - { id: 91248, grade: 2, reputationPoint: 1500 }
+        - { id: 91250, grade: 2, reputationPoint: 1500 }
+        - { id: 91262, grade: 2, reputationPoint: 1500 }
+        - { id: 91264, grade: 2, reputationPoint: 1500 }
+        - { id: 91266, grade: 2, reputationPoint: 1500 }
+        - { id: 91245, grade: 2, reputationPoint: 1500 }
+        - { id: 91247, grade: 2, reputationPoint: 1500 }
+        - { id: 91249, grade: 2, reputationPoint: 1500 }
+        - { id: 91261, grade: 2, reputationPoint: 1500 }
+        - { id: 91263, grade: 2, reputationPoint: 1500 }
+        - { id: 91265, grade: 2, reputationPoint: 1500 }
+        - { id: 91277, grade: 2, reputationPoint: 1500 }
+        - { id: 91282, grade: 2, reputationPoint: 1500 }
+        - { id: 91287, grade: 2, reputationPoint: 1500 }
+        - { id: 91292, grade: 2, reputationPoint: 1500 }
+        - { id: 91297, grade: 2, reputationPoint: 1500 }
+        - { id: 91302, grade: 2, reputationPoint: 1500 }
+        - { id: 91307, grade: 2, reputationPoint: 1500 }
+        - { id: 91312, grade: 2, reputationPoint: 1500 }
+        - { id: 26899, grade: 2, reputationPoint: 1500 }
+        - { id: 26904, grade: 2, reputationPoint: 1500 }
+        - { id: 26909, grade: 2, reputationPoint: 1500 }
+        - { id: 91326, grade: 2, reputationPoint: 1500 }
+        - { id: 91317, grade: 2, reputationPoint: 1500 }
+        - { id: 91320, grade: 2, reputationPoint: 1500 }
+        - { id: 602207, grade: 2, reputationPoint: 1500 }
+        - { id: 23001, grade: 2, reputationPoint: 1500 }
+        - { id: 23004, grade: 2, reputationPoint: 1500 }
+        - { id: 23002, grade: 2, reputationPoint: 1500 }
+        - { id: 23003, grade: 2, reputationPoint: 1500 }
+        - { id: 23005, grade: 2, reputationPoint: 1500 }
+        - { id: 925019, grade: 2, reputationPoint: 1500 }
+        - { id: 925020, grade: 2, reputationPoint: 1500 }
+        - { id: 925021, grade: 2, reputationPoint: 1500 }
+        - { id: 925022, grade: 2, reputationPoint: 1500 }
+        - { id: 925023, grade: 2, reputationPoint: 1500 }
+        - { id: 925024, grade: 2, reputationPoint: 1500 }

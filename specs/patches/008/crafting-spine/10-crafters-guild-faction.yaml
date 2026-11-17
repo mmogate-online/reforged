@@ -1,0 +1,38 @@
+# Valkyon Craftworks: the crafters' guild, one faction for the whole world.
+#
+# Standing comes from the guild's crafting dailies alone, so the kill list is empty, and with no
+# kill list the realm list has nothing to scope and stays empty too. The faction starts at
+# grade 1 on the shared grade scale. Its quest group heading lets the Daily Quests tab list the
+# guild's dailies.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+npcGuilds:
+  upsert:
+    - id: 621
+      stringId: 621
+      groupId: 3
+      reputationId: 1
+      startGrade: 1
+      maxPoint: 3000
+      resetReputationPoint: false
+      realms: []
+      targets: []
+      appearCondition:
+        requiredLevel: { value: 11 }
+
+npcGuildStrings:
+  upsert:
+    - id: 621
+      string: "Valkyon Craftworks"
+      toolTip: "A standing guild of federation crafters who make the weapons, armor, and remedies the camps lack."
+
+questHuntingZones:
+  upsert:
+    - id: 621
+      name: "Valkyon Craftworks"
+      step: 99
+      kind: "solo"
