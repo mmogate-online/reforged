@@ -1,0 +1,50 @@
+# Journal markers for the work objects that Oblivion Woods and Valley of Titans quests ask the
+# player to use. The client resolves the journal and dialog link of an ObjectAction task through
+# StrSheet_WorkObjectLoc, one row per work object template. A template that is placed and gated
+# but has no row here can still be used, but its link points nowhere.
+#
+# provenance: ported-from-v31
+
+spec:
+  version: "1.0"
+  schema: v92
+
+workObjectLocStrings:
+  upsert:
+    # Quest 332 task 1, A Duty Most Grave.
+    - templateId: 3
+      continent: 7001
+      markers:
+        - [102837, 19338, 3171]
+
+    # Quest 302 task 7, Pulling Back the Veil: the Stealth Menhir.
+    - templateId: 32
+      continent: 7001
+      markers:
+        - [119515, 8093, 2765]
+
+    # Quest 602 task 4.
+    - templateId: 33
+      continent: 7001
+      markers:
+        - [65742, 32304, 3770]
+        - [69784, 30496, 3866]
+        - [68108, 29426, 3770]
+        - [65887, 31060, 3743]
+        - [68738, 31421, 3859]
+        - [71232, 27690, 3734]
+        - [68366, 33361, 4058]
+        - [72633, 28724, 3729]
+        - [70311, 28161, 3770]
+        - [71402, 27867, 3727]
+        - [67423, 32220, 3835]
+        - [68320, 29641, 3770]
+        - [67297, 29741, 3770]
+        - [67553, 34192, 4140]
+        - [70652, 31034, 3962]
+
+    # Quest 604 task 2.
+    - templateId: 34
+      continent: 7001
+      markers:
+        - [49275, 18800, 2734]
