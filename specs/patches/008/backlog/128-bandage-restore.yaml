@@ -1,0 +1,99 @@
+# Bandages: usable again, out of combat only, and healing more than a potion for that limit.
+# Vanilla retires them as non combat items with an unusable tooltip; a disposable item type
+# brings them back. Every bandage effect, Medicated included, is cancelled when combat starts.
+# A plain bandage heals 1.5 times the common Healing Potion of its tier and a Medicated one
+# twice the Major potion, over the classic durations. Each effect's max equals its tick value
+# times the duration in seconds plus one, the shape every bandage row already has.
+# An effect list is replaced whole on update, so each row restates every attribute it carries.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  update:
+    - { id: 125, changes: { combatItemType: DISPOSAL } }  # Keener's Bandage
+    - { id: 126, changes: { combatItemType: DISPOSAL } }  # Verdra Bandage
+    - { id: 127, changes: { combatItemType: DISPOSAL } }  # Sylva Bandage
+    - { id: 128, changes: { combatItemType: DISPOSAL } }  # Shetla Bandage
+    - { id: 7154, changes: { combatItemType: DISPOSAL } }  # Toira Bandage
+    - { id: 7155, changes: { combatItemType: DISPOSAL } }  # Luria Bandage
+    - { id: 172, changes: { combatItemType: DISPOSAL } }  # Keener's Medicated Bandage
+    - { id: 173, changes: { combatItemType: DISPOSAL } }  # Verdra Medicated Bandage
+    - { id: 174, changes: { combatItemType: DISPOSAL } }  # Sylva Medicated Bandage
+    - { id: 175, changes: { combatItemType: DISPOSAL } }  # Shetla Medicated Bandage
+    - { id: 176, changes: { combatItemType: DISPOSAL } }  # Toira Medicated Bandage
+    - { id: 177, changes: { combatItemType: DISPOSAL } }  # Luria Medicated Bandage
+
+itemStrings:
+  update:
+    - { id: 125, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Keener's Bandage
+    - { id: 126, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Verdra Bandage
+    - { id: 127, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Sylva Bandage
+    - { id: 128, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Shetla Bandage
+    - { id: 7154, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Toira Bandage
+    - { id: 7155, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Luria Bandage
+    - { id: 172, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Keener's Medicated Bandage
+    - { id: 173, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Verdra Medicated Bandage
+    - { id: 174, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Sylva Medicated Bandage
+    - { id: 175, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Shetla Medicated Bandage
+    - { id: 176, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Toira Medicated Bandage
+    - { id: 177, changes: { toolTip: "Recovers $value HP every $tickinterval for $time. Cannot be used during combat, and entering combat will immediately halt the effect." } }  # Luria Medicated Bandage
+
+abnormalities:
+  update:
+    - id: 1450  # Keener's Bandage
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "288", tickInterval: 1, variation: 0, min: 0, max: 3168, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom02 }
+    - id: 1451  # Verdra Bandage
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "346", tickInterval: 1, variation: 0, min: 0, max: 3806, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom02 }
+    - id: 1452  # Sylva Bandage
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "439", tickInterval: 1, variation: 0, min: 0, max: 4829, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom02 }
+    - id: 1453  # Shetla Bandage
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "464", tickInterval: 1, variation: 0, min: 0, max: 5104, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom02 }
+    - id: 1454  # Toira Bandage
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "713", tickInterval: 1, variation: 0, min: 0, max: 7843, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom02 }
+    - id: 1455  # Luria Bandage
+      changes:
+        effects:
+          - { type: 51, method: 2, value: "1725", tickInterval: 1, variation: 0, min: 0, max: 18975, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom02 }
+    - id: 1440  # Keener's Medicated Bandage
+      changes:
+        cancelCondition: "4"
+        effects:
+          - { type: 51, method: 2, value: "295", tickInterval: 1, variation: 0, min: 0, max: 4720, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom01 }
+    - id: 1441  # Verdra Medicated Bandage
+      changes:
+        cancelCondition: "4"
+        effects:
+          - { type: 51, method: 2, value: "355", tickInterval: 1, variation: 0, min: 0, max: 5680, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom01 }
+    - id: 1442  # Sylva Medicated Bandage
+      changes:
+        cancelCondition: "4"
+        effects:
+          - { type: 51, method: 2, value: "449", tickInterval: 1, variation: 0, min: 0, max: 7184, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom01 }
+    - id: 1443  # Shetla Medicated Bandage
+      changes:
+        cancelCondition: "4"
+        effects:
+          - { type: 51, method: 2, value: "474", tickInterval: 1, variation: 0, min: 0, max: 7584, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom01 }
+    - id: 1444  # Toira Medicated Bandage
+      changes:
+        cancelCondition: "4"
+        effects:
+          - { type: 51, method: 2, value: "728", tickInterval: 1, variation: 0, min: 0, max: 11648, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom01 }
+    - id: 1445  # Luria Medicated Bandage
+      changes:
+        cancelCondition: "4"
+        effects:
+          - { type: 51, method: 2, value: "1770", tickInterval: 1, variation: 0, min: 0, max: 28320, defenceBonusRate: 1, effectId: 3169, effectPart: FXBottom01 }
