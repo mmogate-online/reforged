@@ -1,0 +1,45 @@
+# The low-level crystal merchants' weapon tab gains the Common Wrathful and Spiteful crystals
+# at the two tiers it already sells. A gold shop takes its price from the item itself, and
+# these crystals already carry the price of their tier. Higher grades are left to other
+# sources. Shop item lists are replace-all, so the tab is restated whole, each new crystal
+# beside its tier.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyLists:
+  update:
+    - id: 1001
+      changes:
+        items:
+          - itemId: 8100
+            priceRevision: 1
+          - itemId: 8114
+            priceRevision: 1
+          - itemId: 8368
+            priceRevision: 1
+          - itemId: 8380
+            priceRevision: 1
+          - itemId: 8566
+            priceRevision: 1
+          - itemId: 8142   # Wrathful Rhomb
+            priceRevision: 1
+          - itemId: 8156   # Spiteful Rhomb
+            priceRevision: 1
+          - itemId: 8101
+            priceRevision: 1
+          - itemId: 8115
+            priceRevision: 1
+          - itemId: 8369
+            priceRevision: 1
+          - itemId: 8381
+            priceRevision: 1
+          - itemId: 8567
+            priceRevision: 1
+          - itemId: 8143   # Wrathful Cabochon
+            priceRevision: 1
+          - itemId: 8157   # Spiteful Cabochon
+            priceRevision: 1
