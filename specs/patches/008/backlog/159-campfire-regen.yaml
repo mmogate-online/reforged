@@ -1,0 +1,19 @@
+spec:
+  version: "1.0"
+  schema: v92
+
+# Campfires heal three times as fast: every BonfireList template, the placed, the
+# special and the invisible ones included, has its share of maximum HP healed per
+# tick tripled, from the shipped 0.015 to 0.045. The value is set rather than
+# multiplied so the file holds the exact figure. The tick interval is unchanged.
+#
+# Mana is not touched here: the campfire templates carry no MP recovery field.
+# provenance: policy
+
+relaxBonfires:
+  updateWhere:
+    entries:
+      - filter:
+          name: bonfire
+        changes:
+          recoveryHpRatio: { set: 0.045 }
