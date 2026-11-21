@@ -1,9 +1,10 @@
 # Velika's crafting design vendors close. Profession designs for this region are sold by the
 # crafters' guild instead, so a city store would let a crafter level past the region's band.
 #
-# Each villager below opens one design store and nothing else. A villagerMenus row cannot hold
-# an empty menu list, so the whole row is deleted: the villager stays in town as a townsperson
-# with its spawn and dialog, and offers no store.
+# A villager that opens one design store and nothing else is deleted from villagerMenus, since
+# a row cannot hold an empty menu list: it stays in town as a townsperson with its spawn and
+# dialog, and offers no store. A villager that also sells crafting materials keeps its material
+# stores; its menu list is replace-all, so it is restated whole without the design stores.
 #
 # provenance: policy
 
@@ -12,6 +13,21 @@ spec:
   schema: v92
 
 villagerMenus:
+  update:
+    # materials store 180, weapon designs store 190 removed
+    - huntingZoneId: 63
+      npcTemplateId: 50003
+      changes:
+        menus:
+          - { type: Merchant, id: 180 }
+    # materials stores 181, 182, 183, armor designs stores 191, 192, 193 removed
+    - huntingZoneId: 63
+      npcTemplateId: 50005
+      changes:
+        menus:
+          - { type: Merchant, id: 181 }
+          - { type: Merchant, id: 182 }
+          - { type: Merchant, id: 183 }
   delete:
     # weapon designs, store 190
     - { huntingZoneId: 63, npcTemplateId: 1195 }
