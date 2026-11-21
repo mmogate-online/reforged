@@ -1,0 +1,38 @@
+# Weapon enchant glow: these weapons draw the glow of their real enchant step.
+# The glow is drawn by the client alone. A weapon's changeEnchantFxId names a remap row that
+# replaces the real step with a drawn one; remap row 1000 draws every step from 0 to 15 as
+# step 1, so a weapon carrying it never shows its enchant level. A value of 0 names no remap,
+# a shape vanilla weapons already ship. The field lives on both item tables, so the client
+# item sync must carry it for the change to show.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+items:
+  update:
+    - { id: 10121, changes: { changeEnchantFxId: 0 } }  # Pathfinder Pair
+    - { id: 10122, changes: { changeEnchantFxId: 0 } }  # Duty's Lance
+    - { id: 10123, changes: { changeEnchantFxId: 0 } }  # Pathsweeper
+    - { id: 10124, changes: { changeEnchantFxId: 0 } }  # Chopper
+    - { id: 10125, changes: { changeEnchantFxId: 0 } }  # Harvest Focus
+    - { id: 10126, changes: { changeEnchantFxId: 0 } }  # Arrowsvine
+    - { id: 10127, changes: { changeEnchantFxId: 0 } }  # Staff of Redemption
+    - { id: 10128, changes: { changeEnchantFxId: 0 } }  # Wand of the Frond
+    - { id: 55020, changes: { changeEnchantFxId: 0 } }  # Nobleshot
+    - { id: 82020, changes: { changeEnchantFxId: 0 } }  # Warfists
+    - { id: 58186, changes: { changeEnchantFxId: 0 } }  # Trailcover
+    - { id: 59068, changes: { changeEnchantFxId: 0 } }  # Pathdancer
+    - { id: 280000, changes: { changeEnchantFxId: 0 } }  # Unlocked Blood & Gore
+    - { id: 280001, changes: { changeEnchantFxId: 0 } }  # Unlocked Bloodstrike
+    - { id: 280002, changes: { changeEnchantFxId: 0 } }  # Unlocked Cruelblade
+    - { id: 280003, changes: { changeEnchantFxId: 0 } }  # Unlocked Bloodshatter
+    - { id: 280004, changes: { changeEnchantFxId: 0 } }  # Unlocked Heartcoil
+    - { id: 280005, changes: { changeEnchantFxId: 0 } }  # Unlocked Airheart
+    - { id: 280006, changes: { changeEnchantFxId: 0 } }  # Unlocked Tuskrender
+    - { id: 280007, changes: { changeEnchantFxId: 0 } }  # Unlocked Bloodhorn
+    - { id: 280051, changes: { changeEnchantFxId: 0 } }  # Unlocked Hemoblaster
+    - { id: 280054, changes: { changeEnchantFxId: 0 } }  # Unlocked Hemobloom
+    - { id: 280057, changes: { changeEnchantFxId: 0 } }  # Unlocked Truncuspear
+    - { id: 280060, changes: { changeEnchantFxId: 0 } }  # Unlocked Bloody Knuckles
