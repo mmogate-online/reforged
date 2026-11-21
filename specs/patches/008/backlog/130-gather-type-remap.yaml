@@ -1,0 +1,57 @@
+# Placed gather nodes on pickSkillType 3 or 5 to 9 play no gathering animation: the client
+# has gather skills only for types 1, 2, 4 and 10 to 14, so the pick completes with no action
+# stage. Each node moves to the type its silhouette matches among vanilla nodes that do
+# animate: plant meshes (flowers, mushrooms, berry bushes, weeds) to 1 like the herb nodes,
+# magic stone meshes to 2 like the quest magic stones, every object mesh (crates, sacks,
+# corpses, bones, eggs, books, carts, debris) to 4 like the quest crates and corpses.
+#
+# The client reads pickSkillType from its own copy of this table, so the change shows only
+# once synced. Only pickSkillType changes; questCollection, neededPickTimePoint and fatigue
+# stay as they are. Felled Timber (444) has its own spec. Extractor nodes, nodes with no
+# silhouette and stone relics with no vanilla counterpart keep their type.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+collections:
+  updateWhere:
+    strict: true
+    entries:
+      # Plant silhouettes: Flower, Mushroom, herb, the T4 plant meshes, festival weeds and berry tree.
+      - filter:
+          collectionId: [
+            400, 403, 404, 406, 412, 413, 419, 423, 432, 433, 438, 440,
+            445, 446, 448, 453, 455, 459, 462, 465, 467, 468, 472, 480,
+            486, 499, 500, 502, 504, 509, 513, 514, 519, 521, 526, 531,
+            535, 536, 539, 542, 543, 544, 548, 549, 551, 552, 556, 562,
+            573, 576, 580, 593, 603, 617, 618, 802, 803,
+          ]
+        expect: { min: 57, max: 57 }
+        changes:
+          pickSkillType: 1
+      # Magic stone silhouettes.
+      - filter:
+          collectionId: [
+            439, 442, 447, 451, 456, 457, 458, 475, 482, 488, 493, 494,
+            495, 501, 503, 505,
+          ]
+        expect: { min: 16, max: 16 }
+        changes:
+          pickSkillType: 2
+      # Object silhouettes.
+      - filter:
+          collectionId: [
+            401, 402, 405, 407, 408, 414, 415, 416, 417, 418, 420, 421,
+            422, 424, 425, 426, 428, 429, 430, 431, 434, 435, 436, 437,
+            441, 443, 450, 454, 460, 461, 464, 466, 469, 470, 473, 476,
+            484, 487, 490, 491, 497, 506, 507, 508, 510, 511, 512, 515,
+            516, 517, 518, 520, 522, 523, 524, 525, 527, 529, 533, 534,
+            537, 538, 540, 545, 546, 547, 553, 554, 555, 563, 575, 577,
+            578, 579, 584, 592, 594, 595, 596, 599, 601, 604, 605, 607,
+            608, 616, 620, 621, 800,
+          ]
+        expect: { min: 89, max: 89 }
+        changes:
+          pickSkillType: 4
