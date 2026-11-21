@@ -7,8 +7,9 @@
 #
 # The client reads pickSkillType from its own copy of this table, so the change shows only
 # once synced. Only pickSkillType changes; questCollection, neededPickTimePoint and fatigue
-# stay as they are. Felled Timber (444) has its own spec. Extractor nodes, nodes with no
-# silhouette and stone relics with no vanilla counterpart keep their type.
+# stay as they are. Felled Timber (444) has its own spec. With no vanilla look to match, stone
+# relics, sand, ice and the noctenium extractors (the mesh of their type 2 siblings) take 2,
+# and a node with no silhouette takes 4.
 # provenance: policy
 
 spec:
@@ -31,13 +32,13 @@ collections:
         expect: { min: 57, max: 57 }
         changes:
           pickSkillType: 1
-      # Magic stone silhouettes.
+      # Magic stone silhouettes, stone relics, sand, ice and noctenium extractors.
       - filter:
           collectionId: [
             439, 442, 447, 451, 456, 457, 458, 475, 482, 488, 493, 494,
-            495, 501, 503, 505,
+            495, 498, 501, 503, 505, 528, 561, 566, 567, 571, 574, 622,
           ]
-        expect: { min: 16, max: 16 }
+        expect: { min: 24, max: 24 }
         changes:
           pickSkillType: 2
       # Object silhouettes.
@@ -50,8 +51,8 @@ collections:
             516, 517, 518, 520, 522, 523, 524, 525, 527, 529, 533, 534,
             537, 538, 540, 545, 546, 547, 553, 554, 555, 563, 575, 577,
             578, 579, 584, 592, 594, 595, 596, 599, 601, 604, 605, 607,
-            608, 616, 620, 621, 800,
+            608, 616, 620, 621, 800, 572,
           ]
-        expect: { min: 89, max: 89 }
+        expect: { min: 90, max: 90 }
         changes:
           pickSkillType: 4
