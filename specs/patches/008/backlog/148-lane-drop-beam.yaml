@@ -1,0 +1,98 @@
+# Lane gear drop beam: a lane piece on the ground shows a light beam, seen only by the party
+# that owns the drop, so a piece a monster drops is not lost in a fight.
+# The beam is an item field read where the item lies, so every piece that monster loot can drop
+# carries it, whichever bag drops it; a piece no loot bag holds needs none.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: drop-effects
+    use:
+      definitions:
+        - SignatureDropBeam
+
+items:
+  update:
+    - { id: 10593, changes: { $extends: SignatureDropBeam } }  # Disclose & Divulge
+    - { id: 10594, changes: { $extends: SignatureDropBeam } }  # Revelation Tree
+    - { id: 10595, changes: { $extends: SignatureDropBeam } }  # Incisive Greatsword
+    - { id: 10596, changes: { $extends: SignatureDropBeam } }  # Axe of Manifesto
+    - { id: 10597, changes: { $extends: SignatureDropBeam } }  # Darkseeing Lens
+    - { id: 10598, changes: { $extends: SignatureDropBeam } }  # Revealing Arc
+    - { id: 10599, changes: { $extends: SignatureDropBeam } }  # Praesto Staff
+    - { id: 10600, changes: { $extends: SignatureDropBeam } }  # Rod of Revelation
+    - { id: 15667, changes: { $extends: SignatureDropBeam } }  # Outrider's Chestpiece
+    - { id: 15668, changes: { $extends: SignatureDropBeam } }  # Demonslayer Fists
+    - { id: 15669, changes: { $extends: SignatureDropBeam } }  # Decurion's Greaves
+    - { id: 15670, changes: { $extends: SignatureDropBeam } }  # Sentry's Jerkin
+    - { id: 15671, changes: { $extends: SignatureDropBeam } }  # Demonslayer Mitts
+    - { id: 15672, changes: { $extends: SignatureDropBeam } }  # Decurion's Boots
+    - { id: 15673, changes: { $extends: SignatureDropBeam } }  # Outrider's Robes
+    - { id: 15674, changes: { $extends: SignatureDropBeam } }  # Demonslayer Handwraps
+    - { id: 15675, changes: { $extends: SignatureDropBeam } }  # Decurion's Shoes
+    - { id: 55079, changes: { $extends: SignatureDropBeam } }  # See Shooter
+    - { id: 58245, changes: { $extends: SignatureDropBeam } }  # Tattlebriar
+    - { id: 59127, changes: { $extends: SignatureDropBeam } }  # Reconglaive
+    - { id: 82079, changes: { $extends: SignatureDropBeam } }  # Feather Dusters
+    - { id: 10121, changes: { $extends: SignatureDropBeam } }  # Pathfinder Pair
+    - { id: 10122, changes: { $extends: SignatureDropBeam } }  # Duty's Lance
+    - { id: 10123, changes: { $extends: SignatureDropBeam } }  # Pathsweeper
+    - { id: 10124, changes: { $extends: SignatureDropBeam } }  # Chopper
+    - { id: 10125, changes: { $extends: SignatureDropBeam } }  # Harvest Focus
+    - { id: 10126, changes: { $extends: SignatureDropBeam } }  # Arrowsvine
+    - { id: 10127, changes: { $extends: SignatureDropBeam } }  # Staff of Redemption
+    - { id: 10128, changes: { $extends: SignatureDropBeam } }  # Wand of the Frond
+    - { id: 15136, changes: { $extends: SignatureDropBeam } }  # Nightshimmer Chestplate
+    - { id: 15137, changes: { $extends: SignatureDropBeam } }  # Duskweaver Gauntlets
+    - { id: 15138, changes: { $extends: SignatureDropBeam } }  # Hit Kickers
+    - { id: 15139, changes: { $extends: SignatureDropBeam } }  # Moonrise Vest
+    - { id: 15140, changes: { $extends: SignatureDropBeam } }  # Nightfists
+    - { id: 15141, changes: { $extends: SignatureDropBeam } }  # Tenebral Boots
+    - { id: 15142, changes: { $extends: SignatureDropBeam } }  # Nightswift Gown
+    - { id: 15143, changes: { $extends: SignatureDropBeam } }  # Somnus Sleeves
+    - { id: 15144, changes: { $extends: SignatureDropBeam } }  # Umbral Slippers
+    - { id: 55020, changes: { $extends: SignatureDropBeam } }  # Nobleshot
+    - { id: 12265, changes: { $extends: SignatureDropBeam } }  # Blood & Gore
+    - { id: 12266, changes: { $extends: SignatureDropBeam } }  # Bloodstrike
+    - { id: 12267, changes: { $extends: SignatureDropBeam } }  # Cruelblade
+    - { id: 12268, changes: { $extends: SignatureDropBeam } }  # Bloodshatter
+    - { id: 12269, changes: { $extends: SignatureDropBeam } }  # Heartcoil
+    - { id: 12270, changes: { $extends: SignatureDropBeam } }  # Airheart
+    - { id: 12271, changes: { $extends: SignatureDropBeam } }  # Tuskrender
+    - { id: 12272, changes: { $extends: SignatureDropBeam } }  # Bloodhorn
+    - { id: 17557, changes: { $extends: SignatureDropBeam } }  # Brutal Breastplate
+    - { id: 17558, changes: { $extends: SignatureDropBeam } }  # Tuskbreaker Gauntlets
+    - { id: 17559, changes: { $extends: SignatureDropBeam } }  # Grisly Greaves
+    - { id: 17560, changes: { $extends: SignatureDropBeam } }  # Sanguine Cuirass
+    - { id: 17561, changes: { $extends: SignatureDropBeam } }  # Gloves of the Vulcan
+    - { id: 17562, changes: { $extends: SignatureDropBeam } }  # Vulcanite Boots
+    - { id: 17563, changes: { $extends: SignatureDropBeam } }  # Vulcanite Raiment
+    - { id: 17564, changes: { $extends: SignatureDropBeam } }  # Bloodbound Sleeves
+    - { id: 17565, changes: { $extends: SignatureDropBeam } }  # Cruelhide Shoes
+    - { id: 55288, changes: { $extends: SignatureDropBeam } }  # Hemoblaster
+    - { id: 58439, changes: { $extends: SignatureDropBeam } }  # Hemobloom
+    - { id: 82288, changes: { $extends: SignatureDropBeam } }  # Bloody Knuckles
+    - { id: 12273, changes: { $extends: SignatureDropBeam } }  # Fear & Tremble
+    - { id: 12274, changes: { $extends: SignatureDropBeam } }  # Dreadspike
+    - { id: 12275, changes: { $extends: SignatureDropBeam } }  # Wraithblade
+    - { id: 12276, changes: { $extends: SignatureDropBeam } }  # Websplitter
+    - { id: 12277, changes: { $extends: SignatureDropBeam } }  # Fanggyre
+    - { id: 12278, changes: { $extends: SignatureDropBeam } }  # Piercefang
+    - { id: 12279, changes: { $extends: SignatureDropBeam } }  # Chaosbane
+    - { id: 12280, changes: { $extends: SignatureDropBeam } }  # Witchbinder
+    - { id: 17566, changes: { $extends: SignatureDropBeam } }  # Bitter Mail
+    - { id: 17567, changes: { $extends: SignatureDropBeam } }  # Assailer Gauntlets
+    - { id: 17568, changes: { $extends: SignatureDropBeam } }  # Afflicter Greaves
+    - { id: 17569, changes: { $extends: SignatureDropBeam } }  # Demonfoe Cuirass
+    - { id: 17570, changes: { $extends: SignatureDropBeam } }  # Demonsbane Gloves
+    - { id: 17571, changes: { $extends: SignatureDropBeam } }  # Demonkicker Boots
+    - { id: 17572, changes: { $extends: SignatureDropBeam } }  # Robe of the Scion
+    - { id: 17573, changes: { $extends: SignatureDropBeam } }  # Demonwitch Sleeves
+    - { id: 17574, changes: { $extends: SignatureDropBeam } }  # Impchaser Shoes
+    - { id: 55289, changes: { $extends: SignatureDropBeam } }  # Trembletube
+    - { id: 58440, changes: { $extends: SignatureDropBeam } }  # Maldustar
+    - { id: 59337, changes: { $extends: SignatureDropBeam } }  # Anxiae
+    - { id: 82289, changes: { $extends: SignatureDropBeam } }  # Tremorfists
