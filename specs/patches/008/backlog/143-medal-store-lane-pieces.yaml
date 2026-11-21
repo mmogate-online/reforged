@@ -1,0 +1,4564 @@
+# The six vanilla medal stores are retired. Their tokens no longer drop, no longer come from
+# quests, event rewards or boxes, and no longer open a store: each token is inert and its
+# tooltip says so, matching how vanilla retired its classic consumables.
+#
+# The right-click link, the store menus, every list hanging off them and every price row in
+# these tokens leave together. The loader checks the medal price of every buy list item,
+# referenced or not, so a list left behind without its price rows, or the reverse, stops the
+# world server.
+#
+# Quest reward blocks are replace-all, so each one is restated whole without the token row.
+# Event, box and gacha rewards are removed one row at a time. Three lists are written twice in
+# the vanilla file and one delete removes one copy, so those ids are listed twice.
+#
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+villagerMenuItems:
+  delete:
+    - 983000
+    - 983010
+    - 983020
+    - 983090
+    - 983100
+    - 983120
+
+buyMenuLists:
+  delete:
+    - 983000
+    - 983010
+    - 983020
+    - 983090
+    - 983100
+    - 983120
+
+buyLists:
+  delete:
+    - 983001
+    - 983002
+    - 983011
+    - 983012
+    - 983021
+    - 983022
+    - 983091
+    - 983092
+    - 983093
+    - 983101
+    - 983102
+    - 983103
+    - 983121
+    - 983122
+    - 983123
+    - 983093
+    - 983103
+    - 983123
+
+exchanges:
+  delete:
+    - { itemId: 20728, medalItemId: 98309 }
+    - { itemId: 20728, medalItemId: 98300 }
+    - { itemId: 20729, medalItemId: 98309 }
+    - { itemId: 20729, medalItemId: 98300 }
+    - { itemId: 20730, medalItemId: 98309 }
+    - { itemId: 20730, medalItemId: 98300 }
+    - { itemId: 950129, medalItemId: 98309 }
+    - { itemId: 950129, medalItemId: 98300 }
+    - { itemId: 19830, medalItemId: 98310 }
+    - { itemId: 19830, medalItemId: 98301 }
+    - { itemId: 19832, medalItemId: 98310 }
+    - { itemId: 19832, medalItemId: 98301 }
+    - { itemId: 20409, medalItemId: 98310 }
+    - { itemId: 20409, medalItemId: 98301 }
+    - { itemId: 950129, medalItemId: 98310 }
+    - { itemId: 950129, medalItemId: 98301 }
+    - { itemId: 28083, medalItemId: 98310 }
+    - { itemId: 28083, medalItemId: 98301 }
+    - { itemId: 28084, medalItemId: 98310 }
+    - { itemId: 28084, medalItemId: 98301 }
+    - { itemId: 28085, medalItemId: 98310 }
+    - { itemId: 28085, medalItemId: 98301 }
+    - { itemId: 28086, medalItemId: 98310 }
+    - { itemId: 28086, medalItemId: 98301 }
+    - { itemId: 28087, medalItemId: 98310 }
+    - { itemId: 28087, medalItemId: 98301 }
+    - { itemId: 28088, medalItemId: 98310 }
+    - { itemId: 28088, medalItemId: 98301 }
+    - { itemId: 28089, medalItemId: 98310 }
+    - { itemId: 28089, medalItemId: 98301 }
+    - { itemId: 28090, medalItemId: 98310 }
+    - { itemId: 28090, medalItemId: 98301 }
+    - { itemId: 55610, medalItemId: 98310 }
+    - { itemId: 55610, medalItemId: 98301 }
+    - { itemId: 20111, medalItemId: 98312 }
+    - { itemId: 20111, medalItemId: 98302 }
+    - { itemId: 20412, medalItemId: 98312 }
+    - { itemId: 20412, medalItemId: 98302 }
+    - { itemId: 20706, medalItemId: 98312 }
+    - { itemId: 20706, medalItemId: 98302 }
+    - { itemId: 950129, medalItemId: 98312 }
+    - { itemId: 950129, medalItemId: 98302 }
+    - { itemId: 28094, medalItemId: 98312 }
+    - { itemId: 28094, medalItemId: 98302 }
+    - { itemId: 28095, medalItemId: 98312 }
+    - { itemId: 28095, medalItemId: 98302 }
+    - { itemId: 28096, medalItemId: 98312 }
+    - { itemId: 28096, medalItemId: 98302 }
+    - { itemId: 28097, medalItemId: 98312 }
+    - { itemId: 28097, medalItemId: 98302 }
+    - { itemId: 28098, medalItemId: 98312 }
+    - { itemId: 28098, medalItemId: 98302 }
+    - { itemId: 28099, medalItemId: 98312 }
+    - { itemId: 28099, medalItemId: 98302 }
+    - { itemId: 8101, medalItemId: 98309 }
+    - { itemId: 8101, medalItemId: 98300 }
+    - { itemId: 8115, medalItemId: 98309 }
+    - { itemId: 8115, medalItemId: 98300 }
+    - { itemId: 8129, medalItemId: 98309 }
+    - { itemId: 8129, medalItemId: 98300 }
+    - { itemId: 8143, medalItemId: 98309 }
+    - { itemId: 8143, medalItemId: 98300 }
+    - { itemId: 8157, medalItemId: 98309 }
+    - { itemId: 8157, medalItemId: 98300 }
+    - { itemId: 8201, medalItemId: 98309 }
+    - { itemId: 8201, medalItemId: 98300 }
+    - { itemId: 8213, medalItemId: 98309 }
+    - { itemId: 8213, medalItemId: 98300 }
+    - { itemId: 8243, medalItemId: 98309 }
+    - { itemId: 8243, medalItemId: 98300 }
+    - { itemId: 8255, medalItemId: 98309 }
+    - { itemId: 8255, medalItemId: 98300 }
+    - { itemId: 8267, medalItemId: 98309 }
+    - { itemId: 8267, medalItemId: 98300 }
+    - { itemId: 8279, medalItemId: 98309 }
+    - { itemId: 8279, medalItemId: 98300 }
+    - { itemId: 8291, medalItemId: 98309 }
+    - { itemId: 8291, medalItemId: 98300 }
+    - { itemId: 8315, medalItemId: 98309 }
+    - { itemId: 8315, medalItemId: 98300 }
+    - { itemId: 8333, medalItemId: 98309 }
+    - { itemId: 8333, medalItemId: 98300 }
+    - { itemId: 8345, medalItemId: 98309 }
+    - { itemId: 8345, medalItemId: 98300 }
+    - { itemId: 8357, medalItemId: 98309 }
+    - { itemId: 8357, medalItemId: 98300 }
+    - { itemId: 8369, medalItemId: 98309 }
+    - { itemId: 8369, medalItemId: 98300 }
+    - { itemId: 8381, medalItemId: 98309 }
+    - { itemId: 8381, medalItemId: 98300 }
+    - { itemId: 8393, medalItemId: 98309 }
+    - { itemId: 8393, medalItemId: 98300 }
+    - { itemId: 8405, medalItemId: 98309 }
+    - { itemId: 8405, medalItemId: 98300 }
+    - { itemId: 8435, medalItemId: 98309 }
+    - { itemId: 8435, medalItemId: 98300 }
+    - { itemId: 8447, medalItemId: 98309 }
+    - { itemId: 8447, medalItemId: 98300 }
+    - { itemId: 8459, medalItemId: 98309 }
+    - { itemId: 8459, medalItemId: 98300 }
+    - { itemId: 8471, medalItemId: 98309 }
+    - { itemId: 8471, medalItemId: 98300 }
+    - { itemId: 8495, medalItemId: 98309 }
+    - { itemId: 8495, medalItemId: 98300 }
+    - { itemId: 8507, medalItemId: 98309 }
+    - { itemId: 8507, medalItemId: 98300 }
+    - { itemId: 8519, medalItemId: 98309 }
+    - { itemId: 8519, medalItemId: 98300 }
+    - { itemId: 8531, medalItemId: 98309 }
+    - { itemId: 8531, medalItemId: 98300 }
+    - { itemId: 8543, medalItemId: 98309 }
+    - { itemId: 8543, medalItemId: 98300 }
+    - { itemId: 8555, medalItemId: 98309 }
+    - { itemId: 8555, medalItemId: 98300 }
+    - { itemId: 8567, medalItemId: 98309 }
+    - { itemId: 8567, medalItemId: 98300 }
+    - { itemId: 8579, medalItemId: 98309 }
+    - { itemId: 8579, medalItemId: 98300 }
+    - { itemId: 8591, medalItemId: 98309 }
+    - { itemId: 8591, medalItemId: 98300 }
+    - { itemId: 8845, medalItemId: 98309 }
+    - { itemId: 8845, medalItemId: 98300 }
+    - { itemId: 8851, medalItemId: 98309 }
+    - { itemId: 8851, medalItemId: 98300 }
+    - { itemId: 96102, medalItemId: 98309 }
+    - { itemId: 96102, medalItemId: 98300 }
+    - { itemId: 8102, medalItemId: 98310 }
+    - { itemId: 8102, medalItemId: 98301 }
+    - { itemId: 8102, medalItemId: 98312 }
+    - { itemId: 8102, medalItemId: 98302 }
+    - { itemId: 8116, medalItemId: 98310 }
+    - { itemId: 8116, medalItemId: 98301 }
+    - { itemId: 8116, medalItemId: 98312 }
+    - { itemId: 8116, medalItemId: 98302 }
+    - { itemId: 8130, medalItemId: 98310 }
+    - { itemId: 8130, medalItemId: 98301 }
+    - { itemId: 8130, medalItemId: 98312 }
+    - { itemId: 8130, medalItemId: 98302 }
+    - { itemId: 8144, medalItemId: 98310 }
+    - { itemId: 8144, medalItemId: 98301 }
+    - { itemId: 8144, medalItemId: 98312 }
+    - { itemId: 8144, medalItemId: 98302 }
+    - { itemId: 8158, medalItemId: 98310 }
+    - { itemId: 8158, medalItemId: 98301 }
+    - { itemId: 8158, medalItemId: 98312 }
+    - { itemId: 8158, medalItemId: 98302 }
+    - { itemId: 8202, medalItemId: 98310 }
+    - { itemId: 8202, medalItemId: 98301 }
+    - { itemId: 8202, medalItemId: 98312 }
+    - { itemId: 8202, medalItemId: 98302 }
+    - { itemId: 8214, medalItemId: 98310 }
+    - { itemId: 8214, medalItemId: 98301 }
+    - { itemId: 8214, medalItemId: 98312 }
+    - { itemId: 8214, medalItemId: 98302 }
+    - { itemId: 8244, medalItemId: 98310 }
+    - { itemId: 8244, medalItemId: 98301 }
+    - { itemId: 8244, medalItemId: 98312 }
+    - { itemId: 8244, medalItemId: 98302 }
+    - { itemId: 8256, medalItemId: 98310 }
+    - { itemId: 8256, medalItemId: 98301 }
+    - { itemId: 8256, medalItemId: 98312 }
+    - { itemId: 8256, medalItemId: 98302 }
+    - { itemId: 8268, medalItemId: 98310 }
+    - { itemId: 8268, medalItemId: 98301 }
+    - { itemId: 8268, medalItemId: 98312 }
+    - { itemId: 8268, medalItemId: 98302 }
+    - { itemId: 8280, medalItemId: 98310 }
+    - { itemId: 8280, medalItemId: 98301 }
+    - { itemId: 8280, medalItemId: 98312 }
+    - { itemId: 8280, medalItemId: 98302 }
+    - { itemId: 8292, medalItemId: 98310 }
+    - { itemId: 8292, medalItemId: 98301 }
+    - { itemId: 8292, medalItemId: 98312 }
+    - { itemId: 8292, medalItemId: 98302 }
+    - { itemId: 8316, medalItemId: 98310 }
+    - { itemId: 8316, medalItemId: 98301 }
+    - { itemId: 8316, medalItemId: 98312 }
+    - { itemId: 8316, medalItemId: 98302 }
+    - { itemId: 8334, medalItemId: 98310 }
+    - { itemId: 8334, medalItemId: 98301 }
+    - { itemId: 8334, medalItemId: 98312 }
+    - { itemId: 8334, medalItemId: 98302 }
+    - { itemId: 8346, medalItemId: 98310 }
+    - { itemId: 8346, medalItemId: 98301 }
+    - { itemId: 8346, medalItemId: 98312 }
+    - { itemId: 8346, medalItemId: 98302 }
+    - { itemId: 8358, medalItemId: 98310 }
+    - { itemId: 8358, medalItemId: 98301 }
+    - { itemId: 8358, medalItemId: 98312 }
+    - { itemId: 8358, medalItemId: 98302 }
+    - { itemId: 8370, medalItemId: 98310 }
+    - { itemId: 8370, medalItemId: 98301 }
+    - { itemId: 8370, medalItemId: 98312 }
+    - { itemId: 8370, medalItemId: 98302 }
+    - { itemId: 8382, medalItemId: 98310 }
+    - { itemId: 8382, medalItemId: 98301 }
+    - { itemId: 8382, medalItemId: 98312 }
+    - { itemId: 8382, medalItemId: 98302 }
+    - { itemId: 8394, medalItemId: 98310 }
+    - { itemId: 8394, medalItemId: 98301 }
+    - { itemId: 8394, medalItemId: 98312 }
+    - { itemId: 8394, medalItemId: 98302 }
+    - { itemId: 8406, medalItemId: 98310 }
+    - { itemId: 8406, medalItemId: 98301 }
+    - { itemId: 8406, medalItemId: 98312 }
+    - { itemId: 8406, medalItemId: 98302 }
+    - { itemId: 8436, medalItemId: 98310 }
+    - { itemId: 8436, medalItemId: 98301 }
+    - { itemId: 8436, medalItemId: 98312 }
+    - { itemId: 8436, medalItemId: 98302 }
+    - { itemId: 8448, medalItemId: 98310 }
+    - { itemId: 8448, medalItemId: 98301 }
+    - { itemId: 8448, medalItemId: 98312 }
+    - { itemId: 8448, medalItemId: 98302 }
+    - { itemId: 8460, medalItemId: 98310 }
+    - { itemId: 8460, medalItemId: 98301 }
+    - { itemId: 8460, medalItemId: 98312 }
+    - { itemId: 8460, medalItemId: 98302 }
+    - { itemId: 8472, medalItemId: 98310 }
+    - { itemId: 8472, medalItemId: 98301 }
+    - { itemId: 8472, medalItemId: 98312 }
+    - { itemId: 8472, medalItemId: 98302 }
+    - { itemId: 8496, medalItemId: 98310 }
+    - { itemId: 8496, medalItemId: 98301 }
+    - { itemId: 8496, medalItemId: 98312 }
+    - { itemId: 8496, medalItemId: 98302 }
+    - { itemId: 8508, medalItemId: 98310 }
+    - { itemId: 8508, medalItemId: 98301 }
+    - { itemId: 8508, medalItemId: 98312 }
+    - { itemId: 8508, medalItemId: 98302 }
+    - { itemId: 8520, medalItemId: 98310 }
+    - { itemId: 8520, medalItemId: 98301 }
+    - { itemId: 8520, medalItemId: 98312 }
+    - { itemId: 8520, medalItemId: 98302 }
+    - { itemId: 8532, medalItemId: 98310 }
+    - { itemId: 8532, medalItemId: 98301 }
+    - { itemId: 8532, medalItemId: 98312 }
+    - { itemId: 8532, medalItemId: 98302 }
+    - { itemId: 8544, medalItemId: 98310 }
+    - { itemId: 8544, medalItemId: 98301 }
+    - { itemId: 8544, medalItemId: 98312 }
+    - { itemId: 8544, medalItemId: 98302 }
+    - { itemId: 8556, medalItemId: 98310 }
+    - { itemId: 8556, medalItemId: 98301 }
+    - { itemId: 8556, medalItemId: 98312 }
+    - { itemId: 8556, medalItemId: 98302 }
+    - { itemId: 8568, medalItemId: 98310 }
+    - { itemId: 8568, medalItemId: 98301 }
+    - { itemId: 8568, medalItemId: 98312 }
+    - { itemId: 8568, medalItemId: 98302 }
+    - { itemId: 8580, medalItemId: 98310 }
+    - { itemId: 8580, medalItemId: 98301 }
+    - { itemId: 8580, medalItemId: 98312 }
+    - { itemId: 8580, medalItemId: 98302 }
+    - { itemId: 8592, medalItemId: 98310 }
+    - { itemId: 8592, medalItemId: 98301 }
+    - { itemId: 8592, medalItemId: 98312 }
+    - { itemId: 8592, medalItemId: 98302 }
+    - { itemId: 8846, medalItemId: 98310 }
+    - { itemId: 8846, medalItemId: 98301 }
+    - { itemId: 8846, medalItemId: 98312 }
+    - { itemId: 8846, medalItemId: 98302 }
+    - { itemId: 8852, medalItemId: 98310 }
+    - { itemId: 8852, medalItemId: 98301 }
+    - { itemId: 8852, medalItemId: 98312 }
+    - { itemId: 8852, medalItemId: 98302 }
+    - { itemId: 96103, medalItemId: 98310 }
+    - { itemId: 96103, medalItemId: 98301 }
+    - { itemId: 96103, medalItemId: 98312 }
+    - { itemId: 96103, medalItemId: 98302 }
+
+items:
+  update:
+    - id: 98300
+      changes:
+        combatItemType: NO_COMBAT
+        itemUseCount: 0
+    - id: 98301
+      changes:
+        combatItemType: NO_COMBAT
+        itemUseCount: 0
+    - id: 98302
+      changes:
+        combatItemType: NO_COMBAT
+        itemUseCount: 0
+    - id: 98309
+      changes:
+        combatItemType: NO_COMBAT
+        itemUseCount: 0
+    - id: 98310
+      changes:
+        combatItemType: NO_COMBAT
+        itemUseCount: 0
+    - id: 98312
+      changes:
+        combatItemType: NO_COMBAT
+        itemUseCount: 0
+
+itemStrings:
+  update:
+    - id: 98300
+      changes:
+        toolTip: "This item is no longer usable."
+    - id: 98301
+      changes:
+        toolTip: "This item is no longer usable."
+    - id: 98302
+      changes:
+        toolTip: "This item is no longer usable."
+    - id: 98309
+      changes:
+        toolTip: "This item is no longer usable."
+    - id: 98310
+      changes:
+        toolTip: "This item is no longer usable."
+    - id: 98312
+      changes:
+        toolTip: "This item is no longer usable."
+
+questCompensations:
+  update:
+    - questId: 1522
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1523
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1525
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1526
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1527
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1528
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1529
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1530
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1531
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1532
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1533
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1534
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1535
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1536
+      huntingZoneId: 15
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1621
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1622
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1623
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1624
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1625
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1626
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1627
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1628
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1629
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1630
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1631
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1632
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1633
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1634
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1635
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1636
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1637
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1638
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1639
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1640
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1641
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1642
+      huntingZoneId: 16
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1721
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1722
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1723
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1724
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1725
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1726
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1727
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1728
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1729
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1730
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1731
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1732
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1733
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1734
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1735
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1736
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1737
+      huntingZoneId: 17
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 1821
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1822
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1823
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1824
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1825
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1826
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1827
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1828
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1829
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1830
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1831
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1832
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1833
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1834
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1835
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1836
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1837
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 1838
+      huntingZoneId: 18
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2021
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2022
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2023
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2024
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2025
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2026
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2027
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2028
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2029
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2030
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2031
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2032
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2033
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2034
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2035
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2036
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2037
+      huntingZoneId: 20
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 780000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 2222
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2223
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2224
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2225
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2226
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2227
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2228
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2229
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2230
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2231
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2232
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2233
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2234
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2235
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2236
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2237
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2238
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2240
+      huntingZoneId: 22
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2421
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2422
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2423
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2424
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2425
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2426
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2427
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2428
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2429
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2430
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2431
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2432
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2433
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2434
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2435
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2436
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2437
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2438
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2439
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2440
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2441
+      huntingZoneId: 24
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2521
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2522
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2523
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2524
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2525
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2526
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2527
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2528
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2529
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2530
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2532
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2533
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2534
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2535
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2536
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2537
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2539
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2540
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2541
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2548
+      huntingZoneId: 25
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 2803
+      huntingZoneId: 28
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4721
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 350
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4722
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 350
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4723
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 350
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4724
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 350
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4725
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 455
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4726
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 525
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4729
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 350
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4731
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 455
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4732
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 350
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4733
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 455
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4734
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 525
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 4735
+      huntingZoneId: 47
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1140000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 48721
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48722
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48723
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48724
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48725
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48727
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48728
+      huntingZoneId: 487
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1200000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48821
+      huntingZoneId: 488
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1560000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48822
+      huntingZoneId: 488
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1560000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48823
+      huntingZoneId: 488
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1560000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48824
+      huntingZoneId: 488
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1560000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48825
+      huntingZoneId: 488
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1560000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48826
+      huntingZoneId: 488
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 1560000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94113
+                quantity: 1
+              - templateId: 94116
+                quantity: 1
+              - templateId: 6550
+                quantity: 3
+              - templateId: 6560
+                quantity: 3
+    - questId: 48921
+      huntingZoneId: 489
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 2280000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 48922
+      huntingZoneId: 489
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 2280000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 48923
+      huntingZoneId: 489
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 2280000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 48924
+      huntingZoneId: 489
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 2280000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 48925
+      huntingZoneId: 489
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 2280000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60101
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 190000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 700
+            reputationPoint: 20
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60103
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 190000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 700
+            reputationPoint: 20
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60104
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 190000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 700
+            reputationPoint: 20
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60106
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 190000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 750
+            reputationPoint: 25
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60107
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 190000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 750
+            reputationPoint: 25
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60116
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 190000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 700
+            reputationPoint: 20
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+    - questId: 60118
+      huntingZoneId: 601
+      changes:
+        compensations:
+          - compensationId: 1
+            type: "normal"
+            exp: 0
+            gold: 2280000
+            itemBag: "allpay"
+            memo: ""
+            policyPoint: ""
+            npcGuildId: 601
+            reputationExp: 200
+            items:
+              - templateId: 94114
+                quantity: 1
+              - templateId: 94117
+                quantity: 1
+              - templateId: 6551
+                quantity: 3
+              - templateId: 6561
+                quantity: 3
+
+eventMatchingEvents:
+  update:
+    - eventId: 800001
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98309
+    - eventId: 800002
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 800004
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800034
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 800035
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 800040
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800041
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800105
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98300
+    - eventId: 800106
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98300
+    - eventId: 800107
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98301
+    - eventId: 800108
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98301
+    - eventId: 800111
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 800112
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 800113
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 800114
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 800115
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 800116
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 980051
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 980053
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800050
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98309
+    - eventId: 800051
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 800053
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800167
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800168
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800169
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800170
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800171
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800172
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800173
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800174
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800175
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800176
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800177
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 800178
+      group: priority
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810001
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98309
+    - eventId: 810002
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 810004
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810034
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 810035
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 810040
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810041
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810105
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98300
+    - eventId: 810106
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98300
+    - eventId: 810107
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98301
+    - eventId: 810108
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98301
+    - eventId: 810111
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 810112
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 810113
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 810114
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 810115
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 810116
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98302
+    - eventId: 981051
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 981053
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810050
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98309
+    - eventId: 810051
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98310
+    - eventId: 810053
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810167
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810168
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810169
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810170
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810171
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810172
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810173
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810174
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810175
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810176
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810177
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+    - eventId: 810178
+      group: secondary
+      changes:
+        removeRewards:
+          - templateId: 98312
+
+itemConversions:
+  update:
+    - itemTemplateId: 2231
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98309
+                expect: 1
+    - itemTemplateId: 2232
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98310
+                expect: 1
+    - itemTemplateId: 2234
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98312
+                expect: 1
+    - itemTemplateId: 155889
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98300
+                expect: 1
+    - itemTemplateId: 155892
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98301
+                expect: 1
+    - itemTemplateId: 155900
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98302
+                expect: 1
+    - itemTemplateId: 856348
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98300
+                expect: 1
+    - itemTemplateId: 856351
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98301
+                expect: 1
+    - itemTemplateId: 856359
+      changes:
+        updateResultItemSets:
+          - expect: 1
+            removeResultItems:
+              - templateId: 98302
+                expect: 1
+
+gachaItems:
+  update:
+    - itemTemplateId: 118022
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 98309
+            expect: 1
+    - itemTemplateId: 118043
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 98310
+            expect: 1
+    - itemTemplateId: 118045
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 98312
+            expect: 1
+    - itemTemplateId: 189043
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 98300
+            expect: 1
+          - itemTemplateId: 98301
+            expect: 1
+    - itemTemplateId: 189044
+      changes:
+        removeFixedRewards:
+          - itemTemplateId: 98300
+            expect: 1
+          - itemTemplateId: 98301
+            expect: 1
