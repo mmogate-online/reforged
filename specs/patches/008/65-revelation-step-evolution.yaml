@@ -1,8 +1,9 @@
 # Kugai to Revelation evolution: Kugai +9 to +12 evolves into its Revelation piece for
-# Slinking Sabertooth Fangs, Lumbertown Mission Writs and the gear part of its slot, instead of
-# runes. Weapon, body, hands and feet ask 4 : 3 : 2 : 2 of every count; hands and feet are
-# equal. An upsert merges its materials into the existing condition, so each Kugai entry is
-# deleted first; otherwise the runes stay beside the new materials.
+# Slinking Sabertooth Fangs, one Lumbertown Mission Writ and the gear part of its slot, instead
+# of runes. Weapon, body, hands and feet ask 4 : 3 : 2 : 2 of the fangs and the part; hands and
+# feet are equal, and every piece costs the same single writ. An upsert merges its materials
+# into the existing condition, so each Kugai entry is deleted first; otherwise the runes stay
+# beside the new materials.
 # provenance: policy
 spec:
   version: "1.0"
@@ -80,21 +81,21 @@ definitions:
     $extends: _RevelationPath
     materials:
       - { id: $FANG, amount: 24, type: item }
-      - { id: $WRIT, amount: 4, type: item }
+      - { id: $WRIT, amount: 1, type: item }
       - { id: $FERRULE, amount: 4, type: item }
 
   RevelationBodyPath:
     $extends: _RevelationPath
     materials:
       - { id: $FANG, amount: 18, type: item }
-      - { id: $WRIT, amount: 3, type: item }
+      - { id: $WRIT, amount: 1, type: item }
       - { id: $LINING, amount: 3, type: item }
 
   RevelationHandFeetPath:
     $extends: _RevelationPath
     materials:
       - { id: $FANG, amount: 12, type: item }
-      - { id: $WRIT, amount: 2, type: item }
+      - { id: $WRIT, amount: 1, type: item }
       - { id: $LINING, amount: 2, type: item }
 
 evolutionPaths:
