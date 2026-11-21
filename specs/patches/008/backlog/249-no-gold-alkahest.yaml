@@ -1,0 +1,27 @@
+# A vanilla general goods list stops selling base Alkahest for gold, so no merchant turns
+# gold straight into enchant material. It was the last list selling base Alkahest for gold;
+# the quartermaster's list prices it in tokens and is unchanged.
+#
+# Shop item lists are replace-all, so the list is restated whole with its other items in
+# their original order.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+buyLists:
+  update:
+    - id: 703110
+      changes:
+        items:
+          - itemId: 200001
+            priceRevision: 1
+          - itemId: 139093
+            priceRevision: 1
+          - itemId: 91120
+            priceRevision: 1
+          - itemId: 91121
+            priceRevision: 1
+          - itemId: 81000
+            priceRevision: 1
