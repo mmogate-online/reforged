@@ -3,6 +3,10 @@
 # Masterwork Alkahest and every tier above it come from crafting only, and no token shop sells
 # them. Shop item lists are replace-all, so each list is restated with its other items in their
 # original order. A medal-priced shop item also needs its exchange row, so both go together.
+# The quartermaster sells base Alkahest at twice the token price of Feedstock, so each material
+# carries half the token cost of an enchant step. The Ascension Scroll leaves the quartermaster:
+# its tab held nothing else, so the menu's tab list (replace-all) is restated without it, and
+# the tab's list is deleted: the loader checks every list's medal prices, referenced or not.
 # provenance: policy
 
 spec:
@@ -21,11 +25,32 @@ buyLists:
         items:
           - itemId: 94101
             priceRevision: 1
+          - itemId: 15
+            priceRevision: 1
           - itemId: 399
             priceRevision: 1
+  delete:
+    - 99990122
+
+buyMenuLists:
+  upsert:
+    - id: 9999012
+      stringId: 9999012
+      desc: "Valkyon Quartermaster"
+      itemLists:
+        - id: 99990121
+          stringed: 99990121
+        - id: 99990123
+          stringed: 99990123
 
 exchanges:
+  upsert:
+    - itemId: 15
+      medalItemId: 95217
+      buyPriceMedal: 2
   delete:
+    - itemId: 185735
+      medalItemId: 95217
     - itemId: 21351
       medalItemId: 95216
     - itemId: 21351
