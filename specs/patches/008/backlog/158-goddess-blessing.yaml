@@ -1,0 +1,45 @@
+# Goddess's Blessing keeps its ten minute cooldown, and its tooltip now states that length; the
+# middle sentence takes the wording of its higher level siblings, so it no longer reads as 60%
+# of invincibility.
+# Weakness is the debuff a fast revive leaves on the player: Attack down by a quarter for
+# ninety seconds. It uses the per skill damage multiplier that vanilla Attack decreases use,
+# not the Power stat, so the damage loss is the stated 25%. A normal revive applies nothing.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    - { id: 60260, changes: { toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>10 minute cooldown." } }  # Goddess's Blessing
+
+abnormalities:
+  upsert:
+    - id: 488000200
+      name: "QuickRevive_Weakness"
+      kind: 9900
+      level: 1
+      property: 1
+      category: "1"
+      time: 90000
+      cancelCondition: "0"
+      mobSize: "all"
+      priority: 1
+      maxStackCount: 1
+      levelOver: 1
+      levelUnder: 127
+      isBuff: false
+      isShow: "True"
+      notCareDeath: false
+      notCareBattleField: true
+      effects:
+        - { type: 162, method: 3, value: "0.75", tickInterval: 0, variation: 0, min: 0, max: 0, defenceBonusRate: 1 }
+      abnormalityStrings:
+        name: "Weakness"
+        tooltip: "Decreases Attack by $H_W_BAD25%$COLOR_END."
+
+abnormalityIconData:
+  upsert:
+    - abnormalityId: 488000200
+      iconName: "Icon_Status.diseaseup_Tex"
