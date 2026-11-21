@@ -1,0 +1,417 @@
+# Lane gear set lines: every piece of a lane set names its set in the first line of its tooltip,
+# the way the Visionmaker set does, and a piece an evolution step takes further names the set it
+# evolves into on the second line. The item name never carries the set.
+# A tooltip is one string, so each value is restated whole: the set line, the evolution line,
+# then whatever line the piece already carried (a flavour line, the Potential Unlock block, the
+# unlocked line, a trade warning), unchanged and in its old order.
+# Bastion and Demonia pieces already opened with a set line; it is rewritten in the singular so
+# every set reads the same. Pieces whose tooltip already matches are not restated.
+# Demonia and Flawless Demonia have no step out of them that needs an enchant, so they carry the
+# set line alone; an unlock by scroll is told by the Potential Unlock block instead.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+itemStrings:
+  update:
+    # Kugai
+    - id: 12137  # Kugai's Left & Right
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12138  # Resistance of the Mighty
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12139  # Kugai's Greatsword
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12140  # Kugai's Axe
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12141  # Kugai's Disc
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12142  # Kugai's Bow
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12143  # Kugai's Staff
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 12144  # Kugai's Scepter
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 17413  # Second-in-Command's Breastplate
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9."
+    - id: 17414  # Demonic Claws
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9."
+    - id: 17415  # Kugai's Mighty Big Greaves
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9.$BRAll the better to stomp you with, my minion."
+    - id: 17416  # Corruption-Covered Cuirass
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9."
+    - id: 17417  # Gloves of Two Minds
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9.$BRTwo minds aren't better than one."
+    - id: 17418  # Kugai's Pacing Boots
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9.$BRCareful or you'll wear a hole in the world."
+    - id: 17419  # Robes of Unnatural Order
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9."
+    - id: 17420  # Demon's Wraps
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9."
+    - id: 17421  # Kugai's Mighty Big Shoes
+      changes:
+        toolTip: "Kugai armor.$BREvolves into Revelation at +9."
+    - id: 55272  # Kugai's Arcannon
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 58523  # Kugai's Shuriken
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 59320  # Kugai's Runeglaive
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    - id: 82272  # Kugai's Powerfists
+      changes:
+        toolTip: "Kugai weapon.$BREvolves into Revelation at +9."
+    # Revelation
+    - id: 10593  # Disclose & Divulge
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10594  # Revelation Tree
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10595  # Incisive Greatsword
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10596  # Axe of Manifesto
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10597  # Darkseeing Lens
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10598  # Revealing Arc
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10599  # Praesto Staff
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 10600  # Rod of Revelation
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 15667  # Outrider's Chestpiece
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15668  # Demonslayer Fists
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15669  # Decurion's Greaves
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15670  # Sentry's Jerkin
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15671  # Demonslayer Mitts
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15672  # Decurion's Boots
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15673  # Outrider's Robes
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15674  # Demonslayer Handwraps
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 15675  # Decurion's Shoes
+      changes:
+        toolTip: "Revelation armor.$BREvolves into Nightshimmer at +9."
+    - id: 55079  # See Shooter
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 58245  # Tattlebriar
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 59127  # Reconglaive
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    - id: 82079  # Feather Dusters
+      changes:
+        toolTip: "Revelation weapon.$BREvolves into Nightshimmer at +9."
+    # Nightshimmer
+    - id: 10121  # Pathfinder Pair
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10122  # Duty's Lance
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10123  # Pathsweeper
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10124  # Chopper
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10125  # Harvest Focus
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10126  # Arrowsvine
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10127  # Staff of Redemption
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 10128  # Wand of the Frond
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 15136  # Nightshimmer Chestplate
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15137  # Duskweaver Gauntlets
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15138  # Hit Kickers
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15139  # Moonrise Vest
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15140  # Nightfists
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15141  # Tenebral Boots
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15142  # Nightswift Gown
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15143  # Somnus Sleeves
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 15144  # Umbral Slippers
+      changes:
+        toolTip: "Nightshimmer armor.$BREvolves into Bastion at +9."
+    - id: 55020  # Nobleshot
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 58186  # Trailcover
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 59068  # Pathdancer
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    - id: 82020  # Warfists
+      changes:
+        toolTip: "Nightshimmer weapon.$BREvolves into Bastion at +9."
+    # Bastion
+    - id: 12265  # Blood & Gore
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12266  # Bloodstrike
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12267  # Cruelblade
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12268  # Bloodshatter
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12269  # Heartcoil
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12270  # Airheart
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12271  # Tuskrender
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 12272  # Bloodhorn
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 17557  # Brutal Breastplate
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9."
+    - id: 17558  # Tuskbreaker Gauntlets
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9."
+    - id: 17559  # Grisly Greaves
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 17560  # Sanguine Cuirass
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9."
+    - id: 17561  # Gloves of the Vulcan
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9."
+    - id: 17562  # Vulcanite Boots
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 17563  # Vulcanite Raiment
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9."
+    - id: 17564  # Bloodbound Sleeves
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9."
+    - id: 17565  # Cruelhide Shoes
+      changes:
+        toolTip: "Bastion armor.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 55288  # Hemoblaster
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 58439  # Hemobloom
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 59336  # Truncuspear
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    - id: 82288  # Bloody Knuckles
+      changes:
+        toolTip: "Bastion weapon.$BREvolves into Demonia at +9.$BR<font color = '#41FF3A'>[Potential Unlock]</font>$BRUse a Potential Unlock Scroll to unlock this gear's full potential."
+    # Demonia
+    - id: 12273  # Fear & Tremble
+      changes:
+        toolTip: "Demonia weapon."
+    - id: 55289  # Trembletube
+      changes:
+        toolTip: "Demonia weapon."
+    - id: 59337  # Anxiae
+      changes:
+        toolTip: "Demonia weapon."
+    - id: 82289  # Tremorfists
+      changes:
+        toolTip: "Demonia weapon."
+    # Unlocked Bastion
+    - id: 280000  # Unlocked Blood & Gore
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280001  # Unlocked Bloodstrike
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280002  # Unlocked Cruelblade
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280003  # Unlocked Bloodshatter
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280004  # Unlocked Heartcoil
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280005  # Unlocked Airheart
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280006  # Unlocked Tuskrender
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280007  # Unlocked Bloodhorn
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280016  # Unlocked Grisly Greaves
+      changes:
+        toolTip: "Unlocked Bastion armor.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280017  # Unlocked Vulcanite Boots
+      changes:
+        toolTip: "Unlocked Bastion armor.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280018  # Unlocked Cruelhide Shoes
+      changes:
+        toolTip: "Unlocked Bastion armor.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280051  # Unlocked Hemoblaster
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280054  # Unlocked Hemobloom
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280057  # Unlocked Truncuspear
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280060  # Unlocked Bloody Knuckles
+      changes:
+        toolTip: "Unlocked Bastion weapon.$BREvolves into Flawless Bastion at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    # Unlocked Demonia
+    - id: 280019  # Unlocked Bitter Mail
+      changes:
+        toolTip: "Unlocked Demonia armor.$BREvolves into Flawless Demonia at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280020  # Unlocked Assailer Gauntlets
+      changes:
+        toolTip: "Unlocked Demonia armor.$BREvolves into Flawless Demonia at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280021  # Unlocked Demonfoe Cuirass
+      changes:
+        toolTip: "Unlocked Demonia armor.$BREvolves into Flawless Demonia at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280022  # Unlocked Demonsbane Gloves
+      changes:
+        toolTip: "Unlocked Demonia armor.$BREvolves into Flawless Demonia at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280023  # Unlocked Robe of the Scion
+      changes:
+        toolTip: "Unlocked Demonia armor.$BREvolves into Flawless Demonia at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    - id: 280024  # Unlocked Demonwitch Sleeves
+      changes:
+        toolTip: "Unlocked Demonia armor.$BREvolves into Flawless Demonia at +9.$BRThis gear's full potential has been unlocked, you can upgrade it after reaching +9 refinement."
+    # Flawless Bastion
+    - id: 13549  # Flawless Blood & Gore
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13550  # Flawless Bloodstrike
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13551  # Flawless Cruelblade
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13552  # Flawless Bloodshatter
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13553  # Flawless Heartcoil
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13554  # Flawless Airheart
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13555  # Flawless Tuskrender
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13556  # Flawless Bloodhorn
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13557  # Flawless Grisly Greaves
+      changes:
+        toolTip: "Flawless Bastion armor.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13558  # Flawless Vulcanite Boots
+      changes:
+        toolTip: "Flawless Bastion armor.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13559  # Flawless Cruelhide Shoes
+      changes:
+        toolTip: "Flawless Bastion armor.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 55415  # Flawless Hemoblaster
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[WARNING!] Cannot Be Traded </font>"
+    - id: 58473  # Flawless Hemobloom
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 59463  # Flawless Truncuspear
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 82414  # Flawless Bloody Knuckles
+      changes:
+        toolTip: "Flawless Bastion weapon.$BREvolves into Demonia at +9, or into Flawless Demonia at +14.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    # Flawless Demonia
+    - id: 13568  # Flawless Bitter Mail
+      changes:
+        toolTip: "Flawless Demonia armor.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13569  # Flawless Assailer Gauntlets
+      changes:
+        toolTip: "Flawless Demonia armor.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13570  # Flawless Demonfoe Cuirass
+      changes:
+        toolTip: "Flawless Demonia armor.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13571  # Flawless Demonsbane Gloves
+      changes:
+        toolTip: "Flawless Demonia armor.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13572  # Flawless Robe of the Scion
+      changes:
+        toolTip: "Flawless Demonia armor.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
+    - id: 13573  # Flawless Demonwitch Sleeves
+      changes:
+        toolTip: "Flawless Demonia armor.$BR<font color = '#c21919'>[Caution!] Cannot be traded </font>"
