@@ -9,6 +9,7 @@
 # never arrives. Crystals are inventory rows instead, which the command adds to the bag as they
 # are, with their amount. The inventory rows are granted on every call whatever the tier, so
 # they carry the crystals of every tier, and the tester slots the grade of the set worn.
+# Wrathful and Spiteful share one crystal kind, so one item takes either but not both.
 # An equipment row's amount other than 2 delivers one item.
 # provenance: policy
 spec:
@@ -24,16 +25,25 @@ qaLoadouts:
           - { id: 8314 }
           - { id: 8290 }
           - { id: 8242 }
+          - { id: 8142 }
+          - { id: 8156 }
+          - { id: 8308 }
           - { id: 8135, amount: 4 }
           - { id: 8531 }
           - { id: 8315 }
           - { id: 8291 }
           - { id: 8243 }
+          - { id: 8143 }
+          - { id: 8157 }
+          - { id: 8309 }
           - { id: 8136, amount: 4 }
           - { id: 8532 }
           - { id: 8316 }
           - { id: 8292 }
           - { id: 8244 }
+          - { id: 8144 }
+          - { id: 8158 }
+          - { id: 8310 }
           - { id: 8137, amount: 4 }
         replaceStatuses:
           - status: 0
