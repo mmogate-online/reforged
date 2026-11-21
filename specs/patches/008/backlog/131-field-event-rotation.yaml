@@ -1,0 +1,22 @@
+# Only the Island of Dawn Guardian Legion event stays scheduled. The world map mission
+# list floor is global and sits at level 1 so the island event can be listed, which also
+# lists every level 65 mission to leveling characters. An event that belongs to no rotation
+# group never fires and is not listed, so the level 65 regional, flying, legendary and
+# transit missions are switched off by leaving their groups out.
+#
+# rotationGroups is a list section and replaces whole: this is the complete schedule, and
+# the island group is restated exactly as it stands. Its event definitions stay in place,
+# so a mission comes back by adding its group here.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+fieldEventConfig:
+  rotationGroups:
+    - serverOpenDelay: 600
+      startInterval: 900
+      randomRotation: false
+      events:
+        - { continentId: 13, eventId: 1 }
