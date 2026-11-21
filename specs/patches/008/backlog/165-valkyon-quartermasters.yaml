@@ -1,0 +1,358 @@
+# Valkyon Quartermasters in Velika, Lumbertown and Crescentia: Hestan, Tamsin and Calder. Each
+# opens the island quartermaster's store, so every town sells the same goods at the same price
+# and one store change reaches all four quartermasters.
+#
+# A shop NPC needs its speech condition and its dialog as well as the template: the shop menu is
+# drawn inside the dialog window, so an NPC with neither cannot be clicked. The quartermaster
+# store carries no service icon, so no row here sets one. A villagerMenus upsert replaces the
+# villager's whole menu list. New spawns change the npc location table, so the npc location
+# prune belongs after the apply. dir is degrees, counter-clockwise from +x.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  # Villager envelope; aiid 100 is the villager idle AI, so no quartermaster wanders.
+  _quartermaster:
+    villager: true
+    invincible: true
+    aiid: 100
+    size: medium
+    resourceType: medium
+    resourceSize: 100
+    class: ""
+    collideOnMove: false
+    isObjectNpc: false
+    isWideBroadcaster: false
+    isFreeNamed: false
+    isLightParty: false
+    elite: false
+    showAggroTarget: false
+    showShorttermTarget: false
+    dontTurn: false
+    partyMember: 0
+    spawnScriptId: 0
+    despawnScriptId: 0
+    pcDespawnScriptId: 0
+    villagerVolumeOffset: ""
+    villagerVolumeActiveRange: 0
+    villagerVolumeHalfHeight: 0
+    villagerVolumeInteractionDist: 0
+    namePlate:
+      deathNameplateHeight: 0
+    abnormalityResistanceOverride:
+      resetTime: 60000
+    stat:
+      maxHp: 10000
+      walkSpeed: 60
+      runSpeed: 110
+      atk: 100
+      def: 2000
+      exp: 1
+      level: 40
+    npcOnly:
+      onDeathSkill: 0
+    anger:
+      gaugeSize: 403799
+      time: 16633
+      moveSpeedUpRate: 1.6
+      accumRateWhenHpLow: 1.0
+      accumRateWhenHpMed: 1
+      accumRateWhenHpHigh: 1.0
+      modeOnProbabilityWhenPartyMemberDead: 0.2
+    critical:
+      str: 30
+      res: 180
+      powRate: 1.5
+    criticalAdjust:
+      front: 1
+      right: 1.2
+      left: 1.2
+      back: 1.6
+    reaction:
+      statStr: 40
+      statRes: 150
+      miniRes: 100
+      basicRes: 100
+      basicIncRes: 0
+      basicGaugeResetTime: 20000
+      maxBasicGauge: 2000
+      maxAdditionalGauge: 600000
+    abnormality:
+      strA: 50
+      resA: 40
+      strB: 50
+      resB: 40
+      strC: 50
+      resC: 40
+      strD: 50
+      resD: 40
+    aggro:
+      hateSkillCategoryName: ""
+      viewRadius: 200
+      viewAngle: 360
+      sightRangeAggroWeight: 1.3
+      hateSkillAggroWeight: 1
+      bigReactionAggroWeight: 0.5
+      aggroSendToClanDistance: 300
+      clanName: ""
+      aggroSendToPartyDistance: 400
+      aggroSendRate: 1
+      aggroSendStackRate: 0.1
+      aggroSendStackRateWhenFirstAttacked: 2
+      aggroReceiveOnlyInSight: false
+      aggroReceiveRate: 0.5
+    skillList: {}
+    stackPoint:
+      maxStackPoint: 10
+      minStackPointRequire: 3
+      stackPointPeriod: 8000
+
+  _villagerSpawn:
+    memberId: 0
+    ai: 100
+    randomPos: false
+    spawnCount: 1
+    offsetZ: 0
+    respawnTime: 10000
+    respawnRandomTime: "20000"
+    delaySpawnTimeWhenWorldStart: 0
+    isAggressiveMonster: false
+    isReturn: false
+    isReturnMyTerritory: false
+    conditionalSpawn: false
+    returnDistance: 0
+    moveInTerritory: false
+    questPatrol: false
+    peaceStateNoMoving: false
+    cautionStateNoMoving: false
+    voidSpawn: false
+    viewRadius: 300
+    viewAngle: 130
+    alertRadius: 400
+    alertAngle: 360
+    aggroShareGroupId: 0
+    aggroSendToPartyDistance: 400
+    aggroSendToClanDistance: 300
+    aggroSendToTerritory: ""
+    aggroIgnorePartyId: ""
+    aggroReceiveOnlyInSight: false
+    excludeAggroLimit: false
+    escapeLocation: [0, 0, 0]
+    popupMsg: ""
+    msgProb: 0
+    msgInterval: 0
+    msgBroadcastingChannel: false
+    randomGroupId: 0
+
+  _villagerTerritory:
+    type: normal
+    addMaxZ: 256.000000
+    subtractMinZ: 0.000000
+    eventId: 0
+    randomPosMinDist: 100.000000
+    peaceMoveNpcCheckDist: 100.000000
+    attribute:
+      abnormality: 0
+      achieveConditionId: 0
+
+npcs:
+  upsert:
+    - huntingZoneId: 63
+      id: 1120
+      $extends: _quartermaster
+      name: "Valkyon Quartermaster Hestan"
+      shapeId: 530020                       # Klaon 60,1039
+      basicActionId: 5000800
+      scale: 1
+      race: Human
+      gender: male
+    - huntingZoneId: 60
+      id: 1104
+      $extends: _quartermaster
+      name: "Valkyon Quartermaster Tamsin"
+      shapeId: 510310                       # Madlene 63,1124
+      basicActionId: 5001200
+      scale: 1
+      race: Human
+      gender: female
+    - huntingZoneId: 59
+      id: 1104
+      $extends: _quartermaster
+      name: "Valkyon Quartermaster Calder"
+      shapeId: 500083                       # Ridam 63,1141
+      basicActionId: 5000800
+      scale: 1
+      race: Human
+      gender: male
+
+territoryGroups:
+  upsert:
+    - huntingZoneId: 63
+      groupId: 6300051
+      desc: "Reforged Vendors, Velika"
+
+territories:
+  upsert:
+    - huntingZoneId: 63
+      groupId: 6300051
+      territoryId: 6309700
+      $extends: _villagerTerritory
+      desc: "Valkyon Quartermaster, Velika"
+      fences:
+        - [-399, 8607, 2179.18]
+        - [-99, 8607, 2179.18]
+        - [-99, 8907, 2179.18]
+        - [-399, 8907, 2179.18]
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000042
+      $extends: _villagerTerritory
+      desc: "Valkyon Quartermaster, Lumbertown"
+      fences:
+        - [88502, -5192, 1076.75]
+        - [88802, -5192, 1076.75]
+        - [88802, -4892, 1076.75]
+        - [88502, -4892, 1076.75]
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900036
+      $extends: _villagerTerritory
+      desc: "Valkyon Quartermaster, Crescentia"
+      fences:
+        - [95998, 16166, 2882.22]
+        - [96298, 16166, 2882.22]
+        - [96298, 16466, 2882.22]
+        - [95998, 16466, 2882.22]
+
+territorySpawns:
+  upsert:
+    - huntingZoneId: 63
+      groupId: 6300051
+      territoryId: 6309700
+      npcInstanceId: 6311662
+      npcTemplateId: 1120
+      $extends: _villagerSpawn
+      desc: "Valkyon Quartermaster Hestan"
+      pos: [-249.3, 8757.0, 2179.18]
+      dir: 213
+    - huntingZoneId: 60
+      groupId: 6000003
+      territoryId: 6000042
+      npcInstanceId: 6004063
+      npcTemplateId: 1104
+      $extends: _villagerSpawn
+      desc: "Valkyon Quartermaster Tamsin"
+      pos: [88651.8, -5041.9, 1076.75]
+      dir: 248
+    - huntingZoneId: 59
+      groupId: 5900006
+      territoryId: 5900036
+      npcInstanceId: 5900433
+      npcTemplateId: 1104
+      $extends: _villagerSpawn
+      desc: "Valkyon Quartermaster Calder"
+      pos: [96148.3, 16315.8, 2882.22]
+      dir: 69
+
+creatureStrings:
+  upsert:
+    - { huntingZoneId: 63, templateId: 1120, name: "Hestan", gender: male, race: Human, title: "Valkyon Quartermaster" }
+    - { huntingZoneId: 60, templateId: 1104, name: "Tamsin", gender: female, race: Human, title: "Valkyon Quartermaster" }
+    - { huntingZoneId: 59, templateId: 1104, name: "Calder", gender: male, race: Human, title: "Valkyon Quartermaster" }
+
+speechConditions:
+  upsert:
+    - huntingZoneId: 63
+      templateId: 1120
+      note: "Valkyon Quartermaster Hestan"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 60
+      templateId: 1104
+      note: "Valkyon Quartermaster Tamsin"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+    - huntingZoneId: 59
+      templateId: 1104
+      note: "Valkyon Quartermaster Calder"
+      normal:
+        - { id: 1, paramType: random }
+      popup: []
+
+# voiceTypeId is the voice of the NPC whose model was copied.
+villagerDialogs:
+  upsert:
+    - huntingZoneId: 63
+      id: 1120
+      voiceTypeId: 8
+      texts:
+        - id: 1
+          huntingZoneId: 63
+          villagerId: 1120
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Quartermaster Hestan, Valkyon Federation. Our headquarters is right here in Velika, and so is my store. Bring me your Commendations."
+    - huntingZoneId: 60
+      id: 1104
+      voiceTypeId: 17
+      texts:
+        - id: 1
+          huntingZoneId: 60
+          villagerId: 1104
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "The army needs Fey Forest timber, and it needs new soldiers too. I supply the soldiers. Bring me your Commendations."
+    - huntingZoneId: 59
+      id: 1104
+      voiceTypeId: 5
+      texts:
+        - id: 1
+          huntingZoneId: 59
+          villagerId: 1104
+          prevId: 0
+          endSocial: 14
+          pages:
+            - social: 4
+              text: "Conscripts guard Crescentia against the devan brigands, and I keep them supplied. Your Commendations buy from the same crates."
+
+villagerMenus:
+  upsert:
+    - huntingZoneId: 63
+      npcTemplateId: 1120
+      menus:
+        - { type: MedalStore, id: 9999012 }
+    - huntingZoneId: 60
+      npcTemplateId: 1104
+      menus:
+        - { type: MedalStore, id: 9999012 }
+    - huntingZoneId: 59
+      npcTemplateId: 1104
+      menus:
+        - { type: MedalStore, id: 9999012 }
+
+npcLocStrings:
+  upsert:
+    - huntingZoneId: 63
+      templateId: 1120
+      continent: 7005
+      markers:
+        - [-249, 8757, 2179]
+    - huntingZoneId: 60
+      templateId: 1104
+      continent: 7001
+      markers:
+        - [88652, -5042, 1077]
+    - huntingZoneId: 59
+      templateId: 1104
+      continent: 7001
+      markers:
+        - [96148, 16316, 2882]
