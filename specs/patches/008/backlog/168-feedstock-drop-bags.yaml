@@ -1,0 +1,113 @@
+# Feedstock drops on the field monsters of the leveling regions. Every enchant step spends two
+# Feedstock per Alkahest, and dismantling alone pays about half of that, so each monster with a
+# loot row also drops Feedstock directly, small and frequent. Three bags, each its own ground pile
+# so a party shares a kill without splitting a stack: one guaranteed, one at half chance for one
+# or two, and one chance bag for one or two that carries the rest of the region's need. The third
+# chance falls region by region as salvage and the other drops cover more of it.
+# The rows already repeat bag ids, so each bag takes the next free id of its row and a name of
+# its own for the next spec to select it by.
+# provenance: policy
+spec:
+  version: "1.0"
+  schema: v92
+
+eCompensations:
+  update:
+    - huntingZoneId: 13
+      npcTemplateId: [1, 2, 3, 4, 5, 7, 101, 102, 111, 302, 303, 304, 555, 556, 557, 558, 601, 1001, 1002, 1003, 1011, 300541, 300542, 300910, 300911, 300920, 300921, 300930, 300931, 300932, 300933, 300941, 300942, 300943, 300944, 300945, 300960, 301191, 301193, 301194]
+      changes:
+        addItemBags:
+          - { id: 106, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 107, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 108, bagName: "Feedstock-3", probability: 0.69 }
+    - huntingZoneId: 13
+      npcTemplateId: [6, 8, 9, 901, 300951]
+      changes:
+        addItemBags:
+          - { id: 107, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 108, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 109, bagName: "Feedstock-3", probability: 0.69 }
+    - huntingZoneId: 13
+      npcTemplateId: 1004
+      changes:
+        addItemBags:
+          - { id: 109, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 110, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 111, bagName: "Feedstock-3", probability: 0.69 }
+    - huntingZoneId: 2
+      npcTemplateId: [1, 2, 8, 23, 33, 52, 58, 62, 102, 152, 202]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 103, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 104, bagName: "Feedstock-3", probability: 0.80 }
+    - huntingZoneId: 2
+      npcTemplateId: 206
+      changes:
+        addItemBags:
+          - { id: 105, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 106, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 107, bagName: "Feedstock-3", probability: 0.80 }
+    - huntingZoneId: 2
+      npcTemplateId: [3, 4, 5, 6, 7, 10, 13, 22, 32, 34, 56, 57, 203, 209, 210, 259, 507, 510]
+      changes:
+        addItemBags:
+          - { id: 112, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 113, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 114, bagName: "Feedstock-3", probability: 0.80 }
+    - huntingZoneId: 3
+      npcTemplateId: [1, 4, 5, 6, 7, 30, 31, 32, 300811, 301080]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 103, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 104, bagName: "Feedstock-3", probability: 0.80 }
+    - huntingZoneId: 3
+      npcTemplateId: [16, 22]
+      changes:
+        addItemBags:
+          - { id: 103, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 104, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 105, bagName: "Feedstock-3", probability: 0.80 }
+    - huntingZoneId: 3
+      npcTemplateId: [2, 3, 9, 12, 13, 14, 15, 17, 18, 19, 20, 21, 23, 300140, 300141, 300142, 300160, 300161, 300611]
+      changes:
+        addItemBags:
+          - { id: 112, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 113, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 114, bagName: "Feedstock-3", probability: 0.80 }
+    - huntingZoneId: 6
+      npcTemplateId: 5003
+      changes:
+        addItemBags:
+          - { id: 105, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 106, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 107, bagName: "Feedstock-3", probability: 0.78 }
+    - huntingZoneId: 6
+      npcTemplateId: [1011, 1021, 1031, 1032, 1041, 1042, 1051, 1052, 1061, 1062, 1071, 1081, 1091, 2011, 2021, 2031, 2041, 2051, 2061, 2081, 2082, 3011, 3021, 3031, 3032, 3041, 3042, 5001, 5002, 7031, 7032, 7033, 7041, 7051]
+      changes:
+        addItemBags:
+          - { id: 112, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 113, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 114, bagName: "Feedstock-3", probability: 0.78 }
+    - huntingZoneId: 5
+      npcTemplateId: [2, 3, 4, 5, 6, 7, 8, 9, 18, 19, 20, 21, 22]
+      changes:
+        addItemBags:
+          - { id: 102, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 103, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 104, bagName: "Feedstock-3", probability: 0.78 }
+    - huntingZoneId: 5
+      npcTemplateId: 17
+      changes:
+        addItemBags:
+          - { id: 103, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 104, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 105, bagName: "Feedstock-3", probability: 0.78 }
+    - huntingZoneId: 5
+      npcTemplateId: [1, 13, 14, 15, 16]
+      changes:
+        addItemBags:
+          - { id: 112, bagName: "Feedstock-1", probability: 1.0 }
+          - { id: 113, bagName: "Feedstock-2", probability: 0.5 }
+          - { id: 114, bagName: "Feedstock-3", probability: 0.78 }
