@@ -1,0 +1,257 @@
+# Arcadian Wardens introduction: two one-time quests that let a newcomer meet the faction and
+# pay its first credits, sized to the part designs its point store sells.
+#
+# The quests sit in the faction's own quest group, 618, whose reward table reaches the client
+# and whose quest log row is named after the faction; neither is a daily, so the faction's
+# daily pool does not list them.
+#
+# The second quest is offered by the first quest's giver as the first completes (its linked
+# quest and its prerequisite), and every step of it is played in Crescentia, so the player is
+# never sent back to Lumbertown. Both open at the level at which the faction appears.
+#
+# The reward is points only, with no reputation experience, so grade still comes from the
+# dailies alone. A reward block is replaced whole on upsert.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+quests:
+  upsert:
+    # Garrick's Ledger: Bram, Garrick, Bram, all in Lumbertown.
+    - id: 61817
+      header:
+        questNumber: 61817
+        linkedQuest: 61818
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:61817001"
+        designersNote: ""
+        startPopup: "@quest:61817002"
+        endPopup: "@quest:61817003"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: { huntingZone: 60, templateId: 1100 }
+      requirements:
+        minLevel: 11
+      tasks:
+        - taskId: 1
+          type: VisitTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:61817005"
+          hasReward: false
+          body:
+            npcId: { huntingZone: 60, templateId: 1101 }
+            dialogueId: 3
+            completionButtonText: "@quest:61817004"
+            visitCinematicId: 0
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:61817007"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 60, templateId: 1100 }
+            dialogueId: 4
+            completionButtonText: "@quest:61817006"
+            visitCinematicId: 0
+    # Bram's Message: accepted from Bram, played in Crescentia (Ysolde, Sylvara, Ysolde).
+    - id: 61818
+      header:
+        questNumber: 61818
+        linkedQuest: 101
+        recommendedPartySize: 1
+        recommendedLevel: 11
+        questDialogue: 2
+        startTaskId: 1
+        summaryInfo: 100
+        questTitle: "@quest:61818001"
+        designersNote: ""
+        startPopup: "@quest:61818002"
+        endPopup: "@quest:61818003"
+        questType: "General"
+        repeatType: "OneTime"
+        cancellable: "Allowed"
+        giverNpc: { huntingZone: 60, templateId: 1100 }
+      requirements:
+        minLevel: 11
+        prerequisites: [61817]
+      tasks:
+        - taskId: 1
+          type: VisitTask
+          nextTaskId: 2
+          journalScript: 2
+          journalText: "@quest:61818005"
+          hasReward: false
+          body:
+            npcId: { huntingZone: 59, templateId: 1100 }
+            dialogueId: 3
+            completionButtonText: "@quest:61818004"
+            visitCinematicId: 0
+        - taskId: 2
+          type: VisitTask
+          nextTaskId: 3
+          journalScript: 2
+          journalText: "@quest:61818007"
+          hasReward: false
+          body:
+            npcId: { huntingZone: 59, templateId: 1101 }
+            dialogueId: 4
+            completionButtonText: "@quest:61818006"
+            visitCinematicId: 0
+        - taskId: 3
+          type: VisitTask
+          nextTaskId: 0
+          journalScript: 2
+          journalText: "@quest:61818009"
+          hasReward: true
+          body:
+            npcId: { huntingZone: 59, templateId: 1100 }
+            dialogueId: 5
+            completionButtonText: "@quest:61818008"
+            visitCinematicId: 0
+
+questStrings:
+  upsert:
+    - id: 61817001
+      string: "Garrick's Ledger"
+    - id: 61817002
+      string: "Speak to Garrick about the Wardens' work."
+    - id: 61817003
+      string: "The Wardens' gift is yours."
+    - id: 61817004
+      string: "\"I'll return to Bram.\""
+    - id: 61817005
+      string: "Speak to Garrick in Lumbertown."
+    - id: 61817006
+      string: "\"Thank you for the gift.\""
+    - id: 61817007
+      string: "Return to Bram in Lumbertown."
+    - id: 61818001
+      string: "Bram's Message"
+    - id: 61818002
+      string: "Give Ysolde my message when you reach Crescentia."
+    - id: 61818003
+      string: "Ysolde gave you credits for your next designs."
+    - id: 61818004
+      string: "\"I'll speak to Sylvara.\""
+    - id: 61818005
+      string: "Give Bram's message to Ysolde when you reach Crescentia."
+    - id: 61818006
+      string: "\"I'll return to Ysolde.\""
+    - id: 61818007
+      string: "Speak to Sylvara in Crescentia."
+    - id: 61818008
+      string: "\"Thank you for the credits.\""
+    - id: 61818009
+      string: "Return to Ysolde in Crescentia."
+
+questDialogs:
+  upsert:
+    - huntingZoneId: 618
+      id: 17
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1100
+          pages:
+            - social: 0
+              content: "Bram sent you to Garrick in Lumbertown. Garrick entered your name in his ledger.<BR><BR>Bram gave you credits from the Arcadian Wardens. He recommended the designs for the parts of your gear."
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "These designs cost Arcadian Wardens credits. Outriders need sound gear on the timber road. I sell the designs for it.<BR><BR>Speak to Garrick, the Wardens' quartermaster, in Lumbertown Plaza."
+        - id: 3
+          npcZoneId: 60
+          prevId: 2
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Your name is in my ledger, soldier. I run the Wardens' store. Each day's assignments protecting loggers go in the ledger too.<BR><BR>In Crescentia, Sylvara is our quartermaster; Ysolde sells the region's designs. Return to Bram."
+        - id: 4
+          npcZoneId: 60
+          prevId: 3
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "Take these credits as the Wardens' welcome to the timber road. The Wardens need soldiers with sound gear.<BR><BR>I'd save them for Recipe: Outrider's Ferrule and Recipe: Outrider's Lining."
+    - huntingZoneId: 618
+      id: 18
+      voiceTypeId: 0
+      texts:
+        - id: 1
+          pages: []
+        - id: 100
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1100
+          pages:
+            - social: 0
+              content: "Bram asked you to give Ysolde a spoken message in Crescentia. He asked you to deliver it whenever you reached the town."
+        - id: 2
+          npcZoneId: 60
+          prevId: 0
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "Ysolde sells the same regional designs in Crescentia. I'd like my customers to survive those woods.<BR><BR>Ask her to introduce you to the Wardens' quartermaster. Give Ysolde that message whenever you reach Crescentia."
+        - id: 3
+          npcZoneId: 59
+          prevId: 2
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "Bram wants you to meet the quartermaster? I can arrange that. Trade here depends on soldiers keeping the caravans safe.<BR><BR>Speak to Sylvara, the Wardens' quartermaster, in Crescentia Plaza."
+        - id: 4
+          npcZoneId: 59
+          prevId: 3
+          villagerId: 1101
+          pages:
+            - social: 4
+              content: "Frightened guesses make poor measurements. I prefer to examine tracks.<BR><BR>You can buy gear from the Wardens' store here. My daily assignments deal with the threats around Crescentia. Return to Ysolde."
+        - id: 5
+          npcZoneId: 59
+          prevId: 4
+          villagerId: 1100
+          pages:
+            - social: 4
+              content: "Your arrival deserves more than another warning about devas. These credits come from the Wardens.<BR><BR>The part designs would be a useful purchase. Customers who survive the woods can buy again. Thank you for carrying Bram's message."
+
+questCompensations:
+  upsert:
+    - questId: 61817
+      huntingZoneId: 618
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 0
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 0
+          reputationPoint: 20
+    - questId: 61818
+      huntingZoneId: 618
+      compensations:
+        - compensationId: 1
+          type: "normal"
+          exp: 0
+          gold: 0
+          itemBag: "allpay"
+          npcGuildId: 618
+          reputationExp: 0
+          reputationPoint: 20
