@@ -1,11 +1,14 @@
 # Region design merchants: Bram in Lumbertown and Ysolde in Crescentia, both opening one
-# shared store of the region's designs. A design added to the town design stores
-# would be sold in every town that shares them, so these designs get a store of their own.
+# shared store of the region's designs. A design added to the town design stores would be sold
+# in every town that shares them, so these designs get a store of their own. Every design in it
+# is bought with Arcadian Wardens points, so it is a PointStore menu and its tabs carry the
+# faction gate. A villager shows one button per menu type and opens the first menu of that
+# type, so the region's designs sit in one store and never beside another PointStore.
 #
 # A shop NPC needs a VillagerData condition file and a VillagerDialog entry besides its
 # template: the shop menu is drawn inside the dialog window, so without them the NPC cannot be
-# clicked. A gold store charges the item's own buyPrice, so the price lives on the item. The
-# store title and the tab label resolve through the NPC string table by the store's stringId
+# clicked. A PointStore charges the faction's ReputationItem row, which lives with the
+# faction's store. The store title and the tab label resolve through the NPC string table by the store's stringId
 # and the tab's stringed. A villagerMenus upsert replaces the villager's whole menu list.
 #
 # dir is degrees, counter-clockwise from +x. This spec adds spawn points, so the npc location
@@ -287,41 +290,43 @@ villagerMenus:
       npcTemplateId: 1100
       guideEffectId: 118
       menus:
-        - { type: Merchant, id: 920 }
+        - { type: PointStore, id: 923 }
     - huntingZoneId: 59
       npcTemplateId: 1100
       guideEffectId: 118
       menus:
-        - { type: Merchant, id: 920 }
+        - { type: PointStore, id: 923 }
 
-# One tab for the designs of crafted materials, then one tab per gear set the region sells, its
-# twelve class weapons first and its armor after. The title already says designs, so a set's tab
-# carries the set name alone. A store holds at most five tabs.
+# A Materials tab holds the designs of the lane's gear parts, then one tab per gear set the region
+# sells: its twelve class weapons, then its armor. The title already says designs, so a set's tab
+# carries the set name alone. A store holds at most five tabs, and a tab's label is read by its
+# stringed, not its list id.
 buyMenuLists:
   upsert:
-    - id: 920
+    - id: 923
       stringId: 920
-      desc: "Regional Designs"
+      desc: "Regional Gear Designs"
       itemLists:
-        - id: 9200
+        - id: 9231
           stringed: 9200
-        - id: 9201
+        - id: 9232
           stringed: 9201
-        - id: 9202
+        - id: 9233
           stringed: 9202
 
-# The gear tabs open at Arcadian Wardens grade 2; their grade rows live with the faction's store.
-# Material designs are never grade gated.
+# Part designs open at Arcadian Wardens grade 1 and gear designs at grade 2; their point and
+# grade rows live with the faction's store.
 buyLists:
   upsert:
-    - id: 9200
+    - id: 9231
       desc: "Materials"
+      needPointNpcGuildId: 618
       items:
         - { itemId: 920290, priceRevision: 1 }
         - { itemId: 920291, priceRevision: 1 }
         - { itemId: 920300, priceRevision: 1 }
         - { itemId: 920301, priceRevision: 1 }
-    - id: 9201
+    - id: 9232
       desc: "Revelation"
       needPointNpcGuildId: 618
       items:
@@ -346,7 +351,7 @@ buyLists:
         - { itemId: 921039, priceRevision: 1 }
         - { itemId: 921040, priceRevision: 1 }
         - { itemId: 921041, priceRevision: 1 }
-    - id: 9202
+    - id: 9233
       desc: "Nightshimmer"
       needPointNpcGuildId: 618
       items:

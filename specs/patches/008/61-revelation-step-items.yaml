@@ -1,5 +1,6 @@
 # Kugai to Revelation evolution items: the sabertooth fang, the Lumbertown writ, the two raw
-# materials and two gear parts of the step, and the two designs that craft the parts.
+# materials and two gear parts of the step, and the two designs that craft the parts. The
+# designs sell for faction points, so they are worth nothing to a vendor.
 #
 # Every stackable row carries boundType None: the loader refuses the whole item file when a
 # stackable item names any other binding. The drop model and sounds of each kind come from a
@@ -109,8 +110,7 @@ definitions:
     equipSound: InterfaceSound.Equip_ItemCUE.Equip_ScrollCue
     defaultValue: 0
 
-  # Designs, from Weaponcrafting Design: Krysteel Ingot (23001). A gold store charges the
-  # item's own buyPrice.
+  # Designs, from Weaponcrafting Design: Krysteel Ingot (23001).
   _Design:
     level: 11
     rareGrade: 1
@@ -139,7 +139,8 @@ definitions:
     relocatable: true
     searchable: true
     buyPrice: 10000
-    sellPrice: 1000
+    sellPrice: 0
+    isReputation: true
     dropSilhouette: Item_Drop.SM.Recipe_SM
     dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
     usedSound: InterfaceSound.UseItem.UseItemCue

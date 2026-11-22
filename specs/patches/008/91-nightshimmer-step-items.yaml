@@ -4,8 +4,8 @@
 #
 # Every stackable row carries boundType None: the loader refuses the whole item file when a
 # stackable item names any other binding. The drop model and sounds of each kind come from a
-# vanilla item of the same subtype, so nothing new is rendered or played. A gold store charges
-# a design's own buyPrice.
+# vanilla item of the same subtype, so nothing new is rendered or played. Every design sells
+# for faction points, so it is worth nothing to a vendor.
 # provenance: policy
 
 spec:
@@ -88,7 +88,8 @@ definitions:
     relocatable: true
     searchable: true
     buyPrice: 10000
-    sellPrice: 1000
+    sellPrice: 0
+    isReputation: true
     dropSilhouette: Item_Drop.SM.Recipe_SM
     dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
     usedSound: InterfaceSound.UseItem.UseItemCue
@@ -97,7 +98,7 @@ definitions:
   _GearDesign:
     $extends: _Design
     buyPrice: 50000
-    sellPrice: 5000
+    sellPrice: 0
 
 items:
   upsert:
