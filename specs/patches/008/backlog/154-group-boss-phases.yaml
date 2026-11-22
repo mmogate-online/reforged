@@ -1,0 +1,1634 @@
+# Lanok fights in HP phases. At 80, 60, 40 and 15% HP he roars and adds a stack of one phase
+# buff (power, attack speed and move speed), so the fight ramps without a wall. Each step fires
+# while its own hidden step marker is absent, so a step that burst damage skipped still lands.
+# From the sixth minute of combat he adds a stack of a far stronger enrage buff every two
+# minutes, up to three, a damage check; the first stack is announced on screen. From 15% his
+# enraged combos join his calm mode; from 5% he pants every 30 seconds, the opening to finish him.
+# His base attack is set so his heaviest move kills only once the enrage has stacked twice, and
+# his health so that a party, not one player, brings him down.
+# A short-term-target entry is the only AI section that fires on an HP crossing at once, and an ai
+# update restates the whole attack section, so every work and pattern below is restated.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  Row:
+    type: normal
+    pushtarget: stop
+    changeDirToCenter: false
+    attackRange: 100.0
+    changeDirOnSkillEnd: false
+    changeDirMethodOnSkillEnd: dir
+    returnAnimSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+    nextSkill: 0
+    switchInfo: 0
+    autoUse: false
+    canUseOnCombatMode: true
+    ignoreDefence: false
+    totalAtk: 0
+    aiRotateThreshold: 0
+    timeRate: 1
+    allDirectionDefence: false
+    adjAtkByNpcHp: false
+    attackRangeMin: 0.0
+    attackRangeMax: 0.0
+    needWeapon: true
+    parentId: 90022000
+    bullet:
+      startSkill: -1
+      shotSkill: 0
+      createTime: 0.0
+      detachTime: 0.0
+      flyingDuration: 1000.0
+    aggro:
+      offensiveSkill: true
+      aggroWhenStart: 0.0
+    anger:
+      attackUpRate: 0.0
+    defence:
+      rootMotion: false
+      damageApplyRate: 0.0
+      damageReduceValue: 0
+      perfectDefenceForAllies: false
+    drain:
+      maxDrainGauge: 0
+      drainGaugeExpireTime: 0
+      backSkillId: 0
+    drainBack:
+      gaugeToMpRate: 1
+    precondition:
+      coolTime: 0
+      modeNo: 0
+      modeChangeMethod: 2
+      cost:
+        hp: 0
+        mp: 0
+        anger: 0
+    projectile:
+      lifeTime: 0
+      destroyWhenHit: true
+      areaBoxSizeX: 0
+      areaBoxSizeY: 0
+      areaBoxSizeZ: 0
+      loopingTime: 0
+    resistance:
+      startTime: 0
+      endTime: 0
+      miniRes: 100.0
+      basicRes: 100.0
+      basicIncRes: 0
+      damageRes: 1.0
+    teleport:
+      istrue: false
+      type: BONFIRE
+      range: 0
+      distRange: 0
+    property:
+      movingWithAbnormalId: 0
+      defence: false
+      skillPendingType: normal
+      reactionPendingType: normal
+      weaponStatus: out
+      abnormalMultiHitAdjustId: 0
+    balanceRef:
+      isAngerSkill: false
+  Action:
+    cancel:
+      frontCancelEndTime: 0
+      rearCancelStartTime: 0
+      moveCancelStartTime: -1
+    hitInvincible:
+      startTime: 0
+      endTime: 0
+      exceptionalSkillCategory: 0
+    moveInvincible:
+      startTime: 0
+      endTime: 0
+    noReaction:
+      startTime: 0
+      endTime: 0
+    pending:
+      startTime: -1
+    cameraType:
+      type: none
+      startTime: 0.0
+      duration: 2000.0
+      prepareStageId: 0
+      startStageId: 0
+      weight: 2.0
+    changeDir:
+      changeDirMethod: dir
+      changeDirMaxAngle: 100
+  TargetingList:
+    adjustTargetingPos: notUse
+  Stage:
+    changeDirToTarget: false
+    movable: false
+    scriptId: 0
+    changeDirToTargetMax: 0
+    property:
+      animControlType: normal
+      adjustAnimToTarget: false
+  SpecialEffect:
+    id: 40121001
+    posX: 0.0
+    posY: 0.0
+    posZ: 0.0
+    startTime: 800
+    move:
+      duration: 0.3
+      distance: 1428.571411
+      maxHeight: 500.0
+  AnimSeq:
+    animSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+    animName: SkillReady
+    duration: 0
+    animRate: 1.0
+    bAnimLooping: false
+    rootMotionXYRate: 1.0
+    rootMotionZRate: 1.0
+    blendInTime: 0
+    loopingRate: 1.0
+    readOnlyDuration: 0.0
+    animMotionId: 0
+  Targeting:
+    time: 602
+    interval: 0
+    until: 0
+    mpBonusTypeB: 0
+    id: -1
+    type: none
+    startTime: 0
+    endTime: 0
+    method: normal
+    cost:
+      hp: 0
+      mp: 0
+      anger: 0
+  Area:
+    minRadius: 0.0
+    maxRadius: 500.0
+    rangeAngle: 360.0
+    offsetDistance: 0.0
+    offsetAngle: 0.0
+    rotateAngle: 0.0
+    minHeight: 0.0
+    maxHeight: 333.333344
+    setRangeHeightToGround: false
+    type: enemy
+    selectMethod: dist
+    maxCount: 10
+    aggroWhenNonOffensiveSkillHit: 0
+    crosshairRadius: 1.0
+    pierceDepth: 1
+    purpose: byType
+    crosshairRadius2: 3.0
+    effect:
+      atk: 1
+      aggroDiff:
+        value: 0.0
+      angerDiff:
+        value: 0
+      hpDiff:
+        value: 0
+      mpDiff:
+        value: 0
+      rebirth:
+        hpRecoveryRate: 0.0
+        mpRecoveryRate: 0.0
+      abnormalityOnCommon:
+        id: 0
+        timeOverrideLarge: 1
+        timeOverrideMedium: 1
+        timeOverrideSmall: 1
+        timeOverrideUser: 1
+        abnormalityRate: 0
+    hitEffects:
+      - $extends: HitEffect
+    reaction:
+      miniRate: 0
+      miniMotionId: 1
+      basicRate: 0
+      basicMotionId: 2
+      basicIncValue: 0
+      adjForGrade: 0
+    targetCondition:
+      abnormalityKind: 0
+      levelOver: 0
+      levelUnder: 0
+  HitEffect:
+    type: animationDamage
+
+
+abnormalities:
+  upsert:
+    - id: 99288001
+      name: "group_boss_step_flag_0.8"
+      kind: 49987
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288002
+      name: "group_boss_step_flag_0.6"
+      kind: 49988
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288003
+      name: "group_boss_step_flag_0.4"
+      kind: 49989
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288004
+      name: "group_boss_step_flag_0.15"
+      kind: 49990
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288010
+      name: "group_boss_phase"
+      kind: 49986
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 4
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1.05", tickInterval: 0, variation: 0, min: 0, max: 0 }
+        - { type: 24, method: 3, value: "1.05", tickInterval: 0, variation: 0, min: 0, max: 0 }
+        - { type: 5, method: 3, value: "1.05", tickInterval: 0, variation: 0, min: 0, max: 0 }
+      abnormalityStrings:
+        name: "Mounting Fury"
+        tooltip: "Increases Power, Attack Speed and Movement Speed. Stacks up to 4 times."
+    - id: 99288011
+      name: "group_boss_soft_enrage"
+      kind: 49985
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 3
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1.25", tickInterval: 0, variation: 0, min: 0, max: 0 }
+        - { type: 24, method: 3, value: "1.6", tickInterval: 0, variation: 0, min: 0, max: 0 }
+        - { type: 5, method: 3, value: "1.1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+      abnormalityStrings:
+        name: "Boundless Wrath"
+        tooltip: "Greatly increases Power, Attack Speed and Movement Speed. Stacks up to 3 times."
+
+abnormalityIconData:
+  upsert:
+    - abnormalityId: 99288010
+      iconName: "Icon_Status.DarkRiftAreaRage_Tex"
+    - abnormalityId: 99288011
+      iconName: "Icon_Status.plusmove_Tex"
+
+npcs:
+  update:
+    - huntingZoneId: 3
+      id: 22
+      changes:
+        stat:
+          maxHp: 4329612
+          atk: 11200
+
+ai:
+  update:
+    - huntingZoneId: 3
+      id: 31
+      changes:
+        combatState:
+          attack:
+            workList:
+              - id: 101
+                desc: "기본공격1"
+                normalBehaviorId: 1101
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2101
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1101, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 103
+                desc: "헤비어택"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1104, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 12000
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 104
+                desc: "리액션어택+헤비 어택"
+                normalBehaviorId: 1105
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2105
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1105, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 25000
+                isDirectionRevision: true
+                nextAttackProb: 0.5
+                nextAttackId: 103
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 106
+                desc: "롱어택"
+                normalBehaviorId: 1108
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2108
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1108, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 107
+                desc: "라운드어택(좌)"
+                normalBehaviorId: 1107
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2107
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetTargetDir() > 180 AND GetTargetDir() < 300 AND IsInSkillAttackRange(1107, 1,1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 108
+                desc: "라운드어택(우)"
+                normalBehaviorId: 1106
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2106
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetTargetDir() > 60 AND GetTargetDir() < 180 AND IsInSkillAttackRange(1106, 1, 1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 110
+                desc: "짧은 롱무브+우회전 공격"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1109, 1, 0.8) AND IsPrevAttack(0, 110) AND IsPrevAttack(0, 212) AND IsPrevAttack(0, 218) AND IsPrevAttack(0, 219)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 0.5
+                nextAttackId: 108
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 111
+                desc: "기본공격2"
+                normalBehaviorId: 1103
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2103
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1103, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 112
+                desc: "무브어택 + 20% 무브 어택"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: true
+                nextAttackProb: 0.2
+                nextAttackId: 300
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 113
+                desc: "울트라어택01(전 사냥터 사용)"
+                normalBehaviorId: 1111
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2111
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1111, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 204
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 114
+                desc: "울트라어택02(배경이 얼음, 눈인 사냥터만 사용)"
+                normalBehaviorId: 1112
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2112
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1112, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 204
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 150
+                desc: "PC에게 접근"
+                normalBehaviorId: 1083
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1084
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 201
+                desc: "HP30%탈진동작"
+                normalBehaviorId: 1201
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1201
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetHpRatio() < 0.3"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 14000
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 204
+                desc: "어그로체인지동작"
+                normalBehaviorId: 1204
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2204
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetDamagedCount(7) < 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 15000
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 214
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 206
+                desc: "백회피+100% 롱 어택 패턴"
+                normalBehaviorId: 1206
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2206
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1101, 1, 0.8) AND GetDamagedCount(10) > 5"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 106
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 212
+                desc: "긴 롱무브+좌회전 공격"
+                normalBehaviorId: 1113
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2113
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "IsInSkillAttackRange(1113, 1, 0.8) AND IsPrevAttack(0, 110) AND IsPrevAttack(0, 212) AND IsPrevAttack(0, 218) AND IsPrevAttack(0, 219)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 0.5
+                nextAttackId: 107
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 214
+                desc: "어그로 체인지(반복용)"
+                normalBehaviorId: 1204
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2204
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 215
+                desc: "PC를 보고 회전(어그로 체인지 공격용)"
+                normalBehaviorId: 361
+                normalBehaviorType: "activeRotate"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 362
+                angerBehaviorType: "activeRotate"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 216
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 216
+                desc: "정면 방향으로 이동"
+                normalBehaviorId: 1085
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 1086
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: false
+                preProcess: "GetTargetDir() > -60 AND GetTargetDir() < 60"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 217
+                desc: "태어난 곳을 향해 중점프 1_1"
+                normalBehaviorId: 363
+                normalBehaviorType: "activeRotate"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 364
+                angerBehaviorType: "activeRotate"
+                offFlockOnAngerMode: false
+                preProcess: "IsOutCombatSpace(1200) == 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 120000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 218
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 218
+                desc: "태어난 곳을 향해 중점프 1_2"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 204
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 219
+                desc: "태어난 곳을 향해 대점프 1_1"
+                normalBehaviorId: 365
+                normalBehaviorType: "activeRotate"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 366
+                angerBehaviorType: "activeRotate"
+                offFlockOnAngerMode: false
+                preProcess: "IsOutCombatSpace(1500) == 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 120000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 220
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 220
+                desc: "태어난 곳을 향해 대점프 1_2"
+                normalBehaviorId: 1113
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2113
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 0
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 204
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 222
+                desc: "롱 어택 후 무브 어택(분노용)"
+                normalBehaviorId: 1108
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2108
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "IsInSkillAttackRange(1108, 0, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 20000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 112
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 223
+                desc: "헛치기"
+                normalBehaviorId: 1101
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2101
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "IsInSkillAttackRange(1101, 1, 1.2) AND (GetDamagedCount(5) < 1 OR GetHpRatio() < 0.15)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 224
+                desc: "1_1 23도 좌로 회전 후 이동"
+                normalBehaviorId: 367
+                normalBehaviorType: "activeRotate"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 368
+                angerBehaviorType: "activeRotate"
+                offFlockOnAngerMode: false
+                preProcess: "IsPrevAttack(1, 216) == 0 AND (GetTargetDir() > -60 AND GetTargetDir() < 60)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 216
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 225
+                desc: "2_1 14도 우로 회전 후 이동"
+                normalBehaviorId: 369
+                normalBehaviorType: "activeRotate"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 370
+                angerBehaviorType: "activeRotate"
+                offFlockOnAngerMode: false
+                preProcess: "IsPrevAttack(1, 216) == 0 AND (GetTargetDir() > -60 AND GetTargetDir() < 60)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 216
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 226
+                desc: "HP30%이하시 태어난 곳을 향해 도망 1_1"
+                normalBehaviorId: 371
+                normalBehaviorType: "activeRotate"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 372
+                angerBehaviorType: "activeRotate"
+                offFlockOnAngerMode: false
+                preProcess: "GetHpRatio() < 0.3"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 120000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 227
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 227
+                desc: "HP30%이하시 태어난 곳을 향해 도망 1_2"
+                normalBehaviorId: 1087
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 1088
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 201
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 250
+                desc: "단기적 타겟(원거리 대응용)"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 103
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 260
+                desc: "PC에게 접근(어그로 체인지_원거리)"
+                normalBehaviorId: 1089
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1090
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 261
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 261
+                desc: "어그로 체인지 공격용_리액션 공격"
+                normalBehaviorId: 1105
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: false
+                angerBehaviorId: 2105
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: false
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 300
+                desc: "무브어택(반복용)"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 204
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 301
+                desc: "무브어택 + 70% 무브 어택(분노시)"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 20000
+                isDirectionRevision: true
+                nextAttackProb: 0.7
+                nextAttackId: 300
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 365
+                desc: "hp step 0.8"
+                normalBehaviorId: 1303
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1303
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 366
+                desc: "hp step 0.6"
+                normalBehaviorId: 1304
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1304
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 367
+                desc: "hp step 0.4"
+                normalBehaviorId: 1305
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1305
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 368
+                desc: "hp step 0.15"
+                normalBehaviorId: 1306
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1306
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 371
+                desc: "soft enrage tick"
+                normalBehaviorId: 1307
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1307
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 370
+                desc: "hp 5 opening"
+                normalBehaviorId: 1201
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1201
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 380
+                desc: "heavy below 15"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetHpRatio() <= 0.15 AND IsInSkillAttackRange(1104, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 6000
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+            tensionList:
+              - id: 1
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 1 }
+                  - { workId: 226, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 1, distanceRate: 1 }
+                  - { workId: 217, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 108, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204, prob: 0, distanceRate: 1 }
+                  - { workId: 104, prob: 0.5, distanceRate: 0.8 }
+                  - { workId: 103, prob: 0.25, distanceRate: 0.8 }
+                  - { workId: 111, prob: 0.4, distanceRate: 1 }
+                  - { workId: 101, prob: 0.6, distanceRate: 0.8 }
+                  - { workId: 106, prob: 0.4, distanceRate: 1 }
+                  - { workId: 206, prob: 0.3, distanceRate: 1 }
+                  - { workId: 223, prob: 0.3, distanceRate: 1 }
+                  - { workId: 113, prob: 0, distanceRate: 1 }
+                  - { workId: 114, prob: 0, distanceRate: 1 }
+                  - { workId: 216, prob: 0, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 0.8 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 112, prob: 0.7, distanceRate: 0.8 }
+                  - { workId: 214, prob: 0, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 1 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 222, prob: 0, distanceRate: 1 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225, prob: 0.3, distanceRate: 1 }
+                  - { workId: 227, prob: 0, distanceRate: 1 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 260, prob: 0, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 301, prob: 0, distanceRate: 0 }
+                  - { workId: 261, prob: 0, distanceRate: 0 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0, distanceRate: 1 }
+              - id: 2
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 0 }
+                  - { workId: 226, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 1, distanceRate: 1 }
+                  - { workId: 217, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 108, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204, prob: 0, distanceRate: 0 }
+                  - { workId: 104, prob: 0.5, distanceRate: 0.8 }
+                  - { workId: 222, prob: 0.3, distanceRate: 1 }
+                  - { workId: 301, prob: 0.3, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 206, prob: 0, distanceRate: 0 }
+                  - { workId: 223, prob: 0, distanceRate: 0 }
+                  - { workId: 103, prob: 0.3, distanceRate: 0.8 }
+                  - { workId: 111, prob: 0.4, distanceRate: 1 }
+                  - { workId: 113, prob: 0, distanceRate: 1 }
+                  - { workId: 114, prob: 0, distanceRate: 1 }
+                  - { workId: 216, prob: 0, distanceRate: 1 }
+                  - { workId: 101, prob: 0.65, distanceRate: 0.8 }
+                  - { workId: 106, prob: 0, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 0.8 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 112, prob: 0, distanceRate: 0.8 }
+                  - { workId: 214, prob: 0, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 1 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225, prob: 0.3, distanceRate: 1 }
+                  - { workId: 227, prob: 0, distanceRate: 1 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 260, prob: 0, distanceRate: 0 }
+                  - { workId: 261, prob: 0, distanceRate: 0 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0, distanceRate: 1 }
+              - id: 3
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 0 }
+                  - { workId: 226, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 1, distanceRate: 1 }
+                  - { workId: 217, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 108, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204, prob: 0, distanceRate: 1 }
+                  - { workId: 104, prob: 0.5, distanceRate: 0.8 }
+                  - { workId: 103, prob: 0.25, distanceRate: 0.8 }
+                  - { workId: 111, prob: 0.4, distanceRate: 1 }
+                  - { workId: 101, prob: 0.6, distanceRate: 0.8 }
+                  - { workId: 106, prob: 0.4, distanceRate: 1 }
+                  - { workId: 206, prob: 0.3, distanceRate: 1 }
+                  - { workId: 223, prob: 0.5, distanceRate: 1 }
+                  - { workId: 113, prob: 0, distanceRate: 1 }
+                  - { workId: 114, prob: 0, distanceRate: 1 }
+                  - { workId: 216, prob: 0, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 0.8 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 112, prob: 0.7, distanceRate: 0.8 }
+                  - { workId: 214, prob: 0, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 1 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 222, prob: 0.3, distanceRate: 1 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225, prob: 0.3, distanceRate: 1 }
+                  - { workId: 227, prob: 0, distanceRate: 1 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 301, prob: 0.3, distanceRate: 0 }
+                  - { workId: 260, prob: 0, distanceRate: 0 }
+                  - { workId: 261, prob: 0, distanceRate: 0 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0.3, distanceRate: 1 }
+              - id: 4
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 1 }
+                  - { workId: 226, prob: 0, distanceRate: 0 }
+                  - { workId: 219, prob: 1, distanceRate: 1 }
+                  - { workId: 217, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 108, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204, prob: 0, distanceRate: 0 }
+                  - { workId: 104, prob: 0.5, distanceRate: 0.8 }
+                  - { workId: 222, prob: 0.3, distanceRate: 1 }
+                  - { workId: 301, prob: 0.3, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 206, prob: 0, distanceRate: 0 }
+                  - { workId: 223, prob: 0, distanceRate: 0 }
+                  - { workId: 103, prob: 0.3, distanceRate: 0.8 }
+                  - { workId: 111, prob: 0.4, distanceRate: 1 }
+                  - { workId: 113, prob: 0, distanceRate: 1 }
+                  - { workId: 114, prob: 0, distanceRate: 1 }
+                  - { workId: 216, prob: 0, distanceRate: 1 }
+                  - { workId: 101, prob: 0.65, distanceRate: 0.8 }
+                  - { workId: 106, prob: 0, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 0.8 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 112, prob: 0, distanceRate: 0.8 }
+                  - { workId: 214, prob: 0, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 1 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225, prob: 0.3, distanceRate: 1 }
+                  - { workId: 227, prob: 0, distanceRate: 0 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 260, prob: 0, distanceRate: 0 }
+                  - { workId: 261, prob: 0, distanceRate: 0 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0.3, distanceRate: 1 }
+          shorttermTarget:
+            stWorkList:
+              - id: 1
+                desc: "중형_원거리견제"
+                preProcess: "PcTargetByDirectionEx(1, 360, 1109, 1.5, 1.2, 1)"
+                immediateAttackId: 250
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 2
+                desc: "중형_뒤견제"
+                preProcess: "GetRangePcNumEx(1106, 1, 0.9, 180, 0, 180, 0) > 1"
+                immediateAttackId: 108
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 3
+                desc: "중형_좌견제"
+                preProcess: "GetRangePcNumEx(1107, 1, 0.8, 270, 0, 180, 0) > 0"
+                immediateAttackId: 107
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 4
+                desc: "중형_우견제"
+                preProcess: "GetRangePcNumEx(1106, 1, 0.8, 90, 0, 180, 0) > 0"
+                immediateAttackId: 108
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 5
+                desc: "중형_힐견제"
+                preProcess: "PcTargetBySkillCategoryUsedEx(1, 360, 1110, 1, 0.8, 31, 2)"
+                immediateAttackId: 112
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 10
+                desc: "hp step 0.8"
+                preProcess: "GetHpRatio() <= 0.8 AND IsInAbnormality(49987) == 0"
+                immediateAttackId: 365
+                coolTime: "10000"
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 11
+                desc: "hp step 0.6"
+                preProcess: "GetHpRatio() <= 0.6 AND IsInAbnormality(49988) == 0"
+                immediateAttackId: 366
+                coolTime: "10000"
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 12
+                desc: "hp step 0.4"
+                preProcess: "GetHpRatio() <= 0.4 AND IsInAbnormality(49989) == 0"
+                immediateAttackId: 367
+                coolTime: "10000"
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 13
+                desc: "hp step 0.15"
+                preProcess: "GetHpRatio() <= 0.15 AND IsInAbnormality(49990) == 0"
+                immediateAttackId: 368
+                coolTime: "10000"
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 14
+                desc: "hp 5 opening"
+                preProcess: "GetHpRatio() <= 0.05"
+                immediateAttackId: 370
+                coolTime: "30000"
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 15
+                desc: "soft enrage, later stacks"
+                preProcess: "GetCombatTime() >= 480000"
+                immediateAttackId: 371
+                coolTime: "120000"
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 16
+                desc: "soft enrage, first stack at 6 minutes"
+                preProcess: "GetCombatTime() >= 360000 AND IsInAbnormality(49985) == 0"
+                immediateAttackId: 371
+                coolTime: "120000"
+                msgImmediately: true
+                msg: [3022001]
+                msgProb: 1
+            stTensionList:
+              - id: 1
+                stInfos:
+                  - { stWorkId: 10, prob: 1 }
+                  - { stWorkId: 11, prob: 1 }
+                  - { stWorkId: 12, prob: 1 }
+                  - { stWorkId: 13, prob: 1 }
+                  - { stWorkId: 14, prob: 1 }
+                  - { stWorkId: 15, prob: 1 }
+                  - { stWorkId: 16, prob: 1 }
+                  - { stWorkId: 1, prob: 0 }
+                  - { stWorkId: 2, prob: 0 }
+                  - { stWorkId: 3, prob: 0.015 }
+                  - { stWorkId: 4, prob: 0.015 }
+                  - { stWorkId: 5, prob: 0 }
+          patternLists:
+            - patterns:
+              - default: true
+                normalMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 2, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+              - minHpRatio: 0.0
+                maxHpRatio: 0.15
+                normalMode:
+                  tension: { attackTension: 3, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 4, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+
+monsterBehaviorStrings:
+  upsert:
+    - { id: 3022001, msg: "Lanok's wrath knows no bounds!", styleId: 37, msgOnScreen: 1 }
+
+npcSkills:
+  upsert:
+    - huntingZoneId: 3
+      templateId: 22
+      skillId: 1303
+      $extends: Row
+      name: "group_boss_step_0.8"
+      timeRate: 0.708510638297872
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 2700.0
+      defence:
+        successAnimSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 945
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288001
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 3
+      templateId: 22
+      skillId: 1304
+      $extends: Row
+      name: "group_boss_step_0.6"
+      timeRate: 0.708510638297872
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 2700.0
+      defence:
+        successAnimSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 945
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288002
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 3
+      templateId: 22
+      skillId: 1305
+      $extends: Row
+      name: "group_boss_step_0.4"
+      timeRate: 0.708510638297872
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 2700.0
+      defence:
+        successAnimSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 945
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288003
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 3
+      templateId: 22
+      skillId: 1306
+      $extends: Row
+      name: "group_boss_step_0.15"
+      timeRate: 0.708510638297872
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 2700.0
+      defence:
+        successAnimSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 945
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288004
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 3
+      templateId: 22
+      skillId: 1307
+      $extends: Row
+      name: "group_boss_soft_enrage"
+      timeRate: 0.708510638297872
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 2700.0
+      defence:
+        successAnimSet: FrostGiantJarl_ANI.Anim.FrostGiantJarl_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 945
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288011
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
