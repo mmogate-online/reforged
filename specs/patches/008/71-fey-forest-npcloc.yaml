@@ -1,22 +1,14 @@
-# StrSheet_NpcLoc quest-marker registry for hunting zones 202.
+# StrSheet_NpcLoc quest-marker registry for hunting zone 202.
 #
-# GENERATED FILE. Do not hand-edit: regenerate with
-#   python tools/dc-restore/gen_npcloc.py --zones 202 --continent 7001 --out <this file> --prune
+# Generated from the server TerritoryData, do not hand-edit. One row per (huntingZoneId,
+# templateId); the value is the list of that template's spawn positions on continent 7001. A
+# spawn stored as the 0,0,0 random-in-fence sentinel contributes its territory's fence centroid
+# instead, so no dead '7001#0,0,0' link target is emitted. Rows are replaced by zone.
 #
-# Derived from the CURRENT server TerritoryData, which is v31-authoritative
-# under the classic-restoration doctrine. One row per (huntingZoneId,
-# templateId); the value is the pipe-joined list of that template's spawn
-# positions on continent 7001. A spawn stored as the 0,0,0 random-in-fence
-# sentinel contributes its territory's fence centroid instead, so no dead
-# '7001#0,0,0' link target is ever emitted. Mode: prune (replace-by-zone).
-#
-# Waypoints use the TYPED form (`continent` + `markers`) rather than a packed
-# `string`. Both are supported and the raw form is what the DSL docs call the
-# generator default, but a packed payload runs to thousands of characters, so a
-# spawn change shows up as one enormous changed line. Typed markers diff one
-# waypoint at a time, which is what this project's regression-diff discipline
-# needs. `markers` replaces the whole list and is sequence-exact, so repeated
-# waypoints are preserved as written.
+# Waypoints use the typed form (`continent` + `markers`) rather than a packed `string`, so a
+# spawn change diffs one waypoint at a time instead of as one enormous line. `markers` replaces
+# the whole list and is sequence-exact, so repeated waypoints are preserved as written.
+# provenance: ported-from-v31
 
 spec:
   version: "1.0"

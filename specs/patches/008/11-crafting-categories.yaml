@@ -1,6 +1,9 @@
 # The crafting window lists each profession's recipes under the categories grouped here.
 # Classic recipes keep their classic category ids. The client does not nest headings, so
-# each tier is its own flat heading, named with its tier (see the strings spec).
+# each tier is its own flat heading, named with its tier (see the strings spec). A recipe's
+# categoryId must name a category its profession's group carries, or the window lists the
+# recipe under no heading, so every heading a patch recipe names is listed here: the classic
+# ones, then the alkahest, the extra weapon kinds and the Valkyon Craftworks headings.
 # provenance: ported-from-v31
 spec:
   version: "1.0"
@@ -26,6 +29,9 @@ artisanCategories:
         - { id: 3206, pos: 1, stringId: 913206 }
         - { id: 3207, pos: 1, stringId: 913207 }
         - { id: 3208, pos: 1, stringId: 913208 }
+        - { id: 3301, pos: 1, stringId: 913301 }
+        - { id: 3302, pos: 1, stringId: 913302 }
+        - { id: 3303, pos: 1, stringId: 913303 }
     - id: 7
       categories:
         - { id: 5201, pos: 1, stringId: 15201 }
@@ -65,6 +71,10 @@ artisanCategories:
         - { id: 1209, pos: 1, stringId: 911209 }
         - { id: 1210, pos: 1, stringId: 911210 }
         - { id: 1211, pos: 1, stringId: 911211 }
+        - { id: 1212, pos: 1, stringId: 911212 }
+        - { id: 1213, pos: 1, stringId: 911213 }
+        - { id: 1214, pos: 1, stringId: 911214 }
+        - { id: 1301, pos: 1, stringId: 911301 }
     - id: 22
       categories:
         - { id: 2001, pos: 1, stringId: 912001 }
@@ -99,6 +109,7 @@ artisanCategories:
         - { id: 2208, pos: 1, stringId: 912208 }
         - { id: 2209, pos: 1, stringId: 912209 }
         - { id: 2210, pos: 1, stringId: 912210 }
+        - { id: 2301, pos: 1, stringId: 912301 }
     - id: 23
       categories:
         - { id: 4002, pos: 1, stringId: 14002 }

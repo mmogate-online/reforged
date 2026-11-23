@@ -67,7 +67,7 @@ buyLists:
         - { itemId: 91326, priceRevision: 1 }   # Eclipse Potion I
         - { itemId: 91317, priceRevision: 1 }   # Scroll of Dash I
         - { itemId: 91320, priceRevision: 1 }   # Heart Potion I
-        - { itemId: 602207, priceRevision: 1 }   # Refined Alkahest
+        - { itemId: 602207, priceRevision: 1 }   # Recipe: Refined Alkahest
         - { itemId: 925019, priceRevision: 1 }   # Field Salve Case
         - { itemId: 925020, priceRevision: 1 }   # Field Tonic Case
     - id: 9222
@@ -97,50 +97,11 @@ npcStrings:
 
 items:
   update:
-    - { id: 91213, changes: { isReputation: true } }
-    - { id: 91214, changes: { isReputation: true } }
-    - { id: 91215, changes: { isReputation: true } }
-    - { id: 91221, changes: { isReputation: true } }
-    - { id: 91222, changes: { isReputation: true } }
-    - { id: 91223, changes: { isReputation: true } }
-    - { id: 91229, changes: { isReputation: true } }
-    - { id: 91230, changes: { isReputation: true } }
-    - { id: 91231, changes: { isReputation: true } }
-    - { id: 91237, changes: { isReputation: true } }
-    - { id: 91238, changes: { isReputation: true } }
-    - { id: 91239, changes: { isReputation: true } }
-    - { id: 91246, changes: { isReputation: true } }
-    - { id: 91248, changes: { isReputation: true } }
-    - { id: 91250, changes: { isReputation: true } }
-    - { id: 91262, changes: { isReputation: true } }
-    - { id: 91264, changes: { isReputation: true } }
-    - { id: 91266, changes: { isReputation: true } }
-    - { id: 91245, changes: { isReputation: true } }
-    - { id: 91247, changes: { isReputation: true } }
-    - { id: 91249, changes: { isReputation: true } }
-    - { id: 91261, changes: { isReputation: true } }
-    - { id: 91263, changes: { isReputation: true } }
-    - { id: 91265, changes: { isReputation: true } }
-    - { id: 91277, changes: { isReputation: true } }
-    - { id: 91282, changes: { isReputation: true } }
-    - { id: 91287, changes: { isReputation: true } }
-    - { id: 91292, changes: { isReputation: true } }
-    - { id: 91297, changes: { isReputation: true } }
-    - { id: 91302, changes: { isReputation: true } }
-    - { id: 91307, changes: { isReputation: true } }
-    - { id: 91312, changes: { isReputation: true } }
-    - { id: 26899, changes: { isReputation: true } }
-    - { id: 26904, changes: { isReputation: true } }
-    - { id: 26909, changes: { isReputation: true } }
-    - { id: 91326, changes: { isReputation: true } }
-    - { id: 91317, changes: { isReputation: true } }
-    - { id: 91320, changes: { isReputation: true } }
-    - { id: 602207, changes: { isReputation: true } }
-    - { id: 23001, changes: { isReputation: true } }
-    - { id: 23004, changes: { isReputation: true } }
-    - { id: 23002, changes: { isReputation: true } }
-    - { id: 23003, changes: { isReputation: true } }
-    - { id: 23005, changes: { isReputation: true } }
+    - id: [91213, 91214, 91215, 91221, 91222, 91223, 91229, 91230, 91231, 91237, 91238, 91239,
+        91246, 91248, 91250, 91262, 91264, 91266, 91245, 91247, 91249, 91261, 91263, 91265, 91277,
+        91282, 91287, 91292, 91297, 91302, 91307, 91312, 26899, 26904, 26909, 91326, 91317, 91320,
+        602207, 23001, 23004, 23002, 23003, 23005]
+      changes: { isReputation: true }
 
 reputationItems:
   upsert:

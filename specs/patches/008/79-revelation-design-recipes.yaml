@@ -7,23 +7,14 @@
 # band (Shara on weapons, Arun on armor) and the vendor kit. Cost, proficiency and experience
 # follow the classic band 1 rows. A recipe's id equals the id of the design item that teaches it.
 #
-# Weaponcrafting's group lacks the Powerfists, Shuriken and Runeglaive headings whose texts the
-# client carries, so they are added here. A critical result would be the same piece, so the
-# recipes name none, in the vanilla shape of a recipe without one: no critical item and no
-# critical rate. The loader refuses a critical item paired with a zero rate.
+# A critical result would be the same piece, so the recipes name none, in the vanilla shape of
+# a recipe without one: no critical item and no critical rate. The loader refuses a critical
+# item paired with a zero rate.
 # provenance: policy
 
 spec:
   version: "1.0"
   schema: v92
-
-artisanCategories:
-  upsertCategories:
-    - id: 21
-      categories:
-        - { id: 1212, pos: 1, stringId: 911212 }
-        - { id: 1213, pos: 1, stringId: 911213 }
-        - { id: 1214, pos: 1, stringId: 911214 }
 
 itemProduceRecipes:
   upsert:

@@ -1,0 +1,101 @@
+# Lane Step Items
+#
+# The item field sets every gear evolution lane step builds its materials and designs from.
+# Apply one with `$extends` on an item entry and give the id, name and icon on the entry.
+# The drop model and sounds of each kind come from a vanilla item of the same subtype, so
+# nothing new is rendered or played. Every stackable set carries boundType None: the loader
+# refuses the whole item file when a stackable item names any other binding.
+
+spec:
+  version: "1.0"
+
+definitions:
+  LaneMaterial:
+    level: 1
+    rareGrade: 1
+    combatItemType: NO_COMBAT
+    requiredLevel: 1
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10000
+    maxDropUnit: 9999
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 50
+    sellPrice: 5
+
+  # Hide and plant materials, from Simple Salts (534).
+  LaneHideMaterial:
+    $extends: LaneMaterial
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherCue
+
+  # Metal materials, from Paverune of Shara (501).
+  LaneMetalMaterial:
+    $extends: LaneMaterial
+    combatItemSubType: weaponMaterial
+    category: weaponMaterial
+    dropSilhouette: Item_Drop.SM.Weaponstone_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_WeaponStoneCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_OreCue
+
+  # Designs, from Weaponcrafting Design: Krysteel Ingot (23001). The flag locks a design below
+  # the store grade that sells it.
+  LaneDesign:
+    level: 11
+    rareGrade: 1
+    combatItemType: RECIPE
+    combatItemSubType: generalMaterial
+    category: generalMaterial
+    requiredLevel: 11
+    requiredEquipmentType: NO_COMBAT
+    itemUseCount: 1
+    maxStack: 10
+    maxDropUnit: 10
+    slotLimit: 0
+    rank: 0
+    dropType: 0
+    divide: 0
+    coolTime: 0
+    coolTimeGroup: 0
+    boundType: None
+    tradable: true
+    warehouseStorable: true
+    guildWarehouseStorable: true
+    storeSellable: true
+    dismantlable: false
+    destroyable: true
+    obtainable: true
+    relocatable: true
+    searchable: true
+    buyPrice: 10000
+    sellPrice: 0
+    isReputation: true
+    dropSilhouette: Item_Drop.SM.Recipe_SM
+    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
+    usedSound: InterfaceSound.UseItem.UseItemCue
+    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
+
+exports:
+  definitions:
+    - LaneMaterial
+    - LaneHideMaterial
+    - LaneMetalMaterial
+    - LaneDesign

@@ -3,9 +3,11 @@
 # which the permanent nostrum buff replaces, and the enigmatic and identification scrolls. Two items of the
 # Russian region, a pet treat and a skill manual, leave too: they have no English text. The
 # general merchant sells Refined Alkahest instead, at the markup price on the item, and the
-# Potential Unlock Scroll, the one unlock item for every leveling tier.
+# Potential Unlock Scroll, the one unlock item for every leveling tier. The other general goods
+# list stops selling base Alkahest for gold, so no merchant turns gold straight into enchant
+# material; the quartermaster's list prices it in tokens.
 #
-# The general goods lists (two copies), the combat list and the arcane supplies list are each
+# The general goods lists, the combat list and the arcane supplies list are each
 # shared by many towns' merchants, so every change applies in every town. Shop item lists are
 # replace-all, so each list is restated with its other items in their original order.
 # provenance: policy
@@ -79,3 +81,12 @@ buyLists:
           - { itemId: 70032, priceRevision: 1 }
           - { itemId: 70033, priceRevision: 1 }
           - { itemId: 70034, priceRevision: 1 }
+    # General Goods, the list that sold base Alkahest.
+    - id: 703110
+      changes:
+        items:
+          - { itemId: 200001, priceRevision: 1 }
+          - { itemId: 139093, priceRevision: 1 }
+          - { itemId: 91120, priceRevision: 1 }
+          - { itemId: 91121, priceRevision: 1 }
+          - { itemId: 81000, priceRevision: 1 }

@@ -11,97 +11,89 @@ spec:
 items:
   update:
     - { id: 6002, changes: { requiredLevel: 9 } }  # Healing Potion II
-    - { id: 6003, changes: { level: 9, requiredLevel: 9 } }  # Major Healing Potion II
+    - id:
+        - 6003  # Major Healing Potion II
+        - 6051  # Major Healing Elixir II
+        - 6099  # Major Healing Draught II
+        - 6147  # Major Health Restorative II
+      changes: { level: 9, requiredLevel: 9 }
     - { id: 6004, changes: { requiredLevel: 17 } }  # Healing Potion III
-    - { id: 6005, changes: { level: 17, requiredLevel: 17 } }  # Major Healing Potion III
+    - id:
+        - 6005  # Major Healing Potion III
+        - 6053  # Major Healing Elixir III
+        - 6101  # Major Healing Draught III
+        - 6149  # Major Health Restorative III
+      changes: { level: 17, requiredLevel: 17 }
     - { id: 6006, changes: { requiredLevel: 25 } }
-    - { id: 6007, changes: { level: 25, requiredLevel: 25 } }
+    - id: [6007, 6055, 6103, 6151]
+      changes: { level: 25, requiredLevel: 25 }
     - { id: 6008, changes: { requiredLevel: 33 } }
-    - { id: 6009, changes: { level: 33, requiredLevel: 33 } }
+    - id: [6009, 6057, 6105, 6153]
+      changes: { level: 33, requiredLevel: 33 }
     - { id: 6010, changes: { requiredLevel: 41 } }
-    - { id: 6011, changes: { level: 41, requiredLevel: 41 } }
+    - id: [6011, 6059, 6107, 6155, 6266]
+      changes: { level: 41, requiredLevel: 41 }
     - { id: 6012, changes: { requiredLevel: 51 } }
-    - { id: 6013, changes: { level: 51, requiredLevel: 51 } }
+    - id: [6013, 6061, 6109, 6157, 6267]
+      changes: { level: 51, requiredLevel: 51 }
     - { id: 6014, changes: { requiredLevel: 57 } }
-    - { id: 6015, changes: { level: 57, requiredLevel: 57 } }
-    - { id: 6051, changes: { level: 9, requiredLevel: 9 } }  # Major Healing Elixir II
-    - { id: 6053, changes: { level: 17, requiredLevel: 17 } }  # Major Healing Elixir III
-    - { id: 6055, changes: { level: 25, requiredLevel: 25 } }
-    - { id: 6057, changes: { level: 33, requiredLevel: 33 } }
-    - { id: 6059, changes: { level: 41, requiredLevel: 41 } }
-    - { id: 6061, changes: { level: 51, requiredLevel: 51 } }
-    - { id: 6063, changes: { level: 57, requiredLevel: 57 } }
-    - { id: 6099, changes: { level: 9, requiredLevel: 9 } }  # Major Healing Draught II
-    - { id: 6101, changes: { level: 17, requiredLevel: 17 } }  # Major Healing Draught III
-    - { id: 6103, changes: { level: 25, requiredLevel: 25 } }
-    - { id: 6105, changes: { level: 33, requiredLevel: 33 } }
-    - { id: 6107, changes: { level: 41, requiredLevel: 41 } }
-    - { id: 6109, changes: { level: 51, requiredLevel: 51 } }
-    - { id: 6111, changes: { level: 57, requiredLevel: 57 } }
-    - { id: 6147, changes: { level: 9, requiredLevel: 9 } }  # Major Health Restorative II
-    - { id: 6149, changes: { level: 17, requiredLevel: 17 } }  # Major Health Restorative III
-    - { id: 6151, changes: { level: 25, requiredLevel: 25 } }
-    - { id: 6153, changes: { level: 33, requiredLevel: 33 } }
-    - { id: 6155, changes: { level: 41, requiredLevel: 41 } }
-    - { id: 6157, changes: { level: 51, requiredLevel: 51 } }
-    - { id: 6159, changes: { level: 57, requiredLevel: 57 } }
+    - id: [6015, 6063, 6111, 6159]
+      changes: { level: 57, requiredLevel: 57 }
     - { id: 6264, changes: { level: 21, requiredLevel: 21 } }
     - { id: 6265, changes: { level: 31, requiredLevel: 31 } }
-    - { id: 6266, changes: { level: 41, requiredLevel: 41 } }
-    - { id: 6267, changes: { level: 51, requiredLevel: 51 } }
-    - { id: 6000, changes: { coolTime: 6 } }  # Healing Potion I
-    - { id: 6001, changes: { coolTime: 6 } }  # Major Healing Potion I
-    - { id: 6002, changes: { coolTime: 6 } }  # Healing Potion II
-    - { id: 6003, changes: { coolTime: 6 } }  # Major Healing Potion II
-    - { id: 6004, changes: { coolTime: 6 } }  # Healing Potion III
-    - { id: 6005, changes: { coolTime: 6 } }  # Major Healing Potion III
-    - { id: 6016, changes: { coolTime: 6 } }  # Mana Potion I
-    - { id: 6017, changes: { coolTime: 6 } }  # Major Mana Potion I
-    - { id: 6018, changes: { coolTime: 6 } }  # Mana Potion II
-    - { id: 6019, changes: { coolTime: 6 } }  # Major Mana Potion II
-    - { id: 6020, changes: { coolTime: 6 } }  # Mana Potion III
-    - { id: 6021, changes: { coolTime: 6 } }  # Major Mana Potion III
-    - { id: 6048, changes: { coolTime: 6 } }  # Healing Elixir I
-    - { id: 6049, changes: { coolTime: 6 } }  # Major Healing Elixir I
-    - { id: 6050, changes: { coolTime: 6 } }  # Healing Elixir II
-    - { id: 6051, changes: { coolTime: 6 } }  # Major Healing Elixir II
-    - { id: 6052, changes: { coolTime: 6 } }  # Healing Elixir III
-    - { id: 6053, changes: { coolTime: 6 } }  # Major Healing Elixir III
-    - { id: 6064, changes: { coolTime: 6 } }  # Mana Elixir I
-    - { id: 6065, changes: { coolTime: 6 } }  # Major Mana Elixir I
-    - { id: 6066, changes: { coolTime: 6 } }  # Mana Elixir II
-    - { id: 6067, changes: { coolTime: 6 } }  # Major Mana Elixir II
-    - { id: 6068, changes: { coolTime: 6 } }  # Mana Elixir III
-    - { id: 6069, changes: { coolTime: 6 } }  # Major Mana Elixir III
-    - { id: 6096, changes: { coolTime: 60 } }  # Healing Draught I
-    - { id: 6097, changes: { coolTime: 60 } }  # Major Healing Draught I
-    - { id: 6098, changes: { coolTime: 60 } }  # Healing Draught II
-    - { id: 6099, changes: { coolTime: 60 } }  # Major Healing Draught II
-    - { id: 6100, changes: { coolTime: 60 } }  # Healing Draught III
-    - { id: 6101, changes: { coolTime: 60 } }  # Major Healing Draught III
-    - { id: 6112, changes: { coolTime: 60 } }  # Mana Draught I
-    - { id: 6113, changes: { coolTime: 60 } }  # Major Mana Draught I
-    - { id: 6114, changes: { coolTime: 60 } }  # Mana Draught II
-    - { id: 6115, changes: { coolTime: 60 } }  # Major Mana Draught II
-    - { id: 6116, changes: { coolTime: 60 } }  # Mana Draught III
-    - { id: 6117, changes: { coolTime: 60 } }  # Major Mana Draught III
-    - { id: 6144, changes: { coolTime: 60 } }  # Health Restorative I
-    - { id: 6145, changes: { coolTime: 60 } }  # Major Health Restorative I
-    - { id: 6146, changes: { coolTime: 60 } }  # Health Restorative II
-    - { id: 6147, changes: { coolTime: 60 } }  # Major Health Restorative II
-    - { id: 6148, changes: { coolTime: 60 } }  # Health Restorative III
-    - { id: 6149, changes: { coolTime: 60 } }  # Major Health Restorative III
-    - { id: 6160, changes: { coolTime: 60 } }  # Mana Restorative I
-    - { id: 6161, changes: { coolTime: 60 } }  # Major Mana Restorative I
-    - { id: 6162, changes: { coolTime: 60 } }  # Mana Restorative II
-    - { id: 6163, changes: { coolTime: 60 } }  # Major Mana Restorative II
-    - { id: 6164, changes: { coolTime: 60 } }  # Mana Restorative III
-    - { id: 6165, changes: { coolTime: 60 } }  # Major Mana Restorative III
-    - { id: 6550, changes: { coolTimeGroup: 8 } }
-    - { id: 6551, changes: { coolTimeGroup: 8 } }
-    - { id: 6552, changes: { coolTimeGroup: 8 } }
-    - { id: 6553, changes: { coolTimeGroup: 8 } }
-    - { id: 6560, changes: { coolTimeGroup: 9 } }
-    - { id: 6561, changes: { coolTimeGroup: 9 } }
-    - { id: 6562, changes: { coolTimeGroup: 9 } }
-    - { id: 6563, changes: { coolTimeGroup: 9 } }
+    - id:
+        - 6000  # Healing Potion I
+        - 6001  # Major Healing Potion I
+        - 6002  # Healing Potion II
+        - 6003  # Major Healing Potion II
+        - 6004  # Healing Potion III
+        - 6005  # Major Healing Potion III
+        - 6016  # Mana Potion I
+        - 6017  # Major Mana Potion I
+        - 6018  # Mana Potion II
+        - 6019  # Major Mana Potion II
+        - 6020  # Mana Potion III
+        - 6021  # Major Mana Potion III
+        - 6048  # Healing Elixir I
+        - 6049  # Major Healing Elixir I
+        - 6050  # Healing Elixir II
+        - 6051  # Major Healing Elixir II
+        - 6052  # Healing Elixir III
+        - 6053  # Major Healing Elixir III
+        - 6064  # Mana Elixir I
+        - 6065  # Major Mana Elixir I
+        - 6066  # Mana Elixir II
+        - 6067  # Major Mana Elixir II
+        - 6068  # Mana Elixir III
+        - 6069  # Major Mana Elixir III
+      changes: { coolTime: 6 }
+    - id:
+        - 6096  # Healing Draught I
+        - 6097  # Major Healing Draught I
+        - 6098  # Healing Draught II
+        - 6099  # Major Healing Draught II
+        - 6100  # Healing Draught III
+        - 6101  # Major Healing Draught III
+        - 6112  # Mana Draught I
+        - 6113  # Major Mana Draught I
+        - 6114  # Mana Draught II
+        - 6115  # Major Mana Draught II
+        - 6116  # Mana Draught III
+        - 6117  # Major Mana Draught III
+        - 6144  # Health Restorative I
+        - 6145  # Major Health Restorative I
+        - 6146  # Health Restorative II
+        - 6147  # Major Health Restorative II
+        - 6148  # Health Restorative III
+        - 6149  # Major Health Restorative III
+        - 6160  # Mana Restorative I
+        - 6161  # Major Mana Restorative I
+        - 6162  # Mana Restorative II
+        - 6163  # Major Mana Restorative II
+        - 6164  # Mana Restorative III
+        - 6165  # Major Mana Restorative III
+      changes: { coolTime: 60 }
+    - id: [6550, 6551, 6552, 6553]
+      changes: { coolTimeGroup: 8 }
+    - id: [6560, 6561, 6562, 6563]
+      changes: { coolTimeGroup: 9 }

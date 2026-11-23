@@ -11,10 +11,8 @@ spec:
 imports:
   - from: evolution-base
     use:
-      variables:
-        - EVOLUTION_COST
-        - EVOLUTION_PROB
       definitions:
+        - _EvolutionPathBase
         - EvolutionItem
 
 variables:
@@ -71,14 +69,8 @@ variables:
   TARGET_FEETROBE: 15144
 
 definitions:
-  _NightshimmerPath:
-    awaken: false
-    masterpiece: false
-    evolutionProb: $EVOLUTION_PROB
-    requiredMoney: $EVOLUTION_COST
-
   NightshimmerWeaponPath:
-    $extends: _NightshimmerPath
+    $extends: _EvolutionPathBase
     materials:
       - { id: $CROOKBLADE, amount: 32, type: item }
       - { id: $SPINECOIL, amount: 20, type: item }
@@ -86,7 +78,7 @@ definitions:
       - { id: $GRIP_CORE, amount: 4, type: item }
 
   NightshimmerBodyPath:
-    $extends: _NightshimmerPath
+    $extends: _EvolutionPathBase
     materials:
       - { id: $CROOKBLADE, amount: 24, type: item }
       - { id: $SPINECOIL, amount: 15, type: item }
@@ -94,7 +86,7 @@ definitions:
       - { id: $THREAD, amount: 3, type: item }
 
   NightshimmerHandFeetPath:
-    $extends: _NightshimmerPath
+    $extends: _EvolutionPathBase
     materials:
       - { id: $CROOKBLADE, amount: 16, type: item }
       - { id: $SPINECOIL, amount: 10, type: item }

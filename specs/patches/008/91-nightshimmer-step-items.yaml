@@ -12,106 +12,33 @@ spec:
   version: "1.0"
   schema: v92
 
+imports:
+  - from: lane-step-items
+    use:
+      definitions:
+        - LaneMaterial
+        - LaneHideMaterial
+        - LaneMetalMaterial
+        - LaneDesign
+
 definitions:
-  _Material:
-    level: 1
-    rareGrade: 1
-    combatItemType: NO_COMBAT
-    requiredLevel: 1
-    requiredEquipmentType: NO_COMBAT
-    itemUseCount: 1
-    maxStack: 10000
-    maxDropUnit: 9999
-    slotLimit: 0
-    rank: 0
-    dropType: 0
-    divide: 0
-    coolTime: 0
-    coolTimeGroup: 0
-    boundType: None
-    tradable: true
-    warehouseStorable: true
-    guildWarehouseStorable: true
-    storeSellable: true
-    dismantlable: false
-    destroyable: true
-    obtainable: true
-    relocatable: true
-    searchable: true
-    buyPrice: 50
-    sellPrice: 5
-
-  # Hide, bone, wood and fiber materials, from Simple Salts (534).
-  _HideMaterial:
-    $extends: _Material
-    combatItemSubType: generalMaterial
-    category: generalMaterial
-    dropSilhouette: DropItem.SM.Item_Drop_Chest_SM
-    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
-    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherCue
-
-  # Metal materials, from Paverune of Shara (501).
-  _MetalMaterial:
-    $extends: _Material
-    combatItemSubType: weaponMaterial
-    category: weaponMaterial
-    dropSilhouette: Item_Drop.SM.Weaponstone_SM
-    dropSound: InterfaceSound.Drop_ItemCUE.Drop_WeaponStoneCue
-    equipSound: InterfaceSound.Equip_ItemCUE.Equip_OreCue
-
-  # Designs, from Weaponcrafting Design: Krysteel Ingot (23001).
-  _Design:
-    level: 11
-    rareGrade: 1
-    combatItemType: RECIPE
-    combatItemSubType: generalMaterial
-    category: generalMaterial
-    requiredLevel: 11
-    requiredEquipmentType: NO_COMBAT
-    itemUseCount: 1
-    maxStack: 10
-    maxDropUnit: 10
-    slotLimit: 0
-    rank: 0
-    dropType: 0
-    divide: 0
-    coolTime: 0
-    coolTimeGroup: 0
-    boundType: None
-    tradable: true
-    warehouseStorable: true
-    guildWarehouseStorable: true
-    storeSellable: true
-    dismantlable: false
-    destroyable: true
-    obtainable: true
-    relocatable: true
-    searchable: true
-    buyPrice: 10000
-    sellPrice: 0
-    isReputation: true
-    dropSilhouette: Item_Drop.SM.Recipe_SM
-    dropSound: InterfaceSound.Drop_ItemCUE.Drop_ScrollCue
-    usedSound: InterfaceSound.UseItem.UseItemCue
-    equipSound: InterfaceSound.Equip_ItemCUE.Equip_LeatherPaperCue
-
   _GearDesign:
-    $extends: _Design
+    $extends: LaneDesign
     buyPrice: 50000
     sellPrice: 0
 
 items:
   upsert:
-    - { $extends: _MetalMaterial, id: 920253, name: evo_devan_crookblade, icon: Icon_Items.evo_va_devan_crookblade_Tex }
-    - { $extends: _HideMaterial, id: 920254, name: evo_berzerad_spinecoil, icon: Icon_Items.evo_va_berzerad_spinecoil_Tex }
-    - { $extends: _HideMaterial, id: 920255, name: evo_devan_captains_hornmask, icon: Icon_Items.evo_va_devan_captains_hornmask_Tex }
-    - { $extends: _HideMaterial, id: 920292, name: evo_nightshimmer_grip_core, icon: Icon_Items.evo_va_nightshimmer_grip_core_Tex }
-    - { $extends: _HideMaterial, id: 920293, name: evo_sporewalker_rootwood, icon: Icon_Items.evo_va_sporewalker_rootwood_Tex }
-    - { $extends: _HideMaterial, id: 920294, name: evo_nightshimmer_thread, icon: Icon_Items.evo_va_nightshimmer_thread_Tex }
-    - { $extends: _HideMaterial, id: 920312, name: evo_noruk_undercoat, icon: Icon_Items.evo_va_noruk_undercoat_Tex }
-    - { $extends: _HideMaterial, id: 920296, name: evo_oblivion_shadeflax, icon: Icon_Items.evo_va_oblivion_shadeflax_Tex }
-    - { $extends: _Design, id: 920300, name: evo_recipe_nightshimmer_grip_core, icon: Icon_Items.evo_recipe_nightshimmer_grip_core_Tex }
-    - { $extends: _Design, id: 920301, name: evo_recipe_nightshimmer_thread, icon: Icon_Items.evo_recipe_nightshimmer_thread_Tex }
+    - { $extends: LaneMetalMaterial, id: 920253, name: evo_devan_crookblade, icon: Icon_Items.evo_va_devan_crookblade_Tex }
+    - { $extends: LaneHideMaterial, id: 920254, name: evo_berzerad_spinecoil, icon: Icon_Items.evo_va_berzerad_spinecoil_Tex }
+    - { $extends: LaneHideMaterial, id: 920255, name: evo_devan_captains_hornmask, icon: Icon_Items.evo_va_devan_captains_hornmask_Tex }
+    - { $extends: LaneHideMaterial, id: 920292, name: evo_nightshimmer_grip_core, icon: Icon_Items.evo_va_nightshimmer_grip_core_Tex }
+    - { $extends: LaneHideMaterial, id: 920293, name: evo_sporewalker_rootwood, icon: Icon_Items.evo_va_sporewalker_rootwood_Tex }
+    - { $extends: LaneHideMaterial, id: 920294, name: evo_nightshimmer_thread, icon: Icon_Items.evo_va_nightshimmer_thread_Tex }
+    - { $extends: LaneHideMaterial, id: 920312, name: evo_noruk_undercoat, icon: Icon_Items.evo_va_noruk_undercoat_Tex }
+    - { $extends: LaneHideMaterial, id: 920296, name: evo_oblivion_shadeflax, icon: Icon_Items.evo_va_oblivion_shadeflax_Tex }
+    - { $extends: LaneDesign, id: 920300, name: evo_recipe_nightshimmer_grip_core, icon: Icon_Items.evo_recipe_nightshimmer_grip_core_Tex }
+    - { $extends: LaneDesign, id: 920301, name: evo_recipe_nightshimmer_thread, icon: Icon_Items.evo_recipe_nightshimmer_thread_Tex }
     - { $extends: _GearDesign, id: 921042, name: evo_design_pathfinder_pair, icon: Icon_Items.recipeweapon_dual_Tex }
     - { $extends: _GearDesign, id: 921043, name: evo_design_dutys_lance, icon: Icon_Items.recipeweapon_lance_Tex }
     - { $extends: _GearDesign, id: 921044, name: evo_design_pathsweeper, icon: Icon_Items.recipeweapon_twohand_Tex }

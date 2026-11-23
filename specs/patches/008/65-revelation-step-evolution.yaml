@@ -12,10 +12,8 @@ spec:
 imports:
   - from: evolution-base
     use:
-      variables:
-        - EVOLUTION_COST
-        - EVOLUTION_PROB
       definitions:
+        - _EvolutionPathBase
         - EvolutionItem
 
 variables:
@@ -71,28 +69,22 @@ variables:
   TARGET_FEETROBE: 15675
 
 definitions:
-  _RevelationPath:
-    awaken: false
-    masterpiece: false
-    evolutionProb: $EVOLUTION_PROB
-    requiredMoney: $EVOLUTION_COST
-
   RevelationWeaponPath:
-    $extends: _RevelationPath
+    $extends: _EvolutionPathBase
     materials:
       - { id: $FANG, amount: 24, type: item }
       - { id: $WRIT, amount: 1, type: item }
       - { id: $FERRULE, amount: 4, type: item }
 
   RevelationBodyPath:
-    $extends: _RevelationPath
+    $extends: _EvolutionPathBase
     materials:
       - { id: $FANG, amount: 18, type: item }
       - { id: $WRIT, amount: 1, type: item }
       - { id: $LINING, amount: 3, type: item }
 
   RevelationHandFeetPath:
-    $extends: _RevelationPath
+    $extends: _EvolutionPathBase
     materials:
       - { id: $FANG, amount: 12, type: item }
       - { id: $WRIT, amount: 1, type: item }
