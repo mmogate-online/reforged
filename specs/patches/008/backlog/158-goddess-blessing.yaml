@@ -1,37 +1,334 @@
-# Goddess's Blessing keeps its ten minute cooldown, and its tooltip now states that length; the
-# middle sentence takes the wording of its higher level siblings, so it no longer reads as 60%
-# of invincibility.
-# Weakness is the debuff a fast revive leaves on the player: Attack down by a quarter for
-# ninety seconds. It uses the per skill damage multiplier that vanilla Attack decreases use,
-# not the Power stat, so the damage loss is the stated 25%. A normal revive applies nothing.
+# Goddess's Blessing takes its classic one hour cooldown, and the Quick Goddess's Blessing is
+# the fast alternative: a one minute cooldown in a group of its own, so using one never locks out
+# the other, paid for with Weakness after the revive. A normal revive applies nothing.
+# The Quick item and its revive skill are the vanilla Blessing and its skill transcribed whole
+# under their own ids. Trap: Weakness must come before the invincibility in the skill's list, or
+# the invincibility refuses it. Weakness cuts the per skill damage multiplier, 25% a stack, two
+# stacks; it survives death, and level 99 puts it above every player cleanse.
+# Each region sells its own copies, usable in it and every earlier region: the item flag
+# useOnlyTerritory plus the item's id in the enableItemId list of each allowed AreaData section.
+# The client never sees that list, so each tooltip names the regions. The item list is one
+# string, never merged, so a section that already allowed an item restates it. Only items on the
+# server's revive list revive in place; it spends the first listed copy a player holds and does
+# not fall through, so newer regions' copies are listed first.
 # provenance: policy
 
 spec:
   version: "1.0"
   schema: v92
 
+worldData:
+  autoRevivalItem:
+    addItemTemplateIds: [602260, 602263, 602264, 602261, 602262]
+
+items:
+  update:
+    - { id: 60260, changes: { coolTime: 3600 } }  # Goddess's Blessing: 10 to 60 minutes
+  upsert:
+    - id: 602260
+      name: goddess_quick
+      level: 1
+      rareGrade: 0
+      searchable: true
+      combatItemType: DISPOSAL
+      combatItemSubType: combat
+      category: combat
+      rank: 0
+      conversion: false
+      sortingNumber: 0
+      dropType: 2
+      buyPrice: 1
+      sellPrice: 1
+      useOnlyTerritory: false
+      divide: 0
+      itemUseCount: 1
+      maxDropUnit: 1
+      maxStack: 1000
+      slotLimit: 0
+      coolTimeGroup: 150
+      coolTime: 60
+      warehouseStorable: true
+      guildWarehouseStorable: true
+      boundType: None
+      destroyable: false
+      dismantlable: false
+      storeSellable: true
+      tradable: true
+      obtainable: true
+      relocatable: true
+      artisanable: false
+      enchantEnable: false
+      unidentifiedItemGrade: 0
+      masterpieceRate: 0
+      linkEquipmentId: 0
+      linkLookInfoId: 0
+      changeLook: false
+      extractLook: false
+      changeColorEnable: false
+      requiredGuildMaster: false
+      linkCrestId: 0
+      linkCustomizingId: 0
+      requiredEquipmentType: NO_COMBAT
+      linkSkillId: 60411201
+      linkPetAdultId: 0
+      linkPetOrbId: 0
+      icon: Icon_Items.ReviveNow_Tex
+      dropSilhouette: Item_Drop.SM.Scroll_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      defaultValue: 0
+      requiredLevel: 1
+    - id: 602261
+      name: goddess_iod
+      level: 1
+      rareGrade: 0
+      searchable: true
+      combatItemType: DISPOSAL
+      combatItemSubType: combat
+      category: combat
+      rank: 0
+      conversion: false
+      sortingNumber: 0
+      dropType: 2
+      buyPrice: 650
+      sellPrice: 1
+      useOnlyTerritory: true
+      divide: 0
+      itemUseCount: 1
+      maxDropUnit: 1
+      maxStack: 1000
+      slotLimit: 0
+      coolTimeGroup: 99
+      coolTime: 3600
+      warehouseStorable: true
+      guildWarehouseStorable: true
+      boundType: None
+      destroyable: false
+      dismantlable: false
+      storeSellable: true
+      tradable: true
+      obtainable: true
+      relocatable: true
+      artisanable: false
+      enchantEnable: false
+      unidentifiedItemGrade: 0
+      masterpieceRate: 0
+      linkEquipmentId: 0
+      linkLookInfoId: 0
+      changeLook: false
+      extractLook: false
+      changeColorEnable: false
+      requiredGuildMaster: false
+      linkCrestId: 0
+      linkCustomizingId: 0
+      requiredEquipmentType: NO_COMBAT
+      linkSkillId: 60411200
+      linkPetAdultId: 0
+      linkPetOrbId: 0
+      icon: Icon_Items.ReviveNow_Tex
+      dropSilhouette: Item_Drop.SM.Scroll_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      defaultValue: 0
+      requiredLevel: 1
+    - id: 602262
+      name: goddess_quick_iod
+      level: 1
+      rareGrade: 0
+      searchable: true
+      combatItemType: DISPOSAL
+      combatItemSubType: combat
+      category: combat
+      rank: 0
+      conversion: false
+      sortingNumber: 0
+      dropType: 2
+      buyPrice: 500
+      sellPrice: 1
+      useOnlyTerritory: true
+      divide: 0
+      itemUseCount: 1
+      maxDropUnit: 1
+      maxStack: 1000
+      slotLimit: 0
+      coolTimeGroup: 150
+      coolTime: 60
+      warehouseStorable: true
+      guildWarehouseStorable: true
+      boundType: None
+      destroyable: false
+      dismantlable: false
+      storeSellable: true
+      tradable: true
+      obtainable: true
+      relocatable: true
+      artisanable: false
+      enchantEnable: false
+      unidentifiedItemGrade: 0
+      masterpieceRate: 0
+      linkEquipmentId: 0
+      linkLookInfoId: 0
+      changeLook: false
+      extractLook: false
+      changeColorEnable: false
+      requiredGuildMaster: false
+      linkCrestId: 0
+      linkCustomizingId: 0
+      requiredEquipmentType: NO_COMBAT
+      linkSkillId: 60411201
+      linkPetAdultId: 0
+      linkPetOrbId: 0
+      icon: Icon_Items.ReviveNow_Tex
+      dropSilhouette: Item_Drop.SM.Scroll_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      defaultValue: 0
+      requiredLevel: 1
+    - id: 602263
+      name: goddess_arcadia
+      level: 1
+      rareGrade: 0
+      searchable: true
+      combatItemType: DISPOSAL
+      combatItemSubType: combat
+      category: combat
+      rank: 0
+      conversion: false
+      sortingNumber: 0
+      dropType: 2
+      buyPrice: 1300
+      sellPrice: 1
+      useOnlyTerritory: true
+      divide: 0
+      itemUseCount: 1
+      maxDropUnit: 1
+      maxStack: 1000
+      slotLimit: 0
+      coolTimeGroup: 99
+      coolTime: 3600
+      warehouseStorable: true
+      guildWarehouseStorable: true
+      boundType: None
+      destroyable: false
+      dismantlable: false
+      storeSellable: true
+      tradable: true
+      obtainable: true
+      relocatable: true
+      artisanable: false
+      enchantEnable: false
+      unidentifiedItemGrade: 0
+      masterpieceRate: 0
+      linkEquipmentId: 0
+      linkLookInfoId: 0
+      changeLook: false
+      extractLook: false
+      changeColorEnable: false
+      requiredGuildMaster: false
+      linkCrestId: 0
+      linkCustomizingId: 0
+      requiredEquipmentType: NO_COMBAT
+      linkSkillId: 60411200
+      linkPetAdultId: 0
+      linkPetOrbId: 0
+      icon: Icon_Items.ReviveNow_Tex
+      dropSilhouette: Item_Drop.SM.Scroll_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      defaultValue: 0
+      requiredLevel: 1
+    - id: 602264
+      name: goddess_quick_arcadia
+      level: 1
+      rareGrade: 0
+      searchable: true
+      combatItemType: DISPOSAL
+      combatItemSubType: combat
+      category: combat
+      rank: 0
+      conversion: false
+      sortingNumber: 0
+      dropType: 2
+      buyPrice: 1000
+      sellPrice: 1
+      useOnlyTerritory: true
+      divide: 0
+      itemUseCount: 1
+      maxDropUnit: 1
+      maxStack: 1000
+      slotLimit: 0
+      coolTimeGroup: 150
+      coolTime: 60
+      warehouseStorable: true
+      guildWarehouseStorable: true
+      boundType: None
+      destroyable: false
+      dismantlable: false
+      storeSellable: true
+      tradable: true
+      obtainable: true
+      relocatable: true
+      artisanable: false
+      enchantEnable: false
+      unidentifiedItemGrade: 0
+      masterpieceRate: 0
+      linkEquipmentId: 0
+      linkLookInfoId: 0
+      changeLook: false
+      extractLook: false
+      changeColorEnable: false
+      requiredGuildMaster: false
+      linkCrestId: 0
+      linkCustomizingId: 0
+      requiredEquipmentType: NO_COMBAT
+      linkSkillId: 60411201
+      linkPetAdultId: 0
+      linkPetOrbId: 0
+      icon: Icon_Items.ReviveNow_Tex
+      dropSilhouette: Item_Drop.SM.Scroll_SM
+      dropSound: InterfaceSound.Drop_ItemCUE.Drop_ChestBoxCue
+      equipSound: InterfaceSound.Equip_ItemCUE.Equip_NormalCue
+      defaultValue: 0
+      requiredLevel: 1
+
 itemStrings:
   update:
-    - { id: 60260, changes: { toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>10 minute cooldown." } }  # Goddess's Blessing
+    - { id: 60260, changes: { toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>60 minute cooldown." } }  # Goddess's Blessing
+  upsert:
+    - id: 602260
+      name: "Quick Goddess's Blessing"
+      toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>Your Attack is decreased by 25% for 1 minute 30 seconds after you resurrect.<br>1 minute cooldown."
+    - id: 602261
+      name: "Goddess's Blessing (Island of Dawn)"
+      toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>60 minute cooldown.<br>(Can only be used in Island of Dawn.)"
+    - id: 602262
+      name: "Quick Goddess's Blessing (Island of Dawn)"
+      toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>Your Attack is decreased by 25% for 1 minute 30 seconds after you resurrect.<br>1 minute cooldown.<br>(Can only be used in Island of Dawn.)"
+    - id: 602263
+      name: "Goddess's Blessing (Arcadia)"
+      toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>60 minute cooldown.<br>(Can only be used in Arcadia and Island of Dawn.)"
+    - id: 602264
+      name: "Quick Goddess's Blessing (Arcadia)"
+      toolTip: "While the blessing is in your possession, you may resurrect at the spot of your death.<br>Once resurrected, you will have 60% of HP and MP and 12 seconds of invincibility (or until you use a combat skill).<br>Your Attack is decreased by 25% for 1 minute 30 seconds after you resurrect.<br>1 minute cooldown.<br>(Can only be used in Arcadia and Island of Dawn.)"
 
 abnormalities:
   upsert:
     - id: 488000200
       name: "QuickRevive_Weakness"
       kind: 9900
-      level: 1
+      level: 99
       property: 1
       category: "1"
       time: 90000
       cancelCondition: "0"
       mobSize: "all"
       priority: 1
-      maxStackCount: 1
+      maxStackCount: 2
       levelOver: 1
       levelUnder: 127
       isBuff: false
       isShow: "True"
-      notCareDeath: false
+      notCareDeath: true
       notCareBattleField: true
       effects:
         - { type: 162, method: 3, value: "0.75", tickInterval: 0, variation: 0, min: 0, max: 0, defenceBonusRate: 1 }
@@ -43,3 +340,351 @@ abnormalityIconData:
   upsert:
     - abnormalityId: 488000200
       iconName: "Icon_Status.diseaseup_Tex"
+
+commonSkills:
+  upsert:
+    - category: Common
+      id: 60411201
+      templateId: 9999
+      skillCategory: "0"
+      name: "Quick_AutoRevival_Scroll"
+      type: notimeline_revivenow
+      enterCombatStatus: false
+      pushtarget: pass
+      changeDirToCenter: false
+      attackRange: 100
+      changeDirOnSkillEnd: true
+      changeDirMethodOnSkillEnd: dir
+      returnAnimSet: ""
+      returnAnimName: ""
+      nextSkill: 0
+      switchInfo: "0"
+      waistAngleIK: false
+      needWeapon: false
+      ignoreDefence: "true"
+      autoUse: false
+      canUseOnCombatMode: true
+      totalAtk: 0
+      aiRotateThreshold: 0
+      timeRate: 1.1
+      bullet: { startSkill: -1, shotSkill: 0, createTime: 0, detachTime: 0, flyingDuration: 1000 }
+      actions:
+        - cancel: { frontCancelEndTime: 0, rearCancelStartTime: -1 }
+          hitInvincible: { startTime: 0, endTime: 0, exceptionalSkillCategory: 0 }
+          moveInvincible: { startTime: 0, endTime: 0 }
+          noReaction: { startTime: 0, endTime: 0 }
+          specialEffects: []
+          cameraShakes: []
+          cameraType: { type: none, startTime: 0, duration: 2000, prepareStageId: 0, startStageId: 0, weight: 2 }
+          changeDir: { changeDirMethod: dir, changeDirMaxAngle: 100 }
+          pending: { startTime: -1 }
+          cameraShake: { duration: 0, startTime: -1, fovAmplitude: 0, fovFrequency: 500, locAmplitudeX: 0, locAmplitudeY: 0, locAmplitudeZ: 0, locFrequencyX: 500, locFrequencyY: 500, locFrequencyZ: 500, rotAmplitudeX: 0, rotAmplitudeY: 0, rotAmplitudeZ: 0, rotFrequencyX: 500, rotFrequencyY: 500, rotFrequencyZ: 500, shakeRadius: 0 }
+      aggro: { offensiveSkill: false, aggroWhenStart: 0 }
+      anger: { attackUpRate: 0, speedUpRate: 0 }
+      defence: { successAnimSet: "", successAnimName: "", rootMotion: false, noPush: false }
+      drain: { maxDrainGauge: 0, drainGaugeExpireTime: 0, backSkillId: 0 }
+      drainBack: { gaugeToMpRate: 1 }
+      precondition:
+        coolTime: 0
+        modeNo: 0
+        modeChangeMethod: 2
+        cost: { hp: 0, mp: 0, anger: 0 }
+        exclusiveAbnormality: {}
+      projectile:
+        lifeTime: 0
+        destroyWhenHit: true
+        areaBoxSizeX: 0
+        areaBoxSizeY: 0
+        areaBoxSizeZ: 0
+        loopingTime: 0
+        targetingList:
+          targetings:
+            - areas:
+                - type: enemyOrPvp
+                  selectMethod: dist
+                  aggroWhenNonOffensiveSkillHit: 0
+                  time: 0
+                  maxCount: 10
+                  effect:
+                    atk: 0
+                    aggroDiff: { value: 0 }
+                    angerDiff: { value: 0 }
+                    hpDiff: { value: 0 }
+                    mpDiff: { value: 0 }
+                    rebirth: { hpRecoveryRate: 0, mpRecoveryRate: 0 }
+                  hitEffect: { type: nothing }
+                  reaction: { miniRate: 0, miniMotionId: 1, basicRate: 0, basicMotionId: 3, basicIncValue: 0, adjForGrade: 0, basicMotionId2: 3, basicMotionId2Probability: 0.2, miniRateByPvp: 0, basicRateByPvp: 0 }
+                  targetCondition: { abnormalityKind: 0, reactionType: "" }
+      resistance: { startTime: 0, endTime: 0, miniRes: 100, basicRes: 100, basicIncRes: 1 }
+      targetingLists:
+        - targetings:
+            - time: 0
+              interval: 0
+              until: 0
+              mpBonusTypeB: 0
+              id: -1
+              combinedArea: false
+              method: normal
+              areas:
+                - minRadius: 0
+                  maxRadius: 50
+                  rangeAngle: 0
+                  offsetDistance: 0
+                  offsetAngle: 0
+                  rotateAngle: 0
+                  minHeight: 0
+                  maxHeight: 0
+                  setRangeHeightToGround: false
+                  type: me
+                  selectMethod: dir
+                  maxCount: 1
+                  aggroWhenNonOffensiveSkillHit: 0
+                  crosshairRadius: 1
+                  pierceDepth: 1
+                  effect:
+                    atk: 0
+                    abnormalityRate: 0
+                    aggroDiff: { value: 0 }
+                    angerDiff: { value: 0 }
+                    hpDiff: { value: 0 }
+                    mpDiff: { value: 0 }
+                    reviveNow: { hpRecoveryRate: 0.6, mpRecoveryRate: 0.6, conditionRecoveryRate: 1.0 }
+                    abnormalityOnCommon:
+                      - { id: 488000200, timeOverrideLarge: 1, timeOverrideMedium: 1, timeOverrideSmall: 1, timeOverrideUser: 1, abnormalityRate: 1.0, abnormalityRateForPvp: 1 }
+                      - { id: 1134, timeOverrideLarge: 1, timeOverrideMedium: 1, timeOverrideSmall: 1, timeOverrideUser: 1, abnormalityRate: 1.0, abnormalityRateForPvp: 0 }
+                  hitEffects: [{ type: onlyDamage }]
+                  reaction: { miniRate: 0, miniMotionId: 0, basicRate: 1.5, basicMotionId: 0, basicIncValue: 0, adjForGrade: 0, basicMotionId2: 3, basicMotionId2Probability: 0.2, miniRateByPvp: 0, basicRateByPvp: 0 }
+                  targetCondition: { abnormalityKind: 0, reactionType: "" }
+              cost: { hp: 0, mp: 0, anger: 0 }
+      teleport: { istrue: false, type: BONFIRE, range: 0, distRange: 0 }
+      property: { movingWithAbnormalId: 0, skillPendingType: normal, reactionPendingType: normal, weaponStatus: in, abnormalMultiHitAdjustId: 1 }
+
+buyLists:
+  upsert:
+    # Island of Dawn: Expedition Supply Base general goods tab, and the field travelling merchant.
+    - id: 16064
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 133
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+        - itemId: 602261
+          priceRevision: 1
+        - itemId: 602262
+          priceRevision: 1
+    - id: 16090
+      items:
+        - itemId: 160
+          priceRevision: 1
+        - itemId: 602261
+          priceRevision: 1
+        - itemId: 602262
+          priceRevision: 1
+    # Arcadia: Crescentia and Lumbertown general goods tabs.
+    - id: 16059
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 135
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+        - itemId: 602263
+          priceRevision: 1
+        - itemId: 602264
+          priceRevision: 1
+    - id: 16060
+      items:
+        - itemId: 98032
+          priceRevision: 1
+        - itemId: 134
+          priceRevision: 1
+        - itemId: 143
+          priceRevision: 1
+        - itemId: 151
+          priceRevision: 1
+        - itemId: 159
+          priceRevision: 1
+        - itemId: 160
+          priceRevision: 1
+        - itemId: 602263
+          priceRevision: 1
+        - itemId: 602264
+          priceRevision: 1
+
+areaSections:
+  upsert:
+    # Island of Dawn, every section of the island.
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 4
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 8
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 31
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 49
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 52
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 53
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 54
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 55
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 57
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 58
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 59
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 60
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 6
+      enableItemId: "131,132,602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 9
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 56
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 47
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 36
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 43
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 34
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 30
+      enableItemId: "602261,602262,602263,602264"
+    - continentId: 13
+      areaName: "ATW_Death_P"
+      sectionId: 40
+      enableItemId: "602261,602262,602263,602264"
+    # Arcadia sections with no revive point of their own; the rest carry the list beside their revive point.
+    - continentId: 7001
+      areaName: "ANC_A_P"
+      sectionId: 53
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_A_P"
+      sectionId: 83
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_A_P"
+      sectionId: 1
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_A_P"
+      sectionId: 2
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_A_P"
+      sectionId: 3
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_A_P"
+      sectionId: 15
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 7
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 55
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 37
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 36
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 58
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 59
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 54
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 60
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 64
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 61
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 6
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 8
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 11
+      enableItemId: "602263,602264"
+    - continentId: 7001
+      areaName: "ANC_C_P"
+      sectionId: 57
+      enableItemId: "602263,602264"

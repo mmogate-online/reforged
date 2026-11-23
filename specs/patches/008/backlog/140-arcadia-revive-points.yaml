@@ -11,8 +11,10 @@ spec:
 # Each point is the camp's TeleportPoint landing spot. Sections nearer Lumbertown
 # than to any camp, and the Lumbertown sections themselves, keep the town.
 #
-# Partial upserts: only the revive fields are written. The recall scroll keeps its
-# Lumbertown destination, and fences and every other attribute stay untouched.
+# Partial upserts: only the revive fields and the item list are written. The recall
+# scroll keeps its Lumbertown destination, and fences and every other attribute stay
+# untouched. The item list is a whole string, never merged, so a section that already
+# allowed an item restates it beside the Arcadia Goddess's Blessings.
 # provenance: policy
 
 areaSections:
@@ -26,6 +28,7 @@ areaSections:
       sectionId: 4
       recallReviveContinentId: 7001
       recallRevivePos: "110525,-10490,2899"
+      enableItemId: "602263,602264"
 
     # Section 80: Faevine Vale Camp.
     - continentId: 7001
@@ -33,6 +36,7 @@ areaSections:
       sectionId: 80
       recallReviveContinentId: 7001
       recallRevivePos: "110525,-10490,2899"
+      enableItemId: "602263,602264"
 
     # Section 79: Maon's Cabin.
     - continentId: 7001
@@ -40,6 +44,7 @@ areaSections:
       sectionId: 79
       recallReviveContinentId: 7001
       recallRevivePos: "100066.1563,-22744.7168,2294.8608"
+      enableItemId: "602263,602264"
 
     # Section 52: Faevine Vale Camp.
     - continentId: 7001
@@ -47,6 +52,7 @@ areaSections:
       sectionId: 52
       recallReviveContinentId: 7001
       recallRevivePos: "110525,-10490,2899"
+      enableItemId: "602263,602264"
 
     # Section 81: Faevine Vale Camp.
     - continentId: 7001
@@ -54,6 +60,7 @@ areaSections:
       sectionId: 81
       recallReviveContinentId: 7001
       recallRevivePos: "110525,-10490,2899"
+      enableItemId: "602263,602264"
 
     # Section 82: Maon's Cabin.
     - continentId: 7001
@@ -61,6 +68,7 @@ areaSections:
       sectionId: 82
       recallReviveContinentId: 7001
       recallRevivePos: "100066.1563,-22744.7168,2294.8608"
+      enableItemId: "602263,602264"
 
     # ---- ANC_B_P ----
 
@@ -70,6 +78,7 @@ areaSections:
       sectionId: 1
       recallReviveContinentId: 7001
       recallRevivePos: "72517,16460,2038"
+      enableItemId: "602263,602264"
 
     # Section 92: Vindicator Camp.
     - continentId: 7001
@@ -77,6 +86,7 @@ areaSections:
       sectionId: 92
       recallReviveContinentId: 7001
       recallRevivePos: "62301,17202,1848"
+      enableItemId: "602263,602264"
 
     # Section 93: Vindicator Camp.
     - continentId: 7001
@@ -84,6 +94,7 @@ areaSections:
       sectionId: 93
       recallReviveContinentId: 7001
       recallRevivePos: "62301,17202,1848"
+      enableItemId: "602263,602264"
 
     # Section 94: Two Oaks Ranch.
     - continentId: 7001
@@ -91,6 +102,7 @@ areaSections:
       sectionId: 94
       recallReviveContinentId: 7001
       recallRevivePos: "83906,7489,1298"
+      enableItemId: "602263,602264"
 
     # Section 95: Echo Ranch.
     - continentId: 7001
@@ -98,6 +110,7 @@ areaSections:
       sectionId: 95
       recallReviveContinentId: 7001
       recallRevivePos: "72517,16460,2038"
+      enableItemId: "602263,602264"
 
     # Section 96: Vindicator Camp.
     - continentId: 7001
@@ -105,6 +118,7 @@ areaSections:
       sectionId: 96
       recallReviveContinentId: 7001
       recallRevivePos: "62301,17202,1848"
+      enableItemId: "602263,602264"
 
     # Section 14: Godric's Farm.
     - continentId: 7001
@@ -112,6 +126,7 @@ areaSections:
       sectionId: 14
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "602263,602264"
 
     # Section 97: Godric's Farm.
     - continentId: 7001
@@ -119,6 +134,7 @@ areaSections:
       sectionId: 97
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 98: Godric's Farm.
     - continentId: 7001
@@ -126,6 +142,7 @@ areaSections:
       sectionId: 98
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 99: Godric's Farm.
     - continentId: 7001
@@ -133,6 +150,7 @@ areaSections:
       sectionId: 99
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 100: Godric's Farm.
     - continentId: 7001
@@ -140,6 +158,7 @@ areaSections:
       sectionId: 100
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 101: Godric's Farm.
     - continentId: 7001
@@ -147,6 +166,7 @@ areaSections:
       sectionId: 101
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 102: Godric's Farm.
     - continentId: 7001
@@ -154,6 +174,7 @@ areaSections:
       sectionId: 102
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 103: Godric's Farm.
     - continentId: 7001
@@ -161,6 +182,7 @@ areaSections:
       sectionId: 103
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 104: Godric's Farm.
     - continentId: 7001
@@ -168,6 +190,7 @@ areaSections:
       sectionId: 104
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 105: Godric's Farm.
     - continentId: 7001
@@ -175,6 +198,7 @@ areaSections:
       sectionId: 105
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 106: Godric's Farm.
     - continentId: 7001
@@ -182,6 +206,7 @@ areaSections:
       sectionId: 106
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 107: Godric's Farm.
     - continentId: 7001
@@ -189,6 +214,7 @@ areaSections:
       sectionId: 107
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "5014,602263,602264"
 
     # Section 24: Casidhe's Stand.
     - continentId: 7001
@@ -196,6 +222,7 @@ areaSections:
       sectionId: 24
       recallReviveContinentId: 7001
       recallRevivePos: "71107,3144,1049"
+      enableItemId: "602263,602264"
 
     # Section 84: Godric's Farm.
     - continentId: 7001
@@ -203,6 +230,7 @@ areaSections:
       sectionId: 84
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "602263,602264"
 
     # Section 124: Casidhe's Stand.
     - continentId: 7001
@@ -210,6 +238,7 @@ areaSections:
       sectionId: 124
       recallReviveContinentId: 7001
       recallRevivePos: "71107,3144,1049"
+      enableItemId: "602263,602264"
 
     # Section 125: Godric's Farm.
     - continentId: 7001
@@ -217,6 +246,7 @@ areaSections:
       sectionId: 125
       recallReviveContinentId: 7001
       recallRevivePos: "61220,2149,1384"
+      enableItemId: "602263,602264"
 
     # Section 15: Marshlands.
     - continentId: 7001
@@ -224,6 +254,7 @@ areaSections:
       sectionId: 15
       recallReviveContinentId: 7001
       recallRevivePos: "70587,-9367,21"
+      enableItemId: "602263,602264"
 
     # Section 32: Tuwangi Garrison.
     - continentId: 7001
@@ -231,6 +262,7 @@ areaSections:
       sectionId: 32
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "602263,602264"
 
     # Section 34: Marshlands.
     - continentId: 7001
@@ -238,6 +270,7 @@ areaSections:
       sectionId: 34
       recallReviveContinentId: 7001
       recallRevivePos: "70587,-9367,21"
+      enableItemId: "602263,602264"
 
     # Section 111: Tuwangi Garrison.
     - continentId: 7001
@@ -245,6 +278,7 @@ areaSections:
       sectionId: 111
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "602263,602264"
 
     # Section 108: Tuwangi Garrison.
     - continentId: 7001
@@ -252,6 +286,7 @@ areaSections:
       sectionId: 108
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "602263,602264"
 
     # Section 110: Marshlands.
     - continentId: 7001
@@ -259,6 +294,7 @@ areaSections:
       sectionId: 110
       recallReviveContinentId: 7001
       recallRevivePos: "70587,-9367,21"
+      enableItemId: "602263,602264"
 
     # Section 112: Marshlands.
     - continentId: 7001
@@ -266,6 +302,7 @@ areaSections:
       sectionId: 112
       recallReviveContinentId: 7001
       recallRevivePos: "70587,-9367,21"
+      enableItemId: "602263,602264"
 
     # Section 140: Tuwangi Garrison.
     - continentId: 7001
@@ -273,6 +310,7 @@ areaSections:
       sectionId: 140
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "71455,602263,602264"
 
     # Section 141: Tuwangi Garrison.
     - continentId: 7001
@@ -280,6 +318,7 @@ areaSections:
       sectionId: 141
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "602263,602264"
 
     # Section 142: Tuwangi Garrison.
     - continentId: 7001
@@ -287,6 +326,7 @@ areaSections:
       sectionId: 142
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "602263,602264"
 
     # Section 159: Tuwangi Garrison.
     - continentId: 7001
@@ -294,6 +334,7 @@ areaSections:
       sectionId: 159
       recallReviveContinentId: 7001
       recallRevivePos: "52199,-3494,45"
+      enableItemId: "602263,602264"
 
     # ---- AX2_P ----
 
@@ -303,6 +344,7 @@ areaSections:
       sectionId: 1
       recallReviveContinentId: 7001
       recallRevivePos: "38100,-1127,510"
+      enableItemId: "602263,602264"
 
     # Section 110: Sanctum Mysterium.
     - continentId: 7001
@@ -310,6 +352,7 @@ areaSections:
       sectionId: 110
       recallReviveContinentId: 7001
       recallRevivePos: "38100,-1127,510"
+      enableItemId: "602263,602264"
 
     # Section 111: Sanctum Mysterium.
     - continentId: 7001
@@ -317,6 +360,7 @@ areaSections:
       sectionId: 111
       recallReviveContinentId: 7001
       recallRevivePos: "38100,-1127,510"
+      enableItemId: "602263,602264"
 
     # Section 112: Sanctum Mysterium.
     - continentId: 7001
@@ -324,6 +368,7 @@ areaSections:
       sectionId: 112
       recallReviveContinentId: 7001
       recallRevivePos: "38100,-1127,510"
+      enableItemId: "602263,602264"
 
     # Section 113: Sanctum Mysterium.
     - continentId: 7001
@@ -331,3 +376,4 @@ areaSections:
       sectionId: 113
       recallReviveContinentId: 7001
       recallRevivePos: "38100,-1127,510"
+      enableItemId: "206000,206001,206002,206003,206004,206005,206006,206007,206008,206009,206900,206901,206902,206903,206904,206905,209189,602263,602264"
