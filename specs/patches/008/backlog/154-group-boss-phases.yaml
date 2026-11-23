@@ -1,13 +1,22 @@
-# Lanok fights in HP phases. At 80, 60, 40 and 15% HP he roars and adds a stack of one phase
-# buff (power, attack speed and move speed), so the fight ramps without a wall. Each step fires
-# while its own hidden step marker is absent, so a step that burst damage skipped still lands.
-# From the sixth minute of combat he adds a stack of a far stronger enrage buff every two
-# minutes, up to three, a damage check; the first stack is announced on screen. From 15% his
-# enraged combos join his calm mode; from 5% he pants every 30 seconds, the opening to finish him.
-# His base attack is set so his heaviest move kills only once the enrage has stacked twice, and
-# his health so that a party, not one player, brings him down.
-# A short-term-target entry is the only AI section that fires on an HP crossing at once, and an ai
-# update restates the whole attack section, so every work and pattern below is restated.
+# Lanok, Arakia and Barraq fight as world bosses, in HP phases. At 80, 60, 40 and 15% HP each
+# roars and adds a stack of one phase buff (power, attack speed and move speed), so the fight
+# ramps without a wall. Each step fires while its own hidden step marker is absent, so a step
+# that burst damage skipped still lands. From the sixth minute of combat a boss adds a stack of a
+# far stronger enrage buff every two minutes, up to three, a damage check; the first stack is
+# announced on screen. From 15% its enraged combos join its calm mode; from 5% it pants every 30
+# seconds, the opening to finish it. The buffs and step markers land on their caster only, so the
+# three bosses share them.
+# Each base attack is set so the boss's heaviest move kills only once the enrage has stacked
+# twice, and its health so that a party, not one player, brings it down.
+# Arakia alone also leaps in venom from 70% to 51%, lays egg sacs every two minutes from half to
+# 21% and looses spiderlings every two minutes from a fifth; her venom outlasts any cleanse. A sac
+# she reaches and bites hatches a Defender that shields her while it lives.
+# The sacs and the brood are summoned by their own short-term entries, answering the mark the call
+# left on her: chained after the call a summon is lost whenever a stagger cuts the chain.
+# The custom skills sit on ids no vanilla monster uses, because the client keys a skill's visuals
+# to its id and a reused id plays another monster's effects.
+# From 60% she turns on ranged players, healers and raisers. A short-term-target entry fires on an
+# HP crossing at once; an ai update restates the attack section, so every work is restated.
 # provenance: policy
 
 spec:
@@ -221,6 +230,210 @@ definitions:
       levelUnder: 0
   HitEffect:
     type: animationDamage
+  AkRow:
+    type: normal
+    pushtarget: push
+    changeDirToCenter: false
+    attackRange: 100.0
+    changeDirOnSkillEnd: false
+    changeDirMethodOnSkillEnd: dir
+    returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+    nextSkill: 0
+    switchInfo: 0
+    autoUse: false
+    canUseOnCombatMode: true
+    ignoreDefence: false
+    totalAtk: 0
+    aiRotateThreshold: 0
+    timeRate: 0.7
+    allDirectionDefence: false
+    adjAtkByNpcHp: false
+    attackRangeMin: 0.0
+    attackRangeMax: 0.0
+    needWeapon: true
+    parentId: 30088000
+    totalAtkRate: 1
+    bullet:
+      startSkill: -1
+      shotSkill: 0
+      createTime: 0.0
+      detachTime: 0.0
+      flyingDuration: 1000.0
+    aggro:
+      offensiveSkill: true
+      aggroWhenStart: 0.0
+    anger:
+      attackUpRate: 0.0
+    defence:
+      rootMotion: false
+      damageApplyRate: 0.0
+      damageReduceValue: 0
+      perfectDefenceForAllies: false
+    drain:
+      maxDrainGauge: 0
+      drainGaugeExpireTime: 0
+      backSkillId: 0
+    drainBack:
+      gaugeToMpRate: 1
+    precondition:
+      coolTime: 0
+      modeNo: 0
+      modeChangeMethod: 2
+      cost:
+        hp: 0
+        mp: 0
+        anger: 0
+    projectile:
+      lifeTime: 0
+      destroyWhenHit: true
+      areaBoxSizeX: 0
+      areaBoxSizeY: 0
+      areaBoxSizeZ: 0
+      loopingTime: 0
+    resistance:
+      startTime: 0
+      endTime: 0
+      miniRes: 100
+      basicRes: 100
+      basicIncRes: 0
+      damageRes: 1.0
+    teleport:
+      istrue: false
+      type: BONFIRE
+      range: 0
+      distRange: 0
+    property:
+      movingWithAbnormalId: 0
+      defence: false
+      skillPendingType: normal
+      reactionPendingType: normal
+      weaponStatus: out
+      abnormalMultiHitAdjustId: 0
+      toCenterWhenNoMove: false
+    balanceRef:
+      isAngerSkill: false
+  AkAction:
+    cancel:
+      frontCancelEndTime: 0
+      rearCancelStartTime: 0
+      moveCancelStartTime: -1
+    hitInvincible:
+      startTime: 0
+      endTime: 0
+      exceptionalSkillCategory: 0
+    moveInvincible:
+      startTime: 0
+      endTime: 0
+    noReaction:
+      startTime: 0
+      endTime: 0
+    pending:
+      startTime: -1
+    cameraType:
+      type: none
+      startTime: 0.0
+      duration: 2000.0
+      prepareStageId: 0
+      startStageId: 0
+      weight: 2.0
+    changeDir:
+      changeDirMethod: dir
+      changeDirMaxAngle: 100
+  AkStage:
+    changeDirToTarget: false
+    movable: false
+    scriptId: 0
+    changeDirToTargetMax: 0
+    property:
+      animControlType: normal
+      adjustAnimToTarget: false
+  AkCameraShake:
+    startTime: 1282
+    duration: 300
+    power: 2.0
+    speed: 3.0
+    innerRadius: 0.0
+    outerRadius: 300.0
+    startCondition: skillStart
+    targetType: all
+    shakeId: 0
+    name: none
+    startValue: -1
+  AkAnimSeq:
+    animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+    animName: modealarm
+    duration: 0
+    animRate: 1.0
+    bAnimLooping: false
+    loopingRate: 1.0
+    rootMotionXYRate: 1.0
+    rootMotionZRate: 1.0
+    blendInTime: 200
+    animMotionId: 0
+    readOnlyDuration: 0.0
+  AkTargetingList:
+    adjustTargetingPos: notUse
+  AkTargetingListsTargeting:
+    time: 1528
+    interval: 0
+    until: 0
+    mpBonusTypeB: 0
+    id: -1
+    type: none
+    startTime: 0
+    endTime: 0
+    method: normal
+    cost:
+      hp: 0
+      mp: 0
+      anger: 0
+  AkArea:
+    minRadius: 0.0
+    maxRadius: 50
+    rangeAngle: 360.0
+    offsetDistance: 0.0
+    offsetAngle: 0.0
+    rotateAngle: 0.0
+    minHeight: 0.0
+    maxHeight: 60.0
+    setRangeHeightToGround: false
+    type: allExceptMe
+    selectMethod: dist
+    maxCount: 10
+    aggroWhenNonOffensiveSkillHit: 0
+    crosshairRadius: 1.0
+    pierceDepth: 1
+    purpose: byType
+    crosshairRadius2: 3.0
+    ignoreLos: true
+    effect:
+      atk: 1
+      aggroDiff:
+        value: 0.0
+      angerDiff:
+        value: 0
+      hpDiff:
+        value: 0
+      mpDiff:
+        value: 0
+      rebirth:
+        hpRecoveryRate: 0.0
+        mpRecoveryRate: 0.0
+    hitEffects:
+      - $extends: AkHitEffect
+    reaction:
+      miniRate: 30
+      miniMotionId: 1
+      basicRate: 20
+      basicMotionId: 2
+      basicIncValue: 0
+      adjForGrade: 0
+    targetCondition:
+      abnormalityKind: 0
+      levelOver: 0
+      levelUnder: 0
+  AkHitEffect:
+    type: animationDamage
 
 
 abnormalities:
@@ -343,12 +556,182 @@ abnormalities:
       isShow: "True"
       notCareBattleField: true
       effects:
-        - { type: 3, method: 3, value: "1.25", tickInterval: 0, variation: 0, min: 0, max: 0 }
-        - { type: 24, method: 3, value: "1.6", tickInterval: 0, variation: 0, min: 0, max: 0 }
+        - { type: 3, method: 3, value: "1.35", tickInterval: 0, variation: 0, min: 0, max: 0 }
+        - { type: 24, method: 3, value: "1.2", tickInterval: 0, variation: 0, min: 0, max: 0 }
         - { type: 5, method: 3, value: "1.1", tickInterval: 0, variation: 0, min: 0, max: 0 }
       abnormalityStrings:
         name: "Boundless Wrath"
         tooltip: "Greatly increases Power, Attack Speed and Movement Speed. Stacks up to 3 times."
+    - id: 99288021
+      name: "arakia_step_flag_0.5"
+      kind: 49982
+      level: 99
+      property: 4
+      category: "4"
+      time: 120000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288022
+      name: "arakia_brood_window"
+      kind: 49981
+      level: 99
+      property: 4
+      category: "4"
+      time: 15000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288023
+      name: "arakia_step_flag_0.2"
+      kind: 49980
+      level: 99
+      property: 4
+      category: "4"
+      time: 120000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    # Arakia's mark: what her Defenders' shield looks for, so it lands on her and on nothing else.
+    - id: 99288050
+      name: "arakia_brood_mother"
+      kind: 49974
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    # One shield per Defender slot, each its own kind, so three Defenders are three shields and a
+    # shield lapses soon after its Defender stops renewing it.
+    - id: 99288051
+      name: "arakia_brood_guard_a"
+      kind: 49973
+      level: 99
+      property: 4
+      category: "4"
+      time: 15000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - { type: 4, method: 3, value: "1.25", tickInterval: 0, variation: 0, min: 0, max: 0 }
+      abnormalityStrings:
+        name: "Brood Guard"
+        tooltip: "A Spiderling Defender shields Arakia. Increases Defense."
+    - id: 99288052
+      name: "arakia_brood_guard_b"
+      kind: 49972
+      level: 99
+      property: 4
+      category: "4"
+      time: 15000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - { type: 4, method: 3, value: "1.25", tickInterval: 0, variation: 0, min: 0, max: 0 }
+      abnormalityStrings:
+        name: "Brood Guard"
+        tooltip: "A Spiderling Defender shields Arakia. Increases Defense."
+    - id: 99288053
+      name: "arakia_brood_guard_c"
+      kind: 49971
+      level: 99
+      property: 4
+      category: "4"
+      time: 15000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "True"
+      notCareBattleField: true
+      effects:
+        - { type: 4, method: 3, value: "1.25", tickInterval: 0, variation: 0, min: 0, max: 0 }
+      abnormalityStrings:
+        name: "Brood Guard"
+        tooltip: "A Spiderling Defender shields Arakia. Increases Defense."
+    - id: 99288040
+      name: "arakia_venom"
+      kind: 49978
+      level: 99
+      property: 2
+      category: "2,13"
+      time: 9000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 7
+      maxStackCount: 1
+      levelOver: 1
+      levelUnder: 127
+      isBuff: false
+      isShow: "True"
+      notCareDeath: false
+      notCareBattleField: true
+      effects:
+        - { type: 51, method: 3, value: "-0.04", tickInterval: 1, variation: 0, min: -100000, max: 0, defenceBonusRate: 1, effectId: 4195, effectPart: FXCenter187, overlayEffectId: 1005 }
+      abnormalityStrings:
+        name: "Arakia's Venom"
+        tooltip: "Reduces HP by $H_W_BAD4%$COLOR_END of maximum every second. Cannot be cleansed."
 
 abnormalityIconData:
   upsert:
@@ -356,6 +739,14 @@ abnormalityIconData:
       iconName: "Icon_Status.DarkRiftAreaRage_Tex"
     - abnormalityId: 99288011
       iconName: "Icon_Status.plusmove_Tex"
+    - abnormalityId: 99288051
+      iconName: "Icon_Status.plusedefence_Tex"
+    - abnormalityId: 99288052
+      iconName: "Icon_Status.plusedefence_Tex"
+    - abnormalityId: 99288053
+      iconName: "Icon_Status.plusedefence_Tex"
+    - abnormalityId: 99288040
+      iconName: "Icon_Status.poisonstatus_Tex"
 
 npcs:
   update:
@@ -365,6 +756,18 @@ npcs:
         stat:
           maxHp: 4329612
           atk: 11200
+    - huntingZoneId: 6
+      id: 5003
+      changes:
+        stat:
+          maxHp: { multiply: 4, round: nearest }
+          atk: 11700
+    - huntingZoneId: 7
+      id: 101
+      changes:
+        stat:
+          maxHp: { multiply: 3, round: nearest }
+          atk: 5700
 
 ai:
   update:
@@ -988,10 +1391,10 @@ ai:
                 msgProb: 0
               - id: 365
                 desc: "hp step 0.8"
-                normalBehaviorId: 1303
+                normalBehaviorId: 9001
                 normalBehaviorType: "skill"
                 offFlockOnNormalMode: true
-                angerBehaviorId: 1303
+                angerBehaviorId: 9001
                 angerBehaviorType: "skill"
                 offFlockOnAngerMode: true
                 preProcess: "1"
@@ -1006,10 +1409,10 @@ ai:
                 msgProb: 0
               - id: 366
                 desc: "hp step 0.6"
-                normalBehaviorId: 1304
+                normalBehaviorId: 9002
                 normalBehaviorType: "skill"
                 offFlockOnNormalMode: true
-                angerBehaviorId: 1304
+                angerBehaviorId: 9002
                 angerBehaviorType: "skill"
                 offFlockOnAngerMode: true
                 preProcess: "1"
@@ -1024,10 +1427,10 @@ ai:
                 msgProb: 0
               - id: 367
                 desc: "hp step 0.4"
-                normalBehaviorId: 1305
+                normalBehaviorId: 9003
                 normalBehaviorType: "skill"
                 offFlockOnNormalMode: true
-                angerBehaviorId: 1305
+                angerBehaviorId: 9003
                 angerBehaviorType: "skill"
                 offFlockOnAngerMode: true
                 preProcess: "1"
@@ -1042,10 +1445,10 @@ ai:
                 msgProb: 0
               - id: 368
                 desc: "hp step 0.15"
-                normalBehaviorId: 1306
+                normalBehaviorId: 9004
                 normalBehaviorType: "skill"
                 offFlockOnNormalMode: true
-                angerBehaviorId: 1306
+                angerBehaviorId: 9004
                 angerBehaviorType: "skill"
                 offFlockOnAngerMode: true
                 preProcess: "1"
@@ -1060,10 +1463,10 @@ ai:
                 msgProb: 0
               - id: 371
                 desc: "soft enrage tick"
-                normalBehaviorId: 1307
+                normalBehaviorId: 9005
                 normalBehaviorType: "skill"
                 offFlockOnNormalMode: true
-                angerBehaviorId: 1307
+                angerBehaviorId: 9005
                 angerBehaviorType: "skill"
                 offFlockOnAngerMode: true
                 preProcess: "1"
@@ -1327,6 +1730,7 @@ ai:
                 preProcess: "GetHpRatio() <= 0.8 AND IsInAbnormality(49987) == 0"
                 immediateAttackId: 365
                 coolTime: "10000"
+                showSTMark: false
                 msgImmediately: false
                 msg: [0]
                 msgProb: 0
@@ -1335,6 +1739,7 @@ ai:
                 preProcess: "GetHpRatio() <= 0.6 AND IsInAbnormality(49988) == 0"
                 immediateAttackId: 366
                 coolTime: "10000"
+                showSTMark: false
                 msgImmediately: false
                 msg: [0]
                 msgProb: 0
@@ -1343,6 +1748,7 @@ ai:
                 preProcess: "GetHpRatio() <= 0.4 AND IsInAbnormality(49989) == 0"
                 immediateAttackId: 367
                 coolTime: "10000"
+                showSTMark: false
                 msgImmediately: false
                 msg: [0]
                 msgProb: 0
@@ -1351,6 +1757,7 @@ ai:
                 preProcess: "GetHpRatio() <= 0.15 AND IsInAbnormality(49990) == 0"
                 immediateAttackId: 368
                 coolTime: "10000"
+                showSTMark: false
                 msgImmediately: false
                 msg: [0]
                 msgProb: 0
@@ -1359,6 +1766,7 @@ ai:
                 preProcess: "GetHpRatio() <= 0.05"
                 immediateAttackId: 370
                 coolTime: "30000"
+                showSTMark: false
                 msgImmediately: false
                 msg: [0]
                 msgProb: 0
@@ -1367,6 +1775,7 @@ ai:
                 preProcess: "GetCombatTime() >= 480000"
                 immediateAttackId: 371
                 coolTime: "120000"
+                showSTMark: false
                 msgImmediately: false
                 msg: [0]
                 msgProb: 0
@@ -1375,6 +1784,7 @@ ai:
                 preProcess: "GetCombatTime() >= 360000 AND IsInAbnormality(49985) == 0"
                 immediateAttackId: 371
                 coolTime: "120000"
+                showSTMark: false
                 msgImmediately: true
                 msg: [3022001]
                 msgProb: 1
@@ -1410,16 +1820,2330 @@ ai:
                 angerMode:
                   tension: { attackTension: 4, cooperationTension: 1, shorttermTargetTension: 1 }
                   incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+    - huntingZoneId: 6
+      id: 45
+      changes:
+        combatState:
+          attack:
+            workList:
+              - id: 101
+                desc: "기본공격1(전방연타)_atk01"
+                normalBehaviorId: 1101
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2101
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1101, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 102
+                desc: "특수공격(원거리 범위 공격)_heavyAtk"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 103
+                desc: "기본공격2(입으로물기)_atk02"
+                normalBehaviorId: 1103
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2103
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1103, 1, 0.9)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 20000
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 104
+                desc: "무브어택(굴러서공격)_moveatk + 30% 돌아서 무브 어택"
+                normalBehaviorId: 1106
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2106
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1106, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: true
+                nextAttackProb: 0.3
+                nextAttackId: 301
+              - id: 105
+                desc: "롱어택(발사체공격)_longatk"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1104, 1, 0.8) AND GetTargetDistanceEx() > 200"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 107
+                desc: "라운드어택(360도)_roundatk 후 50% 확률로 원거리 범위공격"
+                normalBehaviorId: 1108
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2108
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetTargetDir() > 30 AND GetTargetDir() < 330"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 0.5
+                nextAttackId: 102
+              - id: 106
+                desc: "리액션어택(제자리점프)_reactionatk"
+                normalBehaviorId: 1107
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2107
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1107, 1, 0.8) AND IsPrevAttack(0, 110) == 0  AND IsPrevAttack(0, 212) == 0"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 25000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 110
+                desc: "짧은 롱무브_longmove"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1109, 1, 1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 111
+                desc: "울트라어택(43레벨 이상 사냥터만 사용)"
+                normalBehaviorId: 1112
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2112
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1112, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: false
+                nextAttackProb: 0
+              - id: 150
+                desc: "PC에게 접근"
+                normalBehaviorId: 945
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 946
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+              - id: 201
+                desc: "30탈진"
+                normalBehaviorId: 1201
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1201
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetHpRatio()<0.3"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 14000
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+              - id: 204
+                desc: "어그로체인지동작"
+                normalBehaviorId: 1204
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2204
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetDamagedCount(7) < 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 15000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 221
+              - id: 209
+                desc: "백무브"
+                normalBehaviorId: 1212
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2212
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1101, 1, 1) AND GetDamagedCount(10) > 5"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: false
+                nextAttackProb: 0
+              - id: 210
+                desc: "방어"
+                normalBehaviorId: 1301
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1301
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetDamagedCount(10) > 10 AND GetHpRatio() < 0.5"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 212
+                desc: "긴 롱무브_longmove"
+                normalBehaviorId: 1111
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2111
+                angerBehaviorType: "skill"
+                preProcess: "IsInSkillAttackRange(1111, 1, 1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 213
+                desc: "헛치기"
+                normalBehaviorId: 1101
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2101
+                angerBehaviorType: "skill"
+                preProcess: "IsInSkillAttackRange(1101, 1, 1.2) AND (GetDamagedCount(5) < 1 OR GetHpRatio() < 0.15)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+              - id: 214
+                desc: "태어난 곳을 향해 중점프 1_1"
+                normalBehaviorId: 185
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 186
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsOutCombatSpace(1200) == 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 120000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 215
+              - id: 215
+                desc: "태어난 곳을 향해 중점프 1_2"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 216
+                desc: "태어난 곳을 향해 대점프 1_1"
+                normalBehaviorId: 187
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 188
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsOutCombatSpace(1500) == 1"
+                distanceRate: 1
+                coolTime: 120000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 217
+              - id: 217
+                desc: "태어난 곳을 향해 대점프 1_2"
+                normalBehaviorId: 1111
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2111
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 218
+                desc: "1_1 23도 좌로 회전 후 이동"
+                normalBehaviorId: 189
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 190
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsPrevAttack(1, 220) == 0 AND (GetTargetDir() > -60 AND GetTargetDir() < 60)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 220
+              - id: 219
+                desc: "2_1 14도 우로 회전 후 이동"
+                normalBehaviorId: 191
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 192
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsPrevAttack(1, 215) == 0 AND (GetTargetDir() > -60 AND GetTargetDir() < 60)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 220
+              - id: 220
+                desc: "정면 방향으로 이동"
+                normalBehaviorId: 947
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 948
+                angerBehaviorType: "activeMove"
+                preProcess: "GetTargetDir() > -60 AND GetTargetDir() < 60"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+              - id: 221
+                desc: "어그로 체인지 동작(반복용)"
+                normalBehaviorId: 1204
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2204
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+              - id: 222
+                desc: "패턴 1_1 짧은 롱무브 후 라운드 어택"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1109, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 107
+              - id: 223
+                desc: "패턴 2_1 백무브후 헤비 어택"
+                normalBehaviorId: 1212
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2212
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1101, 1, 0.9)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+                nextAttackProb: 0.7
+                nextAttackId: 300
+              - id: 224
+                desc: "패턴 3_1 무브 어택후 무브 어택(분노시)"
+                normalBehaviorId: 1106
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2106
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1106, 1, 0.6)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 25000
+                nextAttackProb: 0.7
+                nextAttackId: 301
+              - id: 225
+                desc: "패턴 4_1 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 193
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 194
+                angerBehaviorType: "activeRotate"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1104, 1, 0.6)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 15000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 226
+              - id: 226
+                desc: "패턴 4_2 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 195
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 196
+                angerBehaviorType: "activeRotate"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 227
+              - id: 227
+                desc: "패턴 4_3 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 228
+              - id: 228
+                desc: "패턴 4_4 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 197
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 198
+                angerBehaviorType: "activeRotate"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 229
+              - id: 229
+                desc: "패턴 4_5 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 230
+              - id: 230
+                desc: "패턴 4_6 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 199
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 200
+                angerBehaviorType: "activeRotate"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 231
+              - id: 231
+                desc: "패턴 4_7 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 233
+              - id: 232
+                desc: "패턴 4_8 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 201
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 202
+                angerBehaviorType: "activeRotate"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 233
+              - id: 233
+                desc: "패턴 4_9 좌우 두리번 후 4연속 발사체"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+              - id: 234
+                desc: "패턴 0_1 슬로우 공격 후 헤비 어택"
+                normalBehaviorId: 1103
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2103
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1103, 1, 0.9)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 15000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 102
+              - id: 250
+                desc: "PC에게 접근(어그로 체인지_원거리)"
+                normalBehaviorId: 949
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 950
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 101
+              - id: 251
+                desc: "연속 무브 어택 전 원거리 범위 공격(분노시 패턴)"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 25000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 224
+              - id: 300
+                desc: "패턴 2_2 백무브후 헤비 어택 후 피격 기회 제공"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 301
+                desc: "패턴 3_2 무브 어택후 무브 어택"
+                normalBehaviorId: 203
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 204
+                angerBehaviorType: "activeRotate"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 302
+              - id: 302
+                desc: "패턴 3_3 무브 어택후 무브 어택"
+                normalBehaviorId: 1106
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2106
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1106, 1, 0.6)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                nextAttackProb: 1
+                nextAttackId: 204
+              - id: 365
+                desc: "hp step 0.8"
+                normalBehaviorId: 9001
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9001
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 366
+                desc: "hp step 0.6"
+                normalBehaviorId: 9002
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9002
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 367
+                desc: "hp step 0.4"
+                normalBehaviorId: 9003
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9003
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 368
+                desc: "hp step 0.15"
+                normalBehaviorId: 9004
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9004
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 371
+                desc: "soft enrage tick"
+                normalBehaviorId: 9005
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9005
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 370
+                desc: "hp 5 opening"
+                normalBehaviorId: 1201
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1201
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 380
+                desc: "heavy below 15"
+                normalBehaviorId: 1107
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2107
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetHpRatio() <= 0.15 AND IsInSkillAttackRange(1107, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 12500
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 381
+                desc: "venom leap below 70"
+                normalBehaviorId: 1112
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2112
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 382
+                desc: "egg call at 50"
+                normalBehaviorId: 9010
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9010
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 383
+                desc: "lay egg sacs"
+                normalBehaviorId: 1
+                normalBehaviorType: "dynamicSpawn"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1
+                angerBehaviorType: "dynamicSpawn"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 384
+                desc: "go to an egg sac"
+                normalBehaviorId: 945
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 946
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 385
+                desc: "devour an egg sac, defender a"
+                normalBehaviorId: 9011
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9011
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 394
+                desc: "devour an egg sac, defender b"
+                normalBehaviorId: 9013
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9013
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 395
+                desc: "devour an egg sac, defender c"
+                normalBehaviorId: 9014
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9014
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 396
+                desc: "devour an egg sac, defender d"
+                normalBehaviorId: 9015
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9015
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 386
+                desc: "brood call at 20"
+                normalBehaviorId: 9012
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9012
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 387
+                desc: "loose the brood"
+                normalBehaviorId: 2
+                normalBehaviorType: "dynamicSpawn"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2
+                angerBehaviorType: "dynamicSpawn"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 388
+                desc: "more spiderlings below 10"
+                normalBehaviorId: 3
+                normalBehaviorType: "dynamicSpawn"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 3
+                angerBehaviorType: "dynamicSpawn"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 392
+                desc: "run at the selected player, then the venom leap"
+                normalBehaviorId: 945
+                normalBehaviorType: "activeMove"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 946
+                angerBehaviorType: "activeMove"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 381
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 393
+                desc: "venom ball at the selected player"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+            tensionList:
+              - id: 1
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 1 }
+                  - { workId: 216, distanceRate: 1 }
+                  - { workId: 214, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204, prob: 0, distanceRate: 1 }
+                  - { workId: 106, prob: 0.5, distanceRate: 1 }
+                  - { workId: 103, prob: 0.35, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 101, prob: 0.6, distanceRate: 1 }
+                  - { workId: 102, prob: 0.4, distanceRate: 1 }
+                  - { workId: 210, prob: 0, distanceRate: 1 }
+                  - { workId: 209, prob: 0, distanceRate: 1 }
+                  - { workId: 213, prob: 0.3, distanceRate: 1 }
+                  - { workId: 234, prob: 0.3, distanceRate: 1 }
+                  - { workId: 222, prob: 0.3, distanceRate: 1 }
+                  - { workId: 223, prob: 0.3, distanceRate: 1 }
+                  - { workId: 224, prob: 0, distanceRate: 1 }
+                  - { workId: 225 }
+                  - { workId: 111, prob: 0, distanceRate: 1 }
+                  - { workId: 105, prob: 0.65, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 1 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 104, prob: 0.75, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 0 }
+                  - { workId: 217, prob: 0, distanceRate: 0 }
+                  - { workId: 221, prob: 0, distanceRate: 0 }
+                  - { workId: 226, prob: 0, distanceRate: 0 }
+                  - { workId: 227, prob: 0, distanceRate: 0 }
+                  - { workId: 228, prob: 0, distanceRate: 0 }
+                  - { workId: 229, distanceRate: 0 }
+                  - { workId: 230, prob: 0, distanceRate: 0 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 301, prob: 0, distanceRate: 0 }
+                  - { workId: 302, prob: 0, distanceRate: 0 }
+                  - { workId: 231, prob: 0, distanceRate: 0 }
+                  - { workId: 232, prob: 0, distanceRate: 0 }
+                  - { workId: 233, prob: 0, distanceRate: 0 }
+                  - { workId: 251, prob: 0, distanceRate: 0 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 0, distanceRate: 1 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0, distanceRate: 1 }
+                  - { workId: 381, prob: 0, distanceRate: 1 }
+                  - { workId: 382, prob: 0, distanceRate: 1 }
+                  - { workId: 383, prob: 0, distanceRate: 1 }
+                  - { workId: 384, prob: 0, distanceRate: 1 }
+                  - { workId: 385, prob: 0, distanceRate: 1 }
+                  - { workId: 386, prob: 0, distanceRate: 1 }
+                  - { workId: 387, prob: 0, distanceRate: 1 }
+                  - { workId: 388, prob: 0, distanceRate: 1 }
+                  - { workId: 392, prob: 0, distanceRate: 1 }
+                  - { workId: 393, prob: 0, distanceRate: 1 }
+                  - { workId: 394, prob: 0, distanceRate: 1 }
+                  - { workId: 395, prob: 0, distanceRate: 1 }
+                  - { workId: 396, prob: 0, distanceRate: 1 }
+              - id: 2
+                infos:
+                  - { workId: 201 }
+                  - { workId: 216, distanceRate: 1 }
+                  - { workId: 214, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204 }
+                  - { workId: 106, prob: 0.5, distanceRate: 1 }
+                  - { workId: 210, prob: 0, distanceRate: 1 }
+                  - { workId: 209 }
+                  - { workId: 213 }
+                  - { workId: 234, prob: 0, distanceRate: 1 }
+                  - { workId: 222 }
+                  - { workId: 223 }
+                  - { workId: 251, prob: 0.3, distanceRate: 0 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225 }
+                  - { workId: 102, prob: 0, distanceRate: 1 }
+                  - { workId: 103, prob: 0.35, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 101, prob: 0.6, distanceRate: 1 }
+                  - { workId: 111, prob: 0, distanceRate: 1 }
+                  - { workId: 105, prob: 0.65, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 1 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 104, prob: 0, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 0 }
+                  - { workId: 217, prob: 0, distanceRate: 0 }
+                  - { workId: 221, prob: 0, distanceRate: 0 }
+                  - { workId: 226, prob: 0, distanceRate: 0 }
+                  - { workId: 227, prob: 0, distanceRate: 0 }
+                  - { workId: 228, prob: 0, distanceRate: 0 }
+                  - { workId: 229, distanceRate: 0 }
+                  - { workId: 230, prob: 0, distanceRate: 0 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 301, prob: 0, distanceRate: 0 }
+                  - { workId: 302, prob: 0, distanceRate: 0 }
+                  - { workId: 231, prob: 0, distanceRate: 0 }
+                  - { workId: 232, prob: 0, distanceRate: 0 }
+                  - { workId: 233, prob: 0, distanceRate: 0 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 0, distanceRate: 1 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0, distanceRate: 1 }
+                  - { workId: 381, prob: 0, distanceRate: 1 }
+                  - { workId: 382, prob: 0, distanceRate: 1 }
+                  - { workId: 383, prob: 0, distanceRate: 1 }
+                  - { workId: 384, prob: 0, distanceRate: 1 }
+                  - { workId: 385, prob: 0, distanceRate: 1 }
+                  - { workId: 386, prob: 0, distanceRate: 1 }
+                  - { workId: 387, prob: 0, distanceRate: 1 }
+                  - { workId: 388, prob: 0, distanceRate: 1 }
+                  - { workId: 392, prob: 0, distanceRate: 1 }
+                  - { workId: 393, prob: 0, distanceRate: 1 }
+                  - { workId: 394, prob: 0, distanceRate: 1 }
+                  - { workId: 395, prob: 0, distanceRate: 1 }
+                  - { workId: 396, prob: 0, distanceRate: 1 }
+              - id: 3
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 1 }
+                  - { workId: 216, distanceRate: 1 }
+                  - { workId: 214, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204, prob: 0, distanceRate: 1 }
+                  - { workId: 106, prob: 0.5, distanceRate: 1 }
+                  - { workId: 103, prob: 0.35, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 101, prob: 0.6, distanceRate: 1 }
+                  - { workId: 102, prob: 0.4, distanceRate: 1 }
+                  - { workId: 210, prob: 0, distanceRate: 1 }
+                  - { workId: 209, prob: 0, distanceRate: 1 }
+                  - { workId: 213, prob: 0.5, distanceRate: 1 }
+                  - { workId: 234, prob: 0.3, distanceRate: 1 }
+                  - { workId: 222, prob: 0.3, distanceRate: 1 }
+                  - { workId: 223, prob: 0.3, distanceRate: 1 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225 }
+                  - { workId: 111, prob: 0, distanceRate: 1 }
+                  - { workId: 105, prob: 0.65, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 1 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 104, prob: 0.75, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 0 }
+                  - { workId: 217, prob: 0, distanceRate: 0 }
+                  - { workId: 221, prob: 0, distanceRate: 0 }
+                  - { workId: 226, prob: 0, distanceRate: 0 }
+                  - { workId: 227, prob: 0, distanceRate: 0 }
+                  - { workId: 228, prob: 0, distanceRate: 0 }
+                  - { workId: 229, distanceRate: 0 }
+                  - { workId: 230, prob: 0, distanceRate: 0 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 301, prob: 0, distanceRate: 0 }
+                  - { workId: 302, prob: 0, distanceRate: 0 }
+                  - { workId: 231, prob: 0, distanceRate: 0 }
+                  - { workId: 232, prob: 0, distanceRate: 0 }
+                  - { workId: 233, prob: 0, distanceRate: 0 }
+                  - { workId: 251, prob: 0.3, distanceRate: 0 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 0, distanceRate: 1 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0.3, distanceRate: 1 }
+                  - { workId: 381, prob: 0, distanceRate: 1 }
+                  - { workId: 382, prob: 0, distanceRate: 1 }
+                  - { workId: 383, prob: 0, distanceRate: 1 }
+                  - { workId: 384, prob: 0, distanceRate: 1 }
+                  - { workId: 385, prob: 0, distanceRate: 1 }
+                  - { workId: 386, prob: 0, distanceRate: 1 }
+                  - { workId: 387, prob: 0, distanceRate: 1 }
+                  - { workId: 388, prob: 0, distanceRate: 1 }
+                  - { workId: 392, prob: 0, distanceRate: 1 }
+                  - { workId: 393, prob: 0, distanceRate: 1 }
+                  - { workId: 394, prob: 0, distanceRate: 1 }
+                  - { workId: 395, prob: 0, distanceRate: 1 }
+                  - { workId: 396, prob: 0, distanceRate: 1 }
+              - id: 4
+                infos:
+                  - { workId: 201, prob: 0, distanceRate: 1 }
+                  - { workId: 216, distanceRate: 1 }
+                  - { workId: 214, prob: 1, distanceRate: 1 }
+                  - { workId: 107, prob: 0.3, distanceRate: 1 }
+                  - { workId: 204 }
+                  - { workId: 106, prob: 0.5, distanceRate: 1 }
+                  - { workId: 210, prob: 0, distanceRate: 1 }
+                  - { workId: 209 }
+                  - { workId: 213 }
+                  - { workId: 234, prob: 0, distanceRate: 1 }
+                  - { workId: 222 }
+                  - { workId: 223 }
+                  - { workId: 251, prob: 0.3, distanceRate: 1 }
+                  - { workId: 224, prob: 0.3, distanceRate: 1 }
+                  - { workId: 225 }
+                  - { workId: 102, prob: 0, distanceRate: 1 }
+                  - { workId: 103, prob: 0.35, distanceRate: 1 }
+                  - { workId: 220, prob: 0, distanceRate: 1 }
+                  - { workId: 101, prob: 0.6, distanceRate: 1 }
+                  - { workId: 111, prob: 0, distanceRate: 1 }
+                  - { workId: 105, prob: 0.65, distanceRate: 1 }
+                  - { workId: 110, prob: 0.2, distanceRate: 1 }
+                  - { workId: 212, prob: 0.2, distanceRate: 1 }
+                  - { workId: 104, prob: 0, distanceRate: 1 }
+                  - { workId: 215, prob: 0, distanceRate: 0 }
+                  - { workId: 217, prob: 0, distanceRate: 0 }
+                  - { workId: 221, prob: 0, distanceRate: 0 }
+                  - { workId: 226, prob: 0, distanceRate: 0 }
+                  - { workId: 227, prob: 0, distanceRate: 0 }
+                  - { workId: 228, prob: 0, distanceRate: 0 }
+                  - { workId: 229, distanceRate: 0 }
+                  - { workId: 230, prob: 0, distanceRate: 0 }
+                  - { workId: 250, prob: 0, distanceRate: 0 }
+                  - { workId: 300, prob: 0, distanceRate: 0 }
+                  - { workId: 301, prob: 0, distanceRate: 0 }
+                  - { workId: 302, prob: 0, distanceRate: 0 }
+                  - { workId: 231, prob: 0, distanceRate: 0 }
+                  - { workId: 232, prob: 0, distanceRate: 0 }
+                  - { workId: 233, prob: 0, distanceRate: 0 }
+                  - { workId: 218, prob: 0, distanceRate: 1 }
+                  - { workId: 219, prob: 0, distanceRate: 1 }
+                  - { workId: 150, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0.3, distanceRate: 1 }
+                  - { workId: 381, prob: 0, distanceRate: 1 }
+                  - { workId: 382, prob: 0, distanceRate: 1 }
+                  - { workId: 383, prob: 0, distanceRate: 1 }
+                  - { workId: 384, prob: 0, distanceRate: 1 }
+                  - { workId: 385, prob: 0, distanceRate: 1 }
+                  - { workId: 386, prob: 0, distanceRate: 1 }
+                  - { workId: 387, prob: 0, distanceRate: 1 }
+                  - { workId: 388, prob: 0, distanceRate: 1 }
+                  - { workId: 392, prob: 0, distanceRate: 1 }
+                  - { workId: 393, prob: 0, distanceRate: 1 }
+                  - { workId: 394, prob: 0, distanceRate: 1 }
+                  - { workId: 395, prob: 0, distanceRate: 1 }
+                  - { workId: 396, prob: 0, distanceRate: 1 }
+          shorttermTarget:
+            stWorkList:
+              - id: 1
+                desc: "중형_원거리견제"
+                preProcess: "GetHpRatio() < 0.6 AND PcTargetBySkillCategoryUsedEx(1, 360, 1110, 1, 0.8, 23, 2)"
+                immediateAttackId: 102
+                coolTime: "25000"
+                showSTMark: true
+                msgImmediately: false
+              - id: 2
+                desc: "중형_주변 견제"
+                preProcess: "PcTargetByDirectionEx(180, 240, 1108, 1, 1, 0)"
+                immediateAttackId: 107
+                msgImmediately: false
+              - id: 5
+                desc: "중형_힐견제"
+                preProcess: "GetHpRatio() < 0.6 AND GetHpRatio() > 0.51 AND PcTargetBySkillCategoryUsed(1, 360, 0, 900, 31, 2)"
+                immediateAttackId: 392
+                coolTime: "60000"
+                showSTMark: true
+                msgImmediately: false
+              - id: 10
+                desc: "hp step 0.8"
+                preProcess: "GetHpRatio() <= 0.8 AND IsInAbnormality(49987) == 0"
+                immediateAttackId: 365
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 11
+                desc: "hp step 0.6"
+                preProcess: "GetHpRatio() <= 0.6 AND IsInAbnormality(49988) == 0"
+                immediateAttackId: 366
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 12
+                desc: "hp step 0.4"
+                preProcess: "GetHpRatio() <= 0.4 AND IsInAbnormality(49989) == 0"
+                immediateAttackId: 367
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 13
+                desc: "hp step 0.15"
+                preProcess: "GetHpRatio() <= 0.15 AND IsInAbnormality(49990) == 0"
+                immediateAttackId: 368
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 14
+                desc: "hp 5 opening"
+                preProcess: "GetHpRatio() <= 0.05"
+                immediateAttackId: 370
+                coolTime: "30000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 15
+                desc: "soft enrage, later stacks"
+                preProcess: "GetCombatTime() >= 480000"
+                immediateAttackId: 371
+                coolTime: "120000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 16
+                desc: "soft enrage, first stack at 6 minutes"
+                preProcess: "GetCombatTime() >= 360000 AND IsInAbnormality(49985) == 0"
+                immediateAttackId: 371
+                coolTime: "120000"
+                showSTMark: false
+                msgImmediately: true
+                msg: [6500301]
+                msgProb: 1
+              - id: 17
+                desc: "venom leap from 0.7 to 0.51"
+                preProcess: "GetHpRatio() <= 0.7 AND GetHpRatio() > 0.51 AND PcTargetByAreaRandom(1, 360, 0, 300)"
+                immediateAttackId: 381
+                coolTime: "60000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 18
+                desc: "egg sacs every 2 minutes from 0.5 to 0.21"
+                preProcess: "GetHpRatio() <= 0.5 AND GetHpRatio() > 0.21 AND IsInAbnormality(49982) == 0"
+                immediateAttackId: 382
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 19
+                desc: "devour a ripe egg sac in reach, defender a"
+                preProcess: "IsInAbnormality(49982) == 1 AND IsInAbnormality(49981) == 0 AND IsInAbnormality(49973) == 0 AND NpcTargetByAreaRandom(1, 360, 0, 250, 5004) AND GetTargetDistance() < 250"
+                immediateAttackId: 385
+                coolTime: "6000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 20
+                desc: "walk to an egg sac"
+                preProcess: "IsInAbnormality(49982) == 1 AND IsInAbnormality(49981) == 0 AND NpcTargetByAreaRandom(1, 360, 0, 1200, 5004)"
+                immediateAttackId: 384
+                coolTime: "3000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 21
+                desc: "brood every 2 minutes from 0.2"
+                preProcess: "GetHpRatio() <= 0.2 AND IsInAbnormality(49980) == 0"
+                immediateAttackId: 386
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 22
+                desc: "spiderlings keep coming below 0.1"
+                preProcess: "GetHpRatio() <= 0.1"
+                immediateAttackId: 388
+                coolTime: "15000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 23
+                desc: "punish a resurrect below 0.6"
+                preProcess: "GetHpRatio() < 0.6 AND PcTargetBySkillCategoryUsed(1, 360, 0, 1000, 33, 5)"
+                immediateAttackId: 102
+                coolTime: "90000"
+                showSTMark: true
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 24
+                desc: "venom ball at a far player below 0.6"
+                preProcess: "GetHpRatio() < 0.6 AND PcTargetByDirection(1, 360, 400, 900, 1)"
+                immediateAttackId: 393
+                coolTime: "40000"
+                showSTMark: true
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 25
+                desc: "venom ball at a healer below 0.51"
+                preProcess: "GetHpRatio() <= 0.51 AND PcTargetBySkillCategoryUsed(1, 360, 0, 900, 31, 2)"
+                immediateAttackId: 393
+                coolTime: "20000"
+                showSTMark: true
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 26
+                desc: "venom barrage while the egg sacs ripen"
+                preProcess: "IsInAbnormality(49981) == 1 AND GetDynamicSpawnCount() > 0 AND PcTargetByAreaRandom(1, 360, 0, 900)"
+                immediateAttackId: 393
+                coolTime: "3000"
+                showSTMark: true
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 27
+                desc: "devour a ripe egg sac in reach, defender b"
+                preProcess: "IsInAbnormality(49982) == 1 AND IsInAbnormality(49981) == 0 AND IsInAbnormality(49973) == 1 AND IsInAbnormality(49972) == 0 AND NpcTargetByAreaRandom(1, 360, 0, 250, 5004) AND GetTargetDistance() < 250"
+                immediateAttackId: 394
+                coolTime: "6000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 28
+                desc: "devour a ripe egg sac in reach, defender c"
+                preProcess: "IsInAbnormality(49982) == 1 AND IsInAbnormality(49981) == 0 AND IsInAbnormality(49973) == 1 AND IsInAbnormality(49972) == 1 AND IsInAbnormality(49971) == 0 AND NpcTargetByAreaRandom(1, 360, 0, 250, 5004) AND GetTargetDistance() < 250"
+                immediateAttackId: 395
+                coolTime: "6000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 29
+                desc: "devour a ripe egg sac in reach, defender d"
+                preProcess: "IsInAbnormality(49982) == 1 AND IsInAbnormality(49981) == 0 AND IsInAbnormality(49973) == 1 AND IsInAbnormality(49972) == 1 AND IsInAbnormality(49971) == 1 AND NpcTargetByAreaRandom(1, 360, 0, 250, 5004) AND GetTargetDistance() < 250"
+                immediateAttackId: 396
+                coolTime: "6000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 31
+                desc: "lay the sacs once the call has landed"
+                preProcess: "IsInAbnormality(49981) == 1"
+                immediateAttackId: 383
+                coolTime: "30000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 32
+                desc: "loose the brood once the call has landed"
+                preProcess: "IsInAbnormality(49980) == 1"
+                immediateAttackId: 387
+                coolTime: "125000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+            stTensionList:
+              - id: 1
+                stInfos:
+                  - { stWorkId: 31, prob: 1 }
+                  - { stWorkId: 32, prob: 1 }
+                  - { stWorkId: 27, prob: 1 }
+                  - { stWorkId: 28, prob: 1 }
+                  - { stWorkId: 29, prob: 1 }
+                  - { stWorkId: 10, prob: 1 }
+                  - { stWorkId: 11, prob: 1 }
+                  - { stWorkId: 12, prob: 1 }
+                  - { stWorkId: 13, prob: 1 }
+                  - { stWorkId: 14, prob: 1 }
+                  - { stWorkId: 15, prob: 1 }
+                  - { stWorkId: 16, prob: 1 }
+                  - { stWorkId: 17, prob: 1 }
+                  - { stWorkId: 18, prob: 1 }
+                  - { stWorkId: 19, prob: 1 }
+                  - { stWorkId: 20, prob: 1 }
+                  - { stWorkId: 21, prob: 1 }
+                  - { stWorkId: 22, prob: 1 }
+                  - { stWorkId: 23, prob: 1 }
+                  - { stWorkId: 24, prob: 1 }
+                  - { stWorkId: 25, prob: 1 }
+                  - { stWorkId: 26, prob: 1 }
+                  - { stWorkId: 1, prob: 1 }
+                  - { stWorkId: 5, prob: 1 }
+                  - { stWorkId: 2, prob: 0.015 }
+          patternLists:
+            - patterns:
+              - default: true
+                normalMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 2, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+              - minHpRatio: 0
+                maxHpRatio: 0.15
+                normalMode:
+                  tension: { attackTension: 3, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 4, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+    - huntingZoneId: 7
+      id: 100
+      changes:
+        combatState:
+          attack:
+            workList:
+              - id: 1
+                desc: "좌우 기본 공격"
+                normalBehaviorId: 1101
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2101
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1101, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 2
+                desc: "데미지 딜링"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 3
+                desc: "3연타 공격"
+                normalBehaviorId: 1103
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2103
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1103, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+              - id: 4
+                desc: "손가락 탄환 발사"
+                normalBehaviorId: 1104
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2104
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1104, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 5
+                desc: "브레스 뿜기"
+                normalBehaviorId: 1106
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2106
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1106, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 17
+              - id: 6
+                desc: "좌우 6연타 전진 공격"
+                normalBehaviorId: 1107
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2107
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1107, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 0
+              - id: 7
+                desc: "점프 리액션 공격 사전동작"
+                normalBehaviorId: 1203
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2203
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1106, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 16
+              - id: 8
+                desc: "우회전 공격"
+                normalBehaviorId: 1108
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2108
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetTargetDir() > 60 AND GetTargetDir() < 180 AND IsInSkillAttackRange(1108, 1, 1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 0
+              - id: 9
+                desc: "좌회전 공격"
+                normalBehaviorId: 1109
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2109
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetTargetDir() > 180 AND GetTargetDir() < 300 AND IsInSkillAttackRange(1109, 1,1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 0
+              - id: 12
+                desc: "점프 리액션 공격 사전동작+데미지 딜링 콤보"
+                normalBehaviorId: 1203
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2203
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1102, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 20000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 16
+              - id: 14
+                desc: "HP없으면 헉헉"
+                normalBehaviorId: 1201
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1201
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetHpRatio()<0.3"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 14000
+                isDirectionRevision: false
+                nextAttackProb: 0
+              - id: 16
+                desc: "점프 리액션 공격"
+                normalBehaviorId: 1102
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2102
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 37
+              - id: 17
+                desc: "어그로 체인지"
+                normalBehaviorId: 1204
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2204
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetDamagedCount(7) < 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 15000
+                isDirectionRevision: true
+                nextAttackProb: 0
+                nextAttackId: 19
+              - id: 18
+                desc: "주변 대폭발(울트라 공격)"
+                normalBehaviorId: 1111
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2111
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 20000 AND IsInSkillAttackRange(1111, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: true
+              - id: 19
+                desc: "어그로 체인지 어택(반복용)"
+                normalBehaviorId: 1204
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2204
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+              - id: 20
+                desc: "백회피"
+                normalBehaviorId: 1212
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2212
+                angerBehaviorType: "skill"
+                preProcess: "IsInSkillAttackRange(1101, 1, 1) AND GetDamagedCount(10) > 5"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 60000
+                isDirectionRevision: true
+              - id: 21
+                desc: "태어난 곳을 향해 짧은 액티브 무브 1_1"
+                normalBehaviorId: 908
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 909
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsOutCombatSpace(1200) == 1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 120000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 22
+              - id: 22
+                desc: "태어난 곳을 향해 짧은 액티브 무브 1_2"
+                normalBehaviorId: 7455
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 7456
+                angerBehaviorType: "activeMove"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 4
+              - id: 25
+                desc: "헛치기"
+                normalBehaviorId: 1101
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2101
+                angerBehaviorType: "skill"
+                preProcess: "IsInSkillAttackRange(1101, 1, 1.2) AND (GetDamagedCount(5) < 1 OR GetHpRatio() < 0.15)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+              - id: 26
+                desc: "패턴1_1 백 무브 후 브레스 공격"
+                normalBehaviorId: 1212
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2212
+                angerBehaviorType: "skill"
+                preProcess: "GetCombatTime() > 15000 AND IsInSkillAttackRange(1101, 1, 1)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 20000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 5
+              - id: 27
+                desc: "체력 30% 이하시 도망1_1"
+                normalBehaviorId: 910
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 911
+                angerBehaviorType: "activeRotate"
+                preProcess: "GetHpRatio() < 0.30"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 14000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 28
+              - id: 28
+                desc: "체력 30% 이하시 도망1_2"
+                normalBehaviorId: 7457
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 7458
+                angerBehaviorType: "activeMove"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 14
+              - id: 29
+                desc: "사전 동작(미정)"
+                normalBehaviorId: 1
+                normalBehaviorType: "social"
+                angerBehaviorId: 1
+                angerBehaviorType: "social"
+                preProcess: "1"
+                distanceType: "1"
+                nextAttackProb: 1
+              - id: 30
+                desc: "6연타 공격 후 브레스 공격(분노용)"
+                normalBehaviorId: 1107
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2107
+                angerBehaviorType: "skill"
+                preProcess: "IsInSkillAttackRange(1107, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 20000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 5
+              - id: 32
+                desc: "PC 근처로 추적"
+                normalBehaviorId: 7459
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 7460
+                angerBehaviorType: "activeMove"
+                preProcess: "IsInSkillAttackRange(1104, 0.5, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+              - id: 33
+                desc: "직선 방향으로 이동"
+                normalBehaviorId: 7461
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 7462
+                angerBehaviorType: "activeMove"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+              - id: 34
+                desc: "PC를 보고 회전"
+                normalBehaviorId: 912
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 913
+                angerBehaviorType: "activeRotate"
+                preProcess: "GetTargetDir() > -60 AND GetTargetDir() < 60"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 33
+              - id: 35
+                desc: "좌로 30도 회전"
+                normalBehaviorId: 914
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 915
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsPrevAttack(1, 33) == 0 AND (GetTargetDir() > -60 AND GetTargetDir() < 60)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 33
+              - id: 36
+                desc: "우로 30도 회전"
+                normalBehaviorId: 916
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 917
+                angerBehaviorType: "activeRotate"
+                preProcess: "IsPrevAttack(1, 33) == 0 AND (GetTargetDir() > -60 AND GetTargetDir() < 60)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 30000
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 33
+              - id: 37
+                desc: "리액션 공격(반복용)"
+                normalBehaviorId: 1102
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2102
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 60
+              - id: 39
+                desc: "패턴1_2 백 무브 후 6연속 공격 2회 반복"
+                normalBehaviorId: 1107
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2107
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 6
+              - id: 40
+                desc: "패턴2_2 3연속 박수 치기(분노용)"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                nextAttackProb: 1
+                nextAttackId: 2
+              - id: 50
+                desc: "1_1 pc를 보고 회전(원거리 어그로 체인지 공격용)"
+                normalBehaviorId: 918
+                normalBehaviorType: "activeRotate"
+                angerBehaviorId: 919
+                angerBehaviorType: "activeRotate"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 51
+              - id: 51
+                desc: "1_2 pc를 보고 회전(원거리 어그로 체인지 공격용)"
+                normalBehaviorId: 7463
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 7464
+                angerBehaviorType: "activeMove"
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 4
+              - id: 60
+                desc: "리액션 공격 2번 후 데미지 딜링 후 어그로 체인지"
+                normalBehaviorId: 1110
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2110
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "IsInSkillAttackRange(1110, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 6000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 17
+              - id: 100
+                desc: "PC 근처로 추적(어그로 체인지_원거리)"
+                normalBehaviorId: 7465
+                normalBehaviorType: "activeMove"
+                angerBehaviorId: 7466
+                angerBehaviorType: "activeMove"
+                preProcess: "IsInSkillAttackRange(1104, 0.5, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                isDirectionRevision: false
+                nextAttackProb: 1
+                nextAttackId: 1
+              - id: 365
+                desc: "hp step 0.8"
+                normalBehaviorId: 9001
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9001
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 366
+                desc: "hp step 0.6"
+                normalBehaviorId: 9002
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9002
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 367
+                desc: "hp step 0.4"
+                normalBehaviorId: 9003
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9003
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 368
+                desc: "hp step 0.15"
+                normalBehaviorId: 9004
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9004
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 371
+                desc: "soft enrage tick"
+                normalBehaviorId: 9005
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 9005
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 370
+                desc: "hp 5 opening"
+                normalBehaviorId: 1201
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 1201
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "1"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 0
+                isDirectionRevision: false
+                nextAttackProb: 0
+                nextAttackId: 0
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 380
+                desc: "heavy below 15"
+                normalBehaviorId: 1203
+                normalBehaviorType: "skill"
+                offFlockOnNormalMode: true
+                angerBehaviorId: 2203
+                angerBehaviorType: "skill"
+                offFlockOnAngerMode: true
+                preProcess: "GetHpRatio() <= 0.15 AND IsInSkillAttackRange(1102, 1, 0.8)"
+                distanceType: "1"
+                distanceRate: 1
+                coolTime: 10000
+                isDirectionRevision: true
+                nextAttackProb: 1
+                nextAttackId: 16
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+            tensionList:
+              - id: 1
+                infos:
+                  - { workId: 14, prob: 0, distanceRate: 1 }
+                  - { workId: 27 }
+                  - { workId: 21, prob: 1, distanceRate: 1 }
+                  - { workId: 9, prob: 0.3, distanceRate: 1 }
+                  - { workId: 8, prob: 0.3, distanceRate: 1 }
+                  - { workId: 17, prob: 0, distanceRate: 1 }
+                  - { workId: 12, prob: 0.5, distanceRate: 1 }
+                  - { workId: 3, prob: 0.3, distanceRate: 1 }
+                  - { workId: 2, prob: 0.3, distanceRate: 1 }
+                  - { workId: 1, prob: 0.5, distanceRate: 1 }
+                  - { workId: 5, prob: 0.4 }
+                  - { workId: 20, prob: 0.2, distanceRate: 1 }
+                  - { workId: 25, prob: 0.3, distanceRate: 1 }
+                  - { workId: 26, prob: 0.3, distanceRate: 1 }
+                  - { workId: 6, prob: 0.25, distanceRate: 1 }
+                  - { workId: 34, prob: 0.15, distanceRate: 1 }
+                  - { workId: 18 }
+                  - { workId: 4, prob: 0.7, distanceRate: 1 }
+                  - { workId: 16 }
+                  - { workId: 19 }
+                  - { workId: 7 }
+                  - { workId: 22 }
+                  - { workId: 28 }
+                  - { workId: 29 }
+                  - { workId: 30 }
+                  - { workId: 33 }
+                  - { workId: 35, prob: 0.3, distanceRate: 1 }
+                  - { workId: 36, prob: 0.3, distanceRate: 1 }
+                  - { workId: 37 }
+                  - { workId: 39 }
+                  - { workId: 40 }
+                  - { workId: 50 }
+                  - { workId: 60 }
+                  - { workId: 100 }
+                  - { workId: 51 }
+                  - { workId: 32, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0, distanceRate: 1 }
+              - id: 2
+                infos:
+                  - { workId: 14, distanceRate: 1 }
+                  - { workId: 27 }
+                  - { workId: 21, prob: 1, distanceRate: 1 }
+                  - { workId: 9, prob: 0.3, distanceRate: 1 }
+                  - { workId: 8, prob: 0.3, distanceRate: 1 }
+                  - { workId: 17 }
+                  - { workId: 12, prob: 0.5, distanceRate: 1 }
+                  - { workId: 30, prob: 0.3 }
+                  - { workId: 20 }
+                  - { workId: 25 }
+                  - { workId: 26, distanceRate: 1 }
+                  - { workId: 2, prob: 0.25, distanceRate: 1 }
+                  - { workId: 3, prob: 0.25, distanceRate: 1 }
+                  - { workId: 6, distanceRate: 1 }
+                  - { workId: 34, prob: 0.3, distanceRate: 1 }
+                  - { workId: 1, prob: 0.65, distanceRate: 1 }
+                  - { workId: 18 }
+                  - { workId: 5, prob: 0.3, distanceRate: 1 }
+                  - { workId: 4, prob: 0.7, distanceRate: 1 }
+                  - { workId: 16 }
+                  - { workId: 19 }
+                  - { workId: 7 }
+                  - { workId: 22 }
+                  - { workId: 28 }
+                  - { workId: 29 }
+                  - { workId: 33 }
+                  - { workId: 35, prob: 0.3, distanceRate: 1 }
+                  - { workId: 36, prob: 0.3, distanceRate: 1 }
+                  - { workId: 37 }
+                  - { workId: 39 }
+                  - { workId: 40 }
+                  - { workId: 50 }
+                  - { workId: 60 }
+                  - { workId: 100 }
+                  - { workId: 51 }
+                  - { workId: 32, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0, distanceRate: 1 }
+              - id: 3
+                infos:
+                  - { workId: 14, prob: 0, distanceRate: 1 }
+                  - { workId: 27, prob: 0, distanceRate: 1 }
+                  - { workId: 21, prob: 1, distanceRate: 1 }
+                  - { workId: 9, prob: 0.3, distanceRate: 1 }
+                  - { workId: 8, prob: 0.3, distanceRate: 1 }
+                  - { workId: 17, prob: 0, distanceRate: 1 }
+                  - { workId: 12, prob: 0.5, distanceRate: 1 }
+                  - { workId: 3, prob: 0.3, distanceRate: 1 }
+                  - { workId: 2, prob: 0.3, distanceRate: 1 }
+                  - { workId: 1, prob: 0.5, distanceRate: 1 }
+                  - { workId: 5, prob: 0.4 }
+                  - { workId: 20, prob: 0.2, distanceRate: 1 }
+                  - { workId: 25, prob: 0.5, distanceRate: 1 }
+                  - { workId: 26, prob: 0.3, distanceRate: 1 }
+                  - { workId: 6, prob: 0.25, distanceRate: 1 }
+                  - { workId: 34, prob: 0.15, distanceRate: 1 }
+                  - { workId: 18 }
+                  - { workId: 4, prob: 0.7, distanceRate: 1 }
+                  - { workId: 16 }
+                  - { workId: 19 }
+                  - { workId: 7 }
+                  - { workId: 22 }
+                  - { workId: 28 }
+                  - { workId: 29 }
+                  - { workId: 30, prob: 0.3 }
+                  - { workId: 33 }
+                  - { workId: 35, prob: 0.3, distanceRate: 1 }
+                  - { workId: 36, prob: 0.3, distanceRate: 1 }
+                  - { workId: 37 }
+                  - { workId: 39 }
+                  - { workId: 40 }
+                  - { workId: 50 }
+                  - { workId: 60 }
+                  - { workId: 100 }
+                  - { workId: 51 }
+                  - { workId: 32, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0.3, distanceRate: 1 }
+              - id: 4
+                infos:
+                  - { workId: 14, prob: 0, distanceRate: 1 }
+                  - { workId: 27 }
+                  - { workId: 21, prob: 1, distanceRate: 1 }
+                  - { workId: 9, prob: 0.3, distanceRate: 1 }
+                  - { workId: 8, prob: 0.3, distanceRate: 1 }
+                  - { workId: 17 }
+                  - { workId: 12, prob: 0.5, distanceRate: 1 }
+                  - { workId: 30, prob: 0.3 }
+                  - { workId: 20 }
+                  - { workId: 25 }
+                  - { workId: 26, distanceRate: 1 }
+                  - { workId: 2, prob: 0.25, distanceRate: 1 }
+                  - { workId: 3, prob: 0.25, distanceRate: 1 }
+                  - { workId: 6, distanceRate: 1 }
+                  - { workId: 34, prob: 0.3, distanceRate: 1 }
+                  - { workId: 1, prob: 0.65, distanceRate: 1 }
+                  - { workId: 18 }
+                  - { workId: 5, prob: 0.3, distanceRate: 1 }
+                  - { workId: 4, prob: 0.7, distanceRate: 1 }
+                  - { workId: 16 }
+                  - { workId: 19 }
+                  - { workId: 7 }
+                  - { workId: 22 }
+                  - { workId: 28 }
+                  - { workId: 29 }
+                  - { workId: 33 }
+                  - { workId: 35, prob: 0.3, distanceRate: 1 }
+                  - { workId: 36, prob: 0.3, distanceRate: 1 }
+                  - { workId: 37 }
+                  - { workId: 39 }
+                  - { workId: 40 }
+                  - { workId: 50 }
+                  - { workId: 60 }
+                  - { workId: 100 }
+                  - { workId: 51 }
+                  - { workId: 32, prob: 1, distanceRate: 1 }
+                  - { workId: 365, prob: 0, distanceRate: 1 }
+                  - { workId: 366, prob: 0, distanceRate: 1 }
+                  - { workId: 367, prob: 0, distanceRate: 1 }
+                  - { workId: 368, prob: 0, distanceRate: 1 }
+                  - { workId: 371, prob: 0, distanceRate: 1 }
+                  - { workId: 370, prob: 0, distanceRate: 1 }
+                  - { workId: 380, prob: 0.3, distanceRate: 1 }
+          shorttermTarget:
+            stWorkList:
+              - id: 2
+                desc: "뒤에서 많이 때리면 회전한다."
+                preProcess: "GetRangePcNumEx(1108, 1, 0.8, 180, 0, 180, 0) > 1"
+                immediateAttackId: 8
+              - id: 3
+                desc: "원거리 공격 견재용"
+                preProcess: "PcTargetBySkillCategoryUsedEx(1, 360, 1104, 1, 0.8, 23, 2)"
+                immediateAttackId: 50
+              - id: 4
+                desc: "원거리 힐 견재용"
+                preProcess: "PcTargetBySkillCategoryUsedEx(1, 360, 1104, 1, 0.8, 31, 2)"
+                immediateAttackId: 50
+              - id: 5
+                desc: "우회전 공격"
+                preProcess: "PcTargetByDirectionEx(90, 120, 1108, 1, 1, 0)"
+                immediateAttackId: 8
+              - id: 6
+                desc: "좌회전 공격"
+                preProcess: "PcTargetByDirectionEx(270, 120, 1109, 1, 1, 0)"
+                immediateAttackId: 9
+              - id: 10
+                desc: "hp step 0.8"
+                preProcess: "GetHpRatio() <= 0.8 AND IsInAbnormality(49987) == 0"
+                immediateAttackId: 365
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 11
+                desc: "hp step 0.6"
+                preProcess: "GetHpRatio() <= 0.6 AND IsInAbnormality(49988) == 0"
+                immediateAttackId: 366
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 12
+                desc: "hp step 0.4"
+                preProcess: "GetHpRatio() <= 0.4 AND IsInAbnormality(49989) == 0"
+                immediateAttackId: 367
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 13
+                desc: "hp step 0.15"
+                preProcess: "GetHpRatio() <= 0.15 AND IsInAbnormality(49990) == 0"
+                immediateAttackId: 368
+                coolTime: "10000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 14
+                desc: "hp 5 opening"
+                preProcess: "GetHpRatio() <= 0.05"
+                immediateAttackId: 370
+                coolTime: "30000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 15
+                desc: "soft enrage, later stacks"
+                preProcess: "GetCombatTime() >= 480000"
+                immediateAttackId: 371
+                coolTime: "120000"
+                showSTMark: false
+                msgImmediately: false
+                msg: [0]
+                msgProb: 0
+              - id: 16
+                desc: "soft enrage, first stack at 6 minutes"
+                preProcess: "GetCombatTime() >= 360000 AND IsInAbnormality(49985) == 0"
+                immediateAttackId: 371
+                coolTime: "120000"
+                showSTMark: false
+                msgImmediately: true
+                msg: [7010101]
+                msgProb: 1
+            stTensionList:
+              - id: 1
+                stInfos:
+                  - { stWorkId: 10, prob: 1 }
+                  - { stWorkId: 11, prob: 1 }
+                  - { stWorkId: 12, prob: 1 }
+                  - { stWorkId: 13, prob: 1 }
+                  - { stWorkId: 14, prob: 1 }
+                  - { stWorkId: 15, prob: 1 }
+                  - { stWorkId: 16, prob: 1 }
+                  - { stWorkId: 5, prob: 0.015 }
+                  - { stWorkId: 6, prob: 0.015 }
+                  - { stWorkId: 4, prob: 0 }
+                  - { stWorkId: 3, prob: 0 }
+                  - { stWorkId: 2, prob: 0 }
+          patternLists:
+            - patterns:
+              - default: true
+                normalMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 2, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+              - minHpRatio: 0
+                maxHpRatio: 0.15
+                normalMode:
+                  tension: { attackTension: 3, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 4, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
 
 monsterBehaviorStrings:
   upsert:
     - { id: 3022001, msg: "Lanok's wrath knows no bounds!", styleId: 37, msgOnScreen: 1 }
+    - { id: 6500301, msg: "Arakia's wrath knows no bounds!", styleId: 37, msgOnScreen: 1 }
+    - { id: 7010101, msg: "Barraq's wrath knows no bounds!", styleId: 37, msgOnScreen: 1 }
 
 npcSkills:
   upsert:
     - huntingZoneId: 3
       templateId: 22
-      skillId: 1303
+      skillId: 9001
       $extends: Row
       name: "group_boss_step_0.8"
       timeRate: 0.708510638297872
@@ -1464,7 +4188,7 @@ npcSkills:
         toCenterWhenNoMove: false
     - huntingZoneId: 3
       templateId: 22
-      skillId: 1304
+      skillId: 9002
       $extends: Row
       name: "group_boss_step_0.6"
       timeRate: 0.708510638297872
@@ -1509,7 +4233,7 @@ npcSkills:
         toCenterWhenNoMove: false
     - huntingZoneId: 3
       templateId: 22
-      skillId: 1305
+      skillId: 9003
       $extends: Row
       name: "group_boss_step_0.4"
       timeRate: 0.708510638297872
@@ -1554,7 +4278,7 @@ npcSkills:
         toCenterWhenNoMove: false
     - huntingZoneId: 3
       templateId: 22
-      skillId: 1306
+      skillId: 9004
       $extends: Row
       name: "group_boss_step_0.15"
       timeRate: 0.708510638297872
@@ -1599,7 +4323,7 @@ npcSkills:
         toCenterWhenNoMove: false
     - huntingZoneId: 3
       templateId: 22
-      skillId: 1307
+      skillId: 9005
       $extends: Row
       name: "group_boss_soft_enrage"
       timeRate: 0.708510638297872
@@ -1632,3 +4356,928 @@ npcSkills:
                       abnormalityRate: 1.0
       property:
         toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9001
+      $extends: Row
+      name: "group_boss_step_0.8"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288001
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9002
+      $extends: Row
+      name: "group_boss_step_0.6"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288002
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9003
+      $extends: Row
+      name: "group_boss_step_0.4"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288003
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9004
+      $extends: Row
+      name: "group_boss_step_0.15"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288004
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9005
+      $extends: Row
+      name: "group_boss_soft_enrage"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288011
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 7
+      templateId: 101
+      skillId: 9001
+      $extends: Row
+      name: "group_boss_step_0.8"
+      timeRate: 0.742553191489362
+      parentId: 30067000
+      returnAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 5700.0
+      defence:
+        successAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1995
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288001
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 7
+      templateId: 101
+      skillId: 9002
+      $extends: Row
+      name: "group_boss_step_0.6"
+      timeRate: 0.742553191489362
+      parentId: 30067000
+      returnAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 5700.0
+      defence:
+        successAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1995
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288002
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 7
+      templateId: 101
+      skillId: 9003
+      $extends: Row
+      name: "group_boss_step_0.4"
+      timeRate: 0.742553191489362
+      parentId: 30067000
+      returnAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 5700.0
+      defence:
+        successAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1995
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288003
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 7
+      templateId: 101
+      skillId: 9004
+      $extends: Row
+      name: "group_boss_step_0.15"
+      timeRate: 0.742553191489362
+      parentId: 30067000
+      returnAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 5700.0
+      defence:
+        successAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1995
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288004
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288010
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 7
+      templateId: 101
+      skillId: 9005
+      $extends: Row
+      name: "group_boss_soft_enrage"
+      timeRate: 0.742553191489362
+      parentId: 30067000
+      returnAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 5700.0
+      defence:
+        successAnimSet: LesserElementalBlue_ANI.Anim.LesserElementalBlue_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1995
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288011
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9010
+      $extends: Row
+      name: "arakia_egg_call"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          noReaction:
+            startTime: 0
+            endTime: 4400
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288021
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288022
+                      abnormalityRate: 1.0
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288050
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      # The bite hatches the sac it lands on: the summon rides the hit on the sac, in an area of its
+      # own ahead of the killing one, so a sac broken before the bite lands releases nothing. One row
+      # per Defender slot.
+      skillId: 9011
+      $extends: Row
+      name: "arakia_devour_egg_sac_a"
+      timeRate: 1
+      pushtarget: stop
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: longAtk
+                  animRate: 1.3
+                  blendInTime: 200
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1270
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    dynamicSpawn:
+                      huntingZoneId: 6
+                      dynamicSpawnId: 4
+                  targetCondition:
+                    abnormalityKind: 49979
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    hpDiff:
+                      value: -1000000
+                  targetCondition:
+                    abnormalityKind: 49979
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9013
+      $extends: Row
+      name: "arakia_devour_egg_sac_b"
+      timeRate: 1
+      pushtarget: stop
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: longAtk
+                  animRate: 1.3
+                  blendInTime: 200
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1270
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    dynamicSpawn:
+                      huntingZoneId: 6
+                      dynamicSpawnId: 5
+                  targetCondition:
+                    abnormalityKind: 49979
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    hpDiff:
+                      value: -1000000
+                  targetCondition:
+                    abnormalityKind: 49979
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9014
+      $extends: Row
+      name: "arakia_devour_egg_sac_c"
+      timeRate: 1
+      pushtarget: stop
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: longAtk
+                  animRate: 1.3
+                  blendInTime: 200
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1270
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    dynamicSpawn:
+                      huntingZoneId: 6
+                      dynamicSpawnId: 6
+                  targetCondition:
+                    abnormalityKind: 49979
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    hpDiff:
+                      value: -1000000
+                  targetCondition:
+                    abnormalityKind: 49979
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9015
+      $extends: Row
+      name: "arakia_devour_egg_sac_d"
+      timeRate: 1
+      pushtarget: stop
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: longAtk
+                  animRate: 1.3
+                  blendInTime: 200
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1270
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    dynamicSpawn:
+                      huntingZoneId: 6
+                      dynamicSpawnId: 7
+                  targetCondition:
+                    abnormalityKind: 49979
+                - $extends: Area
+                  type: ally
+                  maxRadius: 250.0
+                  maxHeight: 100.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    hpDiff:
+                      value: -1000000
+                  targetCondition:
+                    abnormalityKind: 49979
+      property:
+        toCenterWhenNoMove: false
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 9012
+      $extends: Row
+      name: "arakia_brood_call"
+      timeRate: 0.7
+      parentId: 30088000
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          noReaction:
+            startTime: 0
+            endTime: 4400
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+                  animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+                  animName: modealarm
+                  blendInTime: 200
+                  readOnlyDuration: 4366.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 1528
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 50.0
+                  maxHeight: 60.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      id: 99288023
+                      abnormalityRate: 1.0
+      property:
+        toCenterWhenNoMove: false
+  # Her own attacks hit every creature around her, her eggs and spiderlings included; they now
+  # hit only her enemies, so players take them exactly as before.
+  update:
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1101
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1106
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1109
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1110
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1111
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1150
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1212
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2101
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2106
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2109
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2110
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2111
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2150
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2212
+      changes:
+        targetingLists:
+          - targetings:
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+              - areas: [{ type: enemy }]
+    # Venom leap: her own leap row. The client keys a skill's cloud, projectile and ground
+    # marker to the skill id, so a copy under a new id plays bare. The row ships with no damage
+    # on her; its payload and its landing marker are set here.
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 1112
+      changes:
+        totalAtk: 114100
+        targetingLists:
+          - showHitRangeEx: auto
+            targetings:
+              - areas:
+                  - type: enemy
+                    effect:
+                      atk: 0.02
+                      abnormalityOnCommon:
+                        - { id: 99288040, abnormalityRate: 1 }
+              - areas:
+                  - type: enemy
+                    effect:
+                      atk: 0.6
+    - huntingZoneId: 6
+      templateId: 5003
+      skillId: 2112
+      changes:
+        totalAtk: 114100
+        targetingLists:
+          - showHitRangeEx: auto
+            targetings:
+              - areas:
+                  - type: enemy
+                    effect:
+                      atk: 0.02
+                      abnormalityOnCommon:
+                        - { id: 99288040, abnormalityRate: 1 }
+              - areas:
+                  - type: enemy
+                    effect:
+                      atk: 0.6

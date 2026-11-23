@@ -1,10 +1,13 @@
 # Arcadia hunts: the rare named monsters of Oblivion Woods, Tuwangi Mire, the Valley of Titans
 # and the Celestial Hills return on the hunt tiers. Dur Barak, Garangka and the Crisaka and
-# Abrata pair return in 25 to 30 minutes; Lanok, Arakia and Barraq in 50 to 60.
+# Abrata pair return in 25 to 30 minutes; Lanok, Arakia and Barraq in 50 to 60. Barraq also
+# returns to his post when pulled away, as the other two do, so a pull resets his fight.
 #
 # The respawn is a base plus a random addition, so the window sits below its ceiling. Crisaka
 # and Abrata share a party, which carries its own respawn pair; the party and both members must
-# change together, or the slower one wins. Values are milliseconds.
+# change together, or the slower one wins. Values are milliseconds. Arakia now leads a party
+# of her own, so her respawn pair sits on the party and on her row together. Her hidden members
+# carry no respawn wait, as in every party that summons, so her summons can always call them.
 # provenance: policy
 
 spec:
@@ -20,6 +23,805 @@ territoryParties:
       changes:
         partyRespawnTime: 1500000
         partyRespawnRandomTime: 300000
+  upsert:
+    # Arakia leads her own party: a summon can only call a member of the summoner's party, and
+    # the hidden members are the egg sacs, Defenders, spiderlings and hunters her fight calls.
+    # Nothing else spawns.
+    - huntingZoneId: 6
+      groupId: 600036
+      territoryId: 600642
+      partyId: 600490
+      desc: "arakia party"
+      partySpawn: true
+      partyRespawnTime: 3000000
+      partyRespawnRandomTime: 600000
+      flock: false
+      partyAutoRespawn: false
+      randomFormationSpawn: false
+      bossInstanceId: 622137
+      npcs:
+        - npcInstanceId: 622137
+          desc: "교활한 거대 숲거미"
+          memberId: 1
+          npcTemplateId: 5003
+          ai: 45
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 3000000
+          isAggressiveMonster: false
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: false
+          respawnRandomTime: "600000"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622401
+          desc: "arakia egg sac"
+          memberId: 2
+          npcTemplateId: 5004
+          ai: 57
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: false
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622402
+          desc: "arakia egg sac"
+          memberId: 2
+          npcTemplateId: 5004
+          ai: 57
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: false
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622403
+          desc: "arakia egg sac"
+          memberId: 2
+          npcTemplateId: 5004
+          ai: 57
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: false
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622404
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622405
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622406
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622407
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622408
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622409
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622410
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622411
+          desc: "arakia spiderling"
+          memberId: 3
+          npcTemplateId: 5005
+          ai: 58
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622412
+          desc: "arakia defender a"
+          memberId: 4
+          npcTemplateId: 5006
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622413
+          desc: "arakia defender b"
+          memberId: 5
+          npcTemplateId: 5007
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622414
+          desc: "arakia defender c"
+          memberId: 6
+          npcTemplateId: 5008
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622415
+          desc: "arakia defender d"
+          memberId: 7
+          npcTemplateId: 5009
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622416
+          desc: "arakia defender d"
+          memberId: 7
+          npcTemplateId: 5009
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622417
+          desc: "arakia defender d"
+          memberId: 7
+          npcTemplateId: 5009
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622418
+          desc: "arakia defender d"
+          memberId: 7
+          npcTemplateId: 5009
+          ai: 59
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622419
+          desc: "arakia hunter"
+          memberId: 8
+          npcTemplateId: 5010
+          ai: 60
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622420
+          desc: "arakia hunter"
+          memberId: 8
+          npcTemplateId: 5010
+          ai: 60
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622421
+          desc: "arakia hunter"
+          memberId: 8
+          npcTemplateId: 5010
+          ai: 60
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
+        - npcInstanceId: 622422
+          desc: "arakia hunter"
+          memberId: 8
+          npcTemplateId: 5010
+          ai: 60
+          randomPos: true
+          spawnCount: 1
+          pos: [0.0, 0.0, 0.0]
+          offsetZ: 0
+          dir: 0
+          respawnTime: 0
+          isAggressiveMonster: true
+          viewRadius: 200
+          viewAngle: 360
+          alertRadius: 250
+          alertAngle: 360
+          aggroSendToClanDistance: 0
+          aggroSendToPartyDistance: 1000
+          aggroReceiveOnlyInSight: false
+          aggroIgnorePartyId: ""
+          aggroShareGroupId: 0
+          escapeLocation: [0.0, 0.0, 0.0]
+          isReturn: true
+          conditionalSpawn: false
+          returnDistance: 2000
+          questPatrol: false
+          peaceStateNoMoving: false
+          cautionStateNoMoving: false
+          voidSpawn: true
+          respawnRandomTime: "0"
+          moveInTerritory: true
+          popupMsg: ""
+          msgProb: 0.0
+          msgInterval: 0
 
 territorySpawns:
   update:
@@ -60,13 +862,6 @@ territorySpawns:
       changes:
         respawnTime: 1500000
         respawnRandomTime: "300000"
-    - huntingZoneId: 6
-      groupId: 600036
-      territoryId: 600642
-      npcInstanceId: 622137
-      changes:
-        respawnTime: 3000000
-        respawnRandomTime: "600000"
     - huntingZoneId: 7
       groupId: 700022
       territoryId: 700484
@@ -74,3 +869,10 @@ territorySpawns:
       changes:
         respawnTime: 3000000
         respawnRandomTime: "600000"
+        isReturn: true
+  # Her old standalone row; she is now a member of her party above.
+  delete:
+    - huntingZoneId: 6
+      groupId: 600036
+      territoryId: 600642
+      npcInstanceId: 622137

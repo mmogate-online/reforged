@@ -1,0 +1,2564 @@
+# Arakia's adds: the egg sacs she lays below half health, the Defenders that hatch from a sac she
+# bites, the spiderlings she looses at a fifth and the hunters that keep coming below a tenth.
+# A summon names a member of the summoner's own party, so every template is a hidden member of
+# her party and the rules here only place them around her. Every add despawns when she dies or
+# her fight resets, so a pull that leashes starts clean.
+# An egg carries a hidden mark from birth and her bite can hit nothing else. A Defender renews a
+# shield on her every few seconds, found by the mark she carries, so the shield ends soon after
+# the Defender does.
+# A spiderling is born with a fuse. Until it burns down it rolls at players, knocking them down,
+# leaps at those beyond reach, and spits a venom that stacks and outlasts any cleanse. Then it
+# marks one player, runs at them and bursts beside them, unless killed first. A hunter is the same spider that only hunts.
+# A burst costs a fixed slice of health and leaves venom; one never kills a healthy character, several
+# ignored ones do. The burst names a target and a range because a skill with neither is cast
+# where the caster stands. A template owns a row for every skill its AI names, used or not: the
+# server refuses to start otherwise, which is why the hunter has an AI of its own.
+# All are her own model family: the rolling spider shares her animation set, so its rows, her
+# heavy attack among them, play unchanged. A reach counted from the caster scales with its size.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+definitions:
+  Row:
+    type: normal
+    category: 9011
+    pushtarget: push
+    changeDirToCenter: false
+    attackRange: 700.0
+    changeDirOnSkillEnd: false
+    changeDirMethodOnSkillEnd: dir
+    nextSkill: 0
+    switchInfo: 0
+    autoUse: false
+    canUseOnCombatMode: true
+    ignoreDefence: false
+    totalAtk: 46356555.558969
+    aiRotateThreshold: 0
+    timeRate: 1
+    allDirectionDefence: true
+    adjAtkByNpcHp: false
+    needWeapon: true
+    adjustHeight: 0
+    ignoreDefenceRate: 0
+    totalAtkRate: 1
+    property:
+      movingWithAbnormalId: 0
+      defence: false
+      skillPendingType: normal
+      reactionPendingType: normal
+      weaponStatus: out
+      abnormalMultiHitAdjustId: 0
+      adjustLoopRepeat: false
+    bullet:
+      startSkill: -1
+      shotSkill: 0
+      createTime: 0.0
+      detachTime: 0.0
+      flyingDuration: 1000.0
+    defence:
+      rootMotion: false
+      damageApplyRate: 0.0
+      damageReduceValue: 0
+      perfectDefenceForAllies: false
+    aggro:
+      offensiveSkill: true
+      aggroWhenStart: 0
+    anger:
+      attackUpRate: 0.0
+    balanceRef:
+      needBalance: true
+      isAngerSkill: false
+    resistance:
+      startTime: 0
+      endTime: 0
+      miniRes: 100.0
+      basicRes: 100.0
+      basicIncRes: 0
+      damageRes: 1.0
+      addResA: 0.0
+      addResB: 0.0
+      addResC: 0.0
+    teleport:
+      istrue: false
+      type: BONFIRE
+      range: 0
+      distRange: 0
+    drain:
+      maxDrainGauge: 0
+      drainGaugeExpireTime: 0
+      backSkillId: 0
+    drainBack:
+      gaugeToMpRate: 1
+    precondition:
+      coolTime: 0
+      modeNo: 0
+      modeChangeMethod: 2
+      cost:
+        hp: 0
+        mp: 0
+        anger: 0
+    projectile:
+      lifeTime: 0
+      destroyWhenHit: true
+      areaBoxSizeX: 0
+      areaBoxSizeY: 0
+      areaBoxSizeZ: 0
+      loopingTime: 0
+  Action:
+    hitInvincible:
+      startTime: 0
+      endTime: 0
+      exceptionalSkillCategory: 0
+    moveInvincible:
+      startTime: 0
+      endTime: 0
+    noReaction:
+      startTime: 0
+      endTime: 0
+    pending:
+      startTime: -1
+    cameraType:
+      type: none
+      startTime: 0.0
+      duration: 2000.0
+      prepareStageId: 0
+      startStageId: 0
+      weight: 2.0
+    cancel:
+      frontCancelEndTime: 0
+      rearCancelStartTime: 0
+      moveCancelStartTime: -1
+    changeDir:
+      changeDirMethod: dir
+      changeDirMaxAngle: 100
+  TargetingList:
+    adjustTargetingPos: notUse
+    multiShoot: false
+  Stage:
+    changeDirToTarget: false
+    changeDirToTargetMax: 360
+    movable: false
+    scriptId: 0
+    loopRepeat: false
+    attention: false
+    variableMaxLoop: 2
+    changeDirToPos: true
+    changeDirToPosMax: 360
+    property:
+      animControlType: normal
+      adjustAnimToTarget: false
+  AnimSeq:
+    duration: 0
+    animName: moveAtk_2
+    animSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+    blendInTime: 200
+    animRate: 1.0
+    bAnimLooping: false
+    loopingRate: 1.0
+    readOnlyDuration: 0.0
+    rootMotionXYRate: 1.0
+    rootMotionZRate: 1.0
+    animMotionId: 0
+  Targeting:
+    interval: 0
+    until: 0
+    mpBonusTypeB: 0
+    id: -1
+    type: none
+    startTime: 0
+    endTime: 0
+    method: normal
+    loopRepeatTargeting: false
+    variableLoop: false
+    cost:
+      hp: 0
+      mp: 0
+      anger: 0
+  Area:
+    minRadius: 0.0
+    maxRadius: 1400.0
+    rangeAngle: 360.0
+    offsetDistance: 0.0
+    offsetAngle: 0.0
+    rotateAngle: 0.0
+    minHeight: 0.0
+    maxHeight: 60.0
+    setRangeHeightToGround: false
+    type: enemy
+    selectMethod: dist
+    maxCount: 10
+    aggroWhenNonOffensiveSkillHit: 0
+    crosshairRadius: 1.0
+    pierceDepth: 1
+    purpose: byType
+    crosshairRadius2: 3.0
+    ignoreLos: false
+    effect:
+      atk: 1
+      aggroDiff:
+        value: 0
+      angerDiff:
+        value: 0
+      hpDiff:
+        value: 0
+      mpDiff:
+        value: 0
+      rebirth:
+        hpRecoveryRate: 0.0
+        mpRecoveryRate: 0.0
+    reaction:
+      miniRate: 0
+      miniMotionId: 1
+      basicRate: 0
+      basicMotionId: 2
+      basicIncValue: 0
+      adjForGrade: 0
+    hitEffects:
+      - $extends: HitEffect
+    targetCondition:
+      abnormalityKind: 0
+      levelOver: 0
+      levelUnder: 0
+  HitEffect:
+    type: animationDamage
+
+  EggWork:
+    normalBehaviorType: social
+    offFlockOnNormalMode: false
+    angerBehaviorType: social
+    offFlockOnAngerMode: false
+    preProcess: PcTargetByAggro()
+    distanceType: 2
+    distanceRate: 1.0
+    coolTime: 1000
+    isDirectionRevision: true
+  EggPattern:
+    angerMode:
+      tension:
+        attackTension: 1
+        cooperationTension: 1
+        shorttermTargetTension: 1
+      incline:
+        attackProb: 0.0
+        cooperationProb: 0.0
+        shorttermTargetProb: 0.0
+        avoidProb: 0.0
+        moveProb: 0.0
+        socialProb: 0.0
+    normalMode:
+      tension:
+        attackTension: 1
+        cooperationTension: 1
+        shorttermTargetTension: 1
+      incline:
+        attackProb: 0.0
+        cooperationProb: 0.0
+        shorttermTargetProb: 0.0
+        avoidProb: 0.0
+        moveProb: 0.0
+        socialProb: 0.0
+
+
+abnormalities:
+  upsert:
+    - id: 99288031
+      name: "arakia_egg_sac_mark"
+      kind: 49979
+      level: 99
+      property: 4
+      category: "4"
+      time: 3600000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288042
+      name: "arakia_brood_venom"
+      kind: 49977
+      level: 99
+      property: 2
+      category: "2,13"
+      time: 10000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 7
+      maxStackCount: 10
+      levelOver: 1
+      levelUnder: 127
+      isBuff: false
+      isShow: "True"
+      notCareDeath: false
+      notCareBattleField: true
+      effects:
+        - { type: 51, method: 3, value: "-0.01", tickInterval: 1, variation: 0, min: -100000, max: 0, defenceBonusRate: 1, effectId: 4195, effectPart: FXCenter187, overlayEffectId: 1005 }
+      abnormalityStrings:
+        name: "Brood Venom"
+        tooltip: "Reduces HP by $H_W_BAD1%$COLOR_END of maximum every second for each stack. Stacks up to 10 times. Cannot be cleansed."
+    # A spiderling's fuse: when it burns down it leaves the ripe mark its burst waits on.
+    - id: 99288043
+      name: "arakia_spiderling_fuse"
+      kind: 49976
+      level: 99
+      property: 4
+      category: "4"
+      time: 20000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 223, method: 0, value: "99288044", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    - id: 99288044
+      name: "arakia_spiderling_ripe"
+      kind: 49975
+      level: 99
+      property: 4
+      category: "4"
+      time: 60000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    # A hunter's fuse: one second, so it goes straight to its mark.
+    - id: 99288046
+      name: "arakia_hunter_fuse"
+      kind: 49970
+      level: 99
+      property: 4
+      category: "4"
+      time: 1000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 8
+      maxStackCount: 1
+      isBuff: true
+      isShow: "False"
+      notCareBattleField: true
+      effects:
+        - { type: 223, method: 0, value: "99288044", tickInterval: 0, variation: 0, min: 0, max: 0 }
+    # The mark a ripe spiderling puts on the player it will run at.
+    - id: 99288047
+      name: "arakia_hunted"
+      kind: 49968
+      level: 99
+      property: 2
+      category: "2,13"
+      time: 30000
+      cancelCondition: 0
+      cancelConditionValue: 0
+      cancelConditionProb: 1
+      mobSize: all
+      bySkillCategory: 0
+      priority: 7
+      maxStackCount: 1
+      levelOver: 1
+      levelUnder: 127
+      isBuff: false
+      isShow: "True"
+      notCareDeath: false
+      notCareBattleField: true
+      effects:
+        - { type: 3, method: 3, value: "1", tickInterval: 0, variation: 0, min: 0, max: 0 }
+      abnormalityStrings:
+        name: "Hunted"
+        tooltip: "A spiderling has your scent and is coming for you."
+
+abnormalityIconData:
+  upsert:
+    - abnormalityId: 99288042
+      iconName: "Icon_Status.poisonstatus_Tex"
+    - abnormalityId: 99288047
+      iconName: "Icon_Status.minusdefence_Tex"
+
+npcs:
+  upsert:
+    # Egg sac: the dungeon egg object Arakia's model eats, an immobile object that never fights.
+    - huntingZoneId: 6
+      id: 5004
+      name: "arakia_egg_sac"
+      shapeId: 611720
+      basicActionId: 6007300
+      parentId: 64107000
+      race: object
+      gender: male
+      aiid: 57
+      scale: 5
+      size: large
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      collideOnMove: true
+      dontTurn: true
+      isWideBroadcaster: true
+      partyMember: 1
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      showHpGauge: true
+      showTargetInfo: true
+      spawnAbnormalityId: [99288031]
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 9799902
+        strD: 100
+        resD: 50
+        immuneCategory: "1,2,3,10,11,12,13,14,20"
+      namePlate:
+        nameplateHeight: 0
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        viewRadius: 300
+        viewAngle: 130
+        sightRangeAggroWeight: 2.0
+        hateSkillAggroWeight: 2.0
+        bigReactionAggroWeight: 2.0
+        aggroSendToClanDistance: 300
+        aggroSendToPartyDistance: 400
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 2.0
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 0.5
+      anger:
+        gaugeSize: 100
+        time: 40000
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 2.0
+        accumRateWhenHpMed: 1.5
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.7
+      balanceRef:
+        ignoreAttr: "def,maxHp,exp,moveSpeedUpRate,statRes,miniRes,basicRes,resA,resC"
+      critical:
+        str: 0.5
+        res: 0.4
+        powRate: 1.5
+      criticalAdjust:
+        front: 0.1
+        right: 0.3
+        left: 0.3
+        back: 0.5
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 50
+        statRes: 74999248
+        miniRes: 9999900
+        basicRes: 9999900
+        basicIncRes: 10
+        basicGaugeResetTime: 10000
+        maxBasicGauge: 300
+        maxAdditionalGauge: 400
+      stat:
+        level: 20
+        # A check on the party's damage dealers: all three break only if they turn to the sacs at once.
+        maxHp: 900000
+        atk: 100
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 100
+        runSpeed: 180
+        ignoreDefaultEpExp: true
+        epExp: 0
+
+    # Spiderling: the rolling brood spider of the same model family, at Arakia's level and attack,
+    # so its roll and blast scale with her.
+    - huntingZoneId: 6
+      id: 5005
+      name: "arakia_spiderling"
+      shapeId: 301890
+      basicActionId: 3018901
+      parentId: 30189000
+      race: CraftyArachne_Kid
+      spawnAbnormalityId: [99288043]
+      gender: male
+      aiid: 58
+      scale: 0.35
+      size: medium
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      partyMember: 1
+      playStyle: basic
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 50
+        strD: 100
+        resD: 50
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        clanName: ""
+        viewRadius: 200
+        viewAngle: 360
+        sightRangeAggroWeight: 1.3
+        hateSkillAggroWeight: 1.0
+        bigReactionAggroWeight: 0.5
+        aggroSendToClanDistance: 100
+        aggroSendToPartyDistance: 1000
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 0.5
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 1.0
+      anger:
+        gaugeSize: 82529.5062323941
+        time: 22950
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 1.0
+        accumRateWhenHpMed: 1.0
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.2
+      balanceRef:
+        ignoreAttr: "balanceType,level,partyMember,playStyle,size,elite,isFreeNamed,showAggroTarget,showShorttermTarget,isLightParty,atk,exp,moveSpeedUpRate"
+      critical:
+        str: 30
+        res: 180
+        powRate: 1.5
+      criticalAdjust:
+        front: 1.0
+        right: 1.2
+        left: 1.2
+        back: 1.6
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 40
+        statRes: 50
+        miniRes: 50
+        basicRes: 50
+        basicIncRes: 0
+        basicGaugeResetTime: 20000
+        maxBasicGauge: 2000
+        maxAdditionalGauge: 600000
+      stat:
+        level: 20
+        maxHp: 120000
+        atk: 11700
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 100
+        runSpeed: 160
+        ignoreDefaultEpExp: false
+        epExp: 0
+
+    # Defender: the same spider grown larger and far tougher, with a weak bite. It exists to be the
+    # price of a sac she reached; one template per shield slot, and one that carries no shield.
+    - huntingZoneId: 6
+      id: 5006
+      name: "arakia_defender_a"
+      shapeId: 301890
+      basicActionId: 3018901
+      parentId: 30189000
+      race: CraftyArachne_Kid
+      gender: male
+      aiid: 59
+      scale: 0.7
+      size: medium
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      partyMember: 1
+      playStyle: basic
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 50
+        strD: 100
+        resD: 50
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        clanName: ""
+        viewRadius: 200
+        viewAngle: 360
+        sightRangeAggroWeight: 1.3
+        hateSkillAggroWeight: 1.0
+        bigReactionAggroWeight: 0.5
+        aggroSendToClanDistance: 100
+        aggroSendToPartyDistance: 1000
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 0.5
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 1.0
+      anger:
+        gaugeSize: 82529.5062323941
+        time: 22950
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 1.0
+        accumRateWhenHpMed: 1.0
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.2
+      balanceRef:
+        ignoreAttr: "balanceType,level,partyMember,playStyle,size,elite,isFreeNamed,showAggroTarget,showShorttermTarget,isLightParty,atk,exp,moveSpeedUpRate"
+      critical:
+        str: 30
+        res: 180
+        powRate: 1.5
+      criticalAdjust:
+        front: 1.0
+        right: 1.2
+        left: 1.2
+        back: 1.6
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 40
+        statRes: 50
+        miniRes: 50
+        basicRes: 50
+        basicIncRes: 0
+        basicGaugeResetTime: 20000
+        maxBasicGauge: 2000
+        maxAdditionalGauge: 600000
+      stat:
+        level: 20
+        maxHp: 1000000
+        atk: 3000
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 100
+        runSpeed: 160
+        ignoreDefaultEpExp: false
+        epExp: 0
+
+    - huntingZoneId: 6
+      id: 5007
+      name: "arakia_defender_b"
+      shapeId: 301890
+      basicActionId: 3018901
+      parentId: 30189000
+      race: CraftyArachne_Kid
+      gender: male
+      aiid: 59
+      scale: 0.7
+      size: medium
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      partyMember: 1
+      playStyle: basic
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 50
+        strD: 100
+        resD: 50
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        clanName: ""
+        viewRadius: 200
+        viewAngle: 360
+        sightRangeAggroWeight: 1.3
+        hateSkillAggroWeight: 1.0
+        bigReactionAggroWeight: 0.5
+        aggroSendToClanDistance: 100
+        aggroSendToPartyDistance: 1000
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 0.5
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 1.0
+      anger:
+        gaugeSize: 82529.5062323941
+        time: 22950
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 1.0
+        accumRateWhenHpMed: 1.0
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.2
+      balanceRef:
+        ignoreAttr: "balanceType,level,partyMember,playStyle,size,elite,isFreeNamed,showAggroTarget,showShorttermTarget,isLightParty,atk,exp,moveSpeedUpRate"
+      critical:
+        str: 30
+        res: 180
+        powRate: 1.5
+      criticalAdjust:
+        front: 1.0
+        right: 1.2
+        left: 1.2
+        back: 1.6
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 40
+        statRes: 50
+        miniRes: 50
+        basicRes: 50
+        basicIncRes: 0
+        basicGaugeResetTime: 20000
+        maxBasicGauge: 2000
+        maxAdditionalGauge: 600000
+      stat:
+        level: 20
+        maxHp: 1000000
+        atk: 3000
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 100
+        runSpeed: 160
+        ignoreDefaultEpExp: false
+        epExp: 0
+
+    - huntingZoneId: 6
+      id: 5008
+      name: "arakia_defender_c"
+      shapeId: 301890
+      basicActionId: 3018901
+      parentId: 30189000
+      race: CraftyArachne_Kid
+      gender: male
+      aiid: 59
+      scale: 0.7
+      size: medium
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      partyMember: 1
+      playStyle: basic
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 50
+        strD: 100
+        resD: 50
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        clanName: ""
+        viewRadius: 200
+        viewAngle: 360
+        sightRangeAggroWeight: 1.3
+        hateSkillAggroWeight: 1.0
+        bigReactionAggroWeight: 0.5
+        aggroSendToClanDistance: 100
+        aggroSendToPartyDistance: 1000
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 0.5
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 1.0
+      anger:
+        gaugeSize: 82529.5062323941
+        time: 22950
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 1.0
+        accumRateWhenHpMed: 1.0
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.2
+      balanceRef:
+        ignoreAttr: "balanceType,level,partyMember,playStyle,size,elite,isFreeNamed,showAggroTarget,showShorttermTarget,isLightParty,atk,exp,moveSpeedUpRate"
+      critical:
+        str: 30
+        res: 180
+        powRate: 1.5
+      criticalAdjust:
+        front: 1.0
+        right: 1.2
+        left: 1.2
+        back: 1.6
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 40
+        statRes: 50
+        miniRes: 50
+        basicRes: 50
+        basicIncRes: 0
+        basicGaugeResetTime: 20000
+        maxBasicGauge: 2000
+        maxAdditionalGauge: 600000
+      stat:
+        level: 20
+        maxHp: 1000000
+        atk: 3000
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 100
+        runSpeed: 160
+        ignoreDefaultEpExp: false
+        epExp: 0
+
+    - huntingZoneId: 6
+      id: 5009
+      name: "arakia_defender_d"
+      shapeId: 301890
+      basicActionId: 3018901
+      parentId: 30189000
+      race: CraftyArachne_Kid
+      gender: male
+      aiid: 59
+      scale: 0.7
+      size: medium
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      partyMember: 1
+      playStyle: basic
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 50
+        strD: 100
+        resD: 50
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        clanName: ""
+        viewRadius: 200
+        viewAngle: 360
+        sightRangeAggroWeight: 1.3
+        hateSkillAggroWeight: 1.0
+        bigReactionAggroWeight: 0.5
+        aggroSendToClanDistance: 100
+        aggroSendToPartyDistance: 1000
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 0.5
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 1.0
+      anger:
+        gaugeSize: 82529.5062323941
+        time: 22950
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 1.0
+        accumRateWhenHpMed: 1.0
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.2
+      balanceRef:
+        ignoreAttr: "balanceType,level,partyMember,playStyle,size,elite,isFreeNamed,showAggroTarget,showShorttermTarget,isLightParty,atk,exp,moveSpeedUpRate"
+      critical:
+        str: 30
+        res: 180
+        powRate: 1.5
+      criticalAdjust:
+        front: 1.0
+        right: 1.2
+        left: 1.2
+        back: 1.6
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 40
+        statRes: 50
+        miniRes: 50
+        basicRes: 50
+        basicIncRes: 0
+        basicGaugeResetTime: 20000
+        maxBasicGauge: 2000
+        maxAdditionalGauge: 600000
+      stat:
+        level: 20
+        maxHp: 1000000
+        atk: 3000
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 100
+        runSpeed: 160
+        ignoreDefaultEpExp: false
+        epExp: 0
+
+    # Hunter: a spiderling born ripe, at a pace a player can outrun.
+    - huntingZoneId: 6
+      id: 5010
+      name: "arakia_hunter"
+      shapeId: 301890
+      basicActionId: 3018901
+      parentId: 30189000
+      race: CraftyArachne_Kid
+      spawnAbnormalityId: [99288046]
+      gender: male
+      aiid: 60
+      scale: 0.35
+      size: medium
+      resourceType: medium
+      resourceSize: 100
+      villager: false
+      questVillager: false
+      isObjectNpc: false
+      invincible: false
+      elite: false
+      unionElite: false
+      partyMember: 1
+      playStyle: basic
+      isFreeNamed: false
+      showAggroTarget: false
+      showShorttermTarget: false
+      isLightParty: false
+      abnormality:
+        strA: 100
+        resA: 50
+        strB: 100
+        resB: 50
+        strC: 100
+        resC: 50
+        strD: 100
+        resD: 50
+      stackPoint:
+        maxStackPoint: 10
+        minStackPointRequire: 5
+        stackPointPeriod: 8000
+      abnormalityResistanceOverride:
+        resetTime: 60000
+        abnormalities:
+          - { kind: 5, initRes: 40, incRes: 3 }
+          - { kind: 6, initRes: 50, incRes: 3 }
+          - { kind: 7, initRes: 30, incRes: 3 }
+      aggro:
+        clanName: ""
+        viewRadius: 200
+        viewAngle: 360
+        sightRangeAggroWeight: 1.3
+        hateSkillAggroWeight: 1.0
+        bigReactionAggroWeight: 0.5
+        aggroSendToClanDistance: 100
+        aggroSendToPartyDistance: 1000
+        aggroSendRate: 1.0
+        aggroSendStackRate: 0.1
+        aggroSendStackRateWhenFirstAttacked: 0.5
+        aggroIgnoreClanName: false
+        aggroReceiveOnlyInSight: false
+        aggroReceiveRate: 1.0
+      anger:
+        gaugeSize: 82529.5062323941
+        time: 22950
+        moveSpeedUpRate: 1.2
+        accumRateWhenHpLow: 1.0
+        accumRateWhenHpMed: 1.0
+        accumRateWhenHpHigh: 1.0
+        modeOnProbabilityWhenPartyMemberDead: 0.2
+      balanceRef:
+        ignoreAttr: "balanceType,level,partyMember,playStyle,size,elite,isFreeNamed,showAggroTarget,showShorttermTarget,isLightParty,atk,exp,moveSpeedUpRate"
+      critical:
+        str: 30
+        res: 180
+        powRate: 1.5
+      criticalAdjust:
+        front: 1.0
+        right: 1.2
+        left: 1.2
+        back: 1.6
+      npcOnly:
+        onDeathSkill: 0
+      reaction:
+        statStr: 40
+        statRes: 50
+        miniRes: 50
+        basicRes: 50
+        basicIncRes: 0
+        basicGaugeResetTime: 20000
+        maxBasicGauge: 2000
+        maxAdditionalGauge: 600000
+      stat:
+        level: 20
+        maxHp: 120000
+        atk: 11700
+        def: 172.628042364789
+        exp: 0
+        walkSpeed: 160
+        runSpeed: 160
+        ignoreDefaultEpExp: false
+        epExp: 0
+
+creatureStrings:
+  upsert:
+    - huntingZoneId: 6
+      templateId: 5004
+      name: "Arakia Egg Sac"
+    - huntingZoneId: 6
+      templateId: 5005
+      name: "Arakia Spiderling"
+    - huntingZoneId: 6
+      templateId: 5006
+      name: "Spiderling Defender"
+    - huntingZoneId: 6
+      templateId: 5007
+      name: "Spiderling Defender"
+    - huntingZoneId: 6
+      templateId: 5008
+      name: "Spiderling Defender"
+    - huntingZoneId: 6
+      templateId: 5009
+      name: "Spiderling Defender"
+    - huntingZoneId: 6
+      templateId: 5010
+      name: "Arakia Spiderling"
+
+ai:
+  upsert:
+    - huntingZoneId: 6
+      id: 57
+      name: "arakia_egg_sac"
+      cautionState:
+        alertRadius: 250
+        rotateTime: 5
+        probAvoid: 0.0
+        alertAngle: 360
+        rotateAngle: 45
+        checkInterval: 5000
+        probActiveMove: 0.0
+        enable: false
+      combatState:
+        watchRotateTime: 5
+        watchRotateAngle: 45
+        playSocialWhenFirstAggro: false
+        enable: false
+        hpResetWhenCombatEnd: false
+        aggroChangeAttack:
+          nearTargetAttackId: 0
+          showAggroChangeMotionAfterNearTargetAttack: false
+          distantTargetAttackId: 0
+          showAggroChangeMotionAfterDistantTargetAttack: false
+        attack:
+          workList:
+            - $extends: EggWork
+              id: 1
+              normalBehaviorId: 1
+              angerBehaviorId: 1
+            - $extends: EggWork
+              id: 2
+              normalBehaviorId: 2
+              angerBehaviorId: 2
+          tensionList:
+            - id: 1
+              infos:
+                - workId: 1
+                  prob: 1.0
+                  distanceRate: 1.0
+                - workId: 2
+                  prob: 1.0
+                  distanceRate: 1.0
+        avoid:
+          avoidSkillId: 0
+          cooltime: 10000
+        cooperation:
+          concurrentAttackDuration: 5000
+          sequentialAttackDelay: 1000
+          escapeDuration: 3000
+          workList:
+            - id: 1
+              normalBehaviorId: 1
+              normalBehaviorType: social
+              offFlockOnNormalMode: false
+              angerBehaviorId: 1
+              angerBehaviorType: social
+              offFlockOnAngerMode: false
+              preProcess: PcTargetByAggro()
+              sendOrderId: 1
+              sendOrderRange: 400
+              sendOrderMaxCount: 2
+              sendOrderRefTarget: 0
+              distanceType: 2
+              distanceRate: 1.0
+              coolTime: 1000
+              isDirectionRevision: true
+          tensionList:
+            - id: 1
+              infos:
+                - workId: 1
+                  prob: 1.0
+                  distanceRate: 1.0
+          receiveOrderList:
+            - orderId: 1
+              prob: 0.0
+              attackId: 1
+        counterFlee:
+          workId: 0
+          toAnger: false
+          speedUpRate: 0.0
+          maxMovingTime: 0
+          recentHitTime: 0
+          recentPcBehaviorTime: 0
+        idle:
+          duration: 1000
+        monsterFlee:
+          hpRate: 0.0
+          executionRate: 0.0
+          fleeDistance: 0
+          shareAggroRange: 0
+        monsterSummon:
+          hpRate: 0.0
+          executionRate: 0.0
+          summonNum: 0
+          summonRange: 0
+          summonTemplateId: 0
+        move:
+          targetDistance: 100
+          timeout: 5000
+        patternLists:
+          - patterns:
+              - $extends: EggPattern
+                default: true
+              - $extends: EggPattern
+                minHpRatio: 0.0
+                maxHpRatio: 0.4
+        shorttermTarget:
+          stTensionList:
+            - id: 1
+              stInfos:
+                - stWorkId: 1
+                  prob: 0.0
+          stWorkList:
+            - id: 1
+              preProcess: PcTargetByAggro()
+              immediateAttackId: 1
+        social:
+          socialMotionId: 1
+      peaceState:
+        checkInterval: 5000
+        minLeaderDistance: 100
+        maxLeaderDistance: 150
+        msgProb: 0.0
+        msgInterval: 0
+        followNearUser: false
+        followDungeonUser: false
+        followQuestUser: false
+        questPatrol: false
+        buffs:
+          - range: 0
+            coolTime: 0
+        randomMove:
+          moveMinDistance: 100
+          moveMaxDistance: 300
+          probSocial: 0.0
+          moveRadius: 1000
+          probMove: 0.0
+          socials:
+            - socialMotionId: 1
+            - socialMotionId: 1
+    - huntingZoneId: 6
+      id: 58
+      name: "arakia_spiderling"
+      cautionState:
+        alertRadius: 300
+        rotateTime: 5
+        probAvoid: 0.0
+        alertAngle: 360
+        rotateAngle: 60
+        checkInterval: 3000
+        probActiveMove: 0.0
+        enable: false
+      combatState:
+        watchRotateTime: 5
+        watchRotateAngle: 60
+        playSocialWhenFirstAggro: false
+        enable: true
+        hpResetWhenCombatEnd: false
+        aggroChangeAttack:
+          nearTargetAttackId: 0
+          showAggroChangeMotionAfterNearTargetAttack: false
+          distantTargetAttackId: 0
+          showAggroChangeMotionAfterDistantTargetAttack: false
+        attack:
+          workList:
+            - id: 2
+              desc: "roll at a random player"
+              normalBehaviorId: 1302
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 1302
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 0 AND PcTargetByAreaRandom(1, 360, 0, 450)"
+              activeMoveIdForSkillOnNormalMode: 953
+              activeMoveIdForSkillOnAngerMode: 953
+              distanceType: "1"
+              distanceRate: 0.8
+              coolTime: 12000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 9
+              desc: "leap at a player beyond rolling reach"
+              normalBehaviorId: 1111
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 1111
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 0 AND PcTargetByAreaRandom(1, 360, 450, 1200)"
+              distanceType: "1"
+              distanceRate: 0.8
+              coolTime: 6000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 3
+              desc: "close in"
+              normalBehaviorId: 945
+              normalBehaviorType: activeMove
+              offFlockOnNormalMode: false
+              angerBehaviorId: 945
+              angerBehaviorType: activeMove
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 0 AND PcTargetByAreaRandom(1, 360, 450, 2500)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 1000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 6
+              desc: "venom ball at a random player"
+              normalBehaviorId: 1110
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 1110
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 0 AND PcTargetByAreaRandom(1, 360, 200, 900)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 5000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 8
+              desc: "mark one player once the fuse has burnt down"
+              normalBehaviorId: 9031
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 9031
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 1 AND GetWorkIdExeCount(8) < 1 AND PcTargetByAreaRandom(1, 360, 0, 3000)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 7
+              desc: "run at the marked player"
+              normalBehaviorId: 945
+              normalBehaviorType: activeMove
+              offFlockOnNormalMode: false
+              angerBehaviorId: 945
+              angerBehaviorType: activeMove
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 1 AND PcTargetByAbnormal(1, 360, 120, 4000, 49968)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 5
+              desc: "burst beside the marked player"
+              normalBehaviorId: 9032
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 9032
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "IsInAbnormality(49975) == 1 AND PcTargetByAbnormal(1, 360, 0, 120, 49968)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+          tensionList:
+            - id: 1
+              infos:
+                - { workId: 2, prob: 1, distanceRate: 1 }
+                - { workId: 9, prob: 1, distanceRate: 1 }
+                - { workId: 3, prob: 1, distanceRate: 1 }
+                - { workId: 6, prob: 0.6, distanceRate: 1 }
+                - { workId: 8, prob: 1, distanceRate: 1 }
+                - { workId: 7, prob: 1, distanceRate: 1 }
+                - { workId: 5, prob: 1, distanceRate: 1 }
+        avoid:
+          avoidSkillId: 0
+          cooltime: 10000
+        cooperation:
+          concurrentAttackDuration: 30000
+          sequentialAttackDelay: 1000
+          escapeDuration: 3000
+          workList: []
+          tensionList:
+            - id: 1
+          receiveOrderList: []
+        counterFlee:
+          workId: 0
+          toAnger: false
+          speedUpRate: 0.0
+          maxMovingTime: 0
+          recentHitTime: 0
+          recentPcBehaviorTime: 0
+        idle:
+          duration: 1000
+        monsterFlee:
+          hpRate: 0.0
+          executionRate: 0.0
+          fleeDistance: 0
+          shareAggroRange: 0
+        monsterSummon:
+          hpRate: 0.0
+          executionRate: 0.0
+          summonNum: 0
+          summonRange: 0
+          summonTemplateId: 0
+        move:
+          targetDistance: 300
+          timeout: 1000
+        patternLists:
+          - patterns:
+              - default: true
+                normalMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+        shorttermTarget:
+          stTensionList:
+            - id: 1
+              stInfos:
+                - { stWorkId: 1, prob: 1 }
+          stWorkList:
+            - id: 1
+              desc: "mark one player the moment the fuse has burnt down"
+              preProcess: "IsInAbnormality(49975) == 1 AND GetWorkIdExeCount(8) < 1 AND PcTargetByAreaRandom(1, 360, 0, 3000)"
+              immediateAttackId: 8
+              coolTime: "60000"
+              showSTMark: false
+        social:
+          socialMotionId: 0
+      peaceState:
+        checkInterval: 5000
+        minLeaderDistance: 75
+        maxLeaderDistance: 150
+        msgProb: 0.0
+        msgInterval: 0
+        followNearUser: false
+        followDungeonUser: false
+        followQuestUser: false
+        questPatrol: false
+        buffs:
+          - range: 0
+            coolTime: 0
+        randomMove:
+          moveMinDistance: 150
+          moveMaxDistance: 300
+          probSocial: 0.0
+          moveRadius: 300
+          probMove: 0.0
+    - huntingZoneId: 6
+      id: 59
+      name: "arakia_defender"
+      cautionState:
+        alertRadius: 300
+        rotateTime: 5
+        probAvoid: 0.0
+        alertAngle: 360
+        rotateAngle: 60
+        checkInterval: 3000
+        probActiveMove: 0.0
+        enable: false
+      combatState:
+        watchRotateTime: 5
+        watchRotateAngle: 60
+        playSocialWhenFirstAggro: false
+        enable: true
+        hpResetWhenCombatEnd: false
+        aggroChangeAttack:
+          nearTargetAttackId: 0
+          showAggroChangeMotionAfterNearTargetAttack: false
+          distantTargetAttackId: 0
+          showAggroChangeMotionAfterDistantTargetAttack: false
+        attack:
+          workList:
+            - id: 1
+              desc: "renew the shield on Arakia"
+              normalBehaviorId: 9030
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 9030
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "1"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 2
+              desc: "roll at a random player"
+              normalBehaviorId: 1302
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 1302
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "PcTargetByAreaRandom(1, 360, 0, 800)"
+              activeMoveIdForSkillOnNormalMode: 953
+              activeMoveIdForSkillOnAngerMode: 953
+              distanceType: "1"
+              distanceRate: 0.8
+              coolTime: 9000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 4
+              desc: "leap at a player beyond rolling reach"
+              normalBehaviorId: 1111
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 1111
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "PcTargetByAreaRandom(1, 360, 800, 1400)"
+              distanceType: "1"
+              distanceRate: 0.8
+              coolTime: 6000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 3
+              desc: "close in"
+              normalBehaviorId: 945
+              normalBehaviorType: activeMove
+              offFlockOnNormalMode: false
+              angerBehaviorId: 945
+              angerBehaviorType: activeMove
+              offFlockOnAngerMode: false
+              preProcess: "PcTargetByAreaRandom(1, 360, 800, 3000)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 1000
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+          tensionList:
+            - id: 1
+              infos:
+                - { workId: 1, prob: 0, distanceRate: 1 }
+                - { workId: 2, prob: 1, distanceRate: 1 }
+                - { workId: 4, prob: 1, distanceRate: 1 }
+                - { workId: 3, prob: 1, distanceRate: 1 }
+        avoid:
+          avoidSkillId: 0
+          cooltime: 10000
+        cooperation:
+          concurrentAttackDuration: 30000
+          sequentialAttackDelay: 1000
+          escapeDuration: 3000
+          workList: []
+          tensionList:
+            - id: 1
+          receiveOrderList: []
+        counterFlee:
+          workId: 0
+          toAnger: false
+          speedUpRate: 0.0
+          maxMovingTime: 0
+          recentHitTime: 0
+          recentPcBehaviorTime: 0
+        idle:
+          duration: 1000
+        monsterFlee:
+          hpRate: 0.0
+          executionRate: 0.0
+          fleeDistance: 0
+          shareAggroRange: 0
+        monsterSummon:
+          hpRate: 0.0
+          executionRate: 0.0
+          summonNum: 0
+          summonRange: 0
+          summonTemplateId: 0
+        move:
+          targetDistance: 300
+          timeout: 1000
+        patternLists:
+          - patterns:
+              - default: true
+                normalMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+        shorttermTarget:
+          stTensionList:
+            - id: 1
+              stInfos:
+                - { stWorkId: 1, prob: 1 }
+          stWorkList:
+            - id: 1
+              desc: "renew the shield every few seconds, the first after her bite mark has faded"
+              preProcess: "GetCombatTime() > 5000"
+              immediateAttackId: 1
+              coolTime: "3000"
+              showSTMark: false
+        social:
+          socialMotionId: 0
+      peaceState:
+        checkInterval: 5000
+        minLeaderDistance: 75
+        maxLeaderDistance: 150
+        msgProb: 0.0
+        msgInterval: 0
+        followNearUser: false
+        followDungeonUser: false
+        followQuestUser: false
+        questPatrol: false
+        buffs:
+          - range: 0
+            coolTime: 0
+        randomMove:
+          moveMinDistance: 150
+          moveMaxDistance: 300
+          probSocial: 0.0
+          moveRadius: 300
+          probMove: 0.0
+
+    - huntingZoneId: 6
+      id: 60
+      name: "arakia_hunter"
+      cautionState:
+        alertRadius: 300
+        rotateTime: 5
+        probAvoid: 0.0
+        alertAngle: 360
+        rotateAngle: 60
+        checkInterval: 3000
+        probActiveMove: 0.0
+        enable: false
+      combatState:
+        watchRotateTime: 5
+        watchRotateAngle: 60
+        playSocialWhenFirstAggro: false
+        enable: true
+        hpResetWhenCombatEnd: false
+        aggroChangeAttack:
+          nearTargetAttackId: 0
+          showAggroChangeMotionAfterNearTargetAttack: false
+          distantTargetAttackId: 0
+          showAggroChangeMotionAfterDistantTargetAttack: false
+        attack:
+          workList:
+            - id: 8
+              desc: "mark one player"
+              normalBehaviorId: 9031
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 9031
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "GetWorkIdExeCount(8) < 1 AND PcTargetByAreaRandom(1, 360, 0, 3000)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 7
+              desc: "run at the marked player"
+              normalBehaviorId: 945
+              normalBehaviorType: activeMove
+              offFlockOnNormalMode: false
+              angerBehaviorId: 945
+              angerBehaviorType: activeMove
+              offFlockOnAngerMode: false
+              preProcess: "PcTargetByAbnormal(1, 360, 120, 4000, 49968)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+            - id: 5
+              desc: "burst beside the marked player"
+              normalBehaviorId: 9032
+              normalBehaviorType: skill
+              offFlockOnNormalMode: false
+              angerBehaviorId: 9032
+              angerBehaviorType: skill
+              offFlockOnAngerMode: false
+              preProcess: "PcTargetByAbnormal(1, 360, 0, 120, 49968)"
+              distanceType: "1"
+              distanceRate: 1
+              coolTime: 0
+              isDirectionRevision: true
+              nextAttackProb: 0
+              nextAttackId: 0
+          tensionList:
+            - id: 1
+              infos:
+                - { workId: 8, prob: 1, distanceRate: 1 }
+                - { workId: 7, prob: 1, distanceRate: 1 }
+                - { workId: 5, prob: 1, distanceRate: 1 }
+        avoid:
+          avoidSkillId: 0
+          cooltime: 10000
+        cooperation:
+          concurrentAttackDuration: 30000
+          sequentialAttackDelay: 1000
+          escapeDuration: 3000
+          workList: []
+          tensionList:
+            - id: 1
+          receiveOrderList: []
+        counterFlee:
+          workId: 0
+          toAnger: false
+          speedUpRate: 0.0
+          maxMovingTime: 0
+          recentHitTime: 0
+          recentPcBehaviorTime: 0
+        idle:
+          duration: 1000
+        monsterFlee:
+          hpRate: 0.0
+          executionRate: 0.0
+          fleeDistance: 0
+          shareAggroRange: 0
+        monsterSummon:
+          hpRate: 0.0
+          executionRate: 0.0
+          summonNum: 0
+          summonRange: 0
+          summonTemplateId: 0
+        move:
+          targetDistance: 300
+          timeout: 1000
+        patternLists:
+          - patterns:
+              - default: true
+                normalMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+                angerMode:
+                  tension: { attackTension: 1, cooperationTension: 1, shorttermTargetTension: 1 }
+                  incline: { attackProb: 1, cooperationProb: 0, shorttermTargetProb: 1, avoidProb: 0, moveProb: 0, socialProb: 0 }
+        shorttermTarget:
+          stTensionList:
+            - id: 1
+              stInfos:
+                - { stWorkId: 1, prob: 1 }
+          stWorkList:
+            - id: 1
+              desc: "mark one player at once"
+              preProcess: "GetWorkIdExeCount(8) < 1 AND PcTargetByAreaRandom(1, 360, 0, 3000)"
+              immediateAttackId: 8
+              coolTime: "60000"
+              showSTMark: false
+        social:
+          socialMotionId: 0
+      peaceState:
+        checkInterval: 5000
+        minLeaderDistance: 75
+        maxLeaderDistance: 150
+        msgProb: 0.0
+        msgInterval: 0
+        followNearUser: false
+        followDungeonUser: false
+        followQuestUser: false
+        questPatrol: false
+        buffs:
+          - range: 0
+            coolTime: 0
+        randomMove:
+          moveMinDistance: 150
+          moveMaxDistance: 300
+          probSocial: 0.0
+          moveRadius: 300
+          probMove: 0.0
+npcSkills:
+  upsert:
+    - huntingZoneId: 6
+      templateId: [5005, 5006, 5007, 5008, 5009]
+      skillId: 1302
+      $extends: Row
+      parentId: 30189000
+      name: 교활한아라크네_키드_무브어택(굴러서공격)_(시나리오던전전용)_공용
+      totalAtk: 18670
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      attackRangeMin: 0.0
+      attackRangeMax: 590.0
+      property:
+        toCenterWhenNoMove: false
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              animSeqs:
+                - $extends: AnimSeq
+      targetingLists:
+        - $extends: TargetingList
+          multiInstanceShoot: false
+          targetings:
+            - $extends: Targeting
+              time: 37
+              areas:
+                - $extends: Area
+                  maxRadius: 120.0
+                  offsetDistance: -40.0
+                  offsetAngle: 20.0
+                  evadeByJumping: false
+                  effect:
+                    atk: 0.1
+                    dynamicSpawn:
+                      huntingZoneId: 0
+                      dynamicSpawnId: 0
+                    abnormalityOnCommon:
+                      id: 0
+                      abnormalityRate: 0
+                      force: false
+                      timeOverrideLarge: 1.0
+                      timeOverrideMedium: 1.0
+                      timeOverrideSmall: 1.0
+                      timeOverrideUser: 1.0
+            - $extends: Targeting
+              time: 267
+              interval: 200
+              until: 567
+              areas:
+                - $extends: Area
+                  minRadius: 1200.0
+                  rangeAngle: 8.0
+                  reaction:
+                    miniRate: 100
+                    basicRate: 150
+                  offsetDistance: -1275.0
+                  evadeByJumping: false
+                  effect:
+                    atk: 0.2
+                    dynamicSpawn:
+                      huntingZoneId: 0
+                      dynamicSpawnId: 0
+                    abnormalityOnCommon:
+                      id: 0
+                      abnormalityRate: 0
+                      force: false
+                      timeOverrideLarge: 1.0
+                      timeOverrideMedium: 1.0
+                      timeOverrideSmall: 1.0
+                      timeOverrideUser: 1.0
+            - $extends: Targeting
+              time: 667
+              interval: 200
+              until: 1167
+              areas:
+                - $extends: Area
+                  minRadius: 1200.0
+                  rangeAngle: 8.0
+                  reaction:
+                    miniRate: 100
+                    basicRate: 150
+                  offsetDistance: -1350.0
+                  evadeByJumping: false
+                  effect:
+                    atk: 0.2
+                    dynamicSpawn:
+                      huntingZoneId: 0
+                      dynamicSpawnId: 0
+                    abnormalityOnCommon:
+                      id: 0
+                      abnormalityRate: 0
+                      force: false
+                      timeOverrideLarge: 1.0
+                      timeOverrideMedium: 1.0
+                      timeOverrideSmall: 1.0
+                      timeOverrideUser: 1.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        ignoreAttr: needBalance,isAngerSkill
+        refTotalAtk: 18670
+        refMailDmgRate: 0
+        refLeatherDmgRate: 0
+        refRobeDmgRate: 0
+    # Leap: the spider's long jump onto a player beyond rolling reach, under the model's own skill id
+    # so the client plays it. The jump's length comes from the animation and shrinks with the spider,
+    # so each size carries its own root motion rate.
+    - huntingZoneId: 6
+      templateId: 5005
+      skillId: 1111
+      $extends: Row
+      parentId: 30189000
+      name: 교활한아라크네_키드_긴 롱무브_longmove_노말
+      totalAtk: 18670
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      attackRange: 641.0
+      attackRangeMin: 0.0
+      attackRangeMax: 1400.0
+      property:
+        toCenterWhenNoMove: false
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: longmove_1
+                  readOnlyDuration: 4033.0
+                  rootMotionXYRate: 1.9
+            - $extends: Stage
+              changeDirToTarget: true
+              changeDirToTargetMax: 30
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: longmove_2
+                  rootMotionXYRate: 2.4
+      targetingLists:
+        - $extends: TargetingList
+          showHitRangeEx: auto
+          targetings:
+            - $extends: Targeting
+              time: 2393
+              areas:
+                - $extends: Area
+                  maxRadius: 300
+                  offsetDistance: -100.0
+                  reaction:
+                    miniRate: 30
+                    basicRate: 20
+                  effect:
+                    atk: 0.3
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        ignoreAttr: needBalance,isAngerSkill
+        refTotalAtk: 18670
+        refMailDmgRate: 0
+        refLeatherDmgRate: 0
+        refRobeDmgRate: 0
+    - huntingZoneId: 6
+      templateId: [5006, 5007, 5008, 5009]
+      skillId: 1111
+      $extends: Row
+      parentId: 30189000
+      name: 교활한아라크네_키드_긴 롱무브_longmove_노말
+      totalAtk: 18670
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      attackRange: 641.0
+      attackRangeMin: 0.0
+      attackRangeMax: 1400.0
+      property:
+        toCenterWhenNoMove: false
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: longmove_1
+                  readOnlyDuration: 4033.0
+                  rootMotionXYRate: 1
+            - $extends: Stage
+              changeDirToTarget: true
+              changeDirToTargetMax: 30
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: longmove_2
+                  rootMotionXYRate: 1.2
+      targetingLists:
+        - $extends: TargetingList
+          showHitRangeEx: auto
+          targetings:
+            - $extends: Targeting
+              time: 2393
+              areas:
+                - $extends: Area
+                  maxRadius: 200
+                  offsetDistance: -100.0
+                  reaction:
+                    miniRate: 30
+                    basicRate: 20
+                  effect:
+                    atk: 0.3
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        ignoreAttr: needBalance,isAngerSkill
+        refTotalAtk: 18670
+        refMailDmgRate: 0
+        refLeatherDmgRate: 0
+        refRobeDmgRate: 0
+    # Burst: two seconds of warning, then the wound and two stacks of venom on everyone close, and
+    # the spider dies of it. It has an id of its own so that it can have a look of its own.
+    - huntingZoneId: 6
+      templateId: [5005, 5010]
+      skillId: 9032
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_spiderling_burst"
+      category: 0
+      allDirectionDefence: false
+      attackRange: 150
+      attackRangeMin: 0.0
+      attackRangeMax: 150.0
+      timeRate: 1
+      pushtarget: stop
+      totalAtk: 0
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: UltraAtk01
+      targetingLists:
+        - $extends: TargetingList
+          showHitRangeEx: auto
+          targetings:
+            - $extends: Targeting
+              time: 2000
+              areas:
+                # Two areas, one venom stack each: the first also carries the wound.
+                - $extends: Area
+                  maxRadius: 200.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 1
+                    hpDiff:
+                      value: -3000
+                    abnormalityOnCommon:
+                      - { id: 99288042, abnormalityRate: 1, force: false, timeOverrideLarge: 1.0, timeOverrideMedium: 1.0, timeOverrideSmall: 1.0, timeOverrideUser: 1.0 }
+                - $extends: Area
+                  maxRadius: 200.0
+                  crosshairRadius: 3.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      - { id: 99288042, abnormalityRate: 1, force: false, timeOverrideLarge: 1.0, timeOverrideMedium: 1.0, timeOverrideSmall: 1.0, timeOverrideUser: 1.0 }
+            - $extends: Targeting
+              time: 2200
+              areas:
+                - $extends: Area
+                  type: me
+                  maxRadius: 200.0
+                  crosshairRadius: 3.0
+                  effect:
+                    hpDiff:
+                      value: -9999999
+      defence:
+        damageApplyRate: 1.0
+      anger:
+        attackUpRate: 0
+      balanceRef:
+        ignoreAttr: name,needBalance,isAngerSkill
+        refTotalAtk: 51340
+        refMailDmgRate: 0
+        refLeatherDmgRate: 0
+        refRobeDmgRate: 0
+    # Mark: a screech at one player from any distance, which is all the warning the run gets.
+    - huntingZoneId: 6
+      templateId: [5005, 5010]
+      skillId: 9031
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_spiderling_mark"
+      category: 0
+      allDirectionDefence: false
+      attackRange: 9000
+      attackRangeMin: 0.0
+      attackRangeMax: 9000.0
+      timeRate: 2
+      pushtarget: stop
+      totalAtk: 0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: aggrochange
+                  readOnlyDuration: 2033.0
+      targetingLists:
+        - $extends: TargetingList
+          adjustTargetingPos: toTargetWithGeo
+          targetings:
+            - $extends: Targeting
+              time: 200
+              areas:
+                - $extends: Area
+                  maxRadius: 80.0
+                  maxCount: 1
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      - { id: 99288047, abnormalityRate: 1, force: false, timeOverrideLarge: 1.0, timeOverrideMedium: 1.0, timeOverrideSmall: 1.0, timeOverrideUser: 1.0 }
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        needBalance: false
+    # Shield: lands on the one ally carrying Arakia's mark. The fourth Defender carries none.
+    - huntingZoneId: 6
+      templateId: 5006
+      skillId: 9030
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_defender_shield"
+      category: 0
+      allDirectionDefence: false
+      attackRange: 9000
+      attackRangeMin: 0.0
+      attackRangeMax: 9000.0
+      pushtarget: stop
+      totalAtk: 0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      aggro:
+        offensiveSkill: false
+        aggroWhenStart: 0
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: unarmedwait
+                  readOnlyDuration: 1366.0
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 200
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 4000.0
+                  minHeight: -2000.0
+                  maxHeight: 2000.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      - { id: 99288051, abnormalityRate: 1, force: false, timeOverrideLarge: 1.0, timeOverrideMedium: 1.0, timeOverrideSmall: 1.0, timeOverrideUser: 1.0 }
+                  targetCondition:
+                    abnormalityKind: 49974
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        needBalance: false
+    - huntingZoneId: 6
+      templateId: 5007
+      skillId: 9030
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_defender_shield"
+      category: 0
+      allDirectionDefence: false
+      attackRange: 9000
+      attackRangeMin: 0.0
+      attackRangeMax: 9000.0
+      pushtarget: stop
+      totalAtk: 0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      aggro:
+        offensiveSkill: false
+        aggroWhenStart: 0
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: unarmedwait
+                  readOnlyDuration: 1366.0
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 200
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 4000.0
+                  minHeight: -2000.0
+                  maxHeight: 2000.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      - { id: 99288052, abnormalityRate: 1, force: false, timeOverrideLarge: 1.0, timeOverrideMedium: 1.0, timeOverrideSmall: 1.0, timeOverrideUser: 1.0 }
+                  targetCondition:
+                    abnormalityKind: 49974
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        needBalance: false
+    - huntingZoneId: 6
+      templateId: 5008
+      skillId: 9030
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_defender_shield"
+      category: 0
+      allDirectionDefence: false
+      attackRange: 9000
+      attackRangeMin: 0.0
+      attackRangeMax: 9000.0
+      pushtarget: stop
+      totalAtk: 0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      aggro:
+        offensiveSkill: false
+        aggroWhenStart: 0
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: unarmedwait
+                  readOnlyDuration: 1366.0
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 200
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 4000.0
+                  minHeight: -2000.0
+                  maxHeight: 2000.0
+                  effect:
+                    atk: 0
+                    abnormalityOnCommon:
+                      - { id: 99288053, abnormalityRate: 1, force: false, timeOverrideLarge: 1.0, timeOverrideMedium: 1.0, timeOverrideSmall: 1.0, timeOverrideUser: 1.0 }
+                  targetCondition:
+                    abnormalityKind: 49974
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        needBalance: false
+    - huntingZoneId: 6
+      templateId: 5009
+      skillId: 9030
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_defender_shield"
+      category: 0
+      allDirectionDefence: false
+      attackRange: 9000
+      attackRangeMin: 0.0
+      attackRangeMax: 9000.0
+      pushtarget: stop
+      totalAtk: 0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      aggro:
+        offensiveSkill: false
+        aggroWhenStart: 0
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: unarmedwait
+                  readOnlyDuration: 1366.0
+      targetingLists:
+        - $extends: TargetingList
+          targetings:
+            - $extends: Targeting
+              time: 200
+              areas:
+                - $extends: Area
+                  type: ally
+                  maxRadius: 4000.0
+                  minHeight: -2000.0
+                  maxHeight: 2000.0
+                  effect:
+                    atk: 0
+                  targetCondition:
+                    abnormalityKind: 49974
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        needBalance: false
+    # Venom ball: the heavy attack of the shared model, under that model's own skill id because
+    # the client keys the ground marker and the projectile to it. It lands where its target stood
+    # when the cast began, with one stack of the brood venom.
+    - huntingZoneId: 6
+      templateId: 5005
+      skillId: 1110
+      $extends: Row
+      parentId: 30189000
+      name: "arakia_spiderling_venom_ball"
+      category: 9012
+      totalAtk: 51340
+      attackRange: 300.0
+      attackRangeMin: 200.0
+      attackRangeMax: 900.0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      actions:
+        - $extends: Action
+          specialEffects:
+            - id: 41187001
+              posX: 5.0
+              posY: 0.0
+              posZ: 200.0
+              startTime: 1230
+              move:
+                duration: 0.9
+                distance: 295.0
+                maxHeight: 200.0
+          stages:
+            # One pass, aimed once: the looping stage the roll uses would replay this cast on its old aim.
+            - $extends: Stage
+              variableMaxLoop: 0
+              changeDirToPos: false
+              changeDirToPosMax: 0
+              changeDirToTargetMax: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: heavyAtk
+                  blendInTime: 0
+                  readOnlyDuration: 4700.0
+      targetingLists:
+        - $extends: TargetingList
+          adjustTargetingPos: toTargetWithGeo
+          showHitRangeEx: auto
+          targetings:
+            - $extends: Targeting
+              time: 2400
+              areas:
+                - $extends: Area
+                  maxRadius: 100.0
+                  effect:
+                    atk: 0.2
+                    abnormalityOnCommon:
+                      id: 99288042
+                      abnormalityRate: 1
+                      force: false
+                      timeOverrideLarge: 1.0
+                      timeOverrideMedium: 1.0
+                      timeOverrideSmall: 1.0
+                      timeOverrideUser: 1.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        ignoreAttr: needBalance,isAngerSkill
+        refTotalAtk: 51340
+        refMailDmgRate: 0
+        refLeatherDmgRate: 0
+        refRobeDmgRate: 0
+    - huntingZoneId: 6
+      templateId: [5005, 5006, 5007, 5008, 5009, 5010]
+      skillId: 1150
+      $extends: Row
+      parentId: 30189000
+      name: 교활한아라크네_키드_액티브무브공격_activemoveatk_노말
+      category: 9011,20000
+      attackRange: 100.0
+      returnAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      totalAtk: 0
+      attackRangeMin: 0.0
+      attackRangeMax: 0.0
+      totalAtkRate: 0
+      property:
+        toCenterWhenNoMove: false
+      actions:
+        - $extends: Action
+          stages:
+            - $extends: Stage
+              changeDirToTargetMax: 0
+              variableMaxLoop: 0
+              animSeqs:
+                - $extends: AnimSeq
+                  animName: Run
+                  readOnlyDuration: 1033.0
+      targetingLists:
+        - $extends: TargetingList
+          multiInstanceShoot: false
+          targetings:
+            - $extends: Targeting
+              time: 300
+              areas:
+                - $extends: Area
+                  maxRadius: 110.0
+                  type: enermy
+                  evadeByJumping: false
+                  effect:
+                    dynamicSpawn:
+                      huntingZoneId: 0
+                      dynamicSpawnId: 0
+                    abnormalityOnCommon:
+                      id: 0
+                      abnormalityRate: 0
+                      force: false
+                      timeOverrideLarge: 1.0
+                      timeOverrideMedium: 1.0
+                      timeOverrideSmall: 1.0
+                      timeOverrideUser: 1.0
+      defence:
+        successAnimSet: CraftyArachne_ANI.Anim.CraftyArachne_Anim
+      balanceRef:
+        needBalance: false
+
+# The roll is a move: this record carries the spider to its target on the roll's own row, and a roll
+# cast without it can hang in its looping stage.
+activeMoves:
+  upsert:
+    - huntingZoneId: 6
+      id: 953
+      type: 5
+      distance: 100.0
+      randomRange: 0.0
+      skillId: 1302
+
+dynamicSpawns:
+  upsert:
+    # Three egg sacs in a ring around her.
+    - huntingZoneId: 6
+      id: 1
+      name: "arakia_egg_sacs"
+      spawnInfos:
+        - { memberId: 2, standardPos: "me", relativePos: "400,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: false }
+        - { memberId: 2, standardPos: "me", relativePos: "-200,346,0", delay: 300, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: false }
+        - { memberId: 2, standardPos: "me", relativePos: "-200,-346,0", delay: 600, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: false }
+    # The brood: six spiderlings on a wider ring, staggered so their rolls come in turn.
+    - huntingZoneId: 6
+      id: 2
+      name: "arakia_brood"
+      spawnInfos:
+        - { memberId: 3, standardPos: "me", relativePos: "400,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+        - { memberId: 3, standardPos: "me", relativePos: "200,346,0", delay: 300, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+        - { memberId: 3, standardPos: "me", relativePos: "-200,346,0", delay: 600, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+        - { memberId: 3, standardPos: "me", relativePos: "-400,0,0", delay: 900, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+        - { memberId: 3, standardPos: "me", relativePos: "-200,-346,0", delay: 1200, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+        - { memberId: 3, standardPos: "me", relativePos: "200,-346,0", delay: 1500, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+    # The last stretch: two hunters at a time. Then one rule per Defender slot, for the bite.
+    - huntingZoneId: 6
+      id: 3
+      name: "arakia_brood_trickle"
+      spawnInfos:
+        - { memberId: 8, standardPos: "me", relativePos: "300,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+        - { memberId: 8, standardPos: "me", relativePos: "-300,0,0", delay: 300, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: true, extraAggro: true }
+    - huntingZoneId: 6
+      id: 4
+      name: "arakia_defender_a"
+      spawnInfos:
+        - { memberId: 4, standardPos: "me", relativePos: "200,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: true }
+    - huntingZoneId: 6
+      id: 5
+      name: "arakia_defender_b"
+      spawnInfos:
+        - { memberId: 5, standardPos: "me", relativePos: "200,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: true }
+    - huntingZoneId: 6
+      id: 6
+      name: "arakia_defender_c"
+      spawnInfos:
+        - { memberId: 6, standardPos: "me", relativePos: "200,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: true }
+    - huntingZoneId: 6
+      id: 7
+      name: "arakia_defender_d"
+      spawnInfos:
+        - { memberId: 7, standardPos: "me", relativePos: "200,0,0", delay: 0, despawnByOwnerDeath: true, despawnByOwnerCombatReset: true, despawnByCombatReset: false, extraAggro: true }
+
+# The spiderling's burst plays the blast the walking bomber of the Abscess plays, under the burst's
+# own skill id: the client keys a skill's visuals to the model's skill parent and the skill id.
+skillEffects:
+  upsert:
+    - huntingZoneId: 1000
+      team: Design
+      templateId: 30189000
+      skillId: 9032
+      hitEffects:
+        - { id: 5000, detach: true, areaIndex: 0, criticalHitBlend: overlay, criticalHitId: 0, direction: 0, magneticEffectId: 0, targetingIndex: 0 }
+      normals:
+        - { id: 0, scale: 3, posX: 0, posY: 0, posZ: 120, rotX: 0, rotY: 0, rotZ: 0, startTime: 0, bGround: false, boneName: FxCenter, detach: false, playRate: 1, rescaleMethod: followShape, resource: FX_J_Hotfix_140217.PS.J_7200_PS, scaleX: 1, scaleY: 1, scaleZ: 1, subBoneName: None, subBoneName2: None, absoluteRate: false, bChangeAbleScaleByRange: false, stageIndex: -1 }
+        - { id: 0, scale: 1, posX: 0, posY: 0, posZ: 0, rotX: 0, rotY: 0, rotZ: 0, startTime: 2000, bGround: false, boneName: FxBottom, detach: true, playRate: 1, rescaleMethod: followShape, resource: FX_B.PS.B_1068_PS, scaleX: 1, scaleY: 1, scaleZ: 1, subBoneName: None, subBoneName2: None, absoluteRate: false, bChangeAbleScaleByRange: false, stageIndex: -1 }
+        - { id: 0, scale: 2.2, posX: 0, posY: 0, posZ: 0, rotX: 0, rotY: 0, rotZ: 0, startTime: 2000, bGround: false, boneName: FxBottom, detach: false, playRate: 1, rescaleMethod: followShape, resource: FX_F.PS.F_5141_PS, scaleX: 1, scaleY: 1, scaleZ: 1, subBoneName: None, subBoneName2: None, absoluteRate: false, bChangeAbleScaleByRange: false, stageIndex: -1 }

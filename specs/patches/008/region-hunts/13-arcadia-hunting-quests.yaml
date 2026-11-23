@@ -9,7 +9,8 @@
 # Both quests use the board's repeat task. The repeatable one loops without end inside a quest
 # taken once, as the vanilla suppression orders do; the discovery quest runs the same task for
 # one finite round, so it completes and unlocks the repeatable one. Crisaka and Abrata spawn as
-# one party, so a kill of either credits their quests.
+# one party, so a kill of either credits their quests. The three world bosses built for a party
+# pay each member what the same share of their health pays on the region's solo encounters.
 #
 # Trap: the dungeon entry trigger is written as 0 on purpose. The server leaves that field
 # unset when the element is absent, and a leftover non-zero value makes the quest count as
@@ -739,12 +740,12 @@ questCompensations:
     - { questId: 351, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
     - { questId: 352, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
     - { questId: 353, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 354, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 12 }] }] }
+    - { questId: 354, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 23 }] }] }
     - { questId: 551, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
     - { questId: 552, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
     - { questId: 651, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
     - { questId: 652, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
     - { questId: 653, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 654, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 12 }] }] }
+    - { questId: 654, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 20 }] }] }
     - { questId: 751, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 752, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 12 }] }] }
+    - { questId: 752, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 28 }] }] }

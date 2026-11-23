@@ -1,5 +1,11 @@
 # Arcadia hunts: a signature accessory on the ground shows a light beam, seen only by the party
 # that owns the drop.
+#
+# Arakia's chain and band are mythic, with stats computed by the equipment formula at the
+# boss's level. Each gets an equipment row of its own: the vanilla rows they linked are shared
+# with store accessories, so editing those rows in place would raise the store items too.
+# An item upsert restates the item type and subtype because the computed equipment block is
+# derived from them, and restates rank and icon because equipment upserts default them otherwise.
 # provenance: policy
 
 spec:
@@ -13,6 +19,28 @@ imports:
         - SignatureDropBeam
 
 items:
+  upsert:
+    - id: 20666
+      combatItemType: EQUIP_ACCESSORY
+      combatItemSubType: necklace
+      rank: 0
+      icon: Icon_Equipments.Necklace_03_Tex
+      level: 20
+      rareGrade: 4
+      equipment:
+        compute: { powerTier: 1 }
+        override: { countOfSlot: 0 }
+    - id: 20067
+      combatItemType: EQUIP_ACCESSORY
+      combatItemSubType: ring
+      rank: 0
+      icon: Icon_Equipments.Ring_03_Tex
+      level: 20
+      rareGrade: 4
+      equipment:
+        compute: { powerTier: 1 }
+        override: { countOfSlot: 1 }
+
   update:
     - { id: 20066, changes: { $extends: SignatureDropBeam } }
     - { id: 20366, changes: { $extends: SignatureDropBeam } }
