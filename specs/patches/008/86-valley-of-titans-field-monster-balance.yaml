@@ -1,9 +1,14 @@
-# Valley of Titans (zone 6): raise every hostile monster's maxHp x7 and atk x7 over its current
-# values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
-# as the Oblivion Woods rescale does for the zone before it.
+# Valley of Titans (zone 6): raise every hostile monster's maxHp x10 and atk x7 over its current
+# values, so that combat in the zone keeps pace with the gear formula's lift on player equipment.
+# Health carries the larger factor so the lightest monsters of the zone still take a fight
+# rather than one combo.
 #
 # Scope: one factor for every hostile monster the zone spawns, field, named, quest and rare
 # alike. Only the Arcadia guards, which fight on the player's side, are left out.
+#
+# Smulch casts the Gutrend Sentry's skill rows from a base attack authored seven times the
+# Sentry's, so at the zone's attack factor every one of them kills; his attack stays at its own
+# value. Named monsters are sized large, so the server refuses any air launch on them.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -90,11 +95,51 @@ balanceProfiles:
         - $VT_LAKRAX
         - $VT_TORAX
         - $VT_DAKARIUS
-        - $VT_SMULCH
         - $VT_CRISAKA
         - $VT_ABRATA
         - $VT_ARAKIA
     npc:
       stat:
-        maxHp: { multiply: 7 }
+        maxHp: { multiply: 10 }
         atk:   { multiply: 7 }
+
+  - name: ValleyOfTitansSmulch
+    npcFilter:
+      huntingZoneId: 6
+      id:
+        - $VT_SMULCH
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 1 }
+
+npcs:
+  update:
+    - huntingZoneId: 6
+      id: $VT_CRISAKA
+      changes:
+        size: large
+    - huntingZoneId: 6
+      id: $VT_ABRATA
+      changes:
+        size: large
+    - huntingZoneId: 6
+      id: $VT_KRASHAR
+      changes:
+        size: large
+    - huntingZoneId: 6
+      id: $VT_LAKRAX
+      changes:
+        size: large
+    - huntingZoneId: 6
+      id: $VT_TORAX
+      changes:
+        size: large
+    - huntingZoneId: 6
+      id: $VT_DAKARIUS
+      changes:
+        size: large
+    - huntingZoneId: 6
+      id: $VT_SMULCH
+      changes:
+        size: large

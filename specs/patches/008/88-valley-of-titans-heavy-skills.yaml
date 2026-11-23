@@ -7,7 +7,8 @@
 # seconds or more aims at about two thirds of the arriving player's health per landed use, one of
 # three to four seconds at about half. The factor that reaches the aim is rounded up to a whole
 # step, two at least, so an attack lands at or above its aim. A factor only ever raises; an attack
-# already at its target is left alone, and so is any skill named as a buff.
+# already at its target is left alone, and so is any skill named as a buff. A short attack with a
+# long, readable wind-up, such as the Gutrend jump smash, is priced as a three to four second one.
 #
 # Each entry names a monster (npc-ids) and the attacks of it that take one factor (npc-skill-ids):
 # the skill rows of each normal skill and of its enraged form. A monster with no rows of its own
@@ -47,6 +48,7 @@ imports:
         - VT_SCAVENGING_BEAR
         - VT_RAVENOUS_BEAR
         - VT_GUTREND_REAPER
+        - VT_GUTREND_SENTRY
         - VT_GUTREND_SEER
         - VT_GUTREND_JUGGERNAUT
         - VT_SCION_JUSTICAR
@@ -55,6 +57,7 @@ imports:
         - VT_LOKIAN_REAPMASTER
         - VT_LAKRAX
         - VT_TORAX
+        - VT_SMULCH
   - from: npc-skill-ids
     use:
       variables:
@@ -80,6 +83,11 @@ imports:
         - VT_GUTREND_REAPER_HEAVY
         - VT_GUTREND_SEER_HEAVY
         - VT_GUTREND_JUGGERNAUT_SHIELD_CHARGE
+        - VT_GUTREND_CLAWTAMER_JUMP_SMASH
+        - VT_GUTREND_PILLAGER_JUMP_SMASH
+        - VT_GUTREND_RAIDER_JUMP_SMASH
+        - VT_GUTREND_SENTRY_JUMP_SMASH
+        - VT_GUTREND_JUGGERNAUT_JUMP_SMASH
         - VT_SCION_JUSTICAR_HEAVY
         - VT_LOKIAN_BATTLERAGER_HEAVY
         - VT_LOKIAN_REAVER_HEAVY
@@ -153,6 +161,13 @@ npcSkills:
           id: $VT_GUTREND_CLAWTAMER_SHIELD_CHARGE
         changes:
           totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (2.8 s), a jump smash ruled telegraphed for its wind-up.
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_CLAWTAMER
+          id: $VT_GUTREND_CLAWTAMER_JUMP_SMASH
+        changes:
+          totalAtk: { multiply: 4 }
       # Skill 1103, atk03 (5.7 s).
       - filter:
           huntingZoneId: 6
@@ -181,11 +196,32 @@ npcSkills:
           id: $VT_GUTREND_PILLAGER_SHIELD_CHARGE
         changes:
           totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (2.8 s), a jump smash ruled telegraphed for its wind-up.
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_PILLAGER
+          id: $VT_GUTREND_PILLAGER_JUMP_SMASH
+        changes:
+          totalAtk: { multiply: 4 }
       # Skill 1102, atk02 (4.5 s).
       - filter:
           huntingZoneId: 6
           npc.id: $VT_GUTREND_RAIDER
           id: $VT_GUTREND_RAIDER_SHIELD_CHARGE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (2.8 s), a jump smash ruled telegraphed for its wind-up.
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_RAIDER
+          id: $VT_GUTREND_RAIDER_JUMP_SMASH
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skill 1103, atk03 (2.8 s), a jump smash ruled telegraphed for its wind-up.
+      - filter:
+          huntingZoneId: 6
+          npc.id: [$VT_GUTREND_SENTRY, $VT_SMULCH]
+          id: $VT_GUTREND_SENTRY_JUMP_SMASH
         changes:
           totalAtk: { multiply: 2 }
       # Skills 1102 atk02 (5.7 s), 1103 atk03 (4.5 s).
@@ -244,6 +280,13 @@ npcSkills:
           id: $VT_GUTREND_JUGGERNAUT_SHIELD_CHARGE
         changes:
           totalAtk: { multiply: 2 }
+      # Skill 1103, atk03 (2.8 s), a jump smash ruled telegraphed for its wind-up.
+      - filter:
+          huntingZoneId: 6
+          npc.id: $VT_GUTREND_JUGGERNAUT
+          id: $VT_GUTREND_JUGGERNAUT_JUMP_SMASH
+        changes:
+          totalAtk: { multiply: 3 }
       # Skills 1105 atk04 (4.5 s), 1106 atk05 (3.4 s).
       - filter:
           huntingZoneId: 6

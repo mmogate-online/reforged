@@ -1,0 +1,108 @@
+# Celestial Hills (zone 7): raise every hostile monster's maxHp x10 over its current values, as
+# in the Valley of Titans before it, and its attack so its attacks land about the share of a
+# level 22 to 25 player's health the Valley's land on its own arrivals. Its skill rows are
+# authored heavier than the Valley's, so the field takes x4.
+#
+# Scope: every hostile monster the zone spawns; the ambient creatures are left out. The giants,
+# Barraq among them, and the Lokian captains Crowu and Tezluar already land their heaviest
+# attacks at or past a full health bar at their current attack, so it is not raised. Named
+# monsters are sized large, so the server refuses any air launch on them.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - CH_NAGA_MERCENARY
+        - CH_INDOLENT_KUMAS
+        - CH_TORPID_KUMAS
+        - CH_RED_FANG_ORCAN
+        - CH_RED_FANG_FIGHTER
+        - CH_RED_FANG_RAGER
+        - CH_RED_FANG_KOBOLD
+        - CH_RED_FANG_KOBOLD_MINION
+        - CH_LEAN_HYENA
+        - CH_BLOODGUARD
+        - CH_LOKIAN_LANCER
+        - CH_LOKIAN_BERSERKER
+        - CH_LOKIAN_SORCERER
+        - CH_NAKARASH
+        - CH_CROWU
+        - CH_JUGGERNAUT_MERCENARY
+        - CH_DARK_IMP
+        - CH_BARRAQ
+        - CH_TEZLUAR
+        - CH_RADAT
+        - CH_KADAS
+
+balanceProfiles:
+  - name: CelestialHillsMonsters
+    npcFilter:
+      huntingZoneId: 7
+      id:
+        - $CH_RED_FANG_ORCAN
+        - $CH_RED_FANG_FIGHTER
+        - $CH_RED_FANG_RAGER
+        - $CH_RED_FANG_KOBOLD
+        - $CH_RED_FANG_KOBOLD_MINION
+        - $CH_LEAN_HYENA
+        - $CH_BLOODGUARD
+        - $CH_LOKIAN_LANCER
+        - $CH_LOKIAN_BERSERKER
+        - $CH_LOKIAN_SORCERER
+        - $CH_DARK_IMP
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 4 }
+
+  - name: CelestialHillsGiants
+    npcFilter:
+      huntingZoneId: 7
+      id:
+        - $CH_NAGA_MERCENARY
+        - $CH_INDOLENT_KUMAS
+        - $CH_TORPID_KUMAS
+        - $CH_NAKARASH
+        - $CH_JUGGERNAUT_MERCENARY
+        - $CH_BARRAQ
+        - $CH_RADAT
+        - $CH_KADAS
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 1 }
+
+  - name: CelestialHillsLokianCaptains
+    npcFilter:
+      huntingZoneId: 7
+      id:
+        - $CH_CROWU
+        - $CH_TEZLUAR
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 1 }
+
+npcs:
+  update:
+    - huntingZoneId: 7
+      id: $CH_CROWU
+      changes:
+        size: large
+    - huntingZoneId: 7
+      id: $CH_DARK_IMP
+      changes:
+        size: large
+    - huntingZoneId: 7
+      id: $CH_TEZLUAR
+      changes:
+        size: large

@@ -6,7 +6,8 @@
 # or the slower one wins. Values are milliseconds.
 #
 # Health is ten times the current value, so each is a clear step above the field
-# monsters around it; attack is unchanged.
+# monsters around it; attack is unchanged. Both are sized large, so the server refuses any air
+# launch on them.
 #
 # TRAP: `multiply` is a delta from the file's current values. It is safe under a
 # whole-patch migrate, which reads the committed baseline; a bare single-spec apply
@@ -70,3 +71,14 @@ territorySpawns:
       changes:
         respawnTime: 1500000
         respawnRandomTime: "300000"
+
+npcs:
+  update:
+    - huntingZoneId: 2
+      id: $FF_GARASH_BLOODTUSK
+      changes:
+        size: large
+    - huntingZoneId: 2
+      id: $FF_TRADON
+      changes:
+        size: large

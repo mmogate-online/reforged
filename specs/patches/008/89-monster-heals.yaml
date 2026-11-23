@@ -1,0 +1,70 @@
+# Monster heals weigh as much as the rescaled monsters they heal.
+#
+# The Restoration ladder heals a share of maximum HP per tick and was doubled with the other
+# monster buffs, but its tooltips carry the share as literal text, so each states the doubled
+# share. The tick interval stays a token.
+#
+# The Lokian Mystic's heal adds a flat amount on top of Restoration, an absolute number the zone's
+# health factor leaves behind; it is set to its old share of the caster's health times the buff
+# factor. Its enraged row heals the same.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - VT_LOKIAN_MYSTIC
+
+abnormalityStrings:
+  update:
+    - id: 99000300
+      changes:
+        tooltip: "Recovers $H_W_GOOD6%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000310
+      changes:
+        tooltip: "Recovers $H_W_GOOD8%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000320
+      changes:
+        tooltip: "Recovers $H_W_GOOD10%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000330
+      changes:
+        tooltip: "Recovers $H_W_GOOD12%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000340
+      changes:
+        tooltip: "Recovers $H_W_GOOD14%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000350
+      changes:
+        tooltip: "Recovers $H_W_GOOD16%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000360
+      changes:
+        tooltip: "Recovers $H_W_GOOD18%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+    - id: 99000370
+      changes:
+        tooltip: "Recovers $H_W_GOOD20%$COLOR_END of maximum HP every $H_W_GOOD$tickInterval$COLOR_END."
+
+npcSkills:
+  update:
+    - huntingZoneId: 6
+      templateId: $VT_LOKIAN_MYSTIC
+      skillId: 1107
+      changes:
+        targetingLists:
+          - targetings:
+              - areas:
+                  - effect:
+                      hpDiff:
+                        value: 8000
+    - huntingZoneId: 6
+      templateId: $VT_LOKIAN_MYSTIC
+      skillId: 2107
+      changes:
+        targetingLists:
+          - targetings:
+              - areas:
+                  - effect:
+                      hpDiff:
+                        value: 8000

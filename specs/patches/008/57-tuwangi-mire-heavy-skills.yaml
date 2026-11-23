@@ -1,0 +1,67 @@
+# Tuwangi Mire (zone 5): every hostile monster's long telegraphed attacks hit hard enough to
+# punish a player who does not dodge them, by the rule of the zones before it, sized for the
+# level 19 to 21 player who arrives here. Quick attacks and base attack are left as they are.
+#
+# How hard follows how long the attack takes to play: the skill's animation length in
+# AnimationData over its timeRate. An attack of four seconds or more aims at about two thirds of
+# the arriving player's health per landed use, one of three to four seconds at about half, the
+# factor rounded up to a whole step, two at least. A factor only ever raises, so every attack not
+# named here already lands at or above its aim. Rows are named by id, never by animation, and
+# `strict` fails the apply when any named monster or row is missing.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - TM_MUDDY_SPOREWALKER
+        - TM_HUNGRY_CULLAR
+        - TM_TENTACULLAR
+  - from: npc-skill-ids
+    use:
+      variables:
+        - TM_MUDDY_SPOREWALKER_JUMP_SLAM
+        - TM_MUDDY_SPOREWALKER_ROLLING_ATTACK_MUD_SHAKE
+        - TM_HUNGRY_CULLAR_HEAVY
+        - TM_TENTACULLAR_HEAVY
+
+npcSkills:
+  updateWhere:
+    strict: true
+    entries:
+      # Skill 1101, jump slam (3.0 s).
+      - filter:
+          huntingZoneId: 5
+          npc.id: $TM_MUDDY_SPOREWALKER
+          id: $TM_MUDDY_SPOREWALKER_JUMP_SLAM
+        changes:
+          totalAtk: { multiply: 3 }
+      # Skills 1102 rolling attack (4.9 s), 1103 mud shake (5.1 s).
+      - filter:
+          huntingZoneId: 5
+          npc.id: $TM_MUDDY_SPOREWALKER
+          id: $TM_MUDDY_SPOREWALKER_ROLLING_ATTACK_MUD_SHAKE
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1102 atk03 (3.4 s), 1103 atk02 (3.4 s).
+      - filter:
+          huntingZoneId: 5
+          npc.id: $TM_HUNGRY_CULLAR
+          id: $TM_HUNGRY_CULLAR_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }
+      # Skills 1102 atk02 (3.4 s), 1103 atk03 (3.4 s).
+      - filter:
+          huntingZoneId: 5
+          npc.id: $TM_TENTACULLAR
+          id: $TM_TENTACULLAR_HEAVY
+        changes:
+          totalAtk: { multiply: 2 }

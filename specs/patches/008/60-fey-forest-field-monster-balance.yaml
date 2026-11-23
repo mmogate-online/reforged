@@ -5,7 +5,7 @@
 # Scope: the zone's spawned field monsters take both. Its named and quest monsters take maxHp x5
 # only: their attack was already authored at or above the rescaled field monsters'. The two
 # free-roaming named bosses keep their own hand-set values, and villagers and the ambient creature
-# are left out.
+# are left out. Named monsters are sized large, so the server refuses any air launch on them.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -98,3 +98,26 @@ balanceProfiles:
     npc:
       stat:
         maxHp: { multiply: 5 }
+
+npcs:
+  update:
+    - huntingZoneId: 2
+      id: $FF_FAERIE_GUARDIANS
+      changes:
+        size: large
+    - huntingZoneId: 2
+      id: $FF_LIKHAN
+      changes:
+        size: large
+    - huntingZoneId: 2
+      id: $FF_SERAVY
+      changes:
+        size: large
+    - huntingZoneId: 2
+      id: $FF_GARKIOR
+      changes:
+        size: large
+    - huntingZoneId: 2
+      id: $FF_CRUEL_SORCERER_2
+      changes:
+        size: large

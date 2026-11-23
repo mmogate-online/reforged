@@ -1,10 +1,15 @@
 # Oblivion Woods (zone 3): raise every hostile monster's maxHp x7 and atk x7 over its current
 # values, so that combat in the zone keeps pace with the gear formula's lift on player equipment,
-# as the Fey Forest rescale does for the zone before it.
+# as the Fey Forest rescale does for the zone before it. The Valley of Beasts, whose monsters sit
+# above the Valley of Titans' level band, takes the higher maxHp factor that zone carries.
 #
 # Scope: one factor for every hostile monster the zone spawns, field, named, quest and rare
-# alike, with the attack exceptions below. The ambient creature, the quest villager and the
-# notice board are left out.
+# alike, with the exceptions below. The ambient creature, the quest villager and the notice board
+# are left out, and so is Lanok, whose health and attack the spec that gives him his phases sets
+# outright, so a multiply here would only be overwritten.
+#
+# Named monsters are sized large: the server refuses any air launch on a large template, while
+# knockdowns still roll against the skills' large-target rates.
 #
 # TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
 # under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
@@ -21,8 +26,8 @@ imports:
       variables:
         - OW_STONEBEAK_SCAVENGER
         - OW_AGITATED_SPOREWALKER
-        - OW_MOSSY_GHILLIEDHU
         - OW_REAVER_OF_RESURRECTION
+        - OW_MOSSY_GHILLIEDHU
         - OW_EBONHEART_SORCERER
         - OW_FALLEN_DEFENDER
         - OW_DEVAN_ROBBER
@@ -42,15 +47,14 @@ imports:
         - OW_SKELETAL_RETAINER
         - OW_SKELETAL_SOLDIER
         - OW_DAKANIUS
-        - OW_DEVAN_ARCHPRIEST
         - OW_DEVAN_WARLORD
         - OW_DARK_MAIDEN
-        - OW_KULSILVA
         - OW_DAKANIUSS_GUARD_1
         - OW_DAKANIUSS_GUARD_2
         - OW_DEVAN_WATCHER
+        - OW_DEVAN_ARCHPRIEST
+        - OW_KULSILVA
         - OW_DUR_BARAK
-        - OW_LANOK
         - OW_BASILISK
 
 balanceProfiles:
@@ -60,7 +64,6 @@ balanceProfiles:
       id:
         - $OW_STONEBEAK_SCAVENGER
         - $OW_AGITATED_SPOREWALKER
-        - $OW_MOSSY_GHILLIEDHU
         - $OW_REAVER_OF_RESURRECTION
         - $OW_EBONHEART_SORCERER
         - $OW_FALLEN_DEFENDER
@@ -86,11 +89,20 @@ balanceProfiles:
         - $OW_DAKANIUSS_GUARD_1
         - $OW_DAKANIUSS_GUARD_2
         - $OW_DEVAN_WATCHER
-        - $OW_LANOK
-        - $OW_BASILISK
     npc:
       stat:
         maxHp: { multiply: 7 }
+        atk:   { multiply: 7 }
+
+  - name: OblivionWoodsValleyOfBeasts
+    npcFilter:
+      huntingZoneId: 3
+      id:
+        - $OW_MOSSY_GHILLIEDHU
+        - $OW_BASILISK
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
         atk:   { multiply: 7 }
 
   # Kulsilva's authored attack is thirteen times the Devan Arcanist's on the same model, and
@@ -118,3 +130,26 @@ balanceProfiles:
       stat:
         maxHp: { multiply: 7 }
         atk:   { multiply: 1 }
+
+npcs:
+  update:
+    - huntingZoneId: 3
+      id: $OW_GRAYAL
+      changes:
+        size: large
+    - huntingZoneId: 3
+      id: $OW_DAKANIUS
+      changes:
+        size: large
+    - huntingZoneId: 3
+      id: $OW_DEVAN_ARCHPRIEST
+      changes:
+        size: large
+    - huntingZoneId: 3
+      id: $OW_DEVAN_WARLORD
+      changes:
+        size: large
+    - huntingZoneId: 3
+      id: $OW_KULSILVA
+      changes:
+        size: large

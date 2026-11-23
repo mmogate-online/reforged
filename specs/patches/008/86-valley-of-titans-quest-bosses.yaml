@@ -1,0 +1,52 @@
+# Valley of Titans: the quest bosses Krashar and Smulch fight as bosses, not as one more camp
+# member.
+#
+# Health is three times the zone's value, so each is a clear step above the Gutrends around him;
+# attack follows the zone spec.
+#
+# Each spawn row shares threat with every monster within 1,000 units when he is pulled, so the
+# nearby Gutrends join the fight. The template's own radius is 100 and the spawn row's was 0;
+# an empty clan name still spreads threat inside the radius.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - VT_KRASHAR
+        - VT_SMULCH
+
+balanceProfiles:
+  - name: ValleyOfTitansQuestBosses
+    npcFilter:
+      huntingZoneId: 6
+      id:
+        - $VT_KRASHAR
+        - $VT_SMULCH
+    npc:
+      stat:
+        maxHp: { multiply: 3 }
+
+territorySpawns:
+  update:
+    - huntingZoneId: 6
+      groupId: 600022
+      territoryId: 600073
+      partyId: 600342
+      npcInstanceId: 621682
+      changes:
+        aggroSendToClanDistance: 1000
+    - huntingZoneId: 6
+      groupId: 600037
+      territoryId: 600643
+      npcInstanceId: 622138
+      changes:
+        aggroSendToClanDistance: 1000

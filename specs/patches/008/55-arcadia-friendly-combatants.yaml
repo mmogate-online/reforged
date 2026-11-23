@@ -1,0 +1,90 @@
+# Arcadia: the NPCs who fight beside the player, or are escorted through monster ground, scaled
+# with the monsters around them so they trade hits instead of dying to the first one.
+#
+# A camp guard or quest ally takes the inverse pair of its zone: health times the zone's monster
+# attack factor and attack times the zone's monster health factor, so the number of hits it
+# trades with the zone's monsters stays what it was. An escort target is sized to survive about
+# five of the heaviest hits its route's monsters land, so an escort fails by the player's
+# mistakes. Only stat.maxHp, stat.atk, stat.level and critical.res accept a transform.
+#
+# Left out: the town guards, whose own level already outclasses every monster in the region.
+#
+# TRAP: `multiply` is a delta from the file's current values, not an absolute target. It is safe
+# under a whole-patch migrate, which reads from the server repo's committed baseline; a bare
+# single-spec apply against the working tree compounds it.
+# provenance: policy
+
+spec:
+  version: "1.0"
+  schema: v92
+
+imports:
+  - from: npc-ids
+    use:
+      variables:
+        - VT_ARCADIA_GUARD_1
+        - VT_ARCADIA_GUARD_2
+        - VT_ARCADIA_GUARD_3
+        - VT_ARCADIA_GUARD_4
+        - VT_ARCADIA_GUARD_5
+        - VT_ARCADIA_GUARD_6
+        - VTL_VILLAGER
+        - OWL_PEDDLER
+        - OW_KEENER_CONSCRIPT
+        - FFL_TAME_PIGLING
+
+balanceProfiles:
+  - name: ValleyOfTitansCampGuards
+    npcFilter:
+      huntingZoneId: 6
+      id:
+        - $VT_ARCADIA_GUARD_1
+        - $VT_ARCADIA_GUARD_2
+        - $VT_ARCADIA_GUARD_3
+        - $VT_ARCADIA_GUARD_4
+        - $VT_ARCADIA_GUARD_5
+        - $VT_ARCADIA_GUARD_6
+    npc:
+      stat:
+        maxHp: { multiply: 7 }
+        atk:   { multiply: 10 }
+
+  - name: ValleyOfTitansEscortVillager
+    npcFilter:
+      huntingZoneId: 206
+      id:
+        - $VTL_VILLAGER
+    npc:
+      stat:
+        maxHp: { multiply: 10 }
+        atk:   { multiply: 10 }
+
+  - name: OblivionWoodsEscortPeddler
+    npcFilter:
+      huntingZoneId: 203
+      id:
+        - $OWL_PEDDLER
+    npc:
+      stat:
+        maxHp: { multiply: 20 }
+        atk:   { multiply: 7 }
+
+  - name: OblivionWoodsKeenerConscript
+    npcFilter:
+      huntingZoneId: 3
+      id:
+        - $OW_KEENER_CONSCRIPT
+    npc:
+      stat:
+        maxHp: { multiply: 7 }
+        atk:   { multiply: 7 }
+
+  - name: FeyForestTamePigling
+    npcFilter:
+      huntingZoneId: 202
+      id:
+        - $FFL_TAME_PIGLING
+    npc:
+      stat:
+        maxHp: { multiply: 5 }
+        atk:   { multiply: 5 }
