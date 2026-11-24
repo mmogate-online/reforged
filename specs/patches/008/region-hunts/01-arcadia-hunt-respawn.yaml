@@ -1,6 +1,6 @@
 # Arcadia hunts: the rare named monsters of Oblivion Woods, Tuwangi Mire, the Valley of Titans
 # and the Celestial Hills return on the hunt tiers. Dur Barak, Garangka and the Crisaka and
-# Abrata pair return in 25 to 30 minutes; Lanok, Arakia and Barraq in 50 to 60. Barraq also
+# Abrata pair return in 25 to 30 minutes; Lanok, Arakia and Barraq in 40 to 60. Barraq also
 # returns to his post when pulled away, as the other two do, so a pull resets his fight.
 #
 # The respawn is a base plus a random addition, so the window sits below its ceiling. Crisaka
@@ -33,8 +33,8 @@ territoryParties:
       partyId: 600490
       desc: "arakia party"
       partySpawn: true
-      partyRespawnTime: 3000000
-      partyRespawnRandomTime: 600000
+      partyRespawnTime: 2400000
+      partyRespawnRandomTime: 1200000
       flock: false
       partyAutoRespawn: false
       randomFormationSpawn: false
@@ -50,7 +50,7 @@ territoryParties:
           pos: [0.0, 0.0, 0.0]
           offsetZ: 0
           dir: 0
-          respawnTime: 3000000
+          respawnTime: 2400000
           isAggressiveMonster: false
           viewRadius: 200
           viewAngle: 360
@@ -69,7 +69,7 @@ territoryParties:
           peaceStateNoMoving: false
           cautionStateNoMoving: false
           voidSpawn: false
-          respawnRandomTime: "600000"
+          respawnRandomTime: "1200000"
           moveInTerritory: true
           popupMsg: ""
           msgProb: 0.0
@@ -837,8 +837,8 @@ territorySpawns:
       territoryId: 320712
       npcInstanceId: 322657
       changes:
-        respawnTime: 3000000
-        respawnRandomTime: "600000"
+        respawnTime: 2400000
+        respawnRandomTime: "1200000"
     - huntingZoneId: 5
       groupId: 500006
       territoryId: 520293
@@ -867,8 +867,8 @@ territorySpawns:
       territoryId: 700484
       npcInstanceId: 752920
       changes:
-        respawnTime: 3000000
-        respawnRandomTime: "600000"
+        respawnTime: 2400000
+        respawnRandomTime: "1200000"
         isReturn: true
   # Her old standalone row; she is now a member of her party above.
   delete:

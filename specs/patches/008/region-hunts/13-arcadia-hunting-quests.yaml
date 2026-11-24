@@ -9,8 +9,9 @@
 # Both quests use the board's repeat task. The repeatable one loops without end inside a quest
 # taken once, as the vanilla suppression orders do; the discovery quest runs the same task for
 # one finite round, so it completes and unlocks the repeatable one. Crisaka and Abrata spawn as
-# one party, so a kill of either credits their quests. The three world bosses built for a party
-# pay each member what the same share of their health pays on the region's solo encounters.
+# one party, so a kill of either credits their quests. Pay follows the hunt's tier, not its
+# respawn window: the solo tier pays little, the tier a veteran can solo pays more, and the world
+# bosses built for a party pay the most, to every member who takes part.
 #
 # Trap: the dungeon entry trigger is written as 0 on purpose. The server leaves that field
 # unset when the element is absent, and a leftover non-zero value makes the quest count as
@@ -104,7 +105,7 @@ quests:
     # Tradon
     - id: 253
       $extends: _huntQuest
-      header: { questNumber: 253, questTitle: "@quest:253001", recommendedLevel: 15 }
+      header: { questNumber: 253, questTitle: "@quest:253001", recommendedLevel: 15, recommendedPartySize: 3 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:253004"
@@ -115,7 +116,7 @@ quests:
             targets: [{ npc: { huntingZone: 2, templateId: 510 }, grantRate: 100 }]
     - id: 254
       $extends: _huntQuest
-      header: { questNumber: 254, questTitle: "@quest:254001", recommendedLevel: 15 }
+      header: { questNumber: 254, questTitle: "@quest:254001", recommendedLevel: 15, recommendedPartySize: 3 }
       requirements: { prerequisites: [253] }
       tasks:
         - $extends: _repeatableTask
@@ -128,7 +129,7 @@ quests:
     # Dur Barak
     - id: 351
       $extends: _huntQuest
-      header: { questNumber: 351, questTitle: "@quest:351001", recommendedLevel: 18 }
+      header: { questNumber: 351, questTitle: "@quest:351001", recommendedLevel: 18, recommendedPartySize: 3 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:351004"
@@ -139,7 +140,7 @@ quests:
             targets: [{ npc: { huntingZone: 3, templateId: 21 }, grantRate: 100 }]
     - id: 352
       $extends: _huntQuest
-      header: { questNumber: 352, questTitle: "@quest:352001", recommendedLevel: 18 }
+      header: { questNumber: 352, questTitle: "@quest:352001", recommendedLevel: 18, recommendedPartySize: 3 }
       requirements: { prerequisites: [351] }
       tasks:
         - $extends: _repeatableTask
@@ -152,7 +153,7 @@ quests:
     # Lanok
     - id: 353
       $extends: _huntQuest
-      header: { questNumber: 353, questTitle: "@quest:353001", recommendedLevel: 21 }
+      header: { questNumber: 353, questTitle: "@quest:353001", recommendedLevel: 21, recommendedPartySize: 5 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:353004"
@@ -163,7 +164,7 @@ quests:
             targets: [{ npc: { huntingZone: 3, templateId: 22 }, grantRate: 100 }]
     - id: 354
       $extends: _huntQuest
-      header: { questNumber: 354, questTitle: "@quest:354001", recommendedLevel: 21 }
+      header: { questNumber: 354, questTitle: "@quest:354001", recommendedLevel: 21, recommendedPartySize: 5 }
       requirements: { prerequisites: [353] }
       tasks:
         - $extends: _repeatableTask
@@ -176,7 +177,7 @@ quests:
     # Garangka
     - id: 551
       $extends: _huntQuest
-      header: { questNumber: 551, questTitle: "@quest:551001", recommendedLevel: 23 }
+      header: { questNumber: 551, questTitle: "@quest:551001", recommendedLevel: 23, recommendedPartySize: 3 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:551004"
@@ -187,7 +188,7 @@ quests:
             targets: [{ npc: { huntingZone: 5, templateId: 17 }, grantRate: 100 }]
     - id: 552
       $extends: _huntQuest
-      header: { questNumber: 552, questTitle: "@quest:552001", recommendedLevel: 23 }
+      header: { questNumber: 552, questTitle: "@quest:552001", recommendedLevel: 23, recommendedPartySize: 3 }
       requirements: { prerequisites: [551] }
       tasks:
         - $extends: _repeatableTask
@@ -200,7 +201,7 @@ quests:
     # Crisaka and Abrata
     - id: 651
       $extends: _huntQuest
-      header: { questNumber: 651, questTitle: "@quest:651001", recommendedLevel: 20 }
+      header: { questNumber: 651, questTitle: "@quest:651001", recommendedLevel: 20, recommendedPartySize: 3 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:651004"
@@ -213,7 +214,7 @@ quests:
               - { npc: { huntingZone: 6, templateId: 5002 }, grantRate: 100 }
     - id: 652
       $extends: _huntQuest
-      header: { questNumber: 652, questTitle: "@quest:652001", recommendedLevel: 20 }
+      header: { questNumber: 652, questTitle: "@quest:652001", recommendedLevel: 20, recommendedPartySize: 3 }
       requirements: { prerequisites: [651] }
       tasks:
         - $extends: _repeatableTask
@@ -228,7 +229,7 @@ quests:
     # Arakia
     - id: 653
       $extends: _huntQuest
-      header: { questNumber: 653, questTitle: "@quest:653001", recommendedLevel: 20 }
+      header: { questNumber: 653, questTitle: "@quest:653001", recommendedLevel: 20, recommendedPartySize: 5 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:653004"
@@ -239,7 +240,7 @@ quests:
             targets: [{ npc: { huntingZone: 6, templateId: 5003 }, grantRate: 100 }]
     - id: 654
       $extends: _huntQuest
-      header: { questNumber: 654, questTitle: "@quest:654001", recommendedLevel: 20 }
+      header: { questNumber: 654, questTitle: "@quest:654001", recommendedLevel: 20, recommendedPartySize: 5 }
       requirements: { prerequisites: [653] }
       tasks:
         - $extends: _repeatableTask
@@ -252,7 +253,7 @@ quests:
     # Barraq
     - id: 751
       $extends: _huntQuest
-      header: { questNumber: 751, questTitle: "@quest:751001", recommendedLevel: 25 }
+      header: { questNumber: 751, questTitle: "@quest:751001", recommendedLevel: 25, recommendedPartySize: 5 }
       tasks:
         - $extends: _discoveryTask
           journalText: "@quest:751004"
@@ -263,7 +264,7 @@ quests:
             targets: [{ npc: { huntingZone: 7, templateId: 101 }, grantRate: 100 }]
     - id: 752
       $extends: _huntQuest
-      header: { questNumber: 752, questTitle: "@quest:752001", recommendedLevel: 25 }
+      header: { questNumber: 752, questTitle: "@quest:752001", recommendedLevel: 25, recommendedPartySize: 5 }
       requirements: { prerequisites: [751] }
       tasks:
         - $extends: _repeatableTask
@@ -736,16 +737,16 @@ questCompensations:
     - { questId: 251, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
     - { questId: 252, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 2 }] }] }
     - { questId: 253, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 254, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 254, huntingZoneId: 2, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 20 }] }] }
     - { questId: 351, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 352, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 352, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 20 }] }] }
     - { questId: 353, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 354, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 23 }] }] }
+    - { questId: 354, huntingZoneId: 3, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 180 }] }] }
     - { questId: 551, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 552, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 552, huntingZoneId: 5, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 20 }] }] }
     - { questId: 651, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 652, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 6 }] }] }
+    - { questId: 652, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 20 }] }] }
     - { questId: 653, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 654, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 20 }] }] }
+    - { questId: 654, huntingZoneId: 6, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 180 }] }] }
     - { questId: 751, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 10 }] }] }
-    - { questId: 752, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 28 }] }] }
+    - { questId: 752, huntingZoneId: 7, compensations: [{ compensationId: 1, type: "normal", itemBag: "allpay", items: [{ templateId: $ARCADIA_HUNT_TOKEN, quantity: 180 }] }] }
